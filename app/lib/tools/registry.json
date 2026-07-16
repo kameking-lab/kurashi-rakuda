@@ -57,9 +57,12 @@
       "生理周期の平均を計算したい"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      { "label": "日本産科婦人科学会", "url": "https://www.jsog.or.jp/" },
+      { "label": "日本家族計画協会", "url": "https://www.jfpa.or.jp/" }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-04",

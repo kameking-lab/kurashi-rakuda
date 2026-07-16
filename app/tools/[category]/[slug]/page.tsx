@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { getLiveTools, getTool } from "@/app/lib/tools/registry";
 import { ToolShell } from "@/components/tools/ToolShell";
 import { ChomiryoKanzan } from "@/components/tools/impl/ChomiryoKanzan";
+import { SeiriShuki } from "@/components/tools/impl/SeiriShuki";
 import { Inunohi } from "@/components/tools/impl/Inunohi";
 import { FuyoKabe } from "@/components/tools/impl/FuyoKabe";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
@@ -27,6 +28,22 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         </p>
         <p>
           値は一般的な調理用計量表に基づく参考値です。製品や計り方（すりきり）で多少前後します。
+        </p>
+      </>
+    ),
+  },
+  "seiri-shuki": {
+    ui: <SeiriShuki />,
+    formula: (
+      <>
+        <p>
+          次回の月経開始予定日は「最終月経開始日 ＋ 平均月経周期日数」で計算します。暦日数をそのまま加算するため、月末・年またぎ・うるう年もそのまま自動的に処理されます。
+        </p>
+        <p>
+          排卵予測日は、黄体期（排卵から次回月経開始までの期間）が個人差の小さい約14日でほぼ一定であるという一般的な知見に基づき、「次回の月経開始予定日 − 14日」で逆算する簡易予測です。妊娠しやすい期間の目安は、精子の生存期間（3〜5日程度）と排卵後の卵子の生存期間（約24時間）を考慮し、排卵予測日の5日前〜1日後としています。
+        </p>
+        <p>
+          このツールが行うのは入力された周期日数に基づく単純な日付演算のみで、実際の排卵・妊娠の有無を検査・診断するものではありません。黄体期の長さには個人差（一般に10〜16日程度）があり、周期が不規則な場合はこの予測のずれが大きくなります。基礎体温の記録や排卵日検査薬の利用、婦人科への相談で確認することをおすすめします。避妊の目的でこの予測のみに頼ることはお控えください。
         </p>
       </>
     ),
