@@ -79,9 +79,18 @@
       "生後100日目がいつか知りたい"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "specs/b-tools/17-age-in-months-calculator.md（月齢計算 ロジック仕様）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/17-age-in-months-calculator.md"
+      },
+      {
+        "label": "グレゴリオ暦のうるう年規則（国立天文台 暦計算室）",
+        "url": "https://eco.mtk.nao.ac.jp/koyomi/faq/urudosi.html"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-06",
