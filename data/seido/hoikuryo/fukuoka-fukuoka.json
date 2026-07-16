@@ -1,0 +1,306 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "fukuoka-fukuoka",
+  "name": "福岡県福岡市",
+  "municipalityCode": "401307",
+  "prefecture": "福岡県",
+  "municipalityType": "政令指定都市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "r8-hoikuryohyo",
+      "title": "令和8年度 保育料表（案）（福岡市）",
+      "publisher": "福岡市こども未来局",
+      "url": "https://kodomo.city.fukuoka.lg.jp/wp-content/uploads/2025/09/b371c7274bc1ab119569ce080062b3ba.pdf",
+      "landingUrl": "https://kodomo.city.fukuoka.lg.jp/info/2122/",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "表題に「（案）」が付されたまま。令和7年9月公開（令和8年度 福岡市保育施設等利用のご案内の一部）。2026-07-17時点で「（案）」の取れた確定版は福岡市公式サイト上に見当たらない。金額・階層区分はいずれも令和7年度 保育料表（確定版）と完全一致することを本文抽出により確認済み。"
+    },
+    {
+      "id": "r7-hoikuryohyo",
+      "title": "令和7年度 保育料表（福岡市）",
+      "publisher": "福岡市こども未来局",
+      "url": "https://kodomo.city.fukuoka.lg.jp/wp-content/uploads/2025/03/fb96b05d063c05445dc2cc723602ea0f.pdf",
+      "landingUrl": "https://kodomo.city.fukuoka.lg.jp/info/2122/",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "令和7年度の確定版。令和8年度（案）との金額・階層区分の一致確認に使用。同一内容の別URL版が https://www.city.fukuoka.lg.jp/kodomo-mirai/hoiku/child/documents/r7hoikuryouhyou.pdf にも掲載。"
+    },
+    {
+      "id": "riyousha-futangaku",
+      "title": "利用者負担額（保育料・副食費）",
+      "publisher": "福岡市（ふくおか子ども情報）",
+      "url": "https://kodomo.city.fukuoka.lg.jp/info/2122/",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "税年度の切替ルール、適用しない税額控除、副食費の免除基準を記載。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和8年度の保育料表は2026-07-17確認時点で表題に「（案）」が付されたまま公開されており、「（案）」の取れた確定版は福岡市公式サイト上で確認できない。ただし階層区分・金額は令和7年度確定版と完全一致しており、令和8年度に金額改定は行われていないと解される。確定版の公開後に要更新。",
+      "status": "under-review",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "r8-hoikuryohyo",
+      "impact": "本ファイルの tiers の金額は令和8年度（案）＝令和7年度確定版と同額。確定版が公開され金額が変わった場合は tiers 全体の差し替えが必要。金額が変わらない場合は sources の（案）表記の解消のみでよい。"
+    }
+  ],
+  "disclaimer": "本データは福岡市の公式資料に基づく参考情報です。令和8年度の保育料表は確認時点で「（案）」表記のものが公開されています。実際の保育料は世帯状況・税額の確定内容により決定されますので、最終的な金額は必ず福岡市（各区役所子育て支援課・こども未来局）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所の保育料（利用者負担額）",
+      "認定こども園（保育所部分）・地域型保育事業の保育料",
+      "0〜2歳児クラスに所属する児童の保育料",
+      "保育標準時間・保育短時間の別"
+    ],
+    "excludes": [
+      "副食費（3〜5歳児クラスは実費徴収。年収360万円未満相当（市町村民税額57,700円未満）世帯の児童等は免除）",
+      "主食費",
+      "延長保育料",
+      "施設が独自に徴収する実費徴収費用（教材費・行事費等）",
+      "私立園の上乗せ徴収",
+      "認可外保育施設・企業主導型保育施設の保育料",
+      "幼稚園の保育料"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "父母の市町村民税額の合算額を踏まえ、保育料表の階層区分に応じて決定する。",
+    "taxYearRule": "前年度分市町村民税の額により階層区分を判定し、9月以降は当該年度分市町村民税の額による。令和7年9月〜令和8年8月分は令和7年度市町村民税所得割額、令和8年9月〜令和9年3月分は令和8年度市町村民税所得割額で決定する。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除（住宅ローン控除）",
+      "配当控除",
+      "外国税額控除",
+      "寄附金税額控除（ふるさと納税を含む）"
+    ],
+    "note": "階層の境界は原典がすべて「〜円未満」「〜円以上」表記のため、incomeMax は原典の「〜円未満」の値をそのまま採用している（+1 の調整は不要）。各階層の label に原典表記をそのまま残した。A階層（生活保護等）・B階層（市町村民税非課税世帯）は所得割額ではなく世帯の受給・課税状況で判定されるため、incomeMin/incomeMax は便宜上 0 とし、isWelfare / isNonTaxable フラグで識別すること。C1階層は「市町村民税のうち所得割非課税世帯」（＝所得割額0円、均等割のみ課税）であるため incomeMin 0・incomeMax 1 とし、C2階層は原典が「市町村民税のうち所得割 48,600円未満」であるが所得割0円はC1に該当するため incomeMin を 1 とした。注2 のとおり、福岡市をはじめとする政令市は税率8％を適用されているが、保育料算定にあたっては旧税率（6％）を適用した場合の市町村民税額に基づいて算定・決定する。市町村民税の申告をしていない場合など保育料の決定に必要な税額が確認できない場合は、福岡市独自の多子軽減を適用できず、D11階層（最高額）で仮決定される。未確認: 祖父母等と同居する場合の税額合算（家計の主宰者の扱い）に関する明文規定が保育料表・利用者負担額ページのいずれにも記載されておらず、確認できなかった。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "保育料は児童の4月1日の前日時点の年齢により決定される。2歳児クラス在籍時に年度の途中で3歳の誕生日を迎えても、その年度中は保育料は変わらない。年度途中で入所した場合も当該年度初日の前日時点の年齢により決定される（注4）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "当該年度初日の前日時点の年齢により決定される。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラスに所属する児童の保育料は0円",
+      "sourceId": "r8-hoikuryohyo",
+      "checkedAt": "2026-07-17",
+      "verify": {
+        "expect": ["幼児教育・保育の無償化", "３～５歳児クラスに所属する児童の保育料は０円"]
+      },
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "令和元年10月から幼児教育・保育の無償化により0円。副食費は別途実費徴収。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "市町村民税非課税世帯（B階層）は0〜2歳児クラスも0円",
+      "sourceId": "r8-hoikuryohyo",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "保育料表のB階層「市町村民税非課税世帯」が保育標準時間・保育短時間ともに0円。所得割のみ非課税（均等割は課税）の世帯はC1階層となり0円にはならない（第1子は保育標準時間14,200円）。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "生計を同一にしている児童のうち最年長者を第1子、その下の子を第2子としてカウント。保育施設等を同時利用している必要はなく、きょうだいの年齢制限も設けない。",
+        "sourceId": "r8-hoikuryohyo",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "注1。ただし第1子が就学や療養等の関係で別居している場合は、第2子以降であることの確認ができないため、第1子の住民票や生計を同一にしている旨の申立書などの提出が必要。"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子以降の保育料は0円",
+        "sourceId": "r8-hoikuryohyo",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "令和5年4月より福岡市独自の多子世帯への負担軽減策として、第2子以降の保育料を同時入所や所得制限などの要件を設けず無償化。全階層（A〜D11）で第2子以降は保育標準時間・保育短時間ともに0円。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降の保育料は0円",
+        "sourceId": "r8-hoikuryohyo",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "第2子以降が一律無償のため、第3子以降も0円。"
+      }
+    },
+    "localExtension": "福岡市独自：令和5年4月より、第2子以降の保育料を同時入所要件・所得制限を設けず無償化（きょうだいの年齢制限もなし。生計を同一にしている児童のうち最年長者を第1子としてカウント）。国基準（第2子半額／第3子以降無償、原則として小学校就学前のきょうだいのみカウント）を大きく上乗せするもの。なお、市町村民税の申告がなく税額が確認できない場合は、この福岡市独自の多子軽減は適用されずD11階層（最高額）で仮決定される。要保護世帯（ひとり親家庭、在宅障がい児（者）がいる世帯等）には別表があり、第1子について C1階層（所得割非課税）6,600円／保育短時間6,500円、C2階層（所得割48,600円未満）8,000円／7,900円、D1階層（48,600円以上61,000円未満）・D2階層（61,000円以上73,000円未満）・D3階層（73,000円以上77,101円未満）はいずれも保育標準時間・保育短時間ともに9,000円、第2子以降は0円となる（本ファイルの tiers には一般世帯の本表のみを収録しているため、要保護世帯の適用時はこの別表を参照すること）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "・生活保護法による被保護世帯 ・中国残留邦人等の円滑な帰国の促進並びに永住帰国した中国残留邦人等及び特定配偶者の自立の支援に関する法律による支援給付受給世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市町村民税のうち所得割非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 14200, "short": 13900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市町村民税のうち所得割 48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 17000, "short": 16700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "48,600円～ 61,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 61000,
+      "fees": {
+        "under3": { "standard": 19800, "short": 19400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "61,000円～ 73,000円未満",
+      "incomeMin": 61000,
+      "incomeMax": 73000,
+      "fees": {
+        "under3": { "standard": 22600, "short": 22200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "73,000円～ 85,000円未満",
+      "incomeMin": 73000,
+      "incomeMax": 85000,
+      "fees": {
+        "under3": { "standard": 25400, "short": 24900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "85,000円～ 97,000円未満",
+      "incomeMin": 85000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 28200, "short": 27700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "97,000円～126,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 126000,
+      "fees": {
+        "under3": { "standard": 31900, "short": 31300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "126,000円～149,000円未満",
+      "incomeMin": 126000,
+      "incomeMax": 149000,
+      "fees": {
+        "under3": { "standard": 35600, "short": 34900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "149,000円～169,000円未満",
+      "incomeMin": 149000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 39300, "short": 38600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "169,000円～255,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 255000,
+      "fees": {
+        "under3": { "standard": 44600, "short": 43800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "255,000円～301,000円未満",
+      "incomeMin": 255000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 53000, "short": 52000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "301,000円～397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 64000, "short": 62900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 83200, "short": 81700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "expect": [
+      "保育料表",
+      "14,200",
+      "83,200",
+      "397,000円以上"
+    ]
+  }
+}

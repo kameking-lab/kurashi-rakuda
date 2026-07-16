@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://kurashi-rakuda.jp/schema/seido-common.schema.json",
+  "title": "制度データ共通スキーマ",
+  "description": "data/seido/ 配下の全制度データが従う共通構造。全ての数値ノードは sourceId・checkedAt を持ち、scripts/verify-seido.mjs が出典ページと機械照合できる形を強制する。",
+  "type": "object",
+  "required": ["id", "name", "fiscalYear", "asOf", "sources", "disclaimer", "data"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "データセット識別子。ファイル名(拡張子なし)と一致させる。"
+    },
+    "name": { "type": "string", "description": "制度の正式名称" },
+    "fiscalYear": {
+      "type": "integer",
+      "minimum": 2024,
+      "description": "対象年度(西暦)。2026 = 令和8年度。"
+    },
+    "asOf": {
+      "type": "string",
+      "format": "date",
+      "description": "このデータセット全体の基準日。この日時点で有効な制度内容を表す。"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "description": "一次情報源のみ。e-Gov・府省庁・自治体公式に限る。まとめサイト・民間解説は不可。",
+      "items": { "$ref": "#/definitions/source" }
+    },
+    "amendments": {
+      "type": "array",
+      "description": "改正予定・期限付き措置。データ更新の自走トリガーとして verify-seido.mjs が期限切れを検知する。",
+      "items": { "$ref": "#/definitions/amendment" }
+    },
+    "disclaimer": {
+      "type": "string",
+      "minLength": 20,
+      "description": "ツールに表示する免責文。YMYL 領域のため必須。"
+    },
+    "data": {
+      "type": "object",
+      "description": "制度ごとの実データ。leaf は原則 valueNode。"
+    }
+  },
+  "definitions": {
+    "source": {
+      "type": "object",
+      "required": ["id", "title", "publisher", "url", "checkedAt", "tier"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "データ内から参照するキー"
+        },
+        "title": { "type": "string" },
+        "publisher": {
+          "type": "string",
+          "description": "発行主体。一次情報の発行者に限る。"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "恒久URLを優先。PDF直リンクの場合は landingUrl も付す。"
+        },
+        "landingUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "PDFが差し替わっても辿れる掲載元ページ"
+        },
+        "contentType": { "enum": ["html", "pdf"], "default": "html" },
+        "checkedAt": { "type": "string", "format": "date" },
+        "tier": {
+          "enum": ["law", "ministry", "agency", "municipality"],
+          "description": "law=e-Gov法令 / ministry=府省庁 / agency=公的機関(年金機構・協会けんぽ等) / municipality=自治体公式"
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "amendment": {
+      "type": "object",
+      "required": ["summary", "status", "sourceId"],
+      "additionalProperties": false,
+      "properties": {
+        "summary": { "type": "string" },
+        "status": {
+          "enum": ["in-force", "scheduled", "under-review", "expires"],
+          "description": "in-force=施行済 / scheduled=施行日確定の未施行 / under-review=検討中 / expires=期限到来により数値が変わる"
+        },
+        "effectiveFrom": { "type": "string", "format": "date" },
+        "expiresOn": {
+          "type": "string",
+          "format": "date",
+          "description": "この日を過ぎたら数値が無効になる。verify-seido.mjs が警告する。"
+        },
+        "sourceId": { "type": "string" },
+        "impact": {
+          "type": "string",
+          "description": "ツール計算への影響。実装者が読む前提で書く。"
+        }
+      }
+    },
+    "valueNode": {
+      "type": "object",
+      "description": "出典付きの単一値。全ての制度数値はこの形で持つ。",
+      "required": ["value", "sourceId", "checkedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": ["number", "string", "boolean", "null"] },
+        "unit": {
+          "type": "string",
+          "description": "JPY | JPY/month | JPY/day | rate | unit | year 等"
+        },
+        "label": { "type": "string" },
+        "sourceId": { "type": "string" },
+        "checkedAt": { "type": "string", "format": "date" },
+        "verify": {
+          "$ref": "#/definitions/verify",
+          "description": "出典ページ上で照合すべき文字列。省略時は verify-seido.mjs が value から自動生成する。"
+        },
+        "amendmentNote": {
+          "type": "string",
+          "description": "この値に関する改正予定・期限。無ければ 'なし(2026-07-17時点)' と明記する。"
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "verify": {
+      "type": "object",
+      "description": "機械照合の指示。verify-seido.mjs が出典を取得し expect の全てがページ本文に存在するか検査する。",
+      "properties": {
+        "expect": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "出典ページ本文に出現すべき文字列(AND条件)"
+        },
+        "skip": {
+          "type": "boolean",
+          "description": "true の場合は照合をスキップ。理由を skipReason に必須記載。"
+        },
+        "skipReason": { "type": "string" }
+      }
+    }
+  }
+}

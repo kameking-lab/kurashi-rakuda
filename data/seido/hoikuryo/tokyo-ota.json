@@ -1,0 +1,610 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "tokyo-ota",
+  "name": "東京都大田区",
+  "municipalityCode": "131113",
+  "prefecture": "東京都",
+  "municipalityType": "特別区",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "ota-kettei",
+      "title": "保育料階層の決定方法、お支払い",
+      "publisher": "大田区 こども家庭部 保育サービス課",
+      "url": "https://www.city.ota.tokyo.jp/seikatsu/kodomo/hoiku/hoikuryo/ketteihouhou.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "更新日 2025年9月1日。第1子保育料の無償化(令和7年9月から)、階層決定方法、および「保育料一覧表(令和7年8月まで)」の全29階層(A・B・C1〜C27)を掲載。2026-07-17時点で有効なページ。"
+    },
+    {
+      "id": "ota-index",
+      "title": "認可保育園・小規模保育所・事業所内保育所の保育料について",
+      "publisher": "大田区 こども家庭部 保育サービス課",
+      "url": "https://www.city.ota.tokyo.jp/seikatsu/kodomo/hoiku/hoikuryo/index.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "保育料関連ページの目次。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和7年9月から第1子保育料も無償化。これにより階層に関わらず、すべてのクラス(児童)の保育料(月額)は「0円」(原典表記)。2026-07-17時点で有効。",
+      "status": "in-force",
+      "effectiveFrom": "2025-09-01",
+      "sourceId": "ota-kettei",
+      "impact": "全29階層の保育料は0円。ただし延長保育料は無償化対象外であり、その算定基礎として階層区分は引き続き決定・通知される。"
+    },
+    {
+      "summary": "tiers の所得割額の境界は、大田区が掲載する「保育料一覧表(令和7年8月まで)」の区分に基づく。令和8年度(2026年度)を明示した新しい階層区分表は2026-07-17時点で未公表。公開後に要更新。",
+      "status": "under-review",
+      "sourceId": "ota-kettei",
+      "impact": "保育料は全階層0円のため金額への影響はないが、延長保育料の算定基礎となる階層境界が改定された場合は incomeMin/incomeMax の再取得が必要。"
+    }
+  ],
+  "disclaimer": "本データは大田区公式サイトの公表内容を2026-07-17時点で機械的に整理したものです。実際の保育料・階層決定は区が発行する保育料決定通知書が優先します。制度改正や個別事情により内容が異なる場合がありますので、必ず大田区保育サービス課にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育園(区立区営・区立民営・私立)の保育料(利用者負担額)",
+      "小規模保育所・事業所内保育所の保育料(認可保育園と同一)",
+      "保育料階層(A・B・C1〜C27)の区分定義"
+    ],
+    "excludes": [
+      "給食費(主食費・副食費)実費",
+      "延長保育料 ※無償化の対象外。階層区分は延長保育料の算定基礎として引き続き使用される",
+      "教材費・行事費等の実費徴収",
+      "私立園が独自に徴収する上乗せ徴収",
+      "認可外保育施設・認証保育所・幼稚園の保育料および補助"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "保護者それぞれの住民税(区市町村民税)額等の合計で決定。保護者(父母)の住民税額の合計が0円で、祖父母と同住所の場合は、祖父母の住民税額にて保育料階層の決定を行う。",
+    "taxYearRule": "保育料階層は保護者それぞれの現年度の住民税(区市町村民税)額等の合計で決定する。4月分から8月分までについては、「現年度」とあるのは「前年度」とする。階層切替月は4月と9月。原典の算定期間表では、令和7年9月分〜令和8年8月分の階層に令和7年度住民税額を反映する。",
+    "deductionsIgnored": [
+      "配当控除",
+      "住宅借入金等特別控除"
+    ],
+    "note": "原典表記「保護者それぞれの現年度の住民税(区市町村民税)額（配当控除、住宅借入金等特別控除を控除する前の税額）等の合計で決定します。」。決定された保育料階層は入園月または保育料階層切替月(4月、9月)の20日頃に「保育料決定通知書」で通知される。未確認: 寄附金税額控除の取扱いは原典に明記がなく、2026-07-17時点で確認できていない。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児(0歳児クラス・1,2歳児クラス)",
+      "rule": "原典の保育料一覧表は「0歳児クラス」と「1,2歳児クラス」を別欄で定義し、令和7年8月までは両者で金額が異なっていた(例: 最上位C27で0歳児71,800円 / 1,2歳児69,800円)。令和7年9月以降は双方0円のため、本データでは under3 に統合している。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児(3歳児クラス以上)",
+      "rule": "原典表記「3歳児クラス以上」。令和7年8月までの表でも全階層0円。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3歳児クラス以上の保育料は無償",
+      "sourceId": "ota-kettei",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "区は従前から3歳児クラス〜5歳児クラスを無償化しており、令和7年8月までの一覧表でも3歳児クラス以上は全階層0円。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3歳未満の住民税非課税世帯も無償",
+      "sourceId": "ota-kettei",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "区は従前から住民税非課税世帯の0〜2歳児クラスを無償化(B階層)。令和7年9月以降は課税世帯を含む全階層の3歳未満児も0円。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": null,
+        "unit": "unit",
+        "label": "多子カウントの年齢上限(未確認)",
+        "sourceId": "ota-kettei",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "未確認: 大田区は令和5年10月から第2子以降、令和7年9月から第1子も無償化したため、多子カウントの年齢上限を定めた規定を現行ページに掲載していない。カウント方法を説明していた「保育料負担軽減について」ページ(seikatsu/kodomo/hoiku/hoikuryo/keigen_tei-syotoku.html)は2026-07-17時点で削除済み(404)であり、年齢上限は公式資料から確認できず。"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子の保育料",
+        "sourceId": "ota-kettei",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "原典表記「令和5年10月からは第2子以降のこどもについても保育料を無償化しました」。令和7年9月からの第1子無償化により、現在は第何子かに関わらず0円。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降の保育料",
+        "sourceId": "ota-kettei",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "第2子以降の無償化に含まれ0円。"
+      }
+    },
+    "localExtension": "大田区は段階的に無償化を拡大: (1)従前から3歳児クラス〜5歳児クラスおよび住民税非課税世帯の0〜2歳児クラスを無償化、(2)令和5年10月から第2子以降を無償化(東京都の第2子無償化に対応)、(3)令和7年9月から第1子についても無償化(原典表記「さらに、令和7年9月からは第1子についても無償化します」)。この結果、令和7年9月以降は階層に関わらず全クラス・全児童の保育料が0円となり、東京都の第2子無償化は第1子無償化に包含されている。延長保育料は一貫して無償化の対象外。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護を受けている世帯又は里親世帯",
+      "incomeMin": 0,
+      "incomeMax": null,
+      "isWelfare": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "現年度の区市町村民税が非課税の世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "現年度の区市町村民税が均等割のみの世帯（所得割額0円。B階層と所得割額の範囲は同一で、均等割の課税有無で区別される）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "現年度の区市町村民税所得割が30,000円未満の世帯",
+      "incomeMin": 1,
+      "incomeMax": 30000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "現年度の区市町村民税所得割が30,000円以上50,000円未満の世帯",
+      "incomeMin": 30000,
+      "incomeMax": 50000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "現年度の区市町村民税所得割が50,000円以上60,000円未満の世帯",
+      "incomeMin": 50000,
+      "incomeMax": 60000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "現年度の区市町村民税所得割が60,000円以上70,000円未満の世帯",
+      "incomeMin": 60000,
+      "incomeMax": 70000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "現年度の区市町村民税所得割が70,000円以上80,000円未満の世帯",
+      "incomeMin": 70000,
+      "incomeMax": 80000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "現年度の区市町村民税所得割が80,000円以上90,000円未満の世帯",
+      "incomeMin": 80000,
+      "incomeMax": 90000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "現年度の区市町村民税所得割が90,000円以上100,000円未満の世帯",
+      "incomeMin": 90000,
+      "incomeMax": 100000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "現年度の区市町村民税所得割が100,000円以上114,000円未満の世帯",
+      "incomeMin": 100000,
+      "incomeMax": 114000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "現年度の区市町村民税所得割が114,000円以上128,000円未満の世帯",
+      "incomeMin": 114000,
+      "incomeMax": 128000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "現年度の区市町村民税所得割が128,000円以上142,000円未満の世帯",
+      "incomeMin": 128000,
+      "incomeMax": 142000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "現年度の区市町村民税所得割が142,000円以上156,000円未満の世帯",
+      "incomeMin": 142000,
+      "incomeMax": 156000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "現年度の区市町村民税所得割が156,000円以上170,000円未満の世帯",
+      "incomeMin": 156000,
+      "incomeMax": 170000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "現年度の区市町村民税所得割が170,000円以上193,300円未満の世帯",
+      "incomeMin": 170000,
+      "incomeMax": 193300,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "現年度の区市町村民税所得割が193,300円以上216,600円未満の世帯",
+      "incomeMin": 193300,
+      "incomeMax": 216600,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C16",
+      "label": "現年度の区市町村民税所得割が216,600円以上239,900円未満の世帯",
+      "incomeMin": 216600,
+      "incomeMax": 239900,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C17",
+      "label": "現年度の区市町村民税所得割が239,900円以上263,200円未満の世帯",
+      "incomeMin": 239900,
+      "incomeMax": 263200,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C18",
+      "label": "現年度の区市町村民税所得割が263,200円以上286,500円未満の世帯",
+      "incomeMin": 263200,
+      "incomeMax": 286500,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C19",
+      "label": "現年度の区市町村民税所得割が286,500円以上310,000円未満の世帯",
+      "incomeMin": 286500,
+      "incomeMax": 310000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C20",
+      "label": "現年度の区市町村民税所得割が310,000円以上340,000円未満の世帯",
+      "incomeMin": 310000,
+      "incomeMax": 340000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C21",
+      "label": "現年度の区市町村民税所得割が340,000円以上370,000円未満の世帯",
+      "incomeMin": 340000,
+      "incomeMax": 370000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C22",
+      "label": "現年度の区市町村民税所得割が370,000円以上400,000円未満の世帯",
+      "incomeMin": 370000,
+      "incomeMax": 400000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C23",
+      "label": "現年度の区市町村民税所得割が400,000円以上450,000円未満の世帯",
+      "incomeMin": 400000,
+      "incomeMax": 450000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C24",
+      "label": "現年度の区市町村民税所得割が450,000円以上500,000円未満の世帯",
+      "incomeMin": 450000,
+      "incomeMax": 500000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C25",
+      "label": "現年度の区市町村民税所得割が500,000円以上550,000円未満の世帯",
+      "incomeMin": 500000,
+      "incomeMax": 550000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C26",
+      "label": "現年度の区市町村民税所得割が550,000円以上600,000円未満の世帯",
+      "incomeMin": 550000,
+      "incomeMax": 600000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C27",
+      "label": "現年度の区市町村民税所得割が600,000円以上の世帯",
+      "incomeMin": 600000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    }
+  ],
+  "verify": {
+    "expect": [
+      "令和７年９月からは階層に関わらず、すべてのクラス(児童)の保育料(月額)は「０円」になります",
+      "C27",
+      "600,000円以上の世帯",
+      "配当控除、住宅借入金等特別控除を控除する前の税額"
+    ]
+  }
+}

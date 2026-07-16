@@ -1,0 +1,856 @@
+{
+  "$schema": "../schema/seido-common.schema.json",
+  "id": "ikukyu-kyufu",
+  "name": "産休・育休の給付（出産手当金・出産育児一時金・育児休業給付・出生後休業支援給付・育児時短就業給付・社会保険料免除）",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "egov-koyou-hoken",
+      "title": "雇用保険法（昭和四十九年法律第百十六号）",
+      "publisher": "e-Gov法令検索（デジタル庁）",
+      "url": "https://laws.e-gov.go.jp/law/349AC0000000116",
+      "checkedAt": "2026-07-17",
+      "tier": "law",
+      "contentType": "html",
+      "note": "第61条の6〜第61条の12。育児休業給付金・出生時育児休業給付金・出生後休業支援給付金・育児時短就業給付金の根拠条文。"
+    },
+    {
+      "id": "egov-kenko-hoken",
+      "title": "健康保険法（大正十一年法律第七十号）",
+      "publisher": "e-Gov法令検索（デジタル庁）",
+      "url": "https://laws.e-gov.go.jp/law/211AC0000000070",
+      "checkedAt": "2026-07-17",
+      "tier": "law",
+      "contentType": "html",
+      "note": "第99条・第101条・第102条（出産手当金・出産育児一時金）、第159条・第159条の3（保険料免除）。"
+    },
+    {
+      "id": "egov-kenko-hoken-rei",
+      "title": "健康保険法施行令（大正十五年勅令第二百四十三号）",
+      "publisher": "e-Gov法令検索（デジタル庁）",
+      "url": "https://laws.e-gov.go.jp/law/215IO0000000243",
+      "checkedAt": "2026-07-17",
+      "tier": "law",
+      "contentType": "html",
+      "note": "第36条。出産育児一時金の額（48万8千円＋3万円を超えない範囲内で保険者が定める加算額）。"
+    },
+    {
+      "id": "egov-kousei-nenkin",
+      "title": "厚生年金保険法（昭和二十九年法律第百十五号）",
+      "publisher": "e-Gov法令検索（デジタル庁）",
+      "url": "https://laws.e-gov.go.jp/law/329AC0000000115",
+      "checkedAt": "2026-07-17",
+      "tier": "law",
+      "contentType": "html",
+      "note": "第81条の2・第81条の2の2。育児休業等・産前産後休業期間中の保険料免除。"
+    },
+    {
+      "id": "mhlw-ikukyu-pamph",
+      "title": "育児休業等給付の内容と支給申請手続（令和7年8月1日改訂版）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/11600000/001461102.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "★中核出典★ 支給上限額・下限額・就業日数要件・80%（手取り10割相当）の説明。資料自身が『令和8年7月31日までの額』と期限を明記している点に注意。"
+    },
+    {
+      "id": "mhlw-jitan-pamph",
+      "title": "育児時短就業給付の内容と支給申請手続（令和7年8月1日時点版）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/11600000/001395102.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "育児時短就業給付金の支給率・支給限度額・調整のしくみ。"
+    },
+    {
+      "id": "mhlw-gendogaku-r7",
+      "title": "令和7年8月1日から支給限度額が変更になります（LL070722保02）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/001520023.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "賃金日額の上限額・下限額の改定リーフレット。毎年8月1日改定。"
+    },
+    {
+      "id": "hellowork-ikukyu",
+      "title": "育児休業等給付について",
+      "publisher": "ハローワークインターネットサービス（厚生労働省）",
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_childcareleave.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html"
+    },
+    {
+      "id": "kyoukaikenpo-shussan-teate",
+      "title": "出産手当金",
+      "publisher": "全国健康保険協会",
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/index.html",
+      "checkedAt": "2026-07-17",
+      "tier": "agency",
+      "contentType": "html"
+    },
+    {
+      "id": "kyoukaikenpo-ichijikin",
+      "title": "出産育児一時金",
+      "publisher": "全国健康保険協会",
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html",
+      "checkedAt": "2026-07-17",
+      "tier": "agency",
+      "contentType": "html"
+    },
+    {
+      "id": "mhlw-shussan",
+      "title": "出産育児一時金等について",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "申請期限（出産日の翌日から2年以内）の根拠。協会けんぽの出産育児一時金ページには申請期限の記載がないため、期限は本ページを出典とする。"
+    },
+    {
+      "id": "nenkin-ikukyu-menjo",
+      "title": "厚生年金保険料等の免除（産前産後休業・育児休業等期間）",
+      "publisher": "日本年金機構",
+      "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/menjo/20140122-01.html",
+      "checkedAt": "2026-07-17",
+      "tier": "agency",
+      "contentType": "html",
+      "note": "産休・育休双方の保険料免除の本文ページ。/menjo/ikuji-menjo/ および /menjo/sankyu-menjo/ はリンク集のみのハブページで本文を含まないため、出典としては本ページを用いる。"
+    },
+    {
+      "id": "nenkin-sankyu-menjo",
+      "title": "厚生年金保険料等の免除（産前産後休業・育児休業等期間）／産前産後休業期間中の保険料免除",
+      "publisher": "日本年金機構",
+      "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/menjo/20140122-01.html",
+      "checkedAt": "2026-07-17",
+      "tier": "agency",
+      "contentType": "html",
+      "note": "同上。本ページの「1．産前産後休業期間中の保険料免除」の節が該当。"
+    },
+    {
+      "id": "mhlw-shussango-shindan",
+      "title": "出生後休業支援給付金の簡易診断ツール",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/stf/syussyougo_kanishindan_00001.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "配偶者要件の例外7類型の根拠。"
+    },
+    {
+      "id": "mhlw-kaisei-r8",
+      "title": "健康保険法等の一部を改正する法律（令和8年法律第31号）の概要",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/12400000/001713111.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/newpage_00014.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "★重要★ 令和8年6月5日公布。出産育児一時金に代わる新給付方式（現物給付化＋全妊婦への定額現金給付）の根拠。施行は公布後2年以内の政令で定める日。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "★期限到来直前★ 育児休業給付の休業開始時賃金日額の上限額16,110円・下限額3,014円、および育児時短就業給付の支給限度額471,393円・最低限度額2,411円は、いずれも『令和8年7月31日までの額』と一次資料に明記されている。支給限度額は毎月勤労統計の平均定期給与額の増減をもとに毎年8月1日に改定される。",
+      "status": "expires",
+      "expiresOn": "2026-07-31",
+      "sourceId": "mhlw-ikukyu-pamph",
+      "impact": "★2026年8月1日に必ず数値が変わる★ 2026-07-17時点で令和8年8月1日適用の新額は未公表（例年7月下旬公表）。本データは2026年7月31日まで有効。8月1日以降にツールを公開する場合は、公開前に必ず新リーフレットを取得して上限額・下限額・各給付の支給上限額を差し替えること。scripts/verify-seido.mjs は expiresOn を過ぎたデータをエラーとして検出する。"
+    },
+    {
+      "summary": "出生後休業支援給付金（雇用保険法第61条の10、支給率13%、最大28日）および育児時短就業給付金（同第61条の12、支給率10%）が2025年4月1日に創設され、施行済み。",
+      "status": "in-force",
+      "effectiveFrom": "2025-04-01",
+      "sourceId": "egov-koyou-hoken",
+      "impact": "育児休業給付金67%＋出生後休業支援給付金13%＝80%となる期間（最大28日）が存在する。競合ツールの多くが未対応の領域。"
+    },
+    {
+      "summary": "健康保険法等の一部を改正する法律（令和8年法律第31号、令和8年5月29日成立・6月5日公布）により、出産育児一時金は『分娩1件当たり基本単価の設定（現物給付化）』＋『全ての妊婦に対する定額の現金給付』という新方式に置き換わることが決定。施行は公布後2年以内の政令で定める日（＝令和10年6月4日まで）。当分の間、施設の選択により現行の出産育児一時金の適用を受けることも可能とされる。",
+      "status": "scheduled",
+      "effectiveFrom": null,
+      "sourceId": "mhlw-kaisei-r8",
+      "impact": "★2026年度中は施行されない★ 2026年度を通じて出産育児一時金は原則50万円のまま。ただし給付水準は告示事項、現金給付額は政令事項とされ、金額は未定。ツールのコンテンツに『将来的に出産費用の負担のしくみが変わる予定』と注記する価値がある。政令の公布を監視対象とすること。"
+    },
+    {
+      "summary": "令和8年度（令和8年4月1日〜令和9年3月31日）の雇用保険料率は、一般の事業で労働者負担5/1,000・事業主負担8.5/1,000（合計13.5/1,000）。令和7年度から労使ともに1/1,000引下げ。",
+      "status": "in-force",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "mhlw-ikukyu-pamph",
+      "impact": "手取り計算に影響。育児休業中に賃金の支払いがない場合は雇用保険料の負担も発生しない。"
+    },
+    {
+      "summary": "令和6年改正育児・介護休業法は2025年10月1日施行分（柔軟な働き方を実現するための措置の創設、個別の意向聴取・配慮の義務化）をもって施行完了。2026年度以降に施行が予定されている項目はない。",
+      "status": "in-force",
+      "effectiveFrom": "2025-10-01",
+      "sourceId": "mhlw-ikukyu-pamph",
+      "impact": "2026年度の制度変更なし。"
+    },
+    {
+      "summary": "令和6年雇用保険法改正による適用拡大（週所定労働時間要件 20時間以上→10時間以上）の施行日は令和10年10月1日。施行後は育児休業給付等も現行の被保険者と同様に支給される予定。",
+      "status": "scheduled",
+      "effectiveFrom": "2028-10-01",
+      "sourceId": "egov-koyou-hoken",
+      "impact": "2026年度時点では週20時間以上が雇用保険の被保険者要件。2028年10月以降、短時間パートも育休給付の対象になる。"
+    }
+  ],
+  "disclaimer": "本シミュレーターの結果は、2026年（令和8年）7月17日時点の法令に基づく目安であり、実際の受給額・受給可否を保証するものではありません。特にご注意ください: ①育児休業給付の賃金日額の上限額等は毎年8月1日に改定されます（本データは2026年7月31日までの額に基づきます）。②受給には被保険者期間・就業日数などの要件があり、要件を満たさない場合は支給されません。③出産手当金・出産育児一時金は加入している健康保険（協会けんぽ・組合健保・共済組合等）により付加給付や独自の取扱いがある場合があります。④公務員の方は共済組合の制度が適用され、本ツールの前提と異なります。個別の判断は、勤務先・ハローワーク・加入健康保険にご確認ください。",
+  "data": {
+    "shussanTeateKin": {
+      "description": "出産手当金（健康保険法第102条）。健康保険の被保険者本人が対象（被扶養者は対象外）。",
+      "rate": {
+        "value": 0.6667,
+        "unit": "rate",
+        "label": "支給日額の率（3分の2）",
+        "sourceId": "egov-kenko-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["三分の二に相当する金額"] },
+        "amendmentNote": "なし（2026-07-17時点）。令和8年法律第31号にも出産手当金の改正項目はない。",
+        "note": "★実装注意★ 法令上は『3分の2』であり、0.6667 は近似値。計算は必ず有理数（×2÷3）で行うこと。端数処理は健康保険法第99条第2項による: 標準報酬日額（30分の1の額）は5円未満切捨・5円以上10円未満は10円に切上、3分の2後の額は50銭未満切捨・50銭以上1円未満は1円に切上。"
+      },
+      "baseFormula": {
+        "value": "支給開始日以前の直近の継続した12か月間の各月の標準報酬月額を平均した額 ÷ 30 × 2/3",
+        "label": "支給日額の計算式",
+        "sourceId": "egov-kenko-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["直近の継続した十二月間"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "baseFormulaUnder12Months": {
+        "value": "①直近の継続した各月の標準報酬月額の平均の30分の1、②前年度9月30日における全被保険者の標準報酬月額の平均の30分の1 のいずれか少ない額 × 2/3",
+        "label": "被保険者期間が12か月未満の場合",
+        "sourceId": "egov-kenko-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["いずれか少ない額"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★未確認★ ②の『前年度9月30日における全被保険者の標準報酬月額の平均額』の令和8年度の具体値（過去は30万円）は本データセットに未収録。協会けんぽの公表値を別途取得すること。"
+      },
+      "periodBeforeBirth": {
+        "value": 42,
+        "unit": "day",
+        "label": "産前の支給期間（単胎）",
+        "sourceId": "egov-kenko-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["以前四十二日"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "出産の日（出産の日が出産の予定日後であるときは出産の予定日）以前42日。★実装注意★ 出産が予定日より遅れた場合、遅れた日数も産前期間に含まれ支給対象となる（起算点が予定日になるため）。逆に早まった場合は産前期間が短くなる。"
+      },
+      "periodBeforeBirthMultiple": {
+        "value": 98,
+        "unit": "day",
+        "label": "産前の支給期間（多胎妊娠）",
+        "sourceId": "egov-kenko-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["九十八日"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "periodAfterBirth": {
+        "value": 56,
+        "unit": "day",
+        "label": "産後の支給期間",
+        "sourceId": "egov-kenko-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["出産の日後五十六日"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "多胎でも産後は56日で同じ。"
+      },
+      "condition": {
+        "value": "労務に服さなかった期間であること",
+        "label": "支給要件",
+        "sourceId": "egov-kenko-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["労務に服さなかった期間"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "事業主から報酬を受けた場合は、その額が出産手当金の額より少ないときに差額が支給される。"
+      },
+      "afterResignation": {
+        "value": "①被保険者期間が継続して1年以上、②資格喪失日の前日に出産手当金を受けているか受けられる状態、の両方を満たすこと",
+        "label": "退職後の継続給付の要件",
+        "sourceId": "kyoukaikenpo-shussan-teate",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["1年以上"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      }
+    },
+    "shussanIkujiIchijikin": {
+      "description": "出産育児一時金（健康保険法第101条、同法施行令第36条）。被保険者・被扶養者ともに対象。",
+      "amount": {
+        "value": 500000,
+        "unit": "JPY",
+        "label": "産科医療補償制度加入機関での在胎週数22週以降の出産（1児につき）",
+        "sourceId": "kyoukaikenpo-ichijikin",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["50万円"] },
+        "amendmentNote": "★将来変更あり★ 令和8年法律第31号により新給付方式へ置換予定（施行は公布後2年以内の政令で定める日）。2026年度中は50万円のまま。",
+        "note": "多胎の場合は児の数だけ支給（双子なら100万円）。"
+      },
+      "amountWithoutCompensation": {
+        "value": 488000,
+        "unit": "JPY",
+        "label": "産科医療補償制度未加入機関または在胎週数22週未満の出産（1児につき）",
+        "sourceId": "kyoukaikenpo-ichijikin",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["48.8万円"] },
+        "amendmentNote": "同上"
+      },
+      "statutoryBase": {
+        "value": 488000,
+        "unit": "JPY",
+        "label": "法令上の本体額（健康保険法施行令第36条本文）",
+        "sourceId": "egov-kenko-hoken-rei",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["四十八万八千円"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★正確な理解★ 『50万円＝48.8万円＋1.2万円』の内訳のうち、1.2万円は法令が直接定めた額ではない。施行令第36条ただし書は加算を『3万円を超えない範囲内で保険者が定める金額』と規定しており、実際に1.2万円となるのは産科医療補償制度の掛金が1万2千円だからである。"
+      },
+      "statutoryMaxAddition": {
+        "value": 30000,
+        "unit": "JPY",
+        "label": "加算額の法令上の上限（保険者が定める）",
+        "sourceId": "egov-kenko-hoken-rei",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["三万円を超えない範囲内"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "eligibilityWeeks": {
+        "value": "妊娠85日（4か月）以降の生産（早産）、死産（流産）、人工妊娠中絶",
+        "label": "支給要件",
+        "sourceId": "kyoukaikenpo-ichijikin",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["85日"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "paymentMethods": {
+        "value": ["直接支払制度", "受取代理制度", "償還払い"],
+        "label": "支払方法",
+        "sourceId": "kyoukaikenpo-ichijikin",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["直接支払制度"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "受取代理制度は出産予定日まで2か月以内であることが条件。"
+      },
+      "claimDeadline": {
+        "value": "出産日の翌日から2年以内",
+        "label": "申請期限",
+        "sourceId": "mhlw-shussan",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["申請期限は出産日の翌日から2年以内"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      }
+    },
+    "ikujiKyugyoKyufuKin": {
+      "description": "育児休業給付金（雇用保険法第61条の7）。",
+      "rateFirst180Days": {
+        "value": 0.67,
+        "unit": "rate",
+        "label": "休業開始から通算180日目までの支給率",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["百分の六十七"] },
+        "amendmentNote": "なし（2026-07-17時点）。令和8年度に給付率を変更する改正は確認されていない。"
+      },
+      "rateAfter180Days": {
+        "value": 0.5,
+        "unit": "rate",
+        "label": "181日目以降の支給率",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["百分の五十"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "180日は『育児休業給付金の支給に係る休業日数が通算して180日に達するまで』。暦日ではなく給付対象日数の通算である点に注意。"
+      },
+      "wageDailyFormula": {
+        "value": "休業開始前（産休取得者は原則産休開始前）直近6か月間に支払われた賃金の総額 ÷ 180",
+        "label": "休業開始時賃金日額の計算式",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["180"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "臨時の賃金・3か月を超える期間ごとに支払われる賃金（賞与）は除く。★実装注意★ 母親の場合、育休開始前は産休中で賃金がないため、産前休業開始日の前6か月が基準となる。"
+      },
+      "wageDailyMax": {
+        "value": 16110,
+        "unit": "JPY/day",
+        "label": "休業開始時賃金日額の上限額",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["16,110円"] },
+        "amendmentNote": "★令和8年7月31日までの額★ 2026年8月1日に改定見込み（新額は2026-07-17時点で未公表）。",
+        "note": "この上限により、月収約48万円を超える人は給付が頭打ちになる。"
+      },
+      "wageDailyMin": {
+        "value": 3014,
+        "unit": "JPY/day",
+        "label": "休業開始時賃金日額の下限額",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["3,014円"] },
+        "amendmentNote": "★令和8年7月31日までの額★"
+      },
+      "monthlyMax67": {
+        "value": 323811,
+        "unit": "JPY/month",
+        "label": "支給上限額（給付率67%・支給日数30日）",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["323,811円"] },
+        "amendmentNote": "★令和8年7月31日までの額★ 改定前（〜令和7年7月31日）は315,369円。",
+        "note": "検算: 16,110円 × 30日 × 67% = 323,811円。"
+      },
+      "monthlyMin67": {
+        "value": 60581,
+        "unit": "JPY/month",
+        "label": "支給下限額（給付率67%・支給日数30日）",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["60,581円"] },
+        "amendmentNote": "★令和8年7月31日までの額★"
+      },
+      "monthlyMax50": {
+        "value": 241650,
+        "unit": "JPY/month",
+        "label": "支給上限額（給付率50%・支給日数30日）",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["241,650円"] },
+        "amendmentNote": "★令和8年7月31日までの額★ 改定前は235,350円。",
+        "note": "検算: 16,110円 × 30日 × 50% = 241,650円。"
+      },
+      "monthlyMin50": {
+        "value": 45210,
+        "unit": "JPY/month",
+        "label": "支給下限額（給付率50%・支給日数30日）",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["45,210円"] },
+        "amendmentNote": "★令和8年7月31日までの額★"
+      },
+      "insuredPeriodRequirement": {
+        "value": "休業開始日前2年間に、賃金支払基礎日数が11日以上ある（ない場合は賃金の支払いの基礎となった時間数が80時間以上の）完全月が12か月以上あること",
+        "label": "被保険者期間要件",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["11日以上"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "疾病・負傷・出産・育児等やむを得ない理由で引き続き30日以上賃金の支払を受けられなかった期間があるときは2年に加算可能（合計で最長4年間）。産休取得者でみなし被保険者期間が12か月に満たない者は、産前休業開始日（特例基準日）を基準に判定（雇用保険法第61条の7第4項）。"
+      },
+      "workDaysLimit": {
+        "value": 10,
+        "unit": "day",
+        "label": "一支給単位期間中の就業日数の上限",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["10日"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "10日を超える場合は就業した時間数が80時間以下であること。育児休業終了日の属する支給単位期間は、加えて全日休業している日が1日以上必要。分単位の端数は切上処理（80時間を分単位で超えた場合は81時間扱い）。"
+      },
+      "workHoursLimit": {
+        "value": 80,
+        "unit": "hour",
+        "label": "就業日数が10日を超える場合の就業時間数の上限",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["80時間"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "supportUnitPeriod": {
+        "value": "育児休業を開始した日から起算した1か月ごとの期間（休業開始応当日から各翌月の休業開始応当日の前日まで）",
+        "label": "支給単位期間",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "条文の要約であり同一文字列が存在しないため照合対象外。実装時は雇用保険法第61条の7を参照。" },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★実装注意★ 暦月ではない。1/15開始なら 1/15〜2/14 が第1支給単位期間。"
+      },
+      "maxLeaveCount": {
+        "value": 2,
+        "unit": "count",
+        "label": "同一の子について支給される育児休業の回数",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["三回以上"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "3回目以後は不支給（雇用保険法第61条の7第2項、省令の例外あり）。value=2 は『支給される回数の上限』。"
+      },
+      "wageAdjustment": {
+        "description": "支給単位期間中に事業主から賃金が支払われた場合の調整（雇用保険法第61条の7第7項）。",
+        "thresholdNoReduction": {
+          "value": 0.13,
+          "unit": "rate",
+          "label": "減額なしの上限（賃金 ÷ (賃金日額×日数)）",
+          "sourceId": "egov-koyou-hoken",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["百分の八十"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "180日経過後（給付率50%期間）は30%。"
+        },
+        "thresholdNoReductionAfter180": {
+          "value": 0.3,
+          "unit": "rate",
+          "label": "減額なしの上限（181日目以降）",
+          "sourceId": "mhlw-ikukyu-pamph",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["30％"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "thresholdZero": {
+          "value": 0.8,
+          "unit": "rate",
+          "label": "不支給となる下限（賃金 ÷ (賃金日額×日数)）",
+          "sourceId": "egov-koyou-hoken",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["百分の八十に相当する額以上であるときは"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "13%（30%）超〜80%未満の場合: 支給額 = 賃金日額×日数×80% − 賃金額。80%以上は不支給。"
+        }
+      }
+    },
+    "shusshoJiIkujiKyugyoKyufuKin": {
+      "description": "出生時育児休業給付金（産後パパ育休、雇用保険法第61条の8）。",
+      "rate": {
+        "value": 0.67,
+        "unit": "rate",
+        "label": "支給率",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["百分の六十七"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "maxDays": {
+        "value": 28,
+        "unit": "day",
+        "label": "上限日数（通算）",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["二十八日"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "法令原文は漢数字（二十八日）。雇用保険法第61条の8第2項第2号。"
+      },
+      "targetPeriod": {
+        "value": "子の出生日から起算して8週間を経過する日の翌日までの期間内",
+        "label": "対象期間",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["八週間を経過する日の翌日"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "当該期間内に4週間以内の期間を定めた休業であること。分割して2回まで取得可能（3回目以後は不支給）。"
+      },
+      "monthlyMax": {
+        "value": 302223,
+        "unit": "JPY",
+        "label": "支給上限額（休業28日）",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["302,223円"] },
+        "amendmentNote": "★令和8年7月31日までの額★ 改定前は294,344円。",
+        "note": "検算: 16,110円 × 28日 × 67% = 302,223円。"
+      },
+      "workDaysLimit": {
+        "value": 10,
+        "unit": "day",
+        "label": "休業期間中の就業日数の上限（休業28日の場合）",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["最大10日"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★実装注意★ 休業期間が28日より短い場合は日数に比例して短くなる。例: 14日間の休業→最大5日（5日を超える場合は40時間）、10日間の休業→最大4日（10日×10/28≒3.57を切上）、80時間×10/28≒28.57時間（端数処理なし）。"
+      }
+    },
+    "shusshoGoKyugyoShienKyufuKin": {
+      "description": "出生後休業支援給付金（雇用保険法第61条の10、2025年4月1日創設）。育児休業給付金67%に上乗せして13%が支給され、合計80%となる。",
+      "rate": {
+        "value": 0.13,
+        "unit": "rate",
+        "label": "支給率",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["百分の十三"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "maxDays": {
+        "value": 28,
+        "unit": "day",
+        "label": "上限日数（通算）",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["二十八日"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "monthlyMax": {
+        "value": 58640,
+        "unit": "JPY",
+        "label": "支給上限額（休業28日）",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["58,640円"] },
+        "amendmentNote": "★令和8年7月31日までの額★ 改定前は57,111円。",
+        "note": "検算: 16,110円 × 28日 × 13% = 58,640.4 → 58,640円。"
+      },
+      "monthlyMin": {
+        "value": 10970,
+        "unit": "JPY",
+        "label": "支給下限額（休業28日）",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["10,970円"] },
+        "amendmentNote": "★令和8年7月31日までの額★"
+      },
+      "ownLeaveRequirement": {
+        "value": 14,
+        "unit": "day",
+        "label": "本人の出生後休業の日数要件（通算）",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["通算して十四日以上"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "spouseLeaveRequirement": {
+        "value": 14,
+        "unit": "day",
+        "label": "配偶者の出生後休業の日数要件（通算）",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["通算して十四日以上"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "配偶者が子の出生日から8週間を経過する日の翌日までの期間内に通算14日以上の出生後休業をしたこと。例外は spouseRequirementExceptions を参照。"
+      },
+      "spouseRequirementExceptions": {
+        "value": [
+          "配偶者がいない",
+          "配偶者が被保険者の子と法律上の親子関係がない",
+          "被保険者が配偶者から暴力を受け別居中",
+          "配偶者が無業者",
+          "配偶者が自営業者やフリーランスなど雇用される労働者でない",
+          "配偶者が産後休業中",
+          "1〜6以外の理由で配偶者が育児休業をすることができない"
+        ],
+        "label": "配偶者要件が不要となる場合（7類型）",
+        "sourceId": "mhlw-shussango-shindan",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "簡易診断ツールは動的ページのため静的な文字列照合が不安定。根拠は雇用保険法第61条の10第2項（laws.e-gov.go.jp）で条文確認済み。" },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★実装上の最重要論点★ 判定時点は『子の出生日の翌日において』これらのいずれかに該当するか。母親の場合は通常『6. 配偶者が産後休業中』ではなく、母親自身の産後休業が本人の14日要件を満たす形になる。UIで『夫が育休を取らなくても、あなたが対象になる場合があります』と明示すること。"
+      },
+      "wageAdjustment": {
+        "value": "育児休業給付金が減額される場合でも出生後休業支援給付金は減額されない。ただし賃金が「賃金日額×休業日数」の80%以上となり育児休業給付金が支給されない場合は、出生後休業支援給付金も支給されない。",
+        "label": "賃金が支払われた場合の調整",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["減額されません"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★育休給付との差異★ 育休給付は13%超で減額が始まるが、出生後休業支援給付は80%まで満額。"
+      }
+    },
+    "ikujiJitanShugyoKyufuKin": {
+      "description": "育児時短就業給付金（雇用保険法第61条の12、2025年4月1日創設）。2歳未満の子を養育するため所定労働時間を短縮して就業する場合に、賃金の10%が支給される。",
+      "rate": {
+        "value": 0.1,
+        "unit": "rate",
+        "label": "支給率（原則）",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["百分の十"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★根拠条文の注意★ 育児時短就業給付金は雇用保険法第61条の12。第61条の11は給付制限の準用規定であり別物。"
+      },
+      "targetChildAge": {
+        "value": "2歳に満たない子",
+        "label": "対象となる子の年齢",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["二歳に満たない子"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "supportLimit": {
+        "value": 471393,
+        "unit": "JPY/month",
+        "label": "支給限度額",
+        "sourceId": "mhlw-jitan-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["471,393"] },
+        "amendmentNote": "★令和8年7月31日までの額★ 改定前は459,000円。2026年8月1日改定見込み（新額未公表）。",
+        "note": "支給対象月に支払われた賃金額がこの額以上の場合は支給されない。"
+      },
+      "minimumAmount": {
+        "value": 2411,
+        "unit": "JPY/month",
+        "label": "最低限度額",
+        "sourceId": "mhlw-jitan-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["2,411"] },
+        "amendmentNote": "★令和8年7月31日までの額★ 改定前は2,295円。",
+        "note": "算定額がこの額以下の場合は支給されない。"
+      },
+      "calculationRules": {
+        "label": "支給額の算定（3区分）",
+        "sourceId": "mhlw-jitan-pamph",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし（2026-07-17時点）",
+        "verify": { "expect": ["90％以下", "調整後の支給率"] },
+        "rules": [
+          {
+            "case": "支給対象月の賃金額 ≦ 育児時短就業開始時賃金月額 × 90%",
+            "formula": "支給額 = 支給対象月に支払われた賃金額 × 10%"
+          },
+          {
+            "case": "育児時短就業開始時賃金月額 × 90% < 賃金額 < 同 × 100%",
+            "formula": "支給額 = 支給対象月に支払われた賃金額 × 調整後の支給率",
+            "note": "★未確認★ 調整後の支給率の厳密な算式は、パンフレットPDFの数式が段組みで分断されており原文レイアウトを再現できなかった。法文（雇用保険法第61条の12第6項第2号）は『育児時短就業開始時賃金日額に30を乗じて得た額に対する当該賃金の額の割合が100分の90を超える大きさの程度に応じ、100分の10から一定の割合で逓減するように厚生労働省令で定める率』と定めるのみ。実装時は雇用保険法施行規則の該当条文を必ず参照すること。趣旨は『賃金額と支給額の合計が育児時短就業開始時賃金月額を超えないよう支給率を調整する』こと。"
+          },
+          {
+            "case": "上記による支給額と賃金額の合計 > 支給限度額",
+            "formula": "支給額 = 支給限度額 − 支給対象月に支払われた賃金額"
+          }
+        ],
+        "example": "賃金月額483,300円→時短後の賃金430,000円の場合: 430,000 ≦ 434,970（90%）なので支給率10% → 43,000円。ただし 430,000 + 43,000 = 473,000 > 471,393（支給限度額）のため、471,393 − 430,000 = 41,393円が支給額。"
+      },
+      "eligibility": {
+        "value": "①2歳未満の子を養育するために1週間当たりの所定労働時間を短縮して就業する被保険者であること。②育児休業給付の対象となる育児休業から引き続き同一の子について育児時短就業を開始したこと、または、育児時短就業開始日前2年間に賃金支払基礎日数が11日以上ある（ない場合は80時間以上ある）完全月が12か月あること。",
+        "label": "支給要件",
+        "sourceId": "mhlw-jitan-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["２歳未満の子"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "『引き続き』は、育児休業終了の翌日（復職日）から開始する場合に加え、育児休業終了日と育児時短就業開始日の間が14日以内の場合を含む。"
+      },
+      "monthlyEligibility": {
+        "value": [
+          "初日から末日まで続けて被保険者である月",
+          "1週間当たりの所定労働時間を短縮して就業した期間がある月",
+          "初日から末日まで続けて育児休業給付又は介護休業給付を受給していない月",
+          "高年齢雇用継続給付の受給対象となっていない月"
+        ],
+        "label": "各月の支給要件",
+        "sourceId": "mhlw-jitan-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["初日から末日まで"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "noMinimumReduction": {
+        "value": "短縮後の1週間当たりの所定労働時間に上限・下限はない",
+        "label": "時短の程度の要件",
+        "sourceId": "mhlw-jitan-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["上限・下限はありません"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★誤解の多い論点★ 育児・介護休業法の所定労働時間の短縮措置（1日6時間）に限らず、2歳未満の子を養育するために1週間当たりの所定労働時間を短縮した場合は育児時短就業と取り扱われる。『6時間勤務でないと対象外』は誤り。"
+      }
+    },
+    "shakaiHokenryoMenjo": {
+      "description": "産前産後休業・育児休業等期間中の社会保険料（健康保険・厚生年金保険）の免除。",
+      "maternityLeave": {
+        "rule": {
+          "value": "産前産後休業を開始した日の属する月から、産前産後休業が終了する日の翌日が属する月の前月までの期間、保険料を徴収しない",
+          "label": "産前産後休業中の免除ルール",
+          "sourceId": "egov-kenko-hoken",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["終了する日の翌日が属する月の前月まで"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "根拠: 健康保険法第159条の3、厚生年金保険法第81条の2の2。★産休には14日ルールはない★（条文上、月末在籍ベースの原則のみ）。"
+        },
+        "period": {
+          "value": "出産の日（出産の日が出産の予定日後であるときは出産予定日）以前42日（多胎妊娠の場合は98日）から出産の日後56日までの間",
+          "label": "産前産後休業の範囲",
+          "sourceId": "nenkin-sankyu-menjo",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["42日"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        }
+      },
+      "childcareLeave": {
+        "monthEndRule": {
+          "value": "育児休業等を開始した日の属する月と終了する日の翌日が属する月とが異なる場合、開始月から終了日翌日の属する月の前月までの月の保険料を免除",
+          "label": "月末在籍ルール",
+          "sourceId": "egov-kenko-hoken",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["異なる場合"] },
+          "amendmentNote": "なし（2026-07-17時点）。令和4年10月改正が最新。",
+          "note": "実質的に『その月の末日時点で育児休業中』であればその月の月額保険料が免除される。"
+        },
+        "fourteenDayRule": {
+          "value": 14,
+          "unit": "day",
+          "label": "同月内14日以上ルール",
+          "sourceId": "egov-kenko-hoken",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["十四日以上"] },
+          "amendmentNote": "令和4年10月1日施行。2026年度時点で変更なし。",
+          "note": "開始月と終了日翌日の属する月が同一の場合でも、その月に14日以上の育児休業等を取得していれば当該月の月額保険料が免除される。就業予定日がある場合は当該就業日を除く。土日等の休日も期間に含む。"
+        },
+        "bonusRule": {
+          "value": "育児休業等の期間が1か月以下である者については、標準報酬月額に係る保険料に限り免除（＝賞与保険料は免除されない）",
+          "label": "賞与保険料の1か月超要件",
+          "sourceId": "egov-kenko-hoken",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["標準報酬月額に係る保険料に限る"] },
+          "amendmentNote": "令和4年10月1日施行。2026年度時点で変更なし。",
+          "note": "賞与保険料は、賞与を支払った月の末日を含んだ連続した1か月を超える育児休業等を取得した場合に免除される。1か月を超えるかは暦日で判断し、土日等の休日も期間に含む。"
+        },
+        "targetAge": {
+          "value": "3歳に満たない子を養育するための育児休業等",
+          "label": "対象範囲",
+          "sourceId": "nenkin-ikukyu-menjo",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["3歳"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★重要な差異★ 雇用保険の育休給付が原則1歳（最長2歳）までなのに対し、社会保険料免除は3歳未満まで対象。"
+        }
+      },
+      "effect": {
+        "value": "被保険者・事業主の両方の負担が免除され、かつ保険料を納めた期間として扱われる（年金額計算上不利にならない）",
+        "label": "免除の効果",
+        "sourceId": "nenkin-sankyu-menjo",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["保険料を納めた期間"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "procedure": {
+        "value": "事業主が「育児休業等取得者申出書」／「産前産後休業取得者申出書」を提出",
+        "label": "手続",
+        "sourceId": "nenkin-ikukyu-menjo",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["申出書"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★自動ではない★ 事業主の申出が必要。ツールで『勤務先に申出をしてもらう必要があります』と明示すること。"
+      }
+    },
+    "handoriJuwariSoutou": {
+      "description": "いわゆる「手取り10割相当」の正確な説明。",
+      "combinedRate": {
+        "value": 0.8,
+        "unit": "rate",
+        "label": "育児休業給付金67% + 出生後休業支援給付金13% の合計給付率",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["80％の給付率で手取り10割相当"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★最重要の誤解ポイント★ 雇用保険法第61条の7の給付率が80%に引き上げられたわけではない。80%は『67% + 13%』という2つの別給付の合算であり、出生後休業支援給付金の対象となる最大28日間のみ。29日目以降は67%（181日目以降50%）に戻る。"
+      },
+      "reason": {
+        "value": "①健康保険・厚生年金保険料が免除され、②勤務先から給与が支給されない場合は雇用保険料の負担がなく、③育児休業等給付は非課税であるため、休業開始時賃金日額の80%の給付率で手取り10割相当の給付となる",
+        "label": "手取り10割相当となる理由",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["育児休業等給付は非課税"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★注意★ 厚労省自身が『相当』と留保している概算。賃金日額の上限額（16,110円）の制約があるため、賃金水準が高い人は手取り10割に届かない。また出生後休業支援給付金の要件（両親ともに14日以上等）を満たさなければ80%にならない。ツールでは『上限に達しています』の警告を必ず出すこと。"
+      },
+      "taxExempt": {
+        "value": true,
+        "label": "育児休業等給付の非課税",
+        "sourceId": "mhlw-ikukyu-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["非課税"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "所得税・住民税ともに非課税。翌年の住民税・保育料の算定基礎にも入らない（＝復職後の保育料が下がる要因になる）。"
+      }
+    }
+  }
+}

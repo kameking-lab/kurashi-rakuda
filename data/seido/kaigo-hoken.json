@@ -1,0 +1,547 @@
+{
+  "$schema": "../schema/seido-common.schema.json",
+  "id": "kaigo-hoken",
+  "name": "介護保険の利用者自己負担（負担割合・区分支給限度基準額・高額介護サービス費・補足給付）",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "mhlw-gaiyou",
+      "title": "介護保険制度の概要（令和7年7月）",
+      "publisher": "厚生労働省老健局",
+      "url": "https://www.mhlw.go.jp/content/001512842.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/gaiyo/index.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "★中核出典★ p.7「介護保険制度における利用者負担」に1割/2割/3割の判定基準。p.10に要介護認定の仕組み。"
+    },
+    {
+      "id": "mhlw-kokuji-33",
+      "title": "居宅介護サービス費等区分支給限度基準額及び介護予防サービス費等区分支給限度基準額（平成12年2月10日厚生省告示第33号）",
+      "publisher": "厚生労働省（法令等データベース）",
+      "url": "https://www.mhlw.go.jp/web/t_doc?dataId=82aa0267&dataType=0&pageNo=1",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "区分支給限度基準額の告示原文。最終改正は平成31年3月28日厚生労働省告示第101号（令和元年10月1日適用）。令和6年度・令和8年度の報酬改定でも単位数は改定されていない。"
+    },
+    {
+      "id": "mhlw-kokuji-93",
+      "title": "厚生労働大臣が定める一単位の単価（平成27年3月23日厚生労働省告示第93号）",
+      "publisher": "厚生労働省（法令等データベース）",
+      "url": "https://www.mhlw.go.jp/web/t_doc?dataId=82ab4582&dataType=0&pageNo=1",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "1単位の単価＝10円×地域区分・サービス種類に応じた割合。"
+    },
+    {
+      "id": "mhlw-kaigokensaku",
+      "title": "サービスにかかる利用料（介護サービス情報公表システム）",
+      "publisher": "厚生労働省",
+      "url": "https://www.kaigokensaku.mhlw.go.jp/commentary/fee.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "区分支給限度基準額の円換算（1単位=10円）。告示の単位数と相互検証済み。"
+    },
+    {
+      "id": "mhlw-vol997",
+      "title": "介護保険最新情報Vol.997（令和3年7月5日）高額介護サービス費の負担限度額の見直し",
+      "publisher": "厚生労働省老健局介護保険計画課",
+      "url": "https://www.mhlw.go.jp/content/000801668.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000212398_00001.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "★高額介護サービス費の中核出典★ 令和3年8月1日サービス分から適用。2026-07-17時点まで改正なし。p.13別添2に全所得区分の判定ルール。"
+    },
+    {
+      "id": "mhlw-vol1481",
+      "title": "介護保険最新情報Vol.1481（令和8年3月13日）特定入所者介護サービス費等の負担限度額の改正（令和8年厚生労働省告示第88号）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/001673838.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000212398_00001.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "★2026年8月1日施行の補足給付改正★ 令和8年3月13日公布済み。"
+    },
+    {
+      "id": "mhlw-bunkakai-252",
+      "title": "令和8年度予算に関する「大臣折衝事項」について（報告）／社保審-介護給付費分科会 第252回 資料1（令和7年12月26日）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/12300000/001623468.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/shingi/shingi-chousa_127713.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "令和8年度介護報酬改定+2.03%、補足給付の新旧対照表、高額医療・高額介護合算療養費の第2/第3段階の現行値。"
+    },
+    {
+      "id": "mhlw-iken-r7",
+      "title": "介護保険制度の見直しに関する意見（令和7年12月25日 社会保障審議会介護保険部会）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/12300000/001622725.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/newpage_68030.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "2割負担の対象範囲拡大の検討状況（pp.43-48）、補足給付の令和9年度further見直し（p.49）。"
+    },
+    {
+      "id": "mhlw-nintei",
+      "title": "要介護認定はどのように行われるか",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/nintei/gaiyo2.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "要介護認定等基準時間による区分の定義。"
+    },
+    {
+      "id": "mhlw-kokuji-91",
+      "title": "要介護認定等基準時間の推計の方法（平成12年3月24日厚生省告示第91号）",
+      "publisher": "厚生労働省（法令等データベース）",
+      "url": "https://www.mhlw.go.jp/web/t_doc?dataId=82aa0398&dataType=0&pageNo=1",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html"
+    },
+    {
+      "id": "mhlw-chiiki-kubun",
+      "title": "地域区分／社保審-介護給付費分科会 第243回 資料1（令和6年12月23日）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/12300000/001477917.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/shingi/shingi-chousa_127713.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "級地の指定基準（公務員の地域手当の区分に準拠）。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "★2026年8月1日施行★ 特定入所者介護サービス費（補足給付）の負担限度額を改正（令和8年厚生労働省告示第88号、令和8年3月13日公布済み）。食費の基準費用額を1日100円引上げ（1,445円→1,545円）。食費の負担限度額は第3段階①を+30円/日、第3段階②を+60円/日引上げ（第1段階・第2段階は据置）。居住費の負担限度額は第3段階②のみ+100円/日引上げ（多床室のうち室料を徴収しない老健等を除く）。",
+      "status": "scheduled",
+      "effectiveFrom": "2026-08-01",
+      "sourceId": "mhlw-vol1481",
+      "impact": "★2026年8月を境に数値が変わる★ 本データは hojokyufu.beforeAug2026 と hojokyufu.fromAug2026 の両方を保持している。ツールは基準日で切り替えること。2026年8月1日以降に公開する場合は fromAug2026 を既定にする。"
+    },
+    {
+      "summary": "令和8年度介護報酬改定 +2.03%（内訳: 介護分野の職員の処遇改善+1.95%＝令和8年6月施行、食費の基準費用額の引上げ+0.09%＝令和8年8月施行）。処遇改善加算の対象を介護職員のみから介護従事者に拡大し、訪問看護・訪問リハビリテーション・居宅介護支援等にも新たに処遇改善加算を設ける。",
+      "status": "in-force",
+      "effectiveFrom": "2026-06-01",
+      "sourceId": "mhlw-bunkakai-252",
+      "impact": "報酬単位数の引上げにより1割負担者の自己負担額も連動して増加する。区分支給限度基準額の単位数は据置のため、限度額内で使えるサービス量は実質的に減少する点をコンテンツで説明する価値がある。なお本データセットは個別サービスの単位数を保持していない（未収集）。"
+    },
+    {
+      "summary": "2割負担の対象範囲拡大（「一定以上所得」の判断基準の見直し）は2026-07-17時点で未施行・結論未了。介護保険部会は、年金収入＋その他合計所得金額の基準を280万円→260万円〜230万円（夫婦346万円→326万円〜296万円）に広げる機械的な選択肢を提示して議論したが、特定の数値を採用していない。配慮措置として①負担増の上限を月7,000円に抑える案、②預貯金等が一定額以下の者は申請により1割負担に戻す案が議論された。第10期介護保険事業計画期間の開始（令和9年度〜）の前までに結論を得ることとされている。",
+      "status": "under-review",
+      "sourceId": "mhlw-iken-r7",
+      "impact": "★2027年度に壁が動く可能性が高い★ 2026年度中は現行基準（160万/220万・280万/340万・346万/463万）で計算してよい。2026年12月頃の大臣折衝・法案提出を監視対象とすること。ツールのコンテンツに『2027年度から2割負担の対象が広がる可能性があります』と注記する価値がある。"
+    },
+    {
+      "summary": "「現役並み所得」（3割負担）の判断基準の見直しは、医療保険制度との整合性や利用者への影響等を踏まえつつ引き続き検討。",
+      "status": "under-review",
+      "sourceId": "mhlw-iken-r7",
+      "impact": "2026年度中は現行基準のまま。"
+    },
+    {
+      "summary": "補足給付について、令和9年度中に所得段階の設定を精緻化する予定。第3段階①を第3段階①ア（年金収入等80万円超100万円以下）と①イ（100万円超120万円以下）に、第3段階②を②ア（120万円超140万円以下）と②イ（140万円超）に区分し、①イおよび②イの負担限度額を引き上げる。",
+      "status": "scheduled",
+      "effectiveFrom": "2027-04-01",
+      "sourceId": "mhlw-iken-r7",
+      "impact": "告示未公布。2027年度のデータ更新時に段階定義そのものが変わるため、tiers 構造の変更が必要になる。"
+    },
+    {
+      "summary": "【医療保険側・要注視】高額療養費制度の見直しが令和8年8月に予定されている。高額療養費の所得区分・限度額は高額医療・高額介護合算療養費の限度額と連動するため、合算療養費の限度額も変更される可能性がある。",
+      "status": "scheduled",
+      "effectiveFrom": "2026-08-01",
+      "sourceId": "mhlw-iken-r7",
+      "impact": "★未確認★ 見直し後の具体的数値は本データセットに未収録。gassan（高額医療・高額介護合算療養費）は本データセットでは未確認扱いとしており、ツールへの実装を保留すること。"
+    },
+    {
+      "summary": "区分支給限度基準額の単位数は平成31年3月28日厚生労働省告示第101号（令和元年10月1日適用、消費税10%対応の引上げ）が最終改正。令和3年度・令和6年度・令和8年度の介護報酬改定でも改定されていない。",
+      "status": "in-force",
+      "effectiveFrom": "2019-10-01",
+      "sourceId": "mhlw-kokuji-33",
+      "impact": "2026年度時点の現行値。介護報酬が上がる一方で限度額の単位数が据え置かれている構造的論点。"
+    }
+  ],
+  "disclaimer": "本シミュレーターの結果は、2026年（令和8年）7月17日時点の法令・告示に基づく目安であり、実際の自己負担額を保証するものではありません。特にご注意ください: ①負担割合は世帯内の65歳以上の方の所得により毎年判定され、市区町村が交付する「介護保険負担割合証」で確定します。②実際の請求額は、利用するサービスの種類・事業所の加算・お住まいの地域区分（1単位の単価）により変動します。③2026年8月1日から施設の食費・居住費の負担限度額が変わります。④2027年度から2割負担の対象範囲が広がる可能性があります（検討中）。個別の判断は、担当のケアマネジャー・お住まいの市区町村・地域包括支援センターにご確認ください。",
+  "data": {
+    "futanWariai": {
+      "description": "利用者負担割合（1割/2割/3割）。65歳以上（第1号被保険者）が対象。40〜64歳（第2号被保険者）は所得にかかわらず一律1割。判定は世帯内の第1号被保険者単位で行う。",
+      "note": "★実装上の最重要論点★ 2つの要件はAND条件（「かつ」）。合計所得金額の要件を満たしても、年金収入＋その他合計所得金額の要件を満たさなければ1割のまま。",
+      "sourceId": "mhlw-gaiyou",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "★2027年度から2割の対象範囲が広がる可能性★（検討中、結論は令和9年度開始前）。2026年度は現行基準。",
+      "verify": { "expect": ["合計所得金額160万円以上", "280万円以上", "346万円以上", "合計所得金額220万円以上", "340万円以上", "463万円以上"] },
+      "brackets": [
+        {
+          "rate": 0.3,
+          "label": "3割負担",
+          "totalIncomeMin": 2200000,
+          "pensionPlusOtherIncomeMinSingle": 3400000,
+          "pensionPlusOtherIncomeMinCouple": 4630000,
+          "note": "合計所得金額220万円以上 かつ 年金収入＋その他合計所得金額340万円以上（単身）／463万円以上（夫婦世帯）。平成29年改正で導入、平成30年8月施行。"
+        },
+        {
+          "rate": 0.2,
+          "label": "2割負担",
+          "totalIncomeMin": 1600000,
+          "pensionPlusOtherIncomeMinSingle": 2800000,
+          "pensionPlusOtherIncomeMinCouple": 3460000,
+          "note": "合計所得金額160万円以上 かつ 年金収入＋その他合計所得金額280万円以上（単身）／346万円以上（夫婦世帯）。平成26年改正、平成27年8月施行。"
+        },
+        {
+          "rate": 0.1,
+          "label": "1割負担",
+          "totalIncomeMin": null,
+          "pensionPlusOtherIncomeMinSingle": null,
+          "pensionPlusOtherIncomeMinCouple": null,
+          "note": "上記いずれにも該当しない場合。40〜64歳の第2号被保険者は所得にかかわらず1割。"
+        }
+      ],
+      "currentDistribution": {
+        "value": "令和7年3月現在、サービス利用者数5,406,760人のうち、2割負担は約4.3％（234,062人）、3割負担は約3.9％（206,341人）",
+        "label": "負担割合別の利用者数（参考）",
+        "sourceId": "mhlw-iken-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["5,406,760", "234,062", "206,341"] },
+        "amendmentNote": "令和7年3月時点の実績値。",
+        "note": "コンテンツで『9割以上の方は1割負担です』と安心材料を示す根拠に使える。"
+      }
+    },
+    "kubunShikyuGendo": {
+      "description": "区分支給限度基準額（1か月あたり）。これを超えた分は全額自己負担となる。",
+      "sourceId": "mhlw-kokuji-33",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "平成31年告示第101号（令和元年10月1日適用）が最終改正。令和6年度・令和8年度改定でも単位数の改定なし。2026年度時点の現行値。",
+      "note": "円換算は1単位=10円（その他地域）の場合。地域区分により最大11.40円まで上がるため、実際の限度額（円）は地域により異なる。円換算値は mhlw-kaigokensaku で相互検証済み。",
+      "verify": { "expect": ["五千三十二単位", "一万五百三十一単位", "一万六千七百六十五単位", "一万九千七百五単位", "二万七千四十八単位", "三万九百三十八単位", "三万六千二百十七単位"] },
+      "levels": [
+        { "key": "yoshien1", "label": "要支援1", "units": 5032, "yenAt10": 50320 },
+        { "key": "yoshien2", "label": "要支援2", "units": 10531, "yenAt10": 105310 },
+        { "key": "yokaigo1", "label": "要介護1", "units": 16765, "yenAt10": 167650 },
+        { "key": "yokaigo2", "label": "要介護2", "units": 19705, "yenAt10": 197050 },
+        { "key": "yokaigo3", "label": "要介護3", "units": 27048, "yenAt10": 270480 },
+        { "key": "yokaigo4", "label": "要介護4", "units": 30938, "yenAt10": 309380 },
+        { "key": "yokaigo5", "label": "要介護5", "units": 36217, "yenAt10": 362170 },
+        { "key": "keikateki", "label": "経過的要介護", "units": 6150, "yenAt10": 61500 }
+      ]
+    },
+    "tanka": {
+      "description": "1単位の単価。10円に、地域区分およびサービス種類に応じた割合を乗じた額。",
+      "sourceId": "mhlw-kokuji-93",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし（2026-07-17時点）",
+      "note": "★実装上の重要な注意★ 単価は「級地 × サービス種類」の組合せで決まる。上乗せ率はサービスの人件費割合区分（70%/55%/45%）により異なり、居宅療養管理指導・福祉用具貸与等は全級地で10円。『1級地は一律11.40円』は誤り。下表の yenMax は級地ごとの上限値にすぎない。",
+      "verify": { "expect": ["千分の千百四十", "千分の千百十二", "千分の千百五", "千分の千八十四", "千分の千七十", "千分の千四十二", "千分の千二十一"] },
+      "grades": [
+        { "grade": "1級地", "ratioMax": 1.14, "yenMax": 11.4 },
+        { "grade": "2級地", "ratioMax": 1.112, "yenMax": 11.12 },
+        { "grade": "3級地", "ratioMax": 1.105, "yenMax": 11.05 },
+        { "grade": "4級地", "ratioMax": 1.084, "yenMax": 10.84 },
+        { "grade": "5級地", "ratioMax": 1.07, "yenMax": 10.7 },
+        { "grade": "6級地", "ratioMax": 1.042, "yenMax": 10.42 },
+        { "grade": "7級地", "ratioMax": 1.021, "yenMax": 10.21 },
+        { "grade": "その他", "ratioMax": 1.0, "yenMax": 10.0 }
+      ],
+      "gradeAssignmentRule": {
+        "value": "各市町村に適用される級地は、公平性・客観性を担保する観点から、公務員（国家・地方）の地域手当の設定がある地域は原則として当該地域手当の区分に準拠しつつ、隣接地域の状況によって一部特例を設けている",
+        "label": "級地の指定基準",
+        "sourceId": "mhlw-chiiki-kubun",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["地域手当"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★未収集★ 市町村別の級地一覧（告示第93号の別表）は本データセットに未収録。ツールでは『その他地域（10円）』を既定とし、地域による差がある旨を注記する。市町村別級地データ化は queue/hoikuryo-backlog.md §6 に残タスクとして記載。"
+      },
+      "serviceTypeRule": {
+        "value": "上乗せ割合はサービスの人件費割合区分（70%／55%／45%）により異なる。居宅療養管理指導・福祉用具貸与等は全級地で千分の千（10円）。",
+        "label": "サービス種類別の扱い",
+        "sourceId": "mhlw-kokuji-93",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "告示別表の構造説明であり単一文字列での照合が不能。★未収集★ 人件費割合区分×級地の全組合せ表は本データセットに未収録。" },
+        "amendmentNote": "なし（2026-07-17時点）"
+      }
+    },
+    "kougakuKaigoServiceHi": {
+      "description": "高額介護サービス費。1か月に支払った利用者負担の合計が上限額を超えたとき、超えた分が払い戻される。",
+      "sourceId": "mhlw-vol997",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "令和3年8月1日サービス分から適用。2026-07-17時点まで改正なし。",
+      "note": "★実装注意★ 福祉用具購入費・住宅改修費・施設の食費居住費・区分支給限度基準額を超えた自己負担分は対象外。",
+      "verify": { "expect": ["140,100円", "93,000円", "44,400円", "24,600円", "15,000円"] },
+      "brackets": [
+        {
+          "key": "kazei690",
+          "label": "課税所得690万円以上（年収約1,160万円〜）",
+          "limit": 140100,
+          "unit": "世帯",
+          "taxableIncomeMin": 6900000
+        },
+        {
+          "key": "kazei380",
+          "label": "課税所得380万円以上690万円未満（年収約770万〜約1,160万円）",
+          "limit": 93000,
+          "unit": "世帯",
+          "taxableIncomeMin": 3800000,
+          "taxableIncomeMax": 6900000
+        },
+        {
+          "key": "kazei-under380",
+          "label": "課税所得380万円未満（市町村民税課税世帯）",
+          "limit": 44400,
+          "unit": "世帯",
+          "taxableIncomeMax": 3800000
+        },
+        {
+          "key": "hikazei",
+          "label": "市町村民税世帯非課税",
+          "limit": 24600,
+          "unit": "世帯"
+        },
+        {
+          "key": "hikazei-80man",
+          "label": "市町村民税世帯非課税 かつ ①公的年金等収入金額＋その他の合計所得金額の合計が80万円以下 又は ②老齢福祉年金受給者",
+          "limit": 24600,
+          "limitIndividual": 15000,
+          "unit": "世帯/個人 併記",
+          "note": "世帯24,600円（個人15,000円）。"
+        },
+        {
+          "key": "seikatsu-hogo",
+          "label": "生活保護の被保護者",
+          "limit": 15000,
+          "unit": "個人"
+        },
+        {
+          "key": "genkaku-15000",
+          "label": "15,000円への減額により生活保護の被保護者とならない場合",
+          "limit": 15000,
+          "unit": "世帯"
+        },
+        {
+          "key": "genkaku-24600",
+          "label": "24,600円への減額により生活保護の被保護者とならない場合",
+          "limit": 24600,
+          "unit": "世帯"
+        }
+      ],
+      "judgmentRules": {
+        "baseYear": {
+          "value": "サービスを受けた月の属する年の前年（その月が1月から7月までの場合には前々年）",
+          "label": "判定の基準年",
+          "sourceId": "mhlw-vol997",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["前々年"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "taxableIncomeDefinition": {
+          "value": "地方税法第314条の2第1項に規定する総所得金額及び山林所得金額並びに他の所得と区分して計算される所得の金額の合計額から、同項各号及び第2項の規定による控除をした後の金額",
+          "label": "課税所得の定義",
+          "sourceId": "mhlw-vol997",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["第314条の２第１項"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "youngDependentAdjustment": {
+          "value": "世帯主で同一世帯に合計所得金額38万円以下の19歳未満の者がいる場合、16歳未満×33万円、16歳以上19歳未満×12万円を課税所得から控除する",
+          "label": "年少扶養控除の調整措置",
+          "sourceId": "mhlw-vol997",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["33万円"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "ダブルケア（育児と介護の同時進行）世帯で効いてくる論点。"
+        },
+        "timing": {
+          "value": "市町村民税非課税者等に該当するかの判断は、サービス利用があった月ごとに、それぞれの月の初日において行う",
+          "label": "判定タイミング",
+          "sourceId": "mhlw-vol997",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["月の初日"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        }
+      }
+    },
+    "hojokyufu": {
+      "description": "特定入所者介護サービス費（補足給付）。施設サービスの食費・居住費の負担限度額。低所得者が対象で、第4段階（世帯に課税者がいる／本人課税）は対象外。",
+      "note": "★2026年8月1日に改正★ beforeAug2026 と fromAug2026 の両方を保持。単位は円/日。月額換算は原典の概算表記（万円単位）。",
+      "userStages": {
+        "sourceId": "mhlw-vol1481",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "段階の定義自体は2026年8月改正で変更なし。令和9年度中に第3段階①②をそれぞれア・イに細分化する予定（告示未公布）。",
+        "note": "「世帯」には世帯を分離している配偶者を含む。年金収入金額には平成28年8月以降、非課税年金（遺族年金・障害年金）も含む。",
+        "verify": { "expect": ["八十万九千円"] },
+        "stages": [
+          {
+            "key": "stage1",
+            "label": "第1段階",
+            "condition": "生活保護受給者（預貯金要件なし）／世帯全員が市町村民税非課税である老齢福祉年金受給者",
+            "savingsLimitSingle": 10000000,
+            "savingsLimitCouple": 20000000
+          },
+          {
+            "key": "stage2",
+            "label": "第2段階",
+            "condition": "世帯全員が市町村民税非課税 かつ 年金収入金額＋合計所得金額が80.9万円以下",
+            "incomeMax": 809000,
+            "savingsLimitSingle": 6500000,
+            "savingsLimitCouple": 16500000
+          },
+          {
+            "key": "stage3a",
+            "label": "第3段階①",
+            "condition": "世帯全員が市町村民税非課税 かつ 年金収入金額＋合計所得金額が80.9万円超120万円以下",
+            "incomeMin": 809000,
+            "incomeMax": 1200000,
+            "savingsLimitSingle": 5500000,
+            "savingsLimitCouple": 15500000
+          },
+          {
+            "key": "stage3b",
+            "label": "第3段階②",
+            "condition": "世帯全員が市町村民税非課税 かつ 年金収入金額＋合計所得金額が120万円超",
+            "incomeMin": 1200000,
+            "savingsLimitSingle": 5000000,
+            "savingsLimitCouple": 15000000
+          },
+          {
+            "key": "stage4",
+            "label": "第4段階",
+            "condition": "世帯に課税者がいる者／市町村民税本人課税者",
+            "note": "補足給付の対象外（基準費用額を全額負担）。"
+          }
+        ],
+        "boundaryDiscrepancy": {
+          "value": "未確認",
+          "label": "★第2段階/第3段階①の境界値に一次資料間の不一致あり★",
+          "sourceId": "mhlw-vol1481",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "一次資料間で数値が食い違っており、確定できないため照合対象外。" },
+          "amendmentNote": "要再確認",
+          "note": "同一文書（介護保険最新情報Vol.1481）内で数値が食い違っている。p.4-5の告示本文（令和8年厚生労働省告示第88号）は「公的年金等の収入金額等が八十万九千円を超え百二十万円以下であるもの」＝80.9万円と規定する一方、p.3の解説図は82.65万円を用いている。分科会資料 mhlw-bunkakai-252 も p.9-10の表では80.9万円、p.11の図では82.65万円と併存。この境界は老齢基礎年金の満額に連動して年金額改定に応じ変動する性質があるため、82.65万円が令和8年度の年金額改定を反映した実務値である可能性が高いが、直接の根拠である介護保険法施行規則第83条の5・第97条の3の現行条文をe-Gov法令検索で取得できず確定できなかった。本データは告示本文の80.9万円を採用している。★実装前に必ず保険者（市町村）または施行規則の現行条文で再確認すること。★ この1点のみツールで確定値を出さず『年金収入が80万円台前半の方は市区町村にご確認ください』と表示する方針。"
+        }
+      },
+      "beforeAug2026": {
+        "label": "現行（〜令和8年7月31日）",
+        "sourceId": "mhlw-bunkakai-252",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "2026年7月31日で失効。2026年8月1日から fromAug2026 に切り替わる。",
+        "verify": { "expect": ["1,445", "2,066"] },
+        "shokuhi": {
+          "kijunHiyou": 1445,
+          "stage1": 300,
+          "stage2": 390,
+          "stage3a": 650,
+          "stage3b": 1360,
+          "shortStay": { "stage1": 300, "stage2": 600, "stage3a": 1000, "stage3b": 1300 }
+        },
+        "kyojuhi": [
+          { "type": "多床室（特養等）", "kijunHiyou": 915, "stage1": 0, "stage2": 430, "stage3a": 430, "stage3b": 430 },
+          { "type": "多床室（老健・医療院／室料を徴収する場合）", "kijunHiyou": 697, "stage1": 0, "stage2": 430, "stage3a": 430, "stage3b": 430 },
+          { "type": "多床室（老健・医療院等／室料を徴収しない場合）", "kijunHiyou": 437, "stage1": 0, "stage2": 430, "stage3a": 430, "stage3b": 430 },
+          { "type": "従来型個室（特養等）", "kijunHiyou": 1231, "stage1": 380, "stage2": 480, "stage3a": 880, "stage3b": 880 },
+          { "type": "従来型個室（老健・医療院等）", "kijunHiyou": 1728, "stage1": 550, "stage2": 550, "stage3a": 1370, "stage3b": 1370 },
+          { "type": "ユニット型個室的多床室", "kijunHiyou": 1728, "stage1": 550, "stage2": 550, "stage3a": 1370, "stage3b": 1370 },
+          { "type": "ユニット型個室", "kijunHiyou": 2066, "stage1": 880, "stage2": 880, "stage3a": 1370, "stage3b": 1370 }
+        ]
+      },
+      "fromAug2026": {
+        "label": "令和8年8月1日〜（令和8年厚生労働省告示第88号）",
+        "sourceId": "mhlw-vol1481",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "令和8年3月13日公布済み・施行日確定。令和9年度中にさらに所得段階を精緻化する改正が予定されている。",
+        "verify": { "expect": ["1,545"] },
+        "shokuhi": {
+          "kijunHiyou": 1545,
+          "stage1": 300,
+          "stage2": 390,
+          "stage3a": 680,
+          "stage3b": 1420,
+          "shortStay": { "stage1": 300, "stage2": 600, "stage3a": 1030, "stage3b": 1360 },
+          "note": "第1段階・第2段階は据置（負担増なし）。第3段階①は+30円/日、第3段階②は+60円/日。"
+        },
+        "kyojuhi": [
+          { "type": "多床室（特養等）", "kijunHiyou": 915, "stage1": 0, "stage2": 430, "stage3a": 430, "stage3b": 530 },
+          { "type": "多床室（老健・医療院／室料を徴収する場合）", "kijunHiyou": 697, "stage1": 0, "stage2": 430, "stage3a": 430, "stage3b": 530 },
+          { "type": "多床室（老健・医療院等／室料を徴収しない場合）", "kijunHiyou": 437, "stage1": 0, "stage2": 430, "stage3a": 430, "stage3b": 430 },
+          { "type": "従来型個室（特養等）", "kijunHiyou": 1231, "stage1": 380, "stage2": 480, "stage3a": 880, "stage3b": 980 },
+          { "type": "従来型個室（老健・医療院等）", "kijunHiyou": 1728, "stage1": 550, "stage2": 550, "stage3a": 1370, "stage3b": 1470 },
+          { "type": "ユニット型個室的多床室", "kijunHiyou": 1728, "stage1": 550, "stage2": 550, "stage3a": 1370, "stage3b": 1470 },
+          { "type": "ユニット型個室", "kijunHiyou": 2066, "stage1": 880, "stage2": 880, "stage3a": 1370, "stage3b": 1470 }
+        ],
+        "note": "居住費は第3段階②のみ+100円/日引上げ（多床室のうち室料を徴収しない老健等を除く）。第1〜第3段階①は据置。"
+      }
+    },
+    "yokaigoNintei": {
+      "description": "要介護認定の区分。要介護認定等基準時間（介護の手間の総量）で定義される。",
+      "sourceId": "mhlw-nintei",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし（2026-07-17時点）",
+      "note": "★重要★ 要介護認定等基準時間は『介護の必要性を量るものさし』であり、実際に家庭で行われる介護時間とは異なる。",
+      "verify": { "expect": ["25分以上32分未満", "32分以上50分未満", "50分以上70分未満", "70分以上90分未満", "90分以上110分未満", "110分以上"] },
+      "levels": [
+        { "key": "higaitou", "label": "非該当", "minutesMin": null, "minutesMax": 25 },
+        { "key": "yoshien1", "label": "要支援1", "minutesMin": 25, "minutesMax": 32 },
+        { "key": "yoshien2", "label": "要支援2", "minutesMin": 32, "minutesMax": 50, "note": "要介護1と同じ時間帯。状態の維持・改善可能性にかかる審査判定により振り分けられる。" },
+        { "key": "yokaigo1", "label": "要介護1", "minutesMin": 32, "minutesMax": 50, "note": "要支援2と同じ時間帯。①認知症高齢者の日常生活自立度（認知機能の低下）②状態の安定性 の2要件で判別。" },
+        { "key": "yokaigo2", "label": "要介護2", "minutesMin": 50, "minutesMax": 70 },
+        { "key": "yokaigo3", "label": "要介護3", "minutesMin": 70, "minutesMax": 90 },
+        { "key": "yokaigo4", "label": "要介護4", "minutesMin": 90, "minutesMax": 110 },
+        { "key": "yokaigo5", "label": "要介護5", "minutesMin": 110, "minutesMax": null }
+      ],
+      "process": {
+        "value": "①一次判定: 市町村の認定調査員による心身の状況調査（認定調査）及び主治医意見書に基づくコンピュータ判定 → ②二次判定: 保健・医療・福祉の学識経験者により構成される介護認定審査会による審査判定 → 市町村が認定",
+        "label": "認定の仕組み",
+        "sourceId": "mhlw-gaiyou",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["介護認定審査会"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "noStateDefinition": {
+        "value": "要介護度ごとの「状態像」を定義した公式規定は存在しない",
+        "label": "★状態像による定義は存在しない★",
+        "sourceId": "mhlw-nintei",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["病気の重さと要介護度の高さとが必ずしも一致しない", "実際に家庭で行われる介護時間とは異なります"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★YMYL上の最重要論点★ 厚労省の一次資料は『要介護認定は、介護サービスの必要度（どれ位、介護のサービスを行う必要があるか）を判断するものです。従って、その方の病気の重さと要介護度の高さとが必ずしも一致しない場合があります。』と明示しており、要介護度は要介護認定等基準時間（介護の手間の総量）でのみ定義される。同ページは要介護認定等基準時間について『介護の必要性を量る「ものさし」であり、実際に家庭で行われる介護時間とは異なります』とも明記している。まとめサイトに頻出する『要介護1＝部分的介護が必要／要介護3＝全面的介護が必要』等の状態像による定義は、法令・告示に根拠を持たない。本サイトではこの種の記述を絶対に書かないこと（[03_コンテンツ戦略] の出典厳格運用）。参考資料『要介護状態区分別の状態像』（介護認定審査会委員テキスト等）は一次判定の中間評価項目の得点分布を示す統計的な参考図であり、認定基準ではない。"
+      }
+    },
+    "gassan": {
+      "description": "高額医療・高額介護合算療養費（介護保険側の名称は「高額医療合算介護（予防）サービス費」）。",
+      "framework": {
+        "value": "医療保険と介護保険における1年間（毎年8月1日〜翌年7月31日）の自己負担の合算額が、各所得区分に設定された限度額を超えた場合に、超えた額が支給される。医療保険上の世帯単位で判定し、医療保険者・介護保険者双方が自己負担額の比率に応じて負担する。",
+        "label": "制度の枠組み",
+        "sourceId": "mhlw-bunkakai-252",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "枠組みの要約であり単一文字列での照合が不能。" },
+        "amendmentNote": "★令和8年8月の高額療養費制度見直しに連動して限度額が変わる可能性あり（未確認）。★"
+      },
+      "confirmedLimits": {
+        "label": "現行値として一次資料で確認できた区分（令和7年12月時点）",
+        "sourceId": "mhlw-bunkakai-252",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "令和8年8月の高額療養費見直しにより変更の可能性あり。",
+        "verify": { "expect": ["19万円", "31万円"] },
+        "brackets": [
+          { "key": "stage2", "label": "市町村民税世帯非課税（年金収入80万円以下等／第2段階）", "limit": 190000, "unit": "JPY/year" },
+          { "key": "stage3", "label": "市町村民税世帯非課税（第3段階）", "limit": 310000, "unit": "JPY/year" }
+        ]
+      },
+      "unconfirmedLimits": {
+        "value": "未確認",
+        "label": "★70歳以上の現役並み所得区分等の現行限度額は未確認★",
+        "sourceId": "mhlw-bunkakai-252",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "現行値を示す一次資料に到達できなかったため照合不能。" },
+        "amendmentNote": "要収集",
+        "note": "★ツールへの実装を保留すること★ 入手できた厚労省資料（平成28年11月 第100回社会保障審議会医療保険部会 資料1-3）は平成30年8月改正前の旧表であり、70歳以上の『現役並み所得』区分は単一の67万円から3区分（現役並みⅢ=212万円／Ⅱ=141万円／Ⅰ=67万円）へ細分化された後の現行表を示す一次資料をmhlw.go.jp内で発見できなかった（解説ページ info02d-29.html は文字エンコーディング破損により取得不能）。70歳未満の区分（212万/141万/67万/60万/34万円）は平成27年8月以降変更がなく現行値と考えられるが、これも一次資料での再確認が必要。収集手順は queue/hoikuryo-backlog.md §7 に記載。"
+      }
+    }
+  }
+}
