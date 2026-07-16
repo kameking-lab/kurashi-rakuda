@@ -1,0 +1,26 @@
+{
+  "job_id": "Q4-005",
+  "batch": 2,
+  "category": "妊娠・出産",
+  "type": "tool-narisou",
+  "title_draft": "産休・育休のお金の流れ｜手当金・一時金・給付金タイムライン",
+  "tool_ref": "sankyu-ikukyu-okane-simulator",
+  "related_tool_list_no": 4,
+  "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "priority": "S",
+  "seido_data": [
+    {
+      "file": "shussan-teate-ichijikin.json",
+      "status": "ready"
+    },
+    {
+      "file": "ikuji-kyugyou-kyufu.json",
+      "status": "ready"
+    },
+    {
+      "file": "sanzensango-hoken-menjo.json",
+      "status": "ready"
+    }
+  ],
+  "status": "queued"
+}

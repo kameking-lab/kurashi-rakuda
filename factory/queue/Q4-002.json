@@ -1,0 +1,18 @@
+{
+  "job_id": "Q4-002",
+  "batch": 1,
+  "category": "妊娠・出産",
+  "type": "seido-kaisetsu",
+  "title_draft": "出産育児一時金50万円はどう申請する？直接支払制度の仕組み",
+  "tool_ref": null,
+  "related_tool_list_no": 4,
+  "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "priority": "S",
+  "seido_data": [
+    {
+      "file": "shussan-teate-ichijikin.json",
+      "status": "ready"
+    }
+  ],
+  "status": "queued"
+}

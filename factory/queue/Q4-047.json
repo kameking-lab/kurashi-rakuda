@@ -1,0 +1,18 @@
+{
+  "job_id": "Q4-047",
+  "batch": 1,
+  "category": "仕事・キャリア",
+  "type": "seido-kaisetsu",
+  "title_draft": "育児時短就業給付金は2025年新設、いくらもらえる？",
+  "tool_ref": null,
+  "related_tool_list_no": 78,
+  "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "priority": "S",
+  "seido_data": [
+    {
+      "file": "jitan-kinmu-kyufu.json",
+      "status": "ready"
+    }
+  ],
+  "status": "queued"
+}

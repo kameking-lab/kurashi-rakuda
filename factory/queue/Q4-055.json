@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-055",
+  "batch": 1,
+  "category": "介護",
+  "type": "seido-kaisetsu",
+  "title_draft": "介護休業給付金はいくらもらえる？支給要件は？",
+  "tool_ref": null,
+  "related_tool_list_no": 91,
+  "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "kaigo-kyugyou-kyufukin.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-050",
+  "batch": 2,
+  "category": "仕事・キャリア",
+  "type": "seido-kaisetsu",
+  "title_draft": "教育訓練給付金は資格取得でいくら戻る？",
+  "tool_ref": null,
+  "related_tool_list_no": 88,
+  "persona": "ペルソナ3: 山本遥（29歳・独身・総合職）",
+  "priority": "B",
+  "seido_data": [
+    {
+      "file": "kyouiku-kunren-kyufukin.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

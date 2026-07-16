@@ -1,0 +1,18 @@
+{
+  "job_id": "Q4-023",
+  "batch": 1,
+  "category": "家事・料理",
+  "type": "seido-kaisetsu",
+  "title_draft": "冷凍保存の目安はどれくらい？食材別の保存期間と解凍のコツ",
+  "tool_ref": null,
+  "related_tool_list_no": 37,
+  "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "priority": "S",
+  "seido_data": [
+    {
+      "file": "reitou-hozon.json",
+      "status": "ready"
+    }
+  ],
+  "status": "queued"
+}

@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-059",
+  "batch": 3,
+  "category": "介護",
+  "type": "seido-kaisetsu",
+  "title_draft": "高額医療・高額介護合算制度の対象と払い戻し額",
+  "tool_ref": null,
+  "related_tool_list_no": 96,
+  "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "priority": "B",
+  "seido_data": [
+    {
+      "file": "kougaku-iryou-kaigo-gassan.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

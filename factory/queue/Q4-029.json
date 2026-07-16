@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-029",
+  "batch": 2,
+  "category": "家事・料理",
+  "type": "tool-narisou",
+  "title_draft": "献立自動提案はどう使う？1週間分の立て方",
+  "tool_ref": "kondate-teian",
+  "related_tool_list_no": 40,
+  "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "priority": "S",
+  "seido_data": [
+    {
+      "file": "kondate-teian-shikumi.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

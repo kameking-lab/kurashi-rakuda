@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-051",
+  "batch": 3,
+  "category": "仕事・キャリア",
+  "type": "seido-kaisetsu",
+  "title_draft": "有給休暇の付与日数はどう決まる？労働基準法の基準",
+  "tool_ref": null,
+  "related_tool_list_no": 84,
+  "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "priority": "B",
+  "seido_data": [
+    {
+      "file": "yuukyuu-fuyo-nissuu-kijun.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

@@ -1,0 +1,25 @@
+{
+  "$comment": "児童手当制度データ。こども家庭庁「児童手当制度のご案内」に基づく2024年10月改正後の内容（所得制限撤廃・高校生年代までの延長・多子加算の判定方法変更）。次回改定時は next_check_due までに要更新確認。",
+  "revision_year": 2026,
+  "org": "こども家庭庁",
+  "source_url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2026-10-01",
+  "monthly_amount": {
+    "0_to_2": 15000,
+    "3_to_high_school": 10000,
+    "3_to_high_school_third_or_later": 30000
+  },
+  "age_boundary": {
+    "nyuji_kara_sai": 0,
+    "jidou_kara_sai": 3,
+    "koukou_nendo_made_sai": 18
+  },
+  "payment": {
+    "times_per_year": 6
+  },
+  "income_limit": {
+    "abolished": true,
+    "abolished_since": "2024-10"
+  }
+}

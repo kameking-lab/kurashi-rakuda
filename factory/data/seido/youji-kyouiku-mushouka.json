@@ -1,0 +1,21 @@
+{
+  "$comment": "幼児教育・保育の無償化データ。内閣府「幼児教育・保育の無償化」の案内に基づく。認可外保育施設等を利用する場合の上限額を含む。",
+  "org": "内閣府",
+  "source_url": "https://www8.cao.go.jp/shoushi/shinseido/outline/mushouka/",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2026-10-01",
+  "taisho": {
+    "3sai_kara_5sai": "zensetai",
+    "0sai_kara_2sai": "juuminzei_hikazei_setai_nomi"
+  },
+  "taisho_nenrei_sai": {
+    "zensetai_kara": 3,
+    "zensetai_made": 5,
+    "hikazei_kara": 0,
+    "hikazei_made": 2
+  },
+  "ninkagai_jougen_gaku_en": {
+    "3sai_kara_5sai": 37000,
+    "0sai_kara_2sai_hikazei": 42000
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-020",
+  "batch": 3,
+  "category": "子育て",
+  "type": "seido-kaisetsu",
+  "title_draft": "出生届の提出期限と必要書類は？",
+  "tool_ref": null,
+  "related_tool_list_no": null,
+  "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "shussho-todoke-kigen.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

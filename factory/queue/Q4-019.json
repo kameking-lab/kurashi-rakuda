@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-019",
+  "batch": 3,
+  "category": "子育て",
+  "type": "seido-kaisetsu",
+  "title_draft": "チャイルドシートの着用義務は何歳まで？免除規定はある？",
+  "tool_ref": null,
+  "related_tool_list_no": 30,
+  "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "priority": "B",
+  "seido_data": [
+    {
+      "file": "child-seat-kitei.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

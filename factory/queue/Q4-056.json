@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-056",
+  "batch": 2,
+  "category": "介護",
+  "type": "dandori",
+  "title_draft": "要介護認定の申請から結果が出るまでの流れ",
+  "tool_ref": null,
+  "related_tool_list_no": 92,
+  "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "youkaigo-nintei-nagare.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

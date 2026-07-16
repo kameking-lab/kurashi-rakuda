@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-041",
+  "batch": 1,
+  "category": "健康・美容",
+  "type": "seido-kaisetsu",
+  "title_draft": "女性の適正体重の目安は厚労省基準でどう決まる？",
+  "tool_ref": null,
+  "related_tool_list_no": 66,
+  "persona": "ペルソナ3: 山本遥（29歳・独身・総合職）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "tekisei-taijuu-kijun.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

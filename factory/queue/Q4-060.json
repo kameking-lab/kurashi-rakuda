@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-060",
+  "batch": 3,
+  "category": "介護",
+  "type": "tool-narisou",
+  "title_draft": "介護施設の費用はタイプ別でどう違う？特養・老健・有料・サ高住",
+  "tool_ref": "kaigo-shisetsu-hiyou-souba",
+  "related_tool_list_no": 95,
+  "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "kaigo-shisetsu-hiyou-souba.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

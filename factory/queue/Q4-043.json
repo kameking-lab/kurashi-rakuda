@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-043",
+  "batch": 2,
+  "category": "健康・美容",
+  "type": "dandori",
+  "title_draft": "更年期の相談先はどこ？受診前に準備すること",
+  "tool_ref": null,
+  "related_tool_list_no": 75,
+  "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "priority": "B",
+  "seido_data": [
+    {
+      "file": "kounenki-soudan-saki.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}
