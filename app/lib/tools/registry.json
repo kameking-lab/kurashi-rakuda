@@ -28,9 +28,22 @@
       "帯祝いの時期が分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "国立天文台暦計算室「暦Wiki/干支」「暦Wiki/十二支」",
+        "url": "https://eco.mtk.nao.ac.jp/koyomi/wiki/"
+      },
+      {
+        "label": "2026年（令和8年）戌の日カレンダー（社寺・出産準備専門店公開情報、実在日検証用）",
+        "url": "https://www.mikaduki.co.jp/inu-no-hi/"
+      },
+      {
+        "label": "日本産科婦人科学会（妊娠期間の基本日数・ネーゲレ概算法、ツール1と共通の出典）",
+        "url": "https://www.jsog.or.jp/"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-03",
@@ -296,9 +309,30 @@
       "社会保険に入ると手取りがどう変わるか分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "国税庁「令和8年度税制改正による所得税の基礎控除の引上げ等について」",
+        "url": "https://www.nta.go.jp/users/gensen/2026kiso/index.htm"
+      },
+      {
+        "label": "財務省「令和8年度税制改正の大綱の概要（令和7年12月26日 閣議決定）」",
+        "url": "https://www.mof.go.jp/tax_policy/tax_reform/outline/fy2026/08taikou_gaiyou.htm"
+      },
+      {
+        "label": "日本年金機構「短時間労働者に対する健康保険・厚生年金保険の適用拡大」",
+        "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/tanjikan.html"
+      },
+      {
+        "label": "日本年金機構「健康保険の被扶養者になるための条件」",
+        "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html"
+      },
+      {
+        "label": "厚生労働省「社会保険適用拡大 特設サイト（賃金要件の撤廃予定）」",
+        "url": "https://www.mhlw.go.jp/tekiyoukakudai/jugyouin/taisho/"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-19",

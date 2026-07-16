@@ -175,6 +175,33 @@
     "futanWariai": {
       "description": "利用者負担割合（1割/2割/3割）。65歳以上（第1号被保険者）が対象。40〜64歳（第2号被保険者）は所得にかかわらず一律1割。判定は世帯内の第1号被保険者単位で行う。",
       "note": "★実装上の最重要論点★ 2つの要件はAND条件（「かつ」）。合計所得金額の要件を満たしても、年金収入＋その他合計所得金額の要件を満たさなければ1割のまま。",
+      "gensoku": {
+        "value": 1,
+        "unit": "割",
+        "label": "利用者負担の割合（原則）",
+        "sourceId": "mhlw-gaiyou",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["1割"] },
+        "amendmentNote": "なし（2026-07-17時点）。2割負担の対象拡大は社会保障審議会で継続審議中（futanWariai.description 参照）。"
+      },
+      "niwari": {
+        "value": 2,
+        "unit": "割",
+        "label": "利用者負担の割合（一定以上所得者）",
+        "sourceId": "mhlw-gaiyou",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["2割"] },
+        "amendmentNote": "★対象範囲の拡大が社会保障審議会介護保険部会で継続審議中★（2026-07-17時点で結論なし）。割合自体（2割）の変更予定はなし。"
+      },
+      "sanwari": {
+        "value": 3,
+        "unit": "割",
+        "label": "利用者負担の割合（現役並み所得者）",
+        "sourceId": "mhlw-gaiyou",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["3割"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
       "sourceId": "mhlw-gaiyou",
       "checkedAt": "2026-07-17",
       "amendmentNote": "★2027年度から2割の対象範囲が広がる可能性★（検討中、結論は令和9年度開始前）。2026年度は現行基準。",
