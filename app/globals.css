@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/*
+ * くらしのラクダ デザイントークン
+ * docs/04_サイト設計.md「UI十原則」の実装:
+ * - 低彩度の砂色（ラクダ）×深緑基調。強調色は結果表示のみ
+ * - セール感のある赤・黄は定義しない（caution はテラコッタ1色のみ）
+ * - 文字16px以上・ダークモード対応（深夜授乳での閲覧）
+ */
+
+:root {
+  --paper: #fcfaf5;
+  --ink: #2f2c26;
+  --ink-muted: #6e675c;
+  --line: #e5decf;
+  --brand: #2e5039;
+  --brand-strong: #23402d;
+  --brand-soft: #eef3ec;
+  --sand: #b29368;
+  --sand-strong: #7a5f3e;
+  --sand-soft: #f4eee3;
+  --result-bg: #23402d;
+  --result-ink: #f7f5ee;
+  --caution: #a14d2a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #201e1a;
+    --ink: #ece7dc;
+    --ink-muted: #a79f91;
+    --line: #3a362e;
+    --brand: #8fb89a;
+    --brand-strong: #a9ccb3;
+    --brand-soft: #2a332c;
+    --sand: #c7af88;
+    --sand-strong: #d9c9ac;
+    --sand-soft: #2e2a22;
+    --result-bg: #2e5039;
+    --result-ink: #f0f5f1;
+    --caution: #d98b62;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-sand: var(--sand);
+  --color-sand-strong: var(--sand-strong);
+  --color-sand-soft: var(--sand-soft);
+  --color-result-bg: var(--result-bg);
+  --color-result-ink: var(--result-ink);
+  --color-caution: var(--caution);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+    "BIZ UDPGothic", "Noto Sans JP", "Yu Gothic UI", sans-serif;
+
+  --radius-card: 0.75rem;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem; /* 16px 未満にしない（UI十原則7） */
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* キーボード操作の可視性（WCAG 2.1 AA） */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}

@@ -11,17 +11,17 @@
 
 ## Q0: 前提（社長判断待ち — キュー起動のブロッカー）
 
-- [ ] Q0-1 サイト名・ドメイン承認（第一候補: くらしのラクダ / kurashi-rakuda.jp）
-- [ ] Q0-2 kurashi-rakuda.jp 取得（Xserverドメイン推奨）＋ kurashi-rakuda.com 防衛取得（Cloudflare）
-- [ ] Q0-3 MVP範囲（S級20ツール）承認
+- [x] Q0-1 サイト名承認 → **「くらしのラクダ」確定（2026-07-17 社長決裁）**。マスコットは子ラクダ・かわいい路線（docs/09_マスコット.md）
+- [~] Q0-2 ドメインは**社長が別途取得**。開発は Vercel プレビューURLで先行し、公開時に接続（決裁どおり）
+- [x] Q0-3 MVP範囲（S級20ツール）・優先TOP10 承認（2026-07-17 社長決裁）
 
-## Q1: 基盤（直列。blocked-by: Q0）
+## Q1: 基盤（G1 実施済み: 2026-07-17）
 
-- [ ] Q1-1 (A) リポジトリ雛形: Next.js App Router + Tailwind + モノレポ（apps/web, packages/calc, packages/data）
-- [ ] Q1-2 (S) デザイントークン＋共通レイアウト（広告臭ゼロUI十原則 → docs/04 §4）blocked-by: Q1-1
-- [ ] Q1-3 (S) ツールページ共通テンプレート（入力/結果/計算式/出典3点セット/solves）blocked-by: Q1-2
-- [ ] Q1-4 (S) CI: vitest + Lighthouse CI + 忠実性ゲート + sponsored-lint blocked-by: Q1-1
-- [ ] Q1-5 (S) 制度データスキーマ（改定年度/出典URL/次回チェック日）blocked-by: Q1-1
+- [x] Q1-1 (A) リポジトリ雛形: Next.js 15 App Router + TypeScript + Tailwind v4（リポジトリ直下 app/ components/ 構成。packages/ 分割は必要になった時点で）
+- [x] Q1-2 (S) デザイントークン＋共通レイアウト（app/globals.css にUI十原則のトークン、Header/Footer、ダークモード対応、モバイルファースト）
+- [x] Q1-3 (S) ツールページ共通テンプレート（components/tools/ToolShell.tsx: 入力→結果→根拠計算式→出典3点セット→関連ツール。solves は app/lib/tools/registry.json で機械集計可能）＋記事テンプレート3型（components/articles/、/guide/sample-* で確認可）
+- [~] Q1-4 (S) CI: lint / 型 / solves メタ検証 / ブランド哲学リンター / ビルド は稼働（.github/workflows/ci.yml）。**残: vitest（G2のcalc実装と同時）・Lighthouse CI（デプロイURL確定後）・忠実性ゲート/sponsored-lint（記事・紹介リンク発生時）**
+- [ ] Q1-5 (S) 制度データスキーマ（改定年度/出典URL/次回チェック日）→ **data/ を並行開発中の別セッションと要すり合わせ**
 
 ## Q2: 制度データ（並列可。blocked-by: Q1-5）
 
@@ -30,7 +30,10 @@
 - [ ] Q2-3 (A) 介護保険データ2026年度（要介護度別支給限度額・負担割合・高額介護サービス費）
 - [ ] Q2-4 (B) 家事データ（冷凍保存期間150食材・調味料比重・洗濯表示記号・献立レシピ200件）
 
-## Q3: ツール実装 20本（ツール単位で全並列可。blocked-by: Q1-3。※印は該当 Q2 にも依存）
+## Q3: ツール実装 20本（**実行可能**。ツール単位で全並列可。※印は該当 Q2 にも依存）
+
+**実行手順（1ツール共通）**: ①`app/lib/tools/registry.json` の該当エントリ（queueId で対応）を確認 ②計算ロジックを純関数で実装＋テスト ③`components/tools/impl/` にUIコンポーネント作成（リファレンス: ChomiryoKanzan.tsx） ④`app/tools/[category]/[slug]/page.tsx` の implementations に登録し「根拠・計算式」を記述 ⑤registry.json の sources を記入し status を "live" に ⑥`npm run check` が通ること。
+**完了定義**: スマホ実機確認済み・出典3点セット表示・計算式の平文説明あり・CI green。
 
 - [ ] Q3-01 (B) 出産予定日・妊娠週数計算
 - [ ] Q3-02 (B) 戌の日計算
@@ -45,7 +48,7 @@
 - [ ] Q3-11 (A) 保活スケジュールメーカー
 - [ ] Q3-12 (B) 授乳・ミルク量の目安
 - [ ] Q3-13 (A) 冷凍保存期間検索 ※Q2-4
-- [ ] Q3-14 (B) 調味料換算
+- [~] Q3-14 (B) 調味料換算 → **リファレンス実装済み（/tools/kaji/chomiryo-kanzan、テンプレート検証を兼ねる）。残: 比重データのQ2-4本整備とユニットテスト → 検収**
 - [ ] Q3-15 (B) 炊飯の水の量
 - [ ] Q3-16 (S) 献立自動提案 ※Q2-4
 - [ ] Q3-17 (B) 洗濯表示検索 ※Q2-4
