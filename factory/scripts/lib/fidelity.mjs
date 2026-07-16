@@ -1,17 +1,24 @@
 // YMYL数値の機械照合ゲート本体。
 // safe-ai-site の web/src/lib/plain/fidelity.ts（原文↔平易文の数値・義務主体照合）の設計思想を移植し、
-// 本サイト向けに「本文中の数値 ⇔ frontmatter.facts[] ⇔ factory/data/seido/*.json（一次情報の転記）」の
-// 三者照合に組み替えたもの。
+// 本サイト向けに「本文中の数値 ⇔ frontmatter.facts[] ⇔ data/（一次情報の転記）」の三者照合に組み替えたもの。
+//
+// ★データの単一ソースは root data/ ★（G2データ一元化、2026-07-17 社長決裁）
+//   - 制度データ: data/seido/*.json（共通スキーマ。数値は valueNode {value, sourceId, checkedAt}）
+//   - 非制度の対照表: data/tables/*.json
+//   - 旧 factory/data/seido/ 形式の seido_ref は config/seido-ref-map.json で root へ解決する（互換レイヤー）
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const FACTORY_ROOT = path.resolve(__dirname, "../../");
+const REPO_ROOT = path.resolve(FACTORY_ROOT, "../");
 
 const ALLOWLIST_PATH = path.join(FACTORY_ROOT, "config/source-allowlist.json");
 const ARTICLE_TYPES_PATH = path.join(FACTORY_ROOT, "config/article-types.json");
-const SEIDO_DIR = path.join(FACTORY_ROOT, "data/seido");
+const REF_MAP_PATH = path.join(FACTORY_ROOT, "config/seido-ref-map.json");
+const SEIDO_DIR = path.join(REPO_ROOT, "data/seido");
+const TABLES_DIR = path.join(REPO_ROOT, "data/tables");
 
 // 本文中の「金額・日数・条件」等YMYL数値として抽出する単位トークン。
 // 西暦年（2026年）はrevision_yearで別管理するため意図的に除外する。
@@ -71,19 +78,47 @@ function resolvePath(obj, dotted) {
   return dotted.split(".").reduce((acc, key) => (acc == null ? undefined : acc[key]), obj);
 }
 
-// seido_ref 形式: "<ファイル名>.json#<ドットパス>"
-export function resolveSeidoRef(seidoRef) {
-  const m = seidoRef.match(/^([^#]+)#(.+)$/);
-  if (!m) return { error: `invalid seido_ref format: ${seidoRef}` };
-  const [, file, dotted] = m;
-  const filePath = path.join(SEIDO_DIR, file);
-  if (!fs.existsSync(filePath)) {
-    return { error: `seido data file not found: data/seido/${file}` };
+let refMapCache = null;
+function loadRefMap() {
+  if (!refMapCache) {
+    refMapCache = fs.existsSync(REF_MAP_PATH)
+      ? JSON.parse(fs.readFileSync(REF_MAP_PATH, "utf8")).map
+      : {};
   }
+  return refMapCache;
+}
+
+// seido_ref 形式: "<ファイル名>.json#<ドットパス>"
+// 解決順序:
+//   1. 旧 factory 形式の ref は seido-ref-map.json で root の ref（＋scale）に変換
+//   2. data/seido/ → data/tables/ の順でファイルを探す
+//   3. 解決先が valueNode（{value, sourceId, ...}）の場合は .value を自動で剥がす
+export function resolveSeidoRef(seidoRef) {
+  const mapped = loadRefMap()[seidoRef];
+  const scale = mapped?.scale ?? 1;
+  const effectiveRef = mapped?.ref ?? seidoRef;
+
+  const m = effectiveRef.match(/^([^#]+)#(.+)$/);
+  if (!m) return { error: `invalid seido_ref format: ${effectiveRef}` };
+  const [, file, dotted] = m;
+
+  let filePath = path.join(SEIDO_DIR, file);
+  if (!fs.existsSync(filePath)) filePath = path.join(TABLES_DIR, file);
+  if (!fs.existsSync(filePath)) {
+    return { error: `data file not found in data/seido or data/tables: ${file}` };
+  }
+
   const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
-  const resolved = resolvePath(data, dotted);
+  let resolved = resolvePath(data, dotted);
   if (resolved === undefined) {
     return { error: `path not found in ${file}: ${dotted}` };
+  }
+  if (resolved !== null && typeof resolved === "object" && "value" in resolved) {
+    resolved = resolved.value;
+  }
+  if (typeof resolved === "number") {
+    // 0.67 * 100 === 67.00000000000001 のような浮動小数点誤差を丸める
+    resolved = Math.round(resolved * scale * 1e9) / 1e9;
   }
   return { value: resolved };
 }
