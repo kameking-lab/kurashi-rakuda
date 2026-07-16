@@ -1,22 +1,18 @@
 import { defineConfig } from "vitest/config";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 
 /**
- * ツールの計算ロジック（lib/tools/impl/**）の単体テスト。
- * 各仕様書 specs/s-tools/*.md の「テストケース」章を実装したもの。
- *
- * YMYL の金額計算は「実装者≠検算者」のダブルチェックが原則（docs/08）。
- * テストは仕様書の期待値をそのまま書き写すのではなく、
- * 仕様書に記載された検算（原典の数値との突き合わせ）を再現する形で書く。
+ * G2（Q3ツール実装）の計算ロジック用テスト設定。
+ * UIコンポーネントはE2E/実機確認で担保し、ここでは純関数（calc）のみを対象とする。
  */
 export default defineConfig({
+  test: {
+    environment: "node",
+    include: ["tests/**/*.test.ts"],
+  },
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./", import.meta.url)),
+      "@": path.resolve(__dirname, "."),
     },
-  },
-  test: {
-    include: ["tests/**/*.test.ts"],
-    environment: "node",
   },
 });
