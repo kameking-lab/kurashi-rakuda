@@ -28,9 +28,22 @@
       "帯祝いの時期が分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "国立天文台暦計算室「暦Wiki/干支」「暦Wiki/十二支」",
+        "url": "https://eco.mtk.nao.ac.jp/koyomi/wiki/"
+      },
+      {
+        "label": "2026年（令和8年）戌の日カレンダー（社寺・出産準備専門店公開情報、実在日検証用）",
+        "url": "https://www.mikaduki.co.jp/inu-no-hi/"
+      },
+      {
+        "label": "日本産科婦人科学会（妊娠期間の基本日数・ネーゲレ概算法、ツール1と共通の出典）",
+        "url": "https://www.jsog.or.jp/"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-03",
