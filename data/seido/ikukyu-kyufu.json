@@ -366,6 +366,16 @@
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "180日は『育児休業給付金の支給に係る休業日数が通算して180日に達するまで』。暦日ではなく給付対象日数の通算である点に注意。"
       },
+      "rateSwitchDays": {
+        "value": 180,
+        "unit": "day",
+        "label": "給付率が67%から50%に切り替わる休業日数（通算）",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["百八十日"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "rateFirst180Days / rateAfter180Days の切替点の数値ノード。"
+      },
       "wageDailyFormula": {
         "value": "休業開始前（産休取得者は原則産休開始前）直近6か月間に支払われた賃金の総額 ÷ 180",
         "label": "休業開始時賃金日額の計算式",
@@ -667,6 +677,16 @@
         "checkedAt": "2026-07-17",
         "verify": { "expect": ["二歳に満たない子"] },
         "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "targetChildAgeYears": {
+        "value": 2,
+        "unit": "year",
+        "label": "対象となる子の年齢の上限（未満）",
+        "sourceId": "egov-koyou-hoken",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["二歳に満たない子"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "targetChildAge の数値ノード。"
       },
       "supportLimit": {
         "value": 471393,
