@@ -3,6 +3,7 @@ import { getLiveTools, tools } from "@/app/lib/tools/registry";
 import { TOOL_CATEGORIES, type ToolCategory } from "@/app/lib/tools/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Callout } from "@/components/ui/Callout";
+import { SolvesSearch } from "@/components/search/SolvesSearch";
 
 /** ライフステージ導線（docs/04 §3.1 の2軸ナビのうちステージ軸。専用ハブは Phase 2） */
 const stages: { label: string; category: ToolCategory }[] = [
@@ -29,6 +30,10 @@ export default function Home() {
         <p className="mt-3 text-ink-muted">
           妊娠・子育て・家事・お金・仕事・介護の計算と段取りを、すべて無料・登録不要で。広告に答えを邪魔されません。
         </p>
+      </section>
+
+      <section aria-label="悩みからさがす" className="mt-6">
+        <SolvesSearch />
       </section>
 
       <SectionHeading>ライフステージからさがす</SectionHeading>
