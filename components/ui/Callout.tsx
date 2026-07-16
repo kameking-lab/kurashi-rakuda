@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
+import { Rakku } from "@/components/mascot/Rakku";
 
 /**
- * ラクダのひとこと。補足・注意書きを柔らかく伝える。
- * マスコット画像が用意できるまでは絵文字プレースホルダー（docs/09_マスコット.md）。
+ * らっくのひとこと。補足・注意書きを柔らかく伝える（docs/09_マスコット.md）。
  */
 export function Callout({
   children,
@@ -19,8 +19,8 @@ export function Callout({
           : "bg-sand-soft text-ink"
       }`}
     >
-      <span aria-hidden="true" className="mt-0.5 text-xl">
-        🐪
+      <span className="mt-0.5 shrink-0">
+        <Rakku size={26} />
       </span>
       <div className="min-w-0">{children}</div>
     </div>
