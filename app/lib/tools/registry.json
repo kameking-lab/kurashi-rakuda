@@ -12,9 +12,18 @@
       "安定期がいつからか知りたい"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "日本産科婦人科学会 産科婦人科用語集・用語解説集",
+        "url": "https://www.jsog.or.jp/medical/447/"
+      },
+      {
+        "label": "公益社団法人 日本産科婦人科学会",
+        "url": "https://www.jsog.or.jp/"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-02",
