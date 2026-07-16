@@ -90,6 +90,37 @@
         "checkedAt": "2026-07-17",
         "verify": { "skip": true, "skipReason": "条文の要約であり、出典ページ上に同一文字列が存在しないため機械照合の対象外とする。実装時は cfa-annai の原文を参照。" },
         "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "ageBoundaries": {
+        "description": "支給対象・金額区分の年齢境界の数値ノード（targetAge・monthlyAmounts の区分に対応する要約値）。",
+        "fromAge": {
+          "value": 0,
+          "unit": "year",
+          "label": "支給対象の下限年齢（出生から）",
+          "sourceId": "cfa-annai",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "targetAge ノードの verify（18歳に達する日以後の最初の3月31日）で対象範囲全体を照合済み。0歳という単独表記は出典ページに存在しないため照合対象外。" },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "rateChangeAge": {
+          "value": 3,
+          "unit": "year",
+          "label": "月額が変わる年齢境界（3歳未満/3歳以上）",
+          "sourceId": "cfa-annai",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["3歳"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "3歳の誕生日の前日が属する月までが15,000円（第1子・第2子の場合）。"
+        },
+        "untilAge": {
+          "value": 18,
+          "unit": "year",
+          "label": "支給対象の上限年齢（高校生年代）",
+          "sourceId": "cfa-annai",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["18歳に達する日以後の最初の3月31日"] },
+          "amendmentNote": "令和6年10月分から高校生年代まで延長。2026年度時点で変更なし。"
+        }
       }
     },
     "monthlyAmounts": {
@@ -172,6 +203,16 @@
         "checkedAt": "2026-07-17",
         "verify": { "expect": ["偶数月"] },
         "amendmentNote": "令和6年12月支給分から年3回（2月・6月・10月）→偶数月の年6回に変更。2026年度時点で変更なし。"
+      },
+      "timesPerYear": {
+        "value": 6,
+        "unit": "count",
+        "label": "年間の支給回数（偶数月）",
+        "sourceId": "cfa-annai",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["偶数月"] },
+        "amendmentNote": "令和6年12月支給分から年3回→年6回に変更。2026年度時点で変更なし。",
+        "note": "months ノード（[2,4,6,8,10,12]）の要約値。"
       },
       "coverage": {
         "value": "それぞれの前月分まで（2か月分）を支給",
