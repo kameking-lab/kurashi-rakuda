@@ -1,0 +1,29 @@
+# CI（docs/08 P1-05）: lint / 型 / solves メタ検証 / ブランド哲学リンター / ビルド
+# Lighthouse CI・忠実性ゲートは対象物（デプロイURL・記事）が生まれる段階で追加する
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: 型チェック
+        run: npm run typecheck
+      - name: solves メタ検証・集計
+        run: npm run check:solves
+      - name: ブランド哲学リンター
+        run: npm run check:brand
+      - name: ビルド
+        run: npm run build
