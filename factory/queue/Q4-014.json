@@ -1,0 +1,18 @@
+{
+  "job_id": "Q4-014",
+  "batch": 1,
+  "category": "子育て",
+  "type": "seido-kaisetsu",
+  "title_draft": "幼児教育・保育無償化の対象は？0〜2歳と3〜5歳で違う条件",
+  "tool_ref": null,
+  "related_tool_list_no": 27,
+  "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "youji-kyouiku-mushouka.json",
+      "status": "ready"
+    }
+  ],
+  "status": "queued"
+}

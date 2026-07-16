@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-037",
+  "batch": 2,
+  "category": "お金",
+  "type": "seido-kaisetsu",
+  "title_draft": "医療費控除の対象になる子ども関連費用は？",
+  "tool_ref": null,
+  "related_tool_list_no": 65,
+  "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "priority": "B",
+  "seido_data": [
+    {
+      "file": "iryouhi-koujo-kodomo.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

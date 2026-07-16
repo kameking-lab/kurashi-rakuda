@@ -1,0 +1,38 @@
+{
+  "$comment": "docs/03_コンテンツ戦略.md §3 の3記事型を工場のテンプレ定義に落としたもの。各typeはfactory/templates/配下の同名テンプレに対応する。check-fidelity.mjs がここに定義された required セクションの有無を検査する。",
+  "types": {
+    "seido-kaisetsu": {
+      "label": "制度解説型",
+      "example": "児童手当は2026年度いくら？",
+      "template": "factory/templates/seido-kaisetsu.md",
+      "requires_fact_check": true,
+      "required_frontmatter": ["id", "title", "type", "category", "revision_year", "sources", "facts", "last_updated", "next_check_due"],
+      "required_body_headings": ["## 結論", "## 対象と金額", "## 出典・根拠"],
+      "required_footer_markers": ["最終更新日", "準拠年度", "出典"],
+      "min_facts": 1,
+      "notes": "金額・日数・条件の数値はすべて facts[] に宣言し、seido_ref で factory/data/seido/ の値と機械照合する。改定年度メタデータ(revision_year)必須。"
+    },
+    "tool-narisou": {
+      "label": "ツール併走型",
+      "example": "時短勤務の給料はこう決まる — 計算ツールの結果の読み方",
+      "template": "factory/templates/tool-narisou.md",
+      "requires_fact_check": true,
+      "required_frontmatter": ["id", "title", "type", "category", "tool_ref", "revision_year", "sources", "facts", "last_updated", "next_check_due"],
+      "required_body_headings": ["## この記事はどのツールと対応している？", "## 計算の考え方", "## 結果の読み方", "## 出典・根拠"],
+      "required_footer_markers": ["最終更新日", "準拠年度", "出典"],
+      "min_facts": 1,
+      "notes": "tool_ref に対応するツールIDを必須。ツール1個に1本、計算式そのものを明示しブラックボックス化しない（docs/03 §4.1）。"
+    },
+    "dandori": {
+      "label": "段取り型",
+      "example": "保活の全手順チェックリスト",
+      "template": "factory/templates/dandori.md",
+      "requires_fact_check": false,
+      "required_frontmatter": ["id", "title", "type", "category", "sources", "last_updated"],
+      "required_body_headings": ["## 全体の流れ", "## ステップ別チェックリスト", "## 出典・根拠"],
+      "required_footer_markers": ["最終更新日", "出典"],
+      "min_facts": 0,
+      "notes": "日付演算や手続き期限など数値が入る場合は facts[] 宣言を推奨するが、非計算の段取り記事のため revision_year/next_check_due は任意。期限に関わる数値が入る場合は requires_fact_check 相当の照合を推奨。"
+    }
+  }
+}

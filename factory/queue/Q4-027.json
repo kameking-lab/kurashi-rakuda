@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-027",
+  "batch": 2,
+  "category": "家事・料理",
+  "type": "seido-kaisetsu",
+  "title_draft": "食品ロス削減のために家庭でできる保存ルールとは",
+  "tool_ref": null,
+  "related_tool_list_no": null,
+  "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "shokuhin-loss-sakugen-gaidorain.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

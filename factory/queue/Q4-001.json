@@ -1,0 +1,18 @@
+{
+  "job_id": "Q4-001",
+  "batch": 1,
+  "category": "妊娠・出産",
+  "type": "seido-kaisetsu",
+  "title_draft": "出産手当金はいくらもらえる？支給条件と計算方法",
+  "tool_ref": null,
+  "related_tool_list_no": 4,
+  "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "priority": "S",
+  "seido_data": [
+    {
+      "file": "shussan-teate-ichijikin.json",
+      "status": "ready"
+    }
+  ],
+  "status": "queued"
+}

@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-038",
+  "batch": 3,
+  "category": "お金",
+  "type": "seido-kaisetsu",
+  "title_draft": "養育費の相場はどう決まる？裁判所の算定表の読み方",
+  "tool_ref": null,
+  "related_tool_list_no": 60,
+  "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "priority": "B",
+  "seido_data": [
+    {
+      "file": "youikuhi-santeihyou.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

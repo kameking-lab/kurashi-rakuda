@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-045",
+  "batch": 3,
+  "category": "健康・美容",
+  "type": "seido-kaisetsu",
+  "title_draft": "産後健康診査（産婦健診）の助成は受けられる？",
+  "tool_ref": null,
+  "related_tool_list_no": null,
+  "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "priority": "C",
+  "seido_data": [
+    {
+      "file": "sanpu-kenshin-jyosei.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

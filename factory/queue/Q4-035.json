@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-035",
+  "batch": 1,
+  "category": "お金",
+  "type": "seido-kaisetsu",
+  "title_draft": "児童扶養手当（ひとり親家庭）はいくらもらえる？",
+  "tool_ref": null,
+  "related_tool_list_no": 59,
+  "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "jidou-fuyou-teate.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

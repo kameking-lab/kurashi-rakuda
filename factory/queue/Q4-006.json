@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-006",
+  "batch": 2,
+  "category": "妊娠・出産",
+  "type": "seido-kaisetsu",
+  "title_draft": "妊婦健診の公費助成券は何回分もらえる？",
+  "tool_ref": null,
+  "related_tool_list_no": 5,
+  "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "ninshin-kenshin-jyosei.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

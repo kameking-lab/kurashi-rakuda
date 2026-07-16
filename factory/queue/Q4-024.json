@@ -1,0 +1,18 @@
+{
+  "job_id": "Q4-024",
+  "batch": 1,
+  "category": "家事・料理",
+  "type": "seido-kaisetsu",
+  "title_draft": "洗濯表示（新JIS記号）の見方まとめ",
+  "tool_ref": null,
+  "related_tool_list_no": 41,
+  "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "priority": "S",
+  "seido_data": [
+    {
+      "file": "sentaku-hyouji.json",
+      "status": "ready"
+    }
+  ],
+  "status": "queued"
+}
