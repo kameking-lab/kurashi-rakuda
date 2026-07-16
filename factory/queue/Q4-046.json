@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-046",
+  "batch": 3,
+  "category": "健康・美容",
+  "type": "seido-kaisetsu",
+  "title_draft": "紫外線対策・日焼け止めの使用量目安はどう決まる？",
+  "tool_ref": null,
+  "related_tool_list_no": 73,
+  "persona": "ペルソナ3: 山本遥（29歳・独身・総合職）",
+  "priority": "C",
+  "seido_data": [
+    {
+      "file": "hiyakedome-shiyouryou-kijun.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

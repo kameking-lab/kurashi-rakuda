@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-010",
+  "batch": 3,
+  "category": "妊娠・出産",
+  "type": "dandori",
+  "title_draft": "里帰り出産で必要になる前後の手続きチェックリスト",
+  "tool_ref": null,
+  "related_tool_list_no": 14,
+  "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "priority": "C",
+  "seido_data": [
+    {
+      "file": "satogaeri-shussan-tetsuzuki.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

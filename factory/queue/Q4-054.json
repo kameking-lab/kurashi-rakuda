@@ -1,0 +1,18 @@
+{
+  "job_id": "Q4-054",
+  "batch": 1,
+  "category": "介護",
+  "type": "seido-kaisetsu",
+  "title_draft": "介護保険の自己負担割合は所得でどう決まる？",
+  "tool_ref": null,
+  "related_tool_list_no": 90,
+  "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "priority": "S",
+  "seido_data": [
+    {
+      "file": "kaigo-hoken-jikofutan.json",
+      "status": "ready"
+    }
+  ],
+  "status": "queued"
+}

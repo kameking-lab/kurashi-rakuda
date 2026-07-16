@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "factory/schema/job.schema.json",
+  "title": "くらしのラクダ 記事工場 キュージョブ定義",
+  "type": "object",
+  "required": ["job_id", "batch", "category", "type", "title_draft", "priority", "seido_data", "status"],
+  "properties": {
+    "job_id": { "type": "string", "pattern": "^Q4-[0-9]{3}$" },
+    "batch": { "type": "integer", "minimum": 1, "maximum": 3, "description": "BACKLOG.md Q4-2/Q4-3/Q4-4 の20本ずつのバッチ番号" },
+    "category": {
+      "type": "string",
+      "enum": ["妊娠・出産", "子育て", "家事・料理", "お金", "健康・美容", "仕事・キャリア", "介護"]
+    },
+    "type": { "type": "string", "enum": ["seido-kaisetsu", "tool-narisou", "dandori"] },
+    "title_draft": { "type": "string" },
+    "tool_ref": { "type": ["string", "null"] },
+    "related_tool_list_no": { "type": ["integer", "null"], "description": "docs/02_ツール一覧.md の # 列との対応" },
+    "persona": { "type": "string" },
+    "priority": { "type": "string", "enum": ["S", "A", "B", "C"] },
+    "seido_data": {
+      "type": "array",
+      "description": "この記事が機械照合に使う factory/data/seido/*.json のファイル名。未整備の場合は status=stub の要素のみ",
+      "items": {
+        "type": "object",
+        "required": ["file", "status"],
+        "properties": {
+          "file": { "type": "string" },
+          "status": { "type": "string", "enum": ["ready", "stub"] }
+        }
+      }
+    },
+    "status": { "type": "string", "enum": ["queued", "in_progress", "generated", "gated_pass", "gated_fail"] },
+    "notes": { "type": "string" }
+  }
+}

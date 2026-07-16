@@ -1,0 +1,332 @@
+[
+  {
+    "queueId": "Q3-01",
+    "slug": "shussan-yoteibi",
+    "category": "pregnancy",
+    "title": "出産予定日・妊娠週数計算",
+    "description": "最終月経日または排卵日から、出産予定日と今日の妊娠週数を計算します。",
+    "solves": [
+      "出産予定日がいつか分からない",
+      "今が妊娠何週目か分からない",
+      "妊娠週数の数え方が分からない",
+      "安定期がいつからか知りたい"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-02",
+    "slug": "inunohi",
+    "category": "pregnancy",
+    "title": "戌の日計算・安産祈願カレンダー",
+    "description": "出産予定日から妊娠5ヶ月目の戌の日を計算し、安産祈願に行ける日の候補を表示します。",
+    "solves": [
+      "戌の日がいつか分からない",
+      "安産祈願にいつ行けばいいか分からない",
+      "帯祝いの時期が分からない"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-03",
+    "slug": "seiri-shuki",
+    "category": "pregnancy",
+    "title": "生理周期・排卵日予測",
+    "description": "直近の生理開始日と周期から、次の生理予定日と排卵日の目安を日付演算で予測します（医療判断は含みません）。",
+    "solves": [
+      "次の生理がいつ来るか分からない",
+      "排卵日の目安を知りたい",
+      "生理周期の平均を計算したい"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-04",
+    "slug": "sankyu-ikukyu-money",
+    "category": "money",
+    "title": "産休育休まるごとお金シミュレーター",
+    "description": "出産手当金・出産育児一時金・育児休業給付金・社会保険料免除を、産休から復職までの時系列で合算表示します。",
+    "solves": [
+      "産休育休中の収入が総額いくらか分からない",
+      "出産手当金がいくらもらえるか分からない",
+      "育児休業給付金がいくらもらえるか分からない",
+      "社会保険料の免除でいくら浮くか分からない",
+      "給付金がいつ振り込まれるか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-05",
+    "slug": "getsurei",
+    "category": "childcare",
+    "title": "月齢計算（生後日数・週数・修正月齢）",
+    "description": "生年月日から今日の月齢・生後日数・週数を計算します。早産児の修正月齢にも対応します。",
+    "solves": [
+      "赤ちゃんが今日で生後何日か分からない",
+      "月齢の数え方が分からない",
+      "修正月齢の計算方法が分からない",
+      "生後100日目がいつか知りたい"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-06",
+    "slug": "yobousesshu",
+    "category": "childcare",
+    "title": "予防接種スケジューラー",
+    "description": "生年月日を入れると、2026年度の定期予防接種の推奨時期を一覧カレンダーで表示します。",
+    "solves": [
+      "予防接種をいつ何を受ければいいか分からない",
+      "予防接種の同時接種の組み合わせが分からない",
+      "接種が遅れたときの受け方が分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-07",
+    "slug": "rinyushoku-ryo",
+    "category": "childcare",
+    "title": "離乳食の量・固さ早見",
+    "description": "月齢を入れると、離乳食の回数・量・固さの目安を表示します。",
+    "solves": [
+      "離乳食の量が合っているか分からない",
+      "離乳食の固さの目安が分からない",
+      "離乳食を1日何回あげればいいか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-08",
+    "slug": "jido-teate",
+    "category": "childcare",
+    "title": "児童手当計算（2026年度）",
+    "description": "子どもの人数と年齢から、児童手当の月額・年額と振込月を計算します。所得制限撤廃後の制度に対応。",
+    "solves": [
+      "児童手当がいくらもらえるか分からない",
+      "児童手当がいつ振り込まれるか分からない",
+      "第3子加算の数え方が分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-09",
+    "slug": "hoikuryo",
+    "category": "childcare",
+    "title": "保育料計算（全国版・政令市から）",
+    "description": "お住まいの自治体と世帯の住民税額から、認可保育園の保育料を計算します。政令市から順次対応拡大。",
+    "solves": [
+      "保育料がいくらになるか分からない",
+      "住民税のどの数字で保育料が決まるか分からない",
+      "きょうだい減免がいくらか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-10",
+    "slug": "shincho-yosoku",
+    "category": "childcare",
+    "title": "子どもの身長予測",
+    "description": "両親の身長から、子どもの最終身長の目安を計算します。",
+    "solves": [
+      "子どもの将来の身長の目安を知りたい",
+      "両親の身長からの予測方法が分からない"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-11",
+    "slug": "hokatsu-schedule",
+    "category": "childcare",
+    "title": "保活スケジュールメーカー",
+    "description": "入園希望月から逆算して、見学・申込・結果通知までの保活スケジュールを生成します。",
+    "solves": [
+      "保活をいつ始めればいいか分からない",
+      "保育園の申込時期が分からない",
+      "見学は何園くらい行けばいいか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-12",
+    "slug": "junyu-milk-ryo",
+    "category": "childcare",
+    "title": "授乳・ミルク量の目安",
+    "description": "月齢と体重から、1回あたり・1日あたりのミルク量の目安を計算します。",
+    "solves": [
+      "ミルクの量が足りているか分からない",
+      "月齢ごとのミルク量の目安が分からない",
+      "混合育児のミルクの足し方が分からない"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-13",
+    "slug": "reito-hozon",
+    "category": "kaji",
+    "title": "冷凍保存期間検索",
+    "description": "食材名で検索すると、冷凍・冷蔵の保存期間の目安と解凍のコツを表示します。",
+    "solves": [
+      "この食材が冷凍で何日もつか分からない",
+      "冷凍した肉や野菜の解凍方法が分からない",
+      "作り置きが何日もつか分からない"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-14",
+    "slug": "chomiryo-kanzan",
+    "category": "kaji",
+    "title": "調味料換算（大さじ・小さじ・g・ml）",
+    "description": "調味料を選んで量を入れると、大さじ・小さじ・グラム・ミリリットルを相互換算します。",
+    "solves": [
+      "大さじ1が何グラムか分からない",
+      "レシピのグラム表記を大さじに直したい",
+      "小さじと大さじの換算が分からない",
+      "計量スプーンがないときの量り方に困っている"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "文部科学省「日本食品標準成分表」および一般的な調理用計量表（参考値）",
+        "url": "https://www.mext.go.jp/a_menu/syokuhinseibun/"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
+    "queueId": "Q3-15",
+    "slug": "suihan-mizu",
+    "category": "kaji",
+    "title": "炊飯の水の量・合数換算",
+    "description": "お米の合数・グラムから、必要な水の量を計算します。無洗米・玄米・新米にも対応します。",
+    "solves": [
+      "お米1合に水を何ml入れるか分からない",
+      "炊飯器の目盛りなしで水加減が分からない",
+      "無洗米や玄米の水加減が分からない"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-16",
+    "slug": "kondate-teian",
+    "category": "kaji",
+    "title": "献立自動提案",
+    "description": "条件（調理時間・食材・気分）を選ぶと、今日の献立と1週間分の献立案を提案します。",
+    "solves": [
+      "今日の夕飯を何にするか決められない",
+      "献立を考えるのが苦痛",
+      "1週間分の献立をまとめて決めたい"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-17",
+    "slug": "sentaku-hyoji",
+    "category": "kaji",
+    "title": "洗濯表示検索",
+    "description": "衣類の洗濯表示（新JIS記号）の意味を、記号の見た目から検索できます。",
+    "solves": [
+      "洗濯タグの記号の意味が分からない",
+      "この服が家で洗えるか分からない",
+      "乾燥機にかけていいか分からない"
+    ],
+    "basisYear": null,
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-18",
+    "slug": "fuyo-kabe",
+    "category": "money",
+    "title": "扶養の壁シミュレーター2026",
+    "description": "パートの年収見込みを入れると、2025〜26年の制度改正を反映した「壁」ごとの手取り変化を表示します。",
+    "solves": [
+      "扶養内でいくらまで働けるか分からない",
+      "106万・130万の壁を超えると損か得か分からない",
+      "2026年の年収の壁の変更点が分からない",
+      "社会保険に入ると手取りがどう変わるか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-19",
+    "slug": "jitan-kyuyo",
+    "category": "career",
+    "title": "時短勤務の給料・給付シミュレーター",
+    "description": "時短勤務にしたときの給料の変化と、育児時短就業給付（2025年創設）の受給額を計算します。",
+    "solves": [
+      "時短勤務で給料がいくら減るか分からない",
+      "育児時短就業給付がいくらもらえるか分からない",
+      "時短とフルタイムの手取り差が分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  },
+  {
+    "queueId": "Q3-20",
+    "slug": "kaigo-jikofutan",
+    "category": "care",
+    "title": "介護保険 自己負担シミュレーター",
+    "description": "要介護度と所得区分から、介護サービスの月額自己負担の目安を計算します。",
+    "solves": [
+      "介護サービスの自己負担が月いくらか分からない",
+      "要介護度ごとに使える上限額が分からない",
+      "高額介護サービス費でいくら戻るか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [],
+    "updated": "2026-07-17",
+    "status": "planned"
+  }
+]

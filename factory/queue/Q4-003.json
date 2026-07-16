@@ -1,0 +1,18 @@
+{
+  "job_id": "Q4-003",
+  "batch": 1,
+  "category": "妊娠・出産",
+  "type": "seido-kaisetsu",
+  "title_draft": "育児休業給付金はいつまでもらえる？支給率と対象期間",
+  "tool_ref": null,
+  "related_tool_list_no": 4,
+  "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "priority": "S",
+  "seido_data": [
+    {
+      "file": "ikuji-kyugyou-kyufu.json",
+      "status": "ready"
+    }
+  ],
+  "status": "queued"
+}

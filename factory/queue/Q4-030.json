@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-030",
+  "batch": 2,
+  "category": "家事・料理",
+  "type": "seido-kaisetsu",
+  "title_draft": "名もなき家事、公的統計で見る家事時間の男女差",
+  "tool_ref": null,
+  "related_tool_list_no": 46,
+  "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "kaji-jikan-toukei-danjyosa.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

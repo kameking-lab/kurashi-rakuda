@@ -1,0 +1,27 @@
+{
+  "$comment": "記事工場が出典として認める一次情報ドメインの許可リスト。safe-ai-site (scripts/generate-seo-articles.mjs 内 TRUSTED_DOMAINS) の仕組みを移植し、対象領域をくらしのラクダのYMYL領域（妊娠出産・子育て・お金・介護・家事）向けに差し替えたもの。scripts/lib/fidelity.mjs の isTrustedUrl() がこのファイルを読み込んで判定する。ドメインは末尾一致（サブドメイン含む）。地方自治体は共通末尾 *.lg.jp を許可し、記事側で自治体名をレビュー時に目視確認する運用とする。",
+  "updated": "2026-07-17",
+  "domains": [
+    { "domain": "cfa.go.jp", "org": "こども家庭庁", "note": "児童手当・保育・こども政策全般の一次情報" },
+    { "domain": "mhlw.go.jp", "org": "厚生労働省", "note": "母子保健・雇用保険（育休給付等）・介護保険・年金・食品衛生の一次情報" },
+    { "domain": "caa.go.jp", "org": "消費者庁", "note": "洗濯表示（家庭用品品質表示法）・食品表示・消費生活相談" },
+    { "domain": "e-gov.go.jp", "org": "デジタル庁 e-Gov法令検索", "note": "法令条文の一次情報" },
+    { "domain": "elaws.e-gov.go.jp", "org": "デジタル庁 e-Gov法令検索", "note": "法令条文の一次情報（旧ドメイン）" },
+    { "domain": "nta.go.jp", "org": "国税庁", "note": "扶養控除・税制関連の一次情報" },
+    { "domain": "nenkin.go.jp", "org": "日本年金機構", "note": "社会保険料・出産手当金・産前産後休業保険料免除" },
+    { "domain": "kyoukaikenpo.or.jp", "org": "全国健康保険協会（協会けんぽ）", "note": "出産手当金・出産育児一時金の実務情報" },
+    { "domain": "hellowork.mhlw.go.jp", "org": "ハローワークインターネットサービス", "note": "育児休業給付・介護休業給付の実務情報" },
+    { "domain": "cao.go.jp", "org": "内閣府", "note": "子ども・子育て支援新制度、幼児教育・保育の無償化" },
+    { "domain": "digital.go.jp", "org": "デジタル庁", "note": "マイナポータル経由の行政手続き情報" },
+    { "domain": "maff.go.jp", "org": "農林水産省", "note": "食品の保存・調理に関する一次情報" },
+    { "domain": "jsog.or.jp", "org": "日本産科婦人科学会", "note": "産婦人科診療ガイドラインなど妊娠・出産の医学的目安（診断は含めない）" },
+    { "domain": "ncchd.go.jp", "org": "国立成育医療研究センター", "note": "小児成長・発達の公的研究情報" },
+    { "domain": "jaog.or.jp", "org": "日本産婦人科医会", "note": "妊娠週数・出産に関する一次情報" },
+    { "domain": "kokusen.go.jp", "org": "国民生活センター", "note": "生活トラブル・消費生活相談の一次情報" },
+    { "domain": "lg.jp", "org": "地方自治体（都道府県・市区町村共通ドメイン）", "note": "保育料・児童手当窓口・自治体独自助成など。記事化時に自治体名を本文中に明記すること" }
+  ],
+  "excluded_examples": [
+    { "domain": "kurashi-keisan.jp", "reason": "自社姉妹サイトだが一次情報ではないため出典としては使わない（内部リンクとしての送客は別途許可）" },
+    { "domain": "wikipedia.org", "reason": "一次情報ではない" }
+  ]
+}

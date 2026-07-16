@@ -1,0 +1,23 @@
+{
+  "job_id": "Q4-009",
+  "batch": 3,
+  "category": "妊娠・出産",
+  "type": "dandori",
+  "title_draft": "産後の手続きは何をいつまでに？出生届から児童手当まで",
+  "tool_ref": null,
+  "related_tool_list_no": 11,
+  "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "jidou-teate.json",
+      "status": "ready"
+    },
+    {
+      "file": "shussho-todoke-kigen.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

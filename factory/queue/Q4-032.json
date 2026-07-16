@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-032",
+  "batch": 3,
+  "category": "家事・料理",
+  "type": "seido-kaisetsu",
+  "title_draft": "電子レンジのワット数と加熱時間の換算ルール",
+  "tool_ref": null,
+  "related_tool_list_no": 48,
+  "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "priority": "B",
+  "seido_data": [
+    {
+      "file": "renji-watt-kanzan-kijun.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}

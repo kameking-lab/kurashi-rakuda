@@ -1,0 +1,19 @@
+{
+  "job_id": "Q4-021",
+  "batch": 3,
+  "category": "子育て",
+  "type": "seido-kaisetsu",
+  "title_draft": "保育園に入れない場合の育休延長手続き",
+  "tool_ref": null,
+  "related_tool_list_no": 21,
+  "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "priority": "A",
+  "seido_data": [
+    {
+      "file": "ikukyu-encho-youken.json",
+      "status": "stub"
+    }
+  ],
+  "status": "queued",
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+}
