@@ -1,0 +1,9 @@
+{
+  "$comment": "洗濯表示（新JIS記号）の対照表データ（非制度）。旧 factory/data/seido/sentaku-hyouji.json を data/tables/ へ移設（G2データ一元化）。記号41種の詳細は BACKLOG Q2-4 / ツール#41 実装時に整備する。記事の seido_ref からは 'sentaku-hyouji.json#<パス>' で参照される（キー名は互換維持のため変更しない）。",
+  "org": "消費者庁",
+  "source_url": "https://www.caa.go.jp/policies/policy/consumer_partnership/information/care_labeling/",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2026-10-01",
+  "shiko_nengetsu": "2016-12",
+  "kigou_sousuu": 41
+}

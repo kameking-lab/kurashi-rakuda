@@ -1,0 +1,105 @@
+{
+  "$comment": "旧 factory/data/seido/ の seido_ref → root data/（単一ソース）への対応表。G2データ一元化（2026-07-17）で factory/data/ を廃止した際、既存記事11本の frontmatter.facts[].seido_ref を書き換えずにゲートを通すための互換レイヤー。新規記事は最初から root 形式（例: 'ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.rateFirst180Days.value'）で書くこと。scale は単位換算（root が rate=0.67、記事が %=67 の場合に 100）。",
+  "map": {
+    "fuyou-no-kabe.json#kabe_en.shakai_hoken_kanyu_meyasu": {
+      "ref": "fuyou-kabe.json#data.socialInsurance.shortTimeWorker.annualWageEquivalent.value"
+    },
+    "fuyou-no-kabe.json#kabe_en.hifuyousha_ninnei": {
+      "ref": "fuyou-kabe.json#data.socialInsurance.dependentCertification.annualIncomeThreshold.value"
+    },
+    "fuyou-no-kabe.json#kabe_en.haigusha_tokubetsu_koujo_manngaku_line": {
+      "ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.fullAmountSalaryLine.value"
+    },
+    "fuyou-no-kabe.json#kabe_en.haigusha_tokubetsu_koujo_shoushitsu_line": {
+      "ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.vanishSalaryLine.value"
+    },
+    "ikuji-kyugyou-kyufu.json#kyufu_ritsu.kaishi_kara_180nichi_made": {
+      "ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.rateFirst180Days.value",
+      "scale": 100
+    },
+    "ikuji-kyugyou-kyufu.json#kyufu_ritsu.181nichime_ikou": {
+      "ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.rateAfter180Days.value",
+      "scale": 100
+    },
+    "ikuji-kyugyou-kyufu.json#kirikae_nissu": {
+      "ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.rateSwitchDays.value"
+    },
+    "jidou-teate.json#monthly_amount.0_to_2": {
+      "ref": "jido-teate.json#data.monthlyAmounts.under3.firstSecondChild.value"
+    },
+    "jidou-teate.json#monthly_amount.3_to_high_school": {
+      "ref": "jido-teate.json#data.monthlyAmounts.age3ToHighSchool.firstSecondChild.value"
+    },
+    "jidou-teate.json#monthly_amount.3_to_high_school_third_or_later": {
+      "ref": "jido-teate.json#data.monthlyAmounts.age3ToHighSchool.thirdChildOnwards.value"
+    },
+    "jidou-teate.json#age_boundary.nyuji_kara_sai": {
+      "ref": "jido-teate.json#data.eligibility.ageBoundaries.fromAge.value"
+    },
+    "jidou-teate.json#age_boundary.jidou_kara_sai": {
+      "ref": "jido-teate.json#data.eligibility.ageBoundaries.rateChangeAge.value"
+    },
+    "jidou-teate.json#age_boundary.koukou_nendo_made_sai": {
+      "ref": "jido-teate.json#data.eligibility.ageBoundaries.untilAge.value"
+    },
+    "jidou-teate.json#payment.times_per_year": {
+      "ref": "jido-teate.json#data.payment.timesPerYear.value"
+    },
+    "jitan-kinmu-kyufu.json#kyufu_ritsu.jitan_chingin_ni_taisuru_wariai": {
+      "ref": "ikukyu-kyufu.json#data.ikujiJitanShugyoKyufuKin.rate.value",
+      "scale": 100
+    },
+    "jitan-kinmu-kyufu.json#taisho_nenrei_miman_sai": {
+      "ref": "ikukyu-kyufu.json#data.ikujiJitanShugyoKyufuKin.targetChildAgeYears.value"
+    },
+    "kaigo-hoken-jikofutan.json#jikofutan_wariai.gensoku": {
+      "ref": "kaigo-hoken.json#data.futanWariai.gensoku.value"
+    },
+    "kaigo-hoken-jikofutan.json#jikofutan_wariai.ittei_ijou_shotoku": {
+      "ref": "kaigo-hoken.json#data.futanWariai.niwari.value"
+    },
+    "kaigo-hoken-jikofutan.json#jikofutan_wariai.toku_ni_takai_shotoku": {
+      "ref": "kaigo-hoken.json#data.futanWariai.sanwari.value"
+    },
+    "sanzensango-hoken-menjo.json#menjo_kikan_nissu.sanzen_tanmine": {
+      "ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirth.value",
+      "$comment": "産前産後休業の範囲（42/98/56日）は出産手当金と社会保険料免除で共通（健康保険法第102条・第159条の3が同一の期間定義を参照）。"
+    },
+    "sanzensango-hoken-menjo.json#menjo_kikan_nissu.sanzen_tatai": {
+      "ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirthMultiple.value"
+    },
+    "sanzensango-hoken-menjo.json#menjo_kikan_nissu.sango": {
+      "ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodAfterBirth.value"
+    },
+    "shussan-teate-ichijikin.json#shussan_teate.taisho_nissu_sanzen": {
+      "ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirth.value"
+    },
+    "shussan-teate-ichijikin.json#shussan_teate.taisho_nissu_sanzen_tatai": {
+      "ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirthMultiple.value"
+    },
+    "shussan-teate-ichijikin.json#shussan_teate.taisho_nissu_sango": {
+      "ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodAfterBirth.value"
+    },
+    "shussan-teate-ichijikin.json#shussan_ikuji_ichijikin.kingaku_kanousan_taisho": {
+      "ref": "ikukyu-kyufu.json#data.shussanIkujiIchijikin.amount.value"
+    },
+    "youji-kyouiku-mushouka.json#taisho_nenrei_sai.zensetai_kara": {
+      "ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllFrom.value"
+    },
+    "youji-kyouiku-mushouka.json#taisho_nenrei_sai.zensetai_made": {
+      "ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllTo.value"
+    },
+    "youji-kyouiku-mushouka.json#taisho_nenrei_sai.hikazei_kara": {
+      "ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableFrom.value"
+    },
+    "youji-kyouiku-mushouka.json#taisho_nenrei_sai.hikazei_made": {
+      "ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableTo.value"
+    },
+    "youji-kyouiku-mushouka.json#ninkagai_jougen_gaku_en.3sai_kara_5sai": {
+      "ref": "youji-kyouiku-mushouka.json#data.ninkagaiCaps.age3to5.value"
+    },
+    "youji-kyouiku-mushouka.json#ninkagai_jougen_gaku_en.0sai_kara_2sai_hikazei": {
+      "ref": "youji-kyouiku-mushouka.json#data.ninkagaiCaps.age0to2NonTaxable.value"
+    }
+  }
+}

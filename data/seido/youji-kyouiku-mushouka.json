@@ -1,0 +1,103 @@
+{
+  "$schema": "../schema/seido-common.schema.json",
+  "id": "youji-kyouiku-mushouka",
+  "name": "幼児教育・保育の無償化",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "cfa-mushouka",
+      "title": "幼児教育・保育の無償化",
+      "publisher": "こども家庭庁",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "制度の主管はこども家庭庁（2023年4月に内閣府から移管）。"
+    },
+    {
+      "id": "egov-kosodate-shien-ho",
+      "title": "子ども・子育て支援法（平成二十四年法律第六十五号）",
+      "publisher": "e-Gov法令検索（デジタル庁）",
+      "url": "https://laws.e-gov.go.jp/law/424AC0000000065",
+      "checkedAt": "2026-07-17",
+      "tier": "law",
+      "contentType": "html",
+      "note": "第30条の2以下（子育てのための施設等利用給付）。無償化の法的根拠。※内閣府の旧概要ページ（www8.cao.go.jp/shoushi/shinseido/outline/mushouka/）は2026-07-17時点で404のため出典に使用しない。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "2019年10月1日施行の子ども・子育て支援法改正により創設。3〜5歳児クラスの幼稚園・保育所・認定こども園等の利用料が無償化、0〜2歳児クラスは住民税非課税世帯を対象に無償化。2026年度時点で対象・上限額の変更は確認されていない。",
+      "status": "in-force",
+      "effectiveFrom": "2019-10-01",
+      "sourceId": "cfa-mushouka",
+      "impact": "保育料計算ツール（Q3-09）は3歳児クラス以降の保育料を0円とし、給食費・行事費等の実費は無償化対象外である旨を表示すること。"
+    }
+  ],
+  "disclaimer": "本データは2026年（令和8年）7月17日時点の制度に基づく目安です。無償化の対象施設・上限額の適用には施設の確認手続きや保育の必要性の認定が必要な場合があります。給食費・通園送迎費・行事費などは無償化の対象外です。正確な取扱いはお住まいの市区町村にご確認ください。",
+  "data": {
+    "targetAges": {
+      "description": "無償化の対象年齢区分（クラス年齢ベース）。",
+      "freeForAllFrom": {
+        "value": 3,
+        "unit": "year",
+        "label": "全世帯無償の下限（3歳児クラスから）",
+        "sourceId": "cfa-mushouka",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["3歳"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "幼稚園は満3歳から。保育所等は3歳児クラス（4月1日時点3歳）から。"
+      },
+      "freeForAllTo": {
+        "value": 5,
+        "unit": "year",
+        "label": "全世帯無償の上限（5歳児クラスまで＝小学校入学前まで）",
+        "sourceId": "cfa-mushouka",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["5歳"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "nonTaxableFrom": {
+        "value": 0,
+        "unit": "year",
+        "label": "住民税非課税世帯の無償化の下限（0歳児クラスから）",
+        "sourceId": "cfa-mushouka",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["0歳"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "nonTaxableTo": {
+        "value": 2,
+        "unit": "year",
+        "label": "住民税非課税世帯の無償化の上限（2歳児クラスまで）",
+        "sourceId": "cfa-mushouka",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["2歳"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "住民税非課税世帯のみが対象。課税世帯の0〜2歳児クラスは無償化の対象外（自治体独自の軽減制度は別途存在）。"
+      }
+    },
+    "ninkagaiCaps": {
+      "description": "認可外保育施設等を利用する場合の月額上限（保育の必要性の認定が必要）。",
+      "age3to5": {
+        "value": 37000,
+        "unit": "JPY/month",
+        "label": "3〜5歳児クラスの月額上限",
+        "sourceId": "cfa-mushouka",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["3.7万円"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "age0to2NonTaxable": {
+        "value": 42000,
+        "unit": "JPY/month",
+        "label": "0〜2歳児クラス（住民税非課税世帯）の月額上限",
+        "sourceId": "cfa-mushouka",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["4.2万円"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      }
+    }
+  }
+}

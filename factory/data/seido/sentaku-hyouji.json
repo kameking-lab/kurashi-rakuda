@@ -1,9 +1,0 @@
-{
-  "$comment": "洗濯表示（新JIS記号）データ。家庭用品品質表示法に基づき2016年12月1日改正・施行。消費者庁の案内に基づく。記号ごとの詳細な意味は #41 洗濯表示検索ツール実装時に packages/data 側で41記号ぶん整備する（ここではツール併走記事1本分の総数のみ先行整備）。",
-  "org": "消費者庁",
-  "source_url": "https://www.caa.go.jp/policies/policy/consumer_partnership/information/care_labeling/",
-  "last_verified": "2026-07-17",
-  "next_check_due": "2026-10-01",
-  "shiko_nengetsu": "2016-12",
-  "kigou_sousuu": 41
-}
