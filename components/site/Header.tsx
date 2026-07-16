@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { Rakku } from "@/components/mascot/Rakku";
 
 export function Header() {
   return (
     <header className="border-b border-line">
       <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-3">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold">
-          <span aria-hidden="true">🐪</span>
+          <Rakku size={30} />
           <span>くらしのラクダ</span>
         </Link>
         <nav aria-label="メイン">
