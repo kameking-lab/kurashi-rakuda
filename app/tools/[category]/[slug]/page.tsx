@@ -4,6 +4,10 @@ import type { ReactNode } from "react";
 import { getLiveTools, getTool } from "@/app/lib/tools/registry";
 import { ToolShell } from "@/components/tools/ToolShell";
 import { ChomiryoKanzan } from "@/components/tools/impl/ChomiryoKanzan";
+import { FuyoKabe } from "@/components/tools/impl/FuyoKabe";
+import { SeidoNotice } from "@/components/tools/SeidoNotice";
+import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
+import { todayJst } from "@/lib/tools/seido";
 
 /**
  * ツール実装のマッピング。G2（Q3-01〜20）で実装が増えるたびにここへ1行追加し、
@@ -23,6 +27,44 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         <p>
           値は一般的な調理用計量表に基づく参考値です。製品や計り方（すりきり）で多少前後します。
         </p>
+      </>
+    ),
+  },
+  "fuyo-kabe": {
+    ui: <FuyoKabe />,
+    formula: (
+      <>
+        <p>
+          <strong>所得税（自分にかかる分）</strong>
+          ：給与収入から給与所得控除を引いて「給与所得」を出し、そこから基礎控除を引いた残りに課税されます。
+          2026年（令和8年）分は、給与所得控除の最低保障額が74万円、基礎控除が最大104万円のため、
+          年収178万円までは課税所得が0円になります。これが「課税最低限178万円」です。
+        </p>
+        <p>
+          <strong>扶養控除・配偶者控除（扶養する人にかかる分）</strong>
+          ：あなたの合計所得金額が62万円以下（給与収入だけなら136万円以下）であることが要件です。
+          これを超えると、配偶者なら配偶者特別控除、19歳以上23歳未満で親の扶養なら特定親族特別控除に切り替わり、
+          控除額は段階的に減っていきます。急に手取りが逆転する「崖」にはなりません。
+        </p>
+        <p>
+          <strong>社会保険（106万円の壁）</strong>
+          ：法令上は「年収106万円」という基準はなく、週の所定労働時間20時間以上・所定内賃金の月額8.8万円以上・
+          2か月超の雇用見込み・学生でない・勤務先の被保険者数51人以上、のすべてを満たすかで判定します。
+          月額賃金には賞与・残業代・通勤手当・精皆勤手当・家族手当を含めません。
+          この賃金要件（月8.8万円）は2026年10月に撤廃される予定です。
+        </p>
+        <p>
+          <strong>扶養から外れる年収（130万円の壁）</strong>
+          ：健康保険の被扶養者でいられるのは年間収入130万円「未満」までです（19歳以上23歳未満は150万円未満、
+          60歳以上・障害のある方は180万円未満）。同居している場合は、扶養する方の年収の2分の1未満であることも必要です。
+          税が1〜12月の確定額で判断するのに対し、社会保険は「これから1年間の見込み額」で判断する点が違います。
+        </p>
+        <p>
+          <strong>手取りの概算について</strong>
+          ：厚生年金9.15%・健康保険4.95%（全国平均）・子ども・子育て支援金0.115%・雇用保険0.5%を
+          年収に乗じた概算です。実際は標準報酬月額をもとに計算され、健康保険料率は都道府県ごとに異なります。
+        </p>
+        <SeidoNotice datasets={[fuyoKabeDataset]} today={todayJst()} />
       </>
     ),
   },
