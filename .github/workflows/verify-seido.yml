@@ -1,8 +1,4 @@
-# 制度データ検証 CI 設定
-#
-# ★配置場所★ このファイルは `.github/workflows/verify-seido.yml` に配置して使う。
-# 本タスクの担当範囲が data/ specs/s-tools/ scripts/ queue/ に限定されているため、
-# scripts/ci/ に置いている。リポジトリ雛形（P1-02）の作成時に .github/workflows/ へ移動すること。
+# 制度データ検証 CI
 #
 # 設計方針:
 #   - 構造検査（オフライン）は PR ブロッキング。出典なしの数値・期限切れデータを混入させない。
@@ -16,12 +12,16 @@ on:
   pull_request:
     paths:
       - 'data/**'
+      - 'content/**'
+      - 'factory/**'
       - 'scripts/verify-seido.mjs'
       - '.github/workflows/verify-seido.yml'
   push:
     branches: [master]
     paths:
       - 'data/**'
+      - 'content/**'
+      - 'factory/**'
       - 'scripts/verify-seido.mjs'
   schedule:
     # 毎日 JST 07:00（UTC 22:00）に出典照合を実行し、制度改正・ページ改稿を検知する。
@@ -53,6 +53,22 @@ jobs:
         # 出典なしの数値、確認日の欠落、改正メモの欠落、まとめサイトの混入、
         # expiresOn を過ぎた期限切れデータを検出する。ネットワーク不要。
         run: node scripts/verify-seido.mjs
+
+  # ------------------------------------------------------------ 記事忠実性ゲート
+  fidelity:
+    name: 記事忠実性ゲート（本文 ⇔ facts ⇔ data/ の三者照合）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 忠実性ゲート
+        # 記事本文のYMYL数値が frontmatter.facts[] と data/（root、単一ソース）に
+        # 機械照合で一致しない限りマージさせない。
+        run: node factory/scripts/check-fidelity.mjs content/articles
 
   # ---------------------------------------------------------------- 出典照合
   sources:
