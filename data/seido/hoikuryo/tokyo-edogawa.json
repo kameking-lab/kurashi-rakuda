@@ -1,0 +1,571 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "tokyo-edogawa",
+  "name": "東京都江戸川区",
+  "municipalityCode": "131237",
+  "prefecture": "東京都",
+  "municipalityType": "特別区",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "edogawa-riyousha",
+      "title": "利用者負担額（保育料）",
+      "publisher": "東京都江戸川区 子ども家庭部保育課",
+      "url": "https://www.city.edogawa.tokyo.jp/e048/kosodate/kosodate/hoiku/nitijou/hoikuen/riyoushahutan.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "ページ更新日 2026年3月26日（ページID:11713）。令和7年9月からの第1子無償化により基本保育料が無償である旨、税額の切替ルール、算定基礎から除く控除を記載。"
+    },
+    {
+      "id": "edogawa-hoikuryohyo",
+      "title": "【保育料基準額表】保育料表（令和7年8月まで）",
+      "publisher": "東京都江戸川区 子ども家庭部保育課",
+      "url": "https://www.city.edogawa.tokyo.jp/documents/11713/r6hoikuryohyo.pdf",
+      "landingUrl": "https://www.city.edogawa.tokyo.jp/e048/kosodate/kosodate/hoiku/nitijou/hoikuen/riyoushahutan.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "令和7年8月分までの保育料基準額表。A〜D23の階層区分（特別区民税所得割額の境界）はこのPDFが区の最終公表版。令和7年9月以降は第1子無償化により全階層0円となったため、金額欄は本データでは採用していない（階層境界のみ採用）。"
+    },
+    {
+      "id": "edogawa-musyouka",
+      "title": "保育料の第1子無償化",
+      "publisher": "東京都江戸川区 子ども家庭部保育課",
+      "url": "https://www.city.edogawa.tokyo.jp/e048/kosodate/kosodate/hoiku/azukeru/musyouka.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "令和7年9月利用分から認可保育施設等の保育料を第1子から無償化。対象は江戸川区民で対象施設を利用しているすべての児童。無償化の対象は基本保育料のみ。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和7年9月利用分から保育料の第1子無償化を実施し、江戸川区が算定する認可保育施設の基本保育料（利用者負担額）が全階層・全年齢で無償となった。3〜5歳児クラスは令和元年10月から、第2子以降は令和5年10月から既に無償。",
+      "status": "in-force",
+      "effectiveFrom": "2025-09-01",
+      "sourceId": "edogawa-musyouka",
+      "impact": "令和8年度において認可保育所の基本保育料は所得階層・年齢・保育必要量にかかわらず0円。階層判定は保育料計算には不要となったが、延長保育料の区分等で世帯の課税状況は引き続き用いられる。"
+    },
+    {
+      "summary": "令和8年度版の保育料基準額表（階層別金額表）は公表されていない（2026-07-17確認）。無償化により金額表が不要となったためと見られるが、区として明示の説明はない。階層境界は令和7年8月までの表が最終公表版。公開後に要更新。",
+      "status": "under-review",
+      "sourceId": "edogawa-hoikuryohyo",
+      "impact": "tiers の incomeMin/incomeMax は令和7年8月までの基準額表に基づく。無償化が見直された場合は階層境界・金額とも再取得が必要。"
+    }
+  ],
+  "disclaimer": "本データは東京都江戸川区の公式ページおよび公式PDFのみを出典として2026年7月17日時点で作成したものです。保育料は制度改正・税額更正等により変動します。実際の適用額・階層判定は必ず江戸川区保育課の最新の公表内容および決定通知でご確認ください。本データは参考情報であり、区の決定に代わるものではありません。",
+  "scope": {
+    "includes": [
+      "認可保育所（区立・私立）の基本保育料（利用者負担額・月額）",
+      "認定こども園の保育認定（2号・3号）部分の基本保育料",
+      "地域型保育事業（小規模保育・事業所内保育・家庭的保育・居宅訪問型保育）の基本保育料"
+    ],
+    "excludes": [
+      "延長保育料（月額・スポット利用とも無償化の対象外）",
+      "給食費（副食費・主食費）等の実費徴収",
+      "日用品費・文房具代・園服代・おむつ代・行事費など各施設が直接徴収する費用",
+      "教材費・入園金・制服代等、私立施設が独自に設定する上乗せ徴収",
+      "認可外保育施設・認証保育所・幼稚園の利用料（別制度）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "特別区民税所得割額（保護者の合算）。江戸川区外で住民税が賦課されている場合はマイナンバーによる自治体間の情報連携により照会する。",
+    "taxYearRule": "保育料の決定は4月・9月の2回行う。4月分から8月分までは前年度の区市町村民税所得割額を基に、9月分から翌年3月分までは現年度の区市町村民税所得割額を基に決定する。（注意）住民税の情報が確認できない場合は、保育料が最高額で決定される。",
+    "deductionsIgnored": [
+      "寄附金税額控除",
+      "外国税額控除",
+      "配当控除",
+      "住宅借入金等特別税額控除"
+    ],
+    "note": "原典表記:「保育料算定のもとになる特別区民税所得割額は、寄付金控除、外国税額控除、配当控除、住宅借入金等特別税額控除等を適用する前の税額です」。政令指定都市で課税されている場合は市民税所得割額に8分の6を乗じた額を算定基礎とする（旧税率6%換算）。階層境界は edogawa-hoikuryohyo（令和7年8月まで適用の基準額表）に基づき、原典はいずれも「〜円未満の世帯」表記のため incomeMax にその値をそのまま格納した（最上位D23のみ「425,000円以上の世帯」で incomeMax=null）。A階層は生活保護受給の有無、B階層は住民税非課税、C階層は均等割のみ課税で判定され所得割額では区分されないため、B・C は所得割額0円を表す incomeMin=0/incomeMax=1 とし、A は incomeMax=null とした。D1（5,000円未満の世帯）は原典表記どおり incomeMin=0 としており、B・C と数値上重複するが、階層判定はA→B→C→Dの順で課税状況により行われる。令和7年9月以降は全階層0円のため、この階層境界は保育料額には影響しない。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0歳〜2歳児クラス",
+      "rule": "クラス年齢による区分。原典は「0歳〜2歳児クラス」「3歳児クラス」「4歳〜5歳児クラス」の3区分で表示している（未確認: 年齢判定の基準日の明文規定は区公式ページ上で確認できず）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳〜5歳児クラス",
+      "rule": "原典の「3歳児クラス」と「4歳〜5歳児クラス」を統合。令和元年10月から無償。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳〜5歳児クラスの保育料は無償",
+      "sourceId": "edogawa-hoikuryohyo",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "原典:「3歳から5歳児クラスの保育料は、令和元年10月から無償化されました(延長保育料を除く)。」国の幼児教育・保育の無償化による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "0歳〜2歳児クラスの住民税非課税世帯（B階層）は無償",
+      "sourceId": "edogawa-hoikuryohyo",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "令和7年8月までの基準額表でもB階層は0円。令和7年9月以降は課税世帯も含め全階層0円。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "未確認（第1子無償化により実質的に不要）",
+        "label": "多子カウントの対象範囲・年齢上限",
+        "sourceId": "edogawa-musyouka",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "未確認: 第2子以降無償化（令和5年10月開始）当時のカウント方法を説明していた区ページ（.../hoiku/azukeru/hoikuryomusyo.html）は2026-07-17時点で404となっており、多子カウントの年齢上限を区公式サイト上で確認できなかった。ただし令和7年9月から第1子を含む全児童の基本保育料が無償となったため、認可保育施設の保育料算定において出生順位のカウントは不要。"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子の基本保育料",
+        "sourceId": "edogawa-musyouka",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "令和5年10月から第2子以降無償化を実施（原典: edogawa-hoikuryohyo 欄外注記）。令和7年9月からは第1子も無償のため、出生順位を問わず0円。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降の基本保育料",
+        "sourceId": "edogawa-musyouka",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "第2子以降無償化に含まれる。"
+      }
+    },
+    "localExtension": "国の幼児教育・保育の無償化（令和元年10月〜、3〜5歳児クラスおよび0〜2歳児クラスの住民税非課税世帯）に加え、江戸川区は令和5年10月から第2子以降の保育料を独自に無償化していた。さらに東京都が令和7年9月1日から0〜2歳児クラスの第1子保育料を無償化するための支援を開始したことを受け、江戸川区は令和7年9月利用分から「保育料の第1子無償化」を実施し、江戸川区民で認可保育施設等を利用するすべての児童の基本保育料が無償となった。この結果、令和8年度において認可保育所の基本保育料は所得階層・年齢・出生順位・保育必要量にかかわらず0円である。東京都の制度は「第2子無償化」（令和5年10月〜）から「第1子無償化」（令和7年9月〜）へ拡大しており、江戸川区の表はこれを織り込み済み。無償化の対象は基本保育料のみで、延長保育料および各施設が直接徴収する費用（日用品・文房具代・園服・おむつ代・行事代等）は対象外。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": null,
+      "isWelfare": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "住民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "住民税均等割のみの世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "特別区民税所得割額 0円以上5,000円未満の世帯",
+      "incomeMin": 0,
+      "incomeMax": 5000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "特別区民税所得割額 5,000円以上15,000円未満の世帯",
+      "incomeMin": 5000,
+      "incomeMax": 15000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "特別区民税所得割額 15,000円以上48,600円未満の世帯",
+      "incomeMin": 15000,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "特別区民税所得割額 48,600円以上51,600円未満の世帯",
+      "incomeMin": 48600,
+      "incomeMax": 51600,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "特別区民税所得割額 51,600円以上60,000円未満の世帯",
+      "incomeMin": 51600,
+      "incomeMax": 60000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "特別区民税所得割額 60,000円以上77,101円未満の世帯",
+      "incomeMin": 60000,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "特別区民税所得割額 77,101円以上97,000円未満の世帯",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "特別区民税所得割額 97,000円以上115,000円未満の世帯",
+      "incomeMin": 97000,
+      "incomeMax": 115000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "特別区民税所得割額 115,000円以上135,000円未満の世帯",
+      "incomeMin": 115000,
+      "incomeMax": 135000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "特別区民税所得割額 135,000円以上150,000円未満の世帯",
+      "incomeMin": 135000,
+      "incomeMax": 150000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "特別区民税所得割額 150,000円以上169,000円未満の世帯",
+      "incomeMin": 150000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "特別区民税所得割額 169,000円以上184,000円未満の世帯",
+      "incomeMin": 169000,
+      "incomeMax": 184000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D13",
+      "label": "特別区民税所得割額 184,000円以上198,000円未満の世帯",
+      "incomeMin": 184000,
+      "incomeMax": 198000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D14",
+      "label": "特別区民税所得割額 198,000円以上215,000円未満の世帯",
+      "incomeMin": 198000,
+      "incomeMax": 215000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D15",
+      "label": "特別区民税所得割額 215,000円以上235,000円未満の世帯",
+      "incomeMin": 215000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D16",
+      "label": "特別区民税所得割額 235,000円以上255,000円未満の世帯",
+      "incomeMin": 235000,
+      "incomeMax": 255000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D17",
+      "label": "特別区民税所得割額 255,000円以上270,000円未満の世帯",
+      "incomeMin": 255000,
+      "incomeMax": 270000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D18",
+      "label": "特別区民税所得割額 270,000円以上285,000円未満の世帯",
+      "incomeMin": 270000,
+      "incomeMax": 285000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D19",
+      "label": "特別区民税所得割額 285,000円以上301,000円未満の世帯",
+      "incomeMin": 285000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D20",
+      "label": "特別区民税所得割額 301,000円以上340,000円未満の世帯",
+      "incomeMin": 301000,
+      "incomeMax": 340000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D21",
+      "label": "特別区民税所得割額 340,000円以上397,000円未満の世帯",
+      "incomeMin": 340000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D22",
+      "label": "特別区民税所得割額 397,000円以上425,000円未満の世帯",
+      "incomeMin": 397000,
+      "incomeMax": 425000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D23",
+      "label": "特別区民税所得割額 425,000円以上の世帯",
+      "incomeMin": 425000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    }
+  ],
+  "verify": {
+    "expect": [
+      "令和7年9月から保育料の第1子無償化",
+      "基本保育料（利用者負担額）が無償",
+      "4月分から8月分までは、前年度の区市町村民税所得割額"
+    ]
+  }
+}

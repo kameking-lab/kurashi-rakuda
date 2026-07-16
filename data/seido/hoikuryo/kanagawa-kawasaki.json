@@ -1,0 +1,425 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kanagawa-kawasaki",
+  "name": "神奈川県川崎市",
+  "municipalityCode": "141305",
+  "prefecture": "神奈川県",
+  "municipalityType": "政令指定都市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "r8-riyouannai",
+      "title": "令和8年度 川崎市保育所等利用案内",
+      "publisher": "川崎市こども未来局",
+      "url": "https://www.city.kawasaki.jp/450/cmsfiles/contents/0000170/170045/R8riyouannai.pdf",
+      "landingUrl": "https://www.city.kawasaki.jp/450/page/0000153863.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "p.49「５ 川崎市保育料金額表(月額)」が令和8年度の階層表本体。注3 に「この表の市民税の額は、令和８年4月～8月分保育料については、世帯の令和７年度市民税額の年額、令和８年9月～令和９年８月分保育料については、世帯の令和８年度市民税額の年額となります。」とあり、令和8年度版であることを確認。p.46〜47 に算定基礎・きょうだい減免・ひとり親世帯等軽減。"
+    },
+    {
+      "id": "hoikuryo-page",
+      "title": "認可保育所等の利用者負担額（保育料）",
+      "publisher": "川崎市",
+      "url": "https://www.city.kawasaki.jp/kodomo/category/267-2-7-0-0-0-0-0-0-0.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "保育料金額表の掲載元ページ。税年度の切替、適用しない税額控除、3〜5歳児の無償化を記載。"
+    },
+    {
+      "id": "kingakuhyou-pdf",
+      "title": "川崎市保育料金額表(月額)",
+      "publisher": "川崎市こども未来局",
+      "url": "https://www.city.kawasaki.jp/450/cmsfiles/contents/0000030/30711/hoikuryoukingakuhyou.pdf",
+      "landingUrl": "https://www.city.kawasaki.jp/kodomo/category/267-2-7-0-0-0-0-0-0-0.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "単票版の金額表。2026-07-17確認時点では注2が「令和７年９月～令和８年８月分保育料については、世帯の令和７年度市民税額所得割額の年額」となっており令和7年度時点の記載のままだが、階層区分・金額は令和8年度利用案内 p.49 の表と完全一致することを確認済み。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和8年度の保育料金額表は令和8年度利用案内（R8riyouannai.pdf）p.49 に掲載済みで施行中。単票版PDF（hoikuryoukingakuhyou.pdf）は注記が令和7年度時点の記載のまま更新されていないが、金額は同一。",
+      "status": "in-force",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "r8-riyouannai",
+      "impact": "9月分以降は算定根拠が令和8年度市民税所得割相当額に切り替わるため、階層判定に用いる税年度を切り替える必要がある。金額表自体は年度内不変。"
+    }
+  ],
+  "disclaimer": "本データは川崎市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容および利用施設の種別により決定されます。最終的な金額は必ず川崎市（各区役所・こども未来局）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "公立保育所・認可保育所の保育料（利用者負担額）",
+      "認定こども園（3号）・小規模保育（A型）・事業所内保育（保育所型）・居宅訪問型保育事業の保育料（認可保育所と同額）",
+      "0〜2歳児（3歳未満児）の保育料",
+      "保育標準時間・保育短時間の別"
+    ],
+    "excludes": [
+      "副食費（3〜5歳児は各施設で実費徴収。川崎市では月額4,500円を目安。非課税世帯、市民税所得割相当額57,700円未満（ひとり親等は77,100円以下）世帯、第3子以降は免除）",
+      "主食費・主食代",
+      "延長保育料（A・B階層を除き別途必要）",
+      "各施設が実費徴収する諸費用（教材費・行事費等）",
+      "小規模保育（B型・C型）・事業所内保育（小規模型）・家庭的保育の保育料（原典に別の料金列があるが本ファイルには未収録。下記 bracketBasis.note 参照）",
+      "認可外保育施設の保育料",
+      "幼稚園の保育料"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "世帯（父母）の市民税所得割相当額の合計。単身赴任等で川崎市に保護者の住民登録が無い場合であっても算定の対象となる。なお、父母の収入が生活保護水準以下となる世帯については、同居している祖父母等の市民税所得割相当額を算定に含む場合がある。",
+    "taxYearRule": "令和8年度の算定根拠となる市民税の対象年度は、4月〜8月が令和7年度の市民税所得割相当額の合計額（令和6年1月〜12月の所得）、9月〜翌3月が令和8年度の市民税所得割相当額の合計額（令和7年1月〜12月の所得）。なお金額表の注3は「令和８年4月～8月分保育料については、世帯の令和７年度市民税額の年額、令和８年9月～令和９年８月分保育料については、世帯の令和８年度市民税額の年額」と表記している。",
+    "deductionsIgnored": [
+      "配当控除",
+      "住宅借入金等特別税額控除（住宅ローン控除）",
+      "市町村等に対する寄附金税額控除（ふるさと納税など）"
+    ],
+    "note": "階層の境界は原典がすべて「以上／未満」表記のため、incomeMax は原典の「〜円未満」の値をそのまま採用している（+1 の調整は不要）。各階層の label に原典表記をそのまま残した。fees は「公立保育所・認可保育所、認定こども園（３号）／小規模保育（Ａ型）、事業所内保育（保育所型）、居宅訪問型保育事業」列の「基本保育料」（第1子）の額を収録している。原典には同一階層に対し「小規模保育（Ｂ型）／事業所内保育（小規模型）」および「家庭的保育／小規模保育（Ｃ型）」の別料金列と、各列の「第２子」（半額）列が存在するが、本スキーマが施設種別の軸を持たないため未収録（施設種別で金額が異なる点に注意）。A階層（生活保護等）・B階層（市民税非課税世帯）は所得割額ではなく世帯の受給・課税状況で判定されるため、incomeMin/incomeMax は便宜上 0 とし、isWelfare / isNonTaxable フラグで識別すること。C1階層は原典「市民税均等割のみ」（＝所得割相当額0円）であるため incomeMin 0・incomeMax 1 とし、C2階層は原典が「市民税所得割相当額（※）5,000円未満」であるが所得割相当額0円はC1に該当するため incomeMin を 1 とした。※印について、平成30年度から政令指定都市では県費負担教職員の給与負担事務の移譲に伴う税源移譲により市民税所得割の税率が6％から8％に変更されたため、保育料の算定にあたっては市民税所得割を従前の税率6％相当に換算のうえ決定する（この表における市民税所得割額は税率6％相当の金額）。計算式は｛（税額控除前市民税所得割額）－（特別税額控除額）－（調整控除額）－（調整額）｝×（６／８）＝（市民税所得割相当額）。個人住民税の特別税額控除（定額減税）については、適用した後の金額で保育料を算定する（他の3控除と異なり、定額減税は算定に反映される点に注意）。海外収入がある場合は、国内外の収入を合算した金額から市民税所得割相当額を推計して決定する。市民税が未申告の場合は最高階層（C25）となる場合がある。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児（0歳児〜2歳児）",
+      "rule": "児童の年齢が年度途中で満3歳に達した場合でも、年度中は3歳未満児の額を適用する（注5）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳児〜5歳児",
+      "rule": "年度途中で満3歳に達しても、その年度中は3歳未満児の扱いとなる。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳児から5歳児までの保育料は無料",
+      "sourceId": "r8-riyouannai",
+      "checkedAt": "2026-07-17",
+      "verify": {
+        "expect": ["幼児教育・保育の無償化", "３歳以上の保育料は無料です"]
+      },
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "国による幼児教育・保育の無償化により無料。3〜5歳児の副食費は主食費に加え各施設で実費徴収する（無償化の対象外）。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "住民税非課税世帯の0歳児から2歳児までの保育料は無料",
+      "sourceId": "r8-riyouannai",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "利用案内p.46「国による幼児教育・保育の無償化により、保育所等を利用する３歳児から５歳児までのお子さんと、住民税非課税世帯の０歳児から２歳児までのお子さんの保育料は無料となります。」金額表ではB階層が全施設種別・全時間区分で0円。ただし市民税均等割のみ課税の世帯はC1階層となり0円にはならない（保育標準時間5,300円）。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "きょうだいの年齢、利用施設・事業に関わらず、最年長の子どもから順に数える。年齢上限なし。",
+        "sourceId": "r8-riyouannai",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "令和6年度から制度を拡充。幼児教育・保育の無償化により保育料が無料となっているお子さんについても人数の計算に含める。保護者とお子さんが住民票上別世帯となっている場合や、19歳以上のお子さんがいる場合などについては、減免を受けるために申立書等の提出が必要となる場合がある。"
+      },
+      "secondChild": {
+        "value": 0.5,
+        "unit": "rate",
+        "label": "第2子は半額",
+        "sourceId": "r8-riyouannai",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "金額表の各施設種別・各時間区分に「第２子」列があり、基本保育料の半額が明示されている（例: 認可保育所・保育標準時間のC25階層は基本82,800円に対し第2子41,400円）。市民税非課税世帯（ひとり親等は市民税所得割相当額が77,100円以下の世帯）は全児童が無料。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は無料",
+        "sourceId": "r8-riyouannai",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "保護者と生計が同一のお子さんが3人以上いる場合の第3子以降。延長保育料や主食代等の各施設が実費徴収する諸費用はきょうだい減免の対象とならない。"
+      }
+    },
+    "localExtension": "川崎市独自：きょうだい減免を令和6年度から拡充し、きょうだいの年齢・利用施設・事業に関わらず、最年長の子どもから順に2人目は半額、3人目以降は無料としている（国基準は原則として小学校就学前のきょうだいのみをカウントするため、年齢上限を撤廃した点が上乗せ）。無償化により保育料が無料となっている子どもも人数の計算に含める。市民税非課税世帯（ひとり親等は市民税所得割相当額が77,100円以下の世帯）は全児童無料。ひとり親世帯等（母子及び父子並びに寡婦福祉法による配偶者のない者で現に児童を扶養している者、身体障害者手帳・療育手帳・精神障害者保健福祉手帳の交付を受けた者（在宅の者に限る）、特別児童扶養手当の支給対象児童、障害基礎年金の受給者等が保護者又は同一世帯に属する世帯）については、市民税所得割相当額が77,100円以下の場合、保育料が無料となる。本ファイルの tiers には一般世帯の基本保育料（第1子）のみを収録しているため、多子世帯・ひとり親世帯等の適用時は上記の減免を別途適用すること。未確認: 保育料の減免制度（失業・疾病・罹災等による、前年又は前々年比で収入減少・支出増加が3割以上の場合）について、具体的な減免率・減免額は利用案内に記載がなく各区役所への個別問合せ事項とされているため数値化していない。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "被保護者及び中国残留邦人等の円滑な帰国の促進及び永住帰国後の自立の支援に関する法律による支援給付受給者、小規模住居型児童養育事業を行う者又は里親である保護者",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市民税均等割のみ",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 5300, "short": 5200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市民税所得割相当額（※） 5,000円未満",
+      "incomeMin": 1,
+      "incomeMax": 5000,
+      "fees": {
+        "under3": { "standard": 6300, "short": 6100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "5,000円以上 48,600円未満",
+      "incomeMin": 5000,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 7100, "short": 6900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "48,600円以上 50,400円未満",
+      "incomeMin": 48600,
+      "incomeMax": 50400,
+      "fees": {
+        "under3": { "standard": 9200, "short": 9000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "50,400円以上 60,000円未満",
+      "incomeMin": 50400,
+      "incomeMax": 60000,
+      "fees": {
+        "under3": { "standard": 11700, "short": 11500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "60,000円以上 70,800円未満",
+      "incomeMin": 60000,
+      "incomeMax": 70800,
+      "fees": {
+        "under3": { "standard": 14700, "short": 14400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "70,800円以上 84,600円未満",
+      "incomeMin": 70800,
+      "incomeMax": 84600,
+      "fees": {
+        "under3": { "standard": 18200, "short": 17800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "84,600円以上 97,000円未満",
+      "incomeMin": 84600,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 22000, "short": 21600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "97,000円以上 108,600円未満",
+      "incomeMin": 97000,
+      "incomeMax": 108600,
+      "fees": {
+        "under3": { "standard": 25700, "short": 25200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "108,600円以上 123,000円未満",
+      "incomeMin": 108600,
+      "incomeMax": 123000,
+      "fees": {
+        "under3": { "standard": 29500, "short": 28900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "123,000円以上 138,600円未満",
+      "incomeMin": 123000,
+      "incomeMax": 138600,
+      "fees": {
+        "under3": { "standard": 33300, "short": 32700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "138,600円以上 154,200円未満",
+      "incomeMin": 138600,
+      "incomeMax": 154200,
+      "fees": {
+        "under3": { "standard": 37200, "short": 36500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "154,200円以上 169,000円未満",
+      "incomeMin": 154200,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 41200, "short": 40500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "169,000円以上 183,900円未満",
+      "incomeMin": 169000,
+      "incomeMax": 183900,
+      "fees": {
+        "under3": { "standard": 45200, "short": 44400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "183,900円以上 204,600円未満",
+      "incomeMin": 183900,
+      "incomeMax": 204600,
+      "fees": {
+        "under3": { "standard": 50000, "short": 49100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C16",
+      "label": "204,600円以上 234,600円未満",
+      "incomeMin": 204600,
+      "incomeMax": 234600,
+      "fees": {
+        "under3": { "standard": 54500, "short": 53500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C17",
+      "label": "234,600円以上 258,600円未満",
+      "incomeMin": 234600,
+      "incomeMax": 258600,
+      "fees": {
+        "under3": { "standard": 57000, "short": 56000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C18",
+      "label": "258,600円以上 276,600円未満",
+      "incomeMin": 258600,
+      "incomeMax": 276600,
+      "fees": {
+        "under3": { "standard": 59000, "short": 58000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C19",
+      "label": "276,600円以上 301,000円未満",
+      "incomeMin": 276600,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 60500, "short": 59400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C20",
+      "label": "301,000円以上 321,700円未満",
+      "incomeMin": 301000,
+      "incomeMax": 321700,
+      "fees": {
+        "under3": { "standard": 65500, "short": 64300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C21",
+      "label": "321,700円以上 341,200円未満",
+      "incomeMin": 321700,
+      "incomeMax": 341200,
+      "fees": {
+        "under3": { "standard": 70000, "short": 68800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C22",
+      "label": "341,200円以上 366,700円未満",
+      "incomeMin": 341200,
+      "incomeMax": 366700,
+      "fees": {
+        "under3": { "standard": 73000, "short": 71700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C23",
+      "label": "366,700円以上 397,000円未満",
+      "incomeMin": 366700,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 74000, "short": 72700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C24",
+      "label": "397,000円以上 475,300円未満",
+      "incomeMin": 397000,
+      "incomeMax": 475300,
+      "fees": {
+        "under3": { "standard": 81500, "short": 80100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C25",
+      "label": "475,300円以上",
+      "incomeMin": 475300,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 82800, "short": 81400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "expect": [
+      "川崎市保育料金額表",
+      "5,300",
+      "82,800",
+      "475,300 円以上"
+    ]
+  }
+}

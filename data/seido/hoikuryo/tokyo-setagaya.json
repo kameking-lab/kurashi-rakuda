@@ -1,0 +1,662 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "tokyo-setagaya",
+  "name": "東京都世田谷区",
+  "municipalityCode": "131121",
+  "prefecture": "東京都",
+  "municipalityType": "特別区",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "setagaya-hoikuryo-page",
+      "title": "保育料及び給食費について",
+      "publisher": "世田谷区 子ども・若者部 保育認定・調整課",
+      "url": "https://www.city.setagaya.lg.jp/01044/1416.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "最終更新日 2025年9月1日。令和7年9月以降の無償化および保育料階層の決定方法を掲載。「令和7年度（令和8年9月以降は令和8年度）住民税」と令和8年度を前提とした記述があり、2026-07-17時点で有効なページ。"
+    },
+    {
+      "id": "setagaya-hoikuryo-pdf",
+      "title": "保育料・延長保育料一覧",
+      "publisher": "世田谷区 子ども・若者部 保育認定・調整課",
+      "url": "https://www.city.setagaya.lg.jp/documents/1416/hoikuryouitiran.pdf",
+      "landingUrl": "https://www.city.setagaya.lg.jp/01044/1416.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "全32階層(Ａ・Ｂ１・Ｄ１〜Ｄ３０)。保育料等の月額欄は全階層0円。同一表に区立保育園・区立認定こども園の延長保育料(3歳未満児/3歳児/4歳以上児)を併載。年度表記なし。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和7年9月より、東京都の第1子保育料無償化にあわせて世田谷区は区内在住の全児童の認可保育施設保育料を無償化(給食費も同時に無償化)。2026-07-17時点で有効。",
+      "status": "in-force",
+      "effectiveFrom": "2025-09-01",
+      "sourceId": "setagaya-hoikuryo-page",
+      "impact": "全階層の保育料は0円。保育料計算ツールは階層によらず0を返す。ただし延長保育料は無償化対象外で階層別に発生するため、階層判定ロジック自体は引き続き必要。"
+    },
+    {
+      "summary": "出典PDF・ページに「令和8年度」の明示的な年度表記がない(ページ最終更新2025年9月1日、2026-07-17確認)。令和8年度専用版が公表された場合は要再確認。",
+      "status": "under-review",
+      "sourceId": "setagaya-hoikuryo-pdf",
+      "impact": "階層境界の金額が令和8年度に改定された場合、Ｄ１〜Ｄ３０の incomeMin/incomeMax の再取得が必要。保育料自体は0円のため影響は延長保育料階層に限られる。"
+    }
+  ],
+  "disclaimer": "本データは世田谷区公式サイトの公表内容を2026-07-17時点で機械的に整理したものです。実際の保育料・階層決定は区の決定通知書が優先します。制度改正や個別事情により内容が異なる場合がありますので、必ず世田谷区保育認定・調整課にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所(区立・私立)の保育料(利用者負担額)",
+      "私立認定こども園(保育認定枠)および地域型保育事業の保育料階層区分",
+      "保育料階層(Ａ・Ｂ１・Ｄ１〜Ｄ３０)の区分定義"
+    ],
+    "excludes": [
+      "給食費(主食費・副食費)実費 ※世田谷区では令和7年9月より区内在住児は無償化されるが、本表の対象外",
+      "延長保育料 ※無償化の対象外。区立保育園・区立認定こども園は階層別月額、それ以外の施設は各施設が設定",
+      "教材費・行事費等の実費徴収",
+      "私立園が独自に徴収する上乗せ徴収・特定負担額",
+      "区外在住で区内認可保育所等を利用する児童の保育料(居住自治体の制度による)",
+      "幼稚園・認可外保育施設・認証保育所の保育料および補助"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "世帯の住民税(区市町村民税)の所得割課税額を基礎とする。保護者(扶養義務者)に変更があった場合は再計算。",
+    "taxYearRule": "一覧の税額算定は、4月から8月までの月分については前年度分、9月から3月分については当年度分の住民税所得割課税額により行う。保育料階層決定時期は4月と9月の2回で、4月は年齢変更による決定、9月は税額年度の変更による決定。",
+    "deductionsIgnored": [
+      "住宅借入金等控除",
+      "配当控除",
+      "外国税控除",
+      "寄附金控除等"
+    ],
+    "note": "原典表記「保育料階層を決定する際の住民税所得割課税額は、住宅借入金等控除・配当控除・外国税控除・寄附金控除等を適用しない税額となります。」。所得割課税額は、特別区民税の税額控除前所得割額(自営業等は算出所得割額計)から調整控除額と定額減税額を差し引いた金額。税資料の提出がなく税額の確認ができない場合はＤ３０と同じ階層になる(後日提出時はその年度に限り4月に遡って再決定)。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児(0〜2歳児クラス)",
+      "rule": "原典の一覧では「3歳未満児とは0〜2歳児クラス」と定義。保育料は無償化により階層・年齢によらず0円。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児(3歳児クラス・4〜5歳児クラス)",
+      "rule": "原典の一覧では3歳児と4歳以上児(4〜5歳児クラス)を別欄で扱うが、これは延長保育料の区分。保育料は全て0円。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3歳以上児の保育料は無償",
+      "sourceId": "setagaya-hoikuryo-page",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "国の幼児教育・保育の無償化に加え、令和7年9月からの区独自・東京都連携の全児童無償化により0円。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3歳未満の住民税非課税世帯も無償",
+      "sourceId": "setagaya-hoikuryo-pdf",
+      "checkedAt": "2026-07-17",
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "非課税世帯に限らず、令和7年9月以降は全階層(Ａ〜Ｄ３０)の3歳未満児保育料が0円。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": null,
+        "unit": "unit",
+        "label": "多子カウントの年齢上限(未確認)",
+        "sourceId": "setagaya-hoikuryo-page",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "未確認: 世田谷区は令和7年9月より第1子を含む全児童の保育料を無償化したため、多子カウント(第何子か)による保育料軽減の規定を公式ページ・保育料一覧のいずれにも掲載していない。カウント方法の年齢上限は2026-07-17時点で公表資料から確認できず。"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子の保育料",
+        "sourceId": "setagaya-hoikuryo-page",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "第1子を含む全児童が無償のため、第2子も0円。東京都の第2子無償化(令和5年10月〜)は、令和7年9月からの第1子無償化に包含され、区の表では第2子固有の軽減規定として現れない。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降の保育料",
+        "sourceId": "setagaya-hoikuryo-page",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "第1子を含む全児童が無償のため0円。"
+      }
+    },
+    "localExtension": "令和7年9月より、東京都の第1子保育料無償化にあわせて、世田谷区は認可保育施設に通う区内在住のすべてのお子さんの保育料を無償化(原典表記)。したがって東京都の第2子無償化(令和5年10月開始)は第1子無償化に包含されており、区独自の上乗せとしては、給食費(主食費・副食費)も令和7年9月より区内在住の全児童について無償化している点が該当する。教材費・行事費・延長保育料は無償化の対象外。区外在住で区内施設に通う児童は居住自治体の制度による(国制度により3歳児クラス以降は無償)。"
+  },
+  "tiers": [
+    {
+      "tier": "Ａ",
+      "label": "生活保護法（昭和25年法律第144号）による被保護世帯",
+      "incomeMin": 0,
+      "incomeMax": null,
+      "isWelfare": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｂ１",
+      "label": "Ａ階層を除き、所得割課税額が0円の世帯（均等割のみ課税世帯を含む）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１",
+      "label": "所得割課税額が12,000円未満である世帯（0円以外）",
+      "incomeMin": 1,
+      "incomeMax": 12000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２",
+      "label": "所得割課税額が12,000円以上37,000円未満である世帯",
+      "incomeMin": 12000,
+      "incomeMax": 37000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ３",
+      "label": "所得割課税額が37,000円以上52,000円未満である世帯",
+      "incomeMin": 37000,
+      "incomeMax": 52000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ４",
+      "label": "所得割課税額が52,000円以上82,000円未満である世帯",
+      "incomeMin": 52000,
+      "incomeMax": 82000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ５",
+      "label": "所得割課税額が82,000円以上122,000円未満である世帯",
+      "incomeMin": 82000,
+      "incomeMax": 122000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ６",
+      "label": "所得割課税額が122,000円以上162,000円未満である世帯",
+      "incomeMin": 122000,
+      "incomeMax": 162000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ７",
+      "label": "所得割課税額が162,000円以上202,000円未満である世帯",
+      "incomeMin": 162000,
+      "incomeMax": 202000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ８",
+      "label": "所得割課税額が202,000円以上220,000円未満である世帯",
+      "incomeMin": 202000,
+      "incomeMax": 220000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ９",
+      "label": "所得割課税額が220,000円以上235,000円未満である世帯",
+      "incomeMin": 220000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１０",
+      "label": "所得割課税額が235,000円以上250,000円未満である世帯",
+      "incomeMin": 235000,
+      "incomeMax": 250000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１１",
+      "label": "所得割課税額が250,000円以上265,000円未満である世帯",
+      "incomeMin": 250000,
+      "incomeMax": 265000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１２",
+      "label": "所得割課税額が265,000円以上280,000円未満である世帯",
+      "incomeMin": 265000,
+      "incomeMax": 280000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１３",
+      "label": "所得割課税額が280,000円以上295,000円未満である世帯",
+      "incomeMin": 280000,
+      "incomeMax": 295000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１４",
+      "label": "所得割課税額が295,000円以上310,000円未満である世帯",
+      "incomeMin": 295000,
+      "incomeMax": 310000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１５",
+      "label": "所得割課税額が310,000円以上325,000円未満である世帯",
+      "incomeMin": 310000,
+      "incomeMax": 325000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１６",
+      "label": "所得割課税額が325,000円以上340,000円未満である世帯",
+      "incomeMin": 325000,
+      "incomeMax": 340000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１７",
+      "label": "所得割課税額が340,000円以上355,000円未満である世帯",
+      "incomeMin": 340000,
+      "incomeMax": 355000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１８",
+      "label": "所得割課税額が355,000円以上370,000円未満である世帯",
+      "incomeMin": 355000,
+      "incomeMax": 370000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ１９",
+      "label": "所得割課税額が370,000円以上385,000円未満である世帯",
+      "incomeMin": 370000,
+      "incomeMax": 385000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２０",
+      "label": "所得割課税額が385,000円以上400,000円未満である世帯",
+      "incomeMin": 385000,
+      "incomeMax": 400000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２１",
+      "label": "所得割課税額が400,000円以上445,000円未満である世帯",
+      "incomeMin": 400000,
+      "incomeMax": 445000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２２",
+      "label": "所得割課税額が445,000円以上490,000円未満である世帯",
+      "incomeMin": 445000,
+      "incomeMax": 490000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２３",
+      "label": "所得割課税額が490,000円以上570,000円未満である世帯",
+      "incomeMin": 490000,
+      "incomeMax": 570000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２４",
+      "label": "所得割課税額が570,000円以上650,000円未満である世帯",
+      "incomeMin": 570000,
+      "incomeMax": 650000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２５",
+      "label": "所得割課税額が650,000円以上730,000円未満である世帯",
+      "incomeMin": 650000,
+      "incomeMax": 730000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２６",
+      "label": "所得割課税額が730,000円以上840,000円未満である世帯",
+      "incomeMin": 730000,
+      "incomeMax": 840000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２７",
+      "label": "所得割課税額が840,000円以上950,000円未満である世帯",
+      "incomeMin": 840000,
+      "incomeMax": 950000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２８",
+      "label": "所得割課税額が950,000円以上1,130,000円未満である世帯",
+      "incomeMin": 950000,
+      "incomeMax": 1130000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ２９",
+      "label": "所得割課税額が1,130,000円以上1,310,000円未満である世帯",
+      "incomeMin": 1130000,
+      "incomeMax": 1310000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "Ｄ３０",
+      "label": "所得割課税額が1,310,000円以上である世帯",
+      "incomeMin": 1310000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    }
+  ],
+  "verify": {
+    "expect": [
+      "保育料・延長保育料一覧",
+      "Ｄ３０",
+      "所得割課税額が1,310,000円以上である世帯",
+      "住宅借入金等控除・配当控除・外国税控除・寄附金控除等を適用しない税額"
+    ]
+  }
+}

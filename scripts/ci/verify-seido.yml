@@ -1,0 +1,149 @@
+# 制度データ検証 CI 設定
+#
+# ★配置場所★ このファイルは `.github/workflows/verify-seido.yml` に配置して使う。
+# 本タスクの担当範囲が data/ specs/s-tools/ scripts/ queue/ に限定されているため、
+# scripts/ci/ に置いている。リポジトリ雛形（P1-02）の作成時に .github/workflows/ へ移動すること。
+#
+# 設計方針:
+#   - 構造検査（オフライン）は PR ブロッキング。出典なしの数値・期限切れデータを混入させない。
+#   - 出典照合（ネットワーク）は PR をブロックしない。相手サイトの都合や一時的な障害で
+#     落ちうるため、日次スケジュールで回して Issue を自動起票する。
+#     制度改正の検知チャネルとして機能する（[08_タスク分解] P3-04 制度改定 自動追随サイクル）。
+
+name: verify-seido
+
+on:
+  pull_request:
+    paths:
+      - 'data/**'
+      - 'scripts/verify-seido.mjs'
+      - '.github/workflows/verify-seido.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'data/**'
+      - 'scripts/verify-seido.mjs'
+  schedule:
+    # 毎日 JST 07:00（UTC 22:00）に出典照合を実行し、制度改正・ページ改稿を検知する。
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+    inputs:
+      fetch:
+        description: '出典照合（ネットワーク）も実行する'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  # ---------------------------------------------------------------- 構造検査
+  structure:
+    name: 構造検査（出典・確認日・改正メモ・期限）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 制度データの構造検査
+        # 出典なしの数値、確認日の欠落、改正メモの欠落、まとめサイトの混入、
+        # expiresOn を過ぎた期限切れデータを検出する。ネットワーク不要。
+        run: node scripts/verify-seido.mjs
+
+  # ---------------------------------------------------------------- 出典照合
+  sources:
+    name: 出典照合（一次情報との機械照合）
+    # PR ではネットワーク照合をブロッキングにしない（相手サイト都合で落ちるため）
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: PyMuPDF の導入
+        # 官公庁の日本語PDFは pdftotext だと重なり合うテキストランが混ざって読めない。
+        # PyMuPDF が無いと照合が誤って失敗するため必須。
+        run: pip install pymupdf
+
+      - name: 出典照合
+        id: verify
+        continue-on-error: true
+        run: |
+          node scripts/verify-seido.mjs --fetch --json > seido-report.json 2>&1 || true
+          node scripts/verify-seido.mjs --fetch | tee seido-report.txt
+        # exit code は次のステップで判定する
+
+      - name: レポートを保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seido-verify-report
+          path: |
+            seido-report.json
+            seido-report.txt
+          retention-days: 30
+
+      - name: 照合失敗時に Issue を起票
+        # 出典ページから期待する数値が消えた ＝ 制度が改正されたか、ページが改稿された。
+        # どちらも人間の確認が必要なので Issue にする。
+        if: steps.verify.outcome == 'failure' && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = '出典照合に失敗しました。制度が改正されたか、出典ページの表記が変わった可能性があります。\n\n';
+            try {
+              body += '```\n' + fs.readFileSync('seido-report.txt', 'utf8').slice(0, 55000) + '\n```\n';
+            } catch (e) {
+              body += '(レポートの読み込みに失敗しました)\n';
+            }
+            body += '\n---\n';
+            body += '## 対応手順\n';
+            body += '1. 該当の出典URLを開き、数値が実際に変わったのかを確認する\n';
+            body += '2. **改正されていた場合**: `data/seido/` の該当値・`checkedAt`・`amendments` を更新する\n';
+            body += '3. **ページの表記が変わっただけの場合**: `verify.expect` を新しい表記に合わせる\n';
+            body += '4. **出典ページが移転・削除された場合**: `landingUrl` から新URLを辿って差し替える\n\n';
+            body += '⚠️ YMYL領域のため、実装者≠検算者のダブルチェックを行うこと（[08_タスク分解] 作業者振り分けの指針）。\n';
+
+            const title = `[制度データ] 出典照合の失敗 (${new Date().toISOString().slice(0, 10)})`;
+
+            // 同種の Issue が既に開いていれば重複起票しない
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'seido-verify',
+            });
+            if (existing.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['seido-verify', 'YMYL'],
+              });
+            }
+
+      - name: 照合結果を反映して job を失敗させる
+        if: steps.verify.outcome == 'failure'
+        run: |
+          echo '出典照合に失敗しました。上のログを確認してください。'
+          exit 1

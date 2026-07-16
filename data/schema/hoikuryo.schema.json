@@ -1,0 +1,185 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://kurashi-rakuda.jp/schema/hoikuryo.schema.json",
+  "title": "保育料階層表スキーマ（自治体単位）",
+  "description": "data/seido/hoikuryo/<pref>-<city>.json が従う。1ファイル=1自治体。保育所(認可)の保育料のみを扱い、幼稚園・認可外・給食費実費は対象外(scope に明記)。",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "municipalityCode",
+    "prefecture",
+    "fiscalYear",
+    "asOf",
+    "sources",
+    "disclaimer",
+    "scope",
+    "bracketBasis",
+    "tiers"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "ファイル名と一致。例 tokyo-setagaya"
+    },
+    "name": { "type": "string", "description": "自治体名。例 東京都世田谷区" },
+    "municipalityCode": {
+      "type": "string",
+      "pattern": "^[0-9]{6}$",
+      "description": "全国地方公共団体コード(6桁・チェックデジット込み)。総務省の一次情報に基づく。"
+    },
+    "prefecture": { "type": "string" },
+    "municipalityType": {
+      "enum": ["政令指定都市", "特別区", "中核市", "その他市", "町村"],
+      "description": "収集の優先順位管理に使う"
+    },
+    "fiscalYear": { "type": "integer" },
+    "asOf": { "type": "string", "format": "date" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "description": "当該自治体の公式ページ/PDFのみ。tier は必ず municipality。",
+      "items": { "$ref": "seido-common.schema.json#/definitions/source" }
+    },
+    "amendments": {
+      "type": "array",
+      "items": { "$ref": "seido-common.schema.json#/definitions/amendment" }
+    },
+    "disclaimer": { "type": "string", "minLength": 20 },
+    "scope": {
+      "type": "object",
+      "required": ["includes", "excludes"],
+      "description": "この表が何を含み何を含まないか。保育料は自治体ごとに実費徴収の扱いが違うため必須。",
+      "properties": {
+        "includes": { "type": "array", "items": { "type": "string" } },
+        "excludes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "例: 給食費(副食費)実費、延長保育料、教材費、私立園の上乗せ徴収"
+        }
+      }
+    },
+    "bracketBasis": {
+      "type": "object",
+      "required": ["basis", "taxYearRule", "note"],
+      "description": "階層区分の判定基礎。ほぼ全自治体が市町村民税所得割額だが、税額控除の扱いに差がある。",
+      "properties": {
+        "basis": {
+          "enum": ["市町村民税所得割額", "市町村民税均等割・所得割", "その他"],
+          "description": "階層を決める指標"
+        },
+        "householdScope": {
+          "type": "string",
+          "description": "誰の税額を合算するか。例: 父母の合算(同居の祖父母は家計の主宰者である場合のみ算入)"
+        },
+        "taxYearRule": {
+          "type": "string",
+          "description": "4-8月は前年度課税、9-3月は当年度課税 等の切替ルールを原文どおり"
+        },
+        "deductionsIgnored": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "所得割額の算定で適用しない控除。例: 住宅借入金等特別税額控除、寄附金税額控除、配当控除"
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "ageClasses": {
+      "type": "array",
+      "description": "年齢区分の定義。年度初日前日(4/1時点)の年齢で判定する自治体が大半。",
+      "items": {
+        "type": "object",
+        "required": ["key", "label"],
+        "properties": {
+          "key": { "enum": ["under3", "age3plus"] },
+          "label": { "type": "string" },
+          "rule": { "type": "string", "description": "例: 当該年度の初日の前日における満年齢" }
+        }
+      }
+    },
+    "freeTuition": {
+      "type": "object",
+      "description": "幼児教育・保育の無償化および自治体独自の無償化。",
+      "properties": {
+        "age3plusFree": {
+          "$ref": "seido-common.schema.json#/definitions/valueNode",
+          "description": "3歳以上(3号→2号)の保育料が無償か"
+        },
+        "under3NonTaxableFree": {
+          "$ref": "seido-common.schema.json#/definitions/valueNode",
+          "description": "3歳未満の住民税非課税世帯が無償か"
+        },
+        "multiChildPolicy": {
+          "type": "object",
+          "description": "多子軽減。国基準(第2子半額/第3子無償)に自治体独自の上乗せがある場合が多く、カウント方法(年齢上限)が争点。",
+          "properties": {
+            "countingRule": {
+              "$ref": "seido-common.schema.json#/definitions/valueNode",
+              "description": "何番目の子かを数える対象の範囲。例: 生計を一にする子のうち年齢上限なし / 小学校就学前の子のみ"
+            },
+            "secondChild": { "$ref": "seido-common.schema.json#/definitions/valueNode" },
+            "thirdChildOnwards": { "$ref": "seido-common.schema.json#/definitions/valueNode" }
+          }
+        },
+        "localExtension": {
+          "type": "string",
+          "description": "自治体独自の無償化・軽減の説明(例: 東京都の第2子無償化)"
+        }
+      }
+    },
+    "tiers": {
+      "type": "array",
+      "minItems": 1,
+      "description": "階層表。income の下限上限は市町村民税所得割額(円)。境界は inclusive/exclusive を明示する。全額無償化により自治体が階層表そのものを廃止した場合（例: 練馬区）は、全所得帯を1行で表現してよい。階層を捏造しないこと。",
+      "items": {
+        "type": "object",
+        "required": ["tier", "incomeMin", "incomeMax", "fees"],
+        "additionalProperties": false,
+        "properties": {
+          "tier": { "type": "string", "description": "自治体表記の階層名。例 D5, 第7階層" },
+          "label": { "type": "string" },
+          "incomeMin": {
+            "type": "number",
+            "description": "所得割額の下限(円)。この値を含む(以上)。"
+          },
+          "incomeMax": {
+            "type": ["number", "null"],
+            "description": "所得割額の上限(円)。この値を含まない(未満)。最上位階層は null。"
+          },
+          "isNonTaxable": {
+            "type": "boolean",
+            "description": "住民税非課税世帯の階層か"
+          },
+          "isWelfare": { "type": "boolean", "description": "生活保護世帯の階層か" },
+          "fees": {
+            "type": "object",
+            "description": "月額保育料(円)。standard=保育標準時間, short=保育短時間。",
+            "properties": {
+              "under3": {
+                "type": "object",
+                "properties": {
+                  "standard": { "type": "number" },
+                  "short": { "type": "number" }
+                }
+              },
+              "age3plus": {
+                "type": "object",
+                "properties": {
+                  "standard": { "type": "number" },
+                  "short": { "type": "number" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "verify": {
+      "$ref": "seido-common.schema.json#/definitions/verify",
+      "description": "階層表全体の照合指示。代表的な数値(最低額・最高額・階層数)を expect に入れる。"
+    }
+  }
+}
