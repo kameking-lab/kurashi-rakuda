@@ -8,7 +8,7 @@ export function Footer() {
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             <li>
               <Link href="/about" className="hover:text-ink">
-                運営者情報
+                サイト概要・運営方針
               </Link>
             </li>
             <li>
@@ -19,6 +19,21 @@ export function Footer() {
             <li>
               <Link href="/sources" className="hover:text-ink">
                 出典一覧
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:text-ink">
+                プライバシーポリシー
+              </Link>
+            </li>
+            <li>
+              <Link href="/disclaimer" className="hover:text-ink">
+                免責事項
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-ink">
+                お問い合わせ
               </Link>
             </li>
           </ul>
