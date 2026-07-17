@@ -1,0 +1,512 @@
+{
+  "$schema": "../schema/seido-common.schema.json",
+  "id": "kosodate-kyufu-sougou-check",
+  "name": "子育て世帯がもらえる給付金・支援制度の総合チェック（横断索引）",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "cfa-jido-teate",
+      "title": "児童手当制度のご案内",
+      "publisher": "こども家庭庁",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "児童手当の存在・所管・申請先の確認用。金額等の詳細は data/seido/jido-teate.json を参照（本ファイルでは重複して持たない）。"
+    },
+    {
+      "id": "cfa-jifu",
+      "title": "児童扶養手当について",
+      "publisher": "こども家庭庁",
+      "url": "https://www.cfa.go.jp/policies/hitori-oya/fuyou-teate",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "児童扶養手当の存在・所管の確認用。詳細は data/seido/jidou-fuyou-teate.json を参照。"
+    },
+    {
+      "id": "cfa-jifu-gaiyou",
+      "title": "児童扶養手当制度の概要（令和8年度予算 事業概要）",
+      "publisher": "こども家庭庁 支援局家庭福祉課",
+      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/71de338f-5ed2-4c95-9848-3fd387d0b4d7/a4e6f323/20260408_policies_hitori-oya_fuyou-teate_19.pdf",
+      "landingUrl": "https://www.cfa.go.jp/policies/hitori-oya/fuyou-teate",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "児童扶養手当の実施主体（都道府県、市、福祉事務所設置町村）の確認用。cfa-jifu ページ本体はPDFへのリンク集で本文に実施主体の記載がないため、本PDFを照合用の出典とする。"
+    },
+    {
+      "id": "cfa-mushouka",
+      "title": "幼児教育・保育の無償化",
+      "publisher": "こども家庭庁",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "幼児教育・保育の無償化の存在・所管の確認用。詳細は data/seido/youji-kyouiku-mushouka.json を参照。"
+    },
+    {
+      "id": "cfa-shussan-kosodate",
+      "title": "妊産婦への伴走型相談支援と経済的支援の一体的実施（妊婦等包括相談支援事業・妊婦のための支援給付）",
+      "publisher": "こども家庭庁",
+      "url": "https://www.cfa.go.jp/policies/shussan-kosodate",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "★制度名が変わっている点に注意★ 令和4年度補正予算から始まった「出産・子育て応援交付金事業」は、令和7年度から法律に基づく制度として「妊婦のための支援給付」＋「妊婦等包括相談支援事業」として実施されている。詳細は data/seido/shussan-oen-kofukin.json を参照。"
+    },
+    {
+      "id": "cfa-kodomo-iryouhi",
+      "title": "令和6年度「こどもに係る医療費の助成についての調査」",
+      "publisher": "こども家庭庁（成育局母子保健課）",
+      "url": "https://www.cfa.go.jp/policies/boshihoken/kodomoiryouhityousa-r6",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "こども医療費助成の実施主体（市区町村が実施、都道府県が補助）と、全都道府県・全市区町村で実施されていることの確認用。国の制度ではないため所管省庁のページは存在せず、こども家庭庁の実施状況調査が唯一の全国横断的な一次情報。詳細は data/seido/kodomo-iryouhi-jyosei.json を参照。"
+    },
+    {
+      "id": "mhlw-ikukyu",
+      "title": "育児休業等給付について（ハローワークインターネットサービス）",
+      "publisher": "厚生労働省",
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_childcareleave.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "育児休業等給付（出生時育児休業給付金・育児休業給付金・出生後休業支援給付金・育児時短就業給付金）の所管（厚生労働省・雇用保険）と申請先（ハローワーク）の確認用。詳細は data/seido/ikukyu-kyufu.json を参照（同ファイルでも hellowork-ikukyu として同一URLを出典に採用している）。"
+    },
+    {
+      "id": "mext-shugaku-shien",
+      "title": "高校生等への修学支援",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/index.htm",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "高等学校等就学支援金（授業料の支援）と高校生等奨学給付金（授業料以外の支援）の所管・区別の確認用。令和8年度の制度概要の掲載元。詳細は data/seido/koukou-shugaku-shienkin.json を参照。"
+    },
+    {
+      "id": "mext-shougakukyufu",
+      "title": "高校生等奨学給付金",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/1344089.htm",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "高校生等奨学給付金の対象（低所得世帯）・申請先（都道府県）の確認用。ページ見出しは「（平成26年度～令和7年度までの制度）」であり、令和8年度分は mext-shugaku-shien を参照する必要がある点に注意。"
+    },
+    {
+      "id": "mext-shugaku-enjo",
+      "title": "就学援助制度について（就学援助ポータルサイト）",
+      "publisher": "文部科学省",
+      "url": "https://www.mext.go.jp/a_menu/shotou/career/05010502/017.htm",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "就学援助の実施主体（市町村）と法的根拠（学校教育法第19条）、対象者（要保護者・準要保護者）の確認用。詳細は data/seido/shugaku-enjo-seido.json を参照。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "本ファイルは索引データであり、各制度の金額・要件・所得制限などの実データは一切保持しない。金額は各制度の個別データファイル（programs[].dataFile）にのみ存在する。二重管理を避けるための設計上の意図的な制約である。",
+      "status": "in-force",
+      "effectiveFrom": "2026-07-17",
+      "sourceId": "cfa-jido-teate",
+      "impact": "★実装者への指示★ このファイルから金額を読み取ろうとしてはならない（存在しない）。ツールは、本ファイルで該当しうる制度を絞り込み、金額表示が必要になった時点で dataFile の個別データを読み込むこと。制度改定時も、修正するのは個別ファイルのみで本ファイルは変更不要（制度の新設・廃止・所管変更の場合のみ本ファイルを更新する）。"
+    },
+    {
+      "summary": "令和4年度補正予算から始まった「出産・子育て応援交付金事業」は、令和7年度から子ども・子育て支援法に基づく「妊婦のための支援給付」および児童福祉法に基づく「妊婦等包括相談支援事業」として法律上の制度に移行した（施行済）。",
+      "status": "in-force",
+      "effectiveFrom": "2025-04-01",
+      "sourceId": "cfa-shussan-kosodate",
+      "impact": "★制度名の変更★ 記事・UIで「出産・子育て応援交付金」の名称のみを用いると現行制度名と一致しない。正式名称は「妊婦のための支援給付」。ただし自治体の窓口では旧名称（出産・子育て応援ギフト等）が併用されていることが多いため、両方を併記すること。妊婦のための支援給付には子ども・子育て支援金が充てられる。"
+    },
+    {
+      "summary": "高等学校等就学支援金の支給に関する法律の一部を改正する法律が令和8年3月31日に成立し、令和8年4月1日に施行された。文部科学省は「高校生の『授業料支援制度』（高等学校等就学支援金制度）が新しくなりました」として令和8年度の新制度を案内しており、従来の制度ページ（mext-shougakukyufu 等）は「平成26年度～令和7年度までの制度」として区分されている。",
+      "status": "in-force",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "mext-shugaku-shien",
+      "impact": "★2026年度に制度が変わった★ 高等学校等就学支援金の所得要件・支給額を扱う場合、令和7年度までの資料を参照してはならない。本索引ファイルは金額を持たないため直接の影響はないが、data/seido/koukou-shugaku-shienkin.json 側で令和8年度の新制度に基づくデータであることを必ず確認すること。"
+    },
+    {
+      "summary": "こどもに係る医療費の助成は国の制度ではなく、市区町村が実施主体となり都道府県が要綱等に基づき補助する形で運用されている。こども家庭庁の調査（令和6年4月1日現在）では、全ての都道府県及び市区町村が実施していた。",
+      "status": "in-force",
+      "effectiveFrom": "2024-04-01",
+      "sourceId": "cfa-kodomo-iryouhi",
+      "impact": "★全国一律の金額・対象年齢は存在しない★ 本索引で「全国どこでも受けられる」と案内してよいが、「いくらもらえる」「何歳まで無料」は自治体により異なるため断定してはならない。令和6年4月1日時点では、都道府県では通院が就学前まで・入院が15歳年度末までが最も多く、市区町村では通院・入院ともに18歳年度末（高校生まで）が最も多かった。"
+    },
+    {
+      "summary": "本索引が参照する個別データファイル8件のうち、2026-07-17時点で data/seido/ 配下に実在を確認できたのは7件（jido-teate.json / ikukyu-kyufu.json / youji-kyouiku-mushouka.json / shussan-oen-kofukin.json / jidou-fuyou-teate.json / koukou-shugaku-shienkin.json / kodomo-iryouhi-jyosei.json）。shugaku-enjo-seido.json（就学援助制度）は未作成であり、参照先として先出しで記載している。",
+      "status": "in-force",
+      "effectiveFrom": "2026-07-17",
+      "sourceId": "cfa-jido-teate",
+      "impact": "★実装時の必須チェック★ programs[].dataFile を読み込む前にファイルの存在を確認し、存在しない場合は当該制度について「詳細は準備中」として制度名・所管・申請先・申請期限の有無のみを表示すること（本索引が保持する情報だけでも、利用者を正しい窓口へ誘導できる設計にしてある）。2026-07-17時点で未作成なのは shugaku-enjo-seido.json のみ。同ファイルが作成されたら、本 amendment を更新し、id が shugaku-enjo-seido であることを確認すること。なお、実在を確認した7件については id が本索引の programs[].key と一致していることを確認済み。"
+    }
+  ],
+  "disclaimer": "本データは、子育て世帯が利用しうる主な給付金・支援制度の索引であり、支給額・支給可否を判定するものではありません。掲載しているのは全国的に存在する主な制度に限られ、お住まいの自治体が独自に実施する給付金（出産祝い金、多子世帯支援、独自の医療費助成の上乗せ等）は網羅していません。また、各制度の支給額・所得制限・要件は本データには含まれておらず、個別の制度データを参照する必要があります。実際に受給できるかどうか、いくら受給できるかは、お住まいの市区町村・勤務先・学校・都道府県の窓口にご確認ください。申請しなければ受け取れない制度がほとんどであり、申請期限を過ぎると受給できなくなるものもあります。",
+  "data": {
+    "designNote": {
+      "description": "★本ファイルの設計原則★ (1) 金額・所得制限・給付率などの実データは一切持たない。全て programs[].dataFile が指す個別制度データに委ねる（二重管理による不整合を防ぐため）。(2) 本ファイルが持つのは、制度の存在・正式名称・所管・対象・申請先・申請期限の有無・詳細データファイル名のみ。(3) これらは、利用者を『どの制度が自分に関係しうるか』『どこに問い合わせればよいか』へ導くために必要十分な情報である。(4) 各制度の存在と所管は、それぞれ府省庁の一次情報で確認済み（sources 参照）。",
+      "usage": "ツールでの想定利用: ①利用者の世帯状況（子の年齢・ひとり親か・就労状況・世帯収入の概算）を入力させる、②本索引の programs を条件で絞り込み『関係しうる制度』のリストを提示する、③個別制度が選択された時点で dataFile を読み込んで金額計算に進む。②の段階では絶対に金額を表示しないこと（本ファイルに金額がないのは仕様）。"
+    },
+    "programs": [
+      {
+        "key": "jido-teate",
+        "dataFile": "data/seido/jido-teate.json",
+        "category": "現金給付（毎月）",
+        "targetSummary": "0歳から18歳に達する日以後の最初の3月31日までの子を養育している人。所得制限なし（令和6年10月分から撤廃）。",
+        "lifeStage": ["出産・育児", "小学生", "中学生", "高校生"],
+        "isUniversal": true,
+        "note": "★子育て世帯のほぼ全員が対象★ 所得制限が撤廃されているため、収入にかかわらず受給できる。多子加算の判定で22歳年度末までの兄姉を数える点が最大の論点。支給は偶数月の年6回。",
+        "name": {
+          "value": "児童手当",
+          "label": "制度の正式名称",
+          "sourceId": "cfa-jido-teate",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["児童手当"] },
+          "amendmentNote": "令和6年10月分から抜本拡充（所得制限撤廃・高校生年代まで延長・第3子以降月額3万円・偶数月払い）。2026年度時点で変更なし。"
+        },
+        "authority": {
+          "value": "こども家庭庁（実施主体は市区町村）",
+          "label": "所管",
+          "sourceId": "cfa-jido-teate",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["認定請求書"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "verify の expect は、こども家庭庁のご案内ページに市区町村への認定請求手続が記載されていることを利用した照合。"
+        },
+        "applicationTo": {
+          "value": "現住所の市区町村（公務員は勤務先）",
+          "label": "申請先",
+          "sourceId": "cfa-jido-teate",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["認定請求書"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★公務員は勤務先★ 索引UIで必ず分岐させること。転職で公務員になった／辞めた場合は、市区町村と勤務先の両方で手続が必要になる。"
+        },
+        "hasApplicationDeadline": {
+          "value": true,
+          "label": "申請期限の有無",
+          "sourceId": "cfa-jido-teate",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["15日以内"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "true = 実質的な期限あり。出生・転入の日の翌日から15日以内に申請すれば、申請が翌月になっても出生・転入の月の翌月分から支給される（15日特例）。遅れると遡及されず、遅れた月数分の手当を失う。詳細は dataFile の application.deadline を参照。"
+        }
+      },
+      {
+        "key": "ikukyu-kyufu",
+        "dataFile": "data/seido/ikukyu-kyufu.json",
+        "category": "現金給付（休業中）",
+        "targetSummary": "雇用保険の被保険者で、育児休業を取得する人。出産手当金・出産育児一時金は健康保険の被保険者・被扶養者。",
+        "lifeStage": ["妊娠", "出産・育児"],
+        "isUniversal": false,
+        "note": "★対象が『雇用保険・健康保険の加入者』である点が最大の絞り込み条件★ 自営業者・専業主婦（夫）は育児休業給付・出産手当金の対象外（出産育児一時金は国民健康保険からも支給される）。本索引の中で唯一「働き方」によって可否が決まる制度群。data/seido/part-shift-shunyuu-kabe.json の社会保険加入判定と連動する。",
+        "name": {
+          "value": "産休・育休の給付（出産手当金・出産育児一時金・育児休業給付・出生後休業支援給付・育児時短就業給付・社会保険料免除）",
+          "label": "制度の正式名称（制度群）",
+          "sourceId": "mhlw-ikukyu",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["育児休業等給付とは、子の年齢や養育の状況に応じて、要件を満たす場合に出生時育児休業給付金、育児休業給付金、出生後休業支援給付金、育児時短就業給付金が支給されるものです"] },
+          "amendmentNote": "令和7年4月から出生後休業支援給付・育児時短就業給付が新設（施行済）。詳細は dataFile を参照。",
+          "note": "複数の給付の総称。個別データファイル側で6制度をまとめて扱っている。"
+        },
+        "authority": {
+          "value": "厚生労働省（育児休業給付は雇用保険、出産手当金・出産育児一時金は健康保険）",
+          "label": "所管",
+          "sourceId": "mhlw-ikukyu",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["育児休業等給付"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "出典はハローワークインターネットサービス（厚生労働省）。同ページは雇用保険の給付（育児休業等給付）のみを扱い、健康保険の給付（出産手当金・出産育児一時金）は所管が異なるため、後者の詳細は dataFile 側で担保する。"
+        },
+        "applicationTo": {
+          "value": "育児休業給付は事業所を管轄するハローワーク（原則として事業主経由）。出産手当金・出産育児一時金は加入している健康保険（協会けんぽ・健康保険組合・国民健康保険）。",
+          "label": "申請先",
+          "sourceId": "mhlw-ikukyu",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "複数制度の申請先を1文にまとめた要約であり、mhlw-ikukyu ページ上に同一文字列が存在しないため機械照合の対象外とする。個別の申請先は dataFile 側の各給付のノードで担保する。" },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★申請先が制度ごとに違う★ 索引UIでは「勤務先の担当部署に一括で相談する」と案内するのが実務上最も確実。"
+        },
+        "hasApplicationDeadline": {
+          "value": true,
+          "label": "申請期限の有無",
+          "sourceId": "mhlw-ikukyu",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "期限の有無という要約であり、mhlw-ikukyu ページ上に同一文字列が存在しないため照合対象外。具体的な期限は dataFile 側の各給付のノードで担保する。" },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "true = 期限あり。出産手当金・出産育児一時金は時効2年、育児休業給付は支給単位期間ごとの申請期限がある。詳細は dataFile を参照。"
+        }
+      },
+      {
+        "key": "shussan-oen-kofukin",
+        "dataFile": "data/seido/shussan-oen-kofukin.json",
+        "category": "現金給付（一時金）＋相談支援",
+        "targetSummary": "妊娠届出をした妊婦および出産した人。所得制限なし。",
+        "lifeStage": ["妊娠", "出産・育児"],
+        "isUniversal": true,
+        "note": "★制度名が令和7年度に変わった★ 旧「出産・子育て応援交付金（出産・子育て応援ギフト）」。妊娠届出時と出生届出後の2回に分けて支給されるのが基本形だが、支給方法（現金・クーポン・電子ギフト等）は自治体により異なる。金額は dataFile を参照。",
+        "name": {
+          "value": "妊婦のための支援給付（妊婦等包括相談支援事業と一体的に実施。旧称: 出産・子育て応援交付金）",
+          "label": "制度の正式名称",
+          "sourceId": "cfa-shussan-kosodate",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["妊婦のための支援給付"] },
+          "amendmentNote": "★令和7年度から法律に基づく制度に移行（施行済）★ 令和4年度補正予算から始まった「出産・子育て応援交付金事業」を令和7年度から法律に基づく制度として実施している。旧名称での案内は現行制度名と一致しない。"
+        },
+        "authority": {
+          "value": "こども家庭庁（実施主体は市区町村）",
+          "label": "所管",
+          "sourceId": "cfa-shussan-kosodate",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["妊婦のための支援給付には全ての世代や企業のみなさまから拠出いただく子ども・子育て支援金が充てられます"] },
+          "amendmentNote": "★財源が子ども・子育て支援金に変更された★ この支援金は健康保険料に上乗せして徴収される（data/seido/fuyou-kabe.json の insuranceRates.childcareSupportRate 参照）。"
+        },
+        "applicationTo": {
+          "value": "お住まいの市区町村（妊娠届出・出生届出の窓口。面談とセットで案内されるのが基本）",
+          "label": "申請先",
+          "sourceId": "cfa-shussan-kosodate",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["妊娠期から面談を通じて出産・子育ての相談に応じ"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★面談が受給の前提になっている自治体が多い★ 伴走型相談支援（妊婦等包括相談支援事業）と経済的支援（妊婦のための支援給付）を一体的に実施する制度設計のため、面談を受けないと給付が受けられないことがある。"
+        },
+        "hasApplicationDeadline": {
+          "value": true,
+          "label": "申請期限の有無",
+          "sourceId": "cfa-shussan-kosodate",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "期限の有無という要約であり、cfa-shussan-kosodate ページ本文に同一文字列が存在しないため照合対象外。具体的な期限は dataFile 側で担保する。" },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "true = 期限あり。妊娠届出・出生届出を起点とするため、届出が遅れると受給機会を失いうる。具体的な期限は自治体により異なる。詳細は dataFile を参照。"
+        }
+      },
+      {
+        "key": "youji-kyouiku-mushouka",
+        "dataFile": "data/seido/youji-kyouiku-mushouka.json",
+        "category": "費用の無償化・軽減",
+        "targetSummary": "3歳から5歳の全ての子ども（幼稚園・保育所・認定こども園等の利用料が無償）。0歳から2歳は住民税非課税世帯が対象。",
+        "lifeStage": ["出産・育児", "未就学"],
+        "isUniversal": false,
+        "note": "★3〜5歳は所得制限なし、0〜2歳は住民税非課税世帯のみ★ という二層構造が最大の論点。給付金ではなく利用料が無償化される形のため「もらえるお金」としては見えにくいが、家計インパクトは本索引の中で最大級。給食費・送迎費・行事費は無償化の対象外である点も要注意。",
+        "name": {
+          "value": "幼児教育・保育の無償化",
+          "label": "制度の正式名称",
+          "sourceId": "cfa-mushouka",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["幼児教育・保育の無償化"] },
+          "amendmentNote": "令和元年10月開始。2026年度時点で継続。"
+        },
+        "authority": {
+          "value": "こども家庭庁（実施主体は市区町村。根拠法は子ども・子育て支援法）",
+          "label": "所管",
+          "sourceId": "cfa-mushouka",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["無償化"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "applicationTo": {
+          "value": "お住まいの市区町村（認可保育所・認定こども園等は申請不要な場合が多いが、認可外保育施設・幼稚園の預かり保育等は「施設等利用給付認定」の申請が必要）",
+          "label": "申請先",
+          "sourceId": "cfa-mushouka",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "施設類型ごとの申請要否をまとめた要約であり、cfa-mushouka ページ上に同一文字列が存在しないため照合対象外。詳細は dataFile 側で担保する。" },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★申請が必要かどうかが施設類型で分かれる★ 認可外保育施設・幼稚園の預かり保育・一時預かり等を使う世帯は、認定申請をしないと無償化されない。ここが最大の取りこぼしポイント。"
+        },
+        "hasApplicationDeadline": {
+          "value": true,
+          "label": "申請期限の有無",
+          "sourceId": "cfa-mushouka",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "期限の有無という要約であり、出典ページ上に同一文字列が存在しないため照合対象外。詳細は dataFile 側で担保する。" },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "true = 施設等利用給付認定が必要な類型では期限あり（遡及されないため、利用開始前の認定が必要）。認可保育所等では申請不要のため実質的に期限なし。"
+        }
+      },
+      {
+        "key": "jidou-fuyou-teate",
+        "dataFile": "data/seido/jidou-fuyou-teate.json",
+        "category": "現金給付（隔月）",
+        "targetSummary": "父母が婚姻を解消した児童等を監護するひとり親等。18歳到達後最初の3月31日まで（障害児は20歳未満）。所得制限あり。",
+        "lifeStage": ["出産・育児", "未就学", "小学生", "中学生", "高校生"],
+        "isUniversal": false,
+        "note": "★ひとり親世帯の中核制度★ 児童手当（偶数月）と異なり奇数月支給のため、両方受給する世帯は毎月いずれかが入る。受給資格者本人だけでなく同居の扶養義務者（親等）の所得でも支給停止になる点、養育費の8割が所得に算入される点が最大の落とし穴。",
+        "name": {
+          "value": "児童扶養手当",
+          "label": "制度の正式名称",
+          "sourceId": "cfa-jifu-gaiyou",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["児童扶養手当"] },
+          "amendmentNote": "★毎年4月に物価スライドで額が改定される★ 令和8年4月分から全部支給48,050円（本体額）。詳細は dataFile を参照。"
+        },
+        "authority": {
+          "value": "こども家庭庁（実施主体は都道府県、市、福祉事務所設置町村）",
+          "label": "所管",
+          "sourceId": "cfa-jifu-gaiyou",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["【実施主体】都道府県、市、福祉事務所設置町村"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "補助率は国1／3、都道府県・市・福祉事務所設置町村2／3。"
+        },
+        "applicationTo": {
+          "value": "お住まいの市区町村（福祉事務所を設置していない町村にお住まいの場合は都道府県の保健福祉事務所等）",
+          "label": "申請先",
+          "sourceId": "cfa-jifu-gaiyou",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["【実施主体】都道府県、市、福祉事務所設置町村"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★児童手当と申請先が異なりうる★ 町村部では都道府県が窓口となる。索引UIで「市にお住まいか、町村にお住まいか」を確認できるとよい。"
+        },
+        "hasApplicationDeadline": {
+          "value": true,
+          "label": "申請期限の有無",
+          "sourceId": "cfa-jifu-gaiyou",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "期限の有無という要約であり、cfa-jifu-gaiyou の本文に同一文字列が存在しないため照合対象外。支給開始が請求日の属する月の翌月分からであることは dataFile の payment.startMonth（大阪府の出典で照合済み）で担保する。" },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "true = 実質的な期限あり。★児童手当のような15日特例がなく遡及支給もない★ 認定請求をした日の属する月の翌月分からの支給となるため、離婚成立後すぐに申請しないと申請が遅れた月数分の手当をそのまま失う。加えて毎年8月の現況届を出さないと11月分以降が支給されない。"
+        }
+      },
+      {
+        "key": "kodomo-iryouhi-jyosei",
+        "dataFile": "data/seido/kodomo-iryouhi-jyosei.json",
+        "category": "費用の助成",
+        "targetSummary": "こどもの医療費の自己負担分を助成。全ての都道府県・市区町村が実施しているが、対象年齢・所得制限・自己負担額は自治体により大きく異なる。",
+        "lifeStage": ["出産・育児", "未就学", "小学生", "中学生", "高校生"],
+        "isUniversal": true,
+        "note": "★国の制度ではない（自治体の独自制度）★ 全市区町村が実施しているため実質的に全世帯が対象だが、内容は自治体ごとに全く異なる。令和6年4月1日時点の調査では、市区町村では通院・入院ともに18歳年度末（高校生まで）が最も多かった。★引っ越しで内容が変わる代表的な制度であり、転居予定のある世帯には必ず注意喚起すること。★",
+        "name": {
+          "value": "こども医療費助成（乳幼児医療費助成。自治体により「子ども医療費助成」「マル乳」「マル子」等と呼称）",
+          "label": "制度の正式名称",
+          "sourceId": "cfa-kodomo-iryouhi",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["こどもに係る医療費の助成"] },
+          "amendmentNote": "なし（2026-07-17時点）。自治体ごとに随時拡充されている。",
+          "note": "★全国共通の正式名称がない★ 国の制度ではないため、名称は自治体により異なる。こども家庭庁の調査上の呼称は「こどもに係る医療費の助成」。"
+        },
+        "authority": {
+          "value": "市区町村（実施主体）。都道府県が要綱等に基づき補助。国の制度ではないが、こども家庭庁が全国の実施状況を調査・公表している",
+          "label": "所管",
+          "sourceId": "cfa-kodomo-iryouhi",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["各市区町村が実施するこどもに係る医療費の助成については、各都道府県が要綱等に基づき補助しているところです"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "applicationTo": {
+          "value": "お住まいの市区町村（医療証・受給者証の交付申請）",
+          "label": "申請先",
+          "sourceId": "cfa-kodomo-iryouhi",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["各市区町村が実施する"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "医療証が交付されると窓口で提示するだけで自己負担が無料または軽減される（現物給付）自治体が多いが、いったん支払って後から払い戻す（償還払い）自治体もある。★医療費控除との関係で扱いが変わる（data/seido/iryouhi-koujo-kodomo.json の compensationDeduction.kodomoIryouhiJyosei 参照。当該項目は未確認のため税務署確認を案内すること）。★"
+        },
+        "hasApplicationDeadline": {
+          "value": true,
+          "label": "申請期限の有無",
+          "sourceId": "cfa-kodomo-iryouhi",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "期限は自治体ごとに定められており全国共通の値が存在しないため、cfa-kodomo-iryouhi による照合は不能。詳細は dataFile および各自治体の案内を参照。" },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "true = 実質的な期限あり。医療証の交付を受けていない期間の医療費は償還払いの申請が必要で、自治体ごとに時効（多くは診療から数年）が定められている。出生後・転入後は速やかに申請すること。"
+        }
+      },
+      {
+        "key": "koukou-shugaku-shienkin",
+        "dataFile": "data/seido/koukou-shugaku-shienkin.json",
+        "category": "費用の無償化・軽減＋現金給付",
+        "targetSummary": "高等学校等に在学する生徒。高等学校等就学支援金は授業料の支援、高校生等奨学給付金は授業料以外の教育費の支援（低所得世帯対象）。",
+        "lifeStage": ["高校生"],
+        "isUniversal": false,
+        "note": "★2つの別制度をまとめたエントリ★ (1)高等学校等就学支援金＝授業料を支援（学校に直接支払われるため現金は手元に来ない）、(2)高校生等奨学給付金＝授業料以外の教育費（教科書費・教材費・修学旅行費等）を支援する現金給付で低所得世帯が対象。★令和8年4月1日に就学支援金の制度が変わった★ため、令和7年度までの資料を使わないこと。",
+        "name": {
+          "value": "高等学校等就学支援金（授業料の支援）および高校生等奨学給付金（授業料以外の教育費の支援）",
+          "label": "制度の正式名称",
+          "sourceId": "mext-shugaku-shien",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["授業料の支援については 高等学校等就学支援金制度 を、授業料以外の支援については 高校生等奨学給付金 を御確認ください"] },
+          "amendmentNote": "★高等学校等就学支援金の支給に関する法律の一部を改正する法律が令和8年3月31日成立・4月1日施行★ 令和8年度から新制度。dataFile 側で令和8年度の内容であることを必ず確認すること。",
+          "note": "文部科学省は「いわゆる『高校無償化』と表現されることが多いですが、的確な表現としては、授業料を支援する『高等学校等就学支援金』です」と明記している。記事で「高校無償化」と書く場合はこの注記を添えること。"
+        },
+        "authority": {
+          "value": "文部科学省（就学支援金の申請窓口は在学する学校、奨学給付金の実施主体は都道府県）",
+          "label": "所管",
+          "sourceId": "mext-shugaku-shien",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["高等学校等就学支援金"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "applicationTo": {
+          "value": "高等学校等就学支援金は在学する学校（原則オンライン申請）。高校生等奨学給付金はお住まいの都道府県（制度の詳細・給付額・手続は都道府県ごとに異なる）",
+          "label": "申請先",
+          "sourceId": "mext-shougakukyufu",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["各都道府県において制度の詳細は異なりますので、具体の要件、給付額、手続等については"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★奨学給付金は都道府県ごとに額が違う★ 文部科学省が示すのは「国の補助基準」であり、実際の給付額は都道府県が定める。索引UIでは都道府県への問い合わせを案内すること。"
+        },
+        "hasApplicationDeadline": {
+          "value": true,
+          "label": "申請期限の有無",
+          "sourceId": "mext-shougakukyufu",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["新入生は、4～6月に一部早期支給の申請ができる場合もあります"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "true = 期限あり。就学支援金は原則、入学時の4月に必要な書類を学校等に提出する必要がある。奨学給付金も申請時期が定められており、新入生は4〜6月に一部早期支給の申請ができる場合がある。★家計急変（保護者の離職・疾病等）の場合は年度途中でも申請できる制度があるため、4月を過ぎたから諦めるよう案内してはならない。★"
+        }
+      },
+      {
+        "key": "shugaku-enjo-seido",
+        "dataFile": "data/seido/shugaku-enjo-seido.json",
+        "category": "費用の助成",
+        "targetSummary": "経済的理由によって就学困難と認められる学齢児童生徒（小学生・中学生）の保護者。要保護者・準要保護者が対象。",
+        "lifeStage": ["小学生", "中学生"],
+        "isUniversal": false,
+        "note": "★高校生等奨学給付金の小中学生版にあたる制度★ 学用品費・給食費・修学旅行費・医療費等が援助される。準要保護者の認定基準は市町村が独自に定めるため、同じ収入でも自治体により可否が変わる。★申請しないと受けられず、学校からの案内を見落とす世帯が多い。★",
+        "name": {
+          "value": "就学援助制度",
+          "label": "制度の正式名称",
+          "sourceId": "mext-shugaku-enjo",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["就学援助制度"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "authority": {
+          "value": "文部科学省（実施主体は市町村。根拠は学校教育法第19条）",
+          "label": "所管",
+          "sourceId": "mext-shugaku-enjo",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["学校教育法第19条において、「経済的理由によって、就学困難と認められる学齢児童生徒の保護者に対しては、市町村は、必要な援助を与えなければならない。」とされています"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★市町村の義務★ 学校教育法第19条は「与えなければならない」と定めており、実施は市町村の裁量ではない。ただし準要保護者の認定基準は市町村が定めるため、内容には差がある。"
+        },
+        "applicationTo": {
+          "value": "お住まいの市町村（教育委員会）または在学する学校",
+          "label": "申請先",
+          "sourceId": "mext-shugaku-enjo",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["市町村は、必要な援助を与えなければならない"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "多くの市町村では入学時・年度当初に学校を通じて全世帯に案内が配布される。★案内を見落とすと受けられない典型例★"
+        },
+        "hasApplicationDeadline": {
+          "value": true,
+          "label": "申請期限の有無",
+          "sourceId": "mext-shugaku-enjo",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "申請期限は市町村が定めるものであり全国共通の値が存在しないため、mext-shugaku-enjo による照合は不能。詳細は dataFile および各市町村の案内を参照。" },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "true = 期限あり（市町村が定める）。多くは年度当初に受付があるが、年度途中の家計急変でも随時申請できる市町村が多い。"
+        }
+      }
+    ],
+    "coverageNote": {
+      "description": "★本索引が網羅していないもの★ (1) 自治体独自の給付金（出産祝い金、多子世帯支援金、独自の医療費助成の上乗せ、家賃補助等）は自治体数が膨大なため収録していない。(2) 障害のあるこどもに関する給付（特別児童扶養手当・障害児福祉手当等）は本索引の対象外。(3) 生活保護・生活困窮者自立支援制度は対象外。(4) 高等教育（大学等）の修学支援新制度は対象外（本索引は高校生までを射程とする）。(5) 税制上の優遇（医療費控除・扶養控除等）は給付金ではないため programs には含めないが、家計インパクトが大きいため関連データとして下記 relatedTaxData を参照すること。",
+      "relatedTaxData": "data/seido/iryouhi-koujo-kodomo.json（医療費控除）、data/seido/fuyou-kabe.json（扶養の壁・基礎控除等）、data/seido/part-shift-shunyuu-kabe.json（パート・シフト収入と社会保険）。ひとり親世帯は data/seido/youikuhi-santeihyou.json（養育費算定表）も関連する。",
+      "uiWarning": "索引UIで『あなたが受け取れる可能性のある制度』を提示する際は、必ず『お住まいの自治体独自の制度は含まれていません。市区町村の子育て支援窓口にもご相談ください』と併記すること。自治体独自制度の見落としは本索引の構造的な限界であり、免責ではなく能動的な案内で補うこと。"
+    }
+  }
+}
