@@ -1289,6 +1289,45 @@
     "status": "live"
   },
   {
+    "queueId": "P2-T39",
+    "slug": "kaigo-shisetsu-hiyou-hayami",
+    "category": "care",
+    "title": "介護施設タイプ別 費用早見（紹介送客なし）",
+    "description": "特養・老健・介護医療院・有料老人ホーム等から施設タイプを選ぶと、食費・居住費の基準費用額と所得段階別の負担限度額、特養の入所要件の目安を表示します。特定の施設・事業者への送客は一切行いません。",
+    "solves": [
+      "施設タイプごとに費用がどれくらい違うか分からない",
+      "特養に入るための要介護度の要件が分からない",
+      "食費・居住費の負担限度額（補足給付）がいくらか分からない",
+      "有料老人ホームは公的な費用軽減が受けられるのか分からない",
+      "2026年8月の制度改正で費用がどう変わるか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索「介護保険法」",
+        "url": "https://laws.e-gov.go.jp/law/409AC0000000123"
+      },
+      {
+        "label": "e-Gov法令検索「介護保険法施行規則」",
+        "url": "https://laws.e-gov.go.jp/law/411M50000100036"
+      },
+      {
+        "label": "厚生労働省「サービスにかかる利用料（介護サービス情報公表システム）」",
+        "url": "https://www.kaigokensaku.mhlw.go.jp/commentary/fee.html"
+      },
+      {
+        "label": "厚生労働省老健局「介護保険料等における基準額の調整」社会保障審議会介護保険部会（第126回）資料3",
+        "url": "https://www.mhlw.go.jp/content/12300000/001576452.pdf"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kaigo-shisetsu-hiyou-souba.json・data/seido/kaigo-hoken.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kaigo-shisetsu-hiyou-souba.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
+  },
+  {
     "queueId": "P2-T40",
     "slug": "kaigo-service-gyaku-hiki",
     "category": "care",

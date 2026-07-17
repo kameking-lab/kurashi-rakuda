@@ -31,6 +31,8 @@ import { SuihanMizu } from "@/components/tools/impl/SuihanMizu";
 import { KondateTeian } from "@/components/tools/impl/KondateTeian";
 import { KONDATE_DISCLAIMER, kondateData } from "@/lib/tools/impl/kondate-teian";
 import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
+import { KaigoShisetsuHiyouHayami } from "@/components/tools/impl/KaigoShisetsuHiyouHayami";
+import { kaigoShisetsuHiyouSoubaDataset } from "@/components/tools/impl/KaigoShisetsuHiyouHayami.calc";
 import { YoujiMushoukaChecker } from "@/components/tools/impl/YoujiMushoukaChecker";
 import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushoukaChecker.calc";
 import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
@@ -1095,6 +1097,68 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           案内しています。
         </p>
         <SeidoNotice datasets={[kaigoNinteiDataset, kaigoHokenDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "kaigo-shisetsu-hiyou-hayami": {
+    ui: <KaigoShisetsuHiyouHayami />,
+    formula: (
+      <>
+        <p>
+          <strong>介護保険で入所できる施設は3種類だけ</strong>
+          ：介護保険法上の「施設サービス」（同法第8条第26項）は、介護老人福祉施設（特別養護老人ホーム・特養）・
+          介護老人保健施設（老健）・介護医療院の3つのみです。有料老人ホーム・サービス付き高齢者向け住宅は
+          「特定施設入居者生活介護」という別の枠組み（居宅サービス）に分類され、建物は民間、介護サービス部分だけが
+          介護保険の対象になります。この違いにより、食費・居住費の公的な負担軽減（特定入所者介護サービス費＝
+          補足給付）を受けられるかどうかが変わります。
+        </p>
+        <p>
+          <strong>特養の入所要件</strong>
+          ：介護保険法施行規則第17条の9により、原則として要介護3・4・5の方が対象です。ただし同施行規則第17条の10は、
+          要介護1・2の方でも「居宅において日常生活を営むことが困難なことについてやむを得ない事由がある」場合の
+          特例入所を認めています（認知症で常時見守りが必要な場合、家族による虐待が疑われる場合などが典型例）。
+          「要介護3未満は特養に入れない」と一律には言えません。
+        </p>
+        <p>
+          <strong>食費・居住費の計算</strong>
+          ：食費・居住費にはいずれも「基準費用額」（施設が受け取れる標準的な額）が定められており、
+          低所得の方（世帯全員が市町村民税非課税等）は市区町村に申請して「負担限度額認定」を受けると、
+          所得段階（第1〜第3段階②）に応じたより低い「負担限度額」が適用されます。認定を受けていない方
+          （市町村民税課税世帯を含む＝第4段階）は基準費用額を全額負担します。本ツールは、選んだ施設タイプ・
+          部屋タイプ・所得段階の組み合わせで「食費（1日）＋居住費（1日）」を求め、30日をかけた1か月の目安を
+          表示しています。
+        </p>
+        <p>
+          <strong>老健・介護医療院は特養と部屋タイプの基準費用額が違う</strong>
+          ：同じ「従来型個室」でも、特養は1,231円/日、老健・医療院は1,728円/日（〜2026年7月31日時点）と、
+          老健・医療院のほうが高く設定されています。また老健・医療院の多床室は、令和6年8月から「室料を徴収する場合
+          （697円/日）」「徴収しない場合（437円/日）」に分かれています。
+        </p>
+        <p>
+          <strong>2026年8月1日の改正に自動対応</strong>
+          ：食費の基準費用額（1日100円引上げ）・食費と居住費の一部負担限度額は2026年8月1日に改定されます。
+          本ツールは基準日（今日）がこの日を過ぎているかどうかで、参照する負担限度額表を自動的に切り替えます。
+        </p>
+        <p>
+          <strong>このツールが計算しないもの</strong>
+          ：施設サービス費の自己負担（1〜3割）・高額介護サービス費・日常生活費（理美容代等）・各種加算は、
+          要介護度・利用単位数・所得区分など追加の情報が必要なため、本ツールでは計算していません
+          （「介護保険 自己負担シミュレーター」をご利用ください）。有料老人ホーム・サービス付き高齢者向け住宅
+          （特定施設入居者生活介護）の費用は、公的な統計・相場データが存在しないため金額を表示せず、
+          個々の施設の費用は厚生労働省の「介護サービス情報公表システム」で確認できる旨のみを案内しています。
+        </p>
+        <p>
+          <strong>★紹介送客なし★</strong>
+          ：本ツールは特定の施設名・事業者名・比較サイトへのリンクを一切扱いません（
+          <a
+            href="/policy"
+            className="underline decoration-line underline-offset-4 hover:text-ink"
+          >
+            紹介ポリシー
+          </a>
+          ）。
+        </p>
+        <SeidoNotice datasets={[kaigoShisetsuHiyouSoubaDataset, kaigoHokenDataset]} today={todayJst()} />
       </>
     ),
   },
