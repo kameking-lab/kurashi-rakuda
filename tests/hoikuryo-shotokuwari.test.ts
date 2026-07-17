@@ -572,8 +572,13 @@ describe("8a — 階層の推計（★前処理を代行しない★）", () => 
     expect(found, `${m.id} で境界をまたぐケースが見つからなかった`).toBe(true);
   });
 
+  /**
+   * ★この「未収集の自治体」は、収集が進むたびに実際に未収集のものへ差し替える★
+   * 京都市が当初この役を担っていたが収集済みになったため、中核市（未着手）に差し替えた。
+   * 収録済みの id を書くと（政令市なら preprocessing-required 等が返って）テストの前提が消える。
+   */
   it("未収集の自治体は unavailable を返す（推測しない）", () => {
-    const r = estimateTier("kyoto-kyoto", richInput, "incomeTaxed");
+    const r = estimateTier("tochigi-utsunomiya", richInput, "incomeTaxed");
     expect(r.kind).toBe("unavailable");
     if (r.kind !== "unavailable") return;
     expect(r.reason).toBe("municipality-not-found");

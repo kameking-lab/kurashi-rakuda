@@ -111,6 +111,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.sagamihara.kanagawa.jp',
   'city.sendai.jp', // city.sendai.lg.jp は存在しない（DNS解決せず）
   'city.hamamatsu.shizuoka.jp', // city.hamamatsu.lg.jp は存在しない（DNS解決せず）
+  'city.okayama.jp',
+  'city.kumamoto.jp', // city.kumamoto.lg.jp は存在しない（DNS解決せず）
   /**
    * 浜松市例規集のホスティング先。★このドメインだけは自治体自身の運営ではない★
    * 浜松市は保育料表を公式サイトに一切掲載しておらず（保護者向けの案内は民間NPOのサイトに

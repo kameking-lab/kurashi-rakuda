@@ -236,7 +236,7 @@
     "slug": "hoikuryo",
     "category": "childcare",
     "title": "保育料計算（全国版・政令市から）",
-    "description": "お住まいの自治体と世帯の住民税額から、認可保育園の保育料を計算します。政令市から順次対応拡大。",
+    "description": "お住まいの自治体と世帯の住民税額から、認可保育園の保育料を計算します。東京23区すべてと政令指定都市20市すべてに対応。",
     "solves": [
       "保育料がいくらになるか分からない",
       "住民税のどの数字で保育料が決まるか分からない",
@@ -391,6 +391,22 @@
       {
         "label": "神戸市こども家庭局幼保事業課「2026年度 保育認定を受けた子どもに係る利用者負担額（保育料）について」",
         "url": "https://www.city.kobe.lg.jp/a65174/kosodate/shien/shinseido/riyomoshikomi/riyoshafutangaku.html"
+      },
+      {
+        "label": "岡山市岡山っ子育成局就園管理課「令和8年度 利用者負担についてのお知らせ」",
+        "url": "https://www.city.okayama.jp/kurashi/0000012934.html"
+      },
+      {
+        "label": "広島市こども未来局幼保給付課「令和8年度保育料（公私立）・副食費についてのお知らせ」",
+        "url": "https://www.city.hiroshima.lg.jp/living/kosodate/1021251/1025850/1003481.html"
+      },
+      {
+        "label": "北九州市子ども家庭局こども施設企画課「幼稚園、保育所（園）、認定こども園などを利用するお子さんの保育料について」",
+        "url": "https://www.city.kitakyushu.lg.jp/contents/28800022.html"
+      },
+      {
+        "label": "熊本市健康福祉局保育幼稚園課「令和8年度 保育所・認定こども園等の保育認定(２号・３号認定)利用者負担額（保育料）」",
+        "url": "https://www.city.kumamoto.jp/kiji00364241/"
       }
     ],
     "updated": "2026-07-17",
