@@ -101,12 +101,18 @@ export const YOUNG_DEPENDENT_UNDER16_DEDUCTION = Number(YD_UNDER?.[2] ?? 0) * 10
 export const YOUNG_DEPENDENT_16TO18_DEDUCTION = Number(YD_MIDDLE?.[3] ?? 0) * 10_000;
 
 /**
- * 「市町村民税世帯非課税 かつ 年金等80万円以下」の区分のしきい値。
- * 根拠: KK.brackets[key=hikazei-80man].label =「…合計が80万円以下 又は…」
+ * 「市町村民税世帯非課税 かつ 年金等が一定額以下」の区分のしきい値。
+ * ★2026-07-17 データ訂正★ 従前の「80万円」は誤りで、施行令の条文は80.9万円。
+ * さらに2026-08-01から82.65万円へ引き上げ（補足給付の境界と同一基準・年金額連動）。
+ * データの incomeMax / incomeMaxBeforeAug2026 を基準日で切り替える。
  */
 const HIKAZEI_80MAN = KK.brackets.find((b) => b.key === "hikazei-80man")!;
-export const HIKAZEI_80MAN_THRESHOLD =
-  Number(/(\d+)万円以下/.exec(HIKAZEI_80MAN.label)?.[1] ?? 0) * 10_000;
+
+/** 基準日に応じた「非課税かつ年金等」区分の境界額 */
+export function hikazei80manThreshold(serviceDate: string): number {
+  const b = HIKAZEI_80MAN as { incomeMax?: number; incomeMaxBeforeAug2026?: number };
+  return (serviceDate >= HOJOKYUFU_EFFECTIVE_FROM ? b.incomeMax : b.incomeMaxBeforeAug2026)!;
+}
 
 /**
  * 上乗せのない級地（＝1単位10円）。既定値かつ、確定額を出せる唯一の級地。
@@ -374,8 +380,8 @@ export function selectKougakuBracket(input: KaigoInput): (typeof KK.brackets)[nu
     return KK.brackets.find((b) => b.key === "seikatsu-hogo")!;
   }
   if (input.taxStatus === "hikazei") {
-    // 「①年金収入＋その他の合計所得金額が80万円以下 又は ②老齢福祉年金受給者」
-    return input.hojokyufuIncome <= HIKAZEI_80MAN_THRESHOLD
+    // 「①公的年金等の収入金額＋その他の合計所得金額が80.9万円（8/1から82.65万円）以下 又は ②老齢福祉年金受給者」
+    return input.hojokyufuIncome <= hikazei80manThreshold(input.serviceDate)
       ? HIKAZEI_80MAN
       : KK.brackets.find((b) => b.key === "hikazei")!;
   }
