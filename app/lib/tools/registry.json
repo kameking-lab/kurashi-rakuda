@@ -444,9 +444,14 @@
       "乾燥機にかけていいか分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "消費者庁「洗濯表示（衣類等の取扱い表示）」",
+        "url": "https://www.caa.go.jp/policies/policy/consumer_partnership/information/care_labeling/"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-18",
