@@ -19,14 +19,18 @@
 import aichiNagoya from "@/data/seido/hoikuryo/aichi-nagoya.json";
 import chibaChiba from "@/data/seido/hoikuryo/chiba-chiba.json";
 import fukuokaFukuoka from "@/data/seido/hoikuryo/fukuoka-fukuoka.json";
+import fukuokaKitakyushu from "@/data/seido/hoikuryo/fukuoka-kitakyushu.json";
+import hiroshimaHiroshima from "@/data/seido/hoikuryo/hiroshima-hiroshima.json";
 import hokkaidoSapporo from "@/data/seido/hoikuryo/hokkaido-sapporo.json";
 import hyogoKobe from "@/data/seido/hoikuryo/hyogo-kobe.json";
 import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
 import kanagawaSagamihara from "@/data/seido/hoikuryo/kanagawa-sagamihara.json";
 import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
 import kyotoKyoto from "@/data/seido/hoikuryo/kyoto-kyoto.json";
+import kumamotoKumamoto from "@/data/seido/hoikuryo/kumamoto-kumamoto.json";
 import miyagiSendai from "@/data/seido/hoikuryo/miyagi-sendai.json";
 import niigataNiigata from "@/data/seido/hoikuryo/niigata-niigata.json";
+import okayamaOkayama from "@/data/seido/hoikuryo/okayama-okayama.json";
 import osakaOsaka from "@/data/seido/hoikuryo/osaka-osaka.json";
 import osakaSakai from "@/data/seido/hoikuryo/osaka-sakai.json";
 import saitamaSaitama from "@/data/seido/hoikuryo/saitama-saitama.json";
@@ -128,7 +132,7 @@ export interface HoikuryoMunicipality {
 // ---------------------------------------------------------------- 自治体データ
 
 /**
- * 収集済み自治体（2026-07-17時点で37件）。
+ * 収集済み自治体（2026-07-17時点で41件＝東京23区すべて＋政令指定都市20市すべて）。
  * ★選択肢はこの配列からのみ生成する★ 未収集自治体の階層を創作しない（§7）。
  * 並び順は全国地方公共団体コード順（＝都道府県順・特別区は区番号順）。UIの選択肢の順序になる。
  */
@@ -169,7 +173,11 @@ export const municipalities: HoikuryoMunicipality[] = [
   osakaOsaka,
   osakaSakai,
   hyogoKobe,
+  okayamaOkayama,
+  hiroshimaHiroshima,
+  fukuokaKitakyushu,
   fukuokaFukuoka,
+  kumamotoKumamoto,
 ] as unknown as HoikuryoMunicipality[];
 
 export function getMunicipality(id: string): HoikuryoMunicipality | undefined {
