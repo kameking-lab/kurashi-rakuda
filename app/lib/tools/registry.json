@@ -964,6 +964,41 @@
     "status": "live"
   },
   {
+    "queueId": "P2-T18",
+    "slug": "sango-tetsuzuki-checklist",
+    "category": "pregnancy",
+    "title": "産後手続きリスト生成（期限つき）",
+    "description": "出生日と国内/国外出生を入れると、出生届・児童手当の認定請求（15日特例）・出産育児一時金の請求について、法定の期限日を計算し、期限が早い順のチェックリストとして表示します。",
+    "solves": [
+      "出生届の期限がいつか正確に分からない",
+      "出生届の期限の数え方（出生日を1日目に含めるか）が分からない",
+      "児童手当の申請が出生月の支給に間に合う期限が分からない",
+      "国外で出産した場合の届出期限や注意点が分からない",
+      "出産育児一時金をいつまでに請求すればいいか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索「戸籍法（昭和二十二年法律第二百二十四号）第43条・第49条」",
+        "url": "https://laws.e-gov.go.jp/law/322AC0000000224"
+      },
+      {
+        "label": "法務省「出生届」",
+        "url": "https://www.moj.go.jp/ONLINE/FAMILYREGISTER/5-1.html"
+      },
+      {
+        "label": "こども家庭庁「児童手当制度のご案内」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/"
+      },
+      {
+        "label": "厚生労働省「出産育児一時金等について」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
+  },
+  {
     "queueId": "P2-T16",
     "slug": "shussan-junbi-checklist",
     "category": "pregnancy",
