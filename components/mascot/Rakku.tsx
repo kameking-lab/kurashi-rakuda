@@ -1,10 +1,22 @@
 /**
- * らっく — くらしのラクダの仮マスコット（簡易SVG、正面）。
- * docs/09_マスコット.md のブリーフ準拠: 2頭身・一つコブ＋深緑の風呂敷・
- * 深緑スカーフ・たれ目・頬・太め均一線・フラット塗り。
- * 後日、画像生成→SVGトレース版に差し替える前提のプレースホルダー実装
- * （差し替え時はこのコンポーネントの中身のみを置き換える）。
+ * らっく — くらしのラクダのマスコット。
+ *
+ * 表示の優先順位（docs/09_マスコット.md §5 の受け入れフロー）:
+ *   1. public/mascot/<pose>.png|webp が受け入れ済み（components/mascot/manifest.json に登録済み）
+ *      → next/image で表示（Vercel が WebP/AVIF へ自動最適化）
+ *   2. 未配置のポーズ → 下記の簡易SVGでフォールバック描画
+ *      （SVGは smile / sorry の2表情のみ。他ポーズも表情いずれかに寄せて破綻しない）
+ *
+ * 社長が画像を public/mascot/ に置き `npm run mascot:manifest` を通せば、
+ * このファイルを編集せずに全使用箇所が画像へ切り替わる。
+ * manifest.json は手で編集しない（scripts/mascot-manifest.mjs が規約検査つきで生成）。
  */
+
+import Image from "next/image";
+import manifest from "./manifest.json";
+import { EXPRESSION_TO_POSE, type RakkuPose } from "./poses";
+
+const FILES: Partial<Record<RakkuPose, string>> = manifest.files;
 
 const C = {
   body: "#C7AF88",
@@ -21,14 +33,30 @@ export type RakkuExpression = "smile" | "sorry";
 export function Rakku({
   size = 48,
   expression = "smile",
+  pose,
   label,
 }: {
   size?: number;
   /** smile=基本形 / sorry=困り顔（404・検索0件用。docs/09 §1.6 により泣き顔・汗は描かない） */
   expression?: RakkuExpression;
+  /** 10ポーズ（docs/09 §2）を直接指定する場合。省略時は expression から導出（smile→front / sorry→worried） */
+  pose?: RakkuPose;
   /** 意味を持つ場合のみ指定。省略時は装飾扱い（aria-hidden） */
   label?: string;
 }) {
+  const resolvedPose: RakkuPose = pose ?? EXPRESSION_TO_POSE[expression];
+  const file = FILES[resolvedPose];
+  if (file) {
+    return (
+      <Image
+        src={`/mascot/${file}`}
+        width={size}
+        height={size}
+        alt={label ?? ""}
+        aria-hidden={label ? undefined : true}
+      />
+    );
+  }
   return (
     <svg
       width={size}
