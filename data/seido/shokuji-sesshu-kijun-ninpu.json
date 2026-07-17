@@ -1,0 +1,561 @@
+{
+  "$schema": "../schema/seido-common.schema.json",
+  "id": "shokuji-sesshu-kijun-ninpu",
+  "name": "日本人の食事摂取基準（2025年版）妊婦・授乳婦",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "mhlw-dri2025-points",
+      "title": "日本人の食事摂取基準（2025年版）の策定ポイント（スライド集）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/10904750/001396865.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/newpage_49171.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "note": "策定検討会報告書の各表（推定エネルギー必要量・たんぱく質・鉄・葉酸・カルシウム・ビタミンC・目標BMI）をそのまま再掲したスライド集。★報告書本体の分割版PDF（001316471.pdf 等）はフォント埋め込みの都合でテキスト抽出すると文字化けし、機械照合できないため、同一の数値を掲載する本スライド集を照合用の出典とした。"
+    },
+    {
+      "id": "mhlw-dri2025-report",
+      "title": "「「日本人の食事摂取基準（2025年版）」策定検討会」の報告書を取りまとめました（令和6年10月11日）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/stf/newpage_44141.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "note": "報告書公表の報道発表。健康増進法第16条の2に基づき5年毎に改定する旨の根拠。"
+    },
+    {
+      "id": "mhlw-dri2025-kenshu",
+      "title": "日本人の食事摂取基準（2025年版）研修会について",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/stf/newpage_48567.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "note": "「令和７年度から使用する「日本人の食事摂取基準（2025年版）」」という一次情報上の明記。現行版が2025年版であることの根拠。"
+    },
+    {
+      "id": "mhlw-dri2025-list",
+      "title": "「日本人の食事摂取基準（2025年版）」策定検討会報告書",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/stf/newpage_44138.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "note": "報告書全文・分割版PDFの掲載ページ。「対象特性／妊婦・授乳婦」分割版（/content/10904750/001316471.pdf）および正誤表（令和7年3月25日）の入口。"
+    },
+    {
+      "id": "cfa-shokuseikatsu-shishin",
+      "title": "妊娠前からはじめる妊産婦のための食生活指針 解説要領（令和3年3月）",
+      "publisher": "こども家庭庁（策定時：厚生労働省）",
+      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/a29a9bee-4d29-482d-a63b-5f9cb8ea0aa2/aaaf2a82/20230401_policies_boshihoken_shokuji_02.pdf",
+      "landingUrl": "https://www.cfa.go.jp/policies/boshihoken/shokuji",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "note": "妊娠中の体重増加指導の目安（表8）の一次情報。食事摂取基準の付加量を実生活に落とす際の併用資料。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "「日本人の食事摂取基準（2025年版）」が令和7年度から使用されている現行版。2020年版は令和2年度〜令和6年度で使用終了済みであり、2026年度（令和8年度）に参照すべきは2025年版である。",
+      "status": "in-force",
+      "effectiveFrom": "2025-04-01",
+      "sourceId": "mhlw-dri2025-kenshu",
+      "impact": "記事・ツールで2020年版の数値（例：葉酸の妊婦付加量やカルシウムの扱い）を引用してはならない。参照は必ず2025年版の表による。"
+    },
+    {
+      "summary": "食事摂取基準は健康増進法第16条の2に基づき5年毎に改定される。2025年版の次の改定（2030年版相当）の策定検討会は2026-07-17時点で未設置・未公表。",
+      "status": "under-review",
+      "sourceId": "mhlw-dri2025-report",
+      "impact": "2025年版の使用終了時期（令和11年度末と推定される）は一次情報上の明示を確認できていないため、data.edition.usagePeriodEnd は null（未確認）としている。次期検討会の設置が公表された時点で本データを更新すること。"
+    },
+    {
+      "summary": "報告書には正誤表（令和7年3月25日）が発出されており、掲載PDFは正誤表反映済み。",
+      "status": "in-force",
+      "effectiveFrom": "2025-03-25",
+      "sourceId": "mhlw-dri2025-list",
+      "impact": "数値を再取得する際は必ず mhlw-dri2025-list 掲載の最新PDFを使うこと。キャッシュされた旧PDFを使わない。"
+    }
+  ],
+  "disclaimer": "本データは厚生労働省「日本人の食事摂取基準（2025年版）」策定検討会報告書に基づく、健康な妊婦・授乳婦を対象とした集団向けの摂取量の基準（目安）です。個々の妊婦・授乳婦に必要な量は、妊娠前の体格・体重増加量・胎児の発育状況・合併症の有無等によって大きく異なります。付加量はあくまで参照値であり、実際の食事内容やサプリメントの利用については、必ずかかりつけの産婦人科医・管理栄養士にご相談ください。特にビタミンAやヨウ素等は過剰摂取による健康影響が知られており、自己判断でのサプリメント使用は避けてください。",
+  "data": {
+    "edition": {
+      "description": "現行版の識別。2020年版と取り違えないための最重要ノード。",
+      "currentEdition": {
+        "value": "日本人の食事摂取基準（2025年版）",
+        "label": "2026年度（令和8年度）に参照すべき現行版",
+        "sourceId": "mhlw-dri2025-kenshu",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["令和7年度から使用する「日本人の食事摂取基準（2025年版）」"] },
+        "amendmentNote": "令和7年度から使用。2026-07-17時点で次期版（2030年版相当）は未策定。",
+        "note": "厚労省ページに「令和７年度から使用する「日本人の食事摂取基準（2025年版）」」と明記されている。2020年版は令和6年度で使用終了。"
+      },
+      "publishedOn": {
+        "value": "2024-10-11",
+        "label": "策定検討会報告書の公表日",
+        "sourceId": "mhlw-dri2025-report",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["令和6年10月11日"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "legalBasis": {
+        "value": "健康増進法（平成14年法律第103号）第16条の2",
+        "label": "根拠法",
+        "sourceId": "mhlw-dri2025-report",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["健康増進法（平成14年法律第103号）第16条の２"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "revisionCycleYears": {
+        "value": 5,
+        "unit": "year",
+        "label": "改定周期",
+        "sourceId": "mhlw-dri2025-report",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["５年毎に改定"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "usagePeriodStart": {
+        "value": "令和7年度（2025年度）",
+        "label": "使用開始年度",
+        "sourceId": "mhlw-dri2025-kenshu",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["令和7年度から使用する"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "usagePeriodEnd": {
+        "value": null,
+        "label": "使用終了年度",
+        "sourceId": "mhlw-dri2025-report",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "値が null（未確認）のため照合対象外。" },
+        "amendmentNote": "次期改定の検討会は2026-07-17時点で未設置。",
+        "note": "未確認: 「令和11年度まで使用」と明示した一次情報を確認できなかった。探索経緯 — (1) 報告書ページ https://www.mhlw.go.jp/stf/newpage_44138.html、(2) 報道発表 https://www.mhlw.go.jp/stf/newpage_44141.html、(3) 研修会ページ https://www.mhlw.go.jp/stf/newpage_48567.html、(4) スライド集PDF 001396865.pdf、(5) 報告書「総論」分割版PDF 001316460.pdf、(6) 策定の方向性PDF 001148968.pdf を取得して「令和11」「使用期間」を全文検索したが該当なし。確認できたのは「５年毎に改定」と「令和7年度から使用する」のみ。5年毎の改定周期から令和11年度末までと推定されるが、推定値は書かない。"
+      }
+    },
+    "pregnancyPeriodDefinition": {
+      "description": "食事摂取基準における妊娠期の区分。日本産科婦人科学会の3区分（初期／中期／末期）に対応するが、食事摂取基準では「末期」を「後期」と呼ぶ。",
+      "early": {
+        "value": "妊娠初期（〜13週6日）",
+        "label": "初期",
+        "sourceId": "mhlw-dri2025-list",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "区分の定義は報告書「対象特性／妊婦・授乳婦」分割版PDF（/content/10904750/001316471.pdf）本文にあるが、当該PDFはテキスト抽出時に文字化けし機械照合できないため skip。数値ノード（付加量）側は mhlw-dri2025-points で照合済み。" },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "middle": {
+        "value": "妊娠中期（14週0日〜27週6日）",
+        "label": "中期",
+        "sourceId": "mhlw-dri2025-list",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "上記 early と同じ理由（出典PDFがテキスト抽出不可）。" },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "late": {
+        "value": "妊娠後期（28週0日〜）",
+        "label": "後期",
+        "sourceId": "mhlw-dri2025-list",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "上記 early と同じ理由（出典PDFがテキスト抽出不可）。" },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "日本産科婦人科学会の用語では「妊娠末期」。食事摂取基準では「後期」と表記する。"
+      }
+    },
+    "pregnancyAdditions": {
+      "description": "妊婦の付加量。非妊娠時の同年齢区分の値に、以下の量を上乗せする。",
+      "energy": {
+        "description": "推定エネルギー必要量の付加量（kcal/日）。妊婦個々の体格・体重増加量・胎児の発育状況の評価が必要。",
+        "early": {
+          "value": 50,
+          "unit": "kcal/day",
+          "label": "妊娠初期のエネルギー付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["初期+50中期+250後期+450"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "verify.expect は推定エネルギー必要量の表の妊婦（付加量）行を、空白除去後の連続文字列として照合している（初期/中期/後期を1回でまとめて検査）。"
+        },
+        "middle": {
+          "value": 250,
+          "unit": "kcal/day",
+          "label": "妊娠中期のエネルギー付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["初期+50中期+250後期+450"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "late": {
+          "value": 450,
+          "unit": "kcal/day",
+          "label": "妊娠後期のエネルギー付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["初期+50中期+250後期+450"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        }
+      },
+      "protein": {
+        "description": "たんぱく質の付加量（g/日）。推定平均必要量／推奨量の順。",
+        "earlyRecommended": {
+          "value": 0,
+          "unit": "g/day",
+          "label": "妊娠初期・たんぱく質の推奨量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["たんぱく質の食事摂取基準"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "初期の付加量は推定平均必要量・推奨量ともに +0。「+0」単独は照合語として弱いため、表題での存在確認に留めている。表本体は中期・後期ノードの expect で照合している。"
+        },
+        "middleEstimatedAverage": {
+          "value": 5,
+          "unit": "g/day",
+          "label": "妊娠中期・たんぱく質の推定平均必要量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["中期+5+5"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "middleRecommended": {
+          "value": 5,
+          "unit": "g/day",
+          "label": "妊娠中期・たんぱく質の推奨量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["中期+5+5"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "lateEstimatedAverage": {
+          "value": 20,
+          "unit": "g/day",
+          "label": "妊娠後期・たんぱく質の推定平均必要量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["後期+20+25"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "lateRecommended": {
+          "value": 25,
+          "unit": "g/day",
+          "label": "妊娠後期・たんぱく質の推奨量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["後期+20+25"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "妊婦の付加量は体カリウム増加量から体たんぱく質蓄積量を間接的に算定している。"
+        }
+      },
+      "iron": {
+        "description": "鉄の付加量（mg/日）。推定平均必要量／推奨量の順。妊婦の区分は「初期」と「中期・後期」の2区分（エネルギーの3区分と異なる）。",
+        "earlyEstimatedAverage": {
+          "value": 2.0,
+          "unit": "mg/day",
+          "label": "妊娠初期・鉄の推定平均必要量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["初期+2.0+2.5"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "earlyRecommended": {
+          "value": 2.5,
+          "unit": "mg/day",
+          "label": "妊娠初期・鉄の推奨量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["初期+2.0+2.5"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "middleLateEstimatedAverage": {
+          "value": 7.0,
+          "unit": "mg/day",
+          "label": "妊娠中期・後期・鉄の推定平均必要量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["中期・後期+7.0+8.5"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "middleLateRecommended": {
+          "value": 8.5,
+          "unit": "mg/day",
+          "label": "妊娠中期・後期・鉄の推奨量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["中期・後期+7.0+8.5"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★実装上の注意★ 鉄は妊娠中期以降に付加量が大きく跳ね上がる（初期+2.5 → 中期・後期+8.5、推奨量ベース）。非妊娠時（月経なし）の18〜29歳女性の推奨量6.0 mg/日に加算すると、中期・後期は14.5 mg/日相当となる。"
+        }
+      },
+      "folate": {
+        "description": "葉酸の付加量（µg/日）。プテロイルモノグルタミン酸（分子量441.4）相当量。妊婦の区分は「初期」と「中期・後期」の2区分。",
+        "earlyRecommended": {
+          "value": 0,
+          "unit": "µg/day",
+          "label": "妊娠初期・葉酸の推奨量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["葉酸の食事摂取基準"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★誤読注意★ 初期の食事からの付加量は +0 だが、これは「初期に葉酸が不要」という意味ではない。神経管閉鎖障害のリスク低減のためのサプリメント等（狭義の葉酸）400 µg/日の推奨は、妊娠初期の妊婦にも適用される（supplementRecommendation を参照）。"
+        },
+        "middleLateEstimatedAverage": {
+          "value": 200,
+          "unit": "µg/day",
+          "label": "妊娠中期・後期・葉酸の推定平均必要量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["中期・後期+200+240"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "middleLateRecommended": {
+          "value": 240,
+          "unit": "µg/day",
+          "label": "妊娠中期・後期・葉酸の推奨量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["中期・後期+200+240"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        }
+      },
+      "calcium": {
+        "description": "カルシウムの付加量（mg/日）。",
+        "additionalAmount": {
+          "value": 0,
+          "unit": "mg/day",
+          "label": "妊婦・カルシウムの付加量（推定平均必要量・推奨量とも）",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["カルシウムの食事摂取基準（mg/日）", "妊婦（付加量）+0+0"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "★記事で誤解されやすい点★ カルシウムに妊婦の付加量は設定されていない（+0）。妊娠中は腸管からのカルシウム吸収率が上がるため。ただし非妊娠時の推奨量（18〜29歳女性650 mg/日、30〜64歳女性650 mg/日）自体を満たしていない人が多いことに留意する。"
+        }
+      },
+      "vitaminC": {
+        "description": "ビタミンC（L-アスコルビン酸、分子量176.1）の付加量（mg/日）。",
+        "estimatedAverage": {
+          "value": 10,
+          "unit": "mg/day",
+          "label": "妊婦・ビタミンCの推定平均必要量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["妊婦（付加量）+10+10"] },
+          "amendmentNote": "なし（2026-07-17時点）"
+        },
+        "recommended": {
+          "value": 10,
+          "unit": "mg/day",
+          "label": "妊婦・ビタミンCの推奨量の付加量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["妊婦（付加量）+10+10"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "新生児の壊血病を予防できる量を参考に算定されている。妊婦の期別区分はなく通期で同一。"
+        }
+      },
+      "salt": {
+        "description": "食塩相当量。妊婦には付加量を設定せず、非妊娠時女性と同じ目標量が適用される。",
+        "targetAmount": {
+          "value": "6.5g未満/日",
+          "label": "妊婦の食塩相当量の目標量",
+          "sourceId": "mhlw-dri2025-points",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["妊婦", "600(1.5)", "(6.5未満）"] },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "ナトリウムの妊婦・授乳婦の付加量は「通常の食事で十分補えるため」非設定。目標量は成人女性と同じ 6.5 g/日未満。"
+        }
+      }
+    },
+    "lactationAdditions": {
+      "description": "授乳婦の付加量。非授乳時の同年齢区分の値に、以下の量を上乗せする。授乳婦には妊婦のような期別区分はない。",
+      "energy": {
+        "value": 350,
+        "unit": "kcal/day",
+        "label": "授乳婦のエネルギー付加量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦（付加量）+350"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "proteinEstimatedAverage": {
+        "value": 15,
+        "unit": "g/day",
+        "label": "授乳婦・たんぱく質の推定平均必要量の付加量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦（付加量）+15+20"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "proteinRecommended": {
+        "value": 20,
+        "unit": "g/day",
+        "label": "授乳婦・たんぱく質の推奨量の付加量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦（付加量）+15+20"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "母乳中のたんぱく質量と、食事性たんぱく質から母乳たんぱく質への変換効率を用いて算定。"
+      },
+      "ironEstimatedAverage": {
+        "value": 1.5,
+        "unit": "mg/day",
+        "label": "授乳婦・鉄の推定平均必要量の付加量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦（付加量）+1.5+2.0"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "ironRecommended": {
+        "value": 2.0,
+        "unit": "mg/day",
+        "label": "授乳婦・鉄の推奨量の付加量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦（付加量）+1.5+2.0"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "folateEstimatedAverage": {
+        "value": 80,
+        "unit": "µg/day",
+        "label": "授乳婦・葉酸の推定平均必要量の付加量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦（付加量）+80+100"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "folateRecommended": {
+        "value": 100,
+        "unit": "µg/day",
+        "label": "授乳婦・葉酸の推奨量の付加量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦（付加量）+80+100"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "母乳中の葉酸濃度に基準哺乳量を乗じ、相対生体利用率を考慮して算定。"
+      },
+      "calcium": {
+        "value": 0,
+        "unit": "mg/day",
+        "label": "授乳婦・カルシウムの付加量（推定平均必要量・推奨量とも）",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["カルシウムの食事摂取基準（mg/日）", "授乳婦（付加量）+0+0"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "授乳婦にもカルシウムの付加量は設定されていない（+0）。"
+      },
+      "vitaminCEstimatedAverage": {
+        "value": 40,
+        "unit": "mg/day",
+        "label": "授乳婦・ビタミンCの推定平均必要量の付加量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦（付加量）+40+45"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "vitaminCRecommended": {
+        "value": 45,
+        "unit": "mg/day",
+        "label": "授乳婦・ビタミンCの推奨量の付加量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦（付加量）+40+45"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "salt": {
+        "value": "6.5g未満/日",
+        "label": "授乳婦の食塩相当量の目標量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["授乳婦", "(6.5未満）"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "ナトリウムの授乳婦の付加量は非設定。"
+      }
+    },
+    "folicAcidSupplement": {
+      "description": "神経管閉鎖障害の発症予防を目的とした、通常の食品以外（サプリメント・強化食品）からの葉酸（狭義の葉酸＝プテロイルモノグルタミン酸）の摂取推奨。食事からの付加量とは別枠の推奨である点が最重要。",
+      "targetPersons": {
+        "value": "妊娠を計画している女性、妊娠の可能性がある女性及び妊娠初期の妊婦",
+        "label": "推奨の対象者",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["妊娠を計画している女性、妊娠の可能性がある女性及び妊娠初期の妊婦"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★実装上の注意★ 対象は「妊娠中の女性」ではなく「妊娠を計画している段階・妊娠の可能性がある段階」を含む。神経管は妊娠初期に閉鎖するため、妊娠判明後の開始では遅い場合がある。"
+      },
+      "dailyAmount": {
+        "value": 400,
+        "unit": "µg/day",
+        "label": "サプリメント等からの葉酸（狭義の葉酸）の推奨摂取量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["400µg/日摂取することが望まれる", "神経管閉鎖障害"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "報告書の葉酸の表の脚注3に「胎児の神経管閉鎖障害のリスク低減のために、通常の食品以外の食品に含まれる葉酸を400 µg/日摂取することが望まれる」と明記。1か月あたりに換算すると約12,000 µgだが、一次情報の記載は日あたりであり、月あたりの表記は用いていない。"
+      },
+      "purpose": {
+        "value": "神経管閉鎖障害のリスクの低減",
+        "label": "推奨の目的",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["神経管閉鎖障害のリスクの低減のために、付加的に400"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "upperLimitScope": {
+        "value": "耐容上限量は「通常の食品以外の食品に含まれる葉酸（狭義の葉酸）」にのみ適用される（食事性葉酸には耐容上限量を設定しない）",
+        "label": "耐容上限量の適用範囲",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["通常の食品以外の食品に含まれる葉酸に適用する"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "18〜29歳女性の耐容上限量は900 µg/日、30〜64歳女性は1,000 µg/日（いずれも狭義の葉酸）。食品由来の葉酸で過剰症になった報告は存在しない。"
+      },
+      "upperLimitFemale18to29": {
+        "value": 900,
+        "unit": "µg/day",
+        "label": "18〜29歳女性・葉酸（狭義）の耐容上限量",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["葉酸の食事摂取基準（µg/日）"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "表題での存在確認に留めている。「900」単独は他栄養素の表にも多数出現し照合語として機能しないため。妊婦・授乳婦の耐容上限量は表上「－」（非設定）。"
+      }
+    },
+    "notesForImplementation": {
+      "description": "記事・ツール実装時の注意。",
+      "additionIsOnTopOfBase": {
+        "value": "付加量は非妊娠時・非授乳時の同年齢区分の値に上乗せする量であり、付加量そのものが摂取目標ではない",
+        "label": "付加量の意味",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["妊婦（付加量）"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "energyEvaluationMethod": {
+        "value": "エネルギーの過不足はBMI又は体重の変化で評価する（推定エネルギー必要量は用いない）",
+        "label": "エネルギー評価の方法",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["エネルギーの過不足は体重の変化又はＢＭＩを用いて評価すること"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "★ツール設計上の最重要論点★ 「妊婦の必要エネルギーを計算して表示する」だけのツールは食事摂取基準の活用方法と整合しない。体重増加の推移とあわせて示すこと。妊娠中の体重増加指導の目安は data/tables/tekisei-taijuu-kijun.json を参照。"
+      },
+      "individualEvaluationRequired": {
+        "value": "妊婦個々の体格や妊娠中の体重増加量及び胎児の発育状況の評価を行うことが必要である",
+        "label": "個別評価の必要性（推定エネルギー必要量の表の脚注3）",
+        "sourceId": "mhlw-dri2025-points",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["妊婦個々の体格や妊娠中の体重増加量及び胎児の発育状況の評価を行うことが必要である"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "weightGainGuidance": {
+        "value": "妊娠中の体重増加指導の目安は、妊娠前の体格区分（BMI）別に定められている（低体重12〜15kg／普通体重10〜13kg／肥満1度7〜10kg／肥満2度以上は個別対応）",
+        "label": "妊娠中の体重増加指導の目安（参照）",
+        "sourceId": "cfa-shokuseikatsu-shishin",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["妊娠中の体重増加指導の目安", "12～15", "10～13"] },
+        "amendmentNote": "令和3年3月改定の「妊娠前からはじめる妊産婦のための食生活指針」で提示された目安。2026-07-17時点で変更なし。",
+        "note": "数値の詳細（区分ごとのBMI境界・脚注）は data/tables/tekisei-taijuu-kijun.json に持つ。本ノードは食事摂取基準の付加量と体重増加指導が一体で運用されることを示すための参照ノード。"
+      }
+    }
+  }
+}
