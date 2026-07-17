@@ -4,7 +4,7 @@
   "category": "お金",
   "type": "tool-narisou",
   "title_draft": "パートのシフトを増やすといくら手取りが減る？年収の壁の分岐点",
-  "tool_ref": "part-shift-shunyuu-keisan",
+  "tool_ref": "fuyo-kabe",
   "related_tool_list_no": 57,
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
   "priority": "A",
@@ -15,6 +15,6 @@
       "path": "data/seido/part-shift-shunyuu-kabe.json"
     }
   ],
-  "status": "queued",
-  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"part-shift-shunyuu-kabe.json#data.<パス>.value\"）。"
+  "status": "gated_pass",
+  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"part-shift-shunyuu-kabe.json#data.<パス>.value\"）。追記（2026-07-17）: 当初の tool_ref \"part-shift-shunyuu-keisan\" は app/lib/tools/registry.json に存在しないツールであるため使用不可と判明。同レジストリに live で存在し、本記事のテーマ（シフト増加時の年収の壁の分岐点）と直接対応する \"fuyo-kabe\"（扶養の壁シミュレーター2026）に差し替えて執筆・検収した。"
 }
