@@ -40,6 +40,8 @@ import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
 import { RecipeNinzuuKansan } from "@/components/tools/impl/RecipeNinzuuKansan";
 import { HoikuenOmukaeGyakusan } from "@/components/tools/impl/HoikuenOmukaeGyakusan";
 import { HOIKUEN_OMUKAE_DISCLAIMER } from "@/components/tools/impl/HoikuenOmukaeGyakusan.calc";
+import { RenjiWattKansan } from "@/components/tools/impl/RenjiWattKansan";
+import { RENJI_KANZAN_SOURCE } from "@/components/tools/impl/RenjiWattKansan.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1150,6 +1152,35 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           このツールは制度・統計データに一切依存せず、入力された時刻の加減算のみを行います。日をまたぐ計算（夜勤等）は対象外で、退勤限界時刻が0:00より前になる場合や、実労働可能時間が負になる場合はエラーとして表示します。
         </p>
         <p>{HOIKUEN_OMUKAE_DISCLAIMER}</p>
+      </>
+    ),
+  },
+  "renji-watt-kansan": {
+    ui: <RenjiWattKansan />,
+    formula: (
+      <>
+        <p>
+          <strong>基本式</strong>：電子レンジは、電力（ワット数）と加熱時間の積（＝投入するエネルギーの量）がほぼ一定になるという考え方に基づき、
+          <code>変更後の加熱時間 = 元の加熱時間 × 元のワット数 ÷ 変更後のワット数</code>
+          で目安の時間を計算します。たとえば500Wで120秒（2分）加熱するレシピを600Wで作る場合、120×500÷600＝100秒（1分40秒）が目安です。
+        </p>
+        <p>
+          <strong>出典と、出典の限界（正直な開示）</strong>
+          ：この基本式自体は特定の官公庁が公式に算出・公表したものではなく、電力とエネルギーに関する一般的な物理原理に基づく目安です。
+          換算表の実例値は{RENJI_KANZAN_SOURCE.org}（{RENJI_KANZAN_SOURCE.sourceUrl}）のPDF「レンジ出力換算表」を参照していますが、
+          同PDF内には出典として宝島社のムック本「デリッシュキッチン 驚きの電子レンジおかず」が明記されており、
+          上尾市自身が独自に算出・保証した一次情報ではなく市販書籍からの転載です。
+          消費者庁・国民生活センター・厚生労働省・農林水産省を横断的に調査しましたが、これらの府省庁・独立行政法人のサイト上に
+          「500W/600Wの換算表」そのものを掲載した一次情報ページは見つかりませんでした。
+          ただし同PDFの数値は基本式で算出した理論値と10秒単位でおおむね一致することを確認できたため、目安値として採用しています
+          （最終確認日: {RENJI_KANZAN_SOURCE.lastVerified}）。
+        </p>
+        <p>
+          <strong>換算はあくまで目安です。</strong>
+          機種や食品の量・形、庫内構造（フラット式／ターンテーブル式）によって実際に必要な時間は変わります。
+          加熱不足は食中毒のリスクに、加熱しすぎは発火や容器破損のリスクにつながるため、
+          初回は換算値より短めに設定し、様子を見ながら少しずつ追加で加熱することをおすすめします。
+        </p>
       </>
     ),
   },
