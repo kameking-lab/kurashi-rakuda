@@ -1214,5 +1214,39 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T27",
+    "slug": "part-shift-shunyuu-keisan",
+    "category": "money",
+    "title": "パートシフト収入計算（壁警告付き）",
+    "description": "時給・週の勤務日数・1日の勤務時間（またはシフト表からの月収）を入れると、年収見込みを換算し、扶養の壁シミュレーターの判定ロジックでどの壁にどれくらいで届くかを表示します。",
+    "solves": [
+      "シフトの時給・時間から今のペースの年収見込みが分からない",
+      "通勤手当を含めるかどうかで106万円と130万円の壁の判定が変わることを知らなかった",
+      "月々どれくらいまでなら扶養に収まるか目安が分からない",
+      "シフトを増やしたら壁を超えてしまうかその場で確認したい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "日本年金機構「健康保険の被扶養者になるための条件」",
+        "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html"
+      },
+      {
+        "label": "日本年金機構「短時間労働者に対する健康保険・厚生年金保険の適用拡大」",
+        "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/tanjikan.html"
+      },
+      {
+        "label": "国税庁「令和8年度税制改正による所得税の基礎控除の引上げ等について」",
+        "url": "https://www.nta.go.jp/users/gensen/2026kiso/index.htm"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/part-shift-shunyuu-kabe.json・data/seido/fuyou-kabe.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/part-shift-shunyuu-kabe.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
