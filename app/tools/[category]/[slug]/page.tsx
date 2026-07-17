@@ -42,6 +42,8 @@ import { HoikuenOmukaeGyakusan } from "@/components/tools/impl/HoikuenOmukaeGyak
 import { HOIKUEN_OMUKAE_DISCLAIMER } from "@/components/tools/impl/HoikuenOmukaeGyakusan.calc";
 import { RenjiWattKansan } from "@/components/tools/impl/RenjiWattKansan";
 import { RENJI_KANZAN_SOURCE } from "@/components/tools/impl/RenjiWattKansan.calc";
+import { NamonakiKajiChecker } from "@/components/tools/impl/NamonakiKajiChecker";
+import { REFERENCE_STAT as NAMONAKI_KAJI_REFERENCE_STAT } from "@/components/tools/impl/NamonakiKajiChecker.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1053,6 +1055,25 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           案内しています。
         </p>
         <SeidoNotice datasets={[kaigoNinteiDataset, kaigoHokenDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "namonaki-kaji-checker": {
+    ui: <NamonakiKajiChecker />,
+    formula: (
+      <>
+        <p>
+          計算式はありません。あらかじめ用意した「名もなき家事」の項目リスト（家事全般・子育て・介護・その他の4カテゴリ、合計30項目）について、項目ごとに「自分がやっている／パートナーがやっている／ふたりでやっている／やっていない・対象外」のいずれかを選んでいただき、その回答をその場で数えているだけです。項目リストは自前で作成したもので、制度・自治体データには依存していません。
+        </p>
+        <p>
+          画面上部の「自分◯% ・ パートナー◯%」は、「自分」と「パートナー」の回答だけを比べた比率です（「ふたり」「やっていない・対象外」は分母に含めません）。内訳の割合（%）はすべて、回答済みの項目数を分母にして計算しています。未回答の項目が多くても、その分だけ割合が薄まって見えることはありません。
+        </p>
+        <p>
+          参考情報として、{NAMONAKI_KAJI_REFERENCE_STAT.sourceOrg}の{NAMONAKI_KAJI_REFERENCE_STAT.chousaMeisho}のデータ（10歳以上人口全体で1日あたりの家事関連時間は男性{NAMONAKI_KAJI_REFERENCE_STAT.zenkokuDanseiFun}分・女性{NAMONAKI_KAJI_REFERENCE_STAT.zenkokuJoseiFun}分〈2021年〉）を画面内に併記しています。これは社会全体の傾向を示す公的統計の紹介であり、本ツールのチェック結果（個々の家庭の回答）とは独立した情報です。
+        </p>
+        <p>
+          このツールは診断ではありません。数字の偏りが「どちらが悪い」という判定にはならず、あくまで名前のついていない家事に気づくためのきっかけとして作っています。送信・保存は一切行わないため、チェックした内容はページを離れると残りません。
+        </p>
       </>
     ),
   },
