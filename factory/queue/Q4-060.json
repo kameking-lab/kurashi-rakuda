@@ -11,9 +11,10 @@
   "seido_data": [
     {
       "file": "kaigo-shisetsu-hiyou-souba.json",
-      "status": "stub"
+      "status": "ready",
+      "path": "data/seido/kaigo-shisetsu-hiyou-souba.json"
     }
   ],
   "status": "queued",
-  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"kaigo-shisetsu-hiyou-souba.json#data.<パス>.value\"）。"
 }
