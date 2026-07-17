@@ -16,5 +16,5 @@
     }
   ],
   "status": "gated_pass",
-  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"shugaku-enjo-seido.json#data.<パス>.value\"）。★執筆時の判定★ data/seido/shugaku-enjo-seido.json のsources[]は6件中4件がmext.go.jpでfactory/config/source-allowlist.json未収載（スコープ外のため同ファイルは変更せず）。残る2件（学校教育法・就学援助法、laws.e-gov.go.jp）はe-gov.go.jpの末尾一致で許可リスト収載済みのため、記事frontmatterのsourcesはこの2件（根拠法）のみに絞ってゲート通過。facts[].seido_refは引き続きmext由来のdata値（令和8年度新入学児童生徒学用品費等の単価64,300円・81,000円等）を参照（データ層とsourcesドメイン許可は別関心事、Q4-018と同一パターン）。"
+  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"shugaku-enjo-seido.json#data.<パス>.value\"）。★2026-07-17 出典差し替え★ mext.go.jpが出典許可リストに追加されたため、facts[]の数値（要保護・準要保護者数、令和8年度単価64,300円・81,000円等）が実際に由来するmext.go.jp直接出典2件（就学援助ポータル／義務教育段階の就学援助概要PDF）をsourcesに追加。従来のe-Gov法令（学校教育法・就学援助法）は市町村の実施義務・国庫補助の法的根拠として引き続き正確なため残置（削除ではなく追加による正確性向上）。check-fidelity.mjs 再PASS確認済み。"
 }
