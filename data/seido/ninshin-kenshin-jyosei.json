@@ -1,0 +1,296 @@
+{
+  "$schema": "../schema/seido-common.schema.json",
+  "id": "ninshin-kenshin-jyosei",
+  "name": "妊婦健康診査の公費助成",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "egov-boshihoken-ho",
+      "title": "母子保健法（昭和四十年法律第百四十一号）",
+      "publisher": "e-Gov法令検索（デジタル庁）",
+      "url": "https://laws.e-gov.go.jp/law/340AC0000000141",
+      "checkedAt": "2026-07-17",
+      "tier": "law",
+      "contentType": "html",
+      "note": "根拠法。第13条第1項が市町村による妊産婦への健康診査、第2項が内閣総理大臣の定める『望ましい基準』の根拠。"
+    },
+    {
+      "id": "cfa-nimpukenshin",
+      "title": "妊婦健診に関する取組み",
+      "publisher": "こども家庭庁",
+      "url": "https://www.cfa.go.jp/policies/boshihoken/nimpukenshin",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "標準的な健診回数（14回程度）・受診間隔・公費助成が自治体単位である旨の一次情報。"
+    },
+    {
+      "id": "cfa-kenshin-chosa",
+      "title": "妊婦健康診査の公費負担の状況に係る調査結果について（令和6年4月1日現在）",
+      "publisher": "こども家庭庁成育局母子保健課",
+      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/2cf467a4-025c-4b69-a1a6-8a69626fd658/70482357/20250415press-2cf467a4-025c-4b69-a1a6-8a69626fd658-01.pdf",
+      "landingUrl": "https://www.cfa.go.jp/press/2cf467a4-025c-4b69-a1a6-8a69626fd658",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "令和7年4月15日公表。全1,741市区町村の悉皆調査。公費負担額の全国平均・助成回数・居住地以外での受診時の取扱いの唯一の一次情報。2026-07-17時点でこれが最新版（令和7年4月1日現在版は未公表）。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "公費負担額の全国平均（109,730円）は「令和6年4月1日現在」の調査値であり、令和7年4月15日公表のものが2026-07-17時点で最新。令和7年4月1日現在を基準とする次回調査結果は本データ作成時点で未公表。",
+      "status": "under-review",
+      "sourceId": "cfa-kenshin-chosa",
+      "impact": "averagePublicFundingAmount は2026年度の値ではなく令和6年4月時点の全国平均。記事では『全国平均約11万円（令和6年4月時点）』のように必ず時点を明示すること。次回調査公表（例年4月中旬）後に更新する。"
+    },
+    {
+      "summary": "妊婦健診の公費助成の内容（回数・金額・検査項目・受診券の方式）は市区町村が定めるため全国一律ではない。母子保健法第13条第2項に基づく『妊婦に対する健康診査についての望ましい基準』（平成27年3月31日厚生労働省告示第226号）は国が示す基準であって、自治体を拘束する一律基準ではない。",
+      "status": "in-force",
+      "sourceId": "cfa-kenshin-chosa",
+      "impact": "★実装上の最重要論点★ 全国一律の助成額を提示してはならない。ツール・記事では必ず『お住まいの市区町村で確認』への導線を出すこと。"
+    }
+  ],
+  "disclaimer": "妊婦健康診査の公費助成は市区町村が実施主体であり、助成回数・助成金額・対象となる検査項目・受診券の交付方式は自治体ごとに異なります。本データに記載する公費負担額はこども家庭庁の全国調査による平均値（令和6年4月1日現在）であり、お住まいの自治体で実際に受けられる助成額を示すものではありません。里帰り出産等で住民票のある市区町村以外の医療機関を受診する場合の取扱いも自治体により異なります。必ずお住まいの市区町村の母子保健担当窓口でご確認ください。",
+  "data": {
+    "legalBasis": {
+      "description": "妊婦健康診査は母子保健法第13条第1項に基づき市町村が実施（又は受診勧奨）するもの。第12条の乳幼児健診と異なり、妊産婦健診は『必要に応じ』行うものとされている。",
+      "statute": {
+        "value": "母子保健法第13条第1項（市町村は、必要に応じ、妊産婦又は乳児若しくは幼児に対して、健康診査を行い、又は健康診査を受けることを勧奨しなければならない）",
+        "label": "根拠条文",
+        "sourceId": "egov-boshihoken-ho",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["妊産婦又は乳児若しくは幼児に対して、健康診査を行い"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "条文上は「必要に応じ」であり、健診回数・公費助成額の法定義務はない。これが自治体差が生じる法的理由。"
+      },
+      "desirableStandardBasis": {
+        "value": "母子保健法第13条第2項（内閣総理大臣は、前項の規定による妊婦に対する健康診査についての望ましい基準を定めるものとする）",
+        "label": "『望ましい基準』の根拠条文",
+        "sourceId": "egov-boshihoken-ho",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["望ましい基準"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "こども家庭庁設置に伴い、基準を定める主体は厚生労働大臣から内閣総理大臣に移管されている（告示自体は厚生労働省告示第226号のまま存続）。"
+      },
+      "desirableStandardNotice": {
+        "value": "妊婦に対する健康診査についての望ましい基準（平成27年3月31日厚生労働省告示第226号）",
+        "label": "望ましい基準の告示",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["妊婦に対する健康診査についての望ましい基準", "厚生労働省告示第226"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "この告示が健診の検査項目を定める。自治体を法的に拘束するものではなく『望ましい基準』。"
+      }
+    },
+    "schedule": {
+      "standardVisitCount": {
+        "value": 14,
+        "unit": "count",
+        "label": "標準的な妊婦健診の回数（出産までの目安）",
+        "sourceId": "cfa-nimpukenshin",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["14回程度"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "「妊婦1人につき出産までに14回程度」。あくまで標準的な目安であり、妊娠週数や母体の状態により増減する。"
+      },
+      "intervalDescription": {
+        "value": "妊娠初期から妊娠23週まで4週間に1回、妊娠24週から妊娠35週まで2週間に1回、妊娠36週から出産まで1週間に1回",
+        "label": "標準的な受診間隔",
+        "sourceId": "cfa-nimpukenshin",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["23週", "24週", "35週", "36週"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "この間隔で数えると合計14回程度になる。standardVisitCount の内訳。"
+      }
+    },
+    "publicFunding": {
+      "description": "公費助成の実施主体は市区町村。母子保健法上の法定義務ではないが、2026-07-17時点で全1,741市区町村が14回以上を助成している（令和6年4月1日現在の悉皆調査）。",
+      "isMunicipalDiscretion": {
+        "value": true,
+        "label": "助成内容が市区町村ごとに異なるか",
+        "sourceId": "cfa-nimpukenshin",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["お住まいの地域の自治体から公費助成"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "true = 全国一律ではない。「妊婦健診については、お住まいの地域の自治体から公費助成が受けられます」との記載に基づく。全国一律の助成額を提示してはならない根拠。"
+      },
+      "municipalitiesFunding14OrMore": {
+        "value": 1741,
+        "unit": "count",
+        "label": "14回以上を助成している市区町村数（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["14回以上助成"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。令和5年4月時点も全1,741市区町村で14回以上助成であり、2年連続で全自治体が達成。",
+        "note": "全市区町村（1,741市区町村）＝100%。「14回程度」の標準回数は事実上全国で公費助成されているが、助成『額』は自治体差が大きい点に注意。"
+      },
+      "totalMunicipalities": {
+        "value": 1741,
+        "unit": "count",
+        "label": "調査対象の市区町村数（悉皆）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["1,741"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "averagePublicFundingAmount": {
+        "value": 109730,
+        "unit": "JPY",
+        "label": "妊婦1人当たりの公費負担額の全国平均（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["109,730円"] },
+        "amendmentNote": "★時点注意★ 令和6年4月1日現在の値（令和7年4月15日公表）。令和7年4月1日現在版は2026-07-17時点で未公表。次回公表後に要更新。",
+        "note": "公費負担額が明示されていない93市区町村を除く1,648市区町村について集計した平均。個々の自治体の助成額はこれを上回ることも下回ることもある。記事では必ず『令和6年4月時点の全国平均』と時点を明示すること。"
+      },
+      "previousAveragePublicFundingAmount": {
+        "value": 108481,
+        "unit": "JPY",
+        "label": "妊婦1人当たりの公費負担額の全国平均（令和5年4月時点・前回調査）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["108,481円"] },
+        "amendmentNote": "前回調査値。参考値として保持。",
+        "note": "令和5年4月→令和6年4月で 108,481円→109,730円（+1,249円）。増加傾向にあることを示す参考値。"
+      },
+      "averageSurveyBaseDate": {
+        "value": "2024-04-01",
+        "label": "公費負担額全国平均の調査基準日（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["令和6年4月1日現在"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "averagePublicFundingAmount の基準日。公表日は令和7年4月15日。"
+      },
+      "excludedMunicipalitiesFromAverage": {
+        "value": 93,
+        "unit": "count",
+        "label": "公費負担額が明示されておらず平均の集計から除外された市区町村数",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["公費負担額が明示されていない93市区町村を除く"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "全国平均は1,741−93＝1,648市区町村で集計。平均値の限界を示す注記として記事に使える。"
+      }
+    },
+    "voucherMethod": {
+      "description": "自治体が交付する受診券の方式。検査項目まで指定する『受診券方式』と、補助額のみ記載の『補助券方式』があり、後者は検査項目が医療機関の判断に委ねられる。",
+      "jushinkenMethodMunicipalities": {
+        "value": 1607,
+        "unit": "count",
+        "label": "受診券方式の市区町村数（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["受診券方式"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。",
+        "note": "1,741市区町村中1,607（92.3%）。毎回の検査項目が示されている券を妊婦が医療機関に持参する方式。"
+      },
+      "hojokenMethodMunicipalities": {
+        "value": 134,
+        "unit": "count",
+        "label": "補助券方式等の市区町村数（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["補助券方式"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。",
+        "note": "1,741市区町村中134（7.7%）。補助額が記載された券で、毎回の検査項目は医療機関の判断による。自己負担が生じやすい方式。"
+      },
+      "meetingDesirableStandardMunicipalities": {
+        "value": 1477,
+        "unit": "count",
+        "label": "望ましい基準の検査項目を全て実施する市区町村数（受診券方式1,607のうち）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["1,477"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。令和5年4月時点は1,605市区町村中1,462市区町村（91.1%）。",
+        "note": "受診券方式1,607市区町村の91.9%。裏を返せば約8%の自治体は望ましい基準の検査項目を全ては公費でカバーしていない。"
+      }
+    },
+    "outsideResidenceMunicipality": {
+      "description": "里帰り出産等で住民票のある市区町村以外の病院・診療所・助産所で妊婦健診を受診した場合の取扱い。令和6年4月1日現在、全1,741市区町村（100.0%）が何らかの形で公費負担を行っている。複数の方法を併用する自治体があるため、下記の内訳は合計が100%を超える。",
+      "anyPublicFundingAvailable": {
+        "value": true,
+        "label": "居住地以外での受診に公費負担があるか（全市区町村で有）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["妊婦の居住地以外の病院、診療所、助産所で妊婦健診を受診した場合"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。",
+        "note": "true = 令和6年4月1日現在、公費負担なしは0市区町村（0.0%）。ただし『負担がある』だけで、方法・上限額・手続は自治体ごとに異なる。"
+      },
+      "reimbursementMunicipalities": {
+        "value": 970,
+        "unit": "count",
+        "label": "償還払いで対応する市区町村数（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["償還払いで対応"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。",
+        "note": "1,741市区町村中970（55.7%）。★記事の要点★ 里帰り先ではいったん全額自己負担し、後から申請して払い戻しを受ける方式が過半数。領収書の保管と申請期限（自治体が設定）に注意が必要。"
+      },
+      "contractedFacilityMunicipalities": {
+        "value": 342,
+        "unit": "count",
+        "label": "受診した施設と契約して対応する市区町村数（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["受診した施設と契約"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。",
+        "note": "1,741市区町村中342（19.6%）。この方式なら窓口で受診券が使える。"
+      },
+      "bothMethodsMunicipalities": {
+        "value": 1043,
+        "unit": "count",
+        "label": "契約と償還払いを併用して対応する市区町村数（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["受診した施設と契約及び償還払いを併用して対応"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。",
+        "note": "1,741市区町村中1,043（59.9%）。①〜④は併用があるため合計は1,741を超える。"
+      },
+      "otherMethodMunicipalities": {
+        "value": 339,
+        "unit": "count",
+        "label": "その他の方法で対応する市区町村数（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["その他の方法で対応"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。",
+        "note": "1,741市区町村中339（19.5%）。①〜③の方法を併用している場合を含む。"
+      }
+    },
+    "midwiferyHome": {
+      "fundingAvailableMunicipalities": {
+        "value": 1687,
+        "unit": "count",
+        "label": "助産所での妊婦健診に公費負担がある市区町村数（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["助産所で妊婦健診を受診した場合の公費負担"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。",
+        "note": "1,741市区町村中1,687（96.9%）。助産所での実績が無い市区町村を含む。"
+      },
+      "fundingUnavailableMunicipalities": {
+        "value": 54,
+        "unit": "count",
+        "label": "助産所での妊婦健診に公費負担がない市区町村数（令和6年4月1日現在）",
+        "sourceId": "cfa-kenshin-chosa",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["助産所"] },
+        "amendmentNote": "令和6年4月1日現在の調査値。",
+        "note": "1,741市区町村中54（3.1%）。助産所での出産を検討する場合は事前確認が必要という注意喚起の根拠。"
+      }
+    },
+    "contact": {
+      "authority": {
+        "value": "住民票のある市区町村の母子保健担当窓口（こども家庭センター等）",
+        "label": "問い合わせ先",
+        "sourceId": "cfa-nimpukenshin",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["お住まいの市町村"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "妊娠届出時に母子健康手帳とあわせて受診券が交付されるのが一般的。"
+      }
+    }
+  }
+}
