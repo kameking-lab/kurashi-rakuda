@@ -221,15 +221,67 @@ function decodeHtml(buf, contentTypeHeader) {
   }
 }
 
+/**
+ * 名前付き実体参照の対応表。
+ *
+ * ★ここに無い実体参照は「文字化けした literal」として残り、照合が必ず失敗する。★
+ * 官公庁・自治体のページは記号を実体参照で書くことが多い。実例として、大阪府の
+ * 児童扶養手当のページは乗算記号を `&times;` で出力しており、当初の実装（nbsp/amp/
+ * lt/gt の4つのみをデコード）では「×」を含む verify.expect が**必ず失敗していた**。
+ * データ作成者はこれを「制度が変わった」ではなく「照合できない」として expect 側で
+ * 回避せざるを得ず、照合の網が静かに緩む。実体参照の取りこぼしは沈黙して害を成すため、
+ * 数値参照（&#215; / &#xD7;）を含めて一括で解決する。
+ */
+const HTML_ENTITIES = {
+  nbsp: ' ', ensp: ' ', emsp: ' ', thinsp: ' ',
+  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'",
+  times: '×', divide: '÷', minus: '−', plusmn: '±',
+  yen: '¥', cent: '¢', pound: '£', euro: '€', deg: '°',
+  middot: '・', bull: '•', hellip: '…', ndash: '–', mdash: '—',
+  lsquo: '‘', rsquo: '’', ldquo: '“', rdquo: '”',
+  laquo: '«', raquo: '»', sect: '§', para: '¶', dagger: '†', Dagger: '‡',
+  copy: '©', reg: '®', trade: '™', permil: '‰',
+  frac12: '½', frac14: '¼', frac34: '¾', sup1: '¹', sup2: '²', sup3: '³',
+  larr: '←', rarr: '→', uarr: '↑', darr: '↓', harr: '↔',
+  le: '≤', ge: '≥', ne: '≠', asymp: '≈', prime: '′', Prime: '″',
+};
+
+/**
+ * 実体参照を1回のパスで復号する。
+ * ★段階的な .replace() で連鎖させてはならない★ 例えば `&amp;` を先に `&` へ戻すと、
+ * 原文の `&amp;lt;`（＝リテラル "&lt;" の意）が後段で `<` に化ける（二重復号）。
+ * 1パスなら、復号後に生まれた `&` が再び実体参照として解釈されることはない。
+ */
+function decodeEntities(s) {
+  return s.replace(/&(#[0-9]+|#x[0-9a-f]+|[a-z][a-z0-9]*);/gi, (m, body) => {
+    if (body[0] === '#') {
+      const cp = body[1] === 'x' || body[1] === 'X'
+        ? parseInt(body.slice(2), 16)
+        : parseInt(body.slice(1), 10);
+      // 不正なコードポイント（範囲外・サロゲート）は原文のまま残す
+      if (!Number.isFinite(cp) || cp < 0 || cp > 0x10ffff || (cp >= 0xd800 && cp <= 0xdfff)) return m;
+      try {
+        return String.fromCodePoint(cp);
+      } catch {
+        return m;
+      }
+    }
+    const named = HTML_ENTITIES[body];
+    if (named !== undefined) return named;
+    // 大文字小文字の揺れ（&Times; 等）を吸収する。ただし Dagger/Prime のように
+    // 大小で別字を指すものは上の完全一致で既に解決済み。
+    const lower = HTML_ENTITIES[body.toLowerCase()];
+    return lower !== undefined ? lower : m;
+  });
+}
+
 function stripHtml(html) {
-  return html
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>');
+  return decodeEntities(
+    html
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+  );
 }
 
 /**
