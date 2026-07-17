@@ -23,10 +23,15 @@ import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
 import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
 import osakaOsaka from "@/data/seido/hoikuryo/osaka-osaka.json";
 import tokyoAdachi from "@/data/seido/hoikuryo/tokyo-adachi.json";
+import tokyoBunkyo from "@/data/seido/hoikuryo/tokyo-bunkyo.json";
+import tokyoChiyoda from "@/data/seido/hoikuryo/tokyo-chiyoda.json";
+import tokyoChuo from "@/data/seido/hoikuryo/tokyo-chuo.json";
 import tokyoEdogawa from "@/data/seido/hoikuryo/tokyo-edogawa.json";
+import tokyoMinato from "@/data/seido/hoikuryo/tokyo-minato.json";
 import tokyoNerima from "@/data/seido/hoikuryo/tokyo-nerima.json";
 import tokyoOta from "@/data/seido/hoikuryo/tokyo-ota.json";
 import tokyoSetagaya from "@/data/seido/hoikuryo/tokyo-setagaya.json";
+import tokyoShinjuku from "@/data/seido/hoikuryo/tokyo-shinjuku.json";
 import tokyoSuginami from "@/data/seido/hoikuryo/tokyo-suginami.json";
 import type { SeidoAmendment, SeidoDataset, SeidoSource } from "@/lib/tools/seido";
 
@@ -103,17 +108,23 @@ export interface HoikuryoMunicipality {
 // ---------------------------------------------------------------- 自治体データ
 
 /**
- * 収集済み自治体（2026-07-17時点で12件）。
+ * 収集済み自治体（2026-07-17時点で17件）。
  * ★選択肢はこの配列からのみ生成する★ 未収集自治体の階層を創作しない（§7）。
+ * 並び順は全国地方公共団体コード順（＝都道府県順・特別区は区番号順）。UIの選択肢の順序になる。
  */
 export const municipalities: HoikuryoMunicipality[] = [
   hokkaidoSapporo,
-  tokyoSetagaya,
-  tokyoNerima,
+  tokyoChiyoda,
+  tokyoChuo,
+  tokyoMinato,
+  tokyoShinjuku,
+  tokyoBunkyo,
   tokyoOta,
-  tokyoEdogawa,
-  tokyoAdachi,
+  tokyoSetagaya,
   tokyoSuginami,
+  tokyoNerima,
+  tokyoAdachi,
+  tokyoEdogawa,
   kanagawaYokohama,
   kanagawaKawasaki,
   aichiNagoya,
