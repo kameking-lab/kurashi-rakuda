@@ -258,9 +258,14 @@
       "両親の身長からの予測方法が分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "specs/b-tools/22-height-prediction.md（両親身長法・Mid-Parental Height法の通称。小児科領域・育児メディアで広く紹介されている統計的経験式）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/22-height-prediction.md"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-11",

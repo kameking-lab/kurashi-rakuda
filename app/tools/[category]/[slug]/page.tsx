@@ -11,6 +11,7 @@ import { ShussanYoteibi } from "@/components/tools/impl/ShussanYoteibi";
 import { SeiriShuki } from "@/components/tools/impl/SeiriShuki";
 import { Inunohi } from "@/components/tools/impl/Inunohi";
 import { FuyoKabe } from "@/components/tools/impl/FuyoKabe";
+import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
 import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
@@ -164,6 +165,24 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           年収に乗じた概算です。実際は標準報酬月額をもとに計算され、健康保険料率は都道府県ごとに異なります。
         </p>
         <SeidoNotice datasets={[fuyoKabeDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "shincho-yosoku": {
+    ui: <ShinchoYosoku />,
+    formula: (
+      <>
+        <p>
+          両親身長法（Mid-Parental Height法の通称）と呼ばれる簡易式を使います。男児は「（父親の身長＋母親の身長＋13）÷
+          2」、女児は「（父親の身長＋母親の身長−13）÷ 2」で計算します（結果は四捨五入せず小数第1位まで表示）。
+        </p>
+        <p>
+          この式は単一の公的一次情報に基づく制度データではなく、小児科領域・育児メディアで広く紹介されている統計的な経験式です。誤差はおよそ±9cm程度とされることが多いため、参考レンジとして「予測身長
+          ± 9cm」もあわせて表示しています。ただし「必ずこの範囲に収まる」という保証ではありません。
+        </p>
+        <p>
+          この結果はあくまで統計的な目安であり、実際の成人身長は栄養・生活習慣・個人差などにより大きく変わります。医学的な低身長・成長障害の診断や判定は一切行いません。成長について心配な場合は、乳幼児健診や小児科医にご相談ください。
+        </p>
       </>
     ),
   },
