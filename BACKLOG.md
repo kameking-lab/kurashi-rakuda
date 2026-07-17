@@ -191,7 +191,7 @@
 | [~] P2-T33 | #76 | 健診・がん検診 年齢別スケジュール（女性） | B(ソネット) | ✔kenshin-gankenshin-schedule | 簡易 |
 | P2-T34 | #79 | 復帰日計算（産休育休の各期限から逆算） | B(ソネット) | ✔ikukyu-kyufu・ikukyu-encho-youken | [x] 完了（2026-07-17、slug=fukki-bi-keisan） |
 | [x] P2-T35 | #82 | 保育園お迎え逆算 勤務可能時間計算 | B(ソネット) | なし（時間演算） | 不要 → **完了（2026-07-18）**: slug `hoikuen-omukae-gyakusan`（career）。specs/b-tools/p2-t35-hoikuen-omukae-gyakusan.md・HoikuenOmukaeGyakusan.calc.ts/tsx・tests/hoikuen-omukae-gyakusan.test.ts（21件）。制度・統計データに依存しない純粋な時刻演算 |
-| [~] P2-T36 | #83 | 小1の壁 勤務シミュレーション | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
+| [x] P2-T36 | #83 | 小1の壁 勤務シミュレーション | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 → **完了（2026-07-18）**: slug `shou1-kabe-kinmu-simulation`（career）。specs/b-tools/p2-t36-shou1-kabe-kinmu-simulation.md・Shou1KabeKinmuSimulation.calc.ts/tsx・tests/shou1-kabe-kinmu-simulation.test.ts（25件）。★データの限界★ 学童の開所・閉所時刻は国の基準が「参酌基準」かつ時間数の下限のみを定め時刻を定めないため全国一律値が存在せず（gakudou-hoiku-kijun.jsonのstandardsNature/openingHours参照）、架空値を作らずユーザー自身に閉所時刻を入力させる設計とした。対象学年・支援の単位定員・学年別待機児童数は判定結果と独立の参考情報としてのみ同JSONから取得。registry.json追加済み・npm run check（lint/typecheck/check:solves/check:brand/check:mascot/vitest 1174件）全てPASS |
 | [x] P2-T37 | #92 | 要介護認定 申請段取りナビ | B(ソネット) | ✔kaigo-hoken＋✔kaigo-nintei-shori-kikan（P2-D05で新規追加・介護保険法第27条） | 簡易 → **完了（2026-07-17・PR#109・slug: youkaigo-nintei-dandori-navi）** |
 | P2-T38 | #94 | 介護と仕事の両立制度チェッカー | B(ソネット) | ✔kaigo-shigoto-ryouritsu-seido | 簡易 |
 | P2-T39 | #95 | 介護施設タイプ別 費用早見（紹介送客なし） | B(ソネット) | ✔kaigo-shisetsu-hiyou-souba | 簡易 |

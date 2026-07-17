@@ -51,6 +51,14 @@ import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
 import { RecipeNinzuuKansan } from "@/components/tools/impl/RecipeNinzuuKansan";
 import { HoikuenOmukaeGyakusan } from "@/components/tools/impl/HoikuenOmukaeGyakusan";
 import { HOIKUEN_OMUKAE_DISCLAIMER } from "@/components/tools/impl/HoikuenOmukaeGyakusan.calc";
+import { Shou1KabeKinmuSimulation } from "@/components/tools/impl/Shou1KabeKinmuSimulation";
+import {
+  gakudouHoikuDataset,
+  GRADE_RANGE_LABEL,
+  SHOU1_KABE_DISCLAIMER,
+  SUPPORT_UNIT_MAX_CHILDREN,
+  WAITING_CHILDREN_TOTAL,
+} from "@/components/tools/impl/Shou1KabeKinmuSimulation.calc";
 import { RenjiWattKansan } from "@/components/tools/impl/RenjiWattKansan";
 import { RENJI_KANZAN_SOURCE } from "@/components/tools/impl/RenjiWattKansan.calc";
 import { NamonakiKajiChecker } from "@/components/tools/impl/NamonakiKajiChecker";
@@ -1184,6 +1192,34 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           このツールは制度・統計データに一切依存せず、入力された時刻の加減算のみを行います。日をまたぐ計算（夜勤等）は対象外で、退勤限界時刻が0:00より前になる場合や、実労働可能時間が負になる場合はエラーとして表示します。
         </p>
         <p>{HOIKUEN_OMUKAE_DISCLAIMER}</p>
+      </>
+    ),
+  },
+  "shou1-kabe-kinmu-simulation": {
+    ui: <Shou1KabeKinmuSimulation />,
+    formula: (
+      <>
+        <p>
+          <strong>子どもが一人になる時間</strong>
+          ：「子どもが学童から自宅に着く時刻（学童の閉所時刻＋学童から自宅までの移動時間）」と「親が自宅に着く時刻（退勤時刻＋退勤後の準備時間＋職場から自宅までの移動時間）」を計算し、後者から前者を引いた時間です。親の帰宅が子どもの帰宅と同時かそれより早ければ0分になります。
+        </p>
+        <p>
+          <strong>子どもを一人にしないための退勤限界時刻（参考）</strong>
+          ：「学童の閉所時刻＋学童から自宅までの移動時間 − 退勤後の準備時間 − 職場から自宅までの移動時間」で計算します。この時刻より後に退勤すると、子どもの帰宅と入れ違いになり一人になる時間が生じる、という目安です。移動時間・準備時間が長すぎて0時より前になる場合は「算出できません」と表示しますが、その場合も「子どもが一人になる時間」の計算自体は止めません。
+        </p>
+        <p>
+          <strong>実労働可能時間（参考）</strong>
+          ：出勤時刻を入力した場合のみ、「退勤限界時刻 − 出勤時刻」で計算します。退勤限界時刻が算出できない場合や、出勤時刻が退勤限界時刻より後になる場合はこの項目のみ表示しません。
+        </p>
+        <p>
+          <strong>★学童の開所・閉所時刻は入力していただく必要があります★</strong>
+          ：学童保育（放課後児童健全育成事業）の開所時間について、国の基準（放課後児童健全育成事業の設備及び運営に関する基準・第18条）は「休業日は1日8時間以上、平日は1日3時間以上を原則として当該事業所ごとに定める」という時間数の下限を示すのみで、具体的な開所・閉所の時刻は定めていません。しかもこの基準自体が令和2年4月1日以降、市町村が条例を定める際に参考にすべき「参酌基準」であり、全国一律に適用される確定した時刻は存在しません。そのため本ツールは、閉所時刻の全国一律値を用意せず、ご自身が利用する学童の閉所時刻を入力していただく設計にしています。退勤が学童の閉所時刻より遅い場合も、それ自体をエラーにはせず、実際に生じる一人時間をそのまま計算して表示します（これが「小1の壁」として可視化したい本来のケースです）。
+        </p>
+        <p>
+          参考情報として、制度上の対象学年（{GRADE_RANGE_LABEL}）、支援の単位（クラスに相当）の定員（おおむね{SUPPORT_UNIT_MAX_CHILDREN}人）、待機児童数（全国合計{WAITING_CHILDREN_TOTAL.toLocaleString("ja-JP")}人、学年別。令和7年5月1日現在で最多は小学4年生の5,589人）を、判定結果とは独立した情報として画面内に表示します。
+        </p>
+        <p>{SHOU1_KABE_DISCLAIMER}</p>
+        <SeidoNotice datasets={[gakudouHoikuDataset]} today={todayJst()} />
       </>
     ),
   },

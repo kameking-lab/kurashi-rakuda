@@ -1011,6 +1011,35 @@
     "status": "live"
   },
   {
+    "queueId": "P2-T36",
+    "slug": "shou1-kabe-kinmu-simulation",
+    "category": "career",
+    "title": "小1の壁 勤務シミュレーション",
+    "description": "学童の閉所時刻・移動時間・退勤時刻を入れると、子どもが一人になる時間の目安と、一人にしないための退勤限界時刻を計算します。学童の開所・閉所時刻は施設ごとに異なるため、ご自身の学童の時刻を入力してご利用ください。",
+    "solves": [
+      "学童の閉所時刻に対して自分の退勤時刻で子どもが一人になる時間がどれくらい生じるか分からない",
+      "子どもを一人にしないためには何時までに退勤すればいいか分からない",
+      "小学校入学後の学童と仕事の両立で、勤務時間をどれだけ調整すればいいか把握したい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "こども家庭庁「令和７年 放課後児童健全育成事業（放課後児童クラブ）の実施状況」（対象学年・支援の単位定員・待機児童統計。開所・閉所時刻はユーザー入力）",
+        "url": "https://www.cfa.go.jp/policies/kosodateshien/houkago-jidou"
+      },
+      {
+        "label": "e-Gov法令検索（デジタル庁）「放課後児童健全育成事業の設備及び運営に関する基準（平成二十六年厚生労働省令第六十三号）」",
+        "url": "https://laws.e-gov.go.jp/law/426M60000100063"
+      },
+      {
+        "label": "本ツールのロジック仕様・データの限界（specs/b-tools/p2-t36-shou1-kabe-kinmu-simulation.md）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/specs/b-tools/p2-t36-shou1-kabe-kinmu-simulation.md"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
+  },
+  {
     "queueId": "P2-T35",
     "slug": "hoikuen-omukae-gyakusan",
     "category": "career",
