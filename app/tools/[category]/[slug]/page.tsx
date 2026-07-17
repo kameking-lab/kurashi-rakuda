@@ -19,6 +19,8 @@ import { RINYUSHOKU_DISCLAIMER, RINYUSHOKU_PREMATURE_DISCLAIMER } from "@/compon
 import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
 import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SankyuIkukyuMoney } from "@/components/tools/impl/SankyuIkukyuMoney";
+import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
+import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
 import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
@@ -421,6 +423,28 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           復職後の保育料は、育休中の給付が非課税で算定基礎に入らないため下がることがあります。
         </p>
         <SeidoNotice datasets={[ikukyuKyufuDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "reito-hozon": {
+    ui: <ReitoHozon />,
+    formula: (
+      <>
+        <p>
+          計算式はありません。食材名の部分一致検索（ひらがな⇄カタカナの表記ゆれを吸収）またはカテゴリ絞り込みで、あらかじめ収録した食材ごとの固定データ（保存期間目安・下処理のコツ・解凍のコツ）を検索して表示しているだけです。検索結果が1件に絞られた時点で詳細を表示し、複数件ヒットした場合は候補一覧から選んでいただきます。
+        </p>
+        <p>
+          保存期間目安は、家庭用冷凍庫（-18℃以下）を目安に、食材ごとに定めた「生」「加熱後」「下処理後」いずれかの状態で保存した場合の週数を、4週間を1ヶ月単位として読みやすく丸めた表現（例:
+          4週間→「約1ヶ月」）です。データ本体は週単位で保持しており、表示のときだけ丸めています。
+        </p>
+        <p>
+          この目安は消費者庁・農林水産省の食品保存・食品ロス削減に関する一般案内をもとにした、品質が保てる期間の参考値であり、安全性を保証する期限ではありません。{REITO_HOZON_DISCLAIMERS.quality}
+        </p>
+        <p>{REITO_HOZON_DISCLAIMERS.abnormality}</p>
+        <p>{REITO_HOZON_DISCLAIMERS.noRefreeze}卵は殻付きのままでは冷凍できません（破裂のおそれがあるため、必ず割りほぐしてから冷凍します）。</p>
+        <p>
+          現在は代表的な26食材のサンプル収録です。未登録の食材は「まだ登録がありません」と表示し、今後の追加をお待ちいただく形にしています。生米の保存やお米の炊飯量の目安など、本ツールの対象外の情報は扱いません。
+        </p>
       </>
     ),
   },
