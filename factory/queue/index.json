@@ -23,5 +23,13 @@
     "仕事・キャリア": { "1": 2, "2": 2, "3": 3 },
     "介護": { "1": 2, "2": 2, "3": 3 }
   },
-  "generated_at": "2026-07-17"
+  "generated_at": "2026-07-17",
+  "status": {
+    "gated_pass": 60,
+    "queued": 0,
+    "gated_fail": 0,
+    "completion_rate": "60/60",
+    "completed_at": "2026-07-17",
+    "note": "全60ジョブがgated_pass。最後まで残っていたQ4-038（養育費算定表）は、社長決裁の許可ドメイン追加（courts.go.jp/moj.go.jp）を受けて2026-07-17に執筆・ゲートPASSし、queue完全消化。"
+  }
 }
