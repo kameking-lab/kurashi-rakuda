@@ -17,6 +17,18 @@
       "title": "就学困難な児童及び生徒に係る就学奨励についての国の援助に関する法律（昭和三十一年法律第四十号）",
       "org": "e-Gov法令検索（デジタル庁）",
       "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.mext.go.jp/a_menu/shotou/career/05010502/017.htm",
+      "title": "就学援助制度について（就学援助ポータルサイト）",
+      "org": "文部科学省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.mext.go.jp/content/20260708-mxt_shuugaku-100001985_003.pdf",
+      "title": "義務教育段階の就学援助（概要）（令和8年度）",
+      "org": "文部科学省",
+      "accessed": "2026-07-17"
     }
   ],
   "facts": [

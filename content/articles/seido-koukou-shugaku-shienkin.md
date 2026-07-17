@@ -11,6 +11,24 @@
       "title": "公立高等学校に係る授業料の不徴収及び高等学校等就学支援金の支給に関する法律",
       "org": "e-Gov法令検索（デジタル庁）",
       "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/index.htm",
+      "title": "高校生等への修学支援",
+      "org": "文部科学省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.mext.go.jp/content/20260616-mxt_shuukyo03-100002595_7.pdf",
+      "title": "高等学校等就学支援金・新制度の概要",
+      "org": "文部科学省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.mext.go.jp/content/20260616-mxt_shuukyo03-100002595_2.pdf",
+      "title": "高等学校等就学支援金・新制度【日本国籍の方用】リーフレット",
+      "org": "文部科学省",
+      "accessed": "2026-07-17"
     }
   ],
   "facts": [

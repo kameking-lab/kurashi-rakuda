@@ -16,5 +16,5 @@
     }
   ],
   "status": "gated_pass",
-  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"koukou-shugaku-shienkin.json#data.<パス>.value\"）。★執筆時の判定★ data/seido/koukou-shugaku-shienkin.json のsources[]は全件mext.go.jpでfactory/config/source-allowlist.json未収載（スコープ外のため同ファイルは変更せず）。記事frontmatterのsourcesは根拠法（公立高等学校に係る授業料の不徴収及び高等学校等就学支援金の支給に関する法律、laws.e-gov.go.jp/law/422M60000080013）に差し替えてゲート通過。facts[].seido_refは引き続きmext由来のdata値を参照（データ層とsourcesドメイン許可は別関心事）。"
+  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"koukou-shugaku-shienkin.json#data.<パス>.value\"）。★2026-07-17 出典差し替え★ mext.go.jpが出典許可リストに追加されたため、facts[]の金額が実際に由来するmext.go.jpの直接出典3件（高校生等への修学支援ポータル／新制度の概要PDF／リーフレット）をsourcesに追加。従来のe-Gov法令（根拠法の条文）は制度の法的根拠として引き続き正確なため残置（値の出典ではなく法的根拠の出典として併記、削除ではなく追加による正確性向上）。check-fidelity.mjs 再PASS確認済み。"
 }
