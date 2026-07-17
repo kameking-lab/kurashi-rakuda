@@ -21,6 +21,7 @@ import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SankyuIkukyuMoney } from "@/components/tools/impl/SankyuIkukyuMoney";
 import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
 import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc";
+import { SuihanMizu } from "@/components/tools/impl/SuihanMizu";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
 import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
@@ -444,6 +445,28 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         <p>{REITO_HOZON_DISCLAIMERS.noRefreeze}卵は殻付きのままでは冷凍できません（破裂のおそれがあるため、必ず割りほぐしてから冷凍します）。</p>
         <p>
           現在は代表的な26食材のサンプル収録です。未登録の食材は「まだ登録がありません」と表示し、今後の追加をお待ちいただく形にしています。生米の保存やお米の炊飯量の目安など、本ツールの対象外の情報は扱いません。
+        </p>
+      </>
+    ),
+  },
+  "suihan-mizu": {
+    ui: <SuihanMizu />,
+    formula: (
+      <>
+        <p>
+          「合」は日本の伝統的な体積単位で、1合＝180ml、精白米1合はおよそ150gが目安です。「米の重量(g)」や「計量カップ(ml)」で入力した場合は、この2つの基準値を使って合数（g÷150、または ml÷180）に換算してから、以下の計算を行っています。
+        </p>
+        <p>
+          白米の水加減は「米の重量×1.2」（重量ベース目安）と「合数×200ml」（合数簡易法目安）の2通りの経験則を併記しています。前者は1合＝180ml換算、後者は1合＝200ml換算で、約10%の差がありますが、どちらも実務でよく使われる目安であり、どちらか一方が誤りというわけではありません。
+        </p>
+        <p>
+          無洗米はぬかを洗い流す工程がない分、通常の白米より水がやや多めに必要とされるため、白米の合数簡易法（合数×200ml）に1合あたり大さじ1〜2杯（15〜30ml）を加算した範囲で表示しています。玄米は表皮が硬く吸水に時間がかかるため、体積ベースで米の1.5倍の水（浸水30分〜一晩推奨）、もち米は炊飯器で炊く場合の目安として米とほぼ同量（体積の1.0倍）の水としています。
+        </p>
+        <p>
+          家庭用炊飯器は5合炊き・1升(10合)炊きが一般的なため、1升を超える量を指定した場合は分けて炊くことを案内しています。逆に0.3合以下のごく少量では計量誤差が大きくなりやすいため、キッチンスケールでの計量をおすすめする注記を出しています。
+        </p>
+        <p>
+          ここに示す数値はあくまで一般的な計量の目安です。米の産地・精米からの経過日数・お好みの硬さによって最適な水加減は変わります。お使いの炊飯器の内釜に目盛り線がある場合は、そちらに従うのが最も正確です。
         </p>
       </>
     ),

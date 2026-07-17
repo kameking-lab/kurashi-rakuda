@@ -414,16 +414,21 @@
     "slug": "suihan-mizu",
     "category": "kaji",
     "title": "炊飯の水の量・合数換算",
-    "description": "お米の合数・グラムから、必要な水の量を計算します。無洗米・玄米・新米にも対応します。",
+    "description": "お米の合数・グラムから、必要な水の量を計算します。無洗米・玄米・もち米にも対応します。",
     "solves": [
       "お米1合に水を何ml入れるか分からない",
       "炊飯器の目盛りなしで水加減が分からない",
       "無洗米や玄米の水加減が分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "JA全農あきた「お米の炊き方・保存」（1合=180mlの計量、白米の水加減は洗う前の米の20%増し=1.2倍が標準）",
+        "url": "https://www.zennoh.or.jp/ak/product/rice/cook.html"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-16",
