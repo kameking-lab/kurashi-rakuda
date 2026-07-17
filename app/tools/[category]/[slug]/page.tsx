@@ -20,6 +20,9 @@ import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
 import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SankyuIkukyuMoney } from "@/components/tools/impl/SankyuIkukyuMoney";
 import { SentakuHyoji } from "@/components/tools/impl/SentakuHyoji";
+import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
+import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc";
+import { SuihanMizu } from "@/components/tools/impl/SuihanMizu";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
 import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
@@ -444,6 +447,50 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         </p>
         <p>
           記号の意味は一般的な目安です。実際の取り扱いは衣類ごとのタグ表示を優先してください。ドライクリーニング・ウェットクリーニング専用の表示や手洗い指定がある衣類は、家庭で洗うと型崩れ・縮み・色落ちのリスクが高いため、不安な場合は専門のクリーニング店にご相談ください。
+        </p>
+      </>
+    ),
+  },
+  "reito-hozon": {
+    ui: <ReitoHozon />,
+    formula: (
+      <>
+        <p>
+          計算式はありません。食材名の部分一致検索（ひらがな⇄カタカナの表記ゆれを吸収）またはカテゴリ絞り込みで、あらかじめ収録した食材ごとの固定データ（保存期間目安・下処理のコツ・解凍のコツ）を検索して表示しているだけです。検索結果が1件に絞られた時点で詳細を表示し、複数件ヒットした場合は候補一覧から選んでいただきます。
+        </p>
+        <p>
+          保存期間目安は、家庭用冷凍庫（-18℃以下）を目安に、食材ごとに定めた「生」「加熱後」「下処理後」いずれかの状態で保存した場合の週数を、4週間を1ヶ月単位として読みやすく丸めた表現（例:
+          4週間→「約1ヶ月」）です。データ本体は週単位で保持しており、表示のときだけ丸めています。
+        </p>
+        <p>
+          この目安は消費者庁・農林水産省の食品保存・食品ロス削減に関する一般案内をもとにした、品質が保てる期間の参考値であり、安全性を保証する期限ではありません。{REITO_HOZON_DISCLAIMERS.quality}
+        </p>
+        <p>{REITO_HOZON_DISCLAIMERS.abnormality}</p>
+        <p>{REITO_HOZON_DISCLAIMERS.noRefreeze}卵は殻付きのままでは冷凍できません（破裂のおそれがあるため、必ず割りほぐしてから冷凍します）。</p>
+        <p>
+          現在は代表的な26食材のサンプル収録です。未登録の食材は「まだ登録がありません」と表示し、今後の追加をお待ちいただく形にしています。生米の保存やお米の炊飯量の目安など、本ツールの対象外の情報は扱いません。
+        </p>
+      </>
+    ),
+  },
+  "suihan-mizu": {
+    ui: <SuihanMizu />,
+    formula: (
+      <>
+        <p>
+          「合」は日本の伝統的な体積単位で、1合＝180ml、精白米1合はおよそ150gが目安です。「米の重量(g)」や「計量カップ(ml)」で入力した場合は、この2つの基準値を使って合数（g÷150、または ml÷180）に換算してから、以下の計算を行っています。
+        </p>
+        <p>
+          白米の水加減は「米の重量×1.2」（重量ベース目安）と「合数×200ml」（合数簡易法目安）の2通りの経験則を併記しています。前者は1合＝180ml換算、後者は1合＝200ml換算で、約10%の差がありますが、どちらも実務でよく使われる目安であり、どちらか一方が誤りというわけではありません。
+        </p>
+        <p>
+          無洗米はぬかを洗い流す工程がない分、通常の白米より水がやや多めに必要とされるため、白米の合数簡易法（合数×200ml）に1合あたり大さじ1〜2杯（15〜30ml）を加算した範囲で表示しています。玄米は表皮が硬く吸水に時間がかかるため、体積ベースで米の1.5倍の水（浸水30分〜一晩推奨）、もち米は炊飯器で炊く場合の目安として米とほぼ同量（体積の1.0倍）の水としています。
+        </p>
+        <p>
+          家庭用炊飯器は5合炊き・1升(10合)炊きが一般的なため、1升を超える量を指定した場合は分けて炊くことを案内しています。逆に0.3合以下のごく少量では計量誤差が大きくなりやすいため、キッチンスケールでの計量をおすすめする注記を出しています。
+        </p>
+        <p>
+          ここに示す数値はあくまで一般的な計量の目安です。米の産地・精米からの経過日数・お好みの硬さによって最適な水加減は変わります。お使いの炊飯器の内釜に目盛り線がある場合は、そちらに従うのが最も正確です。
         </p>
       </>
     ),
