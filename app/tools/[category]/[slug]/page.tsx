@@ -22,6 +22,7 @@ import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
 import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SankyuIkukyuMoney } from "@/components/tools/impl/SankyuIkukyuMoney";
 import { JitanKyuyo } from "@/components/tools/impl/JitanKyuyo";
+import { FukushokuTedori } from "@/components/tools/impl/FukushokuTedori";
 import { FukkiBiKeisan } from "@/components/tools/impl/FukkiBiKeisan";
 import { SentakuHyoji } from "@/components/tools/impl/SentakuHyoji";
 import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
@@ -660,6 +661,52 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           復職して時短で働き始めると賃金が下がっても前の水準のまま引かれる、という落差が起きるのはこのためです。
           なお、育児休業給付金の67%と出生後休業支援給付金の13%を足した「80%（手取り10割相当）」は
           <strong>育児休業中の最大28日間の話であり、育児時短就業給付とは別の制度です</strong>。
+        </p>
+        <SeidoNotice datasets={[ikukyuKyufuDataset, fuyoKabeDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "fukushoku-tedori": {
+    ui: <FukushokuTedori />,
+    formula: (
+      <>
+        <p>
+          <strong>このツールが1画面にまとめるもの</strong>
+          ：復職して時短で働くと、①賃金そのものが減る ②育児時短就業給付金が乗る（非課税）
+          ③社会保険料は時短にしてもすぐには下がらない ④保育料が引かれる、の4つが同時に動きます。
+          単発の給料計算では「毎月いくら手元に残るのか」が出ないため、この4つを1つの計算に載せています。
+          ①〜③は「時短勤務の給料・給付シミュレーター」と同じ計算をそのまま使い、そこから④の保育料を差し引きます。
+        </p>
+        <p>
+          <strong>育児時短就業給付金（②）の算定</strong>
+          ：2歳に満たないお子さんを養育するために週の所定労働時間を短縮して働く方に、
+          時短後の賃金の10%が支給される制度です（雇用保険法第61条の12、2025年4月1日創設）。
+          時短前の賃金月額の90%を超えて100%未満の範囲では、支給率が10%から一定の割合で逓減します
+          （雇用保険法施行規則第101条の47）。支給限度額・最低限度額による頭打ち・不支給の判定も行います。
+          詳しい算定の内訳と各月の支給要件は「時短勤務の給料・給付シミュレーター」と共通です。
+        </p>
+        <p>
+          <strong>社会保険料の「時間差」（③）</strong>
+          ：健康保険・厚生年金の保険料は標準報酬月額をもとに決まるため、時短にした直後の数か月は
+          前の給料のままの保険料が引かれます。本ツールは「時短にした直後（社会保険料は前の給料のまま）」と
+          「社会保険料が下がったあと」の2つを並べて表示します。いつ下がるか（随時改定の時期）は
+          制度データに未収録のため断定していません。厚生年金9.15%・健康保険4.95%（全国平均）・
+          子ども・子育て支援金（2026年4月新設）の本人負担・雇用保険料を概算し、標準報酬月額の等級表は
+          用いていない概算です。所得税・住民税は計算していません（表示は税引前です）。
+        </p>
+        <p>
+          <strong>保育料の「時間差」（④）</strong>
+          ：認可保育園などの保育料は<strong>前年（＝育休前のフル収入）の課税額</strong>をもとに決まるため、
+          復職直後は収入が下がっていても保育料が高いままになりがちです。社会保険料の時間差（③）と保育料の時間差（④）が
+          重なるのが復職直後です。保育料そのものは自治体ごとの階層表で決まり全国共通の式がないため、
+          本ツールでは推測せず、あなたが入力した実額（保育料計算ツールで求めた額）をそのまま差し引いています。
+        </p>
+        <p>
+          <strong>翌年度に保育料が下がる可能性</strong>
+          ：育児休業給付金・育児時短就業給付金は非課税で、翌年の住民税・保育料の算定基礎にも入りません。
+          そのため時短で収入が下がっていれば、翌年度の保育料の見直し（多くの自治体で9月に切り替わります）で
+          保育料が下がる場合があります。切替の時期・金額は自治体ごとに異なるため、本ツールでは翌年度の保育料は
+          自動計算せず、案内のみとしています。
         </p>
         <SeidoNotice datasets={[ikukyuKyufuDataset, fuyoKabeDataset]} today={todayJst()} />
       </>
