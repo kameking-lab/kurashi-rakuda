@@ -17,6 +17,12 @@
       "title": "日本人の平均身長は低下傾向―低出生体重児増加が影響している可能性あり―",
       "org": "国立成育医療研究センター",
       "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.jstage.jst.go.jp/article/cpe/16/4/16_4_85/_article",
+      "title": "Target Height and Target Range for Japanese Children: Revisited",
+      "org": "J-STAGE（科学技術振興機構）／Ogata T, Tanaka T, Kagami M. Clin Pediatr Endocrinol 2007;16(4):85-87. doi:10.1297/cpe.16.85",
+      "accessed": "2026-07-17"
     }
   ],
   "facts": [
@@ -24,50 +30,50 @@
       "key": "shincho.teisuu_13cm",
       "value": 13,
       "unit": "cm",
-      "status": "stub",
-      "stub_reason": "一次情報（J-STAGE掲載の学術論文、Ogata T, Tanaka T, Kagami M. \"Target Height and Target Range for Japanese Children: Revisited.\" Clin Pediatr Endocrinol 2007;16(4):85-87. doi:10.1297/cpe.16.85）がfactory/config/source-allowlist.json未収載のドメイン（jstage.jst.go.jp）であるため機械照合対象外"
+      "status": "verified",
+      "seido_ref": "shincho-yosoku-kijun.json#teisuu_cm"
     },
     {
       "key": "shincho.danji_gosa_9cm",
       "value": 9,
       "unit": "cm",
-      "status": "stub",
-      "stub_reason": "一次情報（J-STAGE掲載の学術論文、doi:10.1297/cpe.16.85）がfactory/config/source-allowlist.json未収載のドメインであるため機械照合対象外"
+      "status": "verified",
+      "seido_ref": "shincho-yosoku-kijun.json#margin_cm_male"
     },
     {
       "key": "shincho.joji_gosa_8cm",
       "value": 8,
       "unit": "cm",
-      "status": "stub",
-      "stub_reason": "一次情報（J-STAGE掲載の学術論文、doi:10.1297/cpe.16.85）がfactory/config/source-allowlist.json未収載のドメインであるため機械照合対象外"
+      "status": "verified",
+      "seido_ref": "shincho-yosoku-kijun.json#margin_cm_female"
     },
     {
       "key": "shincho.chichi_nyuuryoku_min_100cm",
       "value": 100,
       "unit": "cm",
       "status": "stub",
-      "stub_reason": "ツールの入力バリデーション仕様（specs/b-tools/22-height-prediction.md）であり、学術論文由来の一次情報の数値ではないため"
+      "stub_reason": "ツール自身の入力許容範囲の設定値であり、外部の学術的一次情報が主張する数値ではないため（specs/b-tools/22-height-prediction.md）"
     },
     {
       "key": "shincho.chichi_nyuuryoku_max_250cm",
       "value": 250,
       "unit": "cm",
       "status": "stub",
-      "stub_reason": "ツールの入力バリデーション仕様（specs/b-tools/22-height-prediction.md）であり、学術論文由来の一次情報の数値ではないため"
+      "stub_reason": "ツール自身の入力許容範囲の設定値であり、外部の学術的一次情報が主張する数値ではないため（specs/b-tools/22-height-prediction.md）"
     },
     {
       "key": "shincho.haha_nyuuryoku_max_220cm",
       "value": 220,
       "unit": "cm",
       "status": "stub",
-      "stub_reason": "ツールの入力バリデーション仕様（specs/b-tools/22-height-prediction.md）であり、学術論文由来の一次情報の数値ではないため"
+      "stub_reason": "ツール自身の入力許容範囲の設定値であり、外部の学術的一次情報が主張する数値ではないため（specs/b-tools/22-height-prediction.md）"
     },
     {
       "key": "shincho.iden_kiyo_8wari",
       "value": 8,
       "unit": "割",
-      "status": "stub",
-      "stub_reason": "国立成育医療研究センターのプレスリリース（https://www.ncchd.go.jp/press/2017/adultheight.html）に記載の一般的な説明の要約値であり、data/seido等の照合先データファイルを持たないため機械照合対象外"
+      "status": "verified",
+      "seido_ref": "shincho-yosoku-kijun.json#iden_kiyo_wari"
     }
   ],
   "last_updated": "2026-07-17",
@@ -105,7 +111,7 @@
 
 ## 出典・根拠
 
-- Ogata T, Tanaka T, Kagami M. "Target Height and Target Range for Japanese Children: Revisited." Clin Pediatr Endocrinol 2007;16(4):85-87. doi:10.1297/cpe.16.85（両親身長法の計算式・参考レンジの一次情報。J-STAGE掲載のため本文ではテキストでの言及にとどめ、クリック可能な出典リンクは付与していません）
+- Ogata T, Tanaka T, Kagami M. "Target Height and Target Range for Japanese Children: Revisited." Clin Pediatr Endocrinol 2007;16(4):85-87. doi:10.1297/cpe.16.85（両親身長法の計算式・参考レンジの一次情報。J-STAGE: https://www.jstage.jst.go.jp/article/cpe/16/4/16_4_85/_article ）
 - 国立成育医療研究センター「日本人の平均身長は低下傾向―低出生体重児増加が影響している可能性あり―」（身長が遺伝要因と生活環境の両方で決まるという一般的な説明の根拠）
 
 ---
