@@ -3,6 +3,7 @@ import type { ToolMeta } from "@/app/lib/tools/types";
 import { SourceList } from "@/components/ui/SourceList";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RelatedTools } from "./RelatedTools";
+import { SisterSiteLinks } from "./SisterSiteLinks";
 
 /**
  * ツールページ共通シェル（docs/08 P1-04）。
@@ -37,6 +38,8 @@ export function ToolShell({
       />
 
       <RelatedTools current={meta} />
+
+      <SisterSiteLinks slug={meta.slug} />
     </article>
   );
 }
