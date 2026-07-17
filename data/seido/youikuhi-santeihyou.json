@@ -4,6 +4,7 @@
   "name": "養育費・婚姻費用算定表（改定標準算定方式・算定表〈令和元年版〉）",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "courts-h30-houkoku",
@@ -117,7 +118,11 @@
         "label": "正式名称",
         "sourceId": "courts-h30-houkoku",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["標準算定方式・算定表（令和元年版）"] },
+        "verify": {
+          "expect": [
+            "標準算定方式・算定表（令和元年版）"
+          ]
+        },
         "amendmentNote": "令和元年12月23日公表。2026-07-17時点で最新版。",
         "note": "「改定標準算定表（令和元年版）」とも表記される。俗に「新算定表」「令和元年版算定表」と呼ばれる。"
       },
@@ -126,7 +131,11 @@
         "label": "公表日",
         "sourceId": "courts-h30-houkoku",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["研究報告が令和元年12月23日に公表されました"] },
+        "verify": {
+          "expect": [
+            "研究報告が令和元年12月23日に公表されました"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）。以降の改定は確認されていない。",
         "note": "令和元年12月26日以降は、表のファイルを分割して掲載されている（courts-h30-houkoku に明記）。"
       },
@@ -135,7 +144,11 @@
         "label": "作成主体",
         "sourceId": "courts-h30-houkoku",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["東京及び大阪の家庭裁判所所属（当時）の裁判官を研究員とする司法研究"] },
+        "verify": {
+          "expect": [
+            "東京及び大阪の家庭裁判所所属（当時）の裁判官を研究員とする司法研究"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★法令ではない★ 算定表は法令でも通達でもなく、司法研究の報告として「提案されている」もの。法務省も「『算定表』が絶対的な基準というわけではありません」と明記している（moj-youikuhi）。この位置づけを記事で正確に伝えること。"
       },
@@ -144,7 +157,11 @@
         "label": "改定の方針",
         "sourceId": "courts-h30-houkoku",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["考え方を踏襲しつつ，基礎となる統計資料を更新するなどした標準算定方式・算定表（令和元年版）が提案されています"] },
+        "verify": {
+          "expect": [
+            "考え方を踏襲しつつ，基礎となる統計資料を更新するなどした標準算定方式・算定表（令和元年版）が提案されています"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "算定方式そのもの（基礎収入×生活費指数による按分）は変えず、税・社会保険料・生活費統計を更新した改定。"
       },
@@ -153,7 +170,11 @@
         "label": "法務省による算定表の位置づけ",
         "sourceId": "moj-youikuhi",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["「算定表」が絶対的な基準というわけではありません"] },
+        "verify": {
+          "expect": [
+            "「算定表」が絶対的な基準というわけではありません"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       }
     },
@@ -164,7 +185,11 @@
         "label": "養育費の算定表の種類",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["子の人数（１～３人）と年齢（０～１４歳と１５歳以上の２区分)に応じて表１～９に分かれています"] },
+        "verify": {
+          "expect": [
+            "子の人数（１～３人）と年齢（０～１４歳と１５歳以上の２区分)に応じて表１～９に分かれています"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★子が4人以上の場合の表は存在しない★ その場合は算定表では対応できず、標準算定方式による計算が必要になる。ツールでは子3人までに限定するか、4人以上は専門家相談へ誘導すること。"
       },
@@ -173,7 +198,11 @@
         "label": "婚姻費用の算定表の種類",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["夫婦のみの場合並びに子の人数（１～３人）及び年齢（０～１４歳と１５歳以上の２区分)に応じて表１０～１９に分かれています"] },
+        "verify": {
+          "expect": [
+            "夫婦のみの場合並びに子の人数（１～３人）及び年齢（０～１４歳と１５歳以上の２区分)に応じて表１０～１９に分かれています"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★養育費（離婚後）と婚姻費用（別居中・離婚前）は別物★ 婚姻費用は権利者本人の生活費も含むため同条件でも高額になる。混同させないこと。"
       },
@@ -183,7 +212,11 @@
         "label": "養育費の算定表の枚数",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["養育費の９枚の表"] },
+        "verify": {
+          "expect": [
+            "養育費の９枚の表"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "totalTableCount": {
@@ -192,7 +225,11 @@
         "label": "算定表の総数（養育費9＋婚姻費用10）",
         "sourceId": "courts-h30-houkoku",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["（表19）婚姻費用・子3人表"] },
+        "verify": {
+          "expect": [
+            "（表19）婚姻費用・子3人表"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "ageBoundary": {
@@ -201,7 +238,11 @@
         "label": "算定表の年齢区分の境界",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["０～１４歳と１５歳以上の２区分"] },
+        "verify": {
+          "expect": [
+            "０～１４歳と１５歳以上の２区分"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "0〜14歳と15歳以上の2区分のみ。★実務上の重要論点★ 子が15歳になると表が変わり養育費が上がるため、取決め時に「15歳到達時に増額する」旨を定めることが多い。子の指数（62→85）の変化がこれに対応する。"
       },
@@ -211,44 +252,250 @@
         "label": "算定表が対応する子の人数の上限",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["子の人数（１～３人）"] },
+        "verify": {
+          "expect": [
+            "子の人数（１～３人）"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "tables": {
         "description": "全19表の一覧と掲載元PDF。★各表のセルの個別金額は本データに収録していない（数値の書き写しによる誤りを防ぐため）。利用者には必ず pdfUrl のPDFを参照させること。★ すべてのPDFの掲載元ページは courts-h30-houkoku（https://www.courts.go.jp/toukei_siryou/siryo/H30shihou_houkoku/index.html）。PDFは差し替えられる可能性があるため、常に掲載元ページ経由でリンクすること。",
         "note": "type: youikuhi=養育費 / konpi=婚姻費用。children=子の人数。ages=子の年齢区分。titleAsPublished は courts-h30-houkoku ページ上の表記そのまま。",
         "items": [
-          { "no": 1, "type": "youikuhi", "children": 1, "ages": ["0-14"], "titleAsPublished": "（表1）養育費・子1人表（子0～14歳）", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-1.pdf" },
-          { "no": 2, "type": "youikuhi", "children": 1, "ages": ["15+"], "titleAsPublished": "（表2）養育費・子1人表（子15歳以上）", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-2.pdf" },
-          { "no": 3, "type": "youikuhi", "children": 2, "ages": ["0-14", "0-14"], "titleAsPublished": "（表3）養育費・子2人表（第1子及び第2子0～14歳）", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-3.pdf" },
-          { "no": 4, "type": "youikuhi", "children": 2, "ages": ["15+", "0-14"], "titleAsPublished": "（表4）養育費・子2人表（第1子15歳以上，第2子0～14歳）", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-4.pdf" },
-          { "no": 5, "type": "youikuhi", "children": 2, "ages": ["15+", "15+"], "titleAsPublished": "（表5）養育費・子2人表（第1子及び第2子15歳以上）", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-5.pdf" },
-          { "no": 6, "type": "youikuhi", "children": 3, "ages": ["0-14", "0-14", "0-14"], "titleAsPublished": "（表6）養育費・子3人表（第1子，第2子及び第3子0～14歳）", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-6.pdf" },
-          { "no": 7, "type": "youikuhi", "children": 3, "ages": ["15+", "0-14", "0-14"], "titleAsPublished": "（表7）養育費・子3人表（第1子15歳以上，第2子及び第3子0～14歳）", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-7.pdf" },
-          { "no": 8, "type": "youikuhi", "children": 3, "ages": ["15+", "15+", "0-14"], "titleAsPublished": "（表8）養育費・子3人表（第1子及び第2子15歳以上，第3子0～14歳）", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-8.pdf" },
-          { "no": 9, "type": "youikuhi", "children": 3, "ages": ["15+", "15+", "15+"], "titleAsPublished": "（表9）養育費・子3人表（第1子，第2子及び第3子15歳以上）", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-9.pdf" },
-          { "no": 10, "type": "konpi", "children": 0, "ages": [], "titleAsPublished": "（表10）婚姻費用・夫婦のみの表", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-10.pdf" },
-          { "no": 11, "type": "konpi", "children": 1, "ages": ["0-14"], "titleAsPublished": "（表11）婚姻費用・子1人表（子0～14歳)", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-11.pdf" },
-          { "no": 12, "type": "konpi", "children": 1, "ages": ["15+"], "titleAsPublished": "（表12）婚姻費用・子1人表（子15歳以上)", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-12.pdf" },
-          { "no": 13, "type": "konpi", "children": 2, "ages": ["0-14", "0-14"], "titleAsPublished": "（表13）婚姻費用・子2人表（第1子及び第2子0～14歳)", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-13.pdf" },
-          { "no": 14, "type": "konpi", "children": 2, "ages": ["15+", "0-14"], "titleAsPublished": "（表14）婚姻費用・子2人表（第1子15歳以上，第2子0～14歳)", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-14.pdf" },
-          { "no": 15, "type": "konpi", "children": 2, "ages": ["15+", "15+"], "titleAsPublished": "（表15）婚姻費用・子2人表（第1子及び第2子15歳以上)", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-15.pdf" },
-          { "no": 16, "type": "konpi", "children": 3, "ages": ["0-14", "0-14", "0-14"], "titleAsPublished": "（表16）婚姻費用・子3人表（第1子，第2子及び第3子0～14歳)", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-16.pdf" },
-          { "no": 17, "type": "konpi", "children": 3, "ages": ["15+", "0-14", "0-14"], "titleAsPublished": "（表17）婚姻費用・子3人表（第1子15歳以上，第2子及び第3子0～14歳)", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-17.pdf" },
-          { "no": 18, "type": "konpi", "children": 3, "ages": ["15+", "15+", "0-14"], "titleAsPublished": "（表18）婚姻費用・子3人表（第1子及び第2子15歳以上，第3子0～14歳)", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-18.pdf" },
-          { "no": 19, "type": "konpi", "children": 3, "ages": ["15+", "15+", "15+"], "titleAsPublished": "（表19）婚姻費用・子3人表（第1子，第2子及び第3子15歳以上)", "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-19.pdf" }
+          {
+            "no": 1,
+            "type": "youikuhi",
+            "children": 1,
+            "ages": [
+              "0-14"
+            ],
+            "titleAsPublished": "（表1）養育費・子1人表（子0～14歳）",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-1.pdf"
+          },
+          {
+            "no": 2,
+            "type": "youikuhi",
+            "children": 1,
+            "ages": [
+              "15+"
+            ],
+            "titleAsPublished": "（表2）養育費・子1人表（子15歳以上）",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-2.pdf"
+          },
+          {
+            "no": 3,
+            "type": "youikuhi",
+            "children": 2,
+            "ages": [
+              "0-14",
+              "0-14"
+            ],
+            "titleAsPublished": "（表3）養育費・子2人表（第1子及び第2子0～14歳）",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-3.pdf"
+          },
+          {
+            "no": 4,
+            "type": "youikuhi",
+            "children": 2,
+            "ages": [
+              "15+",
+              "0-14"
+            ],
+            "titleAsPublished": "（表4）養育費・子2人表（第1子15歳以上，第2子0～14歳）",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-4.pdf"
+          },
+          {
+            "no": 5,
+            "type": "youikuhi",
+            "children": 2,
+            "ages": [
+              "15+",
+              "15+"
+            ],
+            "titleAsPublished": "（表5）養育費・子2人表（第1子及び第2子15歳以上）",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-5.pdf"
+          },
+          {
+            "no": 6,
+            "type": "youikuhi",
+            "children": 3,
+            "ages": [
+              "0-14",
+              "0-14",
+              "0-14"
+            ],
+            "titleAsPublished": "（表6）養育費・子3人表（第1子，第2子及び第3子0～14歳）",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-6.pdf"
+          },
+          {
+            "no": 7,
+            "type": "youikuhi",
+            "children": 3,
+            "ages": [
+              "15+",
+              "0-14",
+              "0-14"
+            ],
+            "titleAsPublished": "（表7）養育費・子3人表（第1子15歳以上，第2子及び第3子0～14歳）",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-7.pdf"
+          },
+          {
+            "no": 8,
+            "type": "youikuhi",
+            "children": 3,
+            "ages": [
+              "15+",
+              "15+",
+              "0-14"
+            ],
+            "titleAsPublished": "（表8）養育費・子3人表（第1子及び第2子15歳以上，第3子0～14歳）",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-8.pdf"
+          },
+          {
+            "no": 9,
+            "type": "youikuhi",
+            "children": 3,
+            "ages": [
+              "15+",
+              "15+",
+              "15+"
+            ],
+            "titleAsPublished": "（表9）養育費・子3人表（第1子，第2子及び第3子15歳以上）",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/youiku-9.pdf"
+          },
+          {
+            "no": 10,
+            "type": "konpi",
+            "children": 0,
+            "ages": [],
+            "titleAsPublished": "（表10）婚姻費用・夫婦のみの表",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-10.pdf"
+          },
+          {
+            "no": 11,
+            "type": "konpi",
+            "children": 1,
+            "ages": [
+              "0-14"
+            ],
+            "titleAsPublished": "（表11）婚姻費用・子1人表（子0～14歳)",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-11.pdf"
+          },
+          {
+            "no": 12,
+            "type": "konpi",
+            "children": 1,
+            "ages": [
+              "15+"
+            ],
+            "titleAsPublished": "（表12）婚姻費用・子1人表（子15歳以上)",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-12.pdf"
+          },
+          {
+            "no": 13,
+            "type": "konpi",
+            "children": 2,
+            "ages": [
+              "0-14",
+              "0-14"
+            ],
+            "titleAsPublished": "（表13）婚姻費用・子2人表（第1子及び第2子0～14歳)",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-13.pdf"
+          },
+          {
+            "no": 14,
+            "type": "konpi",
+            "children": 2,
+            "ages": [
+              "15+",
+              "0-14"
+            ],
+            "titleAsPublished": "（表14）婚姻費用・子2人表（第1子15歳以上，第2子0～14歳)",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-14.pdf"
+          },
+          {
+            "no": 15,
+            "type": "konpi",
+            "children": 2,
+            "ages": [
+              "15+",
+              "15+"
+            ],
+            "titleAsPublished": "（表15）婚姻費用・子2人表（第1子及び第2子15歳以上)",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-15.pdf"
+          },
+          {
+            "no": 16,
+            "type": "konpi",
+            "children": 3,
+            "ages": [
+              "0-14",
+              "0-14",
+              "0-14"
+            ],
+            "titleAsPublished": "（表16）婚姻費用・子3人表（第1子，第2子及び第3子0～14歳)",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-16.pdf"
+          },
+          {
+            "no": 17,
+            "type": "konpi",
+            "children": 3,
+            "ages": [
+              "15+",
+              "0-14",
+              "0-14"
+            ],
+            "titleAsPublished": "（表17）婚姻費用・子3人表（第1子15歳以上，第2子及び第3子0～14歳)",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-17.pdf"
+          },
+          {
+            "no": 18,
+            "type": "konpi",
+            "children": 3,
+            "ages": [
+              "15+",
+              "15+",
+              "0-14"
+            ],
+            "titleAsPublished": "（表18）婚姻費用・子3人表（第1子及び第2子15歳以上，第3子0～14歳)",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-18.pdf"
+          },
+          {
+            "no": 19,
+            "type": "konpi",
+            "children": 3,
+            "ages": [
+              "15+",
+              "15+",
+              "15+"
+            ],
+            "titleAsPublished": "（表19）婚姻費用・子3人表（第1子，第2子及び第3子15歳以上)",
+            "pdfUrl": "https://www.courts.go.jp/vc-files/courts/file5/konpi-19.pdf"
+          }
         ],
         "sourceId": "courts-h30-houkoku",
         "checkedAt": "2026-07-17",
         "amendmentNote": "令和元年12月23日公表版。令和元年12月26日以降は表のファイルを分割して掲載。2026-07-17時点でURL到達可能。",
-        "verify": { "expect": ["（表1）養育費・子1人表（子0～14歳）", "（表2）養育費・子1人表（子15歳以上）", "（表9）養育費・子3人表（第1子，第2子及び第3子15歳以上）", "（表10）婚姻費用・夫婦のみの表", "（表19）婚姻費用・子3人表（第1子，第2子及び第3子15歳以上)"] }
+        "verify": {
+          "expect": [
+            "（表1）養育費・子1人表（子0～14歳）",
+            "（表2）養育費・子1人表（子15歳以上）",
+            "（表9）養育費・子3人表（第1子，第2子及び第3子15歳以上）",
+            "（表10）婚姻費用・夫婦のみの表",
+            "（表19）婚姻費用・子3人表（第1子，第2子及び第3子15歳以上)"
+          ]
+        }
       },
       "tablePdfTextExtractable": {
         "value": false,
         "label": "算定表PDFからテキスト抽出できるか",
         "sourceId": "courts-h30-houkoku",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "本ノードは算定表PDFの技術的性質に関する実装者向けメモであり、出典ページ本文に対応する文字列が存在しないため照合対象外。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "本ノードは算定表PDFの技術的性質に関する実装者向けメモであり、出典ページ本文に対応する文字列が存在しないため照合対象外。"
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★実装者向けの重要事実★ false = 抽出できない。表1〜表19のPDF（例: youiku-1.pdf）は表全体が画像として作成されており、PyMuPDF でも pdftotext でもテキストが1文字も得られない（HTTP取得は成功する）。したがって算定表のセルの値を自動照合・自動取込する手段は現状存在せず、本データセットが個別金額を持たない技術的な理由でもある。金額が必要な場合は、利用者に裁判所のPDFを直接開かせる設計とすること。"
       }
@@ -260,7 +507,11 @@
         "label": "縦軸",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["縦軸は養育費又は婚姻費用を支払う側（義務者）の年"] },
+        "verify": {
+          "expect": [
+            "縦軸は養育費又は婚姻費用を支払う側（義務者）の年"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "「義務者」＝支払う側。子と離れて暮らす親であることが多い。"
       },
@@ -269,7 +520,11 @@
         "label": "横軸",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["横軸は支払を受ける側（権利者：未成年の子がいる場合には，子"] },
+        "verify": {
+          "expect": [
+            "横軸は支払を受ける側（権利者：未成年の子がいる場合には，子"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "「権利者」＝受け取る側。子を監護している親。"
       },
@@ -278,7 +533,11 @@
         "label": "給与所得者と自営業者の欄の位置",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["縦軸の左欄と横"] },
+        "verify": {
+          "expect": [
+            "縦軸の左欄と横"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★算定表を読み違える最大の原因★ 1つの表に給与所得者用と自営業者用の2本の目盛りが併記されている。同じ「400」でも給与所得者の400万円と自営業者の400万円では位置が異なる（自営業者の年収は課税所得ベースのため、同額なら給与所得者より高い担税力とみなされる）。ツールでは必ず「給与所得者か自営業者か」を先に質問すること。"
       },
@@ -287,7 +546,11 @@
         "label": "給与所得者の年収の求め方",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["源泉徴収票の「支払金額」(控除されていない金額)が年収に当たり"] },
+        "verify": {
+          "expect": [
+            "源泉徴収票の「支払金額」(控除されていない金額)が年収に当たり"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★手取りではなく額面★ 社会保険料・税を控除する前の金額。給与明細による場合は、それが特定の月の月額にすぎず、歩合給が多い場合などには変動が大きく、賞与・一時金が含まれていないことに留意が必要。他に確定申告していない収入がある場合は、その収入額を支払金額に加算して給与所得として計算する。"
       },
@@ -296,7 +559,11 @@
         "label": "自営業者の年収の求め方",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["確定申告書の「課税される所得金額」が年収に当たります"] },
+        "verify": {
+          "expect": [
+            "確定申告書の「課税される所得金額」が年収に当たります"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★重要な補正★ 「課税される所得金額」は税法上、種々の観点から控除がされた結果であり、実際に支出されていない費用（例えば、基礎控除、青色申告控除、支払がされていない専従者給与など）を「課税される所得金額」に加算して年収を定めることになる。単純に確定申告書の数字を使うと年収を過小に見積もることになる。★令和8年度税制改正で基礎控除が62万円＋加算に引き上げられた（data/seido/fuyou-kabe.json 参照）ため、加算すべき基礎控除額も変わっている点に注意。★"
       },
@@ -305,7 +572,11 @@
         "label": "児童手当・児童扶養手当の取扱い",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["児童扶養手当や児童手当は子のための社会保障給付ですから，権"] },
+        "verify": {
+          "expect": [
+            "児童扶養手当や児童手当は子のための社会保障給付ですから，権"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★頻出の誤り★ 権利者（受け取る側）の年収に児童手当・児童扶養手当を足してはならない。★なお逆方向の関係に注意★ 児童扶養手当の側では、受け取った養育費の8割が所得に算入される（data/seido/jidou-fuyou-teate.json の incomeLimits.incomeBasedNote 参照）。「手当は年収に含めない」が「養育費は手当の所得に含める」という非対称な関係になっている。"
       },
@@ -314,7 +585,11 @@
         "label": "表の読み方",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["この二つの線が交差する欄の金額が，義務者が負担すべき養育費の標準的な月額を示し"] },
+        "verify": {
+          "expect": [
+            "この二つの線が交差する欄の金額が，義務者が負担すべき養育費の標準的な月額を示し"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "年収が目盛りの中間にある場合は、近い方の目盛りを基準にする（courts-setumei の使用例では、年収202万8000円について「200」と「225」のうち近い「200」を基準にしている）。"
       },
@@ -323,7 +598,11 @@
         "label": "算定表の金額が「幅」で示される理由",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["１万円，それ以外の場合は２万円の幅をもたせてあります"] },
+        "verify": {
+          "expect": [
+            "１万円，それ以外の場合は２万円の幅をもたせてあります"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★算定表は1点の金額を示さない★ 「6〜8万円」のような幅で示される。ツールで単一の金額を提示してはならない。この幅の中に通常の範囲の事情は既に織り込まれている（後述 limitations.rangeAbsorbsCircumstances 参照）。"
       },
@@ -332,7 +611,12 @@
         "label": "裁判所が示す使用例（養育費）",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["表３「子2人表（第１子及び第２子０～１４歳) 」を選択", "「１０～１２万円」の枠内"] },
+        "verify": {
+          "expect": [
+            "表３「子2人表（第１子及び第２子０～１４歳) 」を選択",
+            "「１０～１２万円」の枠内"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★本データが収録する唯一の具体的な金額★ これは裁判所自身が説明書に記載した使用例であり、算定表のセルを書き写したものではない。記事で算定表の読み方を説明する際は、この公式の使用例をそのまま使うのが最も安全。仮に養育費を10万円とした場合、子2人の年齢がいずれも0〜14歳で指数が同じ62であるため、子1人当たりは2分の1の各5万円となる。"
       },
@@ -341,7 +625,12 @@
         "label": "裁判所が示す使用例（婚姻費用）",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["表１０「婚姻", "「８～１０万円」の枠内"] },
+        "verify": {
+          "expect": [
+            "表１０「婚姻",
+            "「８～１０万円」の枠内"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "裁判所の説明書に記載された公式の使用例。"
       }
@@ -353,7 +642,11 @@
         "label": "子の指数の定義",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["親を１００とした場合"] },
+        "verify": {
+          "expect": [
+            "親を１００とした場合"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "age0to14": {
@@ -362,7 +655,11 @@
         "label": "0〜14歳の子の指数",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["子の指数は０～１４歳の場合には６２"] },
+        "verify": {
+          "expect": [
+            "子の指数は０～１４歳の場合には６２"
+          ]
+        },
         "amendmentNote": "令和元年版の値。改定標準算定方式の統計資料更新に伴い設定された。2026-07-17時点で変更なし。",
         "note": "親を100としたときの割合。"
       },
@@ -372,7 +669,12 @@
         "label": "15歳以上の子の指数",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["１５歳以上の場合には８", "５となっております"] },
+        "verify": {
+          "expect": [
+            "１５歳以上の場合には８",
+            "５となっております"
+          ]
+        },
         "amendmentNote": "令和元年版の値。2026-07-17時点で変更なし。",
         "note": "★62→85の変化が、15歳到達で算定表が変わる理由★ 約1.37倍。ただし算定表そのものが年齢区分ごとに用意されているため、通常の利用者は指数を意識する必要はない。指数が必要になるのは、複数の子の間で養育費を按分するときのみ。"
       },
@@ -381,7 +683,11 @@
         "label": "子1人当たりの額の求め方",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["で按分することで求めることが考えられます"] },
+        "verify": {
+          "expect": [
+            "で按分することで求めることが考えられます"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★実装可能な唯一の計算★ 裁判所の公式例: 子が2人おり、1人が10歳、もう1人が15歳の場合において、養育費の全額が5万円のときは、10歳の子について2万円（5万円×62÷（62＋85））、15歳の子について3万円（5万円×85÷（62＋85））となると考えられる。★この按分は、上の子が成人して養育費が終了した後に、下の子の分がいくら残るかを示すため実務上重要。★"
       },
@@ -390,7 +696,12 @@
         "label": "按分の計算例（裁判所の説明書より）",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["５万円 ×６２÷（６２＋８５）", "５万円×８５÷（６２＋８５）"] },
+        "verify": {
+          "expect": [
+            "５万円 ×６２÷（６２＋８５）",
+            "５万円×８５÷（６２＋８５）"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       }
     },
@@ -401,7 +712,11 @@
         "label": "標準算定方式の位置づけ",
         "sourceId": "courts-h30-houkoku",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["標準的な養育費・婚姻費用の額を簡易迅速に算定するための標準算定方式・算定表"] },
+        "verify": {
+          "expect": [
+            "標準的な養育費・婚姻費用の額を簡易迅速に算定するための標準算定方式・算定表"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "算定表は、この標準算定方式による計算結果を、簡易に参照できるよう表の形にしたもの。したがって算定表と標準算定方式は別物ではなく、表は方式の出力である。"
       },
@@ -410,7 +725,10 @@
         "label": "基礎収入割合（総収入に占める基礎収入の割合）",
         "sourceId": "courts-gaiyou",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "未確認項目のため照合不能。出典PDF（courts-gaiyou）が画像であり、テキスト抽出結果が空であるため機械照合そのものが成立しない。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "未確認項目のため照合不能。出典PDF（courts-gaiyou）が画像であり、テキスト抽出結果が空であるため機械照合そのものが成立しない。"
+        },
         "amendmentNote": "令和元年版の改定で、基礎となる統計資料（公租公課・職業費・特別経費）が更新されている。将来の再改定で変わりうる。",
         "note": "★未確認★ 標準算定方式では、総収入から公租公課・職業費・特別経費を控除した「基礎収入」を求め、これを子の指数で按分して養育費を算出する。基礎収入割合は給与所得者と自営業者で異なり、かつ収入階層ごとに異なる（給与所得者はおおむね総収入の一定割合、自営業者はより高い割合）。探索経緯: ①裁判所の公表ページ courts-h30-houkoku に掲載された全PDF（研究報告の概要 gaiyou_592KB.pdf、説明書 setumei_84KB.pdf、表1〜19）を取得。②説明書（setumei）は子の指数（62/85）までしか記載しておらず基礎収入割合に言及がない。③研究報告の概要（gaiyou）は画像PDFであり PyMuPDF でテキスト抽出したところ本文が1文字も得られなかった（ファイル取得自体は成功）。④法務省の養育費ページ（moj-youikuhi）にも基礎収入割合の記載はない。研究報告の本文は判例タイムズ誌に掲載されているが民間出版物であり本プロジェクトの一次情報要件を満たさない。以上より、推測値を入れずに null とした。★ツール・記事で基礎収入割合の具体的な数値を用いてはならない。★ 記事では『総収入から公租公課・職業費・特別経費を控除した基礎収入を用いる』という定性的な説明にとどめること。"
       },
@@ -419,7 +737,10 @@
         "label": "基礎収入の定義（控除する費目の正確な列挙）",
         "sourceId": "courts-gaiyou",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "未確認項目のため照合不能。出典PDFが画像でテキスト抽出できない。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "未確認項目のため照合不能。出典PDFが画像でテキスト抽出できない。"
+        },
         "amendmentNote": "令和元年版の改定で統計資料が更新されている。",
         "note": "★未確認★ basicIncomeRatio と同じ理由・同じ探索経緯により、裁判所の一次情報から定義の正確な文言を取得できなかったため null とした。算定表を使う限りこの値は不要（表が方式の出力を既に含んでいる）ため、ツールの実装上のブロッカーにはならない。"
       }
@@ -431,7 +752,11 @@
         "label": "算定表はあくまで目安であること",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["この算定表は，あくまで標準的な養育費及び婚姻費用を簡易迅速に算定するこ"] },
+        "verify": {
+          "expect": [
+            "この算定表は，あくまで標準的な養育費及び婚姻費用を簡易迅速に算定するこ"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★YMYL上の最重要ノード★ ツールのUI・記事の冒頭で必ず提示すること。"
       },
@@ -440,7 +765,11 @@
         "label": "裁判所の判断と算定表の金額は常には一致しないこと",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["裁判所の最終的な金額についての判断がこの算定表に示された金額と常に"] },
+        "verify": {
+          "expect": [
+            "裁判所の最終的な金額についての判断がこの算定表に示された金額と常に"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "当事者間の合意でも、いろいろな事情を考慮して最終的な金額を定めることが考えられる。"
       },
@@ -449,7 +778,11 @@
         "label": "算定表の幅を超える主張が認められる範囲",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["算定表によることが著しく不公平となるような特別な事情がある場合に限られる"] },
+        "verify": {
+          "expect": [
+            "算定表によることが著しく不公平となるような特別な事情がある場合に限られる"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★誤解の是正★ 「事情を考慮して決まる＝いくらでも増減できる」ではない。通常の事情（子の年齢・人数・双方の収入）は既に幅に織り込まれており、幅を超えるには『著しく不公平となるような特別な事情』が必要。私立学校の学費・高額な医療費などが典型的な論点だが、認められるかは個別判断。ツールでは「幅を超える主張には特別な事情が必要」と正確に伝えること。"
       },
@@ -458,7 +791,11 @@
         "label": "算定表の適用外となるケース（子4人以上）",
         "sourceId": "courts-setumei",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["子の人数（１～３人）"] },
+        "verify": {
+          "expect": [
+            "子の人数（１～３人）"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "表1〜表9（養育費）は子1〜3人のみ。4人以上の場合は標準算定方式による個別計算が必要であり、算定表では対応できない。verify の expect は、説明書の『算定表の種類』が子の人数を1〜3人と限定していることを利用した照合。"
       }
@@ -470,7 +807,11 @@
         "label": "形成養育費と法定養育費の区別",
         "sourceId": "courts-youikuhi-tetsuzuki",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["取り決める形成養育費（単に「養育費」ともいいます。）と、養育費の取決めがない場合に法律上発生する法定養育費があります"] },
+        "verify": {
+          "expect": [
+            "取り決める形成養育費（単に「養育費」ともいいます。）と、養育費の取決めがない場合に法律上発生する法定養育費があります"
+          ]
+        },
         "amendmentNote": "令和8年4月1日施行の改正民法により新設された区別（施行済）。",
         "note": "★算定表は形成養育費のためのもの★ 法定養育費は算定表とは無関係に、子1人につき月額2万円と法務省令で定額化されている。"
       },
@@ -480,7 +821,11 @@
         "label": "法定養育費の額（子1人につき）",
         "sourceId": "moj-shourei-gaiyou",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["月額２万円に子の数を乗じて得た額"] },
+        "verify": {
+          "expect": [
+            "月額２万円に子の数を乗じて得た額"
+          ]
+        },
         "amendmentNote": "令和7年法務省令第56号（令和7年12月12日制定・公布）、令和8年4月1日施行済。省令附則により、施行状況・社会経済情勢の変化等を勘案して将来改定されうる。",
         "note": "法務省令の概要に「※例 子が２人の場合･･･月額４万円／子が３人の場合･･･月額６万円」と明記。法律上の根拠は民法第766条の3（法定養育費の額＝「子の最低限度の生活の維持に要する標準的な費用の額その他の事情を勘案して子の数に応じて法務省令で定めるところにより算定した額」）。★算定表の標準額より大幅に低い★ あくまで取決めがない間の最低限の暫定額であり、算定表による本来の養育費を諦める理由にはならない。法定養育費の支払がされていないときは、養育費調停・審判での解決を求めることができる。"
       },
@@ -489,7 +834,11 @@
         "label": "改正前の状況",
         "sourceId": "moj-shourei-gaiyou",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["養育費の支払を請求するためには養育費の額につき取決めが必要"] },
+        "verify": {
+          "expect": [
+            "養育費の支払を請求するためには養育費の額につき取決めが必要"
+          ]
+        },
         "amendmentNote": "令和8年4月1日から、取決めがなくても離婚時から一定額の法定養育費を請求できるようになった（施行済）。",
         "note": "★記事の核心メッセージ★ 「離婚時に養育費を取り決めなかったから、もう何ももらえない」は2026年4月以降は誤り。"
       },
@@ -498,7 +847,10 @@
         "label": "経過措置",
         "sourceId": "moj-kaisei-minpou",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "経過措置の内容は moj-kaisei-minpou ページ本体ではなくリンク先のQ&A資料PDFに記載されており、本ノードと同一の文字列がページ本文に存在しないため機械照合の対象外とする。実装時は法務省のQ&A形式の解説資料（民法編）を参照すること。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "経過措置の内容は moj-kaisei-minpou ページ本体ではなくリンク先のQ&A資料PDFに記載されており、本ノードと同一の文字列がページ本文に存在しないため機械照合の対象外とする。実装時は法務省のQ&A形式の解説資料（民法編）を参照すること。"
+        },
         "amendmentNote": "令和8年4月1日施行。",
         "note": "★重要な限定★ 法定養育費は2026年4月1日以後に離婚した場合に適用される。それ以前に離婚した世帯には適用されないため、UIで離婚時期を必ず質問すること。この点を誤ると、既に離婚済みの読者に受け取れない給付を期待させることになる。"
       }
@@ -511,7 +863,11 @@
         "label": "先取特権が付与される額（子1人につき）",
         "sourceId": "moj-shourei-gaiyou",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["月額８万円に子の数を乗じて得た額"] },
+        "verify": {
+          "expect": [
+            "月額８万円に子の数を乗じて得た額"
+          ]
+        },
         "amendmentNote": "令和7年法務省令第56号、令和8年4月1日施行済。省令附則により将来改定されうる。",
         "note": "法務省令の概要に「※例 子が２人の場合･･･月額１６万円まで／子が３人の場合･･･月額２４万円まで」と明記。法律上の根拠は民法第308条の2（「子の監護に要する標準的な費用その他の事情を勘案して…子の数に応じて法務省令で定めるところにより算定した額」）。"
       },
@@ -520,7 +876,11 @@
         "label": "先取特権の効果",
         "sourceId": "moj-shourei-gaiyou",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["一定額までは、債務名義がなくても財産を差し押さえることができ"] },
+        "verify": {
+          "expect": [
+            "一定額までは、債務名義がなくても財産を差し押さえることができ"
+          ]
+        },
         "amendmentNote": "令和8年4月1日施行済。",
         "note": "★実務上の激変★ 改正前は「養育費の取決めがあっても、支払義務者の財産を差し押さえるためには債務名義（公正証書や調停調書など）が必要」だった。改正後は月額8万円×子の数までなら債務名義なしで差押えが可能。ただし勤務先・口座等の財産が分からない場合は、裁判所のワンストップ執行手続（財産開示）を利用する必要がある。"
       },
@@ -529,7 +889,10 @@
         "label": "経過措置",
         "sourceId": "moj-kaisei-minpou",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "経過措置の内容は moj-kaisei-minpou ページ本体ではなくリンク先のQ&A資料PDFに記載されており、ページ本文に同一文字列が存在しないため照合対象外。実装時は法務省のQ&A形式の解説資料（民法編）を参照すること。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "経過措置の内容は moj-kaisei-minpou ページ本体ではなくリンク先のQ&A資料PDFに記載されており、ページ本文に同一文字列が存在しないため照合対象外。実装時は法務省のQ&A形式の解説資料（民法編）を参照すること。"
+        },
         "amendmentNote": "令和8年4月1日施行。",
         "note": "★法定養育費との違い★ 法定養育費は施行日前に離婚した世帯には適用されないが、先取特権は施行日前の取決めであっても施行日以後に生じた分には適用される。つまり過去に離婚し養育費を取り決めたが不払いになっている世帯にとって、先取特権は2026年4月以降に発生する未払分について使える。★この非対称性は記事で最も価値のある情報であり、正確に書くこと。★"
       },
@@ -538,7 +901,11 @@
         "label": "養育費に関する法務省令の制定・公布日",
         "sourceId": "moj-kaisei-minpou",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["令和７年１２月１２日、民法第３０８条の２の規定による子の監護費用の先取特権に係る額の算定等に関する省令（令和７年法務省令第５６号）が制定されました"] },
+        "verify": {
+          "expect": [
+            "令和７年１２月１２日、民法第３０８条の２の規定による子の監護費用の先取特権に係る額の算定等に関する省令（令和７年法務省令第５６号）が制定されました"
+          ]
+        },
         "amendmentNote": "令和8年4月1日施行済。",
         "note": "改正法（令和6年法律第33号）と併せて令和8年4月1日施行。"
       }
@@ -550,7 +917,11 @@
         "label": "取決めをする手続",
         "sourceId": "courts-youikuhi-tetsuzuki",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["家庭裁判所に調停又は審判の申立てをして、養育費の支払を求めることができます"] },
+        "verify": {
+          "expect": [
+            "家庭裁判所に調停又は審判の申立てをして、養育費の支払を求めることができます"
+          ]
+        },
         "amendmentNote": "令和8年4月施行の改正法により、法定養育費の減額・免除を求める場合にも養育費請求調停・審判を利用できることが明記された。",
         "note": "利用できる場面: ①離婚後、養育費について話合いがまとまらない／話合いができない場合、②結婚しないまま子を出産したが養育費について話合いがまとまらない場合、③父親が子を認知したが養育費について話合いがまとまらない場合。"
       },
@@ -559,7 +930,11 @@
         "label": "家事調停の申立先",
         "sourceId": "moj-youikuhi",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["相手の住所地を管轄する家庭裁判所又は当事者が合意で定める家庭裁判所"] },
+        "verify": {
+          "expect": [
+            "相手の住所地を管轄する家庭裁判所又は当事者が合意で定める家庭裁判所"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★自分の住所地ではない★ 原則として相手方の住所地。遠方の場合は電話会議等の利用可否を裁判所に確認すること。"
       },
@@ -568,7 +943,11 @@
         "label": "増額・減額請求",
         "sourceId": "courts-youikuhi-tetsuzuki",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["予定していなかった収入の変動、子どもの進学、再婚などの事情の変更があった場合は、増額や減額を求めることができます"] },
+        "verify": {
+          "expect": [
+            "予定していなかった収入の変動、子どもの進学、再婚などの事情の変更があった場合は、増額や減額を求めることができます"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★算定表の使いどころ★ 事情変更後の双方の年収を算定表に当てはめ直すことで、増減額の目安が分かる。一度取り決めたら変えられないという誤解を解くこと。"
       },
@@ -577,7 +956,11 @@
         "label": "不払いへの対応手続",
         "sourceId": "courts-youikuhi-tetsuzuki",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["差し押さえる財産が分からない場合は、ワンストップ執行手続を利用することができます"] },
+        "verify": {
+          "expect": [
+            "差し押さえる財産が分からない場合は、ワンストップ執行手続を利用することができます"
+          ]
+        },
         "amendmentNote": "令和8年4月から先取特権の付与により、月額8万円×子の数までは債務名義がなくても差押えが可能となった（施行済）。",
         "note": "差し押さえる財産（勤務先・預貯金口座等）が分からない場合は、まずワンストップ執行手続（財産開示）を利用する。"
       },
@@ -586,7 +969,11 @@
         "label": "養育費の法的性質",
         "sourceId": "courts-youikuhi-tetsuzuki",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["父母は、親権や婚姻関係の有無にかかわらず、子どもを扶養する責務を負います"] },
+        "verify": {
+          "expect": [
+            "父母は、親権や婚姻関係の有無にかかわらず、子どもを扶養する責務を負います"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★重要★ 親権を持たない親も、未婚の父母も、扶養義務を負う。「親権がないから養育費を払わなくてよい」は誤り。算定表が親権の有無ではなく『義務者／権利者』という区別を使っているのはこのため。"
       }

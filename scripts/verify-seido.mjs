@@ -412,6 +412,25 @@ function checkStructure(file, data) {
     err(rel, '$.disclaimer', '免責表示文が短すぎます（20文字以上必須。YMYL領域のため）');
   }
 
+  // --- nextCheckDue（定期再確認日。P2-I01 データ鮮度の定期監査）
+  // expiresOn（確定失効＝この日に数値が変わると分かっている）と別に、
+  // 「改正が無くても定期的に一次情報と突き合わせる」日付を全ファイルに義務化する。
+  // D2=洗濯表示の教訓: 期限が既に経過した改正を誰も監視しておらず陳腐化がすり抜けた。
+  if (!data.nextCheckDue) {
+    err(rel, '$.nextCheckDue', 'nextCheckDue（次回再確認日）がありません（全制度データ必須。年度データは原則、翌年度の4月1日）');
+  } else if (data.nextCheckDue < TODAY) {
+    err(
+      rel,
+      '$.nextCheckDue',
+      `★再確認期限超過★ nextCheckDue "${data.nextCheckDue}" を過ぎています。一次情報と突き合わせ、checkedAt/asOf を更新するか値を差し替えたうえで次回日付を設定してください（手順: docs/10_公開チェックリスト.md）`
+    );
+  } else {
+    const days = Math.ceil((new Date(data.nextCheckDue) - new Date(TODAY)) / 86400000);
+    if (days <= 30) {
+      warn(rel, '$.nextCheckDue', `再確認期限まで残り${days}日（${data.nextCheckDue}）`);
+    }
+  }
+
   // --- sources
   const sourceIds = new Set();
   if (Array.isArray(data.sources)) {
