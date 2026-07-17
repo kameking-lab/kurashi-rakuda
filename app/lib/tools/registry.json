@@ -145,9 +145,18 @@
       "離乳食を1日何回あげればいいか分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "授乳・離乳の支援ガイド（2019年改定版）（厚生労働省）",
+        "url": "https://www.mhlw.go.jp/content/11908000/000496257.pdf"
+      },
+      {
+        "label": "specs/b-tools/19-baby-food-amount-guide.md（離乳食の量・固さ早見 ロジック仕様）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/19-baby-food-amount-guide.md"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-08",
@@ -194,9 +203,58 @@
       "きょうだい減免がいくらか分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "横浜市こども青少年局「利用料（保育料）および副食費の免除対象の決定方法」",
+        "url": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/hoiku-yoji/shisetsu/riyou/riyouryo/riyouryosantei/default20190319.html"
+      },
+      {
+        "label": "大阪市こども青少年局「令和8年度 保育施設等の保育料のお知らせ」",
+        "url": "https://www.city.osaka.lg.jp/kodomo/page/0000501253.html"
+      },
+      {
+        "label": "札幌市子ども未来局「認可保育所・認定こども園（保育所部分）・地域型保育事業所の保育料」",
+        "url": "https://kosodate.city.sapporo.jp/mokuteki/azukeru/hoiku/ninka/941/941.html"
+      },
+      {
+        "label": "名古屋市子ども青少年局「0歳児クラスから2歳児クラスの利用者負担額」",
+        "url": "https://www.city.nagoya.jp/kodomo/kosodate/1009115/1009125/1009255/1009267.html"
+      },
+      {
+        "label": "川崎市「認可保育所等の利用者負担額（保育料）」",
+        "url": "https://www.city.kawasaki.jp/kodomo/category/267-2-7-0-0-0-0-0-0-0.html"
+      },
+      {
+        "label": "福岡市（ふくおか子ども情報）「利用者負担額（保育料・副食費）」",
+        "url": "https://kodomo.city.fukuoka.lg.jp/info/2122/"
+      },
+      {
+        "label": "世田谷区子ども・若者部「保育料及び給食費について」",
+        "url": "https://www.city.setagaya.lg.jp/01044/1416.html"
+      },
+      {
+        "label": "練馬区こども家庭部保育課「認可保育園等の保育料・副食費について」",
+        "url": "https://www.city.nerima.tokyo.jp/kosodatekyoiku/kodomo/hoiku/hoikuen/zaien/hoikuryou/hoikuryou.html"
+      },
+      {
+        "label": "大田区こども家庭部保育サービス課「保育料階層の決定方法、お支払い」",
+        "url": "https://www.city.ota.tokyo.jp/seikatsu/kodomo/hoiku/hoikuryo/ketteihouhou.html"
+      },
+      {
+        "label": "江戸川区子ども家庭部保育課「利用者負担額（保育料）」",
+        "url": "https://www.city.edogawa.tokyo.jp/e048/kosodate/kosodate/hoiku/nitijou/hoikuen/riyoushahutan.html"
+      },
+      {
+        "label": "足立区子ども家庭部「保育料について」",
+        "url": "https://www.city.adachi.tokyo.jp/kodomo-unei/k-kyoiku/kosodate/hoikuen-hoikuryo.html"
+      },
+      {
+        "label": "杉並区子ども家庭部保育課「認可保育所・地域型保育事業の保育料について」",
+        "url": "https://www.city.suginami.tokyo.jp/s058/1071.html"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-10",
@@ -209,9 +267,14 @@
       "両親の身長からの予測方法が分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "specs/b-tools/22-height-prediction.md（両親身長法・Mid-Parental Height法の通称。小児科領域・育児メディアで広く紹介されている統計的経験式）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/22-height-prediction.md"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-11",

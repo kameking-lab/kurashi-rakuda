@@ -1,0 +1,128 @@
+{
+  "$comment": "離乳食の量・固さ早見（Q3-07）のデータ表。厚生労働省「授乳・離乳の支援ガイド（2019年改定版）」の「離乳の進め方の目安」表を基に作成。specs/b-tools/19-baby-food-amount-guide.md の 表A・表B・表C に対応する。数値・文言は同ガイドの目安量であり、個人差があることを前提とした「目安」である。",
+  "source": {
+    "label": "厚生労働省「授乳・離乳の支援ガイド（2019年改定版）」",
+    "url": "https://www.mhlw.go.jp/content/11908000/000496257.pdf"
+  },
+  "lastVerified": "2026-07-17",
+  "nextCheckDue": "2027-07-01",
+  "stages": [
+    {
+      "code": "STAGE_BEFORE",
+      "label": "離乳食準備期",
+      "ageRangeLabel": "〜生後5ヶ月未満",
+      "mealsPerDay": null,
+      "textureLabel": null,
+      "message": "まだ開始の目安前です。生後5〜6ヶ月頃、首がすわる・支えると座れる・食べ物に興味を示す等のサインが見られたら開始の目安です。",
+      "foodGroups": null
+    },
+    {
+      "code": "STAGE_GOKKUN",
+      "label": "離乳初期（ゴックン期）",
+      "ageRangeLabel": "生後5〜6ヶ月",
+      "mealsPerDay": "1日1回→慣れてきたら2回",
+      "textureLabel": "なめらかにすりつぶした状態（ポタージュ状）",
+      "message": null,
+      "foodGroups": {
+        "grain": "つぶしがゆから開始し、様子を見て少量ずつ増やす（目安量の規定なし・ひとさじから）",
+        "vegFruit": "すりつぶした野菜を少量から",
+        "fish": "すりつぶした白身魚を少量から（開始1ヶ月を過ぎた頃から）",
+        "meat": "（初期は基本的に魚・豆腐・卵が中心。肉は中期以降が目安）",
+        "tofu": "少量から試す",
+        "egg": "固ゆで卵黄からごく少量で開始",
+        "dairy": "少量から試す"
+      }
+    },
+    {
+      "code": "STAGE_MOGUMOGU",
+      "label": "離乳中期（モグモグ期）",
+      "ageRangeLabel": "生後7〜8ヶ月",
+      "mealsPerDay": "1日2回",
+      "textureLabel": "舌でつぶせる固さ（絹ごし豆腐くらい）",
+      "message": null,
+      "foodGroups": {
+        "grain": "全がゆ 50〜80g",
+        "vegFruit": "20〜30g",
+        "fish": "10〜15g",
+        "meat": "10〜15g",
+        "tofu": "30〜40g",
+        "egg": "卵黄1個〜全卵1/3個",
+        "dairy": "50〜70g"
+      }
+    },
+    {
+      "code": "STAGE_KAMIKAMI",
+      "label": "離乳後期（カミカミ期）",
+      "ageRangeLabel": "生後9〜11ヶ月",
+      "mealsPerDay": "1日3回",
+      "textureLabel": "歯ぐきでつぶせる固さ（バナナくらい）",
+      "message": null,
+      "foodGroups": {
+        "grain": "全がゆ90g〜軟飯80g",
+        "vegFruit": "30〜40g",
+        "fish": "15g",
+        "meat": "15g",
+        "tofu": "45g",
+        "egg": "全卵1/2個",
+        "dairy": "80g"
+      }
+    },
+    {
+      "code": "STAGE_PAKUPAKU",
+      "label": "離乳完了期（パクパク期）",
+      "ageRangeLabel": "生後12〜18ヶ月",
+      "mealsPerDay": "1日3回＋間食1〜2回",
+      "textureLabel": "歯ぐきで噛める固さ（肉だんごくらい）",
+      "message": null,
+      "foodGroups": {
+        "grain": "軟飯90g〜ご飯80g",
+        "vegFruit": "40〜50g",
+        "fish": "15〜20g",
+        "meat": "15〜20g",
+        "tofu": "50〜55g",
+        "egg": "全卵1/2〜2/3個",
+        "dairy": "100g"
+      }
+    },
+    {
+      "code": "STAGE_AFTER",
+      "label": "幼児食への移行期",
+      "ageRangeLabel": "生後19ヶ月〜",
+      "mealsPerDay": null,
+      "textureLabel": null,
+      "message": "離乳完了の目安の月齢を過ぎています。幼児食への移行期の目安は本ツールのデータ範囲外です。1歳を過ぎても離乳が完了しない場合、パクパク期の目安を参考値として引き続きご覧いただけます。無理に進める必要はありません。",
+      "foodGroups": null
+    }
+  ],
+  "foodGroupOrder": ["grain", "vegFruit", "fish", "meat", "tofu", "egg", "dairy"],
+  "foodGroupLabels": {
+    "grain": "穀類（つぶしがゆ〜ご飯）",
+    "vegFruit": "野菜・果物",
+    "fish": "魚",
+    "meat": "肉",
+    "tofu": "豆腐",
+    "egg": "卵",
+    "dairy": "乳製品（無糖ヨーグルト・チーズ等）"
+  },
+  "proteinNote": "魚・肉・豆腐・卵・乳製品（たんぱく質源食品）は「いずれか1種類程度を目安量の範囲で組み合わせる」考え方です。すべてを毎食同時に与える量ではありません。",
+  "commonNotes": [
+    {
+      "title": "はちみつ・黒糖",
+      "content": "乳児ボツリヌス症予防のため、満1歳になるまでは与えない（加熱の有無を問わず）"
+    },
+    {
+      "title": "新しい食材を試すタイミング",
+      "content": "体調が良い平日の午前中〜昼、すぐに医療機関を受診できる時間帯に、ごく少量から1種類ずつ試すのが一般的な目安とされている"
+    },
+    {
+      "title": "食物アレルギーの既往・家族歴",
+      "content": "心配がある場合は自己判断で進めず、事前にかかりつけ医に相談する"
+    },
+    {
+      "title": "味付け",
+      "content": "調味料は控えめに。素材そのものの味を活かすことがガイドの基本的な考え方"
+    }
+  ],
+  "disclaimer": "表示している量・固さは、厚生労働省「授乳・離乳の支援ガイド（2019年改定版）」に基づく目安です。赤ちゃんの発育・発達には個人差があります。食べる量や進み方が心配な場合、食物アレルギーが疑われる場合は、自己判断で進めず、乳幼児健診やかかりつけ医・栄養士にご相談ください。",
+  "prematureDisclaimer": "修正月齢は参考値です。修正月齢をいつまで使うか、離乳食の進め方をどうするかは、お子さまの状態によって個別に異なります。必ず主治医・乳幼児健診の指示に従ってください。"
+}
