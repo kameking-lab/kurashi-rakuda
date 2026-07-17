@@ -43,6 +43,22 @@ import {
 } from "@/components/tools/impl/JoseiKenshinSchedule.calc";
 import { ShussanJunbiChecklist } from "@/components/tools/impl/ShussanJunbiChecklist";
 import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
+import { KaigoShigotoRyouritsuChecker } from "@/components/tools/impl/KaigoShigotoRyouritsuChecker";
+import {
+  kaigoShigotoRyouritsuDataset,
+  JIKANGAI_MONTHLY_LIMIT,
+  JIKANGAI_YEARLY_LIMIT,
+  KAIGO_KYUGYO_MAX_DAYS,
+  KAIGO_KYUGYO_MAX_COUNT,
+  KAIGO_KYUKA_DAYS_PER_YEAR,
+  KAIGO_KYUKA_DAYS_PER_YEAR_MULTIPLE,
+  TANSHUKU_PERIOD_YEARS,
+  TANSHUKU_MIN_COUNT,
+  JOHO_TEIKYO_AGE,
+  KOBETSU_SHUCHI_TEXT,
+  JOHO_TEIKYO_40_TEXT,
+  TELEWORK_TEXT,
+} from "@/components/tools/impl/KaigoShigotoRyouritsuChecker.calc";
 import { GakudouKabeDandoriCheck } from "@/components/tools/impl/GakudouKabeDandoriCheck";
 import {
   GRADE_RANGE_LABEL as GAKUDOU_GRADE_RANGE_LABEL,
@@ -1157,6 +1173,41 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           ）。
         </p>
         <SeidoNotice datasets={[kaigoShisetsuHiyouSoubaDataset, kaigoHokenDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "kaigo-shigoto-ryouritsu-checker": {
+    ui: <KaigoShigotoRyouritsuChecker />,
+    formula: (
+      <>
+        <p>
+          育児・介護休業法は、要介護状態（負傷・疾病・障害により2週間以上常時介護が必要な状態）にある「対象家族」（配偶者・父母・子・配偶者の父母・祖父母・兄弟姉妹・孫）を介護する労働者のために、6つの両立支援制度を定めています。①<strong>介護休業</strong>
+          （対象家族1人につき通算{KAIGO_KYUGYO_MAX_DAYS}日、{KAIGO_KYUGYO_MAX_COUNT}
+          回まで分割可）②<strong>介護休暇</strong>
+          （1年度に{KAIGO_KYUKA_DAYS_PER_YEAR}日、対象家族が2人以上なら{KAIGO_KYUKA_DAYS_PER_YEAR_MULTIPLE}
+          日、時間単位取得も可）③<strong>所定外労働の制限</strong>
+          （残業そのものの免除）④<strong>時間外労働の制限</strong>
+          （1か月{JIKANGAI_MONTHLY_LIMIT}時間・1年{JIKANGAI_YEARLY_LIMIT}
+          時間まで）⑤<strong>深夜業の制限</strong>
+          （午後10時〜午前5時の労働を免除）⑥<strong>所定労働時間の短縮等の措置</strong>
+          （事業主が短時間勤務・フレックス等から選んで講じる義務。利用開始から連続{TANSHUKU_PERIOD_YEARS}
+          年以上・{TANSHUKU_MIN_COUNT}回以上利用可能）です。
+        </p>
+        <p>
+          <strong>労使協定による除外と、法律による直接除外の違い</strong>
+          ：介護休業・介護休暇（週の所定労働日数が2日以下の場合のみ）・所定外労働の制限・所定労働時間の短縮等の措置は、勤務先が労使協定を結んでいる場合に限り、勤続1年未満や週の所定労働日数が2日以下の方を対象から除外できます。労使協定がなければ対象になるため、本ツールはこれらの条件に該当する場合「条件付き（要確認）」と表示し、断定しません。一方、時間外労働の制限・深夜業の制限は、労使協定の有無にかかわらず法律が直接、勤続1年未満の方を除外の対象と定めています。深夜業の制限にはさらに、深夜に代わって対象家族を介護できる同居の家族がいる場合という独自の除外要件があります。この違いを混同すると、対象になるはずの方に「対象外」と案内してしまう恐れがあるため、本ツールは両者を明確に区別して表示します。
+        </p>
+        <p>
+          <strong>★2025年（令和7年）4月の改正で追加された会社の義務★</strong>
+          ：{KOBETSU_SHUCHI_TEXT}
+          。また、{JOHO_TEIKYO_40_TEXT}
+          （対象年齢は{JOHO_TEIKYO_AGE}歳）。これらは労働者が請求するものではなく、事業主が果たすべき義務です。{TELEWORK_TEXT}
+          （★義務ではなく努力義務であり、労働者に請求権はありません★）。
+        </p>
+        <p>
+          本ツールの判定は、対象家族の範囲・要介護状態の見込み・雇用形態という簡単な入力に基づく大まかなチェックです。労使協定の有無など、ご本人の入力だけでは分からない条件があるため、「条件付き（要確認）」と表示された場合は、必ず勤務先の人事担当・就業規則でご確認ください。
+        </p>
+        <SeidoNotice datasets={[kaigoShigotoRyouritsuDataset]} today={todayJst()} />
       </>
     ),
   },
