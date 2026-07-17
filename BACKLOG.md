@@ -177,7 +177,7 @@
 | [x] P2-T19 | #27 | 幼児教育・保育無償化 対象チェッカー | B(ソネット) | ✔youji-kyouiku-mushouka | 簡易 → **完了（feat/tool-youji-mushouka-checker）**: slug `youji-mushouka-checker`（childcare）。specs/b-tools/p2-t19-youji-mushouka-checker.md・YoujiMushoukaChecker.calc.ts/tsx・tests/youji-mushouka-checker.test.ts（18件）・registry.json 追加済み |
 | P2-T20 | #28 | 学童・小1の壁 段取りチェック | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
 | [x] P2-T21 | #42 | 味付け黄金比計算（人数スケール） | B(ソネット) | 要: data/tables 黄金比表（出典設計含む） | 簡易 → **完了（2026-07-17）**: slug `ajitsuke-ougonhi`（kaji）。`data/tables/ajitsuke-ougonhi.json` 新規作成。出典5品目=農林水産省「伝統調味料は『黄金比』で手間いらず」（maff.go.jp、Let's！和ごはんプロジェクト）、残り3品目（すき焼き割り下・天つゆ・酢の物）は一次情報なしのため一般的な目安として明記。specs/b-tools/p2-t21-ajitsuke-ougonhi.md・テスト18件 |
-| [~] P2-T22 | #43 | レシピ人数スケール換算 | B(ソネット) | なし（#38部品流用） | 不要 |
+| [x] P2-T22 | #43 | レシピ人数スケール換算 | B(ソネット) | なし（#38部品流用） | 不要 → **完了（2026-07-18）**: slug `recipe-ninzuu-kansan`（kaji）。純粋な比例計算（倍率＝目標人数÷元の人数）のみで制度・統計データへの依存なし。UIパターン（複数行の材料入力）はChomiryoKanzan.tsxを参考にしつつ動的な追加・削除に拡張。specs/b-tools/p2-t22-recipe-ninzuu-kansan.md・RecipeNinzuuKansan.calc.ts/tsx・テスト29件（tests/recipe-ninzuu-kansan.test.ts）・registry.json 追加済み（sourcesは公的データ不在のため一般参考情報1件のみ、捏造なし）
 | P2-T23 | #44 | 買い物リスト自動生成（献立連動） | B(ソネット) | ✔data/kondate（#40部品流用） | 簡易 |
 | P2-T24 | #45 | 作り置き 日持ち一覧 | B(ソネット) | 要: data/tables 日持ち表（#37と同系） | 簡易 |
 | [~] P2-T25 | #46 | 名もなき家事 分担チェッカー | B(ソネット) | なし（自前リスト） | 簡易 |

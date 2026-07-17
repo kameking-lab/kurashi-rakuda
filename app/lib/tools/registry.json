@@ -986,6 +986,27 @@
         "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/tables/san-fujinka-kijun.json"
       }
     ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
+    "queueId": "P2-T22",
+    "slug": "recipe-ninzuu-kansan",
+    "category": "kaji",
+    "title": "レシピ人数スケール換算",
+    "description": "レシピの元の人数分と材料名・分量を入力すると、作りたい人数分にスケールした各材料の分量を計算します。単純な比例計算（倍率＝目標人数÷元の人数）のみを行う算術ツールで、公的機関の統計・制度データには依存していません。",
+    "solves": [
+      "レシピの人数を変えたときの分量がすぐに分からない",
+      "4人分のレシピを2人分・6人分に手計算するのが面倒",
+      "材料が多いレシピで計算ミスをしたくない"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "みんなの知識 ちょっと便利帳「レシピの全材料を同じ割合で計算・作りたい人数分で材料を計算する」（比例計算の考え方の一般的な参考情報。本ツール自体は独自の統計・制度データに依存しない純粋な算術計算）",
+        "url": "https://www.benricho.org/doryoko_cup_spoon/conv03.html"
+      }
+    ],
     "updated": "2026-07-18",
     "status": "live"
   }

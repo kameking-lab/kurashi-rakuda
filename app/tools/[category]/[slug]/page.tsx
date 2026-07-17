@@ -37,6 +37,7 @@ import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSc
 import { ShussanJunbiChecklist } from "@/components/tools/impl/ShussanJunbiChecklist";
 import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
 import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
+import { RecipeNinzuuKansan } from "@/components/tools/impl/RecipeNinzuuKansan";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1099,6 +1100,30 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         </p>
         <p>
           必要なものは体調・地域・産院の方針・きょうだいの有無などによって大きく異なります。断定的な指示ではなく、母子健康手帳や産院からの案内と合わせて確認するための目安としてご利用ください。実際の出産日は予定日どおりとは限らないため、出産予定日を過ぎた場合の表示（産後の準備リスト）もあくまで参考です。
+        </p>
+      </>
+    ),
+  },
+  "recipe-ninzuu-kansan": {
+    ui: <RecipeNinzuuKansan />,
+    formula: (
+      <>
+        <p>
+          <strong>計算式</strong>
+          ：倍率 ＝ 目標の人数 ÷ 元の人数。この倍率を、入力したすべての材料の分量に同じように掛けるだけの単純な比例計算です。材料ごとに違う倍率を使うことはありません。
+        </p>
+        <p>
+          <strong>丸め処理</strong>
+          ：計算結果をそのまま表示すると「3.333333…g」のような読みにくい数字になるため、単位の種類によって次のように丸めています。個・本・枚など個数で数える単位は整数（1刻み）、大さじ・小さじ・カップは0.5刻み、g・mlなどそれ以外の単位は小数第1位までに丸めます。丸めた結果が0になってしまう場合は、表示上「消えてしまう材料」が出ないよう、それぞれの丸め幅の最小値（個数系なら1）まで引き上げて表示します。
+        </p>
+        <p>
+          本ツールは金額・制度・医療のいずれにも関わらない、分量の比例計算のみを行う生活の目安ツールです。公的機関の統計・制度データへの依存はありません。
+        </p>
+        <p>
+          <strong>
+            調味料や香辛料、加熱時間・加熱方法は人数分そのまま倍にすると味や仕上がりが変わることがあります。
+          </strong>
+          特に大人数の調理では、塩分などを人数分そのまま倍にすると味が濃くなりすぎることが知られています。本ツールは分量の比例計算のみを行い、加熱時間や調理方法の調整は行わないため、実際に作る際は味見をしながら調整してください。
         </p>
       </>
     ),
