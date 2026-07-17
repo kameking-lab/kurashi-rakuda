@@ -28,6 +28,9 @@ import { KondateTeian } from "@/components/tools/impl/KondateTeian";
 import { KONDATE_DISCLAIMER, kondateData } from "@/lib/tools/impl/kondate-teian";
 import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
+import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
+import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
+import { SITE_URL } from "@/app/lib/site";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
 import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
 import { ikukyuKyufuDataset } from "@/lib/tools/impl/sankyu-ikukyu-money";
@@ -775,8 +778,24 @@ export default async function ToolPage({
   if (!tool || tool.status !== "live" || !impl) notFound();
 
   return (
-    <ToolShell meta={tool} formula={impl.formula}>
-      {impl.ui}
-    </ToolShell>
+    <>
+      <JsonLd
+        data={breadcrumbList(
+          [
+            { name: "ホーム", path: "/" },
+            { name: "ツール一覧", path: "/tools" },
+            {
+              name: TOOL_CATEGORIES[tool.category],
+              path: `/tools#${tool.category}`,
+            },
+            { name: tool.title, path: `/tools/${tool.category}/${tool.slug}` },
+          ],
+          SITE_URL,
+        )}
+      />
+      <ToolShell meta={tool} formula={impl.formula}>
+        {impl.ui}
+      </ToolShell>
+    </>
   );
 }
