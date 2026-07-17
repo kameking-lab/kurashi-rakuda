@@ -73,6 +73,8 @@ import { NamonakiKajiChecker } from "@/components/tools/impl/NamonakiKajiChecker
 import { REFERENCE_STAT as NAMONAKI_KAJI_REFERENCE_STAT } from "@/components/tools/impl/NamonakiKajiChecker.calc";
 import { PartShiftShunyuuKeisan } from "@/components/tools/impl/PartShiftShunyuuKeisan";
 import { partShiftKabeDataset } from "@/components/tools/impl/PartShiftShunyuuKeisan.calc";
+import { KaigoServiceGyakuHiki } from "@/components/tools/impl/KaigoServiceGyakuHiki";
+import { kaigoHokenDataset as kaigoServiceGyakuHikiDataset } from "@/components/tools/impl/KaigoServiceGyakuHiki.calc";
 import { JoseiTekiseiTaijuuShihyou } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou";
 import { TEKISEI_TAIJUU_DISCLAIMER } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
@@ -1472,6 +1474,37 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           暦年の合計ではなく、認定時点から将来1年間の見込み収入で判定されるため、月々の水準を保つ管理が実務上の基本です。
         </p>
         <SeidoNotice datasets={[partShiftKabeDataset, fuyoKabeDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "kaigo-service-gyaku-hiki": {
+    ui: <KaigoServiceGyakuHiki />,
+    formula: (
+      <>
+        <p>
+          <strong>逆引きの仕組み</strong>
+          ：あらかじめ用意した10種類の「困りごと」と17種類の介護保険サービスの対応表から、選んだ困りごとに該当するサービスを集めて表示しているだけです。複数の困りごとに共通するサービスは1件にまとめて表示します（例:
+          「日中一人が心配」と「相談したい」はどちらも居宅介護支援に該当するため、重複せず1件で表示されます）。
+        </p>
+        <p>
+          <strong>サービス名・分類の出典について（正直な開示）</strong>
+          ：<code>data/seido/kaigo-hoken.json</code> を精査した結果、このファイルは利用者負担割合・区分支給限度基準額・高額介護サービス費・補足給付など
+          <strong>費用計算のためのデータ</strong>
+          で構成されており、訪問介護・通所介護・短期入所生活介護といった
+          <strong>サービス種類の名称・分類を一覧化したカタログは含まれていません</strong>
+          。そのため本ツールが表示するサービス名・概要・分類は、
+          <strong>介護保険法第8条・第8条の2・第45条が定める類型に基づく一般的な整理</strong>
+          であり、e-Gov法令検索の法令APIで条文（第8条第2項〜第13項・第24項・第26項〜第29項）を機械照合しています。住宅改修（第45条）は条項の存在は確認できましたが、支給限度額などの具体的な金額は本ツールの制作時点で条文全文を照合できなかったため、金額を書かず「限度額がある」という説明にとどめています。
+        </p>
+        <p>
+          <strong>kaigo-hoken.jsonから実際に引用している部分</strong>
+          ：要介護度の区分（非該当・要支援1・2・要介護1〜5）と、区分支給限度基準額（1か月に利用できる金額の上限。要介護度別の単位数・円換算）の2点のみです。これらは逆引き結果（サービス名の一覧）とは独立した参考情報として画面下部に表示しています。
+        </p>
+        <p>
+          <strong>断定しないこと</strong>
+          ：「このサービスを使えば必ず解決する」という保証ではなく、あくまで一般的な対応の目安です。実際にどのサービスをどれだけ使えるかは要介護度・お住まいの地域・事業所の空き状況などで変わるため、実際の利用にあたっては担当のケアマネジャーやお住まいの市区町村・地域包括支援センターへの相談が必要です。訪問介護・通所介護は、要支援1・2の方については市町村の地域支援事業（介護予防・日常生活支援総合事業）として提供され内容が市町村ごとに異なる場合があるため、この点も断定的に判定していません。
+        </p>
+        <SeidoNotice datasets={[kaigoServiceGyakuHikiDataset]} today={todayJst()} />
       </>
     ),
   },

@@ -1326,5 +1326,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T40",
+    "slug": "kaigo-service-gyaku-hiki",
+    "category": "care",
+    "title": "介護サービス種類 かんたん逆引き",
+    "description": "「入浴が不安」「少しの間だけ預けたい」などの困りごとを選ぶと、該当しそうな介護保険サービスの種類を名前と概要つきで逆引き表示します。",
+    "solves": [
+      "入浴介助が必要だが、どの介護保険サービスを使えばいいか分からない",
+      "日中一人にするのが心配だが、デイサービス以外に何があるか分からない",
+      "少しの間だけ（数日）預けたいときにショートステイが使えることを知らない",
+      "自宅の改修や福祉用具のレンタルにどんな制度があるか分からない",
+      "サービスの種類が多すぎて、まず何を相談すればいいか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "介護保険法（平成九年法律第百二十三号）第8条（居宅サービス・施設サービス等の定義）（e-Gov法令検索）",
+        "url": "https://laws.e-gov.go.jp/law/409AC0000000123"
+      },
+      {
+        "label": "厚生労働省老健局「介護保険制度の概要（令和7年7月）」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/gaiyo/index.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（サービス種類の名称・分類は介護保険法上の一般的な整理であり、data/seido/kaigo-hoken.jsonの数値データそのものではない旨を明記）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/specs/b-tools/p2-t40-kaigo-service-gyaku-hiki.md"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
