@@ -10,10 +10,14 @@
   "priority": "S",
   "seido_data": [
     {
-      "file": "hokatsu-schedule.json",
-      "status": "stub"
+      "file": "ikukyu-encho-youken.json",
+      "status": "ready"
+    },
+    {
+      "file": "youji-kyouiku-mushouka.json",
+      "status": "ready"
     }
   ],
   "status": "gated_pass",
-  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+  "notes": "Q4-7 G2品質レビュー（一般論に留まり読者が動けない）を受けてフルリライト（2026-07-17）。旧 seido_data の hokatsu-schedule.json は factory/data/seido/ にもroot data/seido/にも実在しないstubで、当時から解禁不能だった。調査の結果、保活の申込締切を定めた全国統一の一次データは現時点で存在しないことを確認した（自治体ごとに申込みのしおりで個別に公表されるため）。存在しない期限を創作する代わりに、(1) 4月入園の一斉申込みが前年秋〜冬に集中するという構造的傾向は定性的に説明するに留め、(2) 実在する唯一の国の期限である『育児休業給付金の延長要件＝子が1歳に達する日までに保育所等利用申込みを完了していること』（ikukyu-encho-youken.json）を核に据え、(3) 認可外保育施設等の無償化上限額（youji-kyouiku-mushouka.json）を落選時の当面の費用感として追加した。記事本文でも『全国共通の締切は存在しない』ことを明記し、読者には自治体の『保育施設利用申込み案内』を確認するよう案内している。check-fidelity.mjs は0 violations / 0 warningsでPASS。tool_ref を hokatsu-schedule（Q3-11・live）に設定し、伴走ツールとの対応を明示した。"
 }

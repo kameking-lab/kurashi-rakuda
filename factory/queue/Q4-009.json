@@ -10,15 +10,26 @@
   "priority": "A",
   "seido_data": [
     {
-      "file": "jidou-teate.json",
-      "status": "ready"
-    },
-    {
       "file": "shussho-todoke-kigen.json",
       "status": "ready",
       "path": "data/seido/shussho-todoke-kigen.json"
+    },
+    {
+      "file": "jido-teate.json",
+      "status": "ready",
+      "path": "data/seido/jido-teate.json"
+    },
+    {
+      "file": "ikukyu-kyufu.json",
+      "status": "ready",
+      "path": "data/seido/ikukyu-kyufu.json"
+    },
+    {
+      "file": "kodomo-iryouhi-jyosei.json",
+      "status": "ready",
+      "path": "data/seido/kodomo-iryouhi-jyosei.json"
     }
   ],
   "status": "gated_pass",
-  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"jidou-teate.json#data.<パス>.value\"）。"
+  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"jido-teate.json#data.<パス>\"）。2026-07-17: BACKLOG Q4-7（G2品質レビューで『一般論に留まり読者が動けない』と指摘）に基づき全文リライト。旧版は具体的な期限・金額を一切含まない一般論だったため、shussho-todoke-kigen.json（出生届14日/3ヶ月以内・過料5万円/10万円・起算日の数え方）、jido-teate.json（15日特例・月額15,000円/30,000円・22歳年度末までの多子カウント）、ikukyu-kyufu.json（出産育児一時金50万円・請求期限2年以内・出産手当金42日/56日）、kodomo-iryouhi-jyosei.json（乳幼児医療費助成は国の全国一律制度ではない旨）の実数値をfacts[]とチェックリストに反映。check-fidelity.mjs は PASS（0 violations）。"
 }
