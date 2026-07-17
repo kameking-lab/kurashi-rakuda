@@ -192,7 +192,7 @@
 | P2-T34 | #79 | 復帰日計算（産休育休の各期限から逆算） | B(ソネット) | ✔ikukyu-kyufu・ikukyu-encho-youken | [x] 完了（2026-07-17、slug=fukki-bi-keisan） |
 | P2-T35 | #82 | 保育園お迎え逆算 勤務可能時間計算 | B(ソネット) | なし（時間演算） | 不要 |
 | P2-T36 | #83 | 小1の壁 勤務シミュレーション | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
-| [x] P2-T37 | #92 | 要介護認定 申請段取りナビ | B(ソネット) | ✔kaigo-hoken＋✔kaigo-nintei-shori-kikan（P2-D05で新規追加・介護保険法第27条） | 簡易 → **完了（2026-07-17・slug: youkaigo-nintei-dandori-navi）** |
+| [x] P2-T37 | #92 | 要介護認定 申請段取りナビ | B(ソネット) | ✔kaigo-hoken＋✔kaigo-nintei-shori-kikan（P2-D05で新規追加・介護保険法第27条） | 簡易 → **完了（2026-07-17・PR#109・slug: youkaigo-nintei-dandori-navi）** |
 | P2-T38 | #94 | 介護と仕事の両立制度チェッカー | B(ソネット) | ✔kaigo-shigoto-ryouritsu-seido | 簡易 |
 | P2-T39 | #95 | 介護施設タイプ別 費用早見（紹介送客なし） | B(ソネット) | ✔kaigo-shisetsu-hiyou-souba | 簡易 |
 | P2-T40 | #101 | 介護サービス種類 かんたん逆引き | B(ソネット) | ✔kaigo-hoken（サービス種類の値表化） | 簡易 |
