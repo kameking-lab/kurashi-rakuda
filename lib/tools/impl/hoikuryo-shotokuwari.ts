@@ -23,8 +23,13 @@
 
 import juuminzei from "@/data/seido/juuminzei.json";
 import kyuyoKoujo from "@/data/seido/kyuyo-shotoku-koujo.json";
-import fuyouKabe from "@/data/seido/fuyou-kabe.json";
 import type { SeidoDataset } from "@/lib/tools/seido";
+import {
+  estimateSocialInsurance as estimateShakaiHoken,
+  healthInsuranceRateOf,
+  MODELING_ASSUMPTION,
+  type SocialInsuranceEstimate,
+} from "@/lib/tools/impl/shakai-hoken";
 import {
   getMunicipality,
   resolveTier,
@@ -37,7 +42,6 @@ export const juuminzeiDataset = juuminzei as unknown as SeidoDataset;
 
 const J = juuminzei.data;
 const K = kyuyoKoujo.data;
-const F = fuyouKabe.data;
 
 // ---------------------------------------------------------------- 型
 
@@ -55,10 +59,16 @@ export interface Dependents {
   under16?: number;
 }
 
-/** 社会保険料。★源泉徴収票の「社会保険料等の金額」があればそれを使う（推計より遥かに正確）★ */
+/**
+ * 社会保険料。★源泉徴収票の「社会保険料等の金額」があればそれを使う（推計より遥かに正確）★
+ *
+ * kind: "estimate" のときは prefecture（都道府県）が必須。
+ * 健康保険料率は都道府県ごとに異なり（令和7年度で 9.35%〜10.78%）、全国平均で代用すると
+ * 最大で年収の0.7%程度の誤差になるため、推測せず必ず居住自治体の都道府県を渡す。
+ */
 export type SocialInsuranceInput =
   | { kind: "actual"; amount: number }
-  | { kind: "estimate" };
+  | { kind: "estimate"; prefecture: string };
 
 export interface ShotokuwariInput {
   /** 給与収入（額面。源泉徴収票の「支払金額」）。円 */
@@ -88,6 +98,11 @@ export interface ShotokuwariBreakdown {
   /** ② 社会保険料控除（全額）。推計値か実額かは socialInsuranceIsEstimate で判別 */
   socialInsuranceDeduction: number;
   socialInsuranceIsEstimate: boolean;
+  /**
+   * ② 社会保険料の内訳（推計時のみ。実額入力時は null）。
+   * 根拠表示と、厚生年金の上限に張り付いた場合の注意喚起に使う。
+   */
+  socialInsuranceDetail: SocialInsuranceEstimate | null;
   /** ② 基礎控除（住民税43万円。★所得税の基礎控除を流用しないこと★） */
   kisoKoujo: number;
   /** ② 配偶者控除 */
@@ -111,7 +126,8 @@ export interface ShotokuwariBreakdown {
 export type ShotokuwariUnavailableReason =
   | "haiguusha-tokubetsu-koujo-not-data"
   | "tokutei-shinzoku-tokubetsu-koujo-not-data"
-  | "salary-out-of-range";
+  | "salary-out-of-range"
+  | "prefecture-not-supported";
 
 export type ShotokuwariEstimate =
   | {
@@ -208,21 +224,43 @@ export function salaryIncomeFY2025(salary: number): number | null {
 
 /**
  * 社会保険料の概算（源泉徴収票の実額が無い場合のみ）。
- * 根拠: fuyou-kabe.json の insuranceRates（厚生年金・健康保険・子ども子育て支援金・雇用保険）
+ * 根拠: kyoukaikenpo-hokenryo.json（標準報酬月額等級表・都道府県別料率）＋ koyou-hoken-ryoritsu.json
  *
- * ★精度が低い★ 標準報酬月額表が未収集で月額賃金へ直接乗じており、健康保険料率は全国平均。
- * さらに料率は令和8年度のもので、令和7年分の実際の負担とは一致しない。
- * 自治体の公式計算例でも社会保険料の対収入比は10.0%（大阪市）〜15.0%（名古屋市）と幅があり、
- * ここが推計の最大の誤差源になる。可能な限り実額（源泉徴収票の「社会保険料等の金額」）を使わせること。
+ * ★2026-07-17 実額ベースへ改善（P2-D02）★ 従来は「年収 × 全国平均料率」で、
+ * ①等級表を使わない ②厚生年金の上限（標準報酬月額650,000円）を無視する
+ * ③都道府県別料率を使わない ④令和8年度の料率を令和7年分に当てていた、の4点で誤差を生んでいた。
+ * 現在は協会けんぽの料額表の計算手順どおりに積み上げる（lib/tools/impl/shakai-hoken.ts）。
+ *
+ * ★令和7年度料率（"FY2025"）を使う★ 保育料の階層は令和8年度課税＝令和7年分の所得で判定し、
+ * その所得から差し引かれる社会保険料控除は「令和7年分に実際に納めた保険料」である。
+ * ★子ども・子育て支援金（0.23%）は令和8年4月分からの新設で令和7年分には存在しない★ ため、
+ * FY2025 では 0 になる（含めると社会保険料控除を過大に見積もり、所得割額を過小に推計する）。
+ *
+ * ★都道府県が収録外なら null★ 推測しない。呼び出し側は実額入力へ誘導する。
  */
-export function estimateSocialInsurance(salary: number): number {
-  const r = F.insuranceRates;
-  const rate =
-    r.employeesPensionRate.value / 2 +
-    r.healthInsuranceRateAverage.value / 2 +
-    r.childcareSupportRate.value / 2 +
-    r.employmentInsuranceRateWorker.value;
-  return Math.round(salary * rate);
+export function estimateSocialInsurance(
+  salary: number,
+  prefecture: string,
+): number | null {
+  const r = estimateSocialInsuranceDetail(salary, prefecture);
+  return r === null ? null : r.total;
+}
+
+/** 内訳つきの社会保険料概算（根拠表示・テスト用） */
+export function estimateSocialInsuranceDetail(
+  salary: number,
+  prefecture: string,
+): SocialInsuranceEstimate | null {
+  return estimateShakaiHoken({
+    annualSalary: salary,
+    prefecture,
+    // ★保育料は令和7年分の所得が基準★ 令和8年度料率を使わないこと。
+    year: "FY2025",
+    // ★介護保険第2号被保険者（40歳以上）かは本ツールが尋ねていないため false 固定★
+    // 40歳以上の保護者では社会保険料を過小に見積もる（＝所得割額を過大に推計する）。
+    // 推計を安全側（保育料を高めに）に倒す方向であり、caveat で明示する。
+    isKaigoDaini: false,
+  });
 }
 
 /** 個人住民税の基礎控除（合計所得2,400万円以下は43万円）。★所得税の基礎控除とは全く違う★ */
@@ -394,10 +432,17 @@ function buildBreakdown(
   const koujo = kyuyoShotokuKoujoFY2025(betsuhyou5Base(input.salary));
   if (koujo === null) return null;
 
+  const shakaiHokenDetail =
+    input.socialInsurance.kind === "estimate"
+      ? estimateSocialInsuranceDetail(input.salary, input.socialInsurance.prefecture)
+      : null;
+  if (input.socialInsurance.kind === "estimate" && shakaiHokenDetail === null) {
+    return null; // 収録外の都道府県。推測しない
+  }
   const shakaiHoken =
     input.socialInsurance.kind === "actual"
       ? input.socialInsurance.amount
-      : estimateSocialInsurance(input.salary);
+      : (shakaiHokenDetail as SocialInsuranceEstimate).total;
 
   // ★合計所得金額＝給与所得（給与収入のみを前提とする推計）★
   const totalIncome = salaryIncome;
@@ -425,6 +470,7 @@ function buildBreakdown(
     kyuyoShotokuKoujo: koujo,
     socialInsuranceDeduction: shakaiHoken,
     socialInsuranceIsEstimate: input.socialInsurance.kind === "estimate",
+    socialInsuranceDetail: shakaiHokenDetail,
     kisoKoujo: kiso,
     haiguushaKoujo: haiguusha,
     fuyouKoujo: fuyou,
@@ -474,6 +520,20 @@ export function estimateShotokuwari(input: ShotokuwariInput): ShotokuwariEstimat
     };
   }
 
+  // ★都道府県が収録外なら推計しない★ 健康保険料率が決まらないため（推測で全国平均を当てない）
+  if (
+    input.socialInsurance.kind === "estimate" &&
+    healthInsuranceRateOf(input.socialInsurance.prefecture, "FY2025") === null
+  ) {
+    return {
+      kind: "unavailable",
+      reason: "prefecture-not-supported",
+      note:
+        "お住まいの都道府県の健康保険料率が本データに収録されていないため、社会保険料を推計できません。" +
+        "源泉徴収票の「社会保険料等の金額」を入力する方法をご利用ください。",
+    };
+  }
+
   const max = buildBreakdown(input, 0);
   if (max === null) {
     return {
@@ -495,10 +555,23 @@ export function estimateShotokuwari(input: ShotokuwariInput): ShotokuwariEstimat
     "給与収入以外の所得（事業所得・不動産所得等）がある場合は使えません。",
   ];
   if (max.socialInsuranceIsEstimate) {
+    const d = max.socialInsuranceDetail;
     caveats.push(
-      "社会保険料を年収からの概算で計算しています（料率は全国平均・令和8年度のもの）。" +
+      `社会保険料を年収からの概算で計算しています（協会けんぽ${d ? `・${d.prefecture}` : ""}の令和7年度の料率と標準報酬月額表によるものです）。` +
+        "勤務先が健康保険組合の場合は料率が異なります。" +
         "源泉徴収票の「社会保険料等の金額」を入力すると精度が上がります。",
     );
+    caveats.push(MODELING_ASSUMPTION);
+    caveats.push(
+      "40歳以上の方は介護保険料（令和7年度1.59%の半分）が加わりますが、本推計には含めていません。" +
+        "40歳以上の場合、実際の所得割額は推計より低くなります。",
+    );
+    if (d?.pensionCapped) {
+      caveats.push(
+        "厚生年金保険料が上限（標準報酬月額650,000円）に達する年収です。" +
+          "賞与の割合が大きい方は実際の厚生年金保険料が推計より高く、所得割額は推計より低くなります。",
+      );
+    }
   }
   if (input.salary < TRUNCATE_MIN) {
     caveats.push(
