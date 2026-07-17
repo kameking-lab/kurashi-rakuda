@@ -188,7 +188,7 @@
 | P2-T30 | #66 | 女性の適正体重・体型指標 | B(ソネット) | 一部✔（肥満度分類=jasso許可済）／要: BMI基準の値表化 | 簡易 |
 | P2-T31 | #67 | PMS・体調予測カレンダー（記録なし版） | B(ソネット) | 一部✔（PMS有病率=w-health.jp）。#3部品流用。医療判断なしを仕様で固定 | 要（YMYL中） |
 | P2-T32 | #69 | 赤ちゃん連動 睡眠逆算 | B(ソネット) | 要: 睡眠ガイド2023の推奨値 | 簡易 |
-| [~] P2-T33 | #76 | 健診・がん検診 年齢別スケジュール（女性） | B(ソネット) | ✔kenshin-gankenshin-schedule | 簡易 |
+| [x] P2-T33 | #76 | 健診・がん検診 年齢別スケジュール（女性） | B(ソネット) | ✔kenshin-gankenshin-schedule | 簡易 → **完了（2026-07-18）**: slug `josei-kenshin-schedule`（health）。specs/b-tools/p2-t33-josei-kenshin-schedule.md・JoseiKenshinSchedule.calc.ts/tsx・tests/josei-kenshin-schedule.test.ts（21件）。生年月日から満年齢を算出し、子宮頸がん・乳がん・胃がん・肺がん・大腸がん検診＋特定健診・後期高齢者健診の7種類について対象年齢のしきい値（データの自然文から正規表現で抽出、コード直書きなし）と比較して対象/対象外/あと◯年で対象を判定。子宮頸がん検診は細胞診（2年）とHPV検査単独法（5年）の間隔を一律にせず併記、肺がん検診は令和7年12月24日改正で削除された喀痰細胞診を含めない。実施の有無・自己負担額・案内方法は自治体・保険者ごとに異なる旨とYMYL免責をCalloutで常時表示。registry.json追加済み・npm run check（vitest 1170件）PASS |
 | P2-T34 | #79 | 復帰日計算（産休育休の各期限から逆算） | B(ソネット) | ✔ikukyu-kyufu・ikukyu-encho-youken | [x] 完了（2026-07-17、slug=fukki-bi-keisan） |
 | [x] P2-T35 | #82 | 保育園お迎え逆算 勤務可能時間計算 | B(ソネット) | なし（時間演算） | 不要 → **完了（2026-07-18）**: slug `hoikuen-omukae-gyakusan`（career）。specs/b-tools/p2-t35-hoikuen-omukae-gyakusan.md・HoikuenOmukaeGyakusan.calc.ts/tsx・tests/hoikuen-omukae-gyakusan.test.ts（21件）。制度・統計データに依存しない純粋な時刻演算 |
 | [~] P2-T36 | #83 | 小1の壁 勤務シミュレーション | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
