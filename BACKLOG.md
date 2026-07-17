@@ -180,7 +180,7 @@
 | [x] P2-T22 | #43 | レシピ人数スケール換算 | B(ソネット) | なし（#38部品流用） | 不要 → **完了（2026-07-18）**: slug `recipe-ninzuu-kansan`（kaji）。純粋な比例計算（倍率＝目標人数÷元の人数）のみで制度・統計データへの依存なし。UIパターン（複数行の材料入力）はChomiryoKanzan.tsxを参考にしつつ動的な追加・削除に拡張。specs/b-tools/p2-t22-recipe-ninzuu-kansan.md・RecipeNinzuuKansan.calc.ts/tsx・テスト29件（tests/recipe-ninzuu-kansan.test.ts）・registry.json 追加済み（sourcesは公的データ不在のため一般参考情報1件のみ、捏造なし）
 | P2-T23 | #44 | 買い物リスト自動生成（献立連動） | B(ソネット) | ✔data/kondate（#40部品流用） | 簡易 |
 | P2-T24 | #45 | 作り置き 日持ち一覧 | B(ソネット) | 要: data/tables 日持ち表（#37と同系） | 簡易 |
-| [~] P2-T25 | #46 | 名もなき家事 分担チェッカー | B(ソネット) | なし（自前リスト） | 簡易 |
+| [x] P2-T25 | #46 | 名もなき家事 分担チェッカー | B(ソネット) | なし（自前リスト） | 簡易 → **完了（2026-07-18）**: slug `namonaki-kaji-checker`（kaji）。specs/b-tools/p2-t25-namonaki-kaji-checker.md・NamonakiKajiChecker.calc.ts/tsx・tests/namonaki-kaji-checker.test.ts（15件）。項目リスト（4カテゴリ・30項目）は自前作成で制度データ非依存。参考情報として総務省統計局「令和3年社会生活基本調査」の家事関連時間の男女差（data/tables/kaji-jikan-toukei-danjyosa.json）を、診断結果とは独立した紹介情報として画面内に併記（出典stat.go.jpはfactory/config/source-allowlist.jsonに既に許可済みのため追加変更なし）。registry.json追加済み・npm run check（vitest 1014件）PASS |
 | [x] P2-T26 | #48 | 電子レンジ ワット数・加熱時間換算 | B(ソネット) | なし（物理式） | 簡易 → **完了（2026-07-18）**: slug `renji-watt-kansan`（kaji）。基本式T2=T1×W1÷W2＋500/600/700Wプリセット。specs/b-tools/p2-t26-renji-watt-kansan.md・テスト43件（`renji-watt-kanzan-kijun.json`のkanzan_rei・対照表10行×2方向を機械照合、上尾市表は原典が宝島社書籍のため許容差10秒未満で整合確認）。出典の限界（上尾市PDFは公的機関自身の算出ではなく市販書籍転載）をツール・記事双方に明記 |
 | P2-T27 | #57 | パートシフト収入計算（壁警告付き） | B(ソネット) | ✔part-shift-shunyuu-kabe・fuyou-kabe | 簡易 |
 | [x] P2-T28 | #61 | 食費の目安計算（家族構成別） | B(ソネット) | 要: 総務省家計調査の値表 → **完了（2026-07-17）**: slug `shokuhi-meyasu`。data/tables/shokuhi-meyasu.json（総務省統計局「家計調査」2025年（令和7年）平均、世帯人員別・単身〜6人以上）を新規収集、specs/b-tools/p2-t28-shokuhi-meyasu.md・テスト15件 | 簡易 |

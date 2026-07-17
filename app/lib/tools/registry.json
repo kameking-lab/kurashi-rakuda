@@ -1055,5 +1055,35 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T25",
+    "slug": "namonaki-kaji-checker",
+    "category": "kaji",
+    "title": "名もなき家事 分担チェッカー",
+    "description": "家事・子育て・介護・その他の「名もなき家事」30項目を「自分/パートナー/ふたり/やっていない」でチェックすると、その場で分担の内訳を表示します（送信・保存なし）。",
+    "solves": [
+      "名前のついていない細かい家事がどれくらいあるか把握したい",
+      "家事・育児・介護の分担が偏っていないか知りたい",
+      "パートナーと分担について話すきっかけがほしい",
+      "自分がやっている名もなき家事を一覧にして可視化したい"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "総務省統計局「令和3年社会生活基本調査」（結果の概要）",
+        "url": "https://www.stat.go.jp/data/shakai/2021/index.html"
+      },
+      {
+        "label": "総務省統計局「令和3年社会生活基本調査」結果の概要（PDF）",
+        "url": "https://www.stat.go.jp/data/shakai/2021/pdf/gaiyoua.pdf"
+      },
+      {
+        "label": "総務省統計局 統計Today No.190「我が国における家事関連時間の男女の差」（PDF）",
+        "url": "https://www.stat.go.jp/info/today/pdf/190.pdf"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
