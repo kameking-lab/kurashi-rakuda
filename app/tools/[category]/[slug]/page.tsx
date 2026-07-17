@@ -30,6 +30,7 @@ import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc
 import { SuihanMizu } from "@/components/tools/impl/SuihanMizu";
 import { KondateTeian } from "@/components/tools/impl/KondateTeian";
 import { KONDATE_DISCLAIMER, kondateData } from "@/lib/tools/impl/kondate-teian";
+import { KaimonoListJidouSeisei } from "@/components/tools/impl/KaimonoListJidouSeisei";
 import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
 import { KaigoShisetsuHiyouHayami } from "@/components/tools/impl/KaigoShisetsuHiyouHayami";
 import { kaigoShisetsuHiyouSoubaDataset } from "@/components/tools/impl/KaigoShisetsuHiyouHayami.calc";
@@ -897,6 +898,43 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           ：{KONDATE_DISCLAIMER.allergy}
         </p>
         <p>{KONDATE_DISCLAIMER.data}</p>
+      </>
+    ),
+  },
+  "kaimono-list-jidou-seisei": {
+    ui: <KaimonoListJidouSeisei />,
+    formula: (
+      <>
+        <p>
+          計算式はありません。献立自動提案（Q3-16）と同じレシピ・食材データ（
+          <strong>レシピ{kondateRecipeCount}品</strong>）から、選んだレシピの
+          <code>ingredients</code>（食材id・役割）を集計し、同じ食材id・同じ役割の組み合わせが
+          何品のレシピで使われるかを数えているだけです。集計はすべてお使いのブラウザの中で行われ、
+          選んだレシピはどこにも送信されません。
+        </p>
+        <p>
+          <strong>分量（g・大さじ等の数量）は表示しません。</strong>
+          もとになっているレシピデータは「一般的な家庭料理の名称・主材料・調理法」だけを持ち、
+          分量や手順文は持っていません（献立自動提案と同じ設計）。存在しない分量を仮定して合算すると、
+          誤った買い物量を案内してしまう恐れがあるため、あえて「いくつのレシピで使うか（使用回数）」を
+          表示するにとどめています。
+        </p>
+        <p>
+          <strong>同じ食材でも、役割が違えば別の行に分けています。</strong>
+          例えば玉ねぎは、あるレシピでは主材料として、別のレシピでは付け合わせとして使われることが
+          あります。実際に必要な量の感覚が異なるため、食材id と役割（主材料／副材料／薬味・付け合わせ／
+          調味料）の組み合わせを1行として扱い、無理に1つの数量へまとめることはしていません。
+        </p>
+        <p>
+          <strong>常備していることが多い食材について</strong>
+          ：塩・しょうゆなど、多くの家庭で常備されがちな食材には「常備していることが多い食材です」と
+          添えていますが、これは「買わなくてよい」という保証ではありません。リストからは外さず、
+          あくまで参考情報として表示しています。
+        </p>
+        <p>
+          並び順は常温→冷蔵→冷凍の保管場所別にしています。買い物の際に見つけやすいよう、
+          毎回同じ順序になるようにしています。
+        </p>
       </>
     ),
   },
