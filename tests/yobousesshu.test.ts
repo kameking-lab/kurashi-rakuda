@@ -209,3 +209,24 @@ describe("calculateYobousesshu", () => {
     expect(r.basisYear).toBe("2026年度");
   });
 });
+
+describe("G2検収指摘の回帰テスト（4/1生まれの年度末カットオフ）", () => {
+  it("4/1生まれのHPV上限は16歳到達日（誕生日の前日=3/31）と同年の3/31", () => {
+    // 2010-04-01生まれ: 16歳到達日は2026-03-31 → 上限は2026-03-31
+    const before = calculateYobousesshu({ birthDate: "2010-04-01", sex: "female", todayOverride: "2026-03-31" });
+    expect(before.ok).toBe(true);
+    if (before.ok) expect(findVaccine(before, "hpv").status).toBe("within");
+    const after = calculateYobousesshu({ birthDate: "2010-04-01", sex: "female", todayOverride: "2026-04-01" });
+    expect(after.ok).toBe(true);
+    if (after.ok) expect(findVaccine(after, "hpv").status).toBe("ended");
+  });
+
+  it("4/2生まれのHPV上限は従来どおり翌年3/31", () => {
+    const r = calculateYobousesshu({ birthDate: "2010-04-02", sex: "female", todayOverride: "2027-03-31" });
+    expect(r.ok).toBe(true);
+    if (r.ok) expect(findVaccine(r, "hpv").status).toBe("within");
+    const r2 = calculateYobousesshu({ birthDate: "2010-04-02", sex: "female", todayOverride: "2027-04-01" });
+    expect(r2.ok).toBe(true);
+    if (r2.ok) expect(findVaccine(r2, "hpv").status).toBe("ended");
+  });
+});

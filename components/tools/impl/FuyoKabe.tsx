@@ -227,9 +227,7 @@ export function FuyoKabe() {
             <h2 className="text-base font-bold">あなたに関係する壁</h2>
             <ul className="mt-2 space-y-2">
               {r.walls.map((w) => (
-                <li key={w.key}>
-                  <WallRow w={w} salary={parsedSalary} />
-                </li>
+                <WallRow key={w.key} w={w} salary={parsedSalary} />
               ))}
             </ul>
           </div>

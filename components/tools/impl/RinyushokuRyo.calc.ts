@@ -7,6 +7,7 @@
  * 数値・文言が変わったら同JSONだけを更新すれば追随する。
  */
 import table from "@/data/tables/rinyushoku-ryo.json";
+import { todayJst } from "@/lib/tools/seido";
 
 export interface SimpleDate {
   year: number;
@@ -229,7 +230,7 @@ export function calculateRinyushokuRyo(input: RinyushokuInput): RinyushokuCalcRe
     return { ok: false, error: "生年月日をご確認ください" };
   }
 
-  const todayStr = input.today ?? new Date().toISOString().slice(0, 10);
+  const todayStr = input.today ?? todayJst();
   const today = parseDate(todayStr);
   if (!today) {
     return { ok: false, error: "基準日の形式が正しくありません" };

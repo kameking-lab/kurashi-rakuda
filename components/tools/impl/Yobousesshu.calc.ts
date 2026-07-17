@@ -14,6 +14,7 @@
  * - キャッチアップ接種等、制度改定が起きやすい項目の断定的な終了日の表示
  */
 import table from "@/data/tables/yobousesshu.json";
+import { todayJst } from "@/lib/tools/seido";
 
 export const YOBOUSESSHU_DISCLAIMER = [
   "本ツールは予防接種法に基づく定期接種の標準的なスケジュール（制度上の目安）を、生年月日から自動計算して表示するものです。接種を受けるかどうか、受けられる体調かどうかについての医学的な判断は行っていません。",
@@ -105,10 +106,18 @@ function formatMonthLabel(date: SimpleDate): string {
   return `${date.year}年${date.month}月頃`;
 }
 
-/** 「N歳に達する日以後の最初の3月31日」（年度末カットオフ、HPVの上限年齢に使用） */
+/**
+ * 「N歳に達する日以後の最初の3月31日」（年度末カットオフ、HPVの上限年齢に使用）。
+ * ★「N歳に達する日」は誕生日の前日★（年齢計算ニ関スル法律）。4/1生まれは
+ * N歳到達日が3/31となるため、その年の3/31が上限になる（MR第2期の学齢判定と同じ扱い）。
+ */
 function nendoMatsuCutoff(birth: SimpleDate, attainAge: number): SimpleDate {
   const attainDay = addYears(birth, attainAge);
-  const year = attainDay.month >= 4 ? attainDay.year + 1 : attainDay.year;
+  // 誕生日の前日 = 4/1 → 3/31 のみが年度境界に影響する（他の日付は月が変わらないか年度内）
+  const isApril1 = attainDay.month === 4 && attainDay.day === 1;
+  const effectiveMonth = isApril1 ? 3 : attainDay.month;
+  const effectiveYear = attainDay.year;
+  const year = effectiveMonth >= 4 ? effectiveYear + 1 : effectiveYear;
   return { year, month: 3, day: 31 };
 }
 
@@ -376,7 +385,7 @@ export function calculateYobousesshu(input: YobousesshuInput): YobousesshuResult
     return { ok: false, error: "生年月日をご確認ください（日付の形式が正しくありません）" };
   }
 
-  const baseDateInput = input.todayOverride ?? new Date().toISOString().slice(0, 10);
+  const baseDateInput = input.todayOverride ?? todayJst();
   const base = parseDate(baseDateInput);
   if (!base) {
     return { ok: false, error: "基準日の形式が正しくありません" };
