@@ -100,6 +100,45 @@
         }
       }
     },
+    "timeBands": {
+      "type": "object",
+      "required": ["bands", "defaultBandKey", "rule", "sourceId", "checkedAt"],
+      "additionalProperties": false,
+      "description": "保育標準時間認定の保育料が「保育利用時間」でさらに分かれる自治体（例: 京都市の8.5〜11時間の6段階）のみ定義する。定義した場合、有料の各階層の tiers[].fees.<age>.standardByBand に全バンドの額を収録し、fees.<age>.standard には defaultBandKey のバンドの額を重複して入れる（バンド未対応の参照元への後方互換）。単一バンドの自治体はこのフィールド自体を持たない（＝他自治体への影響なし）。整合性（キーの一致・standard との一致）は scripts/verify-seido.mjs が機械検査する。",
+      "properties": {
+        "bands": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["key", "label"],
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[0-9]+(\\.[0-9]+)?h$",
+                "description": "バンド識別子。利用時間の上限を時間単位で。例 8.5h / 11h"
+              },
+              "label": {
+                "type": "string",
+                "description": "原典の区分表記をそのまま。例 ８．５時間（保育利用時間８時間を超えて８時間３０分まで）"
+              }
+            }
+          }
+        },
+        "defaultBandKey": {
+          "type": "string",
+          "description": "バンド未選択時に使うキー。過小表示を避けるため原則、認定上の最長時間のバンドにする"
+        },
+        "rule": {
+          "type": "string",
+          "description": "時間区分の定義を原文どおり"
+        },
+        "sourceId": { "type": "string" },
+        "checkedAt": { "type": "string", "format": "date" },
+        "note": { "type": "string" }
+      }
+    },
     "freeTuition": {
       "type": "object",
       "description": "幼児教育・保育の無償化および自治体独自の無償化。",
@@ -162,14 +201,24 @@
                 "type": "object",
                 "properties": {
                   "standard": { "type": "number" },
-                  "short": { "type": "number" }
+                  "short": { "type": "number" },
+                  "standardByBand": {
+                    "type": "object",
+                    "additionalProperties": { "type": "number" },
+                    "description": "トップレベル timeBands を定義した自治体のみ。キーは timeBands.bands[].key と完全一致させ、保育標準時間認定のバンド別月額(円)を全バンドぶん収録する。standard には defaultBandKey の額を重複して入れる。short はバンドで変わらない（保育短時間認定は1区分）"
+                  }
                 }
               },
               "age3plus": {
                 "type": "object",
                 "properties": {
                   "standard": { "type": "number" },
-                  "short": { "type": "number" }
+                  "short": { "type": "number" },
+                  "standardByBand": {
+                    "type": "object",
+                    "additionalProperties": { "type": "number" },
+                    "description": "under3.standardByBand と同じ規約"
+                  }
                 }
               }
             }

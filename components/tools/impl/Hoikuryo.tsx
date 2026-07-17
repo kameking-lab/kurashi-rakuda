@@ -8,7 +8,9 @@ import {
   calc,
   getMunicipality,
   isIncomeInputUseful,
+  isTimeBandApplicable,
   municipalities,
+  resolveTimeBandKey,
   type AgeKey,
   type CareNeed,
   type HoikuryoMunicipality,
@@ -127,6 +129,8 @@ export function Hoikuryo() {
   const [month, setMonth] = useState("2026-06");
   const [age, setAge] = useState<AgeKey>("under3");
   const [need, setNeed] = useState<CareNeed>("standard");
+  /** 保育利用時間バンド（京都市など timeBands のある自治体のみ意味を持つ）。"" は既定＝最長時間 */
+  const [timeBand, setTimeBand] = useState("");
   const [taxStatus, setTaxStatus] = useState<TaxStatus>("incomeTaxed");
   const [birthOrder, setBirthOrder] = useState("1");
   const [single, setSingle] = useState(false);
@@ -209,11 +213,12 @@ export function Hoikuryo() {
             need,
             taxStatus,
             income: effectiveIncome,
+            timeBand: timeBand || null,
             birthOrder: Number(birthOrder) || 1,
             isSingleParentOrDisability: single,
           })
         : null,
-    [m, municipalityId, month, age, need, taxStatus, effectiveIncome, birthOrder, single],
+    [m, municipalityId, month, age, need, taxStatus, effectiveIncome, timeBand, birthOrder, single],
   );
 
   const ageClasses = m?.ageClasses ?? [];
@@ -239,7 +244,10 @@ export function Hoikuryo() {
           label="お住まいの自治体"
           value={municipalityId}
           hint={`現在の対応は${municipalities.length}自治体です`}
-          onChange={(e) => setMunicipalityId(e.target.value)}
+          onChange={(e) => {
+            setMunicipalityId(e.target.value);
+            setTimeBand(""); // バンドは自治体固有のキーのため持ち越さない
+          }}
         >
           {groupedOptions().map(([pref, list]) => (
             <optgroup key={pref} label={pref}>
@@ -290,6 +298,23 @@ export function Hoikuryo() {
               <option value="standard">保育標準時間</option>
               <option value="short">保育短時間</option>
             </SelectField>
+
+            {/* ★保育利用時間バンド★ timeBands のある自治体（京都市）×保育標準時間のみ表示。
+                最長時間の額だけを出す過大表示（京都市で最大14,100円/月）を防ぐ */}
+            {isTimeBandApplicable(m, need) && (
+              <SelectField
+                label="保育利用時間（施設・区役所が認定した時間）"
+                value={resolveTimeBandKey(m, need, timeBand) ?? ""}
+                hint={`${m.name}は利用時間でも保育料が変わります。利用時間が短いほど安くなります`}
+                onChange={(e) => setTimeBand(e.target.value)}
+              >
+                {m.timeBands!.bands.map((b) => (
+                  <option key={b.key} value={b.key}>
+                    {b.label}
+                  </option>
+                ))}
+              </SelectField>
+            )}
 
             <SelectField
               label="世帯の課税状況"
@@ -601,6 +626,8 @@ export function Hoikuryo() {
                     ? m.freeTuition?.age3plusFree?.label ?? "3歳以上児は無償です"
                     : r.tier
                       ? `階層 ${r.tier.tier}${r.tier.label ? `（${r.tier.label}）` : ""}${
+                          r.timeBand ? `。保育利用時間 ${r.timeBand.label} の額です` : ""
+                        }${
                           usingEstimate
                             ? "。★年収からの推計値による階層です。確定額ではありません★"
                             : ""
