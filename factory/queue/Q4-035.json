@@ -15,6 +15,6 @@
       "path": "data/seido/jidou-fuyou-teate.json"
     }
   ],
-  "status": "queued",
+  "status": "gated_pass",
   "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"jidou-fuyou-teate.json#data.<パス>.value\"）。"
 }
