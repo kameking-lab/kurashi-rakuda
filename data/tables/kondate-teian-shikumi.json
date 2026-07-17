@@ -1,9 +1,18 @@
 {
-  "$comment": "献立自動提案ツール(kondate-teian)の仕組みに関する対照表。出典は外部の政府一次情報ではなく、自社ツールのデータ正本 data/kondate/meta.json（バージョン管理・レシピ件数等）。counts→recipe_kensu、minimumCounts→recipe_kensu_saitei、allowedTags→tag_shurui、disclaimer→disclaimer として、値はそのまま転記している。更新時は data/kondate/meta.json の変更に追従してこのファイルも更新すること。",
-  "org": "くらしのラクダ（自社ツール実装データ）",
+  "$comment": "献立自動提案ツール(kondate-teian)の仕組みに関する対照表。2つの層を持つ。(1) 自社ツールのデータ正本 data/kondate/meta.json からの転記（data_version / recipe_kensu / tag_shurui / disclaimer）。counts→recipe_kensu、minimumCounts→recipe_kensu_saitei、allowedTags→tag_shurui、disclaimer→disclaimer として値はそのまま転記しており、更新時は data/kondate/meta.json の変更に追従すること。(2) ツールが採る「主食・主菜・副菜」という献立の骨格が、どの公的資料に由来するかを示す根拠（eiyou_balance_no_konkyo 以下）。政府一次情報（農林水産省・厚生労働省・文部科学省）に基づき、出典URLは source_url_detail に列挙する。★重要★ 本ツールは仕様 specs/s-tools/06-kondate-teian.md §2.2 で栄養価の計算・表示（カロリー/PFC/塩分/野菜g）と健康効果の主張を明確にスコープ外としている。(2) の数値は「ツールが計算に使う値」ではなく、記事で『なぜ主菜・副菜という区分で献立を組むのか』を説明するための出典付き背景情報である。SV（サービング）値をツールのUIに表示したり、提案した献立のSV充足を判定したりしてはならない（その瞬間に YMYL 高のツールになる）。",
+  "org": "くらしのラクダ（自社ツール実装データ） / 農林水産省 / 厚生労働省 / 文部科学省",
   "source_url": "data/kondate/meta.json",
   "last_verified": "2026-07-17",
   "next_check_due": "2026-10-01",
+  "source_url_detail": {
+    "$comment": "eiyou_balance_no_konkyo 以下の各値の出典（すべて2026-07-17に本文取得のうえ記載内容を確認済み）。",
+    "shokuji_balance_guide_ryouri_kubun": "https://www.maff.go.jp/j/syokuiku/kenzensyokuseikatsu/about_b_guide.html",
+    "shokuji_balance_guide_check_chart_pdf": "https://www.maff.go.jp/j/syokuiku/kenzensyokuseikatsu/pdf/check_chart.pdf",
+    "shokuseikatsu_shishin": "https://www.maff.go.jp/j/syokuiku/shishinn.html",
+    "dai5ji_shokuiku_suishin_kihon_keikaku_pdf": "https://www.maff.go.jp/j/syokuiku/attach/pdf/kannrennhou-36.pdf",
+    "shokuiku_kanren_hou_landing": "https://www.maff.go.jp/j/syokuiku/kannrennhou.html",
+    "nihonjin_no_shokuji_sesshu_kijun": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/eiyou/syokuji_kijyun.html"
+  },
   "data_version": "1.0.0",
   "algorithm_version": 1,
   "recipe_kensu": { "shusai": 36, "fukusai": 27, "shirumono": 13 },
@@ -25,5 +34,101 @@
     "time": "表示している時間は、順番に作った場合の目安です。慣れ・調理器具・下ごしらえの状況により変わります。",
     "pregnancy": "妊娠中・授乳中の方や離乳食について、避けたほうがよい食品の判定は行っていません。",
     "data": "レシピの追加・修正により、共有した URL の献立を再現できなくなる場合があります。"
+  },
+
+  "eiyou_balance_no_konkyo": {
+    "$comment": "★ここから下は公的一次情報に基づく背景情報。ツールの計算には一切用いない。★ data/kondate/ とは重複しない（あちらはレシピ・食材・タグ・免責の正本、こちらは献立構成の根拠）。",
+
+    "shokuji_balance_guide": {
+      "$comment": "農林水産省「『食事バランスガイド』の適量と料理区分」ページの記載に基づく。1日に「何を」「どれだけ」食べたら良いかをコマのイラストで示したもの。",
+      "ryouri_kubun": ["主食", "副菜", "主菜", "牛乳・乳製品", "果物"],
+      "tan_i": "つ（SV）",
+      "sv_no_imi": "SVとはサービング（食事の提供量の単位）の略",
+      "hitotsu_sv_no_kijun": {
+        "shushoku": "主材料に由来する炭水化物約40g",
+        "fukusai": "主材料の重量約70g",
+        "shusai": "主材料に由来するたんぱく質約6g",
+        "gyunyu_nyuseihin": "主材料に由来するカルシウム約100mg",
+        "kudamono": "主材料の重量約100g"
+      },
+      "kihonkei_kcal": "2200±200",
+      "kihonkei_taishou": "身体活動量が「低い」成人男性、活動量が「ふつう以上」の成人女性が1日に食べる量の目安",
+      "kihonkei_1nichi_no_meyasu_sv": {
+        "$comment": "出典: チェックチャート（PDF）の「基本形 2200±200kcal」行。単位はつ（SV）。範囲があるものは文字列で保持する。",
+        "shushoku": "5～7",
+        "fukusai": "5～6",
+        "shusai": "3～5",
+        "gyunyu_nyuseihin": "2",
+        "kudamono": "2"
+      },
+      "shirumono_no_kubun_sv": null,
+      "shirumono_no_kubun_sv_note": "未確認: 「食事バランスガイド」の料理区分は主食・副菜・主菜・牛乳・乳製品・果物の5区分のみで、『汁物』という区分は存在しない。本ツールは1日を主菜1・副菜1・汁物1で構成するが、汁物に対応するSV区分・目安値は一次情報に存在しないため null とする（汁物の具材はその主材料に応じて副菜等として数えられる建て付けであり、汁物単独の基準はない）。推測での補完はしないこと。",
+      "yushi_choumiryou_no_atsukai": "油脂・調味料については、基本的に料理の中に使用されているものであることから、イラストとして表現していない",
+      "kashi_shikouinryou_meyasu_kcal_per_day": 200,
+      "taishousha_gentei": "「食事バランスガイド」は健康な方々の健康づくりを目的に作られたものです。糖尿病、高血圧などで医師や管理栄養士から食事指導を受けている方は、その指導に従ってください。",
+      "ninsanpu_note": "妊娠や授乳している人は適量が異なり、「妊娠前からはじめる妊産婦のための食生活指針」にある妊産婦のための食事バランスガイドが別途用意されている。本ツールは妊娠中・授乳中・離乳食の可否判定を行わない（仕様 §2.2、disclaimer.pregnancy）。"
+    },
+
+    "shokuseikatsu_shishin": {
+      "$comment": "文部科学省・厚生労働省・農林水産省が策定した「食生活指針」（平成28年6月一部改正）。全10項目のうち、本ツールの献立構成の直接の根拠となる項目のみを収録する（全文は source_url_detail を参照）。",
+      "kaitei_bi_label": "平成28年6月一部改正",
+      "kompon_koumoku": "主食、主菜、副菜を基本に、食事のバランスを。",
+      "kompon_koumoku_no_saimoku": [
+        "多様な食品を組み合わせましょう。",
+        "調理方法が偏らないようにしましょう。",
+        "手作りと外食や加工食品・調理食品を上手に組み合わせましょう。"
+      ],
+      "tool_tono_taiou_note": "★設計根拠の注記★ 『調理方法が偏らないようにしましょう』は仕様 §4.5 の「調理法（method）の連日重複の回避」と方向性が一致する。ただし指針は栄養バランスの観点から述べたものであり、ツールが調理法の重複を避ける主目的は『飽きさせない・段取りを分散させる』ことである。記事で両者を因果関係として結びつけないこと。"
+    },
+
+    "dai5ji_shokuiku_suishin_kihon_keikaku": {
+      "$comment": "第5次食育推進基本計画（令和8年6月）。食育基本法に基づき国が作成する計画で、第4次（令和3年3月策定・令和7年度まで）の後継。令和8年度時点の現行計画。目標年度は令和12年度。",
+      "kouhyou_label": "令和8年6月",
+      "mokuhyou_nendo_label": "令和12年度（R12年度）",
+      "shushoku_shusai_fukusai_kumiawase_shokuji": {
+        "$comment": "指標:「主食・主菜・副菜を組み合わせた食事を1日2回以上ほぼ毎日食べている国民の割合」。計画本文の記述:『国民にとってもわかりやすく、食事全体における栄養バランスを表している「主食・主菜・副菜を組み合わせた食事」を栄養バランスに配慮した食事の目安とし』。",
+        "kokumin_genjouchi_percent": 36.1,
+        "kokumin_genjouchi_nendo_label": "令和7年度",
+        "kokumin_mokuhyouchi_hyouki": "45％以上",
+        "wakai_sedai_genjouchi_percent": 23.8,
+        "wakai_sedai_genjouchi_nendo_label": "令和7年度",
+        "wakai_sedai_mokuhyouchi_hyouki": "30％以上"
+      },
+      "kanren_kadai_no_kijutsu": "特に若い世代においては、主食・主菜・副菜を組み合わせた食事の回数や野菜類・果物類の摂取量が少ないなどの課題がある",
+      "sankou_kyoushoku_mokuhyou": {
+        "$comment": "参考値。献立提案そのものの根拠ではないが、『家族で同じ献立を食べる』という本ツールの前提に関連する指標。",
+        "shihyou": "朝食又は夕食を家族と一緒に食べる「共食」の回数",
+        "genjouchi_label": "週8.6回（令和7年度）",
+        "mokuhyouchi_label": "週10回以上"
+      }
+    },
+
+    "nihonjin_no_shokuji_sesshu_kijun": {
+      "$comment": "★本ツールは食事摂取基準を計算に一切用いない（仕様 §2.2）。★ 記事中で『栄養バランスの根拠は何か』を説明する際の参照先としてのみ収録する。エネルギー・栄養素の摂取量の基準そのもの（推定エネルギー必要量、たんぱく質の推奨量等）は本ファイルに転記しない——転記すると献立提案ツールが栄養判定を行っているかのような誤解を生むため。",
+      "hanmei_label": "日本人の食事摂取基準（2025年版）",
+      "konkyo_hourei": "健康増進法",
+      "sakutei_shutai": "厚生労働大臣",
+      "shiyou_kikan_label": "令和7年度から令和11年度までの5年間",
+      "kaitei_shuuki_label": "5年ごと",
+      "tool_deno_shiyou": false
+    },
+
+    "tool_kouzou_tono_taiou": {
+      "$comment": "仕様の course（main / side / soup）と、公的資料上の料理区分の対応関係。★実装者向けの注記であり、UI に表示する値ではない。★",
+      "main_to_shusai": "course=main は「主菜」に対応する（肉・魚・卵・大豆及び大豆製品などを主材料とする料理）。",
+      "side_to_fukusai": "course=side は「副菜」に対応する（野菜、いも、豆類（大豆を除く）、きのこ、海藻などを主材料とする料理）。",
+      "soup_no_taiou": null,
+      "soup_no_taiou_note": "未確認: course=soup（汁物）に対応する料理区分は「食事バランスガイド」に存在しない（shirumono_no_kubun_sv を参照）。汁物はツール独自の献立構成要素であり、公的な料理区分に一対一で対応づけられない。",
+      "shushoku_ga_tool_ni_nai_koto": "★既知のギャップ★ 「食事バランスガイド」も「食生活指針」も主食・主菜・副菜の3つを献立の基本とするが、本ツールの course には main / side / soup しかなく『主食』が無い（1日 = 主菜1・副菜1・汁物1）。これはごはん等の主食が固定的に付く前提を置いているためであり、公的資料の区分から主食が抜けているわけではない。記事で dai5ji_shokuiku_suishin_kihon_keikaku の目標値に言及する場合、本ツールの提案が自動的にその目標を満たすかのような書き方をしないこと（主食の有無も副菜の量も、ツールは判定していない）。",
+      "eiyouka_hantei": false,
+      "eiyouka_hantei_note": "本ツールは栄養価の計算・表示・健康効果の主張を一切行わない（仕様 §2.2）。上記 disclaimer.nutrition が正本の免責文であり、本セクションはそれを上書きしない。"
+    },
+
+    "kiji_shippitsu_jou_no_chuui": [
+      "SV（つ）の数値を本ツールの出力と結びつけて『この献立は◯つ分』と書かないこと。ツールは主材料の重量もたんぱく質量も持っていない（data/kondate/recipes.json は分量を持たない）。",
+      "「食事バランスガイド」は健康な方々の健康づくりを目的とした資料であり、食事指導を受けている人には適用されない旨を必ず併記すること。",
+      "第5次食育推進基本計画の目標値は国民全体の割合に関する政策目標であり、個人が達成すべき基準ではない。",
+      "第5次食育推進基本計画は令和8年6月公表と新しいため、目標値・現状値の改定に注意（next_check_due 参照）。"
+    ]
   }
 }
