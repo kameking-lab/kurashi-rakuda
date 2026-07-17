@@ -71,6 +71,8 @@ import { NamonakiKajiChecker } from "@/components/tools/impl/NamonakiKajiChecker
 import { REFERENCE_STAT as NAMONAKI_KAJI_REFERENCE_STAT } from "@/components/tools/impl/NamonakiKajiChecker.calc";
 import { PartShiftShunyuuKeisan } from "@/components/tools/impl/PartShiftShunyuuKeisan";
 import { partShiftKabeDataset } from "@/components/tools/impl/PartShiftShunyuuKeisan.calc";
+import { JoseiTekiseiTaijuuShihyou } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou";
+import { TEKISEI_TAIJUU_DISCLAIMER } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1406,6 +1408,45 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           暦年の合計ではなく、認定時点から将来1年間の見込み収入で判定されるため、月々の水準を保つ管理が実務上の基本です。
         </p>
         <SeidoNotice datasets={[partShiftKabeDataset, fuyoKabeDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "josei-tekisei-taijuu-shihyou": {
+    ui: <JoseiTekiseiTaijuuShihyou />,
+    formula: (
+      <>
+        <p>
+          <strong>BMI（体格指数）の計算式</strong>
+          ：BMI = 体重(kg) ÷ 身長(m)の2乗（身長はcmではなくmで計算します）。厚生労働省
+          e-ヘルスネットが紹介する、国際的に用いられている指数です。
+        </p>
+        <p>
+          <strong>肥満度分類（低体重〜肥満4度）</strong>
+          ：日本肥満学会が定める分類です。18.5未満は「低体重（やせ）」、18.5以上25.0未満は「普通体重」、
+          25.0以上30.0未満は「肥満（1度）」、30.0以上35.0未満は「肥満（2度）」、35.0以上40.0未満は「肥満（3度）」、
+          40.0以上は「肥満（4度）」です（境界値ちょうどは上位側の区分に含まれます）。日本の基準はWHOの基準（30以上を
+          Obese）とは異なります。
+        </p>
+        <p>
+          <strong>標準体重の計算基準（BMI22）</strong>
+          ：標準体重(kg) = 身長(m)の2乗 × 22。日本肥満学会がもっとも疾病の少ないBMIとして標準体重の計算に用いる基準値であり、
+          個人の「理想体重」として提示するものではありません。
+        </p>
+        <p>
+          <strong>目標とするBMIの範囲（年齢を入力した場合のみ）</strong>
+          ：厚生労働省「日本人の食事摂取基準（2025年版）」表1（18歳以上が対象）に基づき、18〜49歳は18.5〜24.9、
+          50〜64歳は20.0〜24.9、65〜74歳・75歳以上は21.5〜24.9と年齢によって範囲が変わります。この範囲は
+          「エネルギー収支バランスの維持を示す指標」として設定されたものであり、肥満・やせの医学的な「判定」基準
+          ではありません。18歳未満はこの表の対象外のため判定しません。
+        </p>
+        <p>
+          <strong>妊娠中の体重増加指導の目安について</strong>
+          ：現在の肥満度分類に対応する、こども家庭庁「妊娠前からはじめる妊産婦のための食生活指針 解説要領」表8の
+          目安（日本肥満学会の肥満度分類に準じた4区分）を参考情報として1行のみ表示します。医師が指導を行うときの
+          目安であり個人差を考慮した指導が必要なため、妊娠週数や目標体重の専用計算は行いません（妊娠中の体重増加を
+          詳しく調べたい場合は別のツールをご利用ください）。
+        </p>
+        <p>{TEKISEI_TAIJUU_DISCLAIMER}</p>
       </>
     ),
   },
