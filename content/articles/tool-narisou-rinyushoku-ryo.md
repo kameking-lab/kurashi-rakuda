@@ -24,36 +24,36 @@
       "key": "rinyushoku.gokkun_start",
       "value": 5,
       "unit": "ヶ月",
-      "status": "stub",
-      "stub_reason": "厚生労働省「授乳・離乳の支援ガイド」の月齢区分は表内の範囲表記（文字列）として収録されており、data/tables/rinyushoku-ryo.jsonには独立した数値ノードとして格納していないため機械照合対象外。"
+      "status": "verified",
+      "seido_ref": "rinyushoku-ryo.json#stages[code=STAGE_GOKKUN].ageRangeMonths.from"
     },
     {
       "key": "rinyushoku.gokkun_end_mogumogu_start",
       "value": 7,
       "unit": "ヶ月",
-      "status": "stub",
-      "stub_reason": "上記と同じ理由で機械照合対象外。"
+      "status": "verified",
+      "seido_ref": "rinyushoku-ryo.json#stages[code=STAGE_MOGUMOGU].ageRangeMonths.from"
     },
     {
       "key": "rinyushoku.mogumogu_end_kamikami_start",
       "value": 9,
       "unit": "ヶ月",
-      "status": "stub",
-      "stub_reason": "上記と同じ理由で機械照合対象外。"
+      "status": "verified",
+      "seido_ref": "rinyushoku-ryo.json#stages[code=STAGE_KAMIKAMI].ageRangeMonths.from"
     },
     {
       "key": "rinyushoku.kamikami_end_pakupaku_start",
       "value": 12,
       "unit": "ヶ月",
-      "status": "stub",
-      "stub_reason": "上記と同じ理由で機械照合対象外。"
+      "status": "verified",
+      "seido_ref": "rinyushoku-ryo.json#stages[code=STAGE_PAKUPAKU].ageRangeMonths.from"
     },
     {
       "key": "rinyushoku.pakupaku_end",
       "value": 19,
       "unit": "ヶ月",
-      "status": "stub",
-      "stub_reason": "上記と同じ理由で機械照合対象外。"
+      "status": "verified",
+      "seido_ref": "rinyushoku-ryo.json#stages[code=STAGE_AFTER].ageRangeMonths.from"
     }
   ],
   "last_updated": "2026-07-17",
