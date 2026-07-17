@@ -100,6 +100,7 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.edogawa.tokyo.jp',
   'city.adachi.tokyo.jp',
   'city.suginami.tokyo.jp',
+  'city.minato.tokyo.jp',
 ];
 
 const args = process.argv.slice(2);
