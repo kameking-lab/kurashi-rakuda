@@ -548,8 +548,33 @@
       "高額介護サービス費でいくら戻るか分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "厚生労働省老健局「介護保険制度の概要（令和7年7月）」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/gaiyo/index.html"
+      },
+      {
+        "label": "厚生労働省（法令等データベース）「居宅介護サービス費等区分支給限度基準額及び介護予防サービス費等区分支給限度基準額（平成12年2月10日厚生省告示第33号）」",
+        "url": "https://www.mhlw.go.jp/web/t_doc?dataId=82aa0267&dataType=0&pageNo=1"
+      },
+      {
+        "label": "厚生労働省老健局介護保険計画課「介護保険最新情報Vol.997（令和3年7月5日）高額介護サービス費の負担限度額の見直し」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000212398_00001.html"
+      },
+      {
+        "label": "厚生労働省「介護保険最新情報Vol.1481（令和8年3月13日）特定入所者介護サービス費等の負担限度額の改正（令和8年厚生労働省告示第88号）」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000212398_00001.html"
+      },
+      {
+        "label": "厚生労働省（法令等データベース）「厚生労働大臣が定める一単位の単価（平成27年3月23日厚生労働省告示第93号）」",
+        "url": "https://www.mhlw.go.jp/web/t_doc?dataId=82ab4582&dataType=0&pageNo=1"
+      },
+      {
+        "label": "厚生労働省「要介護認定はどのように行われるか」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/nintei/gaiyo2.html"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   }
 ]
