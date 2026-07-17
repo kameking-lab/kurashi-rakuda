@@ -1,0 +1,182 @@
+{
+  "$schema": "../schema/seido-common.schema.json",
+  "id": "koyou-hoken-ryoritsu",
+  "name": "雇用保険料率（令和8年度）",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "mhlw-r8-leaflet",
+      "title": "令和8（2026）年度雇用保険料率のご案内（LL080312保01）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/content/001692566.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/hoken/roudouhoken21/index.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "note": "全1ページ。令和8年度の事業種別ごとの雇用保険料率表（令和7年度の率を枠内下段に併記）。landingUrl は労働保険年度更新に係るお知らせページ。"
+    },
+    {
+      "id": "hellowork-tachikawa-r8",
+      "title": "令和8(2026)年度 雇用保険料率のご案内",
+      "publisher": "ハローワーク立川（東京労働局）",
+      "url": "https://jsite.mhlw.go.jp/tokyo-hellowork/list/tachikawa/kyushokusha/koyouhokenryouritu08.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "note": "リーフレットと同内容のHTML版（照合の冗長化用）。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和8年度（令和8年4月1日〜令和9年3月31日）に失業等給付・育児休業給付の保険料率が引き下げ（一般: 労使各5.5/1,000→5/1,000、農林水産・清酒製造／建設: 労使各6.5/1,000→6/1,000）。雇用保険二事業の保険料率は据え置き（3.5/1,000、建設4.5/1,000）。",
+      "status": "in-force",
+      "effectiveFrom": "2026-04-01",
+      "expiresOn": "2027-03-31",
+      "sourceId": "mhlw-r8-leaflet",
+      "impact": "手取り計算ツール（P2-T01 復職後手取り・扶養の壁・時短シミュ）の雇用保険料（労働者負担分）は本データの workerPer1000 を使う。料率は毎年度改定されうるため、expiresOn 到来（令和9年3月31日）までに令和9年度版リーフレットへ差し替えること。"
+    }
+  ],
+  "disclaimer": "本データは厚生労働省「令和8（2026）年度雇用保険料率のご案内」をもとに作成した参考情報です。雇用保険料率は事業の種類（一般／農林水産・清酒製造／建設）で異なり、園芸サービス・牛馬の育成・酪農・養鶏・養豚・内水面養殖および特定の船員を雇用する事業には一般の事業の率が適用されます。実際の保険料は賃金総額や事業所の適用区分により決まるため、正確な金額は勤務先または管轄のハローワーク・労働局にご確認ください。",
+  "data": {
+    "periodNote": "令和8（2026）年4月1日から令和9（2027）年3月31日まで。",
+    "ippan": {
+      "workerPer1000": {
+        "value": 5,
+        "unit": "per1000",
+        "label": "一般の事業: 労働者負担（失業等給付・育児休業給付の保険料率のみ）",
+        "sourceId": "mhlw-r8-leaflet",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "一般の事業",
+            "5/1,000",
+            "13.5/1,000"
+          ]
+        },
+        "amendmentNote": "令和8年度の率（令和7年度の5.5/1,000から引き下げ）。令和9年度改定の要否は毎年2〜3月の厚労省公表で確認（なし 2026-07-17時点）",
+        "note": "手取り計算で給与から控除する労働者負担分。雇用保険二事業の保険料率は事業主のみ負担のため労働者負担には含まれない。"
+      },
+      "employerPer1000": {
+        "value": 8.5,
+        "unit": "per1000",
+        "label": "一般の事業: 事業主負担（失業等給付・育児休業給付 5/1,000 ＋ 雇用保険二事業 3.5/1,000）",
+        "sourceId": "mhlw-r8-leaflet",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "8.5/1,000",
+            "3.5/1,000"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "内訳: 失業等給付・育児休業給付 5/1,000（労使折半相当）＋雇用保険二事業 3.5/1,000（事業主のみ）。"
+      },
+      "totalPer1000": {
+        "value": 13.5,
+        "unit": "per1000",
+        "label": "一般の事業: 雇用保険料率（労使合計）",
+        "sourceId": "mhlw-r8-leaflet",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "13.5/1,000"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "令和7年度は14.5/1,000（リーフレット枠内下段）。"
+      }
+    },
+    "nourinSuisanSeishu": {
+      "workerPer1000": {
+        "value": 6,
+        "unit": "per1000",
+        "label": "農林水産・清酒製造の事業: 労働者負担",
+        "sourceId": "mhlw-r8-leaflet",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "農林水産・",
+            "清酒製造の事業",
+            "6/1,000",
+            "15.5/1,000"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "★園芸サービス、牛馬の育成、酪農、養鶏、養豚、内水面養殖および特定の船員を雇用する事業は一般の事業の率が適用される★（リーフレット注記）。"
+      },
+      "employerPer1000": {
+        "value": 9.5,
+        "unit": "per1000",
+        "label": "農林水産・清酒製造の事業: 事業主負担（6/1,000 ＋ 二事業 3.5/1,000）",
+        "sourceId": "mhlw-r8-leaflet",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "9.5/1,000"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)"
+      },
+      "totalPer1000": {
+        "value": 15.5,
+        "unit": "per1000",
+        "label": "農林水産・清酒製造の事業: 雇用保険料率（労使合計）",
+        "sourceId": "mhlw-r8-leaflet",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "15.5/1,000"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)"
+      }
+    },
+    "kensetsu": {
+      "workerPer1000": {
+        "value": 6,
+        "unit": "per1000",
+        "label": "建設の事業: 労働者負担",
+        "sourceId": "mhlw-r8-leaflet",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "建設の事業",
+            "6/1,000",
+            "16.5/1,000"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)"
+      },
+      "employerPer1000": {
+        "value": 10.5,
+        "unit": "per1000",
+        "label": "建設の事業: 事業主負担（6/1,000 ＋ 二事業 4.5/1,000）",
+        "sourceId": "mhlw-r8-leaflet",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "10.5/1,000",
+            "4.5/1,000"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)"
+      },
+      "totalPer1000": {
+        "value": 16.5,
+        "unit": "per1000",
+        "label": "建設の事業: 雇用保険料率（労使合計）",
+        "sourceId": "mhlw-r8-leaflet",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "16.5/1,000"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)"
+      }
+    },
+    "note": "★単位は per1000（1,000分率）★ 率としては value/1000（一般の労働者負担なら 0.005）。原典の表記（5/1,000 等）をそのまま数値化した。労働者負担は「失業等給付・育児休業給付の保険料率」のみで、雇用保険二事業の保険料率（一般・農林水産・清酒製造 3.5/1,000、建設 4.5/1,000）は事業主のみ負担。保険料の端数処理（被保険者負担分の源泉控除時は50銭以下切捨て・50銭超切上げ）は労働保険徴収法・通達側の規定であり本データには収録していない（未収録: 手取りツール実装時に要確認）。"
+  }
+}

@@ -28,7 +28,7 @@
 **G3 制度データ第2弾（2026-07-17 完了）**: 記事40本（Q4-015〜060 の未執筆分）のブロッカーとなっていた制度データ40件を整備し、`factory/queue` の該当ジョブの `seido_data` を **`status: stub → ready`** にした（**未執筆40本の stub は残ゼロ**）。あわせて **S級ツールの計算穴埋め4点**を決着（下記）。全 `data/seido/` 46ファイルで `verify-seido.mjs` エラー0（`--fetch` でも 150ページ・1,369文字列の照合でエラー0）。
 
 - [~] Q2-1 (A) 子育て制度データ2026年度（児童手当・保育料階層・定期予防接種） → **第2弾で7件追加**（育休延長要件・学童保育基準・こども医療費助成・高校就学支援金・就学援助・出生届・チャイルドシート）。残: 保育料階層の未収集自治体（[queue/hoikuryo-backlog.md](queue/hoikuryo-backlog.md) §1）
-- [~] Q2-2 (A) 労働・社保データ2026年度（雇用保険料率・標準報酬・扶養基準・時短給付） → **第2弾で住民税・給与所得控除・教育訓練給付・有給付与日数・退職タイミング等を追加**し、**時短給付の区分②を解禁可能に**。残: 協会けんぽ料額表（標準報酬月額の等級表・都道府県別料率）＝[§8](queue/hoikuryo-backlog.md)
+- [~] Q2-2 (A) 労働・社保データ2026年度（雇用保険料率・標準報酬・扶養基準・時短給付） → **第2弾で住民税・給与所得控除・教育訓練給付・有給付与日数・退職タイミング等を追加**し、**時短給付の区分②を解禁可能に**。~~残: 協会けんぽ料額表（標準報酬月額の等級表・都道府県別料率）＝[§8](queue/hoikuryo-backlog.md)~~ → **収集完了（2026-07-17・P2-D02・PR#100）**: `data/seido/kyoukaikenpo-hokenryo.json`。~~残: 雇用保険料率（令和8年度）~~ → **収集完了（2026-07-17）**: `data/seido/koyou-hoken-ryoritsu.json`（手取り計算の社保3点＝健保・厚年・雇用保険が全て揃った）
 - [~] Q2-3 (A) 介護保険データ2026年度（要介護度別支給限度額・負担割合・高額介護サービス費） → **第2弾で高額介護サービス費・合算療養費・介護休業給付金・両立支援・施設費用を追加**し、**[§7](queue/hoikuryo-backlog.md)（合算限度額）と補足給付の境界を決着**。残: 市町村別の級地（[§6](queue/hoikuryo-backlog.md)）
 - [ ] Q2-4 (B) 家事データ（冷凍保存期間150食材・調味料比重・洗濯表示記号・献立レシピ200件） → 対照表8件は #29 で追加済、献立の栄養根拠は #36 で追加済。**★洗濯表示記号は D2 で JIS L 0001:2024（令和6年8月20日改正）へ更新済み（2026-07-17）★**
 
@@ -156,7 +156,7 @@
 
 | ID | docs/02 | ツール | 担当 | 依存データ | 仕様書 |
 |---|---|---|---|---|---|
-| P2-T01 | #56 | 復職後の手取りシミュレーター（時短×社保×保育料の複合） | S(オーパス) | ✔ikukyu-kyufu・hoikuryo／要: 協会けんぽ料額表（[§8](queue/hoikuryo-backlog.md)） | 要 |
+| P2-T01 | #56 | 復職後の手取りシミュレーター（時短×社保×保育料の複合） | S(オーパス) | ✔ikukyu-kyufu・hoikuryo・**kyoukaikenpo-hokenryo（P2-D02）・koyou-hoken-ryoritsu（2026-07-17）＝データ依存すべて解消** | 要 |
 | P2-T02 | #58 | 子育て世帯の給付金・助成金 総ざらいチェッカー | S(オーパス) | ✔kosodate-kyufu-sougou-check | 要 |
 | P2-T03 | #59 | 児童扶養手当計算（ひとり親） | S(オーパス) | ✔jidou-fuyou-teate | 要 |
 | P2-T04 | #80 | 扶養内⇄社保加入 損益分岐 | S(オーパス) | ✔fuyounai-shaho-songeki-bunkiten・fuyou-kabe | 要 |
@@ -174,7 +174,7 @@
 | P2-T16 | #7 | 出産準備チェックリスト（予定日逆算） | B(ソネット) | なし（日付演算＋自前リスト） | 簡易 |
 | [x] P2-T17 | #10 | 陣痛間隔カウンター（オフライン必須） | B(ソネット) | なし | 簡易 → **完了（slug: jintsuu-kankaku-counter, 2026-07-17）**: localStorage永続化・平均間隔/持続時間・出典はncchd.go.jp（国立成育医療研究センター） |
 | P2-T18 | #11 | 産後手続きリスト生成（期限つき） | B(ソネット) | ✔shussho-todoke-kigen・jido-teate・ikukyu-kyufu | 簡易 |
-| P2-T19 | #27 | 幼児教育・保育無償化 対象チェッカー | B(ソネット) | ✔youji-kyouiku-mushouka | 簡易 |
+| [x] P2-T19 | #27 | 幼児教育・保育無償化 対象チェッカー | B(ソネット) | ✔youji-kyouiku-mushouka | 簡易 → **完了（feat/tool-youji-mushouka-checker）**: slug `youji-mushouka-checker`（childcare）。specs/b-tools/p2-t19-youji-mushouka-checker.md・YoujiMushoukaChecker.calc.ts/tsx・tests/youji-mushouka-checker.test.ts（18件）・registry.json 追加済み |
 | P2-T20 | #28 | 学童・小1の壁 段取りチェック | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
 | P2-T21 | #42 | 味付け黄金比計算（人数スケール） | B(ソネット) | 要: data/tables 黄金比表（出典設計含む） | 簡易 |
 | P2-T22 | #43 | レシピ人数スケール換算 | B(ソネット) | なし（#38部品流用） | 不要 |

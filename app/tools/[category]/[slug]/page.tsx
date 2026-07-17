@@ -30,6 +30,8 @@ import { KondateTeian } from "@/components/tools/impl/KondateTeian";
 import { KONDATE_DISCLAIMER, kondateData } from "@/lib/tools/impl/kondate-teian";
 import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
 import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
+import { YoujiMushoukaChecker } from "@/components/tools/impl/YoujiMushoukaChecker";
+import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushoukaChecker.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -878,6 +880,26 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           </strong>
           実際に何回・いつ受診するかは妊娠経過・体調・医療機関の方針によって異なり、医学的な受診指示・診断は一切行っていません。必ず担当医の指示、お住まいの市区町村の母子保健担当窓口の案内を優先してください。
         </p>
+      </>
+    ),
+  },
+  "youji-mushouka-checker": {
+    ui: <YoujiMushoukaChecker />,
+    formula: (
+      <>
+        <p>
+          3〜5歳児クラスは全世帯が無償化の対象です。0〜2歳児クラスは住民税非課税世帯のみが対象で、課税世帯は原則対象外です（自治体独自の減免制度がある場合があります）。この年齢区分の境界は「4月1日時点の満年齢（クラス年齢）」で判定します。
+        </p>
+        <p>
+          認可保育所・認定こども園・幼稚園（新制度）は、入園にあたって既に受けている保育の必要性の認定（2号・3号認定）または教育標準時間認定（1号認定）に無償化の適用が含まれるため、追加の手続きは不要です。幼稚園（未移行・預かり保育含む）・認可外保育施設等は、無償化を受けるために市区町村へ別途「施設等利用給付認定」を申請する必要があります。企業主導型保育等は施設等利用給付認定（市区町村への申請）は不要ですが、利用している施設への必要書類の提出が前提です（無償化は「標準的な利用料」の金額が無料になる方式。こども家庭庁「幼児教育・保育の無償化」）。前提条件のあるこれらの施設種別を、本ツールでは「条件付き対象」として表示します。
+        </p>
+        <p>
+          月額上限が定められているのは認可外保育施設等のみで、3〜5歳児クラスは37,000円、0〜2歳児クラス（住民税非課税世帯）は42,000円です（こども家庭庁「幼児教育・保育の無償化」に基づく2026年度時点の値）。幼稚園（未移行）・企業主導型保育等にも上限が定められている場合がありますが、本ツールが参照する制度データには数値の収録がないため、上限額は「データなし・要確認」として断定表示していません。
+        </p>
+        <p>
+          幼稚園（新制度・未移行いずれも）は満3歳以上のお子さまが対象のため、0〜2歳児クラスでの幼稚園利用という組み合わせは対象外として扱います。
+        </p>
+        <p>{YOUJI_MUSHOUKA_DISCLAIMER}</p>
       </>
     ),
   },
