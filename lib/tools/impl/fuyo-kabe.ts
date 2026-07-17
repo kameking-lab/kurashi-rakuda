@@ -10,11 +10,14 @@
  */
 
 import seido from "@/data/seido/fuyou-kabe.json";
+import kyuyoKoujo from "@/data/seido/kyuyo-shotoku-koujo.json";
 import type { SeidoDataset } from "@/lib/tools/seido";
 
 export const fuyoKabeDataset = seido as unknown as SeidoDataset;
 
 const D = seido.data;
+/** 給与所得控除の速算表（220万円超の解禁データ。2026-07-17 G3第2弾） */
+const K = kyuyoKoujo.data;
 
 // ---------------------------------------------------------------- 型
 
@@ -62,12 +65,39 @@ export interface WallResult {
 // ---------------------------------------------------------------- 給与所得
 
 /**
- * 給与収入 → 給与所得（令和8・9年分）。
- * 根拠: data.kyuyoShotokuKoujo.specialTableFY2026to2027
- * 出典: 国税庁「源泉所得税の改正のあらまし（令和8年4月）」
+ * 220万円以上の給与収入 → 給与所得（令和8・9年分）。
+ * 根拠: kyuyo-shotoku-koujo.json の tableFY2026（速算表全域）と betsuhyou5.equivalenceRule
+ * （2026-07-17 データ第2弾で解禁。従前は未収集のため null を返していた）。
  *
- * ★220万円以上は速算表が未収集★（queue/hoikuryo-backlog.md §8）。
- * 推測で計算せず null を返す。呼び出し側は送客する。
+ * ★別表第五の罠★ 220万円以上660万円未満は、収入を4,000円単位に切り捨ててから
+ * 速算表を適用する（所得税法第28条第4項・別表第五と完全一致することを
+ * データ側が全1,100区分で機械照合済み）。660万円以上では切り捨ててはならない。
+ */
+function salaryIncomeOver220(salary: number): number | null {
+  const rows = K.tableFY2026.rows;
+  const noTruncateMin = 6_600_000; // 別表第五の適用上限（660万円以上は速算表を直接適用）
+  const base =
+    salary < noTruncateMin ? Math.floor(salary / K.betsuhyou5.granularity.value) * K.betsuhyou5.granularity.value : salary;
+
+  for (const r of rows) {
+    if (base >= r.incomeMin && (r.incomeMax === null || base <= r.incomeMax)) {
+      if (r.deduction !== null) return base - r.deduction;
+      // formula: "収入金額×30％＋80,000円" 等。★浮動小数を避け整数演算★
+      const m = /×(\d+)％＋([\d,]+)円/.exec(r.formula);
+      if (!m) return null; // 想定外の書式 → 推測しない
+      const pct = Number(m[1]);
+      const add = Number(m[2].replace(/,/g, ""));
+      return Math.floor((base * (100 - pct)) / 100) - add;
+    }
+  }
+  return null;
+}
+
+/**
+ * 給与収入 → 給与所得（令和8・9年分）。
+ * 220万円未満: data.kyuyoShotokuKoujo.specialTableFY2026to2027（措法29条の4第2項の特例表）
+ * 220万円以上: kyuyo-shotoku-koujo.json の速算表（salaryIncomeOver220）
+ * 出典: 国税庁「源泉所得税の改正のあらまし（令和8年4月）」・タックスアンサーNo.1410
  */
 export function salaryIncome(salary: number): number | null {
   const rows = D.kyuyoShotokuKoujo.specialTableFY2026to2027.rows;
@@ -75,7 +105,7 @@ export function salaryIncome(salary: number): number | null {
   const max = rows[rows.length - 1].incomeMax;
 
   if (salary < min) return 0;
-  if (salary >= max) return null; // 未収集領域
+  if (salary >= max) return salaryIncomeOver220(salary);
 
   for (const r of rows) {
     if (salary >= r.incomeMin && salary < r.incomeMax) {
@@ -169,9 +199,8 @@ export function tokuteiShinzokuKoujo(salary: number, age: number): number {
  */
 export function haiguushaTokubetsuKoujo(salary: number, supporterSalary: number): number {
   const supporterIncome = salaryIncome(supporterSalary);
-  // 扶養者が高収入（220万円超で未収集領域）の場合、給与所得は概算できないが、
-  // 配偶者特別控除の判定に必要なのは1,000万円前後の帯。
-  // 未収集領域では incomeEarnerBrackets の salaryEquivalentMax で直接判定する。
+  // 扶養者の給与所得が計算できない場合（速算表の想定外書式など）に備え、
+  // incomeEarnerBrackets の salaryEquivalentMax でも判定できるようにしている。
   const brackets = D.haiguushaTokubetsuKoujo.incomeEarnerBrackets;
   let earnerIndex = -1;
   for (let i = 0; i < brackets.length; i++) {
@@ -457,7 +486,7 @@ export interface FuyoResult {
   salaryIncome: number | null;
   kisoKoujo: number | null;
   taxableIncome: number | null;
-  /** 220万円以上で速算表が未収集のため計算できない */
+  /** 基礎控除の区分外（合計所得2,350万円超）等で課税所得を計算できない */
   outOfRange: boolean;
   walls: WallResult[];
   shaho: ShahoResult;
@@ -470,7 +499,8 @@ export interface FuyoResult {
 
 export function simulate(input: FuyoInput): FuyoResult {
   const s = salaryIncome(input.salary);
-  const outOfRange = s === null;
+  // 220万円以上は2026-07-17に解禁済み。残る計算不能域は合計所得2,350万円超（基礎控除が未収集）のみ
+  const outOfRange = s === null || kisoKoujo(s) === null;
   return {
     salaryIncome: s,
     kisoKoujo: s === null ? null : kisoKoujo(s),

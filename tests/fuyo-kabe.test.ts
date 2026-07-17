@@ -81,9 +81,32 @@ describe("給与所得（specs §4.0 Step1）", () => {
     expect(salaryIncome(2_196_000)).toBe(1_456_000);
   });
 
-  it("TC-20 2,200,000円 → 未収集領域のため null（推測で計算しない）", () => {
-    expect(salaryIncome(2_200_000)).toBeNull();
-    expect(simulate(inp({ salary: 2_200_000 })).outOfRange).toBe(true);
+  it("TC-20改（2026-07-17 解禁）2,200,000円 → 給与所得1,460,000円（控除74万円と連続）", () => {
+    // 速算表の連続性: 220万×30%＋8万 = 74万 で第1区分と一致（データの検算noteどおり）
+    expect(salaryIncome(2_200_000)).toBe(1_460_000);
+    expect(simulate(inp({ salary: 2_200_000 })).outOfRange).toBe(false);
+  });
+
+  it("★解禁の錨★ 220万円以上660万円未満は収入を4,000円単位に切り捨ててから速算表を適用（別表第五）", () => {
+    // 3,000,000円: 切捨て後3,000,000（4,000の倍数）→ ×30%＋8万 = 98万 → 所得202万
+    expect(salaryIncome(3_000_000)).toBe(2_020_000);
+    // 3,001,999円: 切捨て後3,000,000 → 同じ所得202万（区分内は同額）
+    expect(salaryIncome(3_001_999)).toBe(2_020_000);
+    // 3,004,000円: 切捨て後3,004,000 → ×30%＋8万 = 981,200 → 所得2,022,800
+    expect(salaryIncome(3_004_000)).toBe(2_022_800);
+    // 5,000,000円: ×20%＋44万 = 144万 → 所得356万
+    expect(salaryIncome(5_000_000)).toBe(3_560_000);
+  });
+
+  it("★660万円以上は切り捨てない★（別表第五の適用外）", () => {
+    // 7,000,001円: ×10%＋110万 → 所得 floor(7,000,001×0.9) − 1,100,000 = 5,200,000
+    expect(salaryIncome(7_000_001)).toBe(5_200_000);
+    // 8,500,000円超は控除上限195万円
+    expect(salaryIncome(10_000_000)).toBe(8_050_000);
+    // 基礎控除表との整合（データの検算note）: 給与665万5,556円 → 合計所得489万円
+    expect(salaryIncome(6_655_556)).toBe(4_890_000);
+    // 850万円 → 合計所得655万円
+    expect(salaryIncome(8_500_000)).toBe(6_550_000);
   });
 
   it("TC-35 0円 → 0（エラーにしない）", () => {
@@ -338,10 +361,16 @@ describe("TC-34 異常系", () => {
     expect(salaryIncome(-1)).toBe(0);
   });
 
-  it("simulate は 220万円以上で outOfRange=true を返し、壁の一覧は返す", () => {
+  it("simulate は 220万円以上でも課税所得を返す（2026-07-17 解禁）。207万円の壁も扱える", () => {
     const r = simulate(inp({ salary: 3_000_000 }));
-    expect(r.outOfRange).toBe(true);
-    expect(r.salaryIncome).toBeNull();
+    expect(r.outOfRange).toBe(false);
+    expect(r.salaryIncome).toBe(2_020_000);
     expect(r.walls.length).toBeGreaterThan(0);
+  });
+
+  it("合計所得2,350万円超（基礎控除の区分外）のみ outOfRange=true を維持", () => {
+    // 給与2,600万円 → 控除上限195万 → 合計所得2,405万円 > 2,350万円
+    const r = simulate(inp({ salary: 26_000_000 }));
+    expect(r.outOfRange).toBe(true);
   });
 });
