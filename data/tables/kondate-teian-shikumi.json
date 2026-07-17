@@ -1,0 +1,29 @@
+{
+  "$comment": "献立自動提案ツール(kondate-teian)の仕組みに関する対照表。出典は外部の政府一次情報ではなく、自社ツールのデータ正本 data/kondate/meta.json（バージョン管理・レシピ件数等）。counts→recipe_kensu、minimumCounts→recipe_kensu_saitei、allowedTags→tag_shurui、disclaimer→disclaimer として、値はそのまま転記している。更新時は data/kondate/meta.json の変更に追従してこのファイルも更新すること。",
+  "org": "くらしのラクダ（自社ツール実装データ）",
+  "source_url": "data/kondate/meta.json",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2026-10-01",
+  "data_version": "1.0.0",
+  "algorithm_version": 1,
+  "recipe_kensu": { "shusai": 36, "fukusai": 27, "shirumono": 13 },
+  "recipe_kensu_saitei": { "shusai": 30, "fukusai": 20, "shirumono": 10 },
+  "tag_shurui": [
+    "kids-ok",
+    "one-pan",
+    "no-fire",
+    "make-ahead-ok",
+    "make-ahead-ng",
+    "freezer-ok",
+    "budget",
+    "quick"
+  ],
+  "disclaimer": {
+    "intro": "このツールが提案する献立は、料理を決める手間を減らすためのアイデアの提案です。",
+    "allergy": "使わない食材に指定した食材を含むレシピを、献立から除いています。これはアレルギー対応ではありません。加工食品や調味料には表示から読み取りにくい原材料が含まれることがあり、同じ調理器具からの混入も防げません。食物アレルギーのある方は、必ず原材料を確認してください。市販品はパッケージの原材料表示をご自身で確認し、医師の指導に従ってください。",
+    "nutrition": "このツールは栄養価の計算や、健康上の効果の判断を行っていません。食事の内容や持病・体調に応じた食事については、医師・管理栄養士にご相談ください。",
+    "time": "表示している時間は、順番に作った場合の目安です。慣れ・調理器具・下ごしらえの状況により変わります。",
+    "pregnancy": "妊娠中・授乳中の方や離乳食について、避けたほうがよい食品の判定は行っていません。",
+    "data": "レシピの追加・修正により、共有した URL の献立を再現できなくなる場合があります。"
+  }
+}

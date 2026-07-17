@@ -11,9 +11,9 @@
   "seido_data": [
     {
       "file": "shokuhin-hyouji-kikan.json",
-      "status": "stub"
+      "status": "ready"
     }
   ],
-  "status": "queued",
+  "status": "gated_pass",
   "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
 }
