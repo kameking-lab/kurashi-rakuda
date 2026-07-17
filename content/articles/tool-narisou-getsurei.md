@@ -26,42 +26,42 @@
       "value": 365,
       "unit": "日",
       "status": "stub",
-      "stub_reason": "暦法上の一般規則（1年が365日相当で月齢12ヶ月に達する例示）であり、data/seido・data/tablesに一次データとして収録されていないため機械照合対象外"
+      "stub_reason": "暦法上の一般知識であり特定の政府機関の一次情報を出典とする性質の数値ではないため（1年365日相当で月齢12ヶ月に達するという、暦月ベース・応当日方式の計算の性質上の帰結を説明しているにすぎない）"
     },
     {
       "key": "getsurei.mitasu_12kagetsu",
       "value": 12,
       "unit": "ヶ月",
       "status": "stub",
-      "stub_reason": "暦法上の一般規則（生後365日と月齢12ヶ月が一致する例示）であり、data/seido・data/tablesに一次データとして収録されていないため機械照合対象外"
+      "stub_reason": "暦法上の一般知識であり特定の政府機関の一次情報を出典とする性質の数値ではないため（生後365日と月齢12ヶ月が一致するという、暦月ベース・応当日方式の計算の性質上の帰結を説明しているにすぎない）"
     },
     {
       "key": "getsurei.shussan_yotei_2kagetsu_hayai",
       "value": 2,
       "unit": "ヶ月",
-      "status": "stub",
-      "stub_reason": "こども家庭庁公表資料（mchbook.cfa.go.jp）の修正月齢の説明例に基づく数値だが、data/seido・data/tablesに一次データとして収録されていないため機械照合対象外"
+      "status": "verified",
+      "seido_ref": "getsurei-shuusei-tsukirei-rei.json#hayaku_umareta_kagetsu"
     },
     {
       "key": "getsurei.jitsurei_3kagetsu",
       "value": 3,
       "unit": "ヶ月",
-      "status": "stub",
-      "stub_reason": "こども家庭庁公表資料（mchbook.cfa.go.jp）の修正月齢の説明例に基づく数値だが、data/seido・data/tablesに一次データとして収録されていないため機械照合対象外"
+      "status": "verified",
+      "seido_ref": "getsurei-shuusei-tsukirei-rei.json#jitsurei_kagetsu"
     },
     {
       "key": "getsurei.shuusei_tsukirei_1kagetsu",
       "value": 1,
       "unit": "ヶ月",
-      "status": "stub",
-      "stub_reason": "こども家庭庁公表資料（mchbook.cfa.go.jp）の修正月齢の説明例に基づく数値だが、data/seido・data/tablesに一次データとして収録されていないため機械照合対象外"
+      "status": "verified",
+      "seido_ref": "getsurei-shuusei-tsukirei-rei.json#shuusei_tsukirei_kagetsu"
     },
     {
       "key": "getsurei.shuusei_tsukirei_meyasu_3sai",
       "value": 3,
       "unit": "歳",
-      "status": "stub",
-      "stub_reason": "こども家庭庁公表資料（mchbook.cfa.go.jp）が示す『修正月齢・年齢で見ていくことが多い』目安年齢の例示であり、data/seido・data/tablesに一次データとして収録されていないため機械照合対象外"
+      "status": "verified",
+      "seido_ref": "getsurei-shuusei-tsukirei-rei.json#meyasu_nenrei_sai"
     }
   ],
   "last_updated": "2026-07-17",
