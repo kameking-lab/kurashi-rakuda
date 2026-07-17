@@ -41,7 +41,11 @@ const M = D.shakaiHokenryoMenjo;
 const WAGE_BASE_MONTHS = 6;
 const WAGE_BASE_DIVISOR = 180;
 
-/** 支給単位期間の原則日数（暦の応当日で決まるため表示・目安用） */
+/**
+ * 支給単位期間の支給日数の原則値。休業終了日を含む期間以外は暦日数に
+ * かかわらず30日で計算する（K.monthlyMax67 の検算注記「16,110円×30日×67%」
+ * が根拠。上限額・下限額も30日前提で公表されている）。
+ */
 export const NOMINAL_PERIOD_DAYS = 30;
 
 // ---------------------------------------------------------------- 型
@@ -243,6 +247,17 @@ export function isShussanTeateCovered(hi: HealthInsurance): boolean {
 export function calcShussanTeate(input: SankyuInput, tl: Timeline): ShussanTeateResult {
   const days = tl.prenatalDays + tl.postnatalDays;
 
+  if (input.role === "father") {
+    // 出産手当金は出産する被保険者本人（母）にのみ支給される。父の月給・加入区分では算定できない
+    return {
+      eligible: false,
+      dailyAmount: null,
+      amount: null,
+      days,
+      reason:
+        "出産手当金は、出産のために仕事を休んだ健康保険の被保険者ご本人（お母さん）に支給される給付です。お父さんには支給されないため、この試算には含めていません。お母さんの分は、お母さんの勤務先・健康保険の条件で「お母さん」を選んで試算してください。",
+    };
+  }
   if (input.healthInsurance === "kyosai") {
     return {
       eligible: false,
@@ -434,6 +449,7 @@ export interface IkukyuPeriod {
   index: number;
   start: string;
   end: string;
+  /** 支給日数。原則30日、休業終了日を含む期間のみ実日数（K.paymentDaysRule） */
   days: number;
   /** 給付率67%で計算した日数 */
   days67: number;
@@ -502,21 +518,26 @@ export function calcIkukyu(input: SankyuInput, tl: Timeline, w: WageDaily): Ikuk
   let total = 0;
 
   raw.forEach((p, i) => {
-    const days67 = Math.max(0, Math.min(p.days, switchDays - cumulative));
-    const days50 = p.days - days67;
-    cumulative += p.days;
+    // ★支給日数は暦日数ではない★ 原則30日で固定し、休業終了日を含む
+    // 最後の支給単位期間のみ実日数を使う（K.monthlyMax67 の検算注記
+    // 「16,110円×30日×67%」と同じ規則）。暦日数（28〜31日）を使うと
+    // 31日月で過大・2月で過小の系統誤差になる。
+    const payDays = i === raw.length - 1 ? p.days : NOMINAL_PERIOD_DAYS;
+    const days67 = Math.max(0, Math.min(payDays, switchDays - cumulative));
+    const days50 = payDays - days67;
+    cumulative += payDays;
 
     const base = ikukyuAmountForDays(w.value, days67, false) + ikukyuAmountForDays(w.value, days50, true);
     // 賃金の調整は支給単位期間ごと。切替点をまたぐ期間は 50% 側の閾値（30%）を使わず
     // 期間の大半を占める給付率で判定する（過半が181日目以降なら30%）
     const after180 = days50 > days67;
-    const adj = adjustByWage(base, w.value * p.days, input.wagePerPeriod, after180);
+    const adj = adjustByWage(base, w.value * payDays, input.wagePerPeriod, after180);
 
     periods.push({
       index: i + 1,
       start: p.start,
       end: p.end,
-      days: p.days,
+      days: payDays,
       days67,
       days50,
       amount: adj.amount,
