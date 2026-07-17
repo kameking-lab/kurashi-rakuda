@@ -45,7 +45,7 @@ else:  # nonTaxableFrom <= classAge <= nonTaxableTo
 | youchienShinseido（幼稚園・新制度） | なし | 不要（教育標準時間認定に無償化が内包） |
 | youchienMikoukou（幼稚園・未移行〈預かり保育含む〉） | なし | 必要 |
 | ninkagai（認可外保育施設等） | あり | 必要 |
-| kigyoushudou（企業主導型保育等） | あり | 必要 |
+| kigyoushudou（企業主導型保育等） | あり | ★不要★（施設への必要書類の提出が前提。G2検収で訂正・2026-07-17） |
 
 ### 3. 判定（ageGroup × facilityType × nonTaxableHousehold）
 
@@ -56,7 +56,7 @@ if ageGroup == "freeForAll":
         monthlyCap = data.ninkagaiCaps.age3to5.value   # 37,000円
     else:
         monthlyCap = null   # 上限の定めなし（利用料そのものが無償化）
-    status = 施設等利用給付認定が必要 ? "conditional" : "target"
+    status = 無償化適用に前提条件（施設等利用給付認定 または 企業主導型の施設への書類提出）がある ? "conditional" : "target"
 
 elif ageGroup == "nonTaxable":
     if facilityType の0〜2歳児クラス受け入れが「なし」（幼稚園2種別）:
@@ -70,7 +70,7 @@ elif ageGroup == "nonTaxable":
             monthlyCap = data.ninkagaiCaps.age0to2NonTaxable.value   # 42,000円
         else:
             monthlyCap = null
-        status = 施設等利用給付認定が必要 ? "conditional" : "target"
+        status = 無償化適用に前提条件（施設等利用給付認定 または 企業主導型の施設への書類提出）がある ? "conditional" : "target"
 ```
 
 ### 4. 手続きの提示
@@ -87,7 +87,7 @@ else:
 
 ### 5. 月額上限データが未収録の場合の注記
 
-`youchienMikoukou`・`kigyoushudou` は施設等利用給付認定の対象だが、`data/seido/youji-kyouiku-mushouka.json` には月額上限の数値データがない（同JSONの `ninkagaiCaps` は認可外保育施設等のみを対象とする）。このため、これらの施設種別で `status == "conditional"` の場合は「月額上限は本データに収録されていません。認定通知や施設に上限額をご確認ください。」という注記を必ず添える（上限額を推測・断定表示しない）。
+`youchienMikoukou`・`kigyoushudou` は `data/seido/youji-kyouiku-mushouka.json` に月額上限の数値データがない（同JSONの `ninkagaiCaps` は認可外保育施設等のみを対象とする）。このため、これらの施設種別で `status == "conditional"` の場合は上限データ未収録の注記を必ず添える（上限額を推測・断定表示しない）。文言は `youchienMikoukou`＝「月額上限は本データに収録されていません。認定通知や施設に上限額をご確認ください。」、`kigyoushudou`＝「企業主導型保育の無償化は『標準的な利用料』の金額が無料になる方式です。具体的な金額は利用している施設にご確認ください。」（企業主導型に認定通知は存在しないため文言を分ける。G2検収で訂正・2026-07-17）。
 
 ## データ表・出典
 
@@ -114,7 +114,7 @@ else:
 - **0〜2歳児クラス・幼稚園（新制度／未移行いずれも）**: 幼稚園は満3歳以上が対象のため、0〜2歳児クラスでの利用という組み合わせ自体が実務上ない。「対象外」とし、その理由（年齢要件）を明記する。
 - **認可外保育施設等の月額上限**: 3〜5歳児クラスは37,000円、0〜2歳児クラス（住民税非課税世帯）は42,000円で異なる。取り違えないよう、判定に使った年齢区分を結果画面に明示する。
 - **幼稚園の預かり保育（未移行）の扱い**: 施設等利用給付認定が必要で、かつ月額上限の数値データを本JSONは持たないため、「条件付き対象」とし上限額は「データなし・要確認」と表示する（推測値を出さない）。
-- **企業主導型保育等**: 認可外保育施設等と同様に施設等利用給付認定が必要な枠組みとして扱うが、月額上限の数値データは本JSONにないため「条件付き対象」・上限額は「データなし・要確認」。
+- **企業主導型保育等**: ★施設等利用給付認定は不要★（G2検収で訂正・2026-07-17。こども家庭庁「幼児教育・保育の無償化」原文「対象となるためには、利用している企業主導型保育施設に対し、必要書類の提出を行う必要があります」「標準的な利用料の金額が無料になります」＝施設等利用給付ではなく利用料の減額方式）。前提条件（施設への書類提出・従業員枠/地域枠の要件）があるため「条件付き対象」とし、手続き案内は市区町村への認定申請ではなく施設への書類提出とする。月額上限の数値データは本JSONにないため上限額は「データなし・要確認」（標準的な利用料は施設に確認）。
 - **入力範囲外のクラス年齢**（例: 6歳以上、負の値）: 入力エラーとして扱う。
 - **住民税課税状況の未入力**（0〜2歳児クラス選択時）: 入力エラーとして扱う。
 
@@ -136,7 +136,7 @@ else:
 | 6 | 0 | ninkagai | false | notTarget | null | 0〜2歳児クラス・課税世帯・認可外も対象外 |
 | 7 | 1 | youchienShinseido | true | notTarget | null | 幼稚園は満3歳以上が対象のため0〜2歳児クラスでは対象外（非課税世帯でも変わらず） |
 | 8 | 4 | youchienMikoukou | - | conditional | null | 未移行幼稚園は認定必要・上限データなしのため条件付き対象、上限はnull |
-| 9 | 4 | kigyoushudou | - | conditional | null | 企業主導型保育も認定必要・上限データなしのため条件付き対象 |
+| 9 | 4 | kigyoushudou | - | conditional | null | 企業主導型保育は★認定不要★（施設への書類提出が前提）・上限データなしのため条件付き対象。市区町村への認定申請は案内しない（#9b） |
 | 10 | 2 | ninkaHoikusho | true | target | null | 境界値: classAge=2は必ずnonTaxable区分 |
 | 11 | 3 | ninkaHoikusho | - | target | null | 境界値: classAge=3は必ずfreeForAll区分（nonTaxableHousehold不要） |
 | 12 | 6 | ninkaHoikusho | - | error | - | 対応年齢の範囲外（0〜5のみ対応） |

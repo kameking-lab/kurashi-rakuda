@@ -106,6 +106,36 @@ describe("calculateYoujiMushouka", () => {
     expect(r.result.monthlyCap).toBeNull();
   });
 
+  /**
+   * ★G2検収で修正（2026-07-17）★ 企業主導型は施設等利用給付認定が「不要」。
+   * こども家庭庁「幼児教育・保育の無償化」原文:「対象となるためには、利用している
+   * 企業主導型保育施設に対し、必要書類の提出を行う必要があります」
+   * 「標準的な利用料の金額が無料になります」（＝施設等利用給付ではなく利用料の減額方式）。
+   * 市区町村への認定申請を案内すると、ユーザーを不要な窓口手続きに誘導する誤りになる。
+   */
+  it("#9b 企業主導型保育等は施設等利用給付認定の申請を案内しない（施設への書類提出を案内）", () => {
+    const r = calculateYoujiMushouka({ classAge: 4, facilityType: "kigyoushudou" });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.result.requiresNintei).toBe(false);
+    const procedures = r.result.procedures.join("");
+    expect(procedures).toMatch(/施設等利用給付認定（市区町村への申請）は不要/);
+    expect(procedures).toMatch(/必要書類を提出/);
+    expect(procedures).not.toMatch(/認定を申請してください/);
+    expect(r.result.notes.join("")).toMatch(/標準的な利用料/);
+    // 0〜2歳児クラス（非課税世帯）でも同じ案内
+    const infant = calculateYoujiMushouka({
+      classAge: 1,
+      facilityType: "kigyoushudou",
+      nonTaxableHousehold: true,
+    });
+    expect(infant.ok).toBe(true);
+    if (!infant.ok) return;
+    expect(infant.result.requiresNintei).toBe(false);
+    expect(infant.result.status).toBe("conditional");
+    expect(infant.result.procedures.join("")).toMatch(/施設等利用給付認定（市区町村への申請）は不要/);
+  });
+
   it("#10 境界値: classAge=2は必ずnonTaxable区分", () => {
     expect(classifyAgeGroup(2)).toBe("nonTaxable");
     const r = calculateYoujiMushouka({

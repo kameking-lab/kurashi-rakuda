@@ -48,8 +48,19 @@ interface FacilityMeta {
   label: string;
   /** 0〜2歳児クラスの受け入れがあるか（幼稚園は満3歳以上のみのため false） */
   acceptsInfant: boolean;
-  /** 施設等利用給付認定が無償化適用の前提条件として必要か */
+  /** 施設等利用給付認定（市区町村への申請）が無償化適用の前提条件として必要か */
   requiresNintei: boolean;
+  /**
+   * 無償化の適用に前提条件（認定・書類提出等）があり「条件付き対象」と表示するか。
+   * ★認定の要否とは独立★ 企業主導型は施設等利用給付認定が不要（こども家庭庁
+   * 「幼児教育・保育の無償化」: 対象となるためには利用している施設に必要書類を提出）
+   * だが、書類提出という前提条件があるため conditional。
+   */
+  conditional: boolean;
+  /** 必要な手続きの案内文の個別指定（無指定なら requiresNintei で共通文言を選ぶ） */
+  procedure?: string;
+  /** 上限データ未収録時の注記の個別指定（無指定なら共通文言） */
+  capMissingNote?: string;
 }
 
 /**
@@ -62,31 +73,45 @@ export const FACILITY_META: Record<FacilityType, FacilityMeta> = {
     label: "認可保育所",
     acceptsInfant: true,
     requiresNintei: false,
+    conditional: false,
   },
   ninteiKodomoen: {
     label: "認定こども園",
     acceptsInfant: true,
     requiresNintei: false,
+    conditional: false,
   },
   youchienShinseido: {
     label: "幼稚園（新制度）",
     acceptsInfant: false,
     requiresNintei: false,
+    conditional: false,
   },
   youchienMikoukou: {
     label: "幼稚園（未移行・預かり保育含む）",
     acceptsInfant: false,
     requiresNintei: true,
+    conditional: true,
   },
   ninkagai: {
     label: "認可外保育施設等",
     acceptsInfant: true,
     requiresNintei: true,
+    conditional: true,
   },
   kigyoushudou: {
     label: "企業主導型保育等",
     acceptsInfant: true,
-    requiresNintei: true,
+    // ★施設等利用給付認定は不要★ こども家庭庁「幼児教育・保育の無償化」は企業主導型に
+    // ついて「対象となるためには、利用している企業主導型保育施設に対し、必要書類の提出を
+    // 行う必要があります」とし、無償化の方式も「標準的な利用料の金額が無料になります」
+    // （施設等利用給付ではなく利用料の減額方式）。市区町村への認定申請を案内すると誤り。
+    requiresNintei: false,
+    conditional: true,
+    procedure:
+      "施設等利用給付認定（市区町村への申請）は不要です。無償化（標準的な利用料の減額）を受けるには、利用している企業主導型保育施設に必要書類を提出してください。従業員枠・地域枠で利用の要件が異なるため、詳しくは施設にご確認ください。",
+    capMissingNote:
+      "企業主導型保育の無償化は「標準的な利用料」の金額が無料になる方式です。具体的な金額は利用している施設にご確認ください。",
   },
 };
 
@@ -204,8 +229,10 @@ export function calculateYoujiMushouka(input: YoujiMushoukaInput): YoujiMushouka
     const monthlyCap = facilityType === "ninkagai" ? NINKAGAI_CAPS.age0to2NonTaxable.value : null;
     const monthlyCapSource =
       facilityType === "ninkagai" ? NINKAGAI_CAPS.age0to2NonTaxable.label : null;
-    const status: MushoukaStatus = meta.requiresNintei ? "conditional" : "target";
-    if (meta.requiresNintei && monthlyCap === null) notes.push(CAP_DATA_MISSING_NOTE);
+    const status: MushoukaStatus = meta.conditional ? "conditional" : "target";
+    if (meta.conditional && monthlyCap === null) {
+      notes.push(meta.capMissingNote ?? CAP_DATA_MISSING_NOTE);
+    }
 
     return {
       ok: true,
@@ -216,7 +243,7 @@ export function calculateYoujiMushouka(input: YoujiMushoukaInput): YoujiMushouka
         monthlyCap,
         monthlyCapSource,
         requiresNintei: meta.requiresNintei,
-        procedures: [meta.requiresNintei ? NINTEI_PROCEDURE : NO_NINTEI_PROCEDURE],
+        procedures: [meta.procedure ?? (meta.requiresNintei ? NINTEI_PROCEDURE : NO_NINTEI_PROCEDURE)],
         notes,
         disclaimer: YOUJI_MUSHOUKA_DISCLAIMER,
       },
@@ -226,8 +253,10 @@ export function calculateYoujiMushouka(input: YoujiMushoukaInput): YoujiMushouka
   // ageGroup === "freeForAll"（3〜5歳児クラス、全世帯対象）
   const monthlyCap = facilityType === "ninkagai" ? NINKAGAI_CAPS.age3to5.value : null;
   const monthlyCapSource = facilityType === "ninkagai" ? NINKAGAI_CAPS.age3to5.label : null;
-  const status: MushoukaStatus = meta.requiresNintei ? "conditional" : "target";
-  if (meta.requiresNintei && monthlyCap === null) notes.push(CAP_DATA_MISSING_NOTE);
+  const status: MushoukaStatus = meta.conditional ? "conditional" : "target";
+  if (meta.conditional && monthlyCap === null) {
+    notes.push(meta.capMissingNote ?? CAP_DATA_MISSING_NOTE);
+  }
 
   return {
     ok: true,
@@ -238,7 +267,7 @@ export function calculateYoujiMushouka(input: YoujiMushoukaInput): YoujiMushouka
       monthlyCap,
       monthlyCapSource,
       requiresNintei: meta.requiresNintei,
-      procedures: [meta.requiresNintei ? NINTEI_PROCEDURE : NO_NINTEI_PROCEDURE],
+      procedures: [meta.procedure ?? (meta.requiresNintei ? NINTEI_PROCEDURE : NO_NINTEI_PROCEDURE)],
       notes,
       disclaimer: YOUJI_MUSHOUKA_DISCLAIMER,
     },
