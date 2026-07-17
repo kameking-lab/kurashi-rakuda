@@ -57,6 +57,7 @@ export function KaigoJikofutan() {
   const [isShortStay, setIsShortStay] = useState(false);
   const [savings, setSavings] = useState("");
   const [hojokyufuIncome, setHojokyufuIncome] = useState("");
+  const [kougakuNenkinIncome, setKougakuNenkinIncome] = useState("");
 
   const input: KaigoInput = useMemo(
     () => ({
@@ -78,6 +79,7 @@ export function KaigoJikofutan() {
       isShortStay,
       savings: Number(savings) || 0,
       hojokyufuIncome: Number(hojokyufuIncome) || 0,
+      kougakuNenkinIncome: Number(kougakuNenkinIncome) || 0,
     }),
     [
       serviceDate,
@@ -99,6 +101,7 @@ export function KaigoJikofutan() {
       isShortStay,
       savings,
       hojokyufuIncome,
+      kougakuNenkinIncome,
     ],
   );
 
@@ -243,15 +246,15 @@ export function KaigoJikofutan() {
             onChange={(e) => setTaxableIncome(e.target.value)}
           />
         )}
-        {taxStatus !== "taxed" && (
+        {taxStatus === "hikazei" && (
           <NumberField
-            label="本人の「年金収入金額＋合計所得金額」"
-            value={hojokyufuIncome}
+            label="本人の「公的年金等の収入金額＋その他の合計所得金額」"
+            value={kougakuNenkinIncome}
             min={0}
             max={20_000_000}
             step="10000"
-            hint="非課税年金（遺族年金・障害年金）も含めます"
-            onChange={(e) => setHojokyufuIncome(e.target.value)}
+            hint="★遺族年金・障害年金などの非課税年金は含めません★（高額介護サービス費の判定用。施設の食費・居住費の判定とは年金の数え方が異なります）"
+            onChange={(e) => setKougakuNenkinIncome(e.target.value)}
           />
         )}
       </div>
@@ -410,6 +413,17 @@ export function KaigoJikofutan() {
               <option value="no">いいえ</option>
               <option value="yes">はい</option>
             </SelectField>
+            {taxStatus === "hikazei" && (
+              <NumberField
+                label="本人の「年金収入金額＋合計所得金額」（食費・居住費の判定用）"
+                value={hojokyufuIncome}
+                min={0}
+                max={20_000_000}
+                step="10000"
+                hint="★非課税年金（遺族年金・障害年金）も含めます★（補足給付の判定用。高額介護サービス費の欄とは年金の数え方が異なるため、別の欄になっています）"
+                onChange={(e) => setHojokyufuIncome(e.target.value)}
+              />
+            )}
             {taxStatus !== "taxed" && (
               <NumberField
                 label="預貯金等の額"
@@ -427,7 +441,7 @@ export function KaigoJikofutan() {
             <Callout>
               補足給付の「世帯」には、世帯を分離している配偶者も含みます。年金収入金額には非課税年金（遺族年金・障害年金）も含みます。
               {HOJOKYUFU_STAGES_NOTE.includes("平成28年8月") && "（平成28年8月以降）"}
-              通常の税制上の世帯・年金収入とは定義が違います。
+              通常の税制上の世帯・年金収入とは定義が違います。高額介護サービス費の判定（非課税年金を含めない）とも数え方が違うため、遺族年金・障害年金を受け取っている方は2つの欄で金額が変わります。
             </Callout>
           )}
 

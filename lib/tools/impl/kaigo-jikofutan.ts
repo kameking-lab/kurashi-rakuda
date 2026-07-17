@@ -60,6 +60,14 @@ export interface KaigoInput {
   pensionPlusOtherIncome: number;
   /** 本人の課税所得（高額介護サービス費の区分） */
   taxableIncome: number;
+  /**
+   * 【非課税世帯】高額介護サービス費の判定に使う「公的年金等の収入金額＋その他の合計所得金額」。
+   * ★非課税年金（遺族年金・障害年金）は含めない★ 施行令第22条の2の2の「年金収入等」は
+   * 公的年金等の収入金額（＝所得税法上の公的年金等）＋合計所得金額から公的年金等に係る
+   * 雑所得を控除した額であり、補足給付（施行規則第83条の5第1号イ。非課税年金を明示的に加算）
+   * とは定義が異なる。遺族・障害年金受給者で両者を混同すると区分を取り違える。
+   */
+  kougakuNenkinIncome: number;
   /** 世帯の課税状況。★高額介護サービス費・補足給付の判定はここから始める★ */
   taxStatus: TaxStatus;
   /** 同一世帯の合計所得金額38万円以下の19歳未満の者（世帯主の場合のみ効く） */
@@ -75,7 +83,8 @@ export interface KaigoInput {
   isShortStay: boolean;
   /** 【施設】預貯金等の額（補足給付の要件） */
   savings: number;
-  /** 【施設】本人の「年金収入金額＋合計所得金額」。★非課税年金も含む★ */
+  /** 【施設】補足給付の段階判定に使う本人の「年金収入金額＋合計所得金額」。★非課税年金も含む★
+   * 高額介護サービス費の判定（kougakuNenkinIncome。非課税年金を含めない）とは別入力。 */
   hojokyufuIncome: number;
 }
 
@@ -381,7 +390,8 @@ export function selectKougakuBracket(input: KaigoInput): (typeof KK.brackets)[nu
   }
   if (input.taxStatus === "hikazei") {
     // 「①公的年金等の収入金額＋その他の合計所得金額が80.9万円（8/1から82.65万円）以下 又は ②老齢福祉年金受給者」
-    return input.hojokyufuIncome <= hikazei80manThreshold(input.serviceDate)
+    // ★補足給付と異なり非課税年金を含めない額（kougakuNenkinIncome）で判定する★
+    return input.kougakuNenkinIncome <= hikazei80manThreshold(input.serviceDate)
       ? HIKAZEI_80MAN
       : KK.brackets.find((b) => b.key === "hikazei")!;
   }
