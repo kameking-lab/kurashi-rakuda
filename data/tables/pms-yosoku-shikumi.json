@@ -1,0 +1,316 @@
+{
+  "$comment": "PMS（月経前症候群）予測の仕組み（記事Q4-044）および月経周期予測ツールの計算前提となるデータ表。data/seido/ ではなく data/tables/ に置いているのは、PMSの定義・月経周期の日数が法令・公的制度・厚労省が策定する基準ではなく、学会（日本産科婦人科学会）の定義・医学的な統計値であるため。出典は .go.jp ドメインの公的サイトに限定した。厚労省 女性の健康推進室『ヘルスケアラボ』（w-health.jp）は .go.jp ではなく本プロジェクトの許可ドメイン外のため参照していない（openIssues 参照）。確定できない値は null＋未確認とし、推定値は入れていない。★本データは症状の予測・目安のためのものであり、診断に用いるものではない。★",
+  "lastVerified": "2026-07-17",
+  "nextCheckDue": "2027-07-01",
+  "sources": [
+    {
+      "id": "kennet-josei-hormone",
+      "label": "女性ホルモンとうまく付き合っていくには？〜増える月経トラブルとその対処法を基礎から知ろう〜（スマート・ライフ・プロジェクト／健康日本21アクション支援システム）",
+      "url": "https://kennet.mhlw.go.jp/slp/event/womens_health/2021/lecture1.html",
+      "publisher": "厚生労働省",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "supervisor": "東京大学医学部附属病院 女性診療科 女性外科 科長・教授 大須賀 穣",
+      "note": "PMSの定義（日本産婦人科学会の定義の引用）・PMDD・月経周期のサイクル・平均初経年齢・平均閉経年齢の根拠。厚労省が運営する健康日本21アクション支援システム（kennet.mhlw.go.jp）内のコンテンツ。"
+    },
+    {
+      "id": "jiss-gekkei-handbook",
+      "label": "成長期女性アスリートハンドブック「４．月経について」（ハイパフォーマンススポーツセンター／国立スポーツ科学センター）",
+      "url": "https://www.jpnsport.go.jp/hpsc/Portals/0/resources/jiss/column/woman/seichoki_handobook_4.pdf",
+      "landingUrl": "https://www.jpnsport.go.jp/hpsc/",
+      "publisher": "独立行政法人日本スポーツ振興センター",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "note": "正常月経周期日数（25〜38日）・月経持続期間（3〜7日）・基礎体温と黄体期の長さ（排卵後約2週間）・月経異常の分類（頻発月経・稀発月経・無月経等）・PMSの定義の根拠。独立行政法人（.go.jp）の公的資料。"
+    },
+    {
+      "id": "kennet-josei-suimin",
+      "label": "女性の睡眠障害 | 生活習慣病などの情報(e-ヘルスネット)（健康日本21アクション支援システム）",
+      "url": "https://kennet.mhlw.go.jp/information/information/heart/k-02-005.html",
+      "publisher": "厚生労働省",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "lastUpdatedOnSource": "2025-06-16",
+      "supervisor": "秋田大学大学院 医学系研究科精神科学講座 教授 三島 和夫",
+      "note": "月経周期に伴うホルモン変動と黄体期の症状（眠気・基礎体温上昇）、月経周期の記録の勧め、受診の目安の根拠。"
+    }
+  ],
+  "pmsDefinition": {
+    "$comment": "PMSの定義。日本産婦人科学会の定義を、厚労省のコンテンツが引用している形。",
+    "nameJa": "月経前症候群",
+    "nameEn": "premenstrual syndrome",
+    "abbreviation": "PMS",
+    "definition": "月経前3〜10日の間続く精神的あるいは身体的症状で、月経発来とともに減退ないし消失するもの",
+    "definitionSetter": "日本産婦人科学会",
+    "sourceId": "kennet-josei-hormone",
+    "sourceQuote": "月経前症候群（PMS） 月経前になるとイライラや頭痛などの症状が起こる症候群。日本産婦人科学会では、「月経前3～10日の間続く精神的あるいは身体的症状で、月経発来とともに減退ないし消失するもの」と定義しています。",
+    "corroboratingSource": {
+      "sourceId": "jiss-gekkei-handbook",
+      "sourceQuote": "月経前症候群はpremenstrual syndrome、略してPMSと呼ばれています。月経開始の３～10日ぐらい前から始まる精神的・身体的な症状で、日常生活に大きく影響を及ぼしますが、月経開始に伴い、減退、消失するものをいいます。"
+    },
+    "onsetBeforeMenstruationDaysFrom": 3,
+    "onsetBeforeMenstruationDaysTo": 10,
+    "resolutionTrigger": "月経発来（月経開始）とともに減退ないし消失する",
+    "implementationNote": "★ツールの計算前提として最重要★ PMSの症状が出る期間は「次回月経開始予定日の3〜10日前」であり、月経開始とともに軽快・消失する。すなわち予測の起点は『前回の月経開始日＋周期日数＝次回月経開始予定日』であり、そこから遡って3〜10日前をPMS注意期間として示すのが定義に忠実な実装。逆に「月経中の不調」はPMSではなく月経困難症として扱うべきもの。"
+  },
+  "pmdd": {
+    "nameJa": "月経前不快気分障害",
+    "nameEn": "premenstrual dysphoric disorder",
+    "abbreviation": "PMDD",
+    "relationToPms": "PMSの重症型",
+    "sourceId": "kennet-josei-hormone",
+    "sourceQuote": "PMSの重症型は「月経前不快気分障害（PMDD）」と呼びます。",
+    "diagnosticCriteria": {
+      "value": null,
+      "note": "未確認: PMDDの診断基準（DSM-5等の具体的な項目・症状数・期間の要件）を .go.jp ドメインの一次情報で確認できなかった。探索経緯 — (1) kennet.mhlw.go.jp（旧e-ヘルスネット）のPMS/PMDD関連ページを検索したところ、用語辞典の個別ページ（/information/information/keywords/pms.html 等）はJavaScript必須のSPAで静的HTMLに本文が存在せず取得不可、(2) 女性ホルモン講座ページ（lecture1.html）は「PMSの重症型」とのみ記述、(3) 日本スポーツ振興センターのハンドブックにもPMDDの診断基準の記載なし。診断基準を記事に書いてはならず、「重い場合はPMDDと呼ばれ、産婦人科・精神科で相談を」に留めること。"
+    },
+    "prevalence": {
+      "value": null,
+      "note": "未確認: PMDDの有病率を .go.jp ドメインの一次情報で確認できなかった。"
+    }
+  },
+  "menstrualCycle": {
+    "$comment": "月経周期予測の計算前提。",
+    "cycleDefinition": {
+      "text": "月経初日から次の月経の前日までの日数",
+      "sourceId": "jiss-gekkei-handbook",
+      "sourceQuote": "月経初日から次の月経の前日までの日数を指します。",
+      "implementationNote": "★実装上の最重要論点★ 周期の起点は「月経初日」であって排卵日でも月経終了日でもない。ユーザー入力は必ず「前回の月経が始まった日」を尋ねること。"
+    },
+    "normalCycleDaysFrom": 25,
+    "normalCycleDaysTo": 38,
+    "normalCycleSourceId": "jiss-gekkei-handbook",
+    "normalCycleSourceQuote": "正常な月経周期日数は25日～38日、月経持続期間は３日～７日、正常な経血量は20g～140gとされています。",
+    "averageCycleDays": {
+      "value": null,
+      "note": "未確認: 日本人女性の月経周期の「平均日数」を .go.jp ドメインの一次情報で確認できなかった。探索経緯 — 日本スポーツ振興センターのハンドブック、kennet.mhlw.go.jp の女性ホルモン講座・女性の睡眠障害ページを確認したが、いずれも示すのは『正常範囲25〜38日』であって平均値ではない。ツールのデフォルト値として「28日」を置く実装が多いが、その根拠を公的一次情報で確認できていない。デフォルト値を置く場合は「平均は28日です」と断定せず、ユーザー自身の記録から算出させる設計にすること。"
+    },
+    "menstruationDurationDaysFrom": 3,
+    "menstruationDurationDaysTo": 7,
+    "menstrualBloodVolumeGFrom": 20,
+    "menstrualBloodVolumeGTo": 140,
+    "phases": {
+      "list": ["月経期", "卵胞期", "排卵期", "黄体期"],
+      "sourceId": "jiss-gekkei-handbook",
+      "sourceQuote": "月経周期は、月経期・卵胞期・排卵期・黄体期の４つの時期に分けられます",
+      "alternateExpression": {
+        "list": ["月経期", "卵胞期", "排卵期", "月経前"],
+        "sourceId": "kennet-josei-hormone",
+        "sourceQuote": "月経周期は「月経期→卵胞期→排卵期→月経前」というサイクルの繰り返し。"
+      }
+    },
+    "lutealPhase": {
+      "$comment": "黄体期＝排卵から次の月経までの期間。PMSが起こるのはこの時期の後半。",
+      "definition": "排卵が起こってから次の月経が始まるまでの期間。プロゲステロン（黄体ホルモン）が分泌され基礎体温が上昇する（高温期）。",
+      "approximateLengthDays": 14,
+      "approximateLengthLabel": "約2週間（約14日）",
+      "sourceId": "jiss-gekkei-handbook",
+      "sourceQuote": "月経から排卵が起こるまでの約２週間は低温が続きますが、排卵が起こると卵巣からプロゲステロンが分泌されるため、その作用で体温が上がり、高温が続きます。排卵後、妊娠しないとプロゲステロンの分泌はなくなり、約２週間後の月経が始まる頃には体温が下がります。",
+      "implementationNote": "★実装上の重要論点★ 一次情報の表現は「約２週間」であり、「必ず14日」ではない。黄体期の長さは比較的一定で、周期の長短は主に卵胞期（月経〜排卵）の長さの違いによって生じる。したがって排卵日を推定する場合は『次回月経開始予定日 − 約14日』とするのが定義に沿うが、これは推定であり避妊・妊娠計画の判断に用いてはならない。",
+      "hormone": "プロゲステロン（黄体ホルモン）",
+      "hormoneEffects": [
+        "体温上昇作用（基礎体温の高温期）",
+        "水分貯留作用（むくみ）",
+        "眠気",
+        "食欲増加",
+        "イライラ",
+        "乳腺の発達"
+      ],
+      "hormoneEffectsSourceId": "kennet-josei-hormone",
+      "hormoneEffectsSourceQuote": "プロゲステロンが増加すると、むくみや食欲増加、眠気、イライラなどが起こりやすくなります。"
+    },
+    "ovulationTiming": {
+      "text": "月経開始から2週間ほどで黄体形成ホルモンが急増して排卵が誘発され、黄体期となる",
+      "sourceId": "kennet-josei-suimin",
+      "sourceQuote": "月経から卵胞期にかけて女性ホルモンであるエストロゲンが徐々に増加します。月経開始から2週間ほどで黄体形成ホルモンが急増して排卵が誘発されると黄体期となります。",
+      "note": "これは周期が約28日の場合の記述。周期が長い人は卵胞期が長くなり、排卵はより後ろにずれる。"
+    },
+    "basalBodyTemperature": {
+      "definition": "朝目が覚めてから、まだ身体を動かしていない状態で測定した体温。一日のうちで最も低い体温とされている。",
+      "lowPhaseFromC": 36.0,
+      "lowPhaseToC": 36.5,
+      "highPhaseFromC": 36.5,
+      "highPhaseToC": 37.0,
+      "sourceId": "jiss-gekkei-handbook",
+      "sourceQuote": "低温期は36.0℃～36.5℃くらい、高温期は36.5℃～37.0℃くらいであることが多いです。",
+      "measurementMethod": [
+        "毎朝同じ時間に測る",
+        "朝目覚めたら身体を起こす前に、婦人体温計（普通の体温計よりも目盛が細かく、少数第2位まで測定可能）を舌の下に入れて測る",
+        "測定が終わったら基礎体温表に記入し、前日の測定値と線でつないでグラフにする"
+      ],
+      "anovulationSign": "低温期と高温期がはっきりわからなかったり、低温と高温がばらばらだったりする場合は、排卵がない状態である可能性がある",
+      "anovulationSignSourceQuote": "低温期と高温期がはっきりわからなかったり、低温と高温がばらばらだったりする人は、排卵がない状態である可能性があります。"
+    }
+  },
+  "cycleAbnormalities": {
+    "$comment": "予測ツールで「予測が外れる／そもそも予測が成り立たない」ケースの判定に使う。該当する場合は予測値を出さず受診を促すこと。",
+    "sourceId": "jiss-gekkei-handbook",
+    "sourceQuote": "５正常月経周期にあてはまらない場合",
+    "list": [
+      {
+        "code": "FREQUENT",
+        "label": "頻発月経",
+        "definition": "月経周期日数が短く、24日以内で月経が発来する",
+        "thresholdDays": 24,
+        "comparison": "<=",
+        "sourceQuote": "月経周期日数が短く、24日以内で月経が発来する。"
+      },
+      {
+        "code": "INFREQUENT",
+        "label": "稀発月経",
+        "definition": "月経周期日数が長く、39日以上で月経が発来する",
+        "thresholdDays": 39,
+        "comparison": ">=",
+        "sourceQuote": "月経周期日数が長く、39日以上で月経が発来する。"
+      },
+      {
+        "code": "IRREGULAR",
+        "label": "不整周期症",
+        "definition": "月経周期が不規則であり、次の月経の発来日の予測がまったくつかない",
+        "thresholdDays": null,
+        "comparison": null,
+        "sourceQuote": "月経周期が不規則であり、次の月経の発来日の予測がまったくつかない。",
+        "note": "★ツール設計上の最重要論点★ 一次情報自身が「次の月経の発来日の予測がまったくつかない」状態を病態として定義している。予測ツールは、周期が不規則な入力に対して予測値を出すのではなく、この状態の可能性を示して受診を促すべき。"
+      },
+      {
+        "code": "SECONDARY_AMENORRHEA",
+        "label": "続発性無月経",
+        "definition": "初経発来後、月経が90日以上発来しない",
+        "thresholdDays": 90,
+        "comparison": ">=",
+        "sourceQuote": "初経発来後、月経が90日以上発来しない。",
+        "note": "それまで規則的にあった月経が、過度の運動やダイエット、精神的ストレスなどで3ヶ月以上とまってしまうこと。無月経が長期間にわたると回復が難しいことが多く、将来の妊孕性に影響を及ぼす可能性もあるため、3ヶ月以上無月経が続いた場合は専門医への受診が勧められている。"
+      },
+      {
+        "code": "PRIMARY_AMENORRHEA",
+        "label": "原発性無月経",
+        "definition": "満18歳になっても初経が起こらない（15歳以上で月経が発来するものを遅発月経という）",
+        "thresholdDays": null,
+        "comparison": null,
+        "sourceQuote": "満18歳になっても初経が起こらない。15歳以上で月経が発来するものを遅発月経という。"
+      }
+    ],
+    "toleranceRule": {
+      "text": "正常範囲からはずれている場合でも、前回が正常範囲内であり、今回の周期日数と前回の周期日数の差が6日以内であれば正常の範囲とされる",
+      "thresholdDays": 6,
+      "sourceId": "jiss-gekkei-handbook",
+      "sourceQuote": "正常範囲からはずれている場合でも前回が正常範囲内であり、今回の周期日数と前回の周期日数の差が６日以内であれば正常の範囲とされています。",
+      "note": "1回のずれで「異常」と判定しない実装にするための根拠。"
+    }
+  },
+  "lifeStageReference": {
+    "$comment": "PMS予測の年齢的な前提。",
+    "averageMenarcheAge": {
+      "value": 12,
+      "unit": "year",
+      "sourceId": "kennet-josei-hormone",
+      "sourceQuote": "日本人の平均初経年齢は12歳ですが、その後、月経周期や経血量が安定するまでには数年かかります。20代では多くの人の月経周期が安定します。",
+      "note": "★実装上の注意★ 初経後数年は周期が安定せず、予測の前提が成り立たない。日本スポーツ振興センターのハンドブックは「初経を迎える年齢は平均12〜13歳」「思春期には多少のずれがあり、毎回周期がちがっていても心配ありません」としている。"
+    },
+    "averageMenopauseAge": {
+      "value": 50,
+      "unit": "year",
+      "sourceId": "kennet-josei-hormone",
+      "sourceQuote": "月経が１年間ないと「閉経」と判定されており、日本人の閉経の平均年齢は50歳です。",
+      "corroboratingQuote": "閉経（日本人の平均閉経年齢：50歳頃）の前後５年の約10年間は更年期と呼ばれます。"
+    },
+    "menopauseDefinition": {
+      "text": "月経が1年間ないと「閉経」と判定される",
+      "sourceId": "kennet-josei-hormone"
+    },
+    "climactericPeriod": {
+      "text": "閉経の前後5年の約10年間",
+      "sourceId": "kennet-josei-suimin",
+      "sourceQuote": "閉経（日本人の平均閉経年齢：50歳頃）の前後５年の約10年間は更年期と呼ばれます。",
+      "note": "更年期には周期が乱れるため、予測の前提が成り立たなくなる。"
+    },
+    "lifetimeMenstruationCount": {
+      "valueFrom": 450,
+      "valueTo": 500,
+      "sourceId": "kennet-josei-hormone",
+      "sourceQuote": "現代の女性は、昔に比べて月経の回数が増え、閉経までに450〜500回とされています。"
+    }
+  },
+  "symptoms": {
+    "$comment": "PMSの症状。診断ではなくセルフチェックの参考。",
+    "mental": ["イライラ", "涙もろい", "気分の落ち込み", "怒りっぽくなる"],
+    "physical": ["頭痛", "乳房緊満感", "乳房痛", "水分貯留によるむくみ", "体重増加", "下腹部痛", "腰痛", "関節痛", "眠気", "睡眠が浅くなる"],
+    "sourceId": "jiss-gekkei-handbook",
+    "sourceQuote": "精神症状（イライラ、涙もろいなど）、乳房緊満感、乳房痛、水分貯留によるむくみ、体重増加などがみられます",
+    "sleepSourceId": "kennet-josei-suimin",
+    "sleepSourceQuote": "このような女性ホルモンや深部体温の変化により、月経前（黄体期の後半）に、睡眠が浅くなったり日中の眠気が強くなると考えられています。",
+    "individualVariation": "症状には個人差があります。自分自身の月経周期を把握すると同時に、月経周期に伴う自分の身体の変化を知ることが大切です。",
+    "individualVariationSourceId": "jiss-gekkei-handbook"
+  },
+  "consultationGuidance": {
+    "$comment": "受診の目安。★数値基準ではなく『続く場合』という定性的な目安しか公的一次情報にない。★",
+    "pmsGuidance": {
+      "text": "月経前後の体調不良が続く場合には月経前症候群の可能性があるので、産婦人科の受診を勧める",
+      "sourceId": "kennet-josei-suimin",
+      "sourceQuote": "月経前後の体調不良が続く場合には月経前症候群の可能性があるので、産婦人科の受診をお勧めします。"
+    },
+    "generalGuidance": {
+      "text": "定期的な健康診断やセルフチェックで気になる症状があれば、ためらわずに産婦人科で相談する",
+      "sourceId": "kennet-josei-hormone",
+      "sourceQuote": "定期的な健康診断やセルフチェックで気になる症状があれば、ためらわずに産婦人科で相談してください。"
+    },
+    "selfMedicationCaution": {
+      "text": "月経に関する不調を我慢してやり過ごしたり市販薬で症状を抑えたりすることは根本的な解決にはならず、最悪の場合、自分が気づかないうちに重大な病気が進行している恐れがある",
+      "sourceId": "kennet-josei-hormone",
+      "sourceQuote": "しかし、それは根本的な解決にはなりません。最悪の場合、自分が気づかないうちに重大な病気が進行している恐れがあります。"
+    },
+    "amenorrhea3Months": {
+      "text": "3ヶ月以上無月経が続いた場合は専門医への受診を勧める",
+      "thresholdMonths": 3,
+      "sourceId": "jiss-gekkei-handbook",
+      "sourceQuote": "３ヶ月以上無月経が続いた場合、専門医への受診をおすすめします。"
+    },
+    "treatmentOptions": {
+      "text": "PMSが強く表れる場合には、低用量ピルにより症状が軽減することが知られている",
+      "sourceId": "jiss-gekkei-handbook",
+      "sourceQuote": "PMSが強く表れる場合には、低用量ピルにより症状が軽減することが知られています。",
+      "note": "★記事執筆時の注意★ 治療の選択肢の存在を示すに留め、具体的な薬剤名・用法を書かないこと。処方は医師の判断による。"
+    },
+    "numericThreshold": {
+      "value": null,
+      "note": "未確認: 「PMSで受診すべき」と判断する数値基準（症状の数・スコア等）を .go.jp ドメインの一次情報で確認できなかった。探索経緯 — kennet.mhlw.go.jp の女性ホルモン講座・女性の睡眠障害ページ、日本スポーツ振興センターのハンドブックを確認したが、いずれも「続く場合」「日常生活に大きく影響を及ぼす」といった定性的な表現のみ。ツールでスコアリングして「受診すべき／不要」を判定してはならない。"
+    }
+  },
+  "recordKeeping": {
+    "$comment": "予測の精度は本人の記録が前提。ツールが提供すべき価値の核。",
+    "recommendation": "数ヵ月間、月経と睡眠や眠気との関係を睡眠日誌（カレンダーでも構いません）などに記入すると、睡眠変化が起こりやすい時期を把握しやすくなります。",
+    "sourceId": "kennet-josei-suimin",
+    "basalTemperatureRecommendation": "月経初日から次の月経前日までの日数が正常範囲でない、いわゆる生理不順の人は基礎体温を計測しましょう。",
+    "basalTemperatureSourceId": "jiss-gekkei-handbook",
+    "implementationNote": "公的一次情報が一貫して勧めているのは「自分の周期を記録して把握すること」であり、「アルゴリズムで予測してもらうこと」ではない。ツールの主目的は記録支援に置き、予測は参考値として提示するのが情報の性質に忠実な設計。"
+  },
+  "socialImpact": {
+    "$comment": "★出典が民間調査であるため数値は採用しない。★",
+    "note": "kennet.mhlw.go.jp の女性ホルモン講座ページには「月経前に何らかの症状を有する人は推定1300万人」「45歳以下の女性労働者では約63％」「PMSによって昇進を辞退したことがある17.0％」といった数値が掲載されているが、出典はいずれも民間の調査（Women-LIFE.com、財団法人女性労働協会 働く女性の健康に関する実態調査結果（2004年3月）、ホルモンケア推進プロジェクト調査（2014年12月）n=253）であり、公的統計ではない。掲載元が厚労省サイトであっても、数値の一次情報は民間調査であるため、本データでは採用しない。記事でこれらの数値を引用してはならない。",
+    "prevalence": null
+  },
+  "disclaimer": "本データおよび月経周期・PMSの予測は、公的機関が示す一般的な目安に基づく参考情報であり、医学的な診断ではありません。月経周期や症状の現れ方には大きな個人差があり、体調・ストレス・運動・体重の変化などによっても変動します。予測された日付はあくまで目安であり、避妊や妊娠の計画の判断に用いることはできません。月経前後の体調不良が続く場合、日常生活に支障がある場合、周期が24日以内または39日以上の場合、3か月以上月経がない場合は、自己判断せず産婦人科にご相談ください。症状が重い場合はPMSの重症型である月経前不快気分障害（PMDD）の可能性もあります。我慢したり市販薬で抑え続けたりすることは根本的な解決にならず、気づかないうちに別の病気が進行している場合もあります。",
+  "openIssues": [
+    {
+      "item": "厚生労働省 女性の健康推進室「ヘルスケアラボ」の参照",
+      "status": "参照せず",
+      "reason": "kennet.mhlw.go.jp のコンテンツからセルフチェックの参照先として案内されている厚労省の事業サイトだが、ドメインが w-health.jp であり .go.jp ではないため、本プロジェクトの許可ドメイン（ALLOWED_HOSTS / .go.jp / .lg.jp）に該当しない。同サイトにはPMSの解説・セルフチェックが掲載されている可能性が高い。",
+      "requestedDomain": "w-health.jp"
+    },
+    {
+      "item": "月経周期の平均日数",
+      "status": "未確認",
+      "reason": ".go.jp の一次情報が示すのは『正常範囲25〜38日』のみで、平均値の記載がない。ツールのデフォルト値28日には公的根拠を確認できていない。"
+    },
+    {
+      "item": "PMDDの診断基準・有病率",
+      "status": "未確認",
+      "reason": "kennet.mhlw.go.jp の用語辞典個別ページはJavaScript必須のSPAで静的HTMLに本文がなく取得不可。他の .go.jp 一次情報にも診断基準の記載を確認できなかった。"
+    },
+    {
+      "item": "PMSの有病率",
+      "status": "未確認",
+      "reason": "厚労省サイトに掲載された数値の出典が民間調査であるため採用しない。"
+    }
+  ]
+}
