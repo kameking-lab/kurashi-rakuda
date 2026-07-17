@@ -14,5 +14,5 @@
       "status": "ready"
     }
   ],
-  "status": "queued"
+  "status": "gated_pass"
 }
