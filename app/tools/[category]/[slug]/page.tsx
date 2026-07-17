@@ -94,6 +94,12 @@ import { KaigoServiceGyakuHiki } from "@/components/tools/impl/KaigoServiceGyaku
 import { kaigoHokenDataset as kaigoServiceGyakuHikiDataset } from "@/components/tools/impl/KaigoServiceGyakuHiki.calc";
 import { JoseiTekiseiTaijuuShihyou } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou";
 import { TEKISEI_TAIJUU_DISCLAIMER } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou.calc";
+import { NinshinTaijuZokaChecker } from "@/components/tools/impl/NinshinTaijuZokaChecker";
+import {
+  GAIN_GUIDANCE_FOOTNOTE as NINSHIN_TAIJU_GAIN_GUIDANCE_FOOTNOTE,
+  PREGNANCY_GAIN_CAUTION as NINSHIN_TAIJU_PREGNANCY_GAIN_CAUTION,
+  APPLICABILITY_NOTE as NINSHIN_TAIJU_APPLICABILITY_NOTE,
+} from "@/components/tools/impl/NinshinTaijuZokaChecker.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1633,6 +1639,40 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           詳しく調べたい場合は別のツールをご利用ください）。
         </p>
         <p>{TEKISEI_TAIJUU_DISCLAIMER}</p>
+      </>
+    ),
+  },
+  "ninshin-taiju-zoka-checker": {
+    ui: <NinshinTaijuZokaChecker />,
+    formula: (
+      <>
+        <p>
+          <strong>妊娠前BMIの計算式</strong>
+          ：妊娠前BMI = 妊娠前の体重(kg) ÷ 妊娠前の身長(m)の2乗（身長はcmではなくmで計算します）。こども家庭庁
+          「妊娠前からはじめる妊産婦のための食生活指針 解説要領」表8が妊娠前の体格の区分に用いる式です。
+        </p>
+        <p>
+          <strong>体重増加指導の目安（表8・4区分）</strong>
+          ：妊娠前BMIが18.5未満（低体重）は12〜15kg、18.5以上25.0未満（普通体重）は10〜13kg、
+          25.0以上30.0未満（肥満1度）は7〜10kgが目安です（境界値ちょうどは上位側の区分に含まれます）。
+          普通体重の中でも低体重に近いBMIの方は、目安の上限側（13kg）を参考にするとされています。
+        </p>
+        <p>
+          <strong>肥満（2度以上・BMI30.0以上）は個別対応です</strong>
+          ：こども家庭庁の資料では、この区分の体重増加量は数値のレンジではなく「個別対応」（上限5kgまでが目安）
+          とされています。本ツールはこの区分について自動計算した目安・比較結果を一切表示せず、現在の増加量の実測値
+          （現在の体重−妊娠前の体重）のみを提示したうえで、担当の産科医への相談を案内します。
+        </p>
+        <p>
+          <strong>現在の増加量との比較</strong>
+          ：現在の増加量(kg) = 現在の体重(kg) − 妊娠前の体重(kg)を、上記の目安レンジと比較し、「目安の範囲より少ない／範囲内／範囲より多い」の3値のいずれかを表示します。数値の大小を伝えるのみで、「食べ過ぎです」「もっと増やしてください」といった指導・断定は行いません。
+        </p>
+        <p>{NINSHIN_TAIJU_PREGNANCY_GAIN_CAUTION}</p>
+        <p>{NINSHIN_TAIJU_GAIN_GUIDANCE_FOOTNOTE}</p>
+        <p>
+          {NINSHIN_TAIJU_APPLICABILITY_NOTE}
+          （多胎（双子など）の場合の目安値は本ツールでは扱っていません。）
+        </p>
       </>
     ),
   },
