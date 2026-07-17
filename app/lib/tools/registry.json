@@ -145,9 +145,18 @@
       "離乳食を1日何回あげればいいか分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "授乳・離乳の支援ガイド（2019年改定版）（厚生労働省）",
+        "url": "https://www.mhlw.go.jp/content/11908000/000496257.pdf"
+      },
+      {
+        "label": "specs/b-tools/19-baby-food-amount-guide.md（離乳食の量・固さ早見 ロジック仕様）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/19-baby-food-amount-guide.md"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-08",

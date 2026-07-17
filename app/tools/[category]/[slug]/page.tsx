@@ -11,6 +11,8 @@ import { ShussanYoteibi } from "@/components/tools/impl/ShussanYoteibi";
 import { SeiriShuki } from "@/components/tools/impl/SeiriShuki";
 import { Inunohi } from "@/components/tools/impl/Inunohi";
 import { FuyoKabe } from "@/components/tools/impl/FuyoKabe";
+import { RinyushokuRyo } from "@/components/tools/impl/RinyushokuRyo";
+import { RINYUSHOKU_DISCLAIMER, RINYUSHOKU_PREMATURE_DISCLAIMER } from "@/components/tools/impl/RinyushokuRyo.calc";
 import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
 import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
@@ -165,6 +167,25 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           年収に乗じた概算です。実際は標準報酬月額をもとに計算され、健康保険料率は都道府県ごとに異なります。
         </p>
         <SeidoNotice datasets={[fuyoKabeDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "rinyushoku-ryo": {
+    ui: <RinyushokuRyo />,
+    formula: (
+      <>
+        <p>
+          月齢（生後◯ヶ月）は、生年月日から暦月で切り捨てて数えます（例:
+          生後6ヶ月20日でも「6ヶ月」のまま。7ヶ月になった時点で次の段階に切り替わります）。この月齢を、厚生労働省「授乳・離乳の支援ガイド（2019年改定版）」が示す5つの区分（生後5〜6ヶ月＝離乳初期／7〜8ヶ月＝離乳中期／9〜11ヶ月＝離乳後期／12〜18ヶ月＝離乳完了期）のいずれに当てはまるか判定し、該当区分の食事回数・食品群別の1回あたりの目安量・固さの目安を絞り込んで表示しています。5ヶ月未満は開始前、19ヶ月以降は本ツールのデータ範囲外（幼児食への移行期）として、量・固さの表は表示しません。
+        </p>
+        <p>
+          出産予定日を入力した場合は、生年月日との差（在胎40週の時点との差）を早産週数とみなし、約4.345週を1ヶ月として月数に換算したうえで実齢から差し引いた「修正月齢」でも同じ区分判定を行い、実齢とあわせて表示します。修正月齢はあくまで参考値です。
+        </p>
+        <p>
+          表示している食品群別の目安量は「魚・肉・豆腐・卵・乳製品のいずれか1種類程度を組み合わせる」考え方の量であり、すべてを毎食同時に与える量ではありません。
+        </p>
+        <p>{RINYUSHOKU_DISCLAIMER}</p>
+        <p>{RINYUSHOKU_PREMATURE_DISCLAIMER}</p>
       </>
     ),
   },
