@@ -73,6 +73,7 @@
 | 2 | 利用月（試算対象月） | date（年月） | 必須 | 実行日の当月 | 対象ファイルの `fiscalYear` の年度内を推奨 | 「いつの保育料を知りたいですか」 | ①税年度が4-8月／9-3月で切り替わる（`bracketBasis.taxYearRule`）②大阪は2026-09-01から全員無償（`osaka-osaka.json` の `amendments[0].effectiveFrom`） |
 | 3 | 子どもの年齢区分 | enum `under3` / `age3plus` | 必須 | `under3` | `ageClasses[].key` | ラベルは選択自治体の `ageClasses[].label` をそのまま出す（例 横浜「0～2歳児クラス（3号認定）」／札幌「2歳児クラス以下」） | 3歳以上は全12自治体で0円（`freeTuition.age3plusFree.value === true`）。年齢区分はクラス年齢であり誕生日ではない（`ageClasses[].rule`） |
 | 4 | 保育必要量 | enum `standard` / `short` | 必須 | `standard` | `tiers[].fees.<age>.standard` / `.short` | 「保育標準時間（1日最大11時間）／保育短時間（同8時間）」 | 全自治体で金額が異なる（例 横浜D27: 77,500 / 76,100） |
+| 4b | 保育利用時間バンド | enum（選択自治体の `timeBands.bands[].key`） | `timeBands` のある自治体 × `standard` のみ表示 | `timeBands.defaultBandKey`（最長時間） | 不正値・未指定は `defaultBandKey` に解決（過小表示を避ける安全側） | ラベルは `bands[].label`（原典の区分表記）をそのまま | ★2026-07-17 スキーマ拡張★ 京都市は保育標準時間認定の額が保育利用時間（8.5〜11時間の6段階）で変わり、最長11時間の額のみの提示は最大14,100円/月の過大表示になる（`kyoto-kyoto.json` → `timeBands` / `tiers[].fees.under3.standardByBand`）。単一バンドの他40自治体は `timeBands` を持たず、このUIも出さない＝影響なし |
 | 5 | 世帯の課税状況 | enum `welfare`（生活保護）/ `nonTaxable`（住民税非課税）/ `equalOnly`（均等割のみ課税）/ `incomeTaxed`（所得割が課税） | 必須 | `incomeTaxed` | — | ラジオ。「課税明細書の『所得割額』が0円でも、非課税世帯と均等割のみ課税世帯は別ものです」と補足 | ★backlog §2.2★ A/B/C階層はいずれも所得割額0円で**金額では判別できない**。所得割額より先にこれを聞く（§4 ステップ2） |
 | 6 | きょうだい（この子は上から何番目か） | integer | 任意 | 1 | 1〜10 | 「数え方は自治体で違います」と注記し `multiChildPolicy.countingRule.value` を展開表示 | 多子軽減の**該当可能性**の案内に使う。金額の自動計算はしない（§2.2） |
 | 7 | ひとり親世帯・在宅障害者等に該当するか | boolean | 任意 | false | — | チェックボックス | 該当時に軽減の存在を案内する（横浜E0〜E5／大阪の軽減額／名古屋・札幌・川崎・福岡の別表）。金額は出さない（§2.2） |
@@ -207,6 +208,7 @@ fee = tier.fees[年齢区分][保育必要量]
 - **境界の意味はスキーマが規定**: `incomeMin` は「この値を含む（以上）」、`incomeMax` は「この値を含まない（未満）」（[`data/schema/hoikuryo.schema.json`](../../data/schema/hoikuryo.schema.json) の `tiers.items.properties.incomeMin` / `incomeMax` の description）。原典が「〜円以下」の自治体は収集時に +1 済み（横浜）。原典が「〜未満」の自治体はそのまま（札幌・川崎・福岡・名古屋・大阪）。**ツール側で再度 +1 しないこと。**
 - **最下位 D 階層と B/C の数値重複に注意**: 江戸川 `D1`（`incomeMin: 0`）・杉並 `D1`（`incomeMin: 0`）・足立 `D階層`（`incomeMin: 0, incomeMax: null`）は B/C と数値上重複する。ステップ3 を先に通すことで解決する（各ファイルの `bracketBasis.note` に「階層判定はA→B→C→Dの順で課税状況により行われる」と明記）。
 - **`tiers` が1行の自治体は正常系**: `tokyo-nerima.json` の `tiers` は「全階層(区分なし)」1行のみ（`incomeMin: 0, incomeMax: null`, fees すべて0）。`tiers.length >= 2` を前提にしない。
+- **保育利用時間バンド（入力4b）のある自治体**: `need === "standard"` かつ `timeBands` があるとき、`fee = tier.fees[年齢区分].standardByBand[バンドキー]`で解決する（`feeOf()` の第4引数）。`standardByBand` の無い階層（京都市の①②＝0円）や `timeBands` の無い自治体は従来どおり `standard` にフォールバックする。`standard` には `defaultBandKey` の額が重複収録されており（後方互換）、整合性（キー一致・`standard`＝既定バンド額）は `scripts/verify-seido.mjs` が機械検査する。
 
 ### ステップ7: 多子・ひとり親の扱い
 

@@ -459,6 +459,60 @@ function checkStructure(file, data) {
     }
   });
 
+  // --- 保育利用時間バンド（hoikuryo スキーマの timeBands 拡張）の整合
+  // 京都市のように保育標準時間認定の額が利用時間で分かれる自治体のための軸。
+  // 「standard に最長バンドの額・バンド別は label の文章内」という旧形式の再発と、
+  // バンド定義と実額のズレ（＝ツールの誤表示）をここで機械的に塞ぐ。
+  {
+    const tb = data.timeBands;
+    const bandKeys = new Set();
+    if (tb) {
+      if (!Array.isArray(tb.bands) || tb.bands.length < 2) {
+        err(rel, '$.timeBands.bands', 'timeBands.bands は2件以上必要です（1バンドなら timeBands 自体を定義しない）');
+      } else {
+        for (const [i, b] of tb.bands.entries()) {
+          if (!b.key) err(rel, `$.timeBands.bands[${i}]`, 'band.key がありません');
+          else if (bandKeys.has(b.key)) err(rel, `$.timeBands.bands[${i}]`, `band.key "${b.key}" が重複しています`);
+          else bandKeys.add(b.key);
+          if (!b.label) err(rel, `$.timeBands.bands[${i}]`, 'band.label がありません（原典の区分表記を必ず残す）');
+        }
+      }
+      if (!tb.defaultBandKey) {
+        err(rel, '$.timeBands', 'defaultBandKey がありません');
+      } else if (bandKeys.size && !bandKeys.has(tb.defaultBandKey)) {
+        err(rel, '$.timeBands', `defaultBandKey "${tb.defaultBandKey}" が bands に存在しません`);
+      }
+      if (!tb.rule) err(rel, '$.timeBands', 'rule（時間区分の原文定義）がありません');
+      if (tb.sourceId && !sourceIds.has(tb.sourceId)) {
+        err(rel, '$.timeBands', `sourceId "${tb.sourceId}" が sources に存在しません`);
+      }
+    }
+    if (Array.isArray(data.tiers)) {
+      for (const [i, t] of data.tiers.entries()) {
+        for (const age of ['under3', 'age3plus']) {
+          const fees = t.fees?.[age];
+          const byBand = fees?.standardByBand;
+          if (!byBand) continue;
+          const p = `$.tiers[${i}].fees.${age}.standardByBand`;
+          if (!tb) {
+            err(rel, p, 'standardByBand がありますがトップレベル timeBands が未定義です');
+            continue;
+          }
+          const keys = Object.keys(byBand);
+          for (const k of keys) {
+            if (!bandKeys.has(k)) err(rel, p, `バンドキー "${k}" が timeBands.bands に存在しません`);
+          }
+          for (const k of bandKeys) {
+            if (!(k in byBand)) err(rel, p, `バンド "${k}" の額がありません（全バンド必須）`);
+          }
+          if (tb.defaultBandKey && byBand[tb.defaultBandKey] !== undefined && fees.standard !== byBand[tb.defaultBandKey]) {
+            err(rel, p, `standard (${fees.standard}) が defaultBandKey "${tb.defaultBandKey}" の額 (${byBand[tb.defaultBandKey]}) と一致しません`);
+          }
+        }
+      }
+    }
+  }
+
   // --- amendments の期限
   if (Array.isArray(data.amendments)) {
     for (const [i, a] of data.amendments.entries()) {

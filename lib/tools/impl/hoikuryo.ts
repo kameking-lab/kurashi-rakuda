@@ -73,6 +73,30 @@ export type TaxStatus = "welfare" | "nonTaxable" | "equalOnly" | "incomeTaxed";
 export interface TierFees {
   standard?: number;
   short?: number;
+  /**
+   * 保育標準時間認定のバンド別月額（京都市など timeBands を定義した自治体のみ）。
+   * キーは timeBands.bands[].key。standard には defaultBandKey の額が重複収録されている。
+   */
+  standardByBand?: Record<string, number>;
+}
+
+export interface TimeBand {
+  key: string;
+  label: string;
+}
+
+/**
+ * 保育標準時間認定の保育料が「保育利用時間」でさらに分かれる自治体の時間区分（例: 京都市の6段階）。
+ * 単一バンドの自治体はこのフィールド自体を持たない。整合性は scripts/verify-seido.mjs が機械検査する。
+ */
+export interface TimeBands {
+  bands: TimeBand[];
+  /** バンド未選択時に使うキー。過小表示を避けるため原則最長時間 */
+  defaultBandKey: string;
+  /** 時間区分の原文定義 */
+  rule: string;
+  sourceId?: string;
+  note?: string;
 }
 
 export interface HoikuryoTier {
@@ -116,6 +140,7 @@ export interface HoikuryoMunicipality {
     note: string;
   };
   ageClasses?: { key: AgeKey; label: string; rule?: string }[];
+  timeBands?: TimeBands;
   freeTuition?: {
     age3plusFree?: HoikuryoValueNode;
     under3NonTaxableFree?: HoikuryoValueNode;
@@ -341,8 +366,52 @@ export function resolveTier(
 
 // ---------------------------------------------------------------- 金額
 
-/** 階層・年齢区分・保育必要量から月額を取る。fees は optional（§9.2-11） */
-export function feeOf(tier: HoikuryoTier, age: AgeKey, need: CareNeed): number | null {
+/**
+ * 保育利用時間の選択が意味を持つか（timeBands を定義した自治体 × 保育標準時間認定のみ）。
+ * 保育短時間認定は全自治体で1区分のためバンド選択を出さない。
+ */
+export function isTimeBandApplicable(m: HoikuryoMunicipality, need: CareNeed): boolean {
+  return need === "standard" && !!m.timeBands;
+}
+
+/**
+ * 使用するバンドキーを決める。
+ * - timeBands の無い自治体・保育短時間認定 → null（バンドの概念なし）
+ * - 指定があり bands に実在する → その値
+ * - 未指定・不正値 → defaultBandKey（＝最長時間。過小表示を避ける安全側）
+ */
+export function resolveTimeBandKey(
+  m: HoikuryoMunicipality,
+  need: CareNeed,
+  requested: string | null | undefined,
+): string | null {
+  if (!isTimeBandApplicable(m, need)) return null;
+  const tb = m.timeBands!;
+  if (requested && tb.bands.some((b) => b.key === requested)) return requested;
+  return tb.defaultBandKey;
+}
+
+/** バンドキーからバンド定義（label 表示用）を引く */
+export function timeBandOf(m: HoikuryoMunicipality, key: string | null): TimeBand | null {
+  if (!key || !m.timeBands) return null;
+  return m.timeBands.bands.find((b) => b.key === key) ?? null;
+}
+
+/**
+ * 階層・年齢区分・保育必要量（＋保育利用時間バンド）から月額を取る。fees は optional（§9.2-11）。
+ * standardByBand を持つ階層（京都市③〜㉒）では、保育標準時間認定の額をバンドで解決する。
+ * standardByBand の無い階層・自治体は従来どおり standard/short を返す＝他自治体への影響なし。
+ */
+export function feeOf(
+  tier: HoikuryoTier,
+  age: AgeKey,
+  need: CareNeed,
+  timeBandKey?: string | null,
+): number | null {
+  if (need === "standard" && timeBandKey) {
+    const byBand = tier.fees[age]?.standardByBand;
+    if (byBand && byBand[timeBandKey] !== undefined) return byBand[timeBandKey];
+  }
   return tier.fees[age]?.[need] ?? null;
 }
 
@@ -405,6 +474,11 @@ export interface HoikuryoInput {
   taxStatus: TaxStatus;
   /** 前処理後の市町村民税所得割額（上級者モード）。未入力は null */
   income: number | null;
+  /**
+   * 保育利用時間バンドのキー（timeBands を定義した自治体 × 保育標準時間認定のみ意味を持つ）。
+   * 未指定・不正値は defaultBandKey（最長時間）に解決される。
+   */
+  timeBand?: string | null;
   /** この子は上から何番目か */
   birthOrder: number;
   /** ひとり親世帯・在宅障害者等に該当するか */
@@ -436,6 +510,8 @@ export interface HoikuryoResult {
   multiChild: MultiChildInfo;
   /** 所得割額の直接入力を提供してよいか（練馬・足立は false） */
   incomeInputUseful: boolean;
+  /** 金額の解決に使った保育利用時間バンド（timeBands の無い自治体・保育短時間は null） */
+  timeBand: TimeBand | null;
 }
 
 /**
@@ -446,6 +522,7 @@ export function calc(input: HoikuryoInput): HoikuryoResult | null {
   const m = getMunicipality(input.municipalityId);
   if (!m) return null;
 
+  const bandKey = resolveTimeBandKey(m, input.need, input.timeBand ?? null);
   const base = {
     municipality: m,
     fiscalYearMismatch: isFiscalYearMismatch(m, input.month),
@@ -453,6 +530,7 @@ export function calc(input: HoikuryoInput): HoikuryoResult | null {
     multiChild: multiChildInfo(m, input.birthOrder),
     incomeInputUseful: isIncomeInputUseful(m),
     upcomingFullFree: upcomingFullFreeAmendment(m, input.month),
+    timeBand: timeBandOf(m, bandKey),
   };
 
   // ステップ1: 施行日による分岐（大阪 R8/9〜は tiers を参照しない）
@@ -476,7 +554,7 @@ export function calc(input: HoikuryoInput): HoikuryoResult | null {
   // ステップ3〜6: 課税状況 → 階層 → 金額
   const res = resolveTier(m, input.taxStatus, input.income);
   if (res.tier) {
-    const fee = feeOf(res.tier, input.age, input.need);
+    const fee = feeOf(res.tier, input.age, input.need, bandKey);
     if (fee !== null) {
       return { ...base, fee, basis: "tier", tier: res.tier, tierIssue: null, fullFree: null };
     }
