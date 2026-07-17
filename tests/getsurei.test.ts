@@ -78,7 +78,7 @@ describe("Getsurei.calc — 仕様書テストケース表（12件）", () => {
     expect(result.monthRemainderDays).toBe(0);
   });
 
-  it("#7 2か月早産（実齢3か月0日／修正月齢1か月0日／早産日数30日）", () => {
+  it("#7 2か月早産（実齢3か月0日／修正月齢1か月0日／早産日数61日）", () => {
     const birth = d("2026-05-01");
     const base = d("2026-08-01");
     const due = d("2026-07-01");
