@@ -156,9 +156,22 @@
       "接種が遅れたときの受け方が分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "定期接種の対象疾病とワクチン（厚生労働省）",
+        "url": "https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou28/01.html"
+      },
+      {
+        "label": "予防接種法（昭和二十三年法律第六十八号）（e-Gov法令検索）",
+        "url": "https://laws.e-gov.go.jp/law/323AC0000000068"
+      },
+      {
+        "label": "ヒトパピローマウイルス感染症（HPV）ワクチンに関するQ&A（厚生労働省）",
+        "url": "https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou28/hpv_vaccine/index.html"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-07",

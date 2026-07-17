@@ -11,6 +11,7 @@ import { ShussanYoteibi } from "@/components/tools/impl/ShussanYoteibi";
 import { SeiriShuki } from "@/components/tools/impl/SeiriShuki";
 import { Inunohi } from "@/components/tools/impl/Inunohi";
 import { FuyoKabe } from "@/components/tools/impl/FuyoKabe";
+import { Yobousesshu } from "@/components/tools/impl/Yobousesshu";
 import { HokatsuSchedule } from "@/components/tools/impl/HokatsuSchedule";
 import { JunyuMilkRyo } from "@/components/tools/impl/JunyuMilkRyo";
 import { RinyushokuRyo } from "@/components/tools/impl/RinyushokuRyo";
@@ -171,6 +172,28 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           年収に乗じた概算です。実際は標準報酬月額をもとに計算され、健康保険料率は都道府県ごとに異なります。
         </p>
         <SeidoNotice datasets={[fuyoKabeDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  yobousesshu: {
+    ui: <Yobousesshu />,
+    formula: (
+      <>
+        <p>
+          生年月日から、予防接種法に基づく定期接種（A類疾病）の各ワクチンについて「生後◯ヶ月／◯歳に達した日（誕生日相当日）」を基準に、対象開始日・対象終了日を計算し、今日の日付と比較して「対象期間前」「対象期間内」「対象期間の標準的な対象期間を過ぎています」のいずれかを判定しています。多くのワクチンは対象年齢の下限に達した日から対象期間内、上限の年齢に達した日以後は対象期間を終えたものとして表示します。
+        </p>
+        <p>
+          麻しん風しん混合（MR）第2期は「小学校就学前1年間（年長にあたる年度）」が対象のため、年齢ではなく4月1日を基準にした年度（学齢）で判定しています。HPVは「11歳に達した日」から「16歳に達する日以後の最初の3月31日」までを対象期間として扱っています。
+        </p>
+        <p>
+          各回の目安接種時期は、標準的な接種間隔（例: B型肝炎は1回目から約1ヶ月後に2回目）をもとに機械計算した参考値で、「年月頃」という幅を持たせた表示にしています。実際の接種間隔は使用するワクチンの種類・体調・自治体運用により前後します。
+        </p>
+        <p>
+          <strong>
+            本ツールが行うのは、これらの制度上の標準スケジュールの日付計算のみです。お子さまが実際に接種を受けるべきかどうか、当日の体調で接種できるかどうかといった医学的な判断は一切行っていません。
+          </strong>
+          過去に実際に接種したワクチンの記録・管理も行いません（すべてのワクチンについて、生年月日から見た制度上の標準スケジュール上の位置を一律に計算して表示するのみです）。実際のスケジュールは母子健康手帳・予診票・かかりつけ医・お住まいの自治体の案内を優先してください。
+        </p>
       </>
     ),
   },
