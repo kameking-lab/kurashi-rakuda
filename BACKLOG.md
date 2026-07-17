@@ -169,7 +169,7 @@
 | P2-T11 | #8 | 不妊治療 保険適用・費用早見 | S(オーパス) | ✔funin-chiryou-hoken-tekiyou | 要 |
 | P2-T12 | #25 | 成長曲線プロット（パーセンタイル） | S(オーパス) | 要: 厚労省乳幼児身体発育調査の値表 | 要 |
 | P2-T13 | #26 | 子ども医療費助成 自治体早見（プログラマティック候補） | S(オーパス) | ✔kodomo-iryouhi-jyosei（自治体拡充は別途） | 要 |
-| P2-T14 | #5 | 妊婦健診スケジュール生成 | B(ソネット) | ✔ninshin-kenshin-jyosei・sanpu-kenshin-jyosei | 簡易 |
+| [x] P2-T14 | #5 | 妊婦健診スケジュール生成 → **完了（2026-07-17）**: `ninshin-kenshin-schedule` として実装（PR参照）。specs/b-tools/p2-t14-ninshin-kenshin-schedule.md・テスト21件 | B(ソネット) | ✔ninshin-kenshin-jyosei・sanpu-kenshin-jyosei | 簡易 |
 | P2-T15 | #6 | 妊娠中の体重増加チェッカー | B(ソネット) | 要: 妊娠中の体重増加指導の目安（厚労省/学会） | 要（YMYL中） |
 | P2-T16 | #7 | 出産準備チェックリスト（予定日逆算） | B(ソネット) | なし（日付演算＋自前リスト） | 簡易 |
 | [x] P2-T17 | #10 | 陣痛間隔カウンター（オフライン必須） | B(ソネット) | なし | 簡易 → **完了（slug: jintsuu-kankaku-counter, 2026-07-17）**: localStorage永続化・平均間隔/持続時間・出典はncchd.go.jp（国立成育医療研究センター） |

@@ -768,5 +768,43 @@
     ],
     "updated": "2026-07-17",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T14",
+    "slug": "ninshin-kenshin-schedule",
+    "category": "pregnancy",
+    "title": "妊婦健診スケジュール生成",
+    "description": "出産予定日（または最終月経開始日）から、標準的な妊婦健診の受診間隔に基づく受診スケジュールを一覧で計算します。",
+    "solves": [
+      "妊婦健診に何回・いつ行けばいいか分からない",
+      "妊婦健診の受診間隔の目安が分からない",
+      "妊婦健診が公費助成の対象回数に入っているか分からない",
+      "産後の産婦健診がいつごろか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "厚生労働省「“妊婦健診”を受けましょう（リーフレット）」（標準的な“妊婦健診”の例）",
+        "url": "https://www.mhlw.go.jp/bunya/kodomo/boshi-hoken13/dl/02.pdf"
+      },
+      {
+        "label": "こども家庭庁「妊婦健診に関する取組み」",
+        "url": "https://www.cfa.go.jp/policies/boshihoken/nimpukenshin"
+      },
+      {
+        "label": "こども家庭庁「妊婦健康診査の公費負担の状況に係る調査結果について（令和6年4月1日現在）」",
+        "url": "https://www.cfa.go.jp/press/2cf467a4-025c-4b69-a1a6-8a69626fd658"
+      },
+      {
+        "label": "こども家庭庁「令和8年度こども家庭庁当初予算案（参考資料）」（産婦健康診査事業）",
+        "url": "https://www.cfa.go.jp/policies/budget"
+      },
+      {
+        "label": "母子保健法（昭和四十年法律第百四十一号）第13条（e-Gov法令検索）",
+        "url": "https://laws.e-gov.go.jp/law/340AC0000000141"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
   }
 ]
