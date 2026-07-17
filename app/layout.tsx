@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { JsonLd } from "@/components/site/JsonLd";
@@ -56,6 +58,9 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        {/* クッキーレス解析（Vercel Analytics / Speed Insights）。GA4・同意バナーは置かない方針（プライバシーポリシー第3条） */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
