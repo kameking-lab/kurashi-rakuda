@@ -4,6 +4,7 @@
   "name": "要介護認定の標準処理期間（介護保険法第27条）",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "law-kaigohokenho-27",
