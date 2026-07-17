@@ -32,6 +32,7 @@ import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
 import { YoujiMushoukaChecker } from "@/components/tools/impl/YoujiMushoukaChecker";
 import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushoukaChecker.calc";
 import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
+import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -55,6 +56,7 @@ import {
   benefitRule1 as jitanBenefitRule1,
 } from "@/lib/tools/impl/jitan-kyuyo";
 import { kaigoHokenDataset } from "@/lib/tools/impl/kaigo-jikofutan";
+import { kaigoNinteiDataset } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi.calc";
 import { todayJst } from "@/lib/tools/seido";
 
 /**
@@ -900,6 +902,59 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           </strong>
           実際に何回・いつ受診するかは妊娠経過・体調・医療機関の方針によって異なり、医学的な受診指示・診断は一切行っていません。必ず担当医の指示、お住まいの市区町村の母子保健担当窓口の案内を優先してください。
         </p>
+      </>
+    ),
+  },
+  "youkaigo-nintei-dandori-navi": {
+    ui: <YoukaigoNinteiDandoriNavi />,
+    formula: (
+      <>
+        <p>
+          <strong>原則の処理期間（30日）</strong>
+          ：介護保険法<strong>第27条第11項</strong>
+          は、要介護認定の申請に対する処分（認定または非該当の通知）を
+          <strong>申請のあった日から30日以内</strong>
+          に行うのが原則であると定めています。ただし、認定調査や主治医意見書の準備に時間を要する等の
+          特別な理由があるときは、市区町村がその30日以内に「あとどれくらいかかりそうか（処理見込期間）」
+          と理由を書面で通知したうえで延期することが同項ただし書で認められています。この延期は制度上
+          想定された正規の手続であり、必ずしも異常事態ではありません。同第12項は、30日を超えても
+          処分・延期通知がない場合等に、被保険者側から市区町村が却下したものとみなすことができる旨も
+          定めています。
+        </p>
+        <p>
+          <strong>「30日以内」は保証ではありません</strong>
+          ：厚生労働省の集計（介護保険総合データベース、令和5年度4月〜令和6年3月申請分、保険者数1,559）
+          によると、<strong>全国平均の認定審査期間は39.8日</strong>
+          で、申請から30日以内に認定された割合は平均<strong>25.1%</strong>にとどまります。
+          法律上の原則である30日を、実際には多くの申請で超えているのが全国的な実態です。
+          本ツールはこの実態を隠さず表示します。
+        </p>
+        <p>
+          <strong>手続の流れ</strong>
+          ：①申請（第27条第1項。申請書に被保険者証を添付）②認定調査（第2項。市区町村職員等による面接調査）
+          ③主治医意見書（第3項。主治の医師に心身の状況等の意見を求める）④一次判定（第4項。コンピュータ判定）
+          ⑤介護認定審査会による審査判定＝二次判定（第4項・第5項）⑥認定結果の通知（第7項・第9項）という順序です。
+          認定調査と主治医意見書は、多くの場合ほぼ同時に依頼され並行して進みます。
+        </p>
+        <p>
+          <strong>目安のタイムライン</strong>
+          ：厚生労働省は、認定審査期間の平均が30日以内に収まっている保険者（全体の約4.2%にあたる66保険者）
+          の実績（認定調査所要期間6.6日・主治医意見書所要期間12.7日・審査会等事務処理期間12.3日）を踏まえ、
+          令和7年2月20日時点の「対応（案）」として、認定調査は依頼から<strong>7日以内</strong>、
+          主治医意見書は依頼から<strong>13日以内</strong>、介護認定審査会は調査票・意見書が揃ってから
+          <strong>12日以内</strong>という目安を示しました。本ツールはこの目安（認定調査と主治医意見書は並行、
+          遅い方に審査会の日数を足す＝13日＋12日＝申請から通算25日ごろ）を参考のタイムラインとして表示しますが、
+          <strong>法的拘束力のある確定基準ではなく</strong>、地域や時期によって大きく変動します。
+        </p>
+        <p>
+          <strong>認定後について</strong>
+          ：認定される要介護度は「介護の必要性を量るものさし（要介護認定等基準時間）」で決まり、
+          状態像による公式な定義は存在しません。認定後は、要介護の方はケアマネジャーにケアプランの作成を、
+          要支援の方は地域包括支援センターに相談するのが一般的な流れです。ケアプラン作成・サービス利用開始に
+          ついては、標準処理期間のような一次データがないため、本ツールは日数の目安を示さず、手続の順序のみを
+          案内しています。
+        </p>
+        <SeidoNotice datasets={[kaigoNinteiDataset, kaigoHokenDataset]} today={todayJst()} />
       </>
     ),
   },
