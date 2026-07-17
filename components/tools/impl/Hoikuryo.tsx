@@ -14,6 +14,13 @@ import {
   type HoikuryoMunicipality,
   type TaxStatus,
 } from "@/lib/tools/impl/hoikuryo";
+import {
+  estimateHouseholdShotokuwari,
+  requiresPreprocessing,
+  type Dependents,
+  type HouseholdEstimate,
+  type ShotokuwariInput,
+} from "@/lib/tools/impl/hoikuryo-shotokuwari";
 import { basisYearLabel, formatJaDate } from "@/lib/tools/seido";
 
 /*
@@ -127,10 +134,70 @@ export function Hoikuryo() {
   const [income, setIncome] = useState("");
   const [hasGrandparents, setHasGrandparents] = useState(false);
 
+  // ---- 8a 年収→推計モード（2026-07-17 検算合格により解禁。specs/s-tools/01 §3.2 入力8a） ----
+  const [salaryA, setSalaryA] = useState("");
+  const [salaryB, setSalaryB] = useState("");
+  const [spouseSituation, setSpouseSituation] = useState<"none" | "koujo" | "tokubetsu">("none");
+  const [dualHasSpouseDeduction, setDualHasSpouseDeduction] = useState(false);
+  const [under16Count, setUnder16Count] = useState("1");
+  const [general16Plus, setGeneral16Plus] = useState("0");
+  const [specific19to22, setSpecific19to22] = useState("0");
+  const [shahoA, setShahoA] = useState("");
+  const [shahoB, setShahoB] = useState("");
+
   const m = getMunicipality(municipalityId);
   const incomeUseful = m ? isIncomeInputUseful(m) : false;
   const useIncome = advanced && incomeUseful && taxStatus === "incomeTaxed";
   const parsedIncome = income.trim() === "" ? null : Number(income);
+
+  const isDesignatedCity = m?.municipalityType === "政令指定都市";
+  const salaryANum = Number(salaryA) || 0;
+  const salaryBNum = Number(salaryB) || 0;
+  const dualIncome = salaryANum > 0 && salaryBNum > 0;
+  // 配偶者(特別)控除の該当により推計を止めるケース
+  const estimateBlocked =
+    (!dualIncome && spouseSituation === "tokubetsu") || (dualIncome && dualHasSpouseDeduction);
+
+  const household: HouseholdEstimate | null = useMemo(() => {
+    if (taxStatus !== "incomeTaxed" || !m || salaryANum <= 0 || estimateBlocked) return null;
+    const dependents: Dependents = {
+      under16: Number(under16Count) || 0,
+      general: Number(general16Plus) || 0,
+      specific: Number(specific19to22) || 0,
+    };
+    const mk = (salary: number, shaho: string, withDeps: boolean, hasSpouse: boolean): ShotokuwariInput => ({
+      salary,
+      socialInsurance:
+        shaho.trim() !== "" && Number(shaho) >= 0
+          ? { kind: "actual", amount: Number(shaho) }
+          : { kind: "estimate" },
+      hasSpouse,
+      dependents: withDeps ? dependents : {},
+      isDesignatedCity,
+    });
+    // ★扶養は年収の高い方に付けて推計する（所得割は比例税率のため合算額はほぼ変わらないが、
+    //   非課税限度額・調整控除の判定を慣行どおり高い方で行う）★
+    const aIsHigher = salaryANum >= salaryBNum;
+    const inputs: ShotokuwariInput[] = dualIncome
+      ? [mk(salaryANum, shahoA, aIsHigher, false), mk(salaryBNum, shahoB, !aIsHigher, false)]
+      : [mk(salaryANum, shahoA, true, spouseSituation === "koujo")];
+    return estimateHouseholdShotokuwari(inputs);
+  }, [
+    taxStatus, m, salaryANum, salaryBNum, dualIncome, estimateBlocked, spouseSituation,
+    under16Count, general16Plus, specific19to22, shahoA, shahoB, isDesignatedCity,
+  ]);
+
+  // 推計を階層表に流し込めるのは、前処理が不要な自治体だけ（政令指定都市は8%課税のため常に不可）
+  const estimateFeedable =
+    !!m &&
+    household?.kind === "estimated" &&
+    !household.allNonTaxable &&
+    !requiresPreprocessing(m, isDesignatedCity);
+  const estimatedIncome = estimateFeedable && household?.kind === "estimated" ? household.total : null;
+
+  // 8bの手入力があればそれを優先し、なければ8aの推計値を使う
+  const effectiveIncome = useIncome && parsedIncome !== null ? parsedIncome : estimatedIncome;
+  const usingEstimate = !(useIncome && parsedIncome !== null) && estimatedIncome !== null;
 
   const r = useMemo(
     () =>
@@ -141,12 +208,12 @@ export function Hoikuryo() {
             age,
             need,
             taxStatus,
-            income: useIncome ? parsedIncome : null,
+            income: effectiveIncome,
             birthOrder: Number(birthOrder) || 1,
             isSingleParentOrDisability: single,
           })
         : null,
-    [m, municipalityId, month, age, need, taxStatus, useIncome, parsedIncome, birthOrder, single],
+    [m, municipalityId, month, age, need, taxStatus, effectiveIncome, birthOrder, single],
   );
 
   const ageClasses = m?.ageClasses ?? [];
@@ -297,6 +364,169 @@ export function Hoikuryo() {
             </div>
           )}
 
+          {/* ---------------------------------------- 8a 年収→推計（既定モード） */}
+          {taxStatus === "incomeTaxed" && (
+            <div className="rounded-card border border-line p-4">
+              <p className="font-medium">
+                年収から所得割額を<strong>推計</strong>する
+                <span className="ml-2 rounded bg-sand-soft px-2 py-0.5 text-xs font-bold">推計値</span>
+              </p>
+              <p className="mt-1 text-sm text-ink-muted">
+                源泉徴収票の「支払金額」を入れると、住民税の市町村民税所得割額のおおよその見込みを計算します。
+                ご家庭ごとの控除（生命保険料控除・医療費控除など）は反映できないため、
+                <strong>確定額ではありません</strong>。課税明細書がお手元にあれば、下の直接入力のほうが正確です。
+              </p>
+              <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                <NumberField
+                  label="保護者1の年収（税込・支払金額）"
+                  value={salaryA}
+                  min={0}
+                  max={30_000_000}
+                  step="10000"
+                  hint="源泉徴収票の「支払金額」です（手取りではありません）"
+                  onChange={(e) => setSalaryA(e.target.value)}
+                />
+                <NumberField
+                  label="保護者2の年収（いない・収入がない場合は空欄）"
+                  value={salaryB}
+                  min={0}
+                  max={30_000_000}
+                  step="10000"
+                  onChange={(e) => setSalaryB(e.target.value)}
+                />
+                {!dualIncome && (
+                  <SelectField
+                    label="配偶者について"
+                    value={spouseSituation}
+                    hint="源泉徴収票の「控除対象配偶者」「配偶者特別控除」欄で確認できます"
+                    onChange={(e) => setSpouseSituation(e.target.value as typeof spouseSituation)}
+                  >
+                    <option value="none">配偶者はいない</option>
+                    <option value="koujo">配偶者控除を受けている（配偶者の収入が少ない）</option>
+                    <option value="tokubetsu">配偶者特別控除を受けている</option>
+                  </SelectField>
+                )}
+                {dualIncome && (
+                  <SelectField
+                    label="配偶者控除・配偶者特別控除について"
+                    value={dualHasSpouseDeduction ? "yes" : "no"}
+                    hint="共働きでも、収入によってはどちらかが配偶者特別控除を受けていることがあります"
+                    onChange={(e) => setDualHasSpouseDeduction(e.target.value === "yes")}
+                  >
+                    <option value="no">夫婦とも受けていない</option>
+                    <option value="yes">どちらかが受けている</option>
+                  </SelectField>
+                )}
+                <NumberField
+                  label="16歳未満のお子さんの人数"
+                  value={under16Count}
+                  min={0}
+                  max={10}
+                  hint="扶養控除はありませんが、非課税かどうかの判定に影響します"
+                  onChange={(e) => setUnder16Count(e.target.value)}
+                />
+              </div>
+              <details className="mt-3 text-sm">
+                <summary className="cursor-pointer font-medium">
+                  精度を上げる（16歳以上の扶養・社会保険料の実額）
+                </summary>
+                <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                  <NumberField
+                    label="16歳以上の扶養親族（19〜22歳を除く）の人数"
+                    value={general16Plus}
+                    min={0}
+                    max={10}
+                    onChange={(e) => setGeneral16Plus(e.target.value)}
+                  />
+                  <NumberField
+                    label="19〜22歳の扶養親族の人数"
+                    value={specific19to22}
+                    min={0}
+                    max={10}
+                    onChange={(e) => setSpecific19to22(e.target.value)}
+                  />
+                  <NumberField
+                    label="保護者1の社会保険料（源泉徴収票の実額・年額）"
+                    value={shahoA}
+                    min={0}
+                    max={10_000_000}
+                    step="1000"
+                    hint="空欄なら年収からの概算になります。実額のほうがずっと正確です"
+                    onChange={(e) => setShahoA(e.target.value)}
+                  />
+                  <NumberField
+                    label="保護者2の社会保険料（同上）"
+                    value={shahoB}
+                    min={0}
+                    max={10_000_000}
+                    step="1000"
+                    onChange={(e) => setShahoB(e.target.value)}
+                  />
+                </div>
+                <p className="mt-2 text-ink-muted">
+                  16歳以上の扶養控除は、年収の高い方に付けて推計します。
+                </p>
+              </details>
+
+              {estimateBlocked && (
+                <Callout tone="caution">
+                  配偶者特別控除を受けている場合、控除額が収入により細かく変わるため、このツールでは推計できません
+                  （取り違えると階層がずれるため、あえて計算しません）。
+                  課税明細書（住民税決定通知書）の所得割額を、下の直接入力に入れてください。
+                </Callout>
+              )}
+
+              {household?.kind === "unavailable" && <Callout tone="caution">{household.note}</Callout>}
+
+              {household?.kind === "estimated" && (
+                <div className="mt-3 space-y-3">
+                  <div className="rounded-card border border-line p-3 text-sm">
+                    <p className="font-medium">
+                      世帯の市町村民税所得割額（推計値）:{" "}
+                      <strong className="tabular-nums">{yen(household.total)}円</strong>
+                      {household.range.min !== household.range.max && (
+                        <span className="text-ink-muted">
+                          {" "}
+                          （およそ {yen(household.range.min)}〜{yen(household.range.max)}円）
+                        </span>
+                      )}
+                    </p>
+                    <ul className="mt-2 list-disc space-y-1 pl-5 text-ink-muted">
+                      {household.caveats.map((c) => (
+                        <li key={c.slice(0, 20)}>{c}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {household.allNonTaxable && (
+                    <Callout tone="caution">
+                      <p className="font-bold">所得割は非課税の見込みです</p>
+                      <p className="mt-1">
+                        この年収では、住民税の所得割はかからない見込みです（全国一律の基準で判定できます）。
+                        その場合の階層は「住民税非課税世帯」か「均等割のみ課税」のどちらかになりますが、
+                        <strong>均等割が課税されるかどうかはお住まいの市区町村の条例により異なるため、このツールでは断定しません</strong>。
+                        上の「世帯の課税状況」を切り替えて試算するか、課税明細書・窓口でご確認ください。
+                      </p>
+                    </Callout>
+                  )}
+
+                  {!household.allNonTaxable && m && requiresPreprocessing(m, isDesignatedCity) && (
+                    <Callout tone="caution">
+                      <p className="font-bold">この推計値は、そのまま{m.name}の階層表に当てはめられません</p>
+                      <p className="mt-1">
+                        {isDesignatedCity
+                          ? "政令指定都市の市民税所得割は8％で課税されますが、保育料の階層表は6％を前提とした金額で区切られています。換算の方法は自治体ごとに違い、端数の扱いが公表されていないため、このツールでは換算を代行しません。"
+                          : "この自治体は、所得割額に独自の前処理を行うと案内しています。このツールでは換算を代行しません。"}
+                        {m.name}の案内は次のとおりです。
+                      </p>
+                      <p className="mt-2 text-ink-muted">{m.bracketBasis.note}</p>
+                    </Callout>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* ---------------------------------------- 上級者モード */}
           {taxStatus === "incomeTaxed" && incomeUseful && (
             <div className="rounded-card border border-line p-4">
@@ -370,7 +600,11 @@ export function Hoikuryo() {
                   : r.basis === "age3plusFree"
                     ? m.freeTuition?.age3plusFree?.label ?? "3歳以上児は無償です"
                     : r.tier
-                      ? `階層 ${r.tier.tier}${r.tier.label ? `（${r.tier.label}）` : ""}`
+                      ? `階層 ${r.tier.tier}${r.tier.label ? `（${r.tier.label}）` : ""}${
+                          usingEstimate
+                            ? "。★年収からの推計値による階層です。確定額ではありません★"
+                            : ""
+                        }`
                       : "この自治体は全世帯の保育料が0円のため、階層によらず0円です"
               }
             />
@@ -381,10 +615,11 @@ export function Hoikuryo() {
                 所得割が課税されている世帯の金額を出すには、所得割額が必要です
               </p>
               <p className="mt-1">
-                課税明細書（住民税決定通知書）がお手元にあれば、上の「上級者向け」を開いてください。
-                年収から所得割額を推計する機能は準備中です。住民税の非課税限度額・税率・控除の一次情報が
-                まだ揃っておらず、推計すると階層をひとつ取り違えて月額が数千〜数万円ずれるためです。
-                お手元にないときは{m.name}の窓口にご確認ください。
+                上の「年収から所得割額を推計する」に年収を入れると、おおよその見込み（推計値）を計算します。
+                {m.municipalityType === "政令指定都市" &&
+                  "ただし政令指定都市では、推計した所得割額をそのまま階層表に当てはめられないため、階層の確定には換算が必要です。"}
+                課税明細書（住民税決定通知書）がお手元にあれば、「上級者向け」の直接入力のほうが正確です。
+                どちらも難しいときは{m.name}の窓口にご確認ください。
               </p>
             </Callout>
           ) : (

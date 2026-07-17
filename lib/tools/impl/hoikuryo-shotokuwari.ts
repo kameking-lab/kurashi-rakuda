@@ -508,9 +508,12 @@ export function estimateShotokuwari(input: ShotokuwariInput): ShotokuwariEstimat
   }
   const spouse900 = J.shotokuKoujo.haiguushaKoujo.rows[0].earnerTotalIncomeMax;
   if (input.hasSpouse && spouse900 !== null && max.salaryIncome > spouse900) {
+    // ★検算時の訂正（2026-07-17）★ 加算の省略は調整控除を小さく＝所得割を大きく（上限側に）する。
+    // なお課税所得が200万円を大きく超えるこの領域では下限5万円が効くため、実際には数値差は生じない
+    // （tests/hoikuryo-shotokuwari-kensan.test.ts で確認済み）。
     caveats.push(
       "合計所得金額が900万円を超える場合、調整控除の配偶者に係る加算額が本データに未収録のため、" +
-        "調整控除が実際より大きく出ている可能性があります。",
+        "所得割の推計が実際よりわずかに大きく出る可能性があります。",
     );
   }
 
@@ -521,6 +524,70 @@ export function estimateShotokuwari(input: ShotokuwariInput): ShotokuwariEstimat
     range: { min: min.shotokuwari, max: max.shotokuwari },
     isShotokuwariNonTaxable: max.salaryIncome <= limit,
     shotokuwariNonTaxableLimit: limit,
+    caveats,
+  };
+}
+
+// ---------------------------------------------------------------- 世帯合算（父母2人分）
+
+export type HouseholdEstimate =
+  | {
+      kind: "estimated";
+      isEstimate: true;
+      /** 各稼得者の推計（入力順） */
+      parents: Array<ShotokuwariEstimate & { kind: "estimated" }>;
+      /**
+       * 世帯の市町村民税所得割額の推計。★所得割の非課税に当たる稼得者の寄与は0円として合算する★
+       * （所得割の非課税＝地方税法附則第3条の3＝は個人単位の判定。breakdown.shotokuwari は
+       * 非課税判定前の機械計算値のため、そのまま足すと非課税の稼得者の分を過大計上する）
+       */
+      total: number;
+      range: { min: number; max: number };
+      /** 全稼得者が所得割非課税の見込みか（→世帯の課税状況の選択を見直す案内を出すこと） */
+      allNonTaxable: boolean;
+      caveats: string[];
+    }
+  | { kind: "unavailable"; reason: ShotokuwariUnavailableReason; note: string };
+
+/** 稼得者1人分の合算への寄与。所得割非課税なら0円 */
+function contribution(est: ShotokuwariEstimate & { kind: "estimated" }): {
+  point: number;
+  min: number;
+  max: number;
+} {
+  if (est.isShotokuwariNonTaxable) return { point: 0, min: 0, max: 0 };
+  return { point: est.breakdown.shotokuwari, min: est.range.min, max: est.range.max };
+}
+
+/**
+ * 父母（等）2人分までの年収から、世帯の市町村民税所得割額を推計する。
+ * 保育料の階層判定は多くの自治体で「父母の所得割額の合算」を用いる（specs/s-tools/01 §3.2 入力8a）。
+ */
+export function estimateHouseholdShotokuwari(inputs: ShotokuwariInput[]): HouseholdEstimate {
+  const parents: Array<ShotokuwariEstimate & { kind: "estimated" }> = [];
+  for (const input of inputs) {
+    const est = estimateShotokuwari(input);
+    if (est.kind !== "estimated") return est;
+    parents.push(est);
+  }
+  const contribs = parents.map(contribution);
+  const caveats = [...new Set(parents.flatMap((p) => p.caveats))];
+  const nonTaxableCount = parents.filter((p) => p.isShotokuwariNonTaxable).length;
+  if (nonTaxableCount > 0 && nonTaxableCount < parents.length) {
+    caveats.push(
+      "お一人は所得割が非課税の見込みのため、その方の分は0円として合算しています。",
+    );
+  }
+  return {
+    kind: "estimated",
+    isEstimate: true,
+    parents,
+    total: contribs.reduce((a, c) => a + c.point, 0),
+    range: {
+      min: contribs.reduce((a, c) => a + c.min, 0),
+      max: contribs.reduce((a, c) => a + c.max, 0),
+    },
+    allNonTaxable: parents.length > 0 && nonTaxableCount === parents.length,
     caveats,
   };
 }
@@ -581,6 +648,75 @@ export type TierEstimate =
       caveats: string[];
     }
   | { kind: "unavailable"; reason: string; note: string };
+
+export type HouseholdTierEstimate =
+  | {
+      kind: "estimated";
+      isEstimate: true;
+      household: HouseholdEstimate & { kind: "estimated" };
+      tier: HoikuryoTier;
+      tierRange: HoikuryoTier[];
+      caveats: string[];
+    }
+  | {
+      kind: "preprocessing-required";
+      household: HouseholdEstimate & { kind: "estimated" };
+      /** bracketBasis.note の原文。★UIにそのまま提示すること★ */
+      note: string;
+      caveats: string[];
+    }
+  | { kind: "unavailable"; reason: string; note: string };
+
+/**
+ * 世帯（父母2人分まで）の年収 → 階層 の【推計】。estimateTier の世帯版。
+ * 前処理・課税状況の扱いは estimateTier と同じ（下のコメント参照）。
+ */
+export function estimateHouseholdTier(
+  municipalityId: string,
+  inputs: ShotokuwariInput[],
+  taxStatus: TaxStatus,
+): HouseholdTierEstimate {
+  const m = getMunicipality(municipalityId);
+  if (!m) {
+    return { kind: "unavailable", reason: "municipality-not-found", note: `未収集の自治体です: ${municipalityId}` };
+  }
+  const household = estimateHouseholdShotokuwari(inputs);
+  if (household.kind !== "estimated") {
+    return { kind: "unavailable", reason: household.reason, note: household.note };
+  }
+  const isDesignatedCity = inputs.some((i) => i.isDesignatedCity);
+  if (requiresPreprocessing(m, isDesignatedCity)) {
+    return {
+      kind: "preprocessing-required",
+      household,
+      note: m.bracketBasis?.note ?? "",
+      caveats: [
+        ...household.caveats,
+        isDesignatedCity
+          ? "政令指定都市の市民税所得割は8％で課税されますが、保育料の階層表は6％を前提とした金額で区切られています。" +
+            "そのままでは階層を判定できないため、この自治体の案内にある換算方法をご確認ください。ツールでは換算を代行しません。"
+          : "この自治体は、課税明細書の所得割額をそのまま階層表に当てはめず、独自の換算を行うと案内しています。" +
+            "換算方法は下記の原文をご確認ください。ツールでは換算を代行しません。",
+      ],
+    };
+  }
+  const resolve = (income: number): HoikuryoTier | null => resolveTier(m, taxStatus, income).tier;
+  const tier = resolve(household.total);
+  if (!tier) {
+    return { kind: "unavailable", reason: "tier-not-resolved", note: "階層を判定できませんでした。" };
+  }
+  const tiers = [resolve(household.range.min), resolve(household.range.max)].filter(
+    (t): t is HoikuryoTier => t !== null,
+  );
+  const tierRange = tiers.filter((t, i) => tiers.findIndex((x) => x.tier === t.tier) === i);
+  const caveats = [...household.caveats];
+  if (tierRange.length > 1) {
+    caveats.push(
+      "推計の幅の中に階層の境界があるため、階層を1つに絞れていません。課税明細書の所得割額でご確認ください。",
+    );
+  }
+  return { kind: "estimated", isEstimate: true, household, tier, tierRange, caveats };
+}
 
 /**
  * 年収 → 階層 の【推計】。
