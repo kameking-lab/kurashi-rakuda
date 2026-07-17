@@ -36,6 +36,17 @@ import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushouka
 import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
 import { ShussanJunbiChecklist } from "@/components/tools/impl/ShussanJunbiChecklist";
 import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
+import { GakudouKabeDandoriCheck } from "@/components/tools/impl/GakudouKabeDandoriCheck";
+import {
+  GRADE_RANGE_LABEL as GAKUDOU_GRADE_RANGE_LABEL,
+  SUPPORT_UNIT_MAX_CHILDREN as GAKUDOU_SUPPORT_UNIT_MAX_CHILDREN,
+  OPENING_HOURS_STANDARD as GAKUDOU_OPENING_HOURS_STANDARD,
+  WAITING_CHILDREN_TOTAL as GAKUDOU_WAITING_CHILDREN_TOTAL,
+  WAITING_CHILDREN_BY_GRADE as GAKUDOU_WAITING_CHILDREN_BY_GRADE,
+  WAITING_CHILDREN_PEAK_GRADE as GAKUDOU_WAITING_CHILDREN_PEAK_GRADE,
+  WAITING_CHILDREN_OCT_PROVISIONAL as GAKUDOU_WAITING_CHILDREN_OCT_PROVISIONAL,
+  gakudouHoikuDataset,
+} from "@/components/tools/impl/GakudouKabeDandoriCheck.calc";
 import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
 import { RecipeNinzuuKansan } from "@/components/tools/impl/RecipeNinzuuKansan";
 import { HoikuenOmukaeGyakusan } from "@/components/tools/impl/HoikuenOmukaeGyakusan";
@@ -1202,6 +1213,44 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           加熱不足は食中毒のリスクに、加熱しすぎは発火や容器破損のリスクにつながるため、
           初回は換算値より短めに設定し、様子を見ながら少しずつ追加で加熱することをおすすめします。
         </p>
+      </>
+    ),
+  },
+  "gakudou-kabe-dandori-check": {
+    ui: <GakudouKabeDandoriCheck />,
+    formula: (
+      <>
+        <p>
+          <strong>時期区分の考え方</strong>
+          ：入学（予定）年度と今日の日付から4月始まりの年度差（学年オフセット）を計算します。年度差が0〜5なら入学済み（小学
+          1〜6年生）、負の値なら就学前です。就学前の場合はさらに、入学前年の9月1日を境に「入学前年の秋頃」、翌1月1日を境に「入学直前」と細分し、それより前は「入学まで時間があります（情報収集期）」として扱います。年度差が6以上（入学から7年以上経過）は、本ツールが対象とする学年（小学生）を超えているものとして扱います。
+        </p>
+        <p>
+          <strong>チェックリストの内容について</strong>
+          ：「入学前年の秋頃までに」「入学直前（年明け〜3月）に」「入学後に」の3つの区分は、一般的に広く知られている学童保育利用の段取りをまとめた自前のリストです。総務省統計局の調査のような公的な統計データや、法令で定められた基準に基づくものではありません。今の時期に近い区分には目印を付けて表示しますが、他の区分も参考として常に表示し続けます。
+        </p>
+        <p>
+          <strong>★開所時間・締切日について（データの限界）★</strong>
+          ：学童保育（放課後児童健全育成事業）の基準は、令和2年4月1日の第9次地方分権一括法により、職員配置を含む全ての項目が市町村が条例を定めるに当たっての「参酌すべき基準」となっており、国が直接強制する全国一律の最低基準ではありません。開所時間は国の基準で休業日
+          {GAKUDOU_OPENING_HOURS_STANDARD.schoolHolidayMinHours}
+          時間以上・平日{GAKUDOU_OPENING_HOURS_STANDARD.schoolDayMinHours}
+          時間以上・年間{GAKUDOU_OPENING_HOURS_STANDARD.minDaysPerYear}
+          日以上を原則としていますが、具体的な開所・閉所の時刻は「当該事業所ごとに定める」とされ、申込締切日にいたってはそもそも国の基準に規定がありません。そのため本ツールは、具体的な時刻・締切日を一切生成せず、「入学前年の秋頃」「入学直前」「入学後」という粒度の粗い時期区分のみを示します。
+        </p>
+        <p>
+          対象学年は{GAKUDOU_GRADE_RANGE_LABEL}
+          で、1つの「支援の単位」の定員はおおむね{GAKUDOU_SUPPORT_UNIT_MAX_CHILDREN}
+          人が国の参酌基準です。令和7年5月1日現在、学童保育を利用できなかった児童（待機児童）は全国で
+          {GAKUDOU_WAITING_CHILDREN_TOTAL.toLocaleString("ja-JP")}
+          人、学年別では小学{GAKUDOU_WAITING_CHILDREN_PEAK_GRADE}年生が
+          {GAKUDOU_WAITING_CHILDREN_BY_GRADE[GAKUDOU_WAITING_CHILDREN_PEAK_GRADE].toLocaleString(
+            "ja-JP",
+          )}
+          人と最多です（低学年優先の選考による「小4の壁」）。ただし同年10月1日時点の速報値では
+          {GAKUDOU_WAITING_CHILDREN_OCT_PROVISIONAL.toLocaleString("ja-JP")}
+          人まで減少しており、年度途中に空きが出る実態もあわせて示しています（速報値であり確定値ではありません）。
+        </p>
+        <SeidoNotice datasets={[gakudouHoikuDataset]} today={todayJst()} />
       </>
     ),
   },
