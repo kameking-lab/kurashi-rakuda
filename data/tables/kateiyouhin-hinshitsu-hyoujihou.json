@@ -1,5 +1,5 @@
 {
-  "$comment": "家庭用品品質表示法の対象品目区分と表示義務の枠組みに関する対照表（非制度・法律の仕組みの整理）。洗濯表示（新JIS記号）の記号そのものは data/tables/sentaku-hyouji.json を参照。",
+  "$comment": "家庭用品品質表示法の対象品目区分と表示義務の枠組みに関する対照表（非制度・法律の仕組みの整理）。洗濯表示の記号そのものは data/tables/sentaku-hyoji.json（SSOT）を参照。",
   "org": "消費者庁",
   "source_url": "https://www.caa.go.jp/policies/policy/representation/household_goods/",
   "last_verified": "2026-07-17",
