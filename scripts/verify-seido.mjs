@@ -103,6 +103,10 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.minato.tokyo.jp',
   'city.shinagawa.tokyo.jp',
   'city.meguro.tokyo.jp',
+  // 渋谷区は本体を www.city.shibuya.tokyo.jp、PDF等の添付ファイルを
+  // files.city.shibuya.tokyo.jp で配信するため、サブドメイン一致で両方を許可する。
+  'city.shibuya.tokyo.jp',
+  'city.arakawa.tokyo.jp',
 ];
 
 const args = process.argv.slice(2);
