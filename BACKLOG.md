@@ -94,7 +94,17 @@
 - [ ] Q4-5 (A) ツール併走記事 20本（各ツール完成後に1本ずつ）blocked-by: 対応する Q3
 - [x] Q4-6 (B) 固定ページ → **完了（PR#49）**: /about（サイト概要・運営方針）/policy（紹介ポリシー全文）/privacy /disclaimer /contact ＋ /sources（既存）
 - [x] **Q4-7 (B) ★差し戻し★ 段取り記事5本の改稿** → **完了（2026-07-17）**: 5本とも到着済みの実データで書き替え、facts[]宣言・fidelityゲートPASS。dandori-sango-tetsuzuki-todoke-jidouteate（出生届14日以内・過料5万/10万円、児童手当15日特例・月額15,000/30,000円、出産育児一時金50万円）／dandori-sankyu-ikukyu-fukki-gyakuzan（1歳到達日締切・通勤30分基準・給付率67%→50%切替180日・社保料免除14日ルール）／dandori-youkaigo-nintei-nagare（二段階判定・認定等基準時間7区分・介護休暇5日/10日）／dandori-hokatsu-schedule-jiki・dandori-hokatsu-tejun（全国統一の申込期限データは存在しないため断定せず、育休延長がらみの1歳到達日・通勤30分・無償化上限額など実在する数値で補強。2本は時期論／手順論で役割分担し重複回避）。**★例示の「要介護認定は原則30日以内」は一次データ未収録と判明したため本文に記載せず★**（介護保険法施行規則の標準処理期間データが未整備。data/seido/への追加は別途起票）
-- [ ] **Q4-8 (A) 新旧重複記事8ペアの統廃合判断**（G2記事検収）: 児童手当・扶養の壁・保活・介護負担割合・幼児無償化・産前産後免除・育休給付・出産手当の各ペア。旧版11本は情報量で新版に劣る（SEOカニバリ・二重メンテのリスク。統合 or 明示的な棲み分けを編集判断）
+- [x] **Q4-8 (A) 新旧重複記事8ペアの統廃合判断** → **完了（2026-07-17）**: 8ペア中7ペアを統合、1ペア（保活）は明示的な棲み分けを選択。
+  - **統合7ペア**（旧slugをnext.config.tsのredirects()で301、solvesタグは新版に移行、旧版だけが持つ固有情報は新版へマージ済み）:
+    1. 扶養の壁: `seido-fuyou-no-kabe-2026` → `seido-fuyou-no-kabe-103-106-130-2026`（新版は年齢帯別の被扶養者認定基準150万/180万円まで持つため情報量で優位）
+    2. 育休給付: `seido-ikuji-kyugyou-kyufu` → `seido-ikuji-kyugyou-kyufu-taisho-kikan-2026`（カテゴリが career→pregnancy にまたがる redirect）
+    3. 児童手当: `seido-jidou-teate-2026` → `seido-jidou-teate-shotoku-seigen-teppai`（★tool_ref="jido-teate" を新版に移設済み★）
+    4. 介護負担割合: `seido-kaigo-hoken-jikofutan` → `seido-kaigo-hoken-futan-wariai-shotoku`（★tool_ref="kaigo-jikofutan" を新版に移設済み★）
+    5. 産前産後免除: `seido-sanzensango-hoken-menjo` → `seido-sanzensango-hoken-menjo-kikan-2026`
+    6. 幼児無償化: `seido-youji-kyouiku-mushouka` → `seido-youji-mushouka-taisho-nenrei`
+    7. 出産手当: `seido-shussan-teate-ichijikin` → `seido-shussan-teate-kingaku-2026`（★`seido-shussan-ichijikin-chokusetsu-shiharai-2026`は出産育児一時金という別制度の記事のため対象外・不変更★）
+  - **棲み分け1ペア（統合せず）**: 保活（`dandori-hokatsu-schedule-jiki`／`dandori-hokatsu-tejun`）は内容精査の結果、時期論（いつ動くか）と手順論（何をするか）で重複が薄く、統合すると単に長い一般記事になるだけと判断。Q4-7の書き替えで両記事の役割を明確化し重複を実質解消したため、削除・redirectは行わない。
+  - solvesタグの水増しなし（旧版の一意タグのみ移行、既存タグとの重複は追加せず）。sitemap.tsはcontent/articles/を都度readdirするため、削除により自動的にsitemapから除外される（記事総数70本のまま、新規追加なし）。
 
 ## Q5: 公開・運用接続（終盤直列）
 
