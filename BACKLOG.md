@@ -171,7 +171,7 @@
 | P2-T13 | #26 | 子ども医療費助成 自治体早見（プログラマティック候補） | S(オーパス) | ✔kodomo-iryouhi-jyosei（自治体拡充は別途） | 要 |
 | [x] P2-T14 | #5 | 妊婦健診スケジュール生成 → **完了（2026-07-17）**: `ninshin-kenshin-schedule` として実装（PR参照）。specs/b-tools/p2-t14-ninshin-kenshin-schedule.md・テスト21件 | B(ソネット) | ✔ninshin-kenshin-jyosei・sanpu-kenshin-jyosei | 簡易 |
 | P2-T15 | #6 | 妊娠中の体重増加チェッカー | B(ソネット) | 要: 妊娠中の体重増加指導の目安（厚労省/学会） | 要（YMYL中） |
-| [~] P2-T16 | #7 | 出産準備チェックリスト（予定日逆算） | B(ソネット) | なし（日付演算＋自前リスト） | 簡易 |
+| [x] P2-T16 | #7 | 出産準備チェックリスト（予定日逆算） | B(ソネット) | なし（日付演算＋自前リスト） | 簡易 → **完了（2026-07-18）**: slug `shussan-junbi-checklist`（pregnancy）。specs/b-tools/p2-t16-shussan-junbi-checklist.md・ShussanJunbiChecklist.calc.ts/tsx・tests/shussan-junbi-checklist.test.ts（20件）・registry.json 追加済み。時期区分（安定期/臨月/産後）の判定と時期別チェックリスト（今すぐ／臨月までに／入院バッグ／産後）を表示。日付演算のみ data/tables/san-fujinka-kijun.json の280日定数を再利用し、チェックリスト項目は一次情報のない一般的な目安である旨をCalloutで常時明示 |
 | [x] P2-T17 | #10 | 陣痛間隔カウンター（オフライン必須） | B(ソネット) | なし | 簡易 → **完了（slug: jintsuu-kankaku-counter, 2026-07-17）**: localStorage永続化・平均間隔/持続時間・出典はncchd.go.jp（国立成育医療研究センター） |
 | P2-T18 | #11 | 産後手続きリスト生成（期限つき） | B(ソネット) | ✔shussho-todoke-kigen・jido-teate・ikukyu-kyufu | 簡易 |
 | [x] P2-T19 | #27 | 幼児教育・保育無償化 対象チェッカー | B(ソネット) | ✔youji-kyouiku-mushouka | 簡易 → **完了（feat/tool-youji-mushouka-checker）**: slug `youji-mushouka-checker`（childcare）。specs/b-tools/p2-t19-youji-mushouka-checker.md・YoujiMushoukaChecker.calc.ts/tsx・tests/youji-mushouka-checker.test.ts（18件）・registry.json 追加済み |

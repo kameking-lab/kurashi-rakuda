@@ -34,6 +34,7 @@ import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
 import { YoujiMushoukaChecker } from "@/components/tools/impl/YoujiMushoukaChecker";
 import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushoukaChecker.calc";
 import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
+import { ShussanJunbiChecklist } from "@/components/tools/impl/ShussanJunbiChecklist";
 import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
 import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
@@ -1077,6 +1078,27 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
             表示される金額はあくまで全国平均の統計値であり、個々の家庭にとっての「正しい」食費や目標額を示すものではありません。
           </strong>
           地域・家族の年齢構成・自炊の頻度・物価の変動などによって、実際の食費は大きく異なります。次回の「◯◯年平均」の公表時期に合わせてデータを更新します。
+        </p>
+      </>
+    ),
+  },
+  "shussan-junbi-checklist": {
+    ui: <ShussanJunbiChecklist />,
+    formula: (
+      <>
+        <p>
+          <strong>時期区分の考え方</strong>
+          ：出産予定日から28日前（4週間前）を「臨月開始日」として計算します。妊娠10か月（臨月）は妊娠36週0日〜39週6日を指す慣用区分で、出産予定日（40週0日）の28日前にあたるためです。今日の日付が臨月開始日より前なら「安定期」、臨月開始日から出産予定日までの間なら「臨月」、出産予定日の翌日以降なら「産後」と判定します。
+        </p>
+        <p>
+          出産予定日そのものの40週（280日）という考え方は、出産予定日・妊娠週数計算ツールと同じ日数定数を使っています。本ツールが行うのは、この日数定数をもとにした出産予定日と今日の日付の単純な引き算のみです。
+        </p>
+        <p>
+          <strong>チェックリストの内容について</strong>
+          ：「今すぐ確認したいこと」「臨月までに準備したいこと」「入院バッグに入れるもの」「産後に向けて準備したいこと」の4つの区分は、一般的に広く知られている出産準備の目安をまとめた自前のリストです。総務省統計局の調査のような公的な統計データや、法令で定められた基準に基づくものではありません。今の時期に近い区分には目印を付けて表示しますが、他の区分も参考として常に表示し続けます。
+        </p>
+        <p>
+          必要なものは体調・地域・産院の方針・きょうだいの有無などによって大きく異なります。断定的な指示ではなく、母子健康手帳や産院からの案内と合わせて確認するための目安としてご利用ください。実際の出産日は予定日どおりとは限らないため、出産予定日を過ぎた場合の表示（産後の準備リスト）もあくまで参考です。
         </p>
       </>
     ),

@@ -962,5 +962,31 @@
     ],
     "updated": "2026-07-17",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T16",
+    "slug": "shussan-junbi-checklist",
+    "category": "pregnancy",
+    "title": "出産準備チェックリスト（予定日逆算）",
+    "description": "出産予定日を入れると、今日の日付から「安定期・臨月・産後」のどの時期かを判定し、時期別の出産準備・持ち物の一般的なチェックリストを表示します。",
+    "solves": [
+      "出産準備を何から始めればいいか分からない",
+      "入院バッグに何を入れればいいか分からない",
+      "臨月までに準備を終わらせたいものが分からない",
+      "産後すぐに必要な手続きが分からない"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "specs/b-tools/p2-t16-shussan-junbi-checklist.md（出産準備チェックリスト ロジック仕様）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/specs/b-tools/p2-t16-shussan-junbi-checklist.md"
+      },
+      {
+        "label": "data/tables/san-fujinka-kijun.json（出産予定日=最終月経開始日+280日の日数定数。Q3-01出産予定日・妊娠週数計算と共有）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/tables/san-fujinka-kijun.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
