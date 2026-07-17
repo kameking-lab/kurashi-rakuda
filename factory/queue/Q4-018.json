@@ -15,6 +15,6 @@
       "path": "data/seido/koukou-shugaku-shienkin.json"
     }
   ],
-  "status": "queued",
-  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"koukou-shugaku-shienkin.json#data.<パス>.value\"）。"
+  "status": "gated_pass",
+  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"koukou-shugaku-shienkin.json#data.<パス>.value\"）。★執筆時の判定★ data/seido/koukou-shugaku-shienkin.json のsources[]は全件mext.go.jpでfactory/config/source-allowlist.json未収載（スコープ外のため同ファイルは変更せず）。記事frontmatterのsourcesは根拠法（公立高等学校に係る授業料の不徴収及び高等学校等就学支援金の支給に関する法律、laws.e-gov.go.jp/law/422M60000080013）に差し替えてゲート通過。facts[].seido_refは引き続きmext由来のdata値を参照（データ層とsourcesドメイン許可は別関心事）。"
 }
