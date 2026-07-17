@@ -1,5 +1,5 @@
 {
-  "$comment": "洗濯表示（新JIS記号）の対照表データ（非制度）。旧 factory/data/seido/sentaku-hyouji.json を data/tables/ へ移設（G2データ一元化）。記号41種の詳細は BACKLOG Q2-4 / ツール#41 実装時に整備する。記事の seido_ref からは 'sentaku-hyouji.json#<パス>' で参照される（キー名は互換維持のため変更しない）。",
+  "$comment": "★2026-07-17 要更新（データ陳腐化を検出）★ 本データは平成28年12月1日施行の旧JIS L 0001に基づく。令和6年8月20日にJIS L 0001が改正され（ISO 3758の令和5年12月改正との整合）、繊維製品品質表示規程も同日改正・施行された（消費者庁 令和6年8月20日公表文）。改正内容は⑴洗濯記号の新規追加⑵洗濯記号の意味の変更⑶デザインの微修正の3点で、経過措置（従前表示での販売可）は令和7年8月19日で既に終了している。したがって現行制度は令和6年8月20日版であり、本データの『2016年12月1日改正・施行』『全41記号』という前提は現行と一致しない可能性が高い。★記号の総数は消費者庁の現行ページに明記がなく、一次情報で確認できていないため、推測で数値を差し替えていない（未確認）。★ 現行ページ: https://www.caa.go.jp/policies/policy/representation/household_goods/guide/wash_02.html （旧: .../guide/wash_01.html は「平成28年12月1日から令和6年8月19日まで」と明示）。更新は BACKLOG の D2 を参照。 【従前の説明】洗濯表示（新JIS記号）の対照表データ（非制度）。旧 factory/data/seido/sentaku-hyouji.json を data/tables/ へ移設（G2データ一元化）。記号41種の詳細は BACKLOG Q2-4 / ツール#41 実装時に整備する。記事の seido_ref からは 'sentaku-hyouji.json#<パス>' で参照される（キー名は互換維持のため変更しない）。",
   "org": "消費者庁",
   "source_url": "https://www.caa.go.jp/policies/policy/consumer_partnership/information/care_labeling/",
   "last_verified": "2026-07-17",

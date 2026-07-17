@@ -83,6 +83,13 @@
   - 手順: ①厚労省の新リーフレット（例年7月末公表。landingUrl: mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html）を取得 ②`ikukyu-kyufu.json` の賃金日額上限16,110円/下限3,014円・各支給上限額（323,811円ほか）・時短給付の支給限度額471,393円/最低限度額2,411円を差し替え、`checkedAt`/`verify.expect`/amendments を更新 ③`node scripts/verify-seido.mjs --fetch --only=ikukyu-kyufu` で照合PASS確認 ④関連ツール（Q3-04/Q3-19）とツール併走記事の表示値を確認 ⑤公開判定（noindex解除は app/layout.tsx の robots 行削除。Q5-4）
   - 担当: S級（オーパス）＋検算者ダブルチェック（YMYL）
 
+- [ ] **D2: 洗濯表示データが陳腐化している（期限は既に経過。公開前の要修正）** ★2026-07-17 G3制度データ第2弾セッションが検出★
+  - **事実（一次情報で確認済み）**: 令和6年8月20日に **JIS L 0001 が改正**され（令和5年12月の **ISO 3758** 改正との整合）、**繊維製品品質表示規程も同日改正・施行**。JIS の改正内容は⑴**洗濯記号の新規追加**⑵**洗濯記号の意味の変更**⑶デザインの微修正の3点。**経過措置（従前表示のままでの販売可）は令和7年8月19日で既に終了**しており、現行は令和6年8月20日版のみ。出典: 消費者庁 令和6年8月20日公表文（[PDF](https://www.caa.go.jp/policies/policy/representation/household_goods/information/operation/assets/representation_cms219_240820_01.pdf)）／消費者庁が現行ページを「[洗濯表示(令和6年8月20日以降)](https://www.caa.go.jp/policies/policy/representation/household_goods/guide/wash_02.html)」と「[洗濯表示(平成28年12月1日から令和6年8月19日まで)](https://www.caa.go.jp/policies/policy/representation/household_goods/guide/wash_01.html)」に**分離している**こと自体が裏付け
+  - **影響範囲**: `data/tables/sentaku-hyouji.json`・`data/tables/sentaku-hyoji.json`（いずれも「2016年12月1日改正・施行」「全41記号」が前提。★2026-07-17 に `$comment` へ要更新の警告を追記済み。値は未変更★）／**既に執筆済みの記事2本**（`content/articles/seido-sentaku-hyouji-mikata.md`・`content/articles/tool-narisou-sentaku-hyouji.md`。ともに「2016年12月から」「**全41種類**」を `status: "verified"` で断定）／ツール #41（Q3-17 洗濯表示検索）／ジョブ Q4-024（batch1・gated_pass 済）
+  - **★記号の総数は未確認のまま★**: 新規記号（手洗い110/111・漂白禁止200・アイロン禁止500・スチームなしアイロン511 等）が追加されたため **41 は現行と一致しない可能性が高い**が、**消費者庁の現行ページに総数の明記がなく一次情報で確定できないため、推測で数値を差し替えていない**（本プロジェクトの「推測で埋めない」原則に従う）
+  - **手順**: ①消費者庁の現行ページ（wash_02.html）と JIS L 0001:2024 で**記号の全数・意味・追加分**を確認（総数の明記がなければ**記号を列挙して数える**か、総数に言及しない構成に記事を改める）②`sentaku-hyouji.json` / `sentaku-hyoji.json` を現行版に差し替え ③**記事2本の「41種類」「2016年12月から」の記述を修正**（`facts[].value` と本文の両方。忠実性ゲートが facts を照合する）④ツール #41 のデータ・テストを更新
+  - 担当: 家事・料理データの担当セッション（本セッションの担当40件の範囲外のため、データへの警告注記と本項の起票に留めた）
+
 ## G2検収チェックリスト（Q3 各ツールの [~]→[x] 判定に使用。検収者=実装者以外）
 
 1. **動作**: スマホ実機（幅375px）で入力→結果が1画面で完結／オフライン（機内モード）で再計算が動く／境界値・異常入力（0・負数・空・うるう年）で NaN や無言失敗にならない／`npm test` に境界値テストが含まれる
