@@ -210,6 +210,7 @@ data/seido/hoikuryo/<pref>-<city>.json
 - 推測で数値を埋めない。未取得は note に「未確認: 理由」
 - 令和8年度版が未公表なら fiscalYear: 2025 + amendments に status:"under-review"
 - checkedAt / asOf は作業日。sources[].tier は "municipality"
+- nextCheckDue（次回再確認日）は原則、翌年度の4月1日（令和8年度版なら 2027-04-01。R7版に留まる場合はR8版の公表を待つ近い日付）。無いと verify-seido が構造検査エラーにする
 - PDF出典は url に PDF、landingUrl に掲載元ページを両方入れる
 - 検証: node scripts/verify-seido.mjs --only=<id> でエラー0を確認してから完了
 - git 操作は一切しない。data/ 以外は触らない

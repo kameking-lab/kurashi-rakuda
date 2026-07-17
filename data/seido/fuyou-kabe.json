@@ -4,6 +4,7 @@
   "name": "扶養の壁（税・社会保険の年収基準）",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "nta-2026kiso",
@@ -164,7 +165,11 @@
       "label": "対象年分（令和8年分）",
       "sourceId": "nta-2026kiso",
       "checkedAt": "2026-07-17",
-      "verify": { "expect": ["令和８年分以後の所得税について適用"] },
+      "verify": {
+        "expect": [
+          "令和８年分以後の所得税について適用"
+        ]
+      },
       "amendmentNote": "令和8年12月1日施行、令和8年分以後の所得税について適用。"
     },
     "kisoKoujo": {
@@ -175,7 +180,11 @@
         "label": "所得税法第86条の基礎控除額（改正後）",
         "sourceId": "nta-2026aramashi",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["基礎控除額62万円（改正前：58万円）"] },
+        "verify": {
+          "expect": [
+            "基礎控除額62万円（改正前：58万円）"
+          ]
+        },
         "amendmentNote": "令和8年度改正で58万円→62万円（+4万円）。合計所得2,350万円超の場合の基礎控除額に改正はない。"
       },
       "bracketsFY2026to2027": {
@@ -213,7 +222,13 @@
             "note": "未確認: 2,350万円超の逓減表（32万円/16万円/0円）は本改正の対象外のため今回のあらましに記載がない。所得税法第86条を直接参照して別途データ化すること。本ツールの想定利用者（パート・共働き世帯）の射程外のため MVP では実装しない。"
           }
         ],
-        "verify": { "expect": ["104", "67", "62"] }
+        "verify": {
+          "expect": [
+            "104",
+            "67",
+            "62"
+          ]
+        }
       },
       "bracketsFY2028onward": {
         "label": "令和10年分以後の基礎控除額（参考・先出し）",
@@ -234,7 +249,12 @@
             "breakdown": "62万円（加算なし）"
           }
         ],
-        "verify": { "expect": ["99", "62"] }
+        "verify": {
+          "expect": [
+            "99",
+            "62"
+          ]
+        }
       }
     },
     "kyuyoShotokuKoujo": {
@@ -245,7 +265,11 @@
         "label": "令和8・9年分の給与所得控除の最低保障額",
         "sourceId": "nta-2026aramashi",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["65万円の最低保障額が74万円に引き上げられました"] },
+        "verify": {
+          "expect": [
+            "65万円の最低保障額が74万円に引き上げられました"
+          ]
+        },
         "amendmentNote": "令和8・9年分限りの特例。令和10年分以後は69万円（かつ収入×30％＋8万円との比較）に戻る（expires: 2027-12-31）。",
         "note": "★重要★ 給与等の収入金額220万円以下について一律74万円（原典の表で『190万円以下』と『190万円超220万円以下』の行が縦結合）。検算: 給与収入136万円 − 74万円 = 合計所得62万円 ＝ 扶養親族の所得要件と完全一致。給与収入206万円 − 74万円 = 132万円 ＝ 基礎控除表の132万円と一致。"
       },
@@ -255,7 +279,11 @@
         "label": "令和10年分以後の給与所得控除の最低保障額",
         "sourceId": "mof-2026taikou-gaiyou",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["65 万円の最低保障額を69 万円に引き上げる"] },
+        "verify": {
+          "expect": [
+            "65 万円の最低保障額を69 万円に引き上げる"
+          ]
+        },
         "amendmentNote": "令和10年分以後。物価連動の見直し対象。"
       },
       "specialTableFY2026to2027": {
@@ -265,13 +293,44 @@
         "amendmentNote": "令和8・9年分限りの特例（expires: 2027-12-31）",
         "note": "境界値テストの根幹。通常の『収入 − 74万円』では処理できない不連続点がここに集中している。",
         "rows": [
-          { "incomeMin": 691000, "incomeMax": 741000, "salaryIncome": 0, "formula": "なし" },
-          { "incomeMin": 741000, "incomeMax": 2191000, "salaryIncome": null, "formula": "その収入金額 − 74万円" },
-          { "incomeMin": 2191000, "incomeMax": 2193000, "salaryIncome": 1451000, "formula": "定額" },
-          { "incomeMin": 2193000, "incomeMax": 2196000, "salaryIncome": 1453000, "formula": "定額" },
-          { "incomeMin": 2196000, "incomeMax": 2200000, "salaryIncome": 1456000, "formula": "定額" }
+          {
+            "incomeMin": 691000,
+            "incomeMax": 741000,
+            "salaryIncome": 0,
+            "formula": "なし"
+          },
+          {
+            "incomeMin": 741000,
+            "incomeMax": 2191000,
+            "salaryIncome": null,
+            "formula": "その収入金額 − 74万円"
+          },
+          {
+            "incomeMin": 2191000,
+            "incomeMax": 2193000,
+            "salaryIncome": 1451000,
+            "formula": "定額"
+          },
+          {
+            "incomeMin": 2193000,
+            "incomeMax": 2196000,
+            "salaryIncome": 1453000,
+            "formula": "定額"
+          },
+          {
+            "incomeMin": 2196000,
+            "incomeMax": 2200000,
+            "salaryIncome": 1456000,
+            "formula": "定額"
+          }
         ],
-        "verify": { "expect": ["69 万1,000 円以上", "145 万1,000 円", "145 万6,000 円"] }
+        "verify": {
+          "expect": [
+            "69 万1,000 円以上",
+            "145 万1,000 円",
+            "145 万6,000 円"
+          ]
+        }
       },
       "standardTable": {
         "label": "給与所得控除額の速算表（220万円超の部分）",
@@ -279,7 +338,10 @@
         "checkedAt": "2026-07-17",
         "amendmentNote": "給与等の収入金額が220万円超の場合の給与所得控除額に改正はない。",
         "note": "未確認: 220万円超の速算表（収入×30％＋8万円 / ×20％＋44万円 / ×10％＋110万円 / 195万円上限）そのものは今回のあらましに『改正なし』としか記載がなく、数式の全文は別途『給与所得控除』の国税庁タックスアンサー等から取得する必要がある。基礎控除表の salaryIncomeEquivalent（489万円→665万5,556円等）との整合は検算済みだが、データとしては未収集。",
-        "verify": { "skip": true, "skipReason": "未収集項目のため照合対象外。queue/hoikuryo-backlog.md ではなく本ファイルの本note に残タスクとして明記。" }
+        "verify": {
+          "skip": true,
+          "skipReason": "未収集項目のため照合対象外。queue/hoikuryo-backlog.md ではなく本ファイルの本note に残タスクとして明記。"
+        }
       }
     },
     "walls": {
@@ -296,7 +358,10 @@
           "checkedAt": "2026-07-17",
           "amendmentNote": "個人住民税の給与所得控除の最低保障額は69万円＋特例5万円＝74万円（個人住民税は令和9年度分・令和10年度分に適用＝令和8年分の所得が対象）。個人住民税の基礎控除の引上げは令和8年度大綱に記載がなく、43万円のままと考えられる。",
           "note": "★未確認★ 均等割の非課税限度額は地方税法上、級地（1級地〜3級地）ごとに異なり、市区町村が条例で定める。単身の場合の合計所得金額の基準（1級地45万円／2級地41.5万円／3級地38万円と言われる値）を総務省の一次資料で確認できなかったため、金額を確定していない（amount2026: null）。ツールでは『お住まいの市区町村により異なります』と表示し、確定値を出さないこと。収集手順は queue/hoikuryo-backlog.md の §5 に記載。",
-          "verify": { "skip": true, "skipReason": "未確認項目。級地別の非課税限度額を一次情報で確定できていないため照合不能。" }
+          "verify": {
+            "skip": true,
+            "skipReason": "未確認項目。級地別の非課税限度額を一次情報で確定できていないため照合不能。"
+          }
         },
         {
           "key": "shotokuzei-honnin",
@@ -307,7 +372,11 @@
           "effect": "本人に所得税が課され始める（課税最低限）",
           "sourceId": "mof-2026taikou-gaiyou",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["課税最低限を178"] },
+          "verify": {
+            "expect": [
+              "課税最低限を178"
+            ]
+          },
           "amendmentNote": "令和8年度改正で178万円に。ただし令和8・9年分限りの特例（令和10年分以後は基礎控除99万円＋給与所得控除69万円＝168万円）。",
           "note": "内訳: 給与所得控除74万円 ＋ 基礎控除104万円 ＝ 178万円。財務省大綱の『所得税の課税最低限を178万円まで特例的に先取りして引き上げる』と一致。★UI上の最重要メッセージ★『103万円の壁』はもう存在しない。"
         },
@@ -320,7 +389,11 @@
           "effect": "これを超えると、扶養している親・配偶者が扶養控除／配偶者控除を受けられなくなる",
           "sourceId": "nta-2026aramashi",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["62 万円以下 （136 万円以下）"] },
+          "verify": {
+            "expect": [
+              "62 万円以下 （136 万円以下）"
+            ]
+          },
           "amendmentNote": "令和8年度改正で合計所得58万円以下（給与123万円以下）→62万円以下（給与136万円以下）。",
           "note": "対象: 扶養親族／同一生計配偶者／ひとり親の生計を一にする子（ひとり親の子のみ総所得金額等の合計額で判定）。合計所得金額62万円以下。"
         },
@@ -333,7 +406,11 @@
           "effect": "給与136万円超197万円以下の間は、親が特定親族特別控除を段階的に受けられる（控除額が逓減）。197万円を超えると控除ゼロ",
           "sourceId": "nta-2026aramashi",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["62 万円超 123 万円以下 （136 万円超 197 万円以下）"] },
+          "verify": {
+            "expect": [
+              "62 万円超 123 万円以下 （136 万円超 197 万円以下）"
+            ]
+          },
           "amendmentNote": "令和7年度改正で創設、令和8年度改正で範囲が給与123万円超188万円以下→136万円超197万円以下に。",
           "note": "★『壁』ではなく『なだらかな坂』★ 控除額は63万円→61万円→51万円→41万円→31万円→21万円→11万円→6万円→3万円と逓減するため、手取りが逆転する崖は生じない。UIでこの点を明示すること。控除額表は tokuteiShinzokuTokubetsuKoujo を参照。"
         },
@@ -346,7 +423,11 @@
           "effect": "給与136万円超159万円以下は配偶者特別控除が満額38万円。159万円超から逓減し、207万円超でゼロ",
           "sourceId": "nta-2026aramashi",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["62 万円超 133 万円以下 （136 万円超 207 万円以下）"] },
+          "verify": {
+            "expect": [
+              "62 万円超 133 万円以下 （136 万円超 207 万円以下）"
+            ]
+          },
           "amendmentNote": "令和8年度改正で合計所得58万円超133万円以下（給与123万円超201万5,999円以下）→62万円超133万円以下（給与136万円超207万円以下）。",
           "note": "配偶者控除・配偶者特別控除は、控除を受ける側（所得者）の合計所得金額が1,000万円以下であることが要件。900万円超から控除額が段階的に減る。控除額表は haiguushaTokubetsuKoujo を参照。"
         },
@@ -359,7 +440,11 @@
           "effect": "これ以下であれば勤労学生控除（27万円）を受けられる",
           "sourceId": "nta-2026aramashi",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["89 万円以下 （163 万円以下）"] },
+          "verify": {
+            "expect": [
+              "89 万円以下 （163 万円以下）"
+            ]
+          },
           "amendmentNote": "令和8年度改正で合計所得85万円以下（給与150万円以下）→89万円以下（給与163万円以下）。",
           "note": "合計所得金額89万円以下、かつ給与所得等以外の所得が10万円以下であること。控除額27万円そのものは未確認（今回のあらましは所得要件のみを記載）。"
         },
@@ -372,7 +457,11 @@
           "effect": "5要件を全て満たすと、勤務先の健康保険・厚生年金に加入（保険料負担が発生し手取りが減る）",
           "sourceId": "nenkin-tanjikan",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["8.8万円"] },
+          "verify": {
+            "expect": [
+              "8.8万円"
+            ]
+          },
           "amendmentNote": "★2026年10月に賃金要件が撤廃される予定★ 2026年9月30日までは月額8.8万円以上が要件。10月1日以降は賃金要件が消滅し、週20時間以上・企業規模51人以上等を満たせば加入対象。ツールは2026年10月を境に判定を分岐させること。",
           "note": "『106万円』は法令上の数値ではない。法令上は報酬月額8.8万円以上（8.8万円×12＝105.6万円 を丸めた通称）。判定は年収ではなく月額の所定内賃金で行われ、賞与・残業代・通勤手当・精皆勤手当・家族手当は算入しない。要件の詳細は socialInsurance.shortTimeWorker を参照。"
         },
@@ -385,7 +474,11 @@
           "effect": "これを超えると配偶者・親の健康保険の被扶養者から外れ、国民健康保険・国民年金（または勤務先の社保）に自分で加入する必要がある",
           "sourceId": "nenkin-hifuyousha",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["130万円未満"] },
+          "verify": {
+            "expect": [
+              "130万円未満"
+            ]
+          },
           "amendmentNote": "2026年度時点で130万円のまま。ただし19歳以上23歳未満（配偶者を除く）は令和7年10月1日から150万円未満（shaho-150 参照）。",
           "note": "★最大の崖★ 106万円の壁と違い、超えた瞬間に保険料が全額自己負担で発生するため手取りが大きく落ち込む（いわゆる逆転現象）。年間収入は過去の収入ではなく『被扶養者に該当する時点および認定された日以降の年間の見込み収入額』。給与所得等の場合は月額108,333円以下、雇用保険等の受給者は日額3,611円以下が目安。60歳以上または障害者は180万円未満。"
         },
@@ -398,7 +491,11 @@
           "effect": "19歳以上23歳未満は、被扶養者認定の年間収入基準が150万円未満",
           "sourceId": "nenkin-150man",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["150万円未満"] },
+          "verify": {
+            "expect": [
+              "150万円未満"
+            ]
+          },
           "amendmentNote": "令和7年10月1日施行済。2026年度時点で有効。",
           "note": "年齢は扶養認定日が属する年の12月31日時点で判定。税の特定親族特別控除（給与197万円以下）とは基準額も判定時点も異なるため、UIで混同させないこと。"
         }
@@ -413,7 +510,11 @@
           "label": "週の所定労働時間",
           "sourceId": "egov-kousei-nenkin",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["一週間の所定労働時間が二十時間未満"] },
+          "verify": {
+            "expect": [
+              "一週間の所定労働時間が二十時間未満"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）。撤廃予定なし。",
           "note": "20時間以上で該当。所定労働時間であり、実労働時間ではない。"
         },
@@ -423,7 +524,11 @@
           "label": "報酬月額（所定内賃金）",
           "sourceId": "egov-kousei-nenkin",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["八万八千円未満"] },
+          "verify": {
+            "expect": [
+              "八万八千円未満"
+            ]
+          },
           "amendmentNote": "★2026年10月1日に撤廃予定★（令和7年法律第74号）。2026年9月30日まで有効。ただし施行期日を定める政令の公布は2026-07-17時点で未確認。",
           "note": "最低賃金法第4条第3項各号に掲げる賃金に相当するもの（賞与・残業代・通勤手当・精皆勤手当・家族手当）を除いて算定。撤廃後も、最低賃金の減額特例の対象となる短時間労働者のうち月額8.8万円未満の者は原則加入しない（申出により任意加入は可能）。"
         },
@@ -433,7 +538,10 @@
           "label": "いわゆる「106万円の壁」（報酬月額8.8万円×12か月の年収換算による通称）",
           "sourceId": "egov-kousei-nenkin",
           "checkedAt": "2026-07-17",
-          "verify": { "skip": true, "skipReason": "法令上の要件は報酬月額8.8万円（monthlyWageThreshold で照合済み）。106万円は月額基準の年収換算による通称であり、条文には出現しない導出値のため照合対象外。" },
+          "verify": {
+            "skip": true,
+            "skipReason": "法令上の要件は報酬月額8.8万円（monthlyWageThreshold で照合済み）。106万円は月額基準の年収換算による通称であり、条文には出現しない導出値のため照合対象外。"
+          },
           "amendmentNote": "★2026年10月1日に賃金要件撤廃予定★（令和7年法律第74号）。撤廃後は「106万円の壁」自体が消滅する。2026年9月30日まで有効。",
           "note": "判定はあくまで月額8.8万円で行われる。年収106万円は目安表現としてのみ用い、ツールでは月額基準で計算すること。"
         },
@@ -442,7 +550,11 @@
           "label": "雇用期間の見込み",
           "sourceId": "egov-kousei-nenkin",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["二月以内の期間を定めて使用される者"] },
+          "verify": {
+            "expect": [
+              "二月以内の期間を定めて使用される者"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）"
         },
         "studentExclusion": {
@@ -450,7 +562,11 @@
           "label": "学生は適用除外",
           "sourceId": "egov-kousei-nenkin",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["高等学校の生徒"] },
+          "verify": {
+            "expect": [
+              "高等学校の生徒"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）",
           "note": "高等学校の生徒・大学の学生その他厚生労働省令で定める者。ただし夜間・通信・定時制の学生は適用対象（＝加入する）。"
         },
@@ -460,7 +576,11 @@
           "label": "特定適用事業所の企業規模",
           "sourceId": "nenkin-tanjikan",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["51人以上"] },
+          "verify": {
+            "expect": [
+              "51人以上"
+            ]
+          },
           "amendmentNote": "★段階的に撤廃★ 36人以上=2027年10月／21人以上=2029年10月／11人以上=2032年10月／1人以上=2035年10月。2026年度時点では51人以上。",
           "note": "1年のうち6月間以上、厚生年金保険の被保険者（短時間労働者を含まない）の総数が51人以上となることが見込まれる企業等。この人数を待たずとも労使合意により加入可能（任意特定適用事業所）。"
         }
@@ -473,7 +593,11 @@
           "label": "年間収入の基準",
           "sourceId": "nenkin-hifuyousha",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["130万円未満"] },
+          "verify": {
+            "expect": [
+              "130万円未満"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）。19〜23歳は150万円（令和7年10月〜）。"
         },
         "annualIncomeThresholdElderlyOrDisabled": {
@@ -482,7 +606,11 @@
           "label": "60歳以上または障害者の年間収入の基準",
           "sourceId": "nenkin-hifuyousha",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["180万円未満"] },
+          "verify": {
+            "expect": [
+              "180万円未満"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）"
         },
         "annualIncomeThreshold19to22": {
@@ -491,7 +619,11 @@
           "label": "19歳以上23歳未満（配偶者を除く）の年間収入の基準",
           "sourceId": "nenkin-150man",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["150万円未満"] },
+          "verify": {
+            "expect": [
+              "150万円未満"
+            ]
+          },
           "amendmentNote": "令和7年10月1日施行済"
         },
         "monthlyEquivalent": {
@@ -500,7 +632,11 @@
           "label": "給与所得等の月額目安（130万円基準）",
           "sourceId": "nenkin-hifuyousha",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["108,333円以下"] },
+          "verify": {
+            "expect": [
+              "108,333円以下"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）"
         },
         "dailyEquivalentForBenefits": {
@@ -509,7 +645,11 @@
           "label": "雇用保険等の受給者の日額目安（130万円基準）",
           "sourceId": "nenkin-hifuyousha",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["3,611円以下"] },
+          "verify": {
+            "expect": [
+              "3,611円以下"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）",
           "note": "失業給付・傷病手当金・出産手当金も収入に含まれる点に注意。"
         },
@@ -518,7 +658,11 @@
           "label": "同一世帯の場合の追加要件",
           "sourceId": "nenkin-hifuyousha",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["収入が扶養者（被保険者）の収入の半分未満"] },
+          "verify": {
+            "expect": [
+              "収入が扶養者（被保険者）の収入の半分未満"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）",
           "note": "同一世帯でない場合は『被保険者からの仕送り額未満』。"
         },
@@ -527,7 +671,11 @@
           "label": "年間収入の定義",
           "sourceId": "nenkin-hifuyousha",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["年間の見込み収入額"] },
+          "verify": {
+            "expect": [
+              "年間の見込み収入額"
+            ]
+          },
           "amendmentNote": "令和8年4月1日から、労働条件通知書等の労働契約内容から見込まれる収入により判定する取扱いが開始。労働契約で見込み難い時間外労働の賃金等（臨時収入）は年間収入に含まれない。",
           "note": "★税と社保の最大の違い★ 税は1〜12月の暦年の確定額、社保は認定時点からの将来12か月の見込み額。ツールで必ず対比して説明すること。"
         },
@@ -536,7 +684,11 @@
           "label": "事業主の証明による被扶養者認定の円滑化",
           "sourceId": "kyoukaikenpo-jigyounushi-shoumei",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["連続2回"] },
+          "verify": {
+            "expect": [
+              "連続2回"
+            ]
+          },
           "amendmentNote": "「年収の壁・支援強化パッケージ」の当面の対応として継続中。終了期日は設定されていない（2026-07-17時点）。",
           "note": "『連続2回』＝連続する2年間の各年における収入確認において事業主の証明を用いることができる、の意。人手不足による労働時間延長等が理由である場合に限る。"
         },
@@ -545,7 +697,10 @@
           "label": "保険者ごとの差異",
           "sourceId": "nenkin-hifuyousha",
           "checkedAt": "2026-07-17",
-          "verify": { "skip": true, "skipReason": "一般的な注意喚起であり、出典ページ上に同一文字列が存在しないため照合対象外。UI表示のための注記。" },
+          "verify": {
+            "skip": true,
+            "skipReason": "一般的な注意喚起であり、出典ページ上に同一文字列が存在しないため照合対象外。UI表示のための注記。"
+          },
           "amendmentNote": "なし（2026-07-17時点）",
           "note": "本データは協会けんぽ・日本年金機構の基準に基づく。組合健保の独自基準はデータ化しない（免責文で明示）。"
         }
@@ -557,17 +712,81 @@
       "checkedAt": "2026-07-17",
       "amendmentNote": "令和8年度改正後の額。所得区分の下限が58万円超→62万円超に変更（給与123万円超→136万円超）。",
       "note": "配偶者特別控除と異なり、控除を受ける側（所得者）の合計所得金額による区分はない（一律）。",
-      "verify": { "expect": ["63 万円", "61 万円", "51 万円", "41 万円", "31 万円", "21 万円", "11 万円"] },
+      "verify": {
+        "expect": [
+          "63 万円",
+          "61 万円",
+          "51 万円",
+          "41 万円",
+          "31 万円",
+          "21 万円",
+          "11 万円"
+        ]
+      },
       "rows": [
-        { "totalIncomeMin": 620000, "totalIncomeMax": 850000, "salaryMin": 1360000, "salaryMax": 1590000, "deduction": 630000 },
-        { "totalIncomeMin": 850000, "totalIncomeMax": 900000, "salaryMin": 1590000, "salaryMax": 1640000, "deduction": 610000 },
-        { "totalIncomeMin": 900000, "totalIncomeMax": 950000, "salaryMin": 1640000, "salaryMax": 1690000, "deduction": 510000 },
-        { "totalIncomeMin": 950000, "totalIncomeMax": 1000000, "salaryMin": 1690000, "salaryMax": 1740000, "deduction": 410000 },
-        { "totalIncomeMin": 1000000, "totalIncomeMax": 1050000, "salaryMin": 1740000, "salaryMax": 1790000, "deduction": 310000 },
-        { "totalIncomeMin": 1050000, "totalIncomeMax": 1100000, "salaryMin": 1790000, "salaryMax": 1840000, "deduction": 210000 },
-        { "totalIncomeMin": 1100000, "totalIncomeMax": 1150000, "salaryMin": 1840000, "salaryMax": 1890000, "deduction": 110000 },
-        { "totalIncomeMin": 1150000, "totalIncomeMax": 1200000, "salaryMin": 1890000, "salaryMax": 1940000, "deduction": 60000 },
-        { "totalIncomeMin": 1200000, "totalIncomeMax": 1230000, "salaryMin": 1940000, "salaryMax": 1970000, "deduction": 30000 }
+        {
+          "totalIncomeMin": 620000,
+          "totalIncomeMax": 850000,
+          "salaryMin": 1360000,
+          "salaryMax": 1590000,
+          "deduction": 630000
+        },
+        {
+          "totalIncomeMin": 850000,
+          "totalIncomeMax": 900000,
+          "salaryMin": 1590000,
+          "salaryMax": 1640000,
+          "deduction": 610000
+        },
+        {
+          "totalIncomeMin": 900000,
+          "totalIncomeMax": 950000,
+          "salaryMin": 1640000,
+          "salaryMax": 1690000,
+          "deduction": 510000
+        },
+        {
+          "totalIncomeMin": 950000,
+          "totalIncomeMax": 1000000,
+          "salaryMin": 1690000,
+          "salaryMax": 1740000,
+          "deduction": 410000
+        },
+        {
+          "totalIncomeMin": 1000000,
+          "totalIncomeMax": 1050000,
+          "salaryMin": 1740000,
+          "salaryMax": 1790000,
+          "deduction": 310000
+        },
+        {
+          "totalIncomeMin": 1050000,
+          "totalIncomeMax": 1100000,
+          "salaryMin": 1790000,
+          "salaryMax": 1840000,
+          "deduction": 210000
+        },
+        {
+          "totalIncomeMin": 1100000,
+          "totalIncomeMax": 1150000,
+          "salaryMin": 1840000,
+          "salaryMax": 1890000,
+          "deduction": 110000
+        },
+        {
+          "totalIncomeMin": 1150000,
+          "totalIncomeMax": 1200000,
+          "salaryMin": 1890000,
+          "salaryMax": 1940000,
+          "deduction": 60000
+        },
+        {
+          "totalIncomeMin": 1200000,
+          "totalIncomeMax": 1230000,
+          "salaryMin": 1940000,
+          "salaryMax": 1970000,
+          "deduction": 30000
+        }
       ]
     },
     "haiguushaTokubetsuKoujo": {
@@ -576,14 +795,27 @@
       "checkedAt": "2026-07-17",
       "amendmentNote": "令和8年度改正後の額。配偶者の所得区分の下限が58万円超→62万円超に変更（給与123万円超→136万円超）。",
       "note": "所得者の合計所得金額が1,000万円超の場合は配偶者特別控除の適用なし。deductions は [所得者900万円以下, 900万円超950万円以下, 950万円超1,000万円以下] の順。",
-      "verify": { "expect": ["38 万円", "26 万円", "13 万円", "３万円", "２万円", "１万円"] },
+      "verify": {
+        "expect": [
+          "38 万円",
+          "26 万円",
+          "13 万円",
+          "３万円",
+          "２万円",
+          "１万円"
+        ]
+      },
       "fullAmountSalaryLine": {
         "value": 1590000,
         "unit": "JPY/year",
         "label": "配偶者特別控除が満額38万円となる配偶者の給与収入の上限（令和8年分。旧「150万円の壁」）",
         "sourceId": "nta-2026aramashi",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["136 万円超 197 万円以下"] },
+        "verify": {
+          "expect": [
+            "136 万円超 197 万円以下"
+          ]
+        },
         "amendmentNote": "令和8年度改正で150万円→159万円に変更（配偶者の合計所得85万円以下＝給与159万円以下、所得者の合計所得900万円以下の場合）。",
         "note": "rows[0]〜[1]（給与136万円超159万円以下）の控除額が38万円であることに対応する要約ノード。旧「150万円の壁」は令和8年分では159万円。"
       },
@@ -593,28 +825,165 @@
         "label": "配偶者特別控除が消失する配偶者の給与収入ライン（令和8年分。旧「201万円の壁」）",
         "sourceId": "nta-2026aramashi",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["62 万円超 133 万円以下 （136 万円超 207 万円以下）"] },
+        "verify": {
+          "expect": [
+            "62 万円超 133 万円以下 （136 万円超 207 万円以下）"
+          ]
+        },
         "amendmentNote": "令和8年度改正で201万円（201万5,999円）→207万円に変更。",
         "note": "walls.items の haiguusha-tokubetsu（amount2026: 2070000）に対応する要約ノード。"
       },
       "incomeEarnerBrackets": [
-        { "max": 9000000, "salaryEquivalentMax": 10950000, "label": "900万円以下（給与1,095万円以下）" },
-        { "max": 9500000, "salaryEquivalentMax": 11450000, "label": "900万円超950万円以下（給与1,095万円超1,145万円以下）" },
-        { "max": 10000000, "salaryEquivalentMax": 11950000, "label": "950万円超1,000万円以下（給与1,145万円超1,195万円以下）" }
+        {
+          "max": 9000000,
+          "salaryEquivalentMax": 10950000,
+          "label": "900万円以下（給与1,095万円以下）"
+        },
+        {
+          "max": 9500000,
+          "salaryEquivalentMax": 11450000,
+          "label": "900万円超950万円以下（給与1,095万円超1,145万円以下）"
+        },
+        {
+          "max": 10000000,
+          "salaryEquivalentMax": 11950000,
+          "label": "950万円超1,000万円以下（給与1,145万円超1,195万円以下）"
+        }
       ],
       "rows": [
-        { "totalIncomeMin": 620000, "totalIncomeMax": 850000, "salaryMin": 1360000, "salaryMax": 1590000, "deductions": [380000, 260000, 130000] },
-        { "totalIncomeMin": 850000, "totalIncomeMax": 900000, "salaryMin": 1590000, "salaryMax": 1640000, "deductions": [380000, 260000, 130000] },
-        { "totalIncomeMin": 900000, "totalIncomeMax": 950000, "salaryMin": 1640000, "salaryMax": 1690000, "deductions": [380000, 260000, 130000] },
-        { "totalIncomeMin": 950000, "totalIncomeMax": 1000000, "salaryMin": 1690000, "salaryMax": 1740000, "deductions": [360000, 240000, 120000] },
-        { "totalIncomeMin": 1000000, "totalIncomeMax": 1050000, "salaryMin": 1740000, "salaryMax": 1790000, "deductions": [310000, 210000, 110000] },
-        { "totalIncomeMin": 1050000, "totalIncomeMax": 1100000, "salaryMin": 1790000, "salaryMax": 1840000, "deductions": [260000, 180000, 90000] },
-        { "totalIncomeMin": 1100000, "totalIncomeMax": 1150000, "salaryMin": 1840000, "salaryMax": 1890000, "deductions": [210000, 140000, 70000] },
-        { "totalIncomeMin": 1150000, "totalIncomeMax": 1200000, "salaryMin": 1890000, "salaryMax": 1940000, "deductions": [160000, 110000, 60000] },
-        { "totalIncomeMin": 1200000, "totalIncomeMax": 1230000, "salaryMin": 1940000, "salaryMax": 1970000, "deductions": [110000, 80000, 40000] },
-        { "totalIncomeMin": 1230000, "totalIncomeMax": 1250000, "salaryMin": 1970000, "salaryMax": 1990000, "deductions": [110000, 80000, 40000], "note": "原典で123万円超125万円以下の行は縦結合により上の行と同額" },
-        { "totalIncomeMin": 1250000, "totalIncomeMax": 1300000, "salaryMin": 1990000, "salaryMax": 2040000, "deductions": [60000, 40000, 20000] },
-        { "totalIncomeMin": 1300000, "totalIncomeMax": 1330000, "salaryMin": 2040000, "salaryMax": 2070000, "deductions": [30000, 20000, 10000] }
+        {
+          "totalIncomeMin": 620000,
+          "totalIncomeMax": 850000,
+          "salaryMin": 1360000,
+          "salaryMax": 1590000,
+          "deductions": [
+            380000,
+            260000,
+            130000
+          ]
+        },
+        {
+          "totalIncomeMin": 850000,
+          "totalIncomeMax": 900000,
+          "salaryMin": 1590000,
+          "salaryMax": 1640000,
+          "deductions": [
+            380000,
+            260000,
+            130000
+          ]
+        },
+        {
+          "totalIncomeMin": 900000,
+          "totalIncomeMax": 950000,
+          "salaryMin": 1640000,
+          "salaryMax": 1690000,
+          "deductions": [
+            380000,
+            260000,
+            130000
+          ]
+        },
+        {
+          "totalIncomeMin": 950000,
+          "totalIncomeMax": 1000000,
+          "salaryMin": 1690000,
+          "salaryMax": 1740000,
+          "deductions": [
+            360000,
+            240000,
+            120000
+          ]
+        },
+        {
+          "totalIncomeMin": 1000000,
+          "totalIncomeMax": 1050000,
+          "salaryMin": 1740000,
+          "salaryMax": 1790000,
+          "deductions": [
+            310000,
+            210000,
+            110000
+          ]
+        },
+        {
+          "totalIncomeMin": 1050000,
+          "totalIncomeMax": 1100000,
+          "salaryMin": 1790000,
+          "salaryMax": 1840000,
+          "deductions": [
+            260000,
+            180000,
+            90000
+          ]
+        },
+        {
+          "totalIncomeMin": 1100000,
+          "totalIncomeMax": 1150000,
+          "salaryMin": 1840000,
+          "salaryMax": 1890000,
+          "deductions": [
+            210000,
+            140000,
+            70000
+          ]
+        },
+        {
+          "totalIncomeMin": 1150000,
+          "totalIncomeMax": 1200000,
+          "salaryMin": 1890000,
+          "salaryMax": 1940000,
+          "deductions": [
+            160000,
+            110000,
+            60000
+          ]
+        },
+        {
+          "totalIncomeMin": 1200000,
+          "totalIncomeMax": 1230000,
+          "salaryMin": 1940000,
+          "salaryMax": 1970000,
+          "deductions": [
+            110000,
+            80000,
+            40000
+          ]
+        },
+        {
+          "totalIncomeMin": 1230000,
+          "totalIncomeMax": 1250000,
+          "salaryMin": 1970000,
+          "salaryMax": 1990000,
+          "deductions": [
+            110000,
+            80000,
+            40000
+          ],
+          "note": "原典で123万円超125万円以下の行は縦結合により上の行と同額"
+        },
+        {
+          "totalIncomeMin": 1250000,
+          "totalIncomeMax": 1300000,
+          "salaryMin": 1990000,
+          "salaryMax": 2040000,
+          "deductions": [
+            60000,
+            40000,
+            20000
+          ]
+        },
+        {
+          "totalIncomeMin": 1300000,
+          "totalIncomeMax": 1330000,
+          "salaryMin": 2040000,
+          "salaryMax": 2070000,
+          "deductions": [
+            30000,
+            20000,
+            10000
+          ]
+        }
       ]
     },
     "insuranceRates": {
@@ -625,7 +994,10 @@
         "label": "厚生年金保険料率（労使折半前）",
         "sourceId": "nenkin-tanjikan",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "出典ページに料率の記載がないため照合不能。平成29年9月分から18.300%で固定されており、協会けんぽの保険料額表で確認済み。実装時は協会けんぽの令和8年度保険料額表を出典として別途データ化すること（未収集）。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "出典ページに料率の記載がないため照合不能。平成29年9月分から18.300%で固定されており、協会けんぽの保険料額表で確認済み。実装時は協会けんぽの令和8年度保険料額表を出典として別途データ化すること（未収集）。"
+        },
         "amendmentNote": "平成29年9月分から18.300%に固定。2026年度時点で変更なし。",
         "note": "本人負担は9.15%。標準報酬月額の上限は65万円（令和9年9月から68万円、令和10年9月から71万円、令和11年9月から75万円に段階的引上げ）。"
       },
@@ -635,7 +1007,10 @@
         "label": "協会けんぽ健康保険料率（全国平均・令和8年度）",
         "sourceId": "kyoukaikenpo-jigyounushi-shoumei",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "出典ページに料率の記載がないため照合不能。協会けんぽの令和8年度保険料率ページを出典として別途データ化すること（未収集）。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "出典ページに料率の記載がないため照合不能。協会けんぽの令和8年度保険料率ページを出典として別途データ化すること（未収集）。"
+        },
         "amendmentNote": "令和8年度は全国平均9.9%（前年度比▲0.1%）。令和8年3月分（4月納付分）から適用。都道府県ごとに率が異なる（東京支部9.85%）。",
         "note": "★未収集★ 都道府県別料率47件は本データセットに未収録。扶養の壁シミュレーターは全国平均で概算し、『お住まいの都道府県により異なります』と注記する方針。都道府県別データ化は queue のバックログに記載。"
       },
@@ -645,7 +1020,10 @@
         "label": "雇用保険料率（労働者負担・一般の事業・令和8年度）",
         "sourceId": "mhlw-tekiyou-kakudai",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "出典ページに料率の記載がないため照合不能。厚労省『令和8年度雇用保険料率のご案内』を出典として別途データ化すること（未収集）。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "出典ページに料率の記載がないため照合不能。厚労省『令和8年度雇用保険料率のご案内』を出典として別途データ化すること（未収集）。"
+        },
         "amendmentNote": "令和8年4月1日〜令和9年3月31日。令和7年度の5.5/1,000から5/1,000に引下げ。農林水産・清酒製造・建設の事業は6/1,000。",
         "note": "一般の事業の雇用保険料率は労使合計13.5/1,000（労働者5/1,000＋事業主8.5/1,000）。"
       },
@@ -655,7 +1033,10 @@
         "label": "子ども・子育て支援金率（全国一律・令和8年4月分から新設）",
         "sourceId": "kyoukaikenpo-jigyounushi-shoumei",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "出典ページに料率の記載がないため照合不能。協会けんぽの令和8年度保険料率ページを出典として別途データ化すること（未収集）。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "出典ページに料率の記載がないため照合不能。協会けんぽの令和8年度保険料率ページを出典として別途データ化すること（未収集）。"
+        },
         "amendmentNote": "★令和8年4月分（5月納付分）から新設★ 子ども・子育て支援金制度の開始により、健康保険料に上乗せされる。",
         "note": "2026年度から新たに発生する負担。手取り計算に必ず織り込むこと。見落とすと社保加入後の手取りを過大評価する。"
       }

@@ -4,6 +4,7 @@
   "name": "幼児教育・保育の無償化",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "cfa-mushouka",
@@ -45,7 +46,11 @@
         "label": "全世帯無償の下限（3歳児クラスから）",
         "sourceId": "cfa-mushouka",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["3歳"] },
+        "verify": {
+          "expect": [
+            "3歳"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "幼稚園は満3歳から。保育所等は3歳児クラス（4月1日時点3歳）から。"
       },
@@ -55,7 +60,11 @@
         "label": "全世帯無償の上限（5歳児クラスまで＝小学校入学前まで）",
         "sourceId": "cfa-mushouka",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["5歳"] },
+        "verify": {
+          "expect": [
+            "5歳"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "nonTaxableFrom": {
@@ -64,7 +73,11 @@
         "label": "住民税非課税世帯の無償化の下限（0歳児クラスから）",
         "sourceId": "cfa-mushouka",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["0歳"] },
+        "verify": {
+          "expect": [
+            "0歳"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "nonTaxableTo": {
@@ -73,7 +86,11 @@
         "label": "住民税非課税世帯の無償化の上限（2歳児クラスまで）",
         "sourceId": "cfa-mushouka",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["2歳"] },
+        "verify": {
+          "expect": [
+            "2歳"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "住民税非課税世帯のみが対象。課税世帯の0〜2歳児クラスは無償化の対象外（自治体独自の軽減制度は別途存在）。"
       }
@@ -86,7 +103,11 @@
         "label": "3〜5歳児クラスの月額上限",
         "sourceId": "cfa-mushouka",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["3.7万円"] },
+        "verify": {
+          "expect": [
+            "3.7万円"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "age0to2NonTaxable": {
@@ -95,7 +116,11 @@
         "label": "0〜2歳児クラス（住民税非課税世帯）の月額上限",
         "sourceId": "cfa-mushouka",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["4.2万円"] },
+        "verify": {
+          "expect": [
+            "4.2万円"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       }
     }

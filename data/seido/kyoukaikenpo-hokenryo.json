@@ -4,6 +4,7 @@
   "name": "健康保険・厚生年金保険の保険料額表（全国健康保険協会／令和8年度）",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "kyoukaikenpo-rate-r08",

@@ -11,6 +11,7 @@
     "prefecture",
     "fiscalYear",
     "asOf",
+    "nextCheckDue",
     "sources",
     "disclaimer",
     "scope",
@@ -38,6 +39,11 @@
     },
     "fiscalYear": { "type": "integer" },
     "asOf": { "type": "string", "format": "date" },
+    "nextCheckDue": {
+      "type": "string",
+      "format": "date",
+      "description": "次回再確認日（P2-I01）。年度データのため原則、翌年度の4月1日（令和8年度版なら2027-04-01）。R7版に留まる自治体（例: 名古屋）はR8版の公表を待つ近い日付にする。verify-seido.mjs が超過でエラー・30日前で警告する。"
+    },
     "sources": {
       "type": "array",
       "minItems": 1,
