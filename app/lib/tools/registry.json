@@ -514,12 +514,27 @@
     "solves": [
       "時短勤務で給料がいくら減るか分からない",
       "育児時短就業給付がいくらもらえるか分からない",
-      "時短とフルタイムの手取り差が分からない"
+      "時短とフルタイムの手取り差が分からない",
+      "時短にしても社会保険料がすぐ下がらないことを知らない",
+      "育児時短就業給付の対象が1日6時間勤務だけだと誤解している"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "e-Gov法令検索（デジタル庁）「雇用保険法（昭和四十九年法律第百十六号）」",
+        "url": "https://laws.e-gov.go.jp/law/349AC0000000116"
+      },
+      {
+        "label": "厚生労働省「育児時短就業給付の内容と支給申請手続」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html"
+      },
+      {
+        "label": "厚生労働省「育児休業等給付の内容と支給申請手続（令和7年8月1日改訂版）」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-20",
