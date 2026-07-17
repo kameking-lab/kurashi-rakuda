@@ -2,7 +2,7 @@
 {
   "id": "tool-narisou-reitou-hozon",
   "title": "冷凍保存期間の考え方 — 検索ツールの目安値はどう決まっている？",
-  "summary": "家庭用冷凍庫（マイナス18度以下）での保存を前提に、ほうれん草・生の鶏肉・ご飯はいずれも1ヶ月が目安。検索ツールの数値の読み方を解説する。",
+  "summary": "家庭用冷凍庫（マイナス18度以下）での保存を前提に、ほうれん草・生の鶏肉・ご飯はいずれも4週間ほどが目安。検索ツールの数値の読み方を解説する。",
   "type": "tool-narisou",
   "category": "家事・料理",
   "tool_ref": "reito-hozon",
@@ -22,30 +22,30 @@
   "facts": [
     {
       "key": "reitou.ondo",
-      "value": 18,
+      "value": -18,
       "unit": "度",
-      "seido_ref": "reitou-hozon.json#katei_reitouko_meyasu_ondo_do",
+      "seido_ref": "reito-hozon.json#kateiReitoukoMeyasuOndoDo",
       "status": "verified"
     },
     {
       "key": "reitou.hourensou",
-      "value": 1,
-      "unit": "ヶ月",
-      "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.hourensou",
+      "value": 4,
+      "unit": "週",
+      "seido_ref": "reito-hozon.json#items[id=hourensou].periodWeeksMax",
       "status": "verified"
     },
     {
       "key": "reitou.toriniku",
-      "value": 1,
-      "unit": "ヶ月",
-      "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.toriniku_nama",
+      "value": 4,
+      "unit": "週",
+      "seido_ref": "reito-hozon.json#items[id=toriniku_nama_mune_momo].periodWeeksMax",
       "status": "verified"
     },
     {
       "key": "reitou.gohan",
-      "value": 1,
-      "unit": "ヶ月",
-      "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.gohan",
+      "value": 4,
+      "unit": "週",
+      "seido_ref": "reito-hozon.json#items[id=gohan].periodWeeksMax",
       "status": "verified"
     }
   ],
@@ -62,7 +62,7 @@
 
 ## 計算の考え方
 
-ツールの目安値は、家庭用冷凍庫（マイナス18度以下）で保存した場合を前提にしています。たとえばほうれん草・生の鶏肉・ご飯は、いずれも1ヶ月をひとつの目安としています。冷凍庫の開閉頻度や食材の水分量によって実際の品質劣化のスピードは変わるため、目安値は「安全に食べられる期限」ではなく「おいしく食べられる目安」として設計しています。
+ツールの目安値は、家庭用冷凍庫（マイナス18度以下）で保存した場合を前提にしています。たとえばほうれん草・生の鶏肉・ご飯は、いずれも4週間をひとつの目安としています。冷凍庫の開閉頻度や食材の水分量によって実際の品質劣化のスピードは変わるため、目安値は「安全に食べられる期限」ではなく「おいしく食べられる目安」として設計しています。
 
 ## 結果の読み方
 
@@ -71,7 +71,7 @@
 ## よくある疑問
 
 - **マイナス18度より高い設定だと目安は変わる？** 目安値はマイナス18度以下を前提にしているため、それより温度が高い場合は目安より早めに使い切ることをおすすめします。
-- **すべての食材が1ヶ月が目安？** 食材によって異なります。ツールでは食材ごとの目安を個別に表示します。
+- **すべての食材が4週間が目安？** 食材によって異なります。ツールでは食材ごとの目安を個別に表示します。
 
 ## 出典・根拠
 
