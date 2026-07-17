@@ -173,25 +173,25 @@
 | P2-T15 | #6 | 妊娠中の体重増加チェッカー | B(ソネット) | 要: 妊娠中の体重増加指導の目安（厚労省/学会） | 要（YMYL中） |
 | [x] P2-T16 | #7 | 出産準備チェックリスト（予定日逆算） | B(ソネット) | なし（日付演算＋自前リスト） | 簡易 → **完了（2026-07-18）**: slug `shussan-junbi-checklist`（pregnancy）。specs/b-tools/p2-t16-shussan-junbi-checklist.md・ShussanJunbiChecklist.calc.ts/tsx・tests/shussan-junbi-checklist.test.ts（20件）・registry.json 追加済み。時期区分（安定期/臨月/産後）の判定と時期別チェックリスト（今すぐ／臨月までに／入院バッグ／産後）を表示。日付演算のみ data/tables/san-fujinka-kijun.json の280日定数を再利用し、チェックリスト項目は一次情報のない一般的な目安である旨をCalloutで常時明示 |
 | [x] P2-T17 | #10 | 陣痛間隔カウンター（オフライン必須） | B(ソネット) | なし | 簡易 → **完了（slug: jintsuu-kankaku-counter, 2026-07-17）**: localStorage永続化・平均間隔/持続時間・出典はncchd.go.jp（国立成育医療研究センター） |
-| P2-T18 | #11 | 産後手続きリスト生成（期限つき） | B(ソネット) | ✔shussho-todoke-kigen・jido-teate・ikukyu-kyufu | 簡易 |
+| [~] P2-T18 | #11 | 産後手続きリスト生成（期限つき） | B(ソネット) | ✔shussho-todoke-kigen・jido-teate・ikukyu-kyufu | 簡易 |
 | [x] P2-T19 | #27 | 幼児教育・保育無償化 対象チェッカー | B(ソネット) | ✔youji-kyouiku-mushouka | 簡易 → **完了（feat/tool-youji-mushouka-checker）**: slug `youji-mushouka-checker`（childcare）。specs/b-tools/p2-t19-youji-mushouka-checker.md・YoujiMushoukaChecker.calc.ts/tsx・tests/youji-mushouka-checker.test.ts（18件）・registry.json 追加済み |
-| P2-T20 | #28 | 学童・小1の壁 段取りチェック | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
+| [~] P2-T20 | #28 | 学童・小1の壁 段取りチェック | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
 | [x] P2-T21 | #42 | 味付け黄金比計算（人数スケール） | B(ソネット) | 要: data/tables 黄金比表（出典設計含む） | 簡易 → **完了（2026-07-17）**: slug `ajitsuke-ougonhi`（kaji）。`data/tables/ajitsuke-ougonhi.json` 新規作成。出典5品目=農林水産省「伝統調味料は『黄金比』で手間いらず」（maff.go.jp、Let's！和ごはんプロジェクト）、残り3品目（すき焼き割り下・天つゆ・酢の物）は一次情報なしのため一般的な目安として明記。specs/b-tools/p2-t21-ajitsuke-ougonhi.md・テスト18件 |
 | [x] P2-T22 | #43 | レシピ人数スケール換算 | B(ソネット) | なし（#38部品流用） | 不要 → **完了（2026-07-18）**: slug `recipe-ninzuu-kansan`（kaji）。純粋な比例計算（倍率＝目標人数÷元の人数）のみで制度・統計データへの依存なし。UIパターン（複数行の材料入力）はChomiryoKanzan.tsxを参考にしつつ動的な追加・削除に拡張。specs/b-tools/p2-t22-recipe-ninzuu-kansan.md・RecipeNinzuuKansan.calc.ts/tsx・テスト29件（tests/recipe-ninzuu-kansan.test.ts）・registry.json 追加済み（sourcesは公的データ不在のため一般参考情報1件のみ、捏造なし）
 | P2-T23 | #44 | 買い物リスト自動生成（献立連動） | B(ソネット) | ✔data/kondate（#40部品流用） | 簡易 |
 | P2-T24 | #45 | 作り置き 日持ち一覧 | B(ソネット) | 要: data/tables 日持ち表（#37と同系） | 簡易 |
 | [x] P2-T25 | #46 | 名もなき家事 分担チェッカー | B(ソネット) | なし（自前リスト） | 簡易 → **完了（2026-07-18）**: slug `namonaki-kaji-checker`（kaji）。specs/b-tools/p2-t25-namonaki-kaji-checker.md・NamonakiKajiChecker.calc.ts/tsx・tests/namonaki-kaji-checker.test.ts（15件）。項目リスト（4カテゴリ・30項目）は自前作成で制度データ非依存。参考情報として総務省統計局「令和3年社会生活基本調査」の家事関連時間の男女差（data/tables/kaji-jikan-toukei-danjyosa.json）を、診断結果とは独立した紹介情報として画面内に併記（出典stat.go.jpはfactory/config/source-allowlist.jsonに既に許可済みのため追加変更なし）。registry.json追加済み・npm run check（vitest 1014件）PASS |
 | [x] P2-T26 | #48 | 電子レンジ ワット数・加熱時間換算 | B(ソネット) | なし（物理式） | 簡易 → **完了（2026-07-18）**: slug `renji-watt-kansan`（kaji）。基本式T2=T1×W1÷W2＋500/600/700Wプリセット。specs/b-tools/p2-t26-renji-watt-kansan.md・テスト43件（`renji-watt-kanzan-kijun.json`のkanzan_rei・対照表10行×2方向を機械照合、上尾市表は原典が宝島社書籍のため許容差10秒未満で整合確認）。出典の限界（上尾市PDFは公的機関自身の算出ではなく市販書籍転載）をツール・記事双方に明記 |
-| P2-T27 | #57 | パートシフト収入計算（壁警告付き） | B(ソネット) | ✔part-shift-shunyuu-kabe・fuyou-kabe | 簡易 |
+| [~] P2-T27 | #57 | パートシフト収入計算（壁警告付き） | B(ソネット) | ✔part-shift-shunyuu-kabe・fuyou-kabe | 簡易 |
 | [x] P2-T28 | #61 | 食費の目安計算（家族構成別） | B(ソネット) | 要: 総務省家計調査の値表 → **完了（2026-07-17）**: slug `shokuhi-meyasu`。data/tables/shokuhi-meyasu.json（総務省統計局「家計調査」2025年（令和7年）平均、世帯人員別・単身〜6人以上）を新規収集、specs/b-tools/p2-t28-shokuhi-meyasu.md・テスト15件 | 簡易 |
 | P2-T29 | #62 | 手取りからの予算配分計算 | B(ソネット) | 要: 費目テンプレ（家計調査出典） | 簡易 |
 | P2-T30 | #66 | 女性の適正体重・体型指標 | B(ソネット) | 一部✔（肥満度分類=jasso許可済）／要: BMI基準の値表化 | 簡易 |
 | P2-T31 | #67 | PMS・体調予測カレンダー（記録なし版） | B(ソネット) | 一部✔（PMS有病率=w-health.jp）。#3部品流用。医療判断なしを仕様で固定 | 要（YMYL中） |
 | P2-T32 | #69 | 赤ちゃん連動 睡眠逆算 | B(ソネット) | 要: 睡眠ガイド2023の推奨値 | 簡易 |
-| P2-T33 | #76 | 健診・がん検診 年齢別スケジュール（女性） | B(ソネット) | ✔kenshin-gankenshin-schedule | 簡易 |
+| [~] P2-T33 | #76 | 健診・がん検診 年齢別スケジュール（女性） | B(ソネット) | ✔kenshin-gankenshin-schedule | 簡易 |
 | P2-T34 | #79 | 復帰日計算（産休育休の各期限から逆算） | B(ソネット) | ✔ikukyu-kyufu・ikukyu-encho-youken | [x] 完了（2026-07-17、slug=fukki-bi-keisan） |
 | [x] P2-T35 | #82 | 保育園お迎え逆算 勤務可能時間計算 | B(ソネット) | なし（時間演算） | 不要 → **完了（2026-07-18）**: slug `hoikuen-omukae-gyakusan`（career）。specs/b-tools/p2-t35-hoikuen-omukae-gyakusan.md・HoikuenOmukaeGyakusan.calc.ts/tsx・tests/hoikuen-omukae-gyakusan.test.ts（21件）。制度・統計データに依存しない純粋な時刻演算 |
-| P2-T36 | #83 | 小1の壁 勤務シミュレーション | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
+| [~] P2-T36 | #83 | 小1の壁 勤務シミュレーション | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
 | [x] P2-T37 | #92 | 要介護認定 申請段取りナビ | B(ソネット) | ✔kaigo-hoken＋✔kaigo-nintei-shori-kikan（P2-D05で新規追加・介護保険法第27条） | 簡易 → **完了（2026-07-17・PR#109・slug: youkaigo-nintei-dandori-navi）** |
 | P2-T38 | #94 | 介護と仕事の両立制度チェッカー | B(ソネット) | ✔kaigo-shigoto-ryouritsu-seido | 簡易 |
 | P2-T39 | #95 | 介護施設タイプ別 費用早見（紹介送客なし） | B(ソネット) | ✔kaigo-shisetsu-hiyou-souba | 簡易 |
