@@ -126,31 +126,32 @@ export const HOJOKYUFU_AMENDMENT = seido.amendments.find(
 export const HOJOKYUFU_EFFECTIVE_FROM = HOJOKYUFU_AMENDMENT.effectiveFrom!;
 
 /**
- * ★第2段階/第3段階①の境界の不一致★
- * 告示本文の 80.9万円（＝ stage2.incomeMax として採用済み）と、
- * 同一文書の解説図の 82.65万円 が食い違う（boundaryDiscrepancy.note）。
- * 注記の本文から対抗値を取り、「どちらの基準でも段階が変わらない範囲」を確定域、
- * 「基準によって段階が変わる範囲」を不確定域として扱う。
+ * ★第2段階/第3段階①の境界（2026-07-17 データ第2弾で決着・解禁）★
+ * 「80.9万円 vs 82.65万円」は別の時点の同一基準で、どちらも正しい
+ * （boundaryResolution）。境界は老齢基礎年金（満額）に連動して改定され、
+ * 〜2026-07-31 は 809,000円、2026-08-01〜 は 826,500円。
+ * 補足給付の金額表と同じく「試算対象月」で切り替える（★罠4と同じ構造★）。
  */
-const BD_NOTE = HK.userStages.boundaryDiscrepancy.note;
-const BD_VALUES = [...BD_NOTE.matchAll(/(\d+(?:\.\d+)?)万円/g)]
-  .map((m) => Math.round(Number(m[1]) * 10_000))
-  .filter((v) => v > 0);
-const STAGE2 = HK.userStages.stages.find((s) => s.key === "stage2")!;
-/** データが採用している境界（告示本文） */
-export const BOUNDARY_ADOPTED = STAGE2.incomeMax!;
-/** 一次資料が示すもう一方の境界（解説図） */
-export const BOUNDARY_ALTERNATIVE = Math.max(
-  ...BD_VALUES.filter((v) => v > BOUNDARY_ADOPTED && v < (HK.userStages.stages.find((s) => s.key === "stage3a")!.incomeMax ?? Infinity)),
-);
+export const BOUNDARY_STAGE2_3A_FROM_AUG2026 = HK.userStages.boundaryStage2Stage3a.value;
+export const BOUNDARY_STAGE2_3A_BEFORE_AUG2026 =
+  HK.userStages.boundaryStage2Stage3aBeforeAug2026.value;
+
+/** 試算対象月に応じた第2段階/第3段階①の境界額 */
+export function stage2Stage3aBoundary(serviceDate: string): number {
+  return serviceDate >= HOJOKYUFU_EFFECTIVE_FROM
+    ? BOUNDARY_STAGE2_3A_FROM_AUG2026
+    : BOUNDARY_STAGE2_3A_BEFORE_AUG2026;
+}
 
 /**
- * 段階を確定できない所得の範囲か。
- * 採用値（80.9万）を超え、対抗値（82.65万）以下のとき、どちらの基準を採るかで
- * 第2段階／第3段階①が入れ替わる。★この範囲だけ確定値を出さない★
+ * 2026-08-01 の境界改定をまたいで段階が変わる所得の範囲か
+ * （80.9万円超〜82.65万円以下）。この帯の方は、2026年7月分までは第3段階①、
+ * 8月分からは第2段階になるため、注意書きを添える（金額自体は確定して出す）。
  */
-export function isStageAmbiguous(income: number): boolean {
-  return income > BOUNDARY_ADOPTED && income <= BOUNDARY_ALTERNATIVE;
+export function isStageChangingAtAug2026(income: number): boolean {
+  return (
+    income > BOUNDARY_STAGE2_3A_BEFORE_AUG2026 && income <= BOUNDARY_STAGE2_3A_FROM_AUG2026
+  );
 }
 
 // ---------------------------------------------------------------- 負担割合
@@ -482,31 +483,22 @@ export function judgeStage(input: KaigoInput): StageResult {
     return { stage: s1, candidates: [], overSavings: false, reason: s1.condition };
   }
 
-  // ★不確定域★ 一次資料間で境界が食い違う範囲は、確定値を出さず両段階を併記する
-  if (isStageAmbiguous(input.hojokyufuIncome)) {
-    const cands = stages.filter((s) => s.key === "stage2" || s.key === "stage3a");
-    const affordable = cands.filter(savingsOk);
-    if (affordable.length === 0) {
-      return {
-        stage: stage4,
-        candidates: [],
-        overSavings: true,
-        reason: "預貯金等の額が要件を超えるため、補足給付の対象外です。",
-      };
-    }
-    return {
-      stage: null,
-      candidates: affordable,
-      overSavings: false,
-      reason: HK.userStages.boundaryDiscrepancy.label,
-    };
-  }
+  // ★第2段階/第3段階①の境界は試算対象月で切り替える★（2026-07-17 解禁）
+  // stages のデータは2026-08-01以降の境界（826,500円）で書かれているため、
+  // 2026年7月分以前の試算では境界を809,000円に読み替える。
+  const boundary = stage2Stage3aBoundary(input.serviceDate);
+  const rangeOf = (s: Stage): { min?: number; max?: number } => {
+    const min = (s as { incomeMin?: number }).incomeMin;
+    const max = (s as { incomeMax?: number }).incomeMax;
+    if (s.key === "stage2") return { min, max: boundary };
+    if (s.key === "stage3a") return { min: boundary, max };
+    return { min, max };
+  };
 
   // 所得で判定できる段階だけを対象にする（stage1 は所得の範囲を持たない）
   const byIncome = stages.filter((s) => "incomeMin" in s || "incomeMax" in s);
   const hit = byIncome.find((s) => {
-    const min = (s as { incomeMin?: number }).incomeMin;
-    const max = (s as { incomeMax?: number }).incomeMax;
+    const { min, max } = rangeOf(s);
     // condition の原文は「◯◯超」「◯◯以下」＝ min は含まず、max は含む
     return (min === undefined || input.hojokyufuIncome > min) && (max === undefined || input.hojokyufuIncome <= max);
   });
@@ -712,9 +704,13 @@ export function simulate(input: KaigoInput): KaigoResult {
     );
   }
   if (futanWariai.firstOnly) warnings.push(futanWariai.reason);
-  if (hojokyufu?.stageResult.stage === null && hojokyufu.candidateLines.length > 0) {
+  if (
+    hojokyufu &&
+    input.taxStatus === "hikazei" &&
+    isStageChangingAtAug2026(input.hojokyufuIncome)
+  ) {
     warnings.push(
-      `年金収入金額＋合計所得金額が${BOUNDARY_ADOPTED.toLocaleString("ja-JP")}円を超え${BOUNDARY_ALTERNATIVE.toLocaleString("ja-JP")}円以下の方は、第2段階と第3段階①の境界について一次資料の間で金額が食い違っており、段階を確定できません。両方の場合の金額を併記しています。お住まいの市区町村にご確認ください。`,
+      `年金収入金額＋合計所得金額が${BOUNDARY_STAGE2_3A_BEFORE_AUG2026.toLocaleString("ja-JP")}円を超え${BOUNDARY_STAGE2_3A_FROM_AUG2026.toLocaleString("ja-JP")}円以下の方は、第2段階と第3段階①の境界の改定（2026年8月1日）をまたいで段階が変わります。2026年7月分までは第3段階①、8月分からは第2段階です。境界は老齢基礎年金の満額に連動して今後も改定されることがあります。`,
     );
   }
   if (hojokyufu?.stageResult.overSavings) warnings.push(hojokyufu.stageResult.reason);
@@ -748,7 +744,8 @@ export const CURRENT_DISTRIBUTION = FW.currentDistribution.value;
 export const KOUGAKU_EXCLUSION_NOTE = KK.note;
 export const KUBUN_DESCRIPTION = KG.description;
 export const HOJOKYUFU_STAGES_NOTE = HK.userStages.note;
-export const BOUNDARY_DISCREPANCY_NOTE = HK.userStages.boundaryDiscrepancy.note;
+export const BOUNDARY_RESOLUTION_NOTE = HK.userStages.boundaryResolution.value;
+export const BOUNDARY_BASIS_RULE = HK.userStages.boundaryBasisRule.value;
 export const TANKA_NOTE = TK.note;
 export const BASE_YEAR_RULE_TEXT = KK.judgmentRules.baseYear.value;
 export const TIMING_RULE_TEXT = KK.judgmentRules.timing.value;
