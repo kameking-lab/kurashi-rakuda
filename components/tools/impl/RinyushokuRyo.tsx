@@ -4,6 +4,7 @@ import { useState } from "react";
 import { DateField } from "@/components/ui/Field";
 import { ResultCard } from "@/components/ui/ResultCard";
 import { Callout } from "@/components/ui/Callout";
+import { todayJst } from "@/lib/tools/seido";
 import {
   calculateRinyushokuRyo,
   FOOD_GROUP_LABELS,
@@ -22,7 +23,8 @@ import {
  */
 
 function todayISO(): string {
-  return new Date().toISOString().slice(0, 10);
+  // ★JST基準★ UTC の toISOString では 0:00〜8:59 が前日になり月齢境界がずれる
+  return todayJst();
 }
 
 export function RinyushokuRyo() {

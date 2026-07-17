@@ -138,7 +138,20 @@ export function calcInunohi(input: InunohiInput): InunohiOutput {
   let lmpStr: string;
   if (input.inputMode === "edd") {
     if (!input.edd || !isValidDateString(input.edd)) {
-      return { ok: false, error: "出産予定日を正しい日付形式で入力してください。" };
+      return { ok: false, error: "出産予定日を正しい日付で入力してください。" };
+    }
+    // lmp モードの範囲チェックと対称の防御（過去日・遠未来日の誤入力を弾く）
+    if (diffDays(baseDate, parseDate(input.edd)) > 0) {
+      return {
+        ok: false,
+        error: "出産予定日が基準日より前の日付になっています。入力をご確認ください。",
+      };
+    }
+    if (diffDays(parseDate(input.edd), baseDate) > 310) {
+      return {
+        ok: false,
+        error: "出産予定日が基準日から310日以上先になっています。入力をご確認ください。",
+      };
     }
     lmpStr = formatDate(addDays(parseDate(input.edd), -PREGNANCY_DAYS));
   } else if (input.inputMode === "lmp") {

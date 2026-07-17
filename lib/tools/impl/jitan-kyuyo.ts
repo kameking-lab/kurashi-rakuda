@@ -663,7 +663,7 @@ export function simulate(input: JitanInput): JitanResult {
     }
     if (input.prefecture) {
       warnings.push(
-        "健康保険料率は全国平均9.9%で概算しています。お住まいの都道府県により異なります（都道府県別の料率は本ツールに収録していません）。",
+        `健康保険料率は全国平均${(R.healthInsuranceRateAverage.value * 100).toFixed(1)}%で概算しています。お住まいの都道府県により異なります（都道府県別の料率は本ツールに収録していません）。`,
       );
     }
     warnings.push(

@@ -167,13 +167,31 @@ export interface ShussanYoteibiError {
   message: string;
 }
 
+/** "YYYY-MM-DD" 形式で実在する日付か（2/30 や "abc" を NaN のまま通さない） */
+export function isValidDateString(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [y, m, d] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  return (
+    date.getUTCFullYear() === y &&
+    date.getUTCMonth() === m - 1 &&
+    date.getUTCDate() === d
+  );
+}
+
 /** 入力バリデーション。問題なければ null、エラーならメッセージを返す */
 export function validateShussanYoteibiInput(
   input: ShussanYoteibiInput,
 ): string | null {
+  if (!input.lmp || !isValidDateString(input.lmp)) {
+    return "最終月経開始日を正しい日付で入力してください";
+  }
+  if (!input.baseDate || !isValidDateString(input.baseDate)) {
+    return "基準日を正しい日付で入力してください";
+  }
   const cycleLength = input.cycleLength ?? 28;
-  if (cycleLength < 20 || cycleLength > 45) {
-    return "周期日数は20〜45の範囲で入力してください";
+  if (!Number.isInteger(cycleLength) || cycleLength < 20 || cycleLength > 45) {
+    return "周期日数は20〜45の整数で入力してください";
   }
   if (diffInDays(input.baseDate, input.lmp) < 0) {
     return "基準日は最終月経開始日より後の日付を指定してください";

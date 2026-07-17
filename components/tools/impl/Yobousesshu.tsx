@@ -4,6 +4,7 @@ import { useState } from "react";
 import { DateField, SelectField } from "@/components/ui/Field";
 import { ResultCard } from "@/components/ui/ResultCard";
 import { Callout } from "@/components/ui/Callout";
+import { todayJst } from "@/lib/tools/seido";
 import {
   calculateYobousesshu,
   YOBOUSESSHU_DISCLAIMER,
@@ -86,7 +87,8 @@ function VaccineRow({ v }: { v: VaccineResult }) {
 }
 
 function todayISO(): string {
-  return new Date().toISOString().slice(0, 10);
+  // ★JST基準★ UTC の toISOString では 0:00〜8:59 が前日になり誕生日境界がずれる
+  return todayJst();
 }
 
 export function Yobousesshu() {

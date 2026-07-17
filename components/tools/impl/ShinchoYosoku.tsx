@@ -87,7 +87,7 @@ export function ShinchoYosoku() {
           />
           {result.extremeInputNotice && (
             <Callout tone="caution">
-              入力された父親・母親の身長差が大きいため、結果が実際の傾向から離れる可能性があります。入力値をご確認ください。
+              入力された身長が極端に大きいか、父親・母親の身長差が大きいため、結果が実際の傾向から離れる可能性があります。入力値をご確認ください。
             </Callout>
           )}
           <Callout tone="caution">

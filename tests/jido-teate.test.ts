@@ -30,19 +30,28 @@ describe("calculateJidoTeate", () => {
     expect(r.result.children[0].monthlyAmount).toBe(10000);
   });
 
-  it("3歳の誕生日当日は under3 を抜けて age3ToHighSchool になる（境界）", () => {
-    // 2023-07-17生まれ、基準日2026-07-17 = ちょうど3歳の誕生日
-    const r = calculateJidoTeate([{ birthDate: "2023-07-17" }], "2026-07-17");
-    expect(r.ok).toBe(true);
-    if (!r.ok) return;
-    expect(r.result.children[0].ageCategory).toBe("age3ToHighSchool");
+  it("★月単位判定★ 3歳の誕生月は月末まで under3（「誕生日の前日が属する月まで」）", () => {
+    // 2023-07-17生まれ: 3歳の誕生日の前日2026-07-16が属する7月分までは15,000円
+    const july = calculateJidoTeate([{ birthDate: "2023-07-17" }], "2026-07-17");
+    expect(july.ok).toBe(true);
+    if (july.ok) expect(july.result.children[0].ageCategory).toBe("under3");
+    const endOfJuly = calculateJidoTeate([{ birthDate: "2023-07-17" }], "2026-07-31");
+    expect(endOfJuly.ok).toBe(true);
+    if (endOfJuly.ok) expect(endOfJuly.result.children[0].ageCategory).toBe("under3");
+    // 翌月（8月分）から age3ToHighSchool
+    const aug = calculateJidoTeate([{ birthDate: "2023-07-17" }], "2026-08-01");
+    expect(aug.ok).toBe(true);
+    if (aug.ok) expect(aug.result.children[0].ageCategory).toBe("age3ToHighSchool");
   });
 
-  it("3歳の誕生日前日はまだ under3（境界）", () => {
-    const r = calculateJidoTeate([{ birthDate: "2023-07-18" }], "2026-07-17");
-    expect(r.ok).toBe(true);
-    if (!r.ok) return;
-    expect(r.result.children[0].ageCategory).toBe("under3");
+  it("★月単位判定★ 1日生まれは誕生日の前日が前月末のため、誕生月から age3ToHighSchool", () => {
+    // 2023-08-01生まれ: 前日2026-07-31が属する7月分までが under3、8月分から切替
+    const july = calculateJidoTeate([{ birthDate: "2023-08-01" }], "2026-07-31");
+    expect(july.ok).toBe(true);
+    if (july.ok) expect(july.result.children[0].ageCategory).toBe("under3");
+    const aug = calculateJidoTeate([{ birthDate: "2023-08-01" }], "2026-08-01");
+    expect(aug.ok).toBe(true);
+    if (aug.ok) expect(aug.result.children[0].ageCategory).toBe("age3ToHighSchool");
   });
 
   it("3人きょうだいで第3子（3歳〜高校生年代）は加算後30,000円になる", () => {
@@ -95,13 +104,22 @@ describe("calculateJidoTeate", () => {
     expect(r.result.children[0].ageCategory).toBe("over18to22");
   });
 
-  it("4月生まれの18歳誕生日は翌年3月31日がカットオフ（境界の月分岐）", () => {
-    // 2007-04-01生まれ→18歳誕生日2025-04-01（4月以降）→カットオフは2026-03-31
-    const r1 = calculateJidoTeate([{ birthDate: "2007-04-01" }], "2026-03-31");
+  it("★年齢計算ニ関スル法律★ 4/1生まれの18歳到達日は3/31 → カットオフは1年早い", () => {
+    // 2007-04-01生まれ→「18歳に達する日」は誕生日の前日2025-03-31→その日以後最初の3/31=2025-03-31
+    const r1 = calculateJidoTeate([{ birthDate: "2007-04-01" }], "2025-03-31");
     expect(r1.ok).toBe(true);
     if (r1.ok) expect(r1.result.children[0].isRecipient).toBe(true);
 
-    const r2 = calculateJidoTeate([{ birthDate: "2007-04-01" }], "2026-04-01");
+    const r2 = calculateJidoTeate([{ birthDate: "2007-04-01" }], "2025-04-01");
+    expect(r2.ok).toBe(true);
+    if (r2.ok) expect(r2.result.children[0].isRecipient).toBe(false);
+  });
+
+  it("4/2生まれの18歳カットオフは従来どおり翌年3/31（4/1境界の確認）", () => {
+    const r1 = calculateJidoTeate([{ birthDate: "2007-04-02" }], "2026-03-31");
+    expect(r1.ok).toBe(true);
+    if (r1.ok) expect(r1.result.children[0].isRecipient).toBe(true);
+    const r2 = calculateJidoTeate([{ birthDate: "2007-04-02" }], "2026-04-01");
     expect(r2.ok).toBe(true);
     if (r2.ok) expect(r2.result.children[0].isRecipient).toBe(false);
   });

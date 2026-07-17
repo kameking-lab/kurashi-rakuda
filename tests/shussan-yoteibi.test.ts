@@ -170,7 +170,7 @@ describe("calcShussanYoteibi — 仕様書テストケース表", () => {
     });
     expect(r.ok).toBe(false);
     if (r.ok) return;
-    expect(r.message).toBe("周期日数は20〜45の範囲で入力してください");
+    expect(r.message).toBe("周期日数は20〜45の整数で入力してください");
   });
 });
 
@@ -328,5 +328,22 @@ describe("日付ユーティリティ", () => {
   it("addDays / diffInDays は往復して一致する", () => {
     const next = addDays("2026-01-31", 280);
     expect(diffInDays(next, "2026-01-31")).toBe(280);
+  });
+});
+
+describe("G2検収指摘の回帰テスト（異常入力の防御）", () => {
+  it("不正な日付文字列（abc）は NaN を返さずエラーになる", () => {
+    const r = calcShussanYoteibi({ lmp: "abc", baseDate: "2026-07-17" });
+    expect(r.ok).toBe(false);
+  });
+
+  it("実在しない日付（2026-02-30）はエラーになる", () => {
+    const r = calcShussanYoteibi({ lmp: "2026-02-30", baseDate: "2026-07-17" });
+    expect(r.ok).toBe(false);
+  });
+
+  it("小数の周期日数（28.5）はエラーになる", () => {
+    const r = calcShussanYoteibi({ lmp: "2026-05-01", baseDate: "2026-07-17", cycleLength: 28.5 });
+    expect(r.ok).toBe(false);
   });
 });

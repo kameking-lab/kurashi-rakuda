@@ -94,10 +94,12 @@ function addYearsUTC(date: Date, years: number): Date {
 
 /**
  * 「N歳に達する日以後の最初の3月31日」を返す（年度末カットオフの共通計算）。
- * 誕生日が4月以降なら翌年の3/31、1〜3月生まれならその年の3/31。
+ * ★「N歳に達する日」は誕生日の前日★（年齢計算ニ関スル法律・民法143条）。
+ * このため4/1生まれはN歳到達日が3/31となり、4/2以降生まれより1年早く年度末を迎える
+ * （学年の区切りが4/1生まれまでなのと同じ理屈）。
  */
 function nendoMatsuCutoff(birthDate: Date, attainAge: number): Date {
-  const attainDay = addYearsUTC(birthDate, attainAge);
+  const attainDay = new Date(addYearsUTC(birthDate, attainAge).getTime() - 86400000);
   const month = attainDay.getUTCMonth() + 1; // 1-12
   const year = month >= 4 ? attainDay.getUTCFullYear() + 1 : attainDay.getUTCFullYear();
   return new Date(Date.UTC(year, 2, 31)); // 3月(index 2)31日
@@ -126,7 +128,13 @@ function classify(birthDate: Date, baseDate: Date): { category: JidoTeateAgeCate
   if (baseDate.getTime() > cutoff18.getTime()) {
     return { category: "over18to22", age };
   }
-  if (baseDate.getTime() < thirdBirthday.getTime()) {
+  // ★月単位で判定★ 0〜2歳の月額は「3歳の誕生日の前日が属する月まで」
+  // （data/seido/jido-teate.json の note）。日単位で切ると誕生月の途中から
+  // 10,000円になり、その月分を過少表示してしまう。
+  const thirdBirthdayEve = new Date(thirdBirthday.getTime() - 86400000);
+  const baseYm = baseDate.getUTCFullYear() * 12 + baseDate.getUTCMonth();
+  const eveYm = thirdBirthdayEve.getUTCFullYear() * 12 + thirdBirthdayEve.getUTCMonth();
+  if (baseYm <= eveYm) {
     return { category: "under3", age };
   }
   return { category: "age3ToHighSchool", age };
