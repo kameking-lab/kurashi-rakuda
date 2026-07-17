@@ -84,6 +84,15 @@ export const LOWER_PERCENT = percentsIn(RULES[0].case)[0];
  */
 export const UPPER_PERCENT = percentsIn(RULES[1].case)[percentsIn(RULES[1].case).length - 1];
 
+/**
+ * 説明用の計算例（構造化ノード）。ツールページの「根拠・計算式」の散文と
+ * テストの回帰アンカーはここから数値を導出する（★散文への直書き禁止★）。
+ * 8/1の限度額改定時は data/seido 側の exampleCap を差し替えるだけで表示・テストが追随する。
+ */
+export const EXAMPLE_CAP = J.exampleCap.value;
+/** 区分②の計算例（厚労省パンフレット 例②）。同上 */
+export const EXAMPLE_ADJUSTED = J.exampleAdjusted.value;
+
 /** 入力の上限（仕様書 §3）。制度の数値ではなく入力バリデーションの都合 */
 export const MAX_WAGE_INPUT = 3_000_000;
 /** 「引き続き」と扱う育児休業終了日からの日数（14日以内）。根拠: J.eligibility.note */

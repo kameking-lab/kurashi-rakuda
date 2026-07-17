@@ -757,6 +757,26 @@
         "amendmentNote": "なし（2026-07-17時点）。★ただし本算式は率のみを定めるものであり、支給限度額・最低限度額（毎年8月1日改定）とは別建てである。算式自体は8月1日改定の対象外。★",
         "note": "雇用保険法施行規則第101条の47。W0=育児時短就業開始時賃金月額、W=支給対象月に支払われた賃金額として、支給率 = 0.9 ×(W0 − W) ÷ W と等価。支給額 = W × 支給率 = 0.9 ×(W0 − W)。厚労省パンフレットの早見表（90.00%→10.00%、95.00%→4.74%、100.00%→0.00%）と一致することを確認済み。区分①（10%）と90%境界で連続する。"
       },
+      "exampleCap": {
+        "value": { "wageAtStart": 483300, "wageInMonth": 430000, "benefit": 41393 },
+        "unit": "example",
+        "label": "区分③（支給限度額による頭打ち）の説明用計算例",
+        "sourceId": "mhlw-jitan-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "本サイトが説明用に構成した計算例であり、同一の数値例が原文に存在するとは限らないため照合対象外。数値の自己整合性（benefit = supportLimit − wageInMonth、wageInMonth ≦ wageAtStart×90%、wageInMonth＋10%支給額 > supportLimit）は tests/jitan-kyuyo.test.ts が機械検査する。" },
+        "amendmentNote": "★令和8年7月31日までの支給限度額（471,393円）に基づく例★ 8月1日の限度額改定時は、新しい限度額で頭打ちが再現される数値例に差し替えること（テストが不整合を検出する）。",
+        "note": "ツールページの「根拠・計算式」の本文とテストの回帰アンカーは、この構造化ノードから数値を導出する（散文への直書き禁止）。calculationRules.example の散文と数値を一致させること。"
+      },
+      "exampleAdjusted": {
+        "value": { "wageAtStart": 300000, "wageInMonth": 280000, "ratePercent": 6.43, "benefit": 18004 },
+        "unit": "example",
+        "label": "区分②（調整後の支給率）の計算例（厚労省パンフレット6頁 例②）",
+        "sourceId": "mhlw-jitan-pamph",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["6.43", "18,004"] },
+        "amendmentNote": "なし（2026-07-17時点）。★区分②の算式自体は8月1日改定の対象外だが、パンフレット改訂で例の数値が変わったら追随すること★",
+        "note": "exampleAdjustedRate の散文と同じ例の構造化ノード。テストはここから入力・期待値を読む。"
+      },
       "adjustedRateRounding": {
         "value": "賃金率及び支給率は小数点以下第3位を四捨五入して小数点以下第2位まで算定し、支給額は小数点以下を切り捨てて整数とする",
         "unit": "string",
