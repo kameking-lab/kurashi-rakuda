@@ -10,10 +10,14 @@
   "priority": "A",
   "seido_data": [
     {
-      "file": "fukkibi-gyakuzan-rule.json",
-      "status": "stub"
+      "file": "ikukyu-encho-youken.json",
+      "status": "ready"
+    },
+    {
+      "file": "ikukyu-kyufu.json",
+      "status": "ready"
     }
   ],
   "status": "gated_pass",
-  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。 / 2026-07-17 Q4-7 リライト: G2品質レビューで『一般論に留まり読者が動けない』と指摘されたためフルリライト。当初 seido_data に指定されていた fukkibi-gyagkuzan-rule.json は実在しなかったため、実在する data/seido/ikukyu-encho-youken.json（育休延長の要件・給付金延長の実務要件）と data/seido/ikukyu-kyufu.json（育休給付金の給付率・社会保険料免除）に差し替え、子の1歳到達日を起点とした逆算ロジックと具体的な数値（延長上限2歳、通勤30分未満、通知書発行2か月前/4月入所3か月前、給付率67%→50%切替180日、社会保険料免除14日ルール・対象3歳未満 等）を本文とfacts[]に反映した。通常の育休開始1か月前申請ルールのみ、本リポジトリに裏付けデータが無いためfacts[]にstatus=stubとして宣言（stub_reason明記、seido_refは付与せず）。check-fidelity.mjs は0 violations/0 warningsでPASS。"
 }

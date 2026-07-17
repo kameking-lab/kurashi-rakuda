@@ -93,7 +93,7 @@
 - [ ] Q4-4 (B) 制度解説記事 バッチ3（20本）blocked-by: Q4-3 検収
 - [ ] Q4-5 (A) ツール併走記事 20本（各ツール完成後に1本ずつ）blocked-by: 対応する Q3
 - [x] Q4-6 (B) 固定ページ → **完了（PR#49）**: /about（サイト概要・運営方針）/policy（紹介ポリシー全文）/privacy /disclaimer /contact ＋ /sources（既存）
-- [ ] **Q4-7 (B) ★差し戻し★ 段取り記事5本の改稿**（G2記事検収 2026-07-17）: dandori-hokatsu-schedule-jiki／dandori-hokatsu-tejun／dandori-sango-tetsuzuki-todoke-jidouteate／dandori-sankyu-ikukyu-fukki-gyakuzan／dandori-youkaigo-nintei-nagare。いずれも一般論に留まり読者が動けない（期限・点数・持ち物・法定日数の固有情報を追加すること。例: 出生届14日以内・児童手当15日特例・要介護認定は原則30日以内。数値は facts[] に載せて忠実性ゲートを通す）
+- [x] **Q4-7 (B) ★差し戻し★ 段取り記事5本の改稿** → **完了（2026-07-17）**: 5本とも到着済みの実データで書き替え、facts[]宣言・fidelityゲートPASS。dandori-sango-tetsuzuki-todoke-jidouteate（出生届14日以内・過料5万/10万円、児童手当15日特例・月額15,000/30,000円、出産育児一時金50万円）／dandori-sankyu-ikukyu-fukki-gyakuzan（1歳到達日締切・通勤30分基準・給付率67%→50%切替180日・社保料免除14日ルール）／dandori-youkaigo-nintei-nagare（二段階判定・認定等基準時間7区分・介護休暇5日/10日）／dandori-hokatsu-schedule-jiki・dandori-hokatsu-tejun（全国統一の申込期限データは存在しないため断定せず、育休延長がらみの1歳到達日・通勤30分・無償化上限額など実在する数値で補強。2本は時期論／手順論で役割分担し重複回避）。**★例示の「要介護認定は原則30日以内」は一次データ未収録と判明したため本文に記載せず★**（介護保険法施行規則の標準処理期間データが未整備。data/seido/への追加は別途起票）
 - [ ] **Q4-8 (A) 新旧重複記事8ペアの統廃合判断**（G2記事検収）: 児童手当・扶養の壁・保活・介護負担割合・幼児無償化・産前産後免除・育休給付・出産手当の各ペア。旧版11本は情報量で新版に劣る（SEOカニバリ・二重メンテのリスク。統合 or 明示的な棲み分けを編集判断）
 
 ## Q5: 公開・運用接続（終盤直列）

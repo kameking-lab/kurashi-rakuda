@@ -10,10 +10,14 @@
   "priority": "A",
   "seido_data": [
     {
-      "file": "youkaigo-nintei-nagare.json",
-      "status": "stub"
+      "file": "kaigo-hoken.json",
+      "status": "ready"
+    },
+    {
+      "file": "kaigo-shigoto-ryouritsu-seido.json",
+      "status": "ready"
     }
   ],
   "status": "gated_pass",
-  "notes": "seido_data に status=stub を含む。執筆時に factory/data/seido/ の一次データ整備を先行するか、facts[].stub_reason を明記すること。"
+  "notes": "【Q4-7リライト（2026-07-17）】G2品質レビューで『一般論に留まり読者が動けない』と指摘され、content/articles/dandori-youkaigo-nintei-nagare.md を全面リライトした。当初 seido_data に記載されていた youkaigo-nintei-nagare.json は未整備（実在せず）のため、代わりに実在する data/seido/kaigo-hoken.json（yokaigoNintei.process / yokaigoNintei.levels の要介護認定等基準時間25/32/50/70/90/110分・noStateDefinition）と data/seido/kaigo-shigoto-ryouritsu-seido.json（definitions.yoKaigoJotai・yoKaigoPeriodWeeks=2週間・kaigoKyuka.daysPerYear=5日／daysPerYearMultiple=10日・targetCare＝申請代行も対象）を一次データとして使用した。frontmatter.facts[] に9件を宣言し、seido_ref で機械照合可能な形にした（check-fidelity.mjs は PASS、0 violations）。★申請から結果通知までの標準処理期間（俗に『30日』とされる数値、介護保険法第27条第11項）は、本リポジトリのどのdata/seido/ファイルにもseido_refで裏付けできる形で存在しないことを確認したため、本文では意図的に日数を一切記載していない（stub扱いにもせず、単に言及自体を避けた）。dandori型はarticle-types.jsonでrequires_fact_check=falseのため機械照合ゲート自体は数値未申告でも失敗しないが、正確性のため数値を書かない方針を優先した。"
 }
