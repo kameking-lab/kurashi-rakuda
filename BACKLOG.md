@@ -20,7 +20,7 @@
 - [x] Q1-1 (A) リポジトリ雛形: Next.js 15 App Router + TypeScript + Tailwind v4（リポジトリ直下 app/ components/ 構成。packages/ 分割は必要になった時点で）
 - [x] Q1-2 (S) デザイントークン＋共通レイアウト（app/globals.css にUI十原則のトークン、Header/Footer、ダークモード対応、モバイルファースト）
 - [x] Q1-3 (S) ツールページ共通テンプレート（components/tools/ToolShell.tsx: 入力→結果→根拠計算式→出典3点セット→関連ツール。solves は app/lib/tools/registry.json で機械集計可能）＋記事テンプレート3型（components/articles/、/guide/sample-* で確認可）
-- [~] Q1-4 (S) CI: lint / 型 / solves メタ検証 / ブランド哲学リンター / ビルド は稼働（.github/workflows/ci.yml）。**残: vitest（G2のcalc実装と同時）・Lighthouse CI（デプロイURL確定後）・忠実性ゲート/sponsored-lint（記事・紹介リンク発生時）**
+- [x] Q1-4 (S) CI 完成（G2 Wave 2, 2026-07-17）: ci.yml = lint / 型 / **vitest** / solves検証 / ブランド哲学リンター / ビルド / **Lighthouse CI（LCP≤2.5s・CLS≤0.05・Perf/A11y/BP≥90をassert、lighthouserc.json）**。verify-seido.yml = 制度データ構造検査＋**記事忠実性ゲート**＋日次出典照合。**残: sponsored-lint（紹介リンク発生時に追加）**
 - [ ] Q1-5 (S) 制度データスキーマ（改定年度/出典URL/次回チェック日）→ **data/ を並行開発中の別セッションと要すり合わせ**
 
 ## Q2: 制度データ（並列可。blocked-by: Q1-5）
@@ -32,12 +32,14 @@
 
 ## Q3: ツール実装 20本（**実行可能**。ツール単位で全並列可。※印は該当 Q2 にも依存）
 
+**作業者分担（2026-07-17 更新）**: 難易度 **S級 → オーパス（Opus）系セッション**（制度データ設計・複合ロジック・YMYL判断を含むため）／ **A・B級 → ソネット（Sonnet）系セッション**（specs/ に仕様書済み・テンプレ化済みのため自走可）。S級は Q3-04→06→09（データ依存が重い順）を推奨順とし、B級は specs/b-tools/ の仕様書番号順に束ねて並列消化してよい。YMYL金額計算は実装者≠検算者のダブルチェック必須（docs/08）。
+
 **実行手順（1ツール共通）**: ①`app/lib/tools/registry.json` の該当エントリ（queueId で対応）を確認 ②計算ロジックを純関数で実装＋テスト ③`components/tools/impl/` にUIコンポーネント作成（リファレンス: ChomiryoKanzan.tsx） ④`app/tools/[category]/[slug]/page.tsx` の implementations に登録し「根拠・計算式」を記述 ⑤registry.json の sources を記入し status を "live" に ⑥`npm run check` が通ること。
 **完了定義**: スマホ実機確認済み・出典3点セット表示・計算式の平文説明あり・CI green。
 
 - [ ] Q3-01 (B) 出産予定日・妊娠週数計算
-- [ ] Q3-02 (B) 戌の日計算
-- [ ] Q3-03 (B) 生理周期・排卵日予測
+- [~] Q3-02 (B) 戌の日計算 → 実装済み（live）・**G2検収待ち**
+- [~] Q3-03 (B) 生理周期・排卵日予測 → 実装済み（live）・**G2検収待ち**
 - [ ] Q3-04 (S) 産休育休まるごとお金シミュレーター ※Q2-2
 - [ ] Q3-05 (B) 月齢計算
 - [ ] Q3-06 (S) 予防接種スケジューラー ※Q2-1
@@ -52,7 +54,7 @@
 - [ ] Q3-15 (B) 炊飯の水の量
 - [ ] Q3-16 (S) 献立自動提案 ※Q2-4
 - [ ] Q3-17 (B) 洗濯表示検索 ※Q2-4
-- [ ] Q3-18 (S) 扶養の壁シミュレーター2026 ※Q2-2
+- [~] Q3-18 (S) 扶養の壁シミュレーター2026 ※Q2-2 → 実装済み（live、lib/tools/impl/fuyo-kabe.ts＋テスト）・**G2検収待ち**
 - [ ] Q3-19 (S) 時短勤務給料・給付シミュレーター ※Q2-2
 - [ ] Q3-20 (S) 介護保険 自己負担シミュレーター ※Q2-3
 
@@ -71,6 +73,22 @@
 - [ ] Q5-2 (A) VPS 自律改善エンジン登録（Lighthouse定点・リンク切れ・GSC取込・改定チェック日監視）blocked-by: Q5-1
 - [ ] Q5-3 (A) 5ペルソナ×主要動線ウォークスルーQA blocked-by: Q3 全完了
 - [ ] Q5-4 (S) Phase 1 完了判定（docs/07 の完了条件チェック → 公開）blocked-by: 全部
+
+---
+
+## D: 日付トリガージョブ（カレンダー起点。放置するとデータが無効になるもの）
+
+- [ ] **D1: 2026-08-01 育休給付・時短給付の上限額改定 対応**（公開のブロッカー。社長決裁: 公開は本改定の反映後）
+  - トリガー機構: `data/seido/ikukyu-kyufu.json` の amendments に `expiresOn: 2026-07-31` を登録済み。**8月1日以降、verify-seido.yml の構造検査（毎日 JST 07:00 スケジュール＋全PR）が自動でエラーを出し、Issue が起票される**。人間がカレンダーを覚えている必要はない
+  - 手順: ①厚労省の新リーフレット（例年7月末公表。landingUrl: mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html）を取得 ②`ikukyu-kyufu.json` の賃金日額上限16,110円/下限3,014円・各支給上限額（323,811円ほか）・時短給付の支給限度額471,393円/最低限度額2,411円を差し替え、`checkedAt`/`verify.expect`/amendments を更新 ③`node scripts/verify-seido.mjs --fetch --only=ikukyu-kyufu` で照合PASS確認 ④関連ツール（Q3-04/Q3-19）とツール併走記事の表示値を確認 ⑤公開判定（noindex解除は app/layout.tsx の robots 行削除。Q5-4）
+  - 担当: S級（オーパス）＋検算者ダブルチェック（YMYL）
+
+## G2検収チェックリスト（Q3 各ツールの [~]→[x] 判定に使用。検収者=実装者以外）
+
+1. **動作**: スマホ実機（幅375px）で入力→結果が1画面で完結／オフライン（機内モード）で再計算が動く／境界値・異常入力（0・負数・空・うるう年）で NaN や無言失敗にならない／`npm test` に境界値テストが含まれる
+2. **出典**: 出典3点セット（最終更新・準拠年度・出典リンク）表示／計算式の平文説明あり／制度値は data/seido/ の valueNode 参照（ハードコード禁止）／`verify-seido.mjs --fetch --only=<対象>` PASS
+3. **ブランド哲学**: 煽り文言ゼロ（check:brand PASS）／広告枠・誘導なし／結果に不安を煽る表現がない（docs/09 らっくの口調準拠）／免責は disclaimer を使用
+4. **a11y**: ラベル付き入力（Field コンポーネント使用）／フォーカスリング可視／結果は aria-live で読み上げ／Lighthouse Accessibility 90 以上（CI で自動）
 
 ---
 

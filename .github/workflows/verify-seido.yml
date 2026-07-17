@@ -50,9 +50,50 @@ jobs:
           node-version: '22'
 
       - name: 制度データの構造検査
+        id: structure
         # 出典なしの数値、確認日の欠落、改正メモの欠落、まとめサイトの混入、
         # expiresOn を過ぎた期限切れデータを検出する。ネットワーク不要。
-        run: node scripts/verify-seido.mjs
+        run: node scripts/verify-seido.mjs 2>&1 | tee structure-report.txt && exit ${PIPESTATUS[0]}
+        shell: bash
+        continue-on-error: true
+
+      - name: 期限切れ等の検出時に Issue を起票（スケジュール実行時）
+        # expiresOn 到来（例: 2026-08-01 の育休給付上限額改定）を日次で検知して起票する。
+        # 対応手順は BACKLOG.md の「D: 日付トリガージョブ」を参照。
+        if: steps.structure.outcome == 'failure' && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = '制度データの構造検査が失敗しました。期限切れ（expiresOn 到来）または構造違反です。\n\n';
+            try {
+              body += '```\n' + fs.readFileSync('structure-report.txt', 'utf8').slice(0, 55000) + '\n```\n';
+            } catch (e) {
+              body += '(レポートの読み込みに失敗しました)\n';
+            }
+            body += '\n対応手順: BACKLOG.md の「D: 日付トリガージョブ」を参照。YMYLのため実装者≠検算者のダブルチェック必須。\n';
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'seido-expiry',
+            });
+            if (existing.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.data[0].number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: `[制度データ] 構造検査の失敗・期限切れ検知 (${new Date().toISOString().slice(0, 10)})`,
+                body, labels: ['seido-expiry', 'YMYL'],
+              });
+            }
+
+      - name: 構造検査の結果を反映
+        if: steps.structure.outcome == 'failure'
+        run: |
+          echo '構造検査に失敗しました。上のログを確認してください。'
+          exit 1
 
   # ------------------------------------------------------------ 記事忠実性ゲート
   fidelity:

@@ -21,9 +21,32 @@ jobs:
         run: npm run lint
       - name: 型チェック
         run: npm run typecheck
+      - name: テスト（vitest — 計算ロジック純関数）
+        run: npm test
       - name: solves メタ検証・集計
         run: npm run check:solves
       - name: ブランド哲学リンター
         run: npm run check:brand
       - name: ビルド
         run: npm run build
+
+  # 速さ＝ブランド（docs/04 UI十原則）。LCP/CLS のバジェットを CI で強制する。
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Lighthouse CI（LCP/CLS バジェット）
+        run: npx --yes @lhci/cli@0.15.x autorun
+      - name: レポートを保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: .lighthouseci
+          retention-days: 14
