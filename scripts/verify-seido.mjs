@@ -76,6 +76,11 @@ const ALLOWED_HOSTS = [
   'www.jcia.org', // 日本化粧品工業会。SPF/PA測定・表示基準（同会が策定主体）のみ
   'w-health.jp', // 厚生労働省研究班「女性の健康推進室 ヘルスケアラボ」（厚労省事業サイト・非go.jpドメイン）
   'www.w-health.jp',
+  // ↓2026-07-17 社長決裁で追加した3ドメイン（.go.jpのためALLOWED_HOST_SUFFIXESで既にマッチするが、
+  // 用途注記つきで許可済みドメインとして明示するために個別列挙する）。
+  'www.courts.go.jp', // 裁判所。養育費・婚姻費用算定表等の一次情報
+  'www.moj.go.jp', // 法務省。民法改正（養育費関連）等の一次情報
+  'www.mext.go.jp', // 文部科学省。高等学校等就学支援金・就学援助等の一次情報
 ];
 const ALLOWED_HOST_SUFFIXES = ['.lg.jp', '.go.jp'];
 /**
