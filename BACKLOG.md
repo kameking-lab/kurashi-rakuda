@@ -178,14 +178,14 @@
 | [x] P2-T20 | #28 | 学童・小1の壁 段取りチェック | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 → **完了（2026-07-18）**: slug `gakudou-kabe-dandori-check`（childcare）。specs/b-tools/p2-t20-gakudou-kabe-dandori-check.md・GakudouKabeDandoriCheck.calc.ts/tsx・tests/gakudou-kabe-dandori-check.test.ts（40件）・registry.json 追加済み。入学（予定）年度から「入学前年の秋頃／入学直前／入学後」の時期区分を判定し時期別チェックリストを表示。★データの限界★: gakudou-hoiku-kijun.jsonの基準は全て市町村条例への参酌基準（全国一律の確定値ではない）ため、開所時間・お迎え締切時刻・申込締切日という具体的な時刻・日付は一切生成せず、粒度の粗い時期区分のみで構成。待機児童の学年別内訳（小4が最多5,589人）と年度途中の減少実態（5月16,330人→10月速報値7,363人）はCalloutで正直に提示 |
 | [x] P2-T21 | #42 | 味付け黄金比計算（人数スケール） | B(ソネット) | 要: data/tables 黄金比表（出典設計含む） | 簡易 → **完了（2026-07-17）**: slug `ajitsuke-ougonhi`（kaji）。`data/tables/ajitsuke-ougonhi.json` 新規作成。出典5品目=農林水産省「伝統調味料は『黄金比』で手間いらず」（maff.go.jp、Let's！和ごはんプロジェクト）、残り3品目（すき焼き割り下・天つゆ・酢の物）は一次情報なしのため一般的な目安として明記。specs/b-tools/p2-t21-ajitsuke-ougonhi.md・テスト18件 |
 | [x] P2-T22 | #43 | レシピ人数スケール換算 | B(ソネット) | なし（#38部品流用） | 不要 → **完了（2026-07-18）**: slug `recipe-ninzuu-kansan`（kaji）。純粋な比例計算（倍率＝目標人数÷元の人数）のみで制度・統計データへの依存なし。UIパターン（複数行の材料入力）はChomiryoKanzan.tsxを参考にしつつ動的な追加・削除に拡張。specs/b-tools/p2-t22-recipe-ninzuu-kansan.md・RecipeNinzuuKansan.calc.ts/tsx・テスト29件（tests/recipe-ninzuu-kansan.test.ts）・registry.json 追加済み（sourcesは公的データ不在のため一般参考情報1件のみ、捏造なし）
-| P2-T23 | #44 | 買い物リスト自動生成（献立連動） | B(ソネット) | ✔data/kondate（#40部品流用） | 簡易 |
+| [~] P2-T23 | #44 | 買い物リスト自動生成（献立連動） | B(ソネット) | ✔data/kondate（#40部品流用） | 簡易 |
 | P2-T24 | #45 | 作り置き 日持ち一覧 | B(ソネット) | 要: data/tables 日持ち表（#37と同系） | 簡易 |
 | [x] P2-T25 | #46 | 名もなき家事 分担チェッカー | B(ソネット) | なし（自前リスト） | 簡易 → **完了（2026-07-18）**: slug `namonaki-kaji-checker`（kaji）。specs/b-tools/p2-t25-namonaki-kaji-checker.md・NamonakiKajiChecker.calc.ts/tsx・tests/namonaki-kaji-checker.test.ts（15件）。項目リスト（4カテゴリ・30項目）は自前作成で制度データ非依存。参考情報として総務省統計局「令和3年社会生活基本調査」の家事関連時間の男女差（data/tables/kaji-jikan-toukei-danjyosa.json）を、診断結果とは独立した紹介情報として画面内に併記（出典stat.go.jpはfactory/config/source-allowlist.jsonに既に許可済みのため追加変更なし）。registry.json追加済み・npm run check（vitest 1014件）PASS |
 | [x] P2-T26 | #48 | 電子レンジ ワット数・加熱時間換算 | B(ソネット) | なし（物理式） | 簡易 → **完了（2026-07-18）**: slug `renji-watt-kansan`（kaji）。基本式T2=T1×W1÷W2＋500/600/700Wプリセット。specs/b-tools/p2-t26-renji-watt-kansan.md・テスト43件（`renji-watt-kanzan-kijun.json`のkanzan_rei・対照表10行×2方向を機械照合、上尾市表は原典が宝島社書籍のため許容差10秒未満で整合確認）。出典の限界（上尾市PDFは公的機関自身の算出ではなく市販書籍転載）をツール・記事双方に明記 |
 | [x] P2-T27 | #57 | パートシフト収入計算（壁警告付き） | B(ソネット) | ✔part-shift-shunyuu-kabe・fuyou-kabe | 簡易 → **完了（2026-07-18）**: slug `part-shift-shunyuu-keisan`（money）。時給・週の勤務日数・1日の勤務時間（またはシフト表からの月収直接入力）から年収を換算し、`lib/tools/impl/fuyo-kabe.ts`（Q3-18で検収済み）の`evaluateWalls`/`judgeShaho`/`judgeDependent`にそのまま委譲する薄いラッパーとして実装（壁の金額・税額計算式は再実装なし）。`data/seido/part-shift-shunyuu-kabe.json`固有の情報（106万円の壁は通勤手当を含まない所定内賃金・130万円の壁は通勤手当込みの総収入で判定する違い、月次目安108,333円）を活かし、通勤手当の任意入力で2つの壁を別の収入基準で判定する設計。specs/b-tools/p2-t27-part-shift-shunyuu-keisan.md・PartShiftShunyuuKeisan.calc.ts/tsx・tests/part-shift-shunyuu-keisan.test.ts（23件）・registry.json追加済み。npm run check（vitest 1172件）PASS |
 | [x] P2-T28 | #61 | 食費の目安計算（家族構成別） | B(ソネット) | 要: 総務省家計調査の値表 → **完了（2026-07-17）**: slug `shokuhi-meyasu`。data/tables/shokuhi-meyasu.json（総務省統計局「家計調査」2025年（令和7年）平均、世帯人員別・単身〜6人以上）を新規収集、specs/b-tools/p2-t28-shokuhi-meyasu.md・テスト15件 | 簡易 |
 | P2-T29 | #62 | 手取りからの予算配分計算 | B(ソネット) | 要: 費目テンプレ（家計調査出典） | 簡易 |
-| P2-T30 | #66 | 女性の適正体重・体型指標 | B(ソネット) | 一部✔（肥満度分類=jasso許可済）／要: BMI基準の値表化 | 簡易 |
+| [~] P2-T30 | #66 | 女性の適正体重・体型指標 | B(ソネット) | 一部✔（肥満度分類=jasso許可済）／要: BMI基準の値表化 | 簡易 |
 | P2-T31 | #67 | PMS・体調予測カレンダー（記録なし版） | B(ソネット) | 一部✔（PMS有病率=w-health.jp）。#3部品流用。医療判断なしを仕様で固定 | 要（YMYL中） |
 | P2-T32 | #69 | 赤ちゃん連動 睡眠逆算 | B(ソネット) | 要: 睡眠ガイド2023の推奨値 | 簡易 |
 | [x] P2-T33 | #76 | 健診・がん検診 年齢別スケジュール（女性） | B(ソネット) | ✔kenshin-gankenshin-schedule | 簡易 → **完了（2026-07-18）**: slug `josei-kenshin-schedule`（health）。specs/b-tools/p2-t33-josei-kenshin-schedule.md・JoseiKenshinSchedule.calc.ts/tsx・tests/josei-kenshin-schedule.test.ts（21件）。生年月日から満年齢を算出し、子宮頸がん・乳がん・胃がん・肺がん・大腸がん検診＋特定健診・後期高齢者健診の7種類について対象年齢のしきい値（データの自然文から正規表現で抽出、コード直書きなし）と比較して対象/対象外/あと◯年で対象を判定。子宮頸がん検診は細胞診（2年）とHPV検査単独法（5年）の間隔を一律にせず併記、肺がん検診は令和7年12月24日改正で削除された喀痰細胞診を含めない。実施の有無・自己負担額・案内方法は自治体・保険者ごとに異なる旨とYMYL免責をCalloutで常時表示。registry.json追加済み・npm run check（vitest 1170件）PASS |
@@ -193,9 +193,9 @@
 | [x] P2-T35 | #82 | 保育園お迎え逆算 勤務可能時間計算 | B(ソネット) | なし（時間演算） | 不要 → **完了（2026-07-18）**: slug `hoikuen-omukae-gyakusan`（career）。specs/b-tools/p2-t35-hoikuen-omukae-gyakusan.md・HoikuenOmukaeGyakusan.calc.ts/tsx・tests/hoikuen-omukae-gyakusan.test.ts（21件）。制度・統計データに依存しない純粋な時刻演算 |
 | [x] P2-T36 | #83 | 小1の壁 勤務シミュレーション | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 → **完了（2026-07-18）**: slug `shou1-kabe-kinmu-simulation`（career）。specs/b-tools/p2-t36-shou1-kabe-kinmu-simulation.md・Shou1KabeKinmuSimulation.calc.ts/tsx・tests/shou1-kabe-kinmu-simulation.test.ts（25件）。★データの限界★ 学童の開所・閉所時刻は国の基準が「参酌基準」かつ時間数の下限のみを定め時刻を定めないため全国一律値が存在せず（gakudou-hoiku-kijun.jsonのstandardsNature/openingHours参照）、架空値を作らずユーザー自身に閉所時刻を入力させる設計とした。対象学年・支援の単位定員・学年別待機児童数は判定結果と独立の参考情報としてのみ同JSONから取得。registry.json追加済み・npm run check（lint/typecheck/check:solves/check:brand/check:mascot/vitest 1174件）全てPASS |
 | [x] P2-T37 | #92 | 要介護認定 申請段取りナビ | B(ソネット) | ✔kaigo-hoken＋✔kaigo-nintei-shori-kikan（P2-D05で新規追加・介護保険法第27条） | 簡易 → **完了（2026-07-17・PR#109・slug: youkaigo-nintei-dandori-navi）** |
-| P2-T38 | #94 | 介護と仕事の両立制度チェッカー | B(ソネット) | ✔kaigo-shigoto-ryouritsu-seido | 簡易 |
-| P2-T39 | #95 | 介護施設タイプ別 費用早見（紹介送客なし） | B(ソネット) | ✔kaigo-shisetsu-hiyou-souba | 簡易 |
-| P2-T40 | #101 | 介護サービス種類 かんたん逆引き | B(ソネット) | ✔kaigo-hoken（サービス種類の値表化） | 簡易 |
+| [~] P2-T38 | #94 | 介護と仕事の両立制度チェッカー | B(ソネット) | ✔kaigo-shigoto-ryouritsu-seido | 簡易 |
+| [~] P2-T39 | #95 | 介護施設タイプ別 費用早見（紹介送客なし） | B(ソネット) | ✔kaigo-shisetsu-hiyou-souba | 簡易 |
+| [~] P2-T40 | #101 | 介護サービス種類 かんたん逆引き | B(ソネット) | ✔kaigo-hoken（サービス種類の値表化） | 簡易 |
 
 ※データ収集済みで未選定のB級（#30チャイルドシート=child-seat-kitei・#84有給=yuukyuu-fuyo-nissuu-kijun・#88教育訓練給付=kyouiku-kunren-kyufukin・#65医療費控除=iryouhi-koujo-kodomo）は **Phase 3 先行候補**（データ整備済みのため着手コスト小）。
 
