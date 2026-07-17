@@ -4,6 +4,10 @@
  *
  * データ本体（記号・意味・お手入れ方法・出典）は data/tables/sentaku-hyoji.json を
  * 単一の情報源(SSOT)として import する。記号を追加・修正する場合は同JSONだけを更新する。
+ * （D2対応・2026-07-17: data/tables/sentaku-hyouji.json を廃止し本ファイルへ統合した）
+ *
+ * ★記号の総数を断定しないこと★ 消費者庁の現行解説ページに総数の明記がない。
+ * 記号は記号番号（number）で一意に識別する（data の kigouSousuuNote 参照）。
  */
 import table from "@/data/tables/sentaku-hyoji.json";
 
@@ -11,6 +15,8 @@ export type SentakuCategory = "洗濯" | "漂白" | "乾燥" | "アイロン" | 
 
 export interface SentakuSymbol {
   id: string;
+  /** 消費者庁の解説ページ『各記号の詳細』の記号番号（190・111・511 など） */
+  number: number;
   category: SentakuCategory;
   symbolShape: string;
   meaning: string;
@@ -36,7 +42,7 @@ export type SentakuSearchResult =
 
 const SYMBOLS: SentakuSymbol[] = table.symbols as SentakuSymbol[];
 const RELATED: Record<string, string[]> = table.relatedSymbols as Record<string, string[]>;
-const SOURCE_LABEL = `${table.source.label}（家庭用品品質表示法・JIS L 0001 新JIS表示）`;
+const SOURCE_LABEL = `${table.source.label}（家庭用品品質表示法・${table.jisEdition}）`;
 
 export const SENTAKU_CATEGORIES = table.categories as SentakuCategory[];
 export const SENTAKU_EFFECTIVE_DATE_LABEL = table.effectiveDateLabel;
@@ -58,8 +64,11 @@ export function normalize(input: string): string {
     .toLowerCase();
 }
 
-function isDelicateCaution(item: Pick<SentakuSymbol, "id" | "category">): boolean {
-  return item.category === "クリーニング" || item.id === "sen_tearai";
+/** 手洗い表示（記号番号110・111）。id ではなく記号番号で判定する（記号の増減に強い） */
+const TEARAI_NUMBERS = [110, 111];
+
+function isDelicateCaution(item: Pick<SentakuSymbol, "number" | "category">): boolean {
+  return item.category === "クリーニング" || TEARAI_NUMBERS.includes(item.number);
 }
 
 export function findSymbolById(id: string): SentakuSymbol | undefined {
