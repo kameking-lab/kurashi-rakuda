@@ -107,7 +107,9 @@
       "sourceId": "riyouryo-page",
       "checkedAt": "2026-07-17",
       "verify": {
-        "expect": ["保育料は保護者の所得に関わらず「無料」"]
+        "expect": [
+          "保育料は保護者の所得に関わらず「無料」"
+        ]
       },
       "amendmentNote": "なし(2026-07-17時点)",
       "note": "原文：「3～5歳児クラス（3歳以上児） 保育料は保護者の所得に関わらず「無料」(※)となります。ただし、給食費（主食費・副食費）については別途実費負担となります。※令和元年10月の幼児教育・保育の無償化に伴い無料となりました。」階層表でも3歳以上児は全階層・全時間区分で0円。令和8年度利用案内も見出しを「７ 保育料（３歳未満児のみ）」としている。"
@@ -128,7 +130,9 @@
         "sourceId": "riyouryo-page",
         "checkedAt": "2026-07-17",
         "verify": {
-          "expect": ["軽減対象施設の在籍の有無やきょうだいの年齢に関わらず"]
+          "expect": [
+            "軽減対象施設の在籍の有無やきょうだいの年齢に関わらず"
+          ]
         },
         "amendmentNote": "令和7年9月から千葉市独自に拡充済み（in-force）。令和7年8月までは国制度どおり「就学前のお子さんであって、かつ保育園等の施設を同時に利用しているお子さんの人数をカウント」していた。",
         "note": "階層表【備考】2の原文：「保護者と生計が同一のお子さんが２人以上いる場合は、軽減対象施設の在籍の有無やきょうだいの年齢に関わらず、利用者負担額は次のとおりとなります。・最も年齢の高い児童（１人目）……基準額 ・次に年齢の高い児童（２人目）……半額 ・その他の児童（３人目以降）……無料」。対象は千葉市に在住し、対象施設（認可保育施設＝保育所、認定こども園、小規模保育事業、事業所内保育事業、家庭的保育事業、居宅訪問型保育事業）の0〜2歳児クラスに在籍する世帯の第2子以降の児童。第1子の年齢や世帯の所得は問わない。千葉市に在住している児童が市外の認可保育施設を利用する場合も対象。原則、申請手続きは不要だが、(1)生計が同一で別居（就学や療養等で市外に居住している等）のきょうだいがいる場合、(2)幼稚園等（幼稚園（千葉市が保育料を決定する施設給付型幼稚園を除く）、特別支援学校幼稚部、児童心理治療施設通所部、児童発達支援、医療型児童発達支援、居宅訪問型児童発達支援又は企業主導型保育事業）を利用しているきょうだいがいる場合は別途届け出が毎年度必要。軽減対象となるかの確認のため年1回、確認書類の提出が必要。"
@@ -162,8 +166,14 @@
       "incomeMax": 0,
       "isWelfare": true,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -173,8 +183,14 @@
       "incomeMax": 0,
       "isNonTaxable": true,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -183,8 +199,14 @@
       "incomeMin": 0,
       "incomeMax": 1,
       "fees": {
-        "under3": { "standard": 4110, "short": 4040 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 4110,
+          "short": 4040
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -193,8 +215,14 @@
       "incomeMin": 1,
       "incomeMax": 48600,
       "fees": {
-        "under3": { "standard": 6170, "short": 6070 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 6170,
+          "short": 6070
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -203,8 +231,14 @@
       "incomeMin": 48600,
       "incomeMax": 51500,
       "fees": {
-        "under3": { "standard": 11180, "short": 10990 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 11180,
+          "short": 10990
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -213,8 +247,14 @@
       "incomeMin": 51500,
       "incomeMax": 56600,
       "fees": {
-        "under3": { "standard": 14960, "short": 14710 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 14960,
+          "short": 14710
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -223,8 +263,14 @@
       "incomeMin": 56600,
       "incomeMax": 74000,
       "fees": {
-        "under3": { "standard": 18840, "short": 18520 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 18840,
+          "short": 18520
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -233,8 +279,14 @@
       "incomeMin": 74000,
       "incomeMax": 97000,
       "fees": {
-        "under3": { "standard": 26650, "short": 26200 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 26650,
+          "short": 26200
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -243,8 +295,14 @@
       "incomeMin": 97000,
       "incomeMax": 112000,
       "fees": {
-        "under3": { "standard": 33450, "short": 32880 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 33450,
+          "short": 32880
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -253,8 +311,14 @@
       "incomeMin": 112000,
       "incomeMax": 132000,
       "fees": {
-        "under3": { "standard": 40760, "short": 40070 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 40760,
+          "short": 40070
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -263,8 +327,14 @@
       "incomeMin": 132000,
       "incomeMax": 169000,
       "fees": {
-        "under3": { "standard": 44000, "short": 43250 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 44000,
+          "short": 43250
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -273,8 +343,14 @@
       "incomeMin": 169000,
       "incomeMax": 203800,
       "fees": {
-        "under3": { "standard": 51690, "short": 50810 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 51690,
+          "short": 50810
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -283,8 +359,14 @@
       "incomeMin": 203800,
       "incomeMax": 301000,
       "fees": {
-        "under3": { "standard": 54330, "short": 53410 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 54330,
+          "short": 53410
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -293,8 +375,14 @@
       "incomeMin": 301000,
       "incomeMax": 397000,
       "fees": {
-        "under3": { "standard": 57460, "short": 56480 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 57460,
+          "short": 56480
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -303,8 +391,14 @@
       "incomeMin": 397000,
       "incomeMax": 480000,
       "fees": {
-        "under3": { "standard": 60600, "short": 59570 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 60600,
+          "short": 59570
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -313,8 +407,14 @@
       "incomeMin": 480000,
       "incomeMax": 671800,
       "fees": {
-        "under3": { "standard": 65750, "short": 64630 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 65750,
+          "short": 64630
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -323,12 +423,19 @@
       "incomeMin": 671800,
       "incomeMax": null,
       "fees": {
-        "under3": { "standard": 70900, "short": 69690 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 70900,
+          "short": 69690
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     }
   ],
   "verify": {
+    "sourceId": "r7-hoikuryouhyou",
     "expect": [
       "保育認定（２号・３号）にかかる利用者負担額（月額）",
       "４，１１０",

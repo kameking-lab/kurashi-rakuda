@@ -130,12 +130,16 @@
     },
     "verify": {
       "type": "object",
-      "description": "機械照合の指示。verify-seido.mjs が出典を取得し expect の全てがページ本文に存在するか検査する。",
+      "description": "機械照合の指示。verify-seido.mjs が出典を取得し expect の全てがページ本文に存在するか検査する。照合先の出典は verify.sourceId、無ければ同ノードの sourceId で解決する。どちらも無い verify.expect は照合先が特定できないため構造検査エラーになる（トップレベル verify は必ず verify.sourceId を持つこと）。",
       "properties": {
         "expect": {
           "type": "array",
           "items": { "type": "string" },
           "description": "出典ページ本文に出現すべき文字列(AND条件)"
+        },
+        "sourceId": {
+          "type": "string",
+          "description": "照合先の出典（sources[].id）。同ノードに sourceId が無い場合（トップレベル verify 等）は必須。同ノードの sourceId と異なる出典で照合したい場合にも使える"
         },
         "skip": {
           "type": "boolean",

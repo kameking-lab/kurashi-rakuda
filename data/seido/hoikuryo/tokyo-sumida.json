@@ -180,8 +180,14 @@
       "incomeMax": null,
       "isWelfare": true,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -191,8 +197,14 @@
       "incomeMax": 1,
       "isNonTaxable": true,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -201,8 +213,14 @@
       "incomeMin": 0,
       "incomeMax": 1,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -211,8 +229,14 @@
       "incomeMin": 1,
       "incomeMax": 5000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -221,8 +245,14 @@
       "incomeMin": 5000,
       "incomeMax": 10000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -231,8 +261,14 @@
       "incomeMin": 10000,
       "incomeMax": 23200,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -241,8 +277,14 @@
       "incomeMin": 23200,
       "incomeMax": 36400,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -251,8 +293,14 @@
       "incomeMin": 36400,
       "incomeMax": 48600,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -261,8 +309,14 @@
       "incomeMin": 48600,
       "incomeMax": 72800,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -271,8 +325,14 @@
       "incomeMin": 72800,
       "incomeMax": 97000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -281,8 +341,14 @@
       "incomeMin": 97000,
       "incomeMax": 115000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -291,8 +357,14 @@
       "incomeMin": 115000,
       "incomeMax": 133000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -301,8 +373,14 @@
       "incomeMin": 133000,
       "incomeMax": 151000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -311,8 +389,14 @@
       "incomeMin": 151000,
       "incomeMax": 169000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -321,8 +405,14 @@
       "incomeMin": 169000,
       "incomeMax": 185500,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -331,8 +421,14 @@
       "incomeMin": 185500,
       "incomeMax": 202000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -341,8 +437,14 @@
       "incomeMin": 202000,
       "incomeMax": 218500,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -351,8 +453,14 @@
       "incomeMin": 218500,
       "incomeMax": 235000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -361,8 +469,14 @@
       "incomeMin": 235000,
       "incomeMax": 251500,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -371,8 +485,14 @@
       "incomeMin": 251500,
       "incomeMax": 268000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -381,8 +501,14 @@
       "incomeMin": 268000,
       "incomeMax": 284500,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -391,8 +517,14 @@
       "incomeMin": 284500,
       "incomeMax": 301000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -401,8 +533,14 @@
       "incomeMin": 301000,
       "incomeMax": 349000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -411,8 +549,14 @@
       "incomeMin": 349000,
       "incomeMax": 397000,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -421,8 +565,14 @@
       "incomeMin": 397000,
       "incomeMax": 443600,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -431,12 +581,19 @@
       "incomeMin": 443600,
       "incomeMax": null,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     }
   ],
   "verify": {
+    "sourceId": "sumida-hoikuryo-page",
     "expect": [
       "通常保育料（利用者負担額）が無償となります",
       "4月から8月分は前年度分をもとに算定し、9月から翌年3月分は当年度分の区市町村民税額により保育料を算定します",
