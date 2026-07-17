@@ -1387,5 +1387,26 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T23",
+    "slug": "kaimono-list-jidou-seisei",
+    "category": "kaji",
+    "title": "買い物リスト自動生成（献立連動）",
+    "description": "献立自動提案と同じレシピ・食材データから、選んだレシピの食材をまとめて買い物リストを作ります。分量は表示せず、いくつのレシピで使うかを集計します。",
+    "solves": [
+      "作る料理は決まったが、買うものを1つずつ書き出すのが面倒",
+      "同じ食材を何度も買い足してしまう",
+      "献立の食材リストを1つにまとめたい"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "くらしラクダ「献立自動提案」のレシピ・食材データ（data/kondate。一般的な家庭料理の名称・主材料・調理法のみを自作したもので、外部レシピの転載はありません。本ツールは分量データを持たないため分量は表示しません）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/tree/master/data/kondate"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
