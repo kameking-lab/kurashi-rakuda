@@ -1,0 +1,39 @@
+{
+  "$comment": "調味料の大さじ・小さじ⇄グラム換算の対照表（非制度）。ツール実装 components/tools/impl/ChomiryoKanzan.calc.ts の参考値（主要18種）を出典付きで文書化したもの。大さじ1=15ml・小さじ1=5mlという単位定義、および 水・酢・酒/しょうゆ/みりん/みそ/塩/砂糖（上白糖）/小麦粉/片栗粉/サラダ油/バター/マヨネーズ/はちみつ/牛乳 の各グラム数は、複数の自治体（*.lg.jp）が公開する計量スプーン・カップ重量換算表で確認できた（新潟市農林水産部食育・花育センター配布資料、船橋市学校栄養士会資料〈千葉県資料は『平成23年国民健康・栄養調査食品番号表』参照と明記〉、大阪市・千代田区の公開資料）。ただし『ケチャップ』はツール実装値が18gだが、確認できた自治体資料（大阪市15g・新潟市15g・千葉県15g）はいずれも15gで、ツール値と一致しない（要確認事項として記録。本ファイルはツールの現状の実装値をそのまま記録し、$comment上で相違を明示する）。『生クリーム』『めんつゆ』は、許可ドメイン内で該当する一次情報を確認できなかったため、一般的な家庭用計量表の参考値（未確認）としてツール実装値をそのまま記載している。",
+  "org": "大阪市 / 新潟市農林水産部食育・花育センター / 船橋市学校栄養士会（船橋市教育委員会保健体育課監修）",
+  "source_url": "https://www.city.osaka.lg.jp/kenko/page/0000017084.html",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2026-10-01",
+  "tan_i": { "oosaji_ml": 15, "kosaji_ml": 5 },
+  "hijuu_g_per_oosaji": {
+    "mizu": 15,
+    "shouyu": 18,
+    "mirin": 18,
+    "ryourishu": 15,
+    "su": 15,
+    "miso": 18,
+    "satou_jouhakutou": 9,
+    "shio": 18,
+    "komugiko_hakurikiko": 9,
+    "katakuriko": 9,
+    "sarada_abura": 12,
+    "bataa": 12,
+    "mayonezu": 12,
+    "kechappu": 18,
+    "hachimitsu": 21,
+    "gyuunyuu": 15,
+    "namakuriimu": 15,
+    "mentsuyu": 18
+  },
+  "kakunin_jokyo": {
+    "kakunin_zumi_koumoku": [
+      "mizu", "shouyu", "mirin", "ryourishu", "su", "miso",
+      "satou_jouhakutou", "shio", "komugiko_hakurikiko", "katakuriko",
+      "sarada_abura", "bataa", "mayonezu", "hachimitsu", "gyuunyuu"
+    ],
+    "sougo_ni_ichigan_shinai_koumoku": {
+      "kechappu": "ツール実装値18gに対し、確認できた自治体一次資料（大阪市・新潟市・千葉県）はいずれも15g。"
+    },
+    "mikakunin_koumoku": ["namakuriimu", "mentsuyu"]
+  }
+}

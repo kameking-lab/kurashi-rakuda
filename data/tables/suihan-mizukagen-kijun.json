@@ -1,0 +1,18 @@
+{
+  "$comment": "炊飯の水加減・合数⇄グラム換算の対照表（非制度）。ツール実装 components/tools/impl/SuihanMizu.calc.ts の参考値を出典付きで文書化したもの。基本単位（1合=180ml、精白米1合≈150g）は農林水産省の一次情報で確認済み。加水量の倍率・目安値（白米の重量ベース×1.2・合数簡易法×200ml、無洗米の+15〜30ml、玄米×1.5、もち米×1.0）は当該一次情報には具体的な記載がなく、家庭用調理で一般的に使われる目安値として実装したものであり、一次情報での裏付けは取れていない。",
+  "org": "農林水産省",
+  "source_url": "https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2111/spe3_01.html",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2026-10-01",
+  "ichigo_ml": 180,
+  "hakumai_ichigo_g": 150,
+  "kasui_baiitsu": {
+    "hakumai_juuryou_base": 1.2,
+    "hakumai_gousuu_kani_ml_per_go": 200,
+    "musenmai_gousuu_kani_ml_per_go": 200,
+    "musenmai_tsuika_ml_per_go_min": 15,
+    "musenmai_tsuika_ml_per_go_max": 30,
+    "genmai": 1.5,
+    "mochigome": 1.0
+  }
+}

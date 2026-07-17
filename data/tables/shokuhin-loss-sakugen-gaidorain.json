@@ -1,0 +1,25 @@
+{
+  "$comment": "食品ロス統計の対照表（非制度）。消費者庁・農林水産省・環境省が共同で毎年公表する食品ロス量推計値のうち、消費者庁の公表ページ（caa.go.jp）で確認できた最新値（2024（令和6）年度）を採用。国民1人1日あたりの食品ロス量（約102g）は消費者庁「食品ロスについて知る・学ぶ」ページに掲載の総量461万トンベースの換算値（家庭系のみの値ではない点に注意）。家庭系食品ロスの発生要因（食べ残し・直接廃棄・過剰除去）の定義は消費者庁「めざせ！食品ロス・ゼロ」サイトに基づくが、直近年度の要因別内訳（%・万トン）は許可ドメイン内で確認できなかったため数値は含めていない。年度により数値が改定されるため、記事化時は次回確認時に taishou_nendo を要更新。",
+  "org": "消費者庁 / 農林水産省",
+  "source_url": "https://www.caa.go.jp/notice/entry/046549/",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2026-10-01",
+  "taishou_nendo": "2024(令和6)年度",
+  "kouhyou_bi": "2026-06-30",
+  "nenkan_shokuhin_loss_ryou_mantonn": 461,
+  "jigyou_kei_shokuhin_loss_ryou_mantonn": 237,
+  "katei_kei_shokuhin_loss_ryou_mantonn": 224,
+  "katei_kei_wariai_percent": 48.6,
+  "kokumin_1nin_1nichi_ryou_g": 102,
+  "kokumin_1nin_1nichi_ryou_setsumei": "総食品ロス量461万トンを人口・日数で換算した値。「おにぎり1個分（約102g）」として消費者庁が啓発に使用。家庭系ロスのみの1人1日あたり量ではない。",
+  "zenendo_2023_reiwa5_hikaku": {
+    "nenkan_shokuhin_loss_ryou_mantonn": 464,
+    "jigyou_kei_mantonn": 231,
+    "katei_kei_mantonn": 233
+  },
+  "katei_shokuhin_loss_hassei_youin_bunrui": {
+    "tabekokoshi": "食卓にのぼった食品で、食べ切られずに廃棄されたもの",
+    "chokusetsu_haiki": "賞味期限切れ等により使用・提供されず、手つかずのまま廃棄されたもの",
+    "kajou_jokyo": "厚くむき過ぎた野菜の皮など、不可食部分を除去する際に過剰に除去された可食部分"
+  }
+}

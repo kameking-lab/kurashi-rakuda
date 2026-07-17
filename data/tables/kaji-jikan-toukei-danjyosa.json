@@ -1,0 +1,53 @@
+{
+  "$comment": "「名もなき家事、公的統計で見る家事時間の男女差」記事用の対照表（非制度・非YMYL）。総務省統計局「令和3年社会生活基本調査」生活時間及び生活行動に関する結果（結果の概要、令和4年8月31日公表）と、同局「統計Today No.190 我が国における家事関連時間の男女の差」（令和5年2月8日公表）の数値を突合して作成。家事関連時間＝「家事」「介護・看護」「育児」「買い物」の合計時間（調査票A、週全体平均、1人1日当たり）。時間.分（例 1.54=1時間54分）はすべて分単位に換算して格納。出典ドメイン(stat.go.jp)は本データ作成時点でfactory/config/source-allowlist.jsonの許可リストに未追加のため、この対照表を用いた記事の公開前にドメイン追加が必要（本タスクではsource-allowlist.jsonは編集していない）。",
+  "org": "総務省統計局",
+  "source_url": "https://www.stat.go.jp/data/shakai/2021/index.html",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2026-10-01",
+  "chousa_meisho": "令和3年社会生活基本調査（生活時間及び生活行動に関する結果）",
+  "chousa_jisshi_jiki": "2021年（令和3年）10月16日～24日のうち指定連続2日間",
+  "kekka_kouhyou_bi": "2022-08-31",
+  "hosoku_shiryou_kouhyou_bi": "2023-02-08",
+  "hosoku_shiryou_meisho": "統計Today No.190「我が国における家事関連時間の男女の差～生活時間からみたジェンダーギャップ～」",
+  "source_url_detail": {
+    "kekka_gaiyou_pdf": "https://www.stat.go.jp/data/shakai/2021/pdf/gaiyoua.pdf",
+    "toukei_today_no190_pdf": "https://www.stat.go.jp/info/today/pdf/190.pdf"
+  },
+  "zenkoku_10sai_ijo_danjyobetsu_kaji_kanren_jikan_fun": {
+    "$comment": "10歳以上人口全体（単身者含む）の男女別。週全体平均、1人1日当たり。出典: 結果の概要 表2-1。",
+    "dansei_2021": 51,
+    "josei_2021": 204,
+    "dansei_2016": 44,
+    "josei_2016": 208,
+    "danjyosa_2021_fun": 153,
+    "danjyosa_2001_fun": 183
+  },
+  "muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun": {
+    "$comment": "6歳未満の子供を持つ夫婦と子供の世帯。夫・妻それぞれの週全体平均、1日当たり家事関連時間。出典: 結果の概要 表2-2 / 統計Today No.190。",
+    "otto_2021": 114,
+    "tsuma_2021": 448,
+    "otto_2016": 83,
+    "tsuma_2016": 454,
+    "uchiwake_2021_fun": {
+      "kaji_otto": 30,
+      "kaji_tsuma": 178,
+      "ikuji_otto": 65,
+      "ikuji_tsuma": 234,
+      "kaimono_otto": 18,
+      "kaimono_tsuma": 33,
+      "kaigo_kango_otto": 1,
+      "kaigo_kango_tsuma": 3
+    }
+  },
+  "kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun": {
+    "$comment": "6歳未満の子供を持つ夫婦と子供の世帯を「共働き世帯」と「夫が有業で妻が無業の世帯（専業主婦世帯）」に分けた比較（週全体平均、2021年）。出典: 統計Today No.190 表2。",
+    "kyoudaraki_otto_2021": 115,
+    "kyoudaraki_tsuma_2021": 393,
+    "senkatsu_otto_2021": 107,
+    "senkatsu_tsuma_2021": 564,
+    "kyoudaraki_tsuma_taisenkatsu_tsuma_sa_fun": 171,
+    "kyoudaraki_tsuma_ikuji_zouka_tai2016_fun": 35,
+    "kyoudaraki_tsuma_kajikanren_zouka_tai2016_fun": 23,
+    "senkatsu_tsuma_kajikanren_zougen_tai2016_fun": -1
+  }
+}
