@@ -4,7 +4,7 @@
   "category": "仕事・キャリア",
   "type": "tool-narisou",
   "title_draft": "扶養内で働くか社保に入るか、損益分岐はどこ？",
-  "tool_ref": "fuyounai-shaho-songeki",
+  "tool_ref": "fuyo-kabe",
   "related_tool_list_no": 80,
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
   "priority": "A",
@@ -15,6 +15,6 @@
       "path": "data/seido/fuyounai-shaho-songeki-bunkiten.json"
     }
   ],
-  "status": "queued",
-  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"fuyounai-shaho-songeki-bunkiten.json#data.<パス>.value\"）。"
+  "status": "gated_pass",
+  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"fuyounai-shaho-songeki-bunkiten.json#data.<パス>.value\"）。★執筆時の判定★ tool_refの計画スラッグ(fuyounai-shaho-songeki)がregistry.json未登録のため、内容が直接対応する既存ツール「fuyo-kabe」（扶養の壁シミュレーター2026）に紐付け直してゲート通過。"
 }
