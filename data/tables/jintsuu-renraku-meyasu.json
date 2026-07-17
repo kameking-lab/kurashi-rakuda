@@ -1,0 +1,39 @@
+{
+  "$comment": "陣痛間隔カウンター（P2-T17、components/tools/impl/JintsuuKankakuCounter.tsx）とツール併走記事（content/articles/tool-narisou-jintsuu-kankaku-counter.md）が参照する、病院・産院への入院連絡目安（陣痛間隔）の一次情報転記。仕様: specs/b-tools/p2-t17-jintsuu-kankaku-counter.md。出典: 国立成育医療研究センター 産科「入院について」。2026-07-17にWebFetchで本文を再確認し、下記sourceQuoteの文言が実際にページ上に存在することを確認済み。★重要な注記★ この目安は同センターという一施設の入院連絡基準であり、日本産科婦人科学会等が定めた全国一律の診療ガイドライン値ではない（ツール本体・記事本文の両方でその旨を明記すること）。",
+  "sources": {
+    "ncchd-nyuin": {
+      "label": "国立成育医療研究センター 産科「入院について」",
+      "url": "https://www.ncchd.go.jp/hospital/pregnancy/bunben/nyuin.html",
+      "org": "国立成育医療研究センター",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "note": "同センターの産科入院連絡基準ページ。「初産婦：10分おきの陣痛になったとき」「経産婦：10分～15分おきの陣痛になったとき」「破水したとき」等を連絡目安として明記している。全国一律のガイドライン値ではなく、同センター一施設の運用例。"
+    }
+  },
+  "lastVerified": "2026-07-17",
+  "nextCheckDue": "2027-01-01",
+  "shosanpu_renraku_kankaku_fun": {
+    "value": 10,
+    "unit": "分",
+    "label": "初産婦の入院連絡目安（陣痛間隔）",
+    "confirmed": true,
+    "sourceId": "ncchd-nyuin",
+    "sourceQuote": "初産婦：10分おきの陣痛になったとき"
+  },
+  "keisanpu_renraku_kankaku_fun_min": {
+    "value": 10,
+    "unit": "分",
+    "label": "経産婦の入院連絡目安（陣痛間隔・下限）",
+    "confirmed": true,
+    "sourceId": "ncchd-nyuin",
+    "sourceQuote": "経産婦：10分～15分おきの陣痛になったとき"
+  },
+  "keisanpu_renraku_kankaku_fun_max": {
+    "value": 15,
+    "unit": "分",
+    "label": "経産婦の入院連絡目安（陣痛間隔・上限）",
+    "confirmed": true,
+    "sourceId": "ncchd-nyuin",
+    "sourceQuote": "経産婦：10分～15分おきの陣痛になったとき"
+  }
+}
