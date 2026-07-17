@@ -195,7 +195,7 @@
 | [x] P2-T37 | #92 | 要介護認定 申請段取りナビ | B(ソネット) | ✔kaigo-hoken＋✔kaigo-nintei-shori-kikan（P2-D05で新規追加・介護保険法第27条） | 簡易 → **完了（2026-07-17・PR#109・slug: youkaigo-nintei-dandori-navi）** |
 | [~] P2-T38 | #94 | 介護と仕事の両立制度チェッカー | B(ソネット) | ✔kaigo-shigoto-ryouritsu-seido | 簡易 |
 | [~] P2-T39 | #95 | 介護施設タイプ別 費用早見（紹介送客なし） | B(ソネット) | ✔kaigo-shisetsu-hiyou-souba | 簡易 |
-| [~] P2-T40 | #101 | 介護サービス種類 かんたん逆引き | B(ソネット) | ✔kaigo-hoken（サービス種類の値表化） | 簡易 |
+| [x] P2-T40 | #101 | 介護サービス種類 かんたん逆引き | B(ソネット) | ✔kaigo-hoken（サービス種類の値表化） | 簡易 → **完了（2026-07-18）**: slug `kaigo-service-gyaku-hiki`（care）。specs/b-tools/p2-t40-kaigo-service-gyaku-hiki.md・KaigoServiceGyakuHiki.calc.ts/tsx・tests/kaigo-service-gyaku-hiki.test.ts（20件）。★データの限界★ `data/seido/kaigo-hoken.json` を精査した結果、futanWariai・kubunShikyuGendo・tanka・kougakuKaigoServiceHi・hojokyufu・yokaigoNintei・gassanという費用計算系のキー構成であり、訪問介護・通所介護等のサービス種類名を体系立てて一覧化したカタログは含まれていないことを確認。よってサービス名・分類（17種類・7分類）は介護保険法第8条・第8条の2・第45条が定める類型に基づく一般的な整理として構築し（e-Gov法令APIで第8条第2項〜第13項・第24項・第26項〜第29項を機械照合、住宅改修の金額は未照合のため記載せず）、kaigo-hoken.jsonからは要介護度区分（yokaigoNintei.levels）と区分支給限度基準額（kubunShikyuGendo.levels）のみを参考情報として実引用。ツール・specs双方に出典の限界を明記し、捏造・断定的な出典表示は回避。registry.json追加済み・npm run check（lint/typecheck/check:solves/check:brand/check:mascot/vitest 1309件）全てPASS |
 
 ※データ収集済みで未選定のB級（#30チャイルドシート=child-seat-kitei・#84有給=yuukyuu-fuyo-nissuu-kijun・#88教育訓練給付=kyouiku-kunren-kyufukin・#65医療費控除=iryouhi-koujo-kodomo）は **Phase 3 先行候補**（データ整備済みのため着手コスト小）。
 
