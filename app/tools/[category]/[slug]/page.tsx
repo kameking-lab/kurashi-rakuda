@@ -69,6 +69,8 @@ import { RenjiWattKansan } from "@/components/tools/impl/RenjiWattKansan";
 import { RENJI_KANZAN_SOURCE } from "@/components/tools/impl/RenjiWattKansan.calc";
 import { NamonakiKajiChecker } from "@/components/tools/impl/NamonakiKajiChecker";
 import { REFERENCE_STAT as NAMONAKI_KAJI_REFERENCE_STAT } from "@/components/tools/impl/NamonakiKajiChecker.calc";
+import { PartShiftShunyuuKeisan } from "@/components/tools/impl/PartShiftShunyuuKeisan";
+import { partShiftKabeDataset } from "@/components/tools/impl/PartShiftShunyuuKeisan.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1371,6 +1373,39 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           </strong>
           実際に受けられる検診の種類・自己負担額・案内方法はお住まいの市区町村・加入する医療保険者によって異なり、受診の要否や結果の判断といった医学的な判断は一切行いません。必ずお住まいの市区町村・医療保険者の案内を優先してください。
         </p>
+      </>
+    ),
+  },
+  "part-shift-shunyuu-keisan": {
+    ui: <PartShiftShunyuuKeisan />,
+    formula: (
+      <>
+        <p>
+          <strong>月収・年収の換算</strong>
+          ：時給・週の勤務日数・1日の勤務時間から「時給×1日の勤務時間×週の勤務日数×52週」で年収を換算します
+          （1か月あたりの週数は4〜5週で変動するため、年52週で年収を出してから12で割ることで、月による凸凹を均した平均月収を出しています）。
+          シフト表から分かる月収を直接入力することもできます（この場合は月収×12で年収を換算します）。
+        </p>
+        <p>
+          <strong>壁の判定はすべて既存の「扶養の壁シミュレーター2026」に委譲</strong>
+          ：103/106/130/150万円等の壁の金額・税額計算・社会保険の加入判定は、本ツールでは一切再計算せず、
+          Q3-18で検収済みの計算ロジック（<code>evaluateWalls</code>・<code>judgeShaho</code>・
+          <code>judgeDependent</code>）をそのまま呼び出しています。本ツールが担当するのは、
+          シフトの入力から年収見込みを換算する部分のみです。
+        </p>
+        <p>
+          <strong>通勤手当の扱い（シフト制特有の注意点）</strong>
+          ：106万円の壁（勤務先の社会保険に入るかどうか）は、通勤手当・賞与・残業代を含まない
+          「所定内賃金」で判定されます。一方、130万円の壁（扶養から外れるかどうか）は、通勤手当・賞与を含む
+          全ての収入で判定されます。本ツールは、通勤手当を任意入力とし、106万円の壁の判定には含めず、
+          130万円等の壁の判定にのみ含めることで、この違いを反映しています。
+        </p>
+        <p>
+          <strong>月々の実務目安</strong>
+          ：年収130万円という基準を12で割った「月額108,333円」を、シフト制の月々の収入管理の目安として表示します。
+          暦年の合計ではなく、認定時点から将来1年間の見込み収入で判定されるため、月々の水準を保つ管理が実務上の基本です。
+        </p>
+        <SeidoNotice datasets={[partShiftKabeDataset, fuyoKabeDataset]} today={todayJst()} />
       </>
     ),
   },
