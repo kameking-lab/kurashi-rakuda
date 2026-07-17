@@ -1,0 +1,133 @@
+{
+  "$comment": "味付け黄金比計算（P2-T21）の料理×調味料の配合比率データ。ツール実装 components/tools/impl/AjitsukeOugonhi.calc.ts のSSOT。出典確度は2段階に分けて記録する。①confirmed=true（5品目）: 農林水産省「伝統調味料は「黄金比」で手間いらず」（Let's！和ごはんプロジェクト、大臣官房新事業・食品産業部 外食・食文化課食文化室）https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2202/spe6_01.html （2026-07-17 確認）に掲載されている5つの比率をそのまま採用した。同記事に「天つゆ」「酢の物」「すき焼きの割り下」の比率記載はない。②confirmed=false（3品目: すき焼きの割り下・天つゆ・酢の物〈三杯酢〉）: 許可ドメイン内（factory/config/source-allowlist.json）に一次情報を確認できなかったため、複数の一般レシピサイト（クックパッド・macaroni等、いずれも出典として不採用）で広く紹介されている目安の中から、比較的よく見られる比率を採用した。これらは官公庁の見解ではなく、地域（関東/関西）や家庭・レシピサイトによって表記に幅がある一般的な目安である。各 dish の confirmed / source_note を UI・仕様書側で必ず参照し、確認できなかった項目を公的機関の見解であるかのように断定的に表示しないこと。defaultMlPerNin（1人あたりの基準調味料の目安量）はいずれの品目も、比率そのものの出典とは別に、本ツールが「人数」入力を分かりやすくするために設定した目安の初期値（出典なし・ユーザーが直接量を入力すれば上書きされる）であり、公的な1人前基準ではない。",
+  "org": "農林水産省 大臣官房新事業・食品産業部 外食・食文化課食文化室（Let's！和ごはんプロジェクト）（5品目分。残り3品目は一次情報なし。下記 dishes[].source_note 参照）",
+  "source_url": "https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2202/spe6_01.html",
+  "org_unconfirmed": "一般的なレシピサイトで広く紹介されている目安（官公庁の一次情報は確認できず、出典として明記できるドメインなし）",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2027-01-17",
+  "tan_i": { "oosaji_ml": 15, "kosaji_ml": 5 },
+  "chomiryo_labels": {
+    "dashi": "だし",
+    "shoyu": "しょうゆ",
+    "mirin": "みりん",
+    "sake": "酒",
+    "miso": "みそ",
+    "surigoma": "すりごま",
+    "mizu": "水",
+    "satou": "砂糖",
+    "su": "酢"
+  },
+  "dishes": [
+    {
+      "key": "teriyaki_dare",
+      "name": "万能だれ（照り焼き用）",
+      "confirmed": true,
+      "source_note": "農林水産省の記事に「しょうゆ、酒、みりんをそれぞれ大さじ『1:1:1』」と明記。",
+      "base_key": "shoyu",
+      "default_ml_per_nin": 15,
+      "parts": [
+        { "key": "shoyu", "part": 1 },
+        { "key": "sake", "part": 1 },
+        { "key": "mirin", "part": 1 }
+      ]
+    },
+    {
+      "key": "nizakana",
+      "name": "煮魚",
+      "confirmed": true,
+      "source_note": "農林水産省の記事に「酒、しょうゆ、みりんが『6:1:1』」と明記。",
+      "base_key": "sake",
+      "default_ml_per_nin": 75,
+      "parts": [
+        { "key": "sake", "part": 6 },
+        { "key": "shoyu", "part": 1 },
+        { "key": "mirin", "part": 1 }
+      ]
+    },
+    {
+      "key": "nimono",
+      "name": "煮物（根菜・肉じゃがなど）",
+      "confirmed": true,
+      "source_note": "農林水産省の記事に「だし、しょうゆ、みりんが『8:1:1』」と明記。",
+      "base_key": "dashi",
+      "default_ml_per_nin": 150,
+      "parts": [
+        { "key": "dashi", "part": 8 },
+        { "key": "shoyu", "part": 1 },
+        { "key": "mirin", "part": 1 }
+      ]
+    },
+    {
+      "key": "mentsuyu",
+      "name": "めんつゆ（かけ・つけ用）",
+      "confirmed": true,
+      "source_note": "農林水産省の記事に「めんつゆは、だし、しょうゆ、みりんが『12:1:1』」と明記。",
+      "base_key": "dashi",
+      "default_ml_per_nin": 171,
+      "parts": [
+        { "key": "dashi", "part": 12 },
+        { "key": "shoyu", "part": 1 },
+        { "key": "mirin", "part": 1 }
+      ]
+    },
+    {
+      "key": "bannou_awasedare",
+      "name": "万能合わせだれ（ごまだれ風）",
+      "confirmed": true,
+      "source_note": "農林水産省の記事に「味噌、酒、みりん、すりごま、水を大さじ1ずつ」と明記。",
+      "base_key": "miso",
+      "default_ml_per_nin": 7.5,
+      "parts": [
+        { "key": "miso", "part": 1 },
+        { "key": "sake", "part": 1 },
+        { "key": "mirin", "part": 1 },
+        { "key": "surigoma", "part": 1 },
+        { "key": "mizu", "part": 1 }
+      ]
+    },
+    {
+      "key": "sukiyaki_warishita",
+      "name": "すき焼きの割り下",
+      "confirmed": false,
+      "source_note": "許可ドメイン内に一次情報なし。複数の一般レシピサイトで比較的よく紹介される「しょうゆ・みりん・酒・砂糖 同量」の目安を採用した一般的な参考値（出典なし）。関東風・関西風など地域や家庭による違いが大きい。",
+      "base_key": "shoyu",
+      "default_ml_per_nin": 12.5,
+      "parts": [
+        { "key": "shoyu", "part": 1 },
+        { "key": "mirin", "part": 1 },
+        { "key": "sake", "part": 1 },
+        { "key": "satou", "part": 1 }
+      ]
+    },
+    {
+      "key": "tentsuyu",
+      "name": "天つゆ",
+      "confirmed": false,
+      "source_note": "許可ドメイン内に一次情報なし。複数の一般レシピサイトで紹介される『だし4:しょうゆ1:みりん1』（関西風寄り。関東風は『だし5:しょうゆ1:みりん1』とする例もある）を一般的な参考値（出典なし）として採用。",
+      "base_key": "dashi",
+      "default_ml_per_nin": 60,
+      "parts": [
+        { "key": "dashi", "part": 4 },
+        { "key": "shoyu", "part": 1 },
+        { "key": "mirin", "part": 1 }
+      ]
+    },
+    {
+      "key": "sanbaizu",
+      "name": "酢の物（三杯酢）",
+      "confirmed": false,
+      "source_note": "許可ドメイン内に一次情報なし。複数の一般レシピサイトで紹介される『酢3:砂糖2:しょうゆ1』を一般的な参考値（出典なし）として採用。『酢1:砂糖1:しょうゆ1』など他の比率で紹介される例もある。",
+      "base_key": "su",
+      "default_ml_per_nin": 15,
+      "parts": [
+        { "key": "su", "part": 3 },
+        { "key": "satou", "part": 2 },
+        { "key": "shoyu", "part": 1 }
+      ]
+    }
+  ],
+  "kakunin_jokyo": {
+    "kakunin_zumi_dishes": ["teriyaki_dare", "nizakana", "nimono", "mentsuyu", "bannou_awasedare"],
+    "mikakunin_dishes": ["sukiyaki_warishita", "tentsuyu", "sanbaizu"]
+  }
+}

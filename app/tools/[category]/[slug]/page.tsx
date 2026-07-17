@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { getLiveTools, getTool } from "@/app/lib/tools/registry";
 import { ToolShell } from "@/components/tools/ToolShell";
 import { ChomiryoKanzan } from "@/components/tools/impl/ChomiryoKanzan";
+import { AjitsukeOugonhi } from "@/components/tools/impl/AjitsukeOugonhi";
 import { JidoTeate } from "@/components/tools/impl/JidoTeate";
 import { JIDO_TEATE_DISCLAIMER } from "@/components/tools/impl/JidoTeate.calc";
 import { Getsurei } from "@/components/tools/impl/Getsurei";
@@ -96,6 +97,28 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         </p>
         <p>
           値は一般的な調理用計量表に基づく参考値です。製品や計り方（すりきり）で多少前後します。
+        </p>
+      </>
+    ),
+  },
+  "ajitsuke-ougonhi": {
+    ui: <AjitsukeOugonhi />,
+    formula: (
+      <>
+        <p>
+          料理ごとに定められた調味料の配合比率（例: 煮物はだし:しょうゆ:みりん=8:1:1）をもとに、基準となる調味料の量（だし・しょうゆなど）に応じて他の調味料の量を計算しています。基準量は「人数 ×
+          1人あたりの目安量」で自動計算するか、直接ml指定で上書きできます。単位は大さじ1杯=15ml・小さじ1杯=5mlで換算しています。
+        </p>
+        <p>
+          <strong>万能だれ（照り焼き用）・煮魚・煮物・めんつゆ・万能合わせだれ</strong>
+          の5品目は、農林水産省「伝統調味料は『黄金比』で手間いらず」（Let&apos;s！和ごはんプロジェクト）に掲載された比率をそのまま使用しています。
+        </p>
+        <p>
+          <strong>すき焼きの割り下・天つゆ・酢の物（三杯酢）</strong>
+          の3品目は、同記事に比率の記載がなく、許可している官公庁ドメイン内にも比率を裏付ける一次情報が見つからなかったため、複数の一般的なレシピで比較的よく紹介される比率を「一般的な目安（出典なし）」として採用しています。画面には常に注意書きを表示し、公的機関の見解であるかのような断定表示はしていません。
+        </p>
+        <p>
+          味付けの好みには個人差・地域差・家庭差があります。ここに示す分量はあくまで目安とし、実際に作るときは味を見ながら調整してください。
         </p>
       </>
     ),

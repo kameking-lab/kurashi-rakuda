@@ -867,5 +867,31 @@
     ],
     "updated": "2026-07-17",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T21",
+    "slug": "ajitsuke-ougonhi",
+    "category": "kaji",
+    "title": "味付け黄金比計算（人数・分量スケール）",
+    "description": "料理の種類と人数（またはだし等の基準の分量）を入れると、しょうゆ・みりんなど調味料の使用量を大さじ・小さじ・mlで計算します。",
+    "solves": [
+      "煮物や照り焼きの調味料の割合が分からない",
+      "人数分に合わせて調味料の量をどう変えればいいか分からない",
+      "だしの量からしょうゆ・みりんの量を計算したい",
+      "すき焼きの割り下や天つゆの配合が分からない"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "農林水産省「伝統調味料は『黄金比』で手間いらず」（Let's！和ごはんプロジェクト）",
+        "url": "https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2202/spe6_01.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/tables/ajitsuke-ougonhi.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/tables/ajitsuke-ougonhi.json"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
   }
 ]
