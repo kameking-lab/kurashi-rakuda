@@ -30,8 +30,8 @@ if (!Array.isArray(tools) || tools.length === 0) {
 
 for (const t of tools) {
   const where = `[${t.slug ?? "(slugなし)"}]`;
-  if (!/^Q\d+-\d+$/.test(t.queueId ?? "")) {
-    errors.push(`${where} queueId が BACKLOG の ID 形式（Q3-05 等）ではありません: ${t.queueId}`);
+  if (!/^(Q\d+-\d+|P\d+-T\d+)$/.test(t.queueId ?? "")) {
+    errors.push(`${where} queueId が BACKLOG の ID 形式（Q3-05 / P2-T14 等）ではありません: ${t.queueId}`);
   }
   if (queueIds.has(t.queueId)) errors.push(`${where} queueId が重複しています`);
   queueIds.add(t.queueId);
