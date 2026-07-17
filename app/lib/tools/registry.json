@@ -374,9 +374,18 @@
       "作り置きが何日もつか分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "消費者庁「食品の保存方法」等 食品保存・食品ロス削減に関する一般案内",
+        "url": "https://www.caa.go.jp/policies/policy/consumer_safety/child/food_safety/"
+      },
+      {
+        "label": "農林水産省「食品ロス削減関係リンク集」食品保存の一般案内",
+        "url": "https://www.maff.go.jp/j/shokusan/recycle/syoku_loss/"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-14",
