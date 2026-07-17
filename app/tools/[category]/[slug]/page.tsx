@@ -11,6 +11,7 @@ import { ShussanYoteibi } from "@/components/tools/impl/ShussanYoteibi";
 import { SeiriShuki } from "@/components/tools/impl/SeiriShuki";
 import { Inunohi } from "@/components/tools/impl/Inunohi";
 import { FuyoKabe } from "@/components/tools/impl/FuyoKabe";
+import { JunyuMilkRyo } from "@/components/tools/impl/JunyuMilkRyo";
 import { RinyushokuRyo } from "@/components/tools/impl/RinyushokuRyo";
 import { RINYUSHOKU_DISCLAIMER, RINYUSHOKU_PREMATURE_DISCLAIMER } from "@/components/tools/impl/RinyushokuRyo.calc";
 import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
@@ -167,6 +168,30 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           年収に乗じた概算です。実際は標準報酬月額をもとに計算され、健康保険料率は都道府県ごとに異なります。
         </p>
         <SeidoNotice datasets={[fuyoKabeDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "junyu-milk-ryo": {
+    ui: <JunyuMilkRyo />,
+    formula: (
+      <>
+        <p>
+          生後0〜1か月（新生児期）は体重に基づく計算式を使います。「体重(kg) ×
+          150ml」を1日量の目安とし、1日8回程度に分けるので「1日量 ÷ 8」が1回量の目安です。実際は体重1kgあたり120〜160ml/日で紹介されることが多いため、その幅（体重×120〜体重×160）もあわせて表示します。
+        </p>
+        <p>
+          生後1〜11か月は、月齢帯ごとの参照表（1回量目安レンジ・回数目安）から値を取得します。1日量目安レンジは「1回量の下限×回数の下限」〜「1回量の上限×回数の上限」の概算です。生後6か月以降は離乳食が進むにつれてミルク・母乳の量の個人差がさらに大きくなるため、1日の合計量は算出せず、1回量目安と回数目安のみを表示します。
+        </p>
+        <p>
+          栄養方法が「母乳のみ」の場合は、ml換算の目標値をあえて表示しません。母乳は哺乳量を目分量で正確に測定できないためです。代わりに「欲しがるサインに応じて授乳（1日8回程度が目安）」という考え方と回数目安を表示します。「混合」の場合は算出したml目安を「ミルクを足す場合の合計目安」として表示し、母乳を飲んだ分はその中から差し引いて調整する、という考え方を注記します。
+        </p>
+        <p>
+          生後12か月以降は離乳食が中心になる時期のため、本ツールの対象外として案内のみ表示します（離乳食の量・固さ早見 #19 をご案内）。
+        </p>
+        <p>
+          <strong>個人差についての注意</strong>
+          ：ここに示す数値はあくまで一般的な目安です。赤ちゃんの体格・体質・活動量・気候などにより必要な量は大きく異なります。断定的な指示ではなく、赤ちゃんの機嫌・体重の増え方・おしっこやうんちの様子を見ながら調整する目安としてご利用ください。低出生体重児や医療的なフォローが必要なお子さま、体重の増え方が気になる場合は、数値によらず医師・助産師・保健師の指示を優先してください。
+        </p>
       </>
     ),
   },

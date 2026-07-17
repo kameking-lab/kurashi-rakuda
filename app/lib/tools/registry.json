@@ -304,9 +304,14 @@
       "混合育児のミルクの足し方が分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "こども家庭庁「授乳・離乳の支援ガイド」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/boshihoken/kenko/jyunyuu-rinyuu"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-13",

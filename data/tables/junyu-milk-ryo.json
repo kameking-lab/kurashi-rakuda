@@ -1,0 +1,87 @@
+{
+  "$comment": "授乳・ミルク量の目安（月齢・体重別、Q3-12）データ表。出典は一般的な調製粉乳（育児用ミルク）製品の授乳量目安表、およびこども家庭庁『授乳・離乳の支援ガイド』が示す『赤ちゃんの様子を見ながら授乳する』という考え方を踏まえた参考レンジ。メーカーや個体差により差があるため、あくまで目安として扱う。仕様: specs/b-tools/24-feeding-amount-guide.md",
+  "org": "こども家庭庁「授乳・離乳の支援ガイド」の考え方／一般的な育児用ミルク（調製粉乳）製品の授乳量目安表",
+  "source_url": "https://www.cfa.go.jp/policies/kokoseido/boshihoken/kenko/jyunyuu-rinyuu",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2027-01-01",
+  "weightValidRangeKg": { "min": 1.0, "max": 20.0 },
+  "newborn": {
+    "label": "0か月（新生児、体重ベース計算）",
+    "mlPerKgPerDay": 150,
+    "mlPerKgPerDayRange": { "min": 120, "max": 160 },
+    "timesPerDay": 8,
+    "referenceWeightRangeKg": { "min": 2.0, "max": 5.0 },
+    "lowBirthWeightThresholdKg": 2.5
+  },
+  "byAgeMonth": [
+    {
+      "monthsCovered": [1],
+      "label": "1〜2か月未満",
+      "perFeedMl": { "min": 120, "max": 160 },
+      "timesPerDayLabel": "6回",
+      "dailyMl": { "min": 720, "max": 960 }
+    },
+    {
+      "monthsCovered": [2],
+      "label": "2〜3か月未満",
+      "perFeedMl": { "min": 140, "max": 180 },
+      "timesPerDayLabel": "6回",
+      "dailyMl": { "min": 840, "max": 1080 }
+    },
+    {
+      "monthsCovered": [3],
+      "label": "3〜4か月未満",
+      "perFeedMl": { "min": 160, "max": 200 },
+      "timesPerDayLabel": "5〜6回",
+      "dailyMl": { "min": 800, "max": 1200 }
+    },
+    {
+      "monthsCovered": [4],
+      "label": "4〜5か月未満",
+      "perFeedMl": { "min": 180, "max": 220 },
+      "timesPerDayLabel": "5回",
+      "dailyMl": { "min": 900, "max": 1100 }
+    },
+    {
+      "monthsCovered": [5],
+      "label": "5〜6か月未満",
+      "perFeedMl": { "min": 200, "max": 220 },
+      "timesPerDayLabel": "4〜5回",
+      "dailyMl": { "min": 800, "max": 1100 },
+      "note": "この時期は離乳食開始の準備期でもあります。開始のサインが見られたら、小児科医・保健師に相談しながら進めましょう。"
+    },
+    {
+      "monthsCovered": [6],
+      "label": "6〜7か月未満（離乳食開始の目安時期）",
+      "perFeedMl": { "min": 200, "max": 200 },
+      "timesPerDayLabel": "4回＋離乳食1回",
+      "dailyMl": null,
+      "note": "離乳食を開始する目安の時期です。ミルク・母乳の量は離乳食の進み具合により変動します。"
+    },
+    {
+      "monthsCovered": [7, 8],
+      "label": "7〜9か月未満",
+      "perFeedMl": { "min": 200, "max": 200 },
+      "timesPerDayLabel": "3〜4回＋離乳食2回",
+      "dailyMl": null,
+      "note": "離乳食が2回食に進む時期です。ミルク・母乳の量は離乳食の進み具合により変動します。"
+    },
+    {
+      "monthsCovered": [9, 10, 11],
+      "label": "9〜11か月",
+      "perFeedMl": { "min": 200, "max": 200 },
+      "timesPerDayLabel": "2〜3回＋離乳食3回",
+      "dailyMl": null,
+      "note": "離乳食が3回食に進み、主体になっていく時期です。ミルク・母乳は補完的な位置づけになります。"
+    }
+  ],
+  "disclaimers": {
+    "general": "これは一般的な目安であり、個人差があります。赤ちゃんの機嫌・体重の増え方・おしっこやうんちの様子を見ながら調整してください。心配な場合や体重の増えが気になる場合は、医師・助産師・保健師にご相談ください。",
+    "breastfeedingMeasurement": "母乳の量そのものは正確に測れません。心配な場合は乳幼児健診や母乳外来でご相談ください。",
+    "breastfeedingGuidance": "欲しがるサインに応じて授乳するのが基本です（1日8回程度が目安）。",
+    "mixedFeedingAdjustment": "ミルクを足す場合の合計目安です。母乳を飲んだ分はミルクの量から差し引いて調整するという考え方が一般的です。厳密な按分計算はできないため、赤ちゃんの様子を見ながら調整してください。",
+    "lowBirthWeight": "低出生体重児や医療的なフォローが必要なお子さまは、医師・助産師・保健師の指示を優先してください。",
+    "unusualWeight": "入力値をご確認ください（新生児の一般的な体重の目安から外れています）。",
+    "outOfRange": "生後12か月以降は離乳食が中心になる時期です。ミルク量の目安ツールの対象外です。離乳食の量・固さ早見（#19）をご覧ください。"
+  }
+}
