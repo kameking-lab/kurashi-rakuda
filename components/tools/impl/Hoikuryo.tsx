@@ -174,7 +174,9 @@ export function Hoikuryo() {
       socialInsurance:
         shaho.trim() !== "" && Number(shaho) >= 0
           ? { kind: "actual", amount: Number(shaho) }
-          : { kind: "estimate" },
+          : // ★健康保険料率は都道府県で異なるため、選択中の自治体の都道府県を渡す★
+            // （利用者に別途入力させない。m は選択済みの自治体）
+            { kind: "estimate", prefecture: m.prefecture },
       hasSpouse,
       dependents: withDeps ? dependents : {},
       isDesignatedCity,

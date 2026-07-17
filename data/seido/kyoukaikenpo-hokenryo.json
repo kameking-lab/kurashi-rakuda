@@ -28,6 +28,16 @@
       "note": "★標準報酬月額等級表（健保50等級・厚年32等級）の一次情報★ 都道府県別の料額表PDFのうち東京支部版を代表として採用した。★等級表が全国一律であることは推測ではなく実測で確認済み★ 47都道府県すべてのPDFをPyMuPDFでテキスト化し、等級・標準報酬月額・報酬月額の境界の全50行が47支部すべてで完全一致することを確認した（2026-07-17）。都道府県で異なるのは健康保険料率のみ。法令上の裏付けは健康保険法第40条第1項・厚生年金保険法第20条第1項（等級表は法律の別表で定められ支部ごとの定めは存在しない）。厚生年金保険料率18.300%・子ども・子育て支援金率0.23%・介護保険料率1.62%も47支部すべてのPDFに同一記載があることを確認済み。"
     },
     {
+      "id": "kyoukaikenpo-rate-r07",
+      "title": "令和7年度の協会けんぽの保険料率は3月分（4月納付分）から改定されます｜都道府県毎の保険料率",
+      "publisher": "全国健康保険協会（協会けんぽ）",
+      "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r07/index.html",
+      "checkedAt": "2026-07-17",
+      "tier": "agency",
+      "contentType": "html",
+      "note": "★令和7年度（令和7年3月分〜令和8年2月分）の料率の一次情報★ 保育料の階層判定に使う所得は令和7年分（暦年2025年）であり、その年に実際に天引きされた社会保険料は令和7年度料率によるものが大半（暦年2025年の3月分〜12月分＝10か月）。8a推計の社会保険料控除にはこちらを使う。★列の並びが令和8年度ページと逆★ 本ページは（新＝令和7年度／矢印／旧＝令和6年度）の順、令和8年度ページは（旧＝令和7年度／矢印／新＝令和8年度）の順で掲載されている。矢印（↑↓→）の向きと両ページの令和7年度列の一致（47件・不一致0件）で列の対応を確認済み。★本ページには子ども・子育て支援金（0.23%）の記載がない＝令和7年度には存在しなかったことの裏付け★"
+    },
+    {
       "id": "kyoukaikenpo-premium-r08",
       "title": "令和8年度保険料額表｜都道府県毎の保険料額表",
       "publisher": "全国健康保険協会（協会けんぽ）",
@@ -865,6 +875,726 @@
         },
         "amendmentNote": "なし（2026-07-17時点）。",
         "note": "★被保険者の負担はない。手取り計算には使わない★ 児童手当等の財源の一部で事業主が全額負担する。子ども・子育て支援金率（0.23%・労使折半）とは全くの別物であり、名称が似ているため混同に注意。厚生年金の標準報酬月額・標準賞与額に乗じる（健康保険ではない）。"
+      }
+    },
+    "ratesFY2025": {
+      "description": "★令和7年度（令和7年3月分〜令和8年2月分）の料率★ 令和8年度の保育料の階層判定に使う所得は令和7年分（暦年2025年）であり、社会保険料控除として差し引かれるのはその年に実際に納めた保険料である。したがって8a（年収→所得割額の推計）の社会保険料概算には令和8年度ではなく本節の令和7年度料率を使う。",
+      "applicabilityNote": "★年度と年分のずれ★ 協会けんぽの料率は『年度』単位だが3月分〜翌年2月分に適用されるため、暦年2025年（令和7年分）のうち1月分・2月分は令和6年度料率、3月分〜12月分（10か月）は令和7年度料率が適用されている。本データは令和6年度料率を収録していないため、8a推計は12か月すべてを令和7年度料率とみなす（誤差は最大2か月分の料率差＝年収500万円で数百円程度）。これは推計値であり、源泉徴収票の『社会保険料等の金額』の実額入力が常に優先される。",
+      "kenkoHoken": {
+        "description": "令和7年度 都道府県単位健康保険料率（47都道府県）。令和7年3月分（4月納付分）から令和8年2月分まで適用。",
+        "label": "令和7年度 都道府県単位健康保険料率（47都道府県）",
+        "sourceId": "kyoukaikenpo-rate-r07",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "令和7年度都道府県単位保険料率",
+            "40歳から64歳までの方（介護保険第2号被保険者）は、これに全国一律の介護保険料率（1.59％）が加わります。"
+          ]
+        },
+        "amendmentNote": "令和8年3月分から令和8年度料率（rates.kenkoHoken）に切り替わる。過年度の確定値のため以後の変更はない。",
+        "note": "★2ページで独立に照合済み（2026-07-17）★ 本ページ（令和7年度ページの新料率列）と、令和8年度ページの旧料率列から、それぞれ独立に47件を機械抽出して突き合わせ、**47件すべて一致（不一致0件）**を確認した。★列の並びが2ページで逆★ 令和7年度ページは（新／矢印／旧）、令和8年度ページは（旧／矢印／新）の順。矢印の向き（↑=引上げ・↓=引下げ・→=据置き）が両ページとも全47件で数値の大小関係と整合することを検算し、列の対応を確定した。",
+        "rows": [
+          {
+            "prefectureCode": 1,
+            "prefecture": "北海道",
+            "rate": 0.1031,
+            "ratePercentLabel": "10.31%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "北海道",
+                "10.31%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 2,
+            "prefecture": "青森県",
+            "rate": 0.0985,
+            "ratePercentLabel": "9.85%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "青森県",
+                "9.85%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 3,
+            "prefecture": "岩手県",
+            "rate": 0.0962,
+            "ratePercentLabel": "9.62%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "岩手県",
+                "9.62%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 4,
+            "prefecture": "宮城県",
+            "rate": 0.1011,
+            "ratePercentLabel": "10.11%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "宮城県",
+                "10.11%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 5,
+            "prefecture": "秋田県",
+            "rate": 0.1001,
+            "ratePercentLabel": "10.01%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "秋田県",
+                "10.01%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 6,
+            "prefecture": "山形県",
+            "rate": 0.0975,
+            "ratePercentLabel": "9.75%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "山形県",
+                "9.75%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 7,
+            "prefecture": "福島県",
+            "rate": 0.0962,
+            "ratePercentLabel": "9.62%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "福島県",
+                "9.62%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 8,
+            "prefecture": "茨城県",
+            "rate": 0.0967,
+            "ratePercentLabel": "9.67%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "茨城県",
+                "9.67%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 9,
+            "prefecture": "栃木県",
+            "rate": 0.0982,
+            "ratePercentLabel": "9.82%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "栃木県",
+                "9.82%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 10,
+            "prefecture": "群馬県",
+            "rate": 0.0977,
+            "ratePercentLabel": "9.77%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "群馬県",
+                "9.77%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 11,
+            "prefecture": "埼玉県",
+            "rate": 0.0976,
+            "ratePercentLabel": "9.76%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "埼玉県",
+                "9.76%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 12,
+            "prefecture": "千葉県",
+            "rate": 0.0979,
+            "ratePercentLabel": "9.79%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "千葉県",
+                "9.79%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 13,
+            "prefecture": "東京都",
+            "rate": 0.0991,
+            "ratePercentLabel": "9.91%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "東京都",
+                "9.91%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 14,
+            "prefecture": "神奈川県",
+            "rate": 0.0992,
+            "ratePercentLabel": "9.92%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "神奈川県",
+                "9.92%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 15,
+            "prefecture": "新潟県",
+            "rate": 0.0955,
+            "ratePercentLabel": "9.55%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "新潟県",
+                "9.55%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 16,
+            "prefecture": "富山県",
+            "rate": 0.0965,
+            "ratePercentLabel": "9.65%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "富山県",
+                "9.65%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 17,
+            "prefecture": "石川県",
+            "rate": 0.0988,
+            "ratePercentLabel": "9.88%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "石川県",
+                "9.88%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 18,
+            "prefecture": "福井県",
+            "rate": 0.0994,
+            "ratePercentLabel": "9.94%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "福井県",
+                "9.94%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 19,
+            "prefecture": "山梨県",
+            "rate": 0.0989,
+            "ratePercentLabel": "9.89%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "山梨県",
+                "9.89%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 20,
+            "prefecture": "長野県",
+            "rate": 0.0969,
+            "ratePercentLabel": "9.69%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "長野県",
+                "9.69%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 21,
+            "prefecture": "岐阜県",
+            "rate": 0.0993,
+            "ratePercentLabel": "9.93%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "岐阜県",
+                "9.93%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 22,
+            "prefecture": "静岡県",
+            "rate": 0.098,
+            "ratePercentLabel": "9.80%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "静岡県",
+                "9.80%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 23,
+            "prefecture": "愛知県",
+            "rate": 0.1003,
+            "ratePercentLabel": "10.03%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "愛知県",
+                "10.03%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 24,
+            "prefecture": "三重県",
+            "rate": 0.0999,
+            "ratePercentLabel": "9.99%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "三重県",
+                "9.99%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 25,
+            "prefecture": "滋賀県",
+            "rate": 0.0997,
+            "ratePercentLabel": "9.97%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "滋賀県",
+                "9.97%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 26,
+            "prefecture": "京都府",
+            "rate": 0.1003,
+            "ratePercentLabel": "10.03%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "京都府",
+                "10.03%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 27,
+            "prefecture": "大阪府",
+            "rate": 0.1024,
+            "ratePercentLabel": "10.24%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "大阪府",
+                "10.24%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 28,
+            "prefecture": "兵庫県",
+            "rate": 0.1016,
+            "ratePercentLabel": "10.16%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "兵庫県",
+                "10.16%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 29,
+            "prefecture": "奈良県",
+            "rate": 0.1002,
+            "ratePercentLabel": "10.02%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "奈良県",
+                "10.02%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 30,
+            "prefecture": "和歌山県",
+            "rate": 0.1019,
+            "ratePercentLabel": "10.19%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "和歌山県",
+                "10.19%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 31,
+            "prefecture": "鳥取県",
+            "rate": 0.0993,
+            "ratePercentLabel": "9.93%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "鳥取県",
+                "9.93%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 32,
+            "prefecture": "島根県",
+            "rate": 0.0994,
+            "ratePercentLabel": "9.94%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "島根県",
+                "9.94%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 33,
+            "prefecture": "岡山県",
+            "rate": 0.1017,
+            "ratePercentLabel": "10.17%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "岡山県",
+                "10.17%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 34,
+            "prefecture": "広島県",
+            "rate": 0.0997,
+            "ratePercentLabel": "9.97%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "広島県",
+                "9.97%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 35,
+            "prefecture": "山口県",
+            "rate": 0.1036,
+            "ratePercentLabel": "10.36%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "山口県",
+                "10.36%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 36,
+            "prefecture": "徳島県",
+            "rate": 0.1047,
+            "ratePercentLabel": "10.47%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "徳島県",
+                "10.47%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 37,
+            "prefecture": "香川県",
+            "rate": 0.1021,
+            "ratePercentLabel": "10.21%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "香川県",
+                "10.21%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 38,
+            "prefecture": "愛媛県",
+            "rate": 0.1018,
+            "ratePercentLabel": "10.18%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "愛媛県",
+                "10.18%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 39,
+            "prefecture": "高知県",
+            "rate": 0.1013,
+            "ratePercentLabel": "10.13%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "高知県",
+                "10.13%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 40,
+            "prefecture": "福岡県",
+            "rate": 0.1031,
+            "ratePercentLabel": "10.31%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "福岡県",
+                "10.31%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 41,
+            "prefecture": "佐賀県",
+            "rate": 0.1078,
+            "ratePercentLabel": "10.78%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "佐賀県",
+                "10.78%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 42,
+            "prefecture": "長崎県",
+            "rate": 0.1041,
+            "ratePercentLabel": "10.41%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "長崎県",
+                "10.41%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 43,
+            "prefecture": "熊本県",
+            "rate": 0.1012,
+            "ratePercentLabel": "10.12%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "熊本県",
+                "10.12%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 44,
+            "prefecture": "大分県",
+            "rate": 0.1025,
+            "ratePercentLabel": "10.25%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "大分県",
+                "10.25%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 45,
+            "prefecture": "宮崎県",
+            "rate": 0.1009,
+            "ratePercentLabel": "10.09%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "宮崎県",
+                "10.09%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 46,
+            "prefecture": "鹿児島県",
+            "rate": 0.1031,
+            "ratePercentLabel": "10.31%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "鹿児島県",
+                "10.31%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 47,
+            "prefecture": "沖縄県",
+            "rate": 0.0944,
+            "ratePercentLabel": "9.44%",
+            "sourceId": "kyoukaikenpo-rate-r07",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "沖縄県",
+                "9.44%"
+              ]
+            }
+          }
+        ]
+      },
+      "kaigoHoken": {
+        "value": 0.0159,
+        "unit": "rate",
+        "label": "介護保険料率（第2号被保険者・全国一律・令和7年度）",
+        "sourceId": "kyoukaikenpo-rate-r07",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "全国一律の介護保険料率（1.59％）"
+          ]
+        },
+        "amendmentNote": "令和8年度は1.62%に引上げ（rates.kaigoHoken）。過年度の確定値。",
+        "note": "対象は40歳以上65歳未満。"
+      },
+      "kodomoKosodateShienkin": {
+        "value": 0,
+        "unit": "rate",
+        "label": "子ども・子育て支援金率（令和7年度＝制度開始前のため負担なし）",
+        "sourceId": "kyoukaikenpo-rate-r08",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "令和8年4月分（5月納付分）からは、これに全国一律の子ども・子育て支援金（0.23％）が加わります。"
+          ]
+        },
+        "amendmentNote": "令和8年4月分（5月納付分）から0.23%の徴収が始まる（rates.kodomoKosodateShienkin）。",
+        "note": "★令和7年分の社会保険料に子ども・子育て支援金は含まれない★ 徴収開始が令和8年4月分であることは令和8年度料率ページに明記されており、令和7年度料率ページには支援金の記載が一切ない（2ページで裏取り済み）。★8a推計に0.23%を含めると社会保険料控除を過大に見積もり、所得割額を過小に推計する★ ため、令和7年分の推計では必ず0とすること。verify は『令和8年4月分から開始』という積極的事実を照合しており、『記載がないこと』の照合ではない。"
+      },
+      "kouseiNenkin": {
+        "value": 0.183,
+        "unit": "rate",
+        "label": "厚生年金保険料率（令和7年度）",
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "厚生年金保険料率：平成29年9月分～適用"
+          ]
+        },
+        "amendmentNote": "平成29年9月分から18.300%で固定。令和7年度・令和8年度とも同率。",
+        "note": "料額表PDFのヘッダーに『厚生年金保険料率：平成29年9月分～適用』と明記されており、令和7年度も同一の18.300%であることが確認できる。"
       }
     },
     "hyojunHoshuGetsugaku": {

@@ -41,6 +41,8 @@ import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
 import { SITE_URL } from "@/app/lib/site";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
 import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
+import { juuminzeiDataset } from "@/lib/tools/impl/hoikuryo-shotokuwari";
+import { kyoukaikenpoDataset, koyouHokenDataset } from "@/lib/tools/impl/shakai-hoken";
 import { ikukyuKyufuDataset, salaryAtWageDailyMax } from "@/lib/tools/impl/sankyu-ikukyu-money";
 import {
   ikukyuEnchoDataset,
@@ -419,6 +421,15 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           このツールは各自治体の原文をそのまま表示しています。
         </p>
         <p>
+          <strong>年収から所得割額を推計するときの社会保険料</strong>
+          ：源泉徴収票の「社会保険料等の金額」を入力しない場合は、協会けんぽの保険料額表から概算します。
+          年収を12で割った額を報酬月額とみなして標準報酬月額の等級表に当てはめ、
+          お住まいの都道府県の健康保険料率と厚生年金保険料率（18.3%）をかけて、労使折半した額です。
+          保育料の階層は令和8年度の課税額＝令和7年分の所得で決まるため、料率も令和7年度のものを使っています
+          （令和8年4月に始まった子ども・子育て支援金は令和7年分には含まれません）。
+          勤務先が健康保険組合の場合は料率が異なります。実額を入力すると精度が上がります。
+        </p>
+        <p>
           <strong>自動計算していないもの</strong>
           ：第2子以降の軽減、ひとり親世帯・在宅障害者等の軽減の金額は計算していません。
           きょうだいの数え方（年齢の上限があるか、就学前の子だけを数えるか）も、減額の方式
@@ -432,7 +443,17 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           お手元の課税明細書からご自身で階層表を読むための手順をご案内しています。
           推測した金額や「一般的な相場」はお見せしません。
         </p>
-        <SeidoNotice datasets={municipalities.map(toSeidoDataset)} today={todayJst()} />
+        {/* 8a（年収→所得割額の推計）が根拠にしているデータも併せて出す。
+            推計は既定モードであり、住民税・給与所得控除・協会けんぽ・雇用保険の各データに依存する。 */}
+        <SeidoNotice
+          datasets={[
+            ...municipalities.map(toSeidoDataset),
+            juuminzeiDataset,
+            kyoukaikenpoDataset,
+            koyouHokenDataset,
+          ]}
+          today={todayJst()}
+        />
       </>
     ),
   },
