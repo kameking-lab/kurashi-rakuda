@@ -25,6 +25,18 @@
     "noRefreeze": "一度解凍したものの再冷凍は避けてください。",
     "notSafetyGuarantee": "ここに示す日数はあくまで一般的な目安であり、安全に食べられることを保証するものではありません。"
   },
+  "reheatGuidance": {
+    "coreTempC": 75,
+    "minMinutes": 1,
+    "hotServingTempC": 65,
+    "coldServingTempC": 10,
+    "note": "厚生労働省「家庭でできる食中毒予防の６つのポイント」より。中心部の温度が75℃で1分間以上加熱すること、温かい料理は65℃以上・冷やして食べる料理は10℃以下を目安にすること。"
+  },
+  "welschBacteriaGrowthRangeC": {
+    "min": 12,
+    "max": 50,
+    "note": "農林水産省「煮込み料理を楽しむために～ウェルシュ菌による食中毒にご注意を！！～」より。ウエルシュ菌が増えることのできる温度帯は約12〜50℃とされている。"
+  },
   "categories": [
     {
       "id": "seisai-salad",
