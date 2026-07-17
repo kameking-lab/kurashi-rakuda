@@ -837,5 +837,35 @@
     ],
     "updated": "2026-07-17",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T37",
+    "slug": "youkaigo-nintei-dandori-navi",
+    "category": "care",
+    "title": "要介護認定 申請段取りナビ",
+    "description": "申請日から、認定調査・主治医意見書・審査判定までの目安と、今どの段階かをチェックリストで確認できます。",
+    "solves": [
+      "要介護認定の申請から結果が出るまで何日かかるか分からない",
+      "認定調査や主治医意見書がどういう順番で進むか分からない",
+      "申請してから今どの段階なのか分からない",
+      "認定後にケアプラン作成やサービス利用開始までの流れが分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索「介護保険法（平成九年法律第百二十三号）第27条（認定）」",
+        "url": "https://laws.e-gov.go.jp/law/409AC0000000123"
+      },
+      {
+        "label": "厚生労働省老健局「要介護認定の認定審査期間について」社会保障審議会介護保険部会（第117回）資料2（令和7年2月20日）",
+        "url": "https://www.mhlw.go.jp/stf/newpage_50085.html"
+      },
+      {
+        "label": "厚生労働省老健局「介護保険制度の概要（令和7年7月）」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/gaiyo/index.html"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
   }
 ]
