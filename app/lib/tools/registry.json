@@ -172,9 +172,18 @@
       "離乳食を1日何回あげればいいか分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "授乳・離乳の支援ガイド（2019年改定版）（厚生労働省）",
+        "url": "https://www.mhlw.go.jp/content/11908000/000496257.pdf"
+      },
+      {
+        "label": "specs/b-tools/19-baby-food-amount-guide.md（離乳食の量・固さ早見 ロジック仕様）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/19-baby-food-amount-guide.md"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-08",
@@ -285,9 +294,14 @@
       "両親の身長からの予測方法が分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "specs/b-tools/22-height-prediction.md（両親身長法・Mid-Parental Height法の通称。小児科領域・育児メディアで広く紹介されている統計的経験式）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/22-height-prediction.md"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-11",
@@ -301,9 +315,18 @@
       "見学は何園くらい行けばいいか分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "こども家庭庁「利用調整（保育所等の入所選考）に関するＱ＆Ａ」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/hoiku"
+      },
+      {
+        "label": "東京都福祉局「保育所等利用申込みのご案内」（区市町村の公表スケジュール傾向の参照元の一例）",
+        "url": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/hoiku/index.html"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-12",
@@ -317,9 +340,14 @@
       "混合育児のミルクの足し方が分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "こども家庭庁「授乳・離乳の支援ガイド」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/boshihoken/kenko/jyunyuu-rinyuu"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-13",
