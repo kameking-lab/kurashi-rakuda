@@ -4,54 +4,14 @@ import { useState } from "react";
 import { NumberField, SelectField } from "@/components/ui/Field";
 import { ResultCard } from "@/components/ui/ResultCard";
 import { Callout } from "@/components/ui/Callout";
+import { fmt, INGREDIENTS, toMl, UNITS, type Unit } from "./ChomiryoKanzan.calc";
 
 /*
  * 調味料換算（Q3-14）— ツールテンプレート検証用リファレンス実装。
  * すべてクライアント内で即時計算（送信なし・登録なし・オフライン動作）。
- * 比重データの本整備は Q2-4（packages/data 相当）で行い、ここは主要18種の参考値。
+ * 計算ロジック（toMl / fmt / INGREDIENTS）は ChomiryoKanzan.calc.ts に分離し、
+ * vitest（node環境）から直接importしてテストできるようにしている。
  */
-
-/** 大さじ1杯（15ml）あたりのグラム数（一般的な調理用計量表の参考値） */
-const INGREDIENTS: { name: string; gPerTbsp: number }[] = [
-  { name: "水", gPerTbsp: 15 },
-  { name: "しょうゆ", gPerTbsp: 18 },
-  { name: "みりん", gPerTbsp: 18 },
-  { name: "料理酒", gPerTbsp: 15 },
-  { name: "酢", gPerTbsp: 15 },
-  { name: "みそ", gPerTbsp: 18 },
-  { name: "砂糖（上白糖）", gPerTbsp: 9 },
-  { name: "塩", gPerTbsp: 18 },
-  { name: "小麦粉（薄力粉）", gPerTbsp: 9 },
-  { name: "片栗粉", gPerTbsp: 9 },
-  { name: "サラダ油", gPerTbsp: 12 },
-  { name: "バター", gPerTbsp: 12 },
-  { name: "マヨネーズ", gPerTbsp: 12 },
-  { name: "ケチャップ", gPerTbsp: 18 },
-  { name: "はちみつ", gPerTbsp: 21 },
-  { name: "牛乳", gPerTbsp: 15 },
-  { name: "生クリーム", gPerTbsp: 15 },
-  { name: "めんつゆ", gPerTbsp: 18 },
-];
-
-const UNITS = ["大さじ", "小さじ", "g", "ml"] as const;
-type Unit = (typeof UNITS)[number];
-
-function toMl(amount: number, unit: Unit, gPerTbsp: number): number {
-  switch (unit) {
-    case "大さじ":
-      return amount * 15;
-    case "小さじ":
-      return amount * 5;
-    case "ml":
-      return amount;
-    case "g":
-      return amount / (gPerTbsp / 15);
-  }
-}
-
-function fmt(n: number): string {
-  return (Math.round(n * 10) / 10).toLocaleString("ja-JP");
-}
 
 export function ChomiryoKanzan() {
   const [ingredient, setIngredient] = useState(INGREDIENTS[1].name);
