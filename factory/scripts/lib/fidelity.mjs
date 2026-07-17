@@ -155,6 +155,18 @@ export function checkFidelity(article) {
     }
   }
 
+  // 2.5. tool_ref の実在照合（G2検収で8/8件の不正slugがすり抜けた再発防止）
+  if (fm.tool_ref) {
+    const registryPath = path.join(REPO_ROOT, "app/lib/tools/registry.json");
+    const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
+    if (!registry.some((t) => t.slug === fm.tool_ref)) {
+      violations.push({
+        code: "tool-ref-not-found",
+        detail: `tool_ref "${fm.tool_ref}" does not exist in app/lib/tools/registry.json (valid slugs: ${registry.map((t) => t.slug).join(", ")})`,
+      });
+    }
+  }
+
   // 3. 本文見出し・フッター3点セット
   for (const heading of typeDef.required_body_headings || []) {
     if (!body.includes(heading)) {

@@ -19,7 +19,7 @@
     { "key": "jitan.saitei_shikyugaku", "value": 2411, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.ikujiJitanShugyoKyufuKin.minimumAmount.value", "status": "verified" }
   ],
   "last_updated": "2026-07-17",
-  "next_check_due": "2026-10-01"
+  "next_check_due": "2026-08-01"
 }
 ---
 

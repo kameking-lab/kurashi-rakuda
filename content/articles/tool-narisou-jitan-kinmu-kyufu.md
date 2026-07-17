@@ -5,7 +5,7 @@
   "summary": "育児時短就業給付金は、時短勤務中に支払われた賃金の10%相当が上乗せされる制度。ツールの計算結果をどう読めばよいかを解説する。",
   "type": "tool-narisou",
   "category": "仕事・キャリア",
-  "tool_ref": "jitan-kinmu-kyufu-calc",
+  "tool_ref": "jitan-kyuyo",
   "persona": "時短勤務を検討する共働き親",
   "revision_year": 2026,
   "sources": [

@@ -28,7 +28,7 @@
     { "key": "ikuji_kyugyo.taisho_nenrei_saichouki", "value": 2, "unit": "歳", "status": "stub", "stub_reason": "保育所に入れないなどの事情がある場合の再延長後の上限（最長2歳まで）は育児・介護休業法上の数値であり、data/seido/ikukyu-kyufu.jsonには独立した数値ノードとして未収録のため個別確認が必要" }
   ],
   "last_updated": "2026-07-17",
-  "next_check_due": "2026-10-01"
+  "next_check_due": "2026-08-01"
 }
 ---
 

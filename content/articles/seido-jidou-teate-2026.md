@@ -5,7 +5,7 @@
   "summary": "児童手当は0〜3歳未満が月15,000円、3歳から高校生年代までが月10,000円（第3子以降は月30,000円）。2024年10月の改正で所得制限は撤廃されている。",
   "type": "seido-kaisetsu",
   "category": "子育て",
-  "tool_ref": "jidou-teate-calc",
+  "tool_ref": "jido-teate",
   "persona": "共働き子育て世帯",
   "revision_year": 2026,
   "sources": [
