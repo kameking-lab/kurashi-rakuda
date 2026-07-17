@@ -698,5 +698,31 @@
     ],
     "updated": "2026-07-17",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T17",
+    "slug": "jintsuu-kankaku-counter",
+    "category": "pregnancy",
+    "title": "陣痛間隔カウンター",
+    "description": "陣痛の開始・終了をタップして記録し、間隔・持続時間・平均を自動計算します。記録は端末内だけに保存され、オフラインでも使えます。",
+    "solves": [
+      "陣痛の間隔をどう測ればいいか分からない",
+      "陣痛の記録を紙やメモで管理するのが大変",
+      "何分間隔になったら病院に連絡すればいいか分からない",
+      "陣痛の記録が通信環境のせいで消えないか不安"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "specs/b-tools/p2-t17-jintsuu-kankaku-counter.md（陣痛間隔カウンター ロジック仕様）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/p2-t17-jintsuu-kankaku-counter.md"
+      },
+      {
+        "label": "国立成育医療研究センター 産科「入院について」（陣痛の間隔・破水時の連絡目安）",
+        "url": "https://www.ncchd.go.jp/hospital/pregnancy/bunben/nyuin.html"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
   }
 ]

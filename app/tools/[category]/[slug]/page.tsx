@@ -7,6 +7,7 @@ import { ChomiryoKanzan } from "@/components/tools/impl/ChomiryoKanzan";
 import { JidoTeate } from "@/components/tools/impl/JidoTeate";
 import { JIDO_TEATE_DISCLAIMER } from "@/components/tools/impl/JidoTeate.calc";
 import { Getsurei } from "@/components/tools/impl/Getsurei";
+import { JintsuuKankakuCounter } from "@/components/tools/impl/JintsuuKankakuCounter";
 import { ShussanYoteibi } from "@/components/tools/impl/ShussanYoteibi";
 import { SeiriShuki } from "@/components/tools/impl/SeiriShuki";
 import { Inunohi } from "@/components/tools/impl/Inunohi";
@@ -123,6 +124,25 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         </p>
         <p>
           この計算はグレゴリオ暦の一般的な暦法規則（うるう年判定・大の月/小の月）のみに基づき、制度改定の概念はありません。
+        </p>
+      </>
+    ),
+  },
+  "jintsuu-kankaku-counter": {
+    ui: <JintsuuKankakuCounter />,
+    formula: (
+      <>
+        <p>
+          「持続時間」は1回の陣痛の「開始〜終了」の経過時間、「間隔」は「前回の陣痛の開始〜今回の陣痛の開始」までの経過時間です。どちらも記録した時刻（エポックミリ秒）の単純な差分を秒単位に丸めて計算します。時計のズレ等で差分がマイナスになった場合は不正な値として「—」表示にとどめ、平均計算からも除外します。
+        </p>
+        <p>
+          「平均間隔」「平均持続時間」は、直近5回分の有効な値だけを対象にした単純平均です。日をまたぐ記録でも、時刻はすべて絶対時刻（エポックミリ秒）で保持しているため、日付境界の特別な処理は行わずそのまま正しく計算されます。
+        </p>
+        <p>
+          記録はすべてこの端末のlocalStorageに保存され、サーバーへの送信は一切行いません。タブの再読み込みやアプリの再起動をしても記録は消えず、オフライン環境でも問題なく記録・計算できます。
+        </p>
+        <p>
+          一般的な連絡目安（初産婦は10分間隔、経産婦は10〜15分間隔、破水時は間隔を問わずすぐ連絡）は国立成育医療研究センター産科の案内による一施設の運用例であり、本ツールはこれを踏まえた記録・計算のみを行います。医学的な判断や診断は行わないため、実際の連絡タイミングは必ずご自身の受診先の指示に従ってください。
         </p>
       </>
     ),
