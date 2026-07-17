@@ -23,21 +23,26 @@ import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
 import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
 import osakaOsaka from "@/data/seido/hoikuryo/osaka-osaka.json";
 import tokyoAdachi from "@/data/seido/hoikuryo/tokyo-adachi.json";
+import tokyoArakawa from "@/data/seido/hoikuryo/tokyo-arakawa.json";
 import tokyoBunkyo from "@/data/seido/hoikuryo/tokyo-bunkyo.json";
 import tokyoChiyoda from "@/data/seido/hoikuryo/tokyo-chiyoda.json";
 import tokyoChuo from "@/data/seido/hoikuryo/tokyo-chuo.json";
 import tokyoEdogawa from "@/data/seido/hoikuryo/tokyo-edogawa.json";
 import tokyoKoto from "@/data/seido/hoikuryo/tokyo-koto.json";
+import tokyoKita from "@/data/seido/hoikuryo/tokyo-kita.json";
 import tokyoMeguro from "@/data/seido/hoikuryo/tokyo-meguro.json";
 import tokyoMinato from "@/data/seido/hoikuryo/tokyo-minato.json";
+import tokyoNakano from "@/data/seido/hoikuryo/tokyo-nakano.json";
 import tokyoNerima from "@/data/seido/hoikuryo/tokyo-nerima.json";
 import tokyoOta from "@/data/seido/hoikuryo/tokyo-ota.json";
 import tokyoSetagaya from "@/data/seido/hoikuryo/tokyo-setagaya.json";
+import tokyoShibuya from "@/data/seido/hoikuryo/tokyo-shibuya.json";
 import tokyoShinagawa from "@/data/seido/hoikuryo/tokyo-shinagawa.json";
 import tokyoShinjuku from "@/data/seido/hoikuryo/tokyo-shinjuku.json";
 import tokyoSumida from "@/data/seido/hoikuryo/tokyo-sumida.json";
 import tokyoSuginami from "@/data/seido/hoikuryo/tokyo-suginami.json";
 import tokyoTaito from "@/data/seido/hoikuryo/tokyo-taito.json";
+import tokyoToshima from "@/data/seido/hoikuryo/tokyo-toshima.json";
 import type { SeidoAmendment, SeidoDataset, SeidoSource } from "@/lib/tools/seido";
 
 // ---------------------------------------------------------------- 型
@@ -113,7 +118,7 @@ export interface HoikuryoMunicipality {
 // ---------------------------------------------------------------- 自治体データ
 
 /**
- * 収集済み自治体（2026-07-17時点で22件）。
+ * 収集済み自治体（2026-07-17時点で27件）。
  * ★選択肢はこの配列からのみ生成する★ 未収集自治体の階層を創作しない（§7）。
  * 並び順は全国地方公共団体コード順（＝都道府県順・特別区は区番号順）。UIの選択肢の順序になる。
  */
@@ -131,7 +136,12 @@ export const municipalities: HoikuryoMunicipality[] = [
   tokyoMeguro,
   tokyoOta,
   tokyoSetagaya,
+  tokyoShibuya,
+  tokyoNakano,
   tokyoSuginami,
+  tokyoToshima,
+  tokyoKita,
+  tokyoArakawa,
   tokyoNerima,
   tokyoAdachi,
   tokyoEdogawa,
