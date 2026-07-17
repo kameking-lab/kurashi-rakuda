@@ -52,6 +52,7 @@ import {
   WAITING_CHILDREN_OCT_PROVISIONAL as GAKUDOU_WAITING_CHILDREN_OCT_PROVISIONAL,
   gakudouHoikuDataset,
 } from "@/components/tools/impl/GakudouKabeDandoriCheck.calc";
+import { SangoTetsuzukiChecklist } from "@/components/tools/impl/SangoTetsuzukiChecklist";
 import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
 import { RecipeNinzuuKansan } from "@/components/tools/impl/RecipeNinzuuKansan";
 import { HoikuenOmukaeGyakusan } from "@/components/tools/impl/HoikuenOmukaeGyakusan";
@@ -86,6 +87,15 @@ import {
 } from "@/lib/tools/impl/jitan-kyuyo";
 import { kaigoHokenDataset } from "@/lib/tools/impl/kaigo-jikofutan";
 import { kaigoNinteiDataset } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi.calc";
+import {
+  shusshoTodokeDataset,
+  jidoTeateDataset as sangoJidoTeateDataset,
+  ikukyuKyufuDataset as sangoIkukyuKyufuDataset,
+  SHUSSHO_DOMESTIC_DAYS,
+  SHUSSHO_ABROAD_MONTHS,
+  JIDO_TEATE_EXCEPTION_DAYS,
+  ICHIJIKIN_CLAIM_YEARS,
+} from "@/components/tools/impl/SangoTetsuzukiChecklist.calc";
 import { todayJst } from "@/lib/tools/seido";
 
 /**
@@ -1142,6 +1152,47 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         <p>
           必要なものは体調・地域・産院の方針・きょうだいの有無などによって大きく異なります。断定的な指示ではなく、母子健康手帳や産院からの案内と合わせて確認するための目安としてご利用ください。実際の出産日は予定日どおりとは限らないため、出産予定日を過ぎた場合の表示（産後の準備リスト）もあくまで参考です。
         </p>
+      </>
+    ),
+  },
+  "sango-tetsuzuki-checklist": {
+    ui: <SangoTetsuzukiChecklist />,
+    formula: (
+      <>
+        <p>
+          <strong>起算日ルール（本ツールの核）</strong>
+          ：出生届だけは<strong>出生日当日を1日目</strong>として数えます（戸籍法第43条第1項「届出期間は、届出事件発生の日からこれを起算する」。民法第140条の初日不算入の原則の例外）。
+          国内は<strong>{SHUSSHO_DOMESTIC_DAYS}日以内</strong>（出生日が4月1日なら4月14日が期限）、国外は
+          <strong>{SHUSSHO_ABROAD_MONTHS}か月以内</strong>です。児童手当（15日特例）と出産育児一時金の請求は、
+          特段の初日算入規定がないため民法の原則どおり<strong>出生日（出産日）の翌日を1日目</strong>として数えます。
+        </p>
+        <p>
+          <strong>月・年単位の期限（出生届の国外3か月・出産育児一時金の2年）</strong>
+          ：民法第143条の一般原則（暦に従って計算し、起算日に応当する日の前日に満了する。ただし最後の月に応当する日がないときはその月の末日に満了する）を適用しています。
+          例えば11月30日生まれの国外出生では、2月に30日が存在しないため、その年の2月末日（28日または29日）が期限になります。
+        </p>
+        <p>
+          <strong>児童手当（15日特例）</strong>
+          ：出生日の翌日から<strong>{JIDO_TEATE_EXCEPTION_DAYS}日以内</strong>
+          に認定請求をすれば、出生月の翌月分から支給されます。この期限を過ぎると、原則どおり「申請した月の翌月分から」の支給になり、さかのぼって支給されません。
+        </p>
+        <p>
+          <strong>出産育児一時金の請求</strong>
+          ：出産日の翌日から<strong>{ICHIJIKIN_CLAIM_YEARS}年以内</strong>
+          です。直接支払制度・受取代理制度を利用した場合は、多くのケースで自分で請求する必要はありません。
+        </p>
+        <p>
+          <strong>国外出生の注意</strong>
+          ：出生届とともに国籍留保届をしないと、日本国籍を失う場合があります（法務省の公式案内）。
+          出生届自体は期限を過ぎても市区町村長が必ず受理し、届出をあきらめる必要はありませんが、国籍留保届は期限厳守が特に重要です。
+        </p>
+        <p>
+          本ツールが扱うのは、依存する3つの制度データから機械的に導出できる期限のみです。健康保険の加入手続きなど、法定の届出期限日数が一次資料から明確に読み取れない手続には踏み込んでいません。
+        </p>
+        <SeidoNotice
+          datasets={[shusshoTodokeDataset, sangoJidoTeateDataset, sangoIkukyuKyufuDataset]}
+          today={todayJst()}
+        />
       </>
     ),
   },
