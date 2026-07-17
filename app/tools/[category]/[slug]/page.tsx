@@ -21,6 +21,7 @@ import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
 import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SankyuIkukyuMoney } from "@/components/tools/impl/SankyuIkukyuMoney";
 import { JitanKyuyo } from "@/components/tools/impl/JitanKyuyo";
+import { FukkiBiKeisan } from "@/components/tools/impl/FukkiBiKeisan";
 import { SentakuHyoji } from "@/components/tools/impl/SentakuHyoji";
 import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
 import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc";
@@ -35,6 +36,15 @@ import { SITE_URL } from "@/app/lib/site";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
 import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
 import { ikukyuKyufuDataset, salaryAtWageDailyMax } from "@/lib/tools/impl/sankyu-ikukyu-money";
+import {
+  ikukyuEnchoDataset,
+  POSTNATAL_LEAVE_DAYS as FUKKIBI_POSTNATAL_LEAVE_DAYS,
+  RATE_SWITCH_DAYS as FUKKIBI_RATE_SWITCH_DAYS,
+  RATE_FIRST as FUKKIBI_RATE_FIRST,
+  RATE_AFTER as FUKKIBI_RATE_AFTER,
+  LEAVE_EXTENSION_1_MONTHS,
+  LEAVE_EXTENSION_2_MONTHS,
+} from "@/components/tools/impl/FukkiBiKeisan.calc";
 import {
   SUPPORT_LIMIT as JITAN_SUPPORT_LIMIT,
   MINIMUM_AMOUNT as JITAN_MINIMUM_AMOUNT,
@@ -481,6 +491,55 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           復職後の保育料は、育休中の給付が非課税で算定基礎に入らないため下がることがあります。
         </p>
         <SeidoNotice datasets={[ikukyuKyufuDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "fukki-bi-keisan": {
+    ui: <FukkiBiKeisan />,
+    formula: (
+      <>
+        <p>
+          <strong>産後休業終了日の目安</strong>
+          ：出産日から{FUKKIBI_POSTNATAL_LEAVE_DAYS}日後です。健康保険法が定める出産手当金の産後の支給期間（多胎でも変わりません）と同じ日数を使っています。
+          出産日が確定していない場合は、出産予定日で試算します。
+        </p>
+        <p>
+          <strong>育休の各期限</strong>
+          ：育休の原則終了日は「子が1歳に達する日」、延長した場合は「1歳6か月に達する日」「2歳に達する日」です。
+          「◯歳に達する日」は誕生日そのものではなく、
+          <strong>誕生日の前日</strong>
+          を指します（年齢計算ニ関スル法律・民法143条の一般原則）。1歳6か月は12か月＋6か月、2歳は
+          育児・介護休業法が定める育休の上限年齢からの計算です。復帰日はそれぞれの期限の翌日になります。
+        </p>
+        <p>
+          <strong>育児休業給付金の給付率</strong>
+          ：休業開始から通算{FUKKIBI_RATE_SWITCH_DAYS}日目までは{Math.round(FUKKIBI_RATE_FIRST * 100)}%、
+          {FUKKIBI_RATE_SWITCH_DAYS + 1}日目以降は{Math.round(FUKKIBI_RATE_AFTER * 100)}%に下がります。
+          育休を長く取るほど、給付率が下がった期間の割合が増えることになります（本ツールでは金額の計算は行いません。
+          金額を知りたい場合は「産休育休まるごとお金シミュレーター」をご利用ください）。
+        </p>
+        <p>
+          <strong>育休を延長するための要件</strong>
+          ：育休そのものの延長（育児・介護休業法、勤務先への申出）と、育児休業給付金の支給対象期間の延長
+          （雇用保険法、ハローワークへの申請）は別々の制度で、要件も異なります。
+          いずれも「保育所等に入所できない」等の事由が必要で、単に希望するだけでは延長できません。
+          2025年4月からは、育児休業給付金の延長審査に「速やかな職場復帰のための申込みか」という要件が加わり、
+          保育所等の利用申込書の写しなどの提出が必須になっています。申込みの時点でコピーを保管しておくことが重要です。
+        </p>
+        <p>
+          <strong>保育園入園の申込み時期</strong>
+          ：自治体ごとに申込みの受付時期・審査スケジュールが大きく異なるため、本ツールでは各期限の4か月前〜2か月前を
+          「検討を始める一般的な目安」として示すのみで、具体的な自治体名や締切日は案内していません。
+          お住まいの自治体の窓口・ウェブサイトで早めにご確認ください。
+        </p>
+        <p>
+          育児休業の延長は
+          {LEAVE_EXTENSION_1_MONTHS}
+          か月・
+          {LEAVE_EXTENSION_2_MONTHS}
+          か月（1歳6か月・2歳）の2段階までで、それ以上の延長制度はありません。
+        </p>
+        <SeidoNotice datasets={[ikukyuKyufuDataset, ikukyuEnchoDataset]} today={todayJst()} />
       </>
     ),
   },
