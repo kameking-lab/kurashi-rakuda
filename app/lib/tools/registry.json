@@ -923,5 +923,44 @@
     ],
     "updated": "2026-07-17",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T01",
+    "slug": "fukushoku-tedori",
+    "category": "career",
+    "title": "復職後の手取りシミュレーター（時短×社保×保育料）",
+    "description": "育休から復職して時短で働くとき、時短後の賃金・育児時短就業給付金・社会保険料・保育料を1つのタイムラインに載せ、毎月手元に残る額を計算します。",
+    "solves": [
+      "復職して時短で働くと毎月いくら手元に残るか分からない",
+      "時短にしたのに社会保険料がすぐ下がらないことを知らない",
+      "復職直後に保育料が高いままなのはなぜか分からない",
+      "育児時短就業給付金をもらっても保育料を引くといくら残るか分からない",
+      "時短後の賃金・給付・社保・保育料を1つにまとめて見たい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索（デジタル庁）「雇用保険法（昭和四十九年法律第百十六号）」",
+        "url": "https://laws.e-gov.go.jp/law/349AC0000000116"
+      },
+      {
+        "label": "厚生労働省「育児時短就業給付の内容と支給申請手続」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html"
+      },
+      {
+        "label": "厚生労働省「育児休業等給付の内容と支給申請手続（令和7年8月1日改訂版）」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html"
+      },
+      {
+        "label": "全国健康保険協会「令和8年度の保険料額表」（社会保険料の概算の根拠）",
+        "url": "https://www.kyoukaikenpo.or.jp/g3/cat330/"
+      },
+      {
+        "label": "こども家庭庁「幼児教育・保育」（保育料は自治体の階層表で決まる。金額は保育料計算ツール・自治体で確認）",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/hoiku"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
   }
 ]
