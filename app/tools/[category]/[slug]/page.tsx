@@ -11,6 +11,7 @@ import { ShussanYoteibi } from "@/components/tools/impl/ShussanYoteibi";
 import { SeiriShuki } from "@/components/tools/impl/SeiriShuki";
 import { Inunohi } from "@/components/tools/impl/Inunohi";
 import { FuyoKabe } from "@/components/tools/impl/FuyoKabe";
+import { HokatsuSchedule } from "@/components/tools/impl/HokatsuSchedule";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
 import { todayJst } from "@/lib/tools/seido";
@@ -162,6 +163,25 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           年収に乗じた概算です。実際は標準報酬月額をもとに計算され、健康保険料率は都道府県ごとに異なります。
         </p>
         <SeidoNotice datasets={[fuyoKabeDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "hokatsu-schedule": {
+    ui: <HokatsuSchedule />,
+    formula: (
+      <>
+        <p>
+          「入園希望年月（E）」を起点に、月単位のオフセットで各マイルストーンの目安日を逆算しています。例えば4月一斉入園モデルでは、情報収集開始はE−12ヶ月、保育園見学はE−10ヶ月〜E−7ヶ月、一次選考結果通知はE−3ヶ月を上限としてE−6ヶ月（一次締切）＋2ヶ月、というように、入園希望月から遡って各段取りの時期を計算します。
+        </p>
+        <p>
+          一次申込み締切は自治体ごとに大きく異なるため、お住まいの自治体の公表締切日を入力した場合はその日付を「正」として採用し、以降の申込書類準備・一次選考結果通知の時期をその締切基準で再計算します。未入力の場合は、人口規模の大きい自治体が例年公表しているスケジュール傾向（一次申込み＝10月下旬相当、一次結果通知＝12月下旬相当など）から作成した全国目安値を使用します。
+        </p>
+        <p>
+          実行日（今日）より前の時期になったマイルストーンは削除せず「既に目安時期を過ぎています」というラベルを付けて表示し続けます。間に合わなかった項目を可視化するためです。また、入園希望月までの残り期間が3ヶ月未満の場合は、標準的な申込み時期を過ぎている可能性が高いため、自治体の保育課へ直接確認するよう促す警告を表示します。
+        </p>
+        <p>
+          法定の全国統一スケジュールは存在しません（児童福祉法上、保育の実施主体は市区町村であり、申込み手続きは自治体ごとに個別に定められています）。本ツールが示す日付はすべて全国の傾向から作成した目安であり、入園の可否・選考結果の判定は行いません。締切日・必要書類・選考基準は必ずお住まいの市区町村の保育担当窓口・公式サイトでご確認ください。
+        </p>
       </>
     ),
   },

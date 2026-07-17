@@ -225,9 +225,18 @@
       "見学は何園くらい行けばいいか分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "こども家庭庁「利用調整（保育所等の入所選考）に関するＱ＆Ａ」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/hoiku"
+      },
+      {
+        "label": "東京都福祉局「保育所等利用申込みのご案内」（区市町村の公表スケジュール傾向の参照元の一例）",
+        "url": "https://www.fukushi.metro.tokyo.lg.jp/kodomo/hoiku/index.html"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-12",
