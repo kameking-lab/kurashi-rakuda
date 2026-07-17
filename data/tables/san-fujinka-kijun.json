@@ -1,0 +1,81 @@
+{
+  "$comment": "出産予定日・妊娠週数計算（content/articles/tool-narisou-shussan-yoteibi.md、components/tools/impl/ShussanYoteibi.calc.ts）と戌の日計算・安産祈願カレンダー（content/articles/tool-narisou-inunohi.md、components/tools/impl/Inunohi.calc.ts）が共有する『ネーゲレ概算法』系の日数定数の対照表。2026-07-17、両calc.tsにハードコードされていたマジックナンバー（280・28・97・195・112・20・45）をこのファイルに集約した（値は変更していない）。★出典についての重要な注記★ 両記事のfrontmatter.sources[]に記載されていた出典URL https://www.jsog.or.jp/general_info/ （日本産科婦人科学会「一般の方へ」）は、2026-07-17の検証時点でHTTP 404（該当ページが存在しない）であることを確認した。同学会サイト内を追加調査したが、一般公開ページに本テーマの一次情報は見当たらなかった。代わりに、同じく本サイトの出典許可ドメインである日本産婦人科医会（jaog.or.jp）の公開ページで、妊娠初期・中期の週数区分についてのみ一次情報が確認できたため、shoki_kyoukai_nissuu_97・chuuki_kyoukai_nissuu_195 の2値はそのページを出典として確定させた。残りの値（280・28・20・45・112）は、産婦人科診療で広く定着した計算慣行ではあるが、本サイトの出典許可ドメイン内で単独の一次情報ページを2026-07-17時点で確認できなかったため、frontmatter.facts[]では正直にstub運用のままとする（openIssues参照）。ツールの実装ロジックとしては、業界標準の計算慣行として採用を継続する。",
+  "sources": [
+    {
+      "id": "jaog-ninshin-jiki",
+      "label": "（1）妊娠時期の特徴と正常妊娠・異常妊娠",
+      "url": "https://www.jaog.or.jp/note/（1）妊娠時期の特徴と正常妊娠・異常妊娠/",
+      "org": "日本産婦人科医会",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "note": "妊娠初期・中期・後期（末期）の週数区分を解説するページ。妊娠初期＝妊娠13週6日まで、妊娠中期＝妊娠14週0日〜27週6日、と明記している。"
+    }
+  ],
+  "lastVerified": "2026-07-17",
+  "nextCheckDue": "2027-01-01",
+  "kihon_nissuu_280": {
+    "value": 280,
+    "unit": "日",
+    "label": "ネーゲレ概算法の基本日数（最終月経開始日+280日=妊娠40週0日を出産予定日とする計算慣行）",
+    "confirmed": false,
+    "note": "出産予定日算定の広く定着した計算慣行（ネーゲレ概算法）。frontmatter.sources[]記載だった https://www.jsog.or.jp/general_info/ は404で現存せず、追加調査でも本サイトの出典許可ドメイン内に単独の一次情報ページを確認できなかったため、facts[]では機械照合対象外（stub）として扱う。"
+  },
+  "hyoujun_shuuki_nissuu_28": {
+    "value": 28,
+    "unit": "日",
+    "label": "ネーゲレ概算法が前提とする標準的な月経周期日数",
+    "confirmed": false,
+    "note": "日本産婦人科医会の研修資料には『月経周期が正順（28〜30日型）』という範囲表記はあるが、28日単独を明記した一次情報は本サイトの出典許可ドメイン内で確認できなかったため、facts[]では機械照合対象外（stub）として扱う。"
+  },
+  "shoki_kyoukai_nissuu_97": {
+    "value": 97,
+    "unit": "日",
+    "label": "妊娠初期の境界（妊娠13週6日を最終月経開始日からの経過日数に換算）",
+    "confirmed": true,
+    "sourceId": "jaog-ninshin-jiki",
+    "sourceQuote": "妊娠初期とは妊娠13週６日までを示す。",
+    "note": "13週6日 = 13×7+6 = 97日。週数→日数の換算は編集部による単純計算。"
+  },
+  "chuuki_kyoukai_nissuu_195": {
+    "value": 195,
+    "unit": "日",
+    "label": "妊娠中期の境界（妊娠27週6日を最終月経開始日からの経過日数に換算）",
+    "confirmed": true,
+    "sourceId": "jaog-ninshin-jiki",
+    "sourceQuote": "妊娠中期は妊娠14週０日～27週６日までを示し",
+    "note": "27週6日 = 27×7+6 = 195日。週数→日数の換算は編集部による単純計算。"
+  },
+  "ninshin_5kagetsu_kasan_nissuu_112": {
+    "value": 112,
+    "unit": "日",
+    "label": "「1ヶ月=4週」の慣用区分での妊娠5ヶ月開始日換算（最終月経開始日+112日=16週0日）",
+    "confirmed": false,
+    "note": "妊娠月数（「妊娠◯ヶ月」）は医学的な発達区分ではなく、1ヶ月=4週とみなす慣用的な計算法。本サイトの出典許可ドメイン内に単独の一次情報ページを確認できなかったため、facts[]では機械照合対象外（stub）として扱う。"
+  },
+  "shuuki_kani_min_20": {
+    "value": 20,
+    "unit": "日",
+    "label": "月経周期の入力バリデーション下限",
+    "confirmed": false,
+    "note": "ツールの入力バリデーションに用いる生理的な範囲の下限。単独の一次情報ページを確認できなかったため、facts[]では機械照合対象外（stub）として扱う。"
+  },
+  "shuuki_kani_max_45": {
+    "value": 45,
+    "unit": "日",
+    "label": "月経周期の入力バリデーション上限",
+    "confirmed": false,
+    "note": "ツールの入力バリデーションに用いる生理的な範囲の上限。単独の一次情報ページを確認できなかったため、facts[]では機械照合対象外（stub）として扱う。"
+  },
+  "openIssues": [
+    {
+      "item": "frontmatter.sources[]記載の https://www.jsog.or.jp/general_info/ が404",
+      "status": "2026-07-17に発見・報告",
+      "reason": "日本産科婦人科学会サイトのURL構成が変わったか、当該ページが削除された可能性がある。同学会サイト内（citizen/配下等）を追加調査したが、代替ページで本テーマ（妊娠週数の数え方・ネーゲレ概算法）を扱う一般公開ページは見つからなかった。次の作業者は、同学会に確認するか、jsog.or.jpに依存しない出典（jaog.or.jp・mhlw.go.jp等）への一次情報の切り替えを検討すること。"
+    },
+    {
+      "item": "kihon_nissuu_280・hyoujun_shuuki_nissuu_28・shuuki_kani_min_20・shuuki_kani_max_45・ninshin_5kagetsu_kasan_nissuu_112 の一次情報",
+      "status": "未確認",
+      "reason": "医学的に広く定着した計算慣行だが、2026-07-17時点の調査（jsog.or.jp・jaog.or.jp・mhlw.go.jp等の許可ドメイン内）では、これらの具体的な数値を明記した単独の一次情報ページを確認できなかった。将来的に確認できた場合は、confirmed: true にしたうえで facts[] を verified 化すること。"
+    }
+  ]
+}
