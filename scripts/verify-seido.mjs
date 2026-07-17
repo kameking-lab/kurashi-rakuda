@@ -89,6 +89,12 @@ const ALLOWED_HOSTS = [
   //   J-STAGE の論文URLは www.jstage.jst.go.jp 配下）
   'www.jst.go.jp',
   'www.jstage.jst.go.jp',
+  // ↓2026-07-18 追加。政府統計の総合窓口 e-Stat（総務省統計局／統計センター）。
+  // 統計表の生データ・ダウンロード値の一次出典に用いる（統計局の解説ページ stat.go.jp と使い分け）。
+  // （.go.jp サフィックスで機械的には既に通るが、用途注記つきで明示列挙する。
+  //   e-stat.go.jp は『.stat.go.jp』で終わらないため stat.go.jp のサフィックス許可では拾えない点にも注意）
+  'www.e-stat.go.jp',
+  'dashboard.e-stat.go.jp',
 ];
 const ALLOWED_HOST_SUFFIXES = ['.lg.jp', '.go.jp'];
 /**

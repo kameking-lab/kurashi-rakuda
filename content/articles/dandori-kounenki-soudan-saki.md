@@ -13,26 +13,26 @@
   ],
   "sources": [
     {
-      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/joseinokenko/index.html",
-      "title": "女性の健康推進に関する取り組み",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/woman/index.html",
+      "title": "女性の健康づくり",
       "org": "厚生労働省",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-18"
     },
     {
-      "url": "https://www.jsog.or.jp/general_info/",
-      "title": "一般の方へ（女性の健康に関する情報）",
+      "url": "https://www.jsog.or.jp/citizen/375/",
+      "title": "一般の皆様へ（女性の健康に関する情報）",
       "org": "日本産科婦人科学会",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-18"
     },
     {
-      "url": "https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/kenko/soudan/",
-      "title": "保健センターの健康相談窓口",
+      "url": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/shido/sodan/joseikenkousoudan.html",
+      "title": "女性の健康相談（福祉保健センター・更年期相談を含む）",
       "org": "横浜市",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-18"
     }
   ],
   "facts": [],
-  "last_updated": "2026-07-17",
+  "last_updated": "2026-07-18",
   "next_check_due": "2027-04-01"
 }
 ---
@@ -75,9 +75,9 @@
 
 ## 出典・根拠
 
-- 厚生労働省「女性の健康推進に関する取り組み」
-- 日本産科婦人科学会「一般の方へ（女性の健康に関する情報）」
-- 横浜市「保健センターの健康相談窓口」（自治体窓口の一例として。実際の相談窓口はお住まいの自治体でご確認ください）
+- 厚生労働省「女性の健康づくり」
+- 日本産科婦人科学会「一般の皆様へ（女性の健康に関する情報）」
+- 横浜市「女性の健康相談」（更年期相談を含む自治体窓口の一例として。実際の相談窓口はお住まいの自治体でご確認ください）
 
 ---
 
