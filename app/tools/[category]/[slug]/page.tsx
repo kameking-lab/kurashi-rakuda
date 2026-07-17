@@ -34,6 +34,11 @@ import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
 import { YoujiMushoukaChecker } from "@/components/tools/impl/YoujiMushoukaChecker";
 import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushoukaChecker.calc";
 import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
+import { JoseiKenshinSchedule } from "@/components/tools/impl/JoseiKenshinSchedule";
+import {
+  COMPREHENSIVE_SCREENING_NOTE,
+  UNDER_TREATMENT_EXCLUSION_NOTE,
+} from "@/components/tools/impl/JoseiKenshinSchedule.calc";
 import { ShussanJunbiChecklist } from "@/components/tools/impl/ShussanJunbiChecklist";
 import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
 import { GakudouKabeDandoriCheck } from "@/components/tools/impl/GakudouKabeDandoriCheck";
@@ -1251,6 +1256,34 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           人まで減少しており、年度途中に空きが出る実態もあわせて示しています（速報値であり確定値ではありません）。
         </p>
         <SeidoNotice datasets={[gakudouHoikuDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "josei-kenshin-schedule": {
+    ui: <JoseiKenshinSchedule />,
+    formula: (
+      <>
+        <p>
+          生年月日から満年齢（誕生日を迎えた日から加齢する日常的な数え方）を計算し、子宮頸がん検診（20歳以上）・乳がん検診（40歳以上）・胃がん検診（50歳以上）・肺がん検診（40歳以上）・大腸がん検診（40歳以上）・特定健康診査（40〜74歳）・後期高齢者健診（原則75歳以上）の7つについて、年齢がしきい値に達しているかを判定します。達していれば「対象」、上限（特定健診の74歳）を超えていれば「対象外」、達していなければ「あと◯年で対象」と表示します。対象年齢のしきい値はすべて厚生労働省の指針・法令が定める数値で、コードに数値を直書きせず、指針の原文（例:「50歳以上」）から抽出しています。
+        </p>
+        <p>
+          <strong>子宮頸がん検診は受診間隔が2通りあります。</strong>
+          子宮頸部の細胞診（20歳以上が対象）は2年に1回、HPV検査単独法（30歳以上が対象）は5年に1回です。どちらの方式を採用するかは市区町村ごとに異なり、HPV検査単独法は陽性の場合にトリアージ検査、トリアージ検査が陰性でも翌年度に追跡検査が必要になることがあります。「子宮頸がん検診は2年に1回」と一律には書かず、両方の間隔を併記しています。
+        </p>
+        <p>
+          胃がん検診は原則「50歳以上・2年に1回」ですが、胃部エックス線検査（バリウム）に限り、当分の間「40歳以上・年1回」も指針上認められています。本ツールの対象判定は原則（50歳以上）を基準にしており、この例外は注記のみで表示します。肺がん検診の検診項目は「質問（問診）」と「胸部エックス線検査」です。令和7年12月24日の指針改正で、それまで含まれていた喀痰細胞診が検診項目から削除されています。
+        </p>
+        <p>
+          特定健康診査は40〜74歳が対象で、75歳になると対象から外れ、後期高齢者健診に切り替わります。特定健診の実施主体は加入する医療保険者、後期高齢者健診の実施主体は後期高齢者医療広域連合で、がん検診の実施主体（市区町村）とは異なります。本ツールは誕生日基準の満年齢で判定する簡易実装のため、特定健診が本来使う「当該年度において40〜74歳に達する加入者」という年度単位の年齢とは、誕生日の前後で数か月ずれることがあります。
+        </p>
+        <p>{UNDER_TREATMENT_EXCLUSION_NOTE}</p>
+        <p>{COMPREHENSIVE_SCREENING_NOTE}</p>
+        <p>
+          <strong>
+            本ツールが行うのは、指針・法令が定める対象年齢のしきい値と満年齢を比較する年齢判定のみです。
+          </strong>
+          実際に受けられる検診の種類・自己負担額・案内方法はお住まいの市区町村・加入する医療保険者によって異なり、受診の要否や結果の判断といった医学的な判断は一切行いません。必ずお住まいの市区町村・医療保険者の案内を優先してください。
+        </p>
       </>
     ),
   },
