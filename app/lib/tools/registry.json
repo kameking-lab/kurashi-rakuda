@@ -67,8 +67,14 @@
     ],
     "basisYear": null,
     "sources": [
-      { "label": "日本産科婦人科学会", "url": "https://www.jsog.or.jp/" },
-      { "label": "日本家族計画協会", "url": "https://www.jfpa.or.jp/" }
+      {
+        "label": "日本産科婦人科学会",
+        "url": "https://www.jsog.or.jp/"
+      },
+      {
+        "label": "日本家族計画協会",
+        "url": "https://www.jfpa.or.jp/"
+      }
     ],
     "updated": "2026-07-17",
     "status": "live"
@@ -745,31 +751,6 @@
       {
         "label": "国立成育医療研究センター 産科「入院について」（陣痛の間隔・破水時の連絡目安）",
         "url": "https://www.ncchd.go.jp/hospital/pregnancy/bunben/nyuin.html"
-      }
-    ],
-    "updated": "2026-07-17",
-    "status": "live"
-  },
-  {
-    "queueId": "P2-T19",
-    "slug": "youji-mushouka-checker",
-    "category": "childcare",
-    "title": "幼児教育・保育無償化 対象チェッカー",
-    "description": "お子さまのクラス年齢・利用施設の種別から、幼児教育・保育の無償化の対象になるか、月額上限や必要な手続きをその場で判定します。",
-    "solves": [
-      "幼児教育・保育の無償化が自分の子に当てはまるか分からない",
-      "認可外保育施設の無償化の月額上限が分からない",
-      "無償化を受けるのに何の手続きが必要か分からない"
-    ],
-    "basisYear": "2026年度",
-    "sources": [
-      {
-        "label": "こども家庭庁「幼児教育・保育の無償化」",
-        "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka"
-      },
-      {
-        "label": "e-Gov法令検索（デジタル庁）「子ども・子育て支援法（平成二十四年法律第六十五号）」",
-        "url": "https://laws.e-gov.go.jp/law/424AC0000000065"
       }
     ],
     "updated": "2026-07-17",
