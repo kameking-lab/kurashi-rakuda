@@ -31,6 +31,7 @@ import { KONDATE_DISCLAIMER, kondateData } from "@/lib/tools/impl/kondate-teian"
 import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
 import { YoujiMushoukaChecker } from "@/components/tools/impl/YoujiMushoukaChecker";
 import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushoukaChecker.calc";
+import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -870,6 +871,35 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           幼稚園（新制度・未移行いずれも）は満3歳以上のお子さまが対象のため、0〜2歳児クラスでの幼稚園利用という組み合わせは対象外として扱います。
         </p>
         <p>{YOUJI_MUSHOUKA_DISCLAIMER}</p>
+      </>
+    ),
+  },
+  "ninshin-kenshin-schedule": {
+    ui: <NinshinKenshinSchedule />,
+    formula: (
+      <>
+        <p>
+          <strong>受診間隔の考え方</strong>
+          ：厚生労働省が示す標準的な妊婦健診の例（1回目を妊娠8週頃とした場合）に基づき、妊娠23週までは4週間に1回、妊娠24週から35週までは2週間に1回、妊娠36週から出産までは1週間に1回という間隔で、出産予定日から逆算して各回の目安日・妊娠週数を計算しています。標準的な入力では合計14回が生成され、これは厚生労働省の例示・母子保健法第13条第2項に基づく「望ましい基準」（平成27年3月31日厚生労働省告示第226号）が示す回数と一致します。
+        </p>
+        <p>
+          最終月経開始日（LMP）のみを入力した場合は、LMP+280日（40週0日）を出産予定日の目安として計算します。出産予定日とLMPの両方を入力し食い違いがある場合は、医師の診察・超音波検査で確定していることが多い出産予定日を優先し、食い違いの日数は注意表示のみ行います。
+        </p>
+        <p>
+          <strong>公費助成との関係</strong>
+          ：各回が「公費助成の目安回数（データ由来。現時点で14回）」以内かどうかを判定して表示します。こども家庭庁調査（令和6年4月1日現在）では、全ての市区町村（1,741）が14回以上を公費助成していますが、
+          <strong>助成の金額・対象となる検査項目・受診券の方式は市区町村ごとに異なります</strong>
+          。金額を断定せず、目安回数内であることのみを示しています。
+        </p>
+        <p>
+          あわせて、産後の産婦健康診査（産後2週間・産後1か月が目安）の参考日も、出産予定日を起点に計算して表示します。国庫補助の対象は2回分ですが、令和6年度時点で全1,741市区町村中1,445市区町村の実施にとどまり、全国一律に受けられる制度ではありません。
+        </p>
+        <p>
+          <strong>
+            本ツールが行うのは、これらの制度上の標準スケジュールの日付計算のみです。
+          </strong>
+          実際に何回・いつ受診するかは妊娠経過・体調・医療機関の方針によって異なり、医学的な受診指示・診断は一切行っていません。必ず担当医の指示、お住まいの市区町村の母子保健担当窓口の案内を優先してください。
+        </p>
       </>
     ),
   },
