@@ -122,6 +122,32 @@ describe("calcInunohi: 仕様書テストケース表（#1〜#10）", () => {
     expect(out.result.nextInuNoHi).toBe("2026-05-12");
   });
 
+  it("#9b 妊娠19週以降（firstから2周期以上経過）でも次の戌の日は基準日以降になる（G2検収指摘）", () => {
+    // lmp=2025-09-01 → firstInuNoHi は2026年1月。基準日2026-07-17 時点で約6ヶ月経過
+    const out = calcInunohi({ inputMode: "lmp", lmp: "2025-09-01", baseDate: "2026-07-17" });
+    expect(out.ok).toBe(true);
+    if (!out.ok) return;
+    expect(out.result.isPast).toBe(true);
+    const next = out.result.nextInuNoHi;
+    expect(next).not.toBeNull();
+    // 基準日以降であること（過去日を「次」と案内しない）
+    expect(next! >= "2026-07-17").toBe(true);
+    // 12日周期上にあること（firstInuNoHi との差が12の倍数）
+    const ms =
+      new Date(`${next}T00:00:00Z`).getTime() -
+      new Date(`${out.result.firstInuNoHi}T00:00:00Z`).getTime();
+    expect((ms / 86400000) % 12).toBe(0);
+  });
+
+  it("#9c 基準日がちょうど戌の日なら当日を「次の戌の日」として返す", () => {
+    // 2026-05-12 は #9 で戌の日と確認済み
+    const out = calcInunohi({ inputMode: "lmp", lmp: "2026-01-01", baseDate: "2026-05-12" });
+    expect(out.ok).toBe(true);
+    if (!out.ok) return;
+    expect(out.result.isPast).toBe(true);
+    expect(out.result.nextInuNoHi).toBe("2026-05-12");
+  });
+
   it("#10 lmpがbaseDateより未来 → バリデーションエラー", () => {
     const out = calcInunohi({ inputMode: "lmp", lmp: "2026-05-01", baseDate: "2026-04-01" });
     expect(out.ok).toBe(false);

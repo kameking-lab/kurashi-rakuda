@@ -387,7 +387,7 @@ export function SankyuIkukyuMoney() {
                     <tr className="border-b border-line text-left">
                       <th className="py-2 pr-3 font-medium">回</th>
                       <th className="py-2 pr-3 font-medium">期間</th>
-                      <th className="py-2 pr-3 font-medium">日数</th>
+                      <th className="py-2 pr-3 font-medium">支給日数</th>
                       <th className="py-2 pr-3 font-medium">給付率</th>
                       <th className="py-2 font-medium">支給額</th>
                     </tr>

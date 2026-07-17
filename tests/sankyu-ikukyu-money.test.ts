@@ -92,6 +92,27 @@ describe("暦のユーティリティ", () => {
 // ================================================================ 出産手当金
 
 describe("出産手当金（specs §4.1・§6 #1・#2）", () => {
+  it("★G2検収修正★ 父ロールには出産手当金を算定せず、合計にも含めない", () => {
+    const i = inp({ role: "father", papaLeaveDays: 28, spouseTakesLeave: true, spouseLeaveDays: 56 });
+    const teate = calcShussanTeate(i, buildTimeline(i));
+    expect(teate.eligible).toBe(false);
+    expect(teate.amount).toBeNull();
+    expect(teate.dailyAmount).toBeNull();
+    expect(teate.reason).toContain("お母さん");
+
+    // ヘッドライン合計にも出産手当金分が乗らない
+    const r = simulate(i);
+    expect(r.shussanTeate.amount).toBeNull();
+    if (r.total !== null) {
+      const partsWithoutTeate =
+        r.ichijikin.amount +
+        r.ikukyu.total +
+        r.shusshoGo.amount +
+        (r.shusshoJi?.amount ?? 0);
+      expect(r.total).toBe(partsWithoutTeate);
+    }
+  });
+
   it("★端数処理★ #1 標準報酬月額300,000 → 支給日額6,667円（× 2 ÷ 3 の有理数・50銭以上切上）", () => {
     expect(standardDailyWage(300_000)).toBe(10_000);
     // 10,000 × 2 ÷ 3 = 6,666.666… → 50銭以上1円未満は1円に切上 → 6,667
@@ -259,6 +280,33 @@ describe("育児休業給付金（specs §4.3・§6 #8〜#10）", () => {
     // 通算180日に達するまでの日数が67%、超過分が50%で計算される
     expect(r.periods.reduce((s, p) => s + p.days67, 0)).toBe(180);
     expect(r.periods.reduce((s, p) => s + p.days50, 0)).toBe(acc - 180);
+  });
+
+  it("★G2検収修正★ 支給日数は原則30日（暦日数28〜31日を使わない）", () => {
+    const i = inp({});
+    const r = calcIkukyu(i, tlOf(), calcWageDaily(i, tlOf()));
+    // 休業終了日を含む最後の期間以外は、開始応当日がどの月でも30日
+    for (const p of r.periods.slice(0, -1)) {
+      expect(p.days).toBe(30);
+    }
+    // 例: 賃金日額10,000円なら1期間目は 10,000×30×67% = 201,000円
+    //（暦日数31日で計算すると 207,700円になり過大）
+    const w = calcWageDaily(i, tlOf());
+    const first = r.periods[0];
+    expect(first.amount).toBe(Math.floor(w.value * 30 * RATE_FIRST));
+  });
+
+  it("★G2検収修正★ 休業終了日を含む最後の支給単位期間のみ実日数", () => {
+    const i = inp({});
+    const tl = tlOf();
+    const r = calcIkukyu(i, tl, calcWageDaily(i, tl));
+    const last = r.periods[r.periods.length - 1];
+    // 最後の期間の日数 = 期間開始日〜休業終了日の実日数（30日固定ではない）
+    const ms =
+      new Date(`${last.end}T00:00:00Z`).getTime() -
+      new Date(`${last.start}T00:00:00Z`).getTime();
+    expect(last.days).toBe(ms / 86400000 + 1);
+    expect(last.end).toBe(tl.childcareLeaveEnd);
   });
 
   it("★データの自己整合性★ #12 W上限×30日×67% = monthlyMax67（323,811円）", () => {

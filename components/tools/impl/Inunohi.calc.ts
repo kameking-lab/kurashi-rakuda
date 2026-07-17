@@ -32,7 +32,7 @@ export interface InunohiResult {
   calendar: string[];
   /** baseDate が firstInuNoHi より後か */
   isPast: boolean;
-  /** isPast の場合、次にお参りしやすい戌の日（calendar の2件目） */
+  /** isPast の場合、基準日以降で最初に巡ってくる戌の日 */
   nextInuNoHi: string | null;
 }
 
@@ -182,6 +182,16 @@ export function calcInunohi(input: InunohiInput): InunohiOutput {
 
   const isPast = diffDays(baseDate, parseDate(firstInuNoHi)) > 0;
 
+  // 基準日以降で最初に巡ってくる戌の日（firstInuNoHi から12日周期で前進探索）
+  let nextInuNoHi: string | null = null;
+  if (isPast) {
+    let candidate = parseDate(firstInuNoHi);
+    while (diffDays(baseDate, candidate) > 0) {
+      candidate = addDays(candidate, INU_CYCLE_DAYS);
+    }
+    nextInuNoHi = formatDate(candidate);
+  }
+
   return {
     ok: true,
     result: {
@@ -190,7 +200,7 @@ export function calcInunohi(input: InunohiInput): InunohiOutput {
       firstInuNoHi,
       calendar,
       isPast,
-      nextInuNoHi: isPast ? (calendar[1] ?? null) : null,
+      nextInuNoHi,
     },
   };
 }
