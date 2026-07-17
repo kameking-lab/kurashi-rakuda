@@ -19,6 +19,7 @@ import { RINYUSHOKU_DISCLAIMER, RINYUSHOKU_PREMATURE_DISCLAIMER } from "@/compon
 import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
 import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SankyuIkukyuMoney } from "@/components/tools/impl/SankyuIkukyuMoney";
+import { SentakuHyoji } from "@/components/tools/impl/SentakuHyoji";
 import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
 import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc";
 import { SuihanMizu } from "@/components/tools/impl/SuihanMizu";
@@ -424,6 +425,29 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           復職後の保育料は、育休中の給付が非課税で算定基礎に入らないため下がることがあります。
         </p>
         <SeidoNotice datasets={[ikukyuKyufuDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "sentaku-hyoji": {
+    ui: <SentakuHyoji />,
+    formula: (
+      <>
+        <p>
+          衣類タグの洗濯表示は、家庭用品品質表示法に基づく「新JIS表示（JIS L
+          0001）」で、2016年12月1日に改正・施行されました。それ以前に購入した衣類には、記号の形が異なる旧JIS表示（22記号）が付いていることがあります。本ツールは新JIS表示（2016年12月以降）のみに対応しています。
+        </p>
+        <p>
+          新JIS表示の記号は「洗濯・漂白・乾燥・アイロン仕上げ・商業クリーニング」の5カテゴリに分かれ、それぞれ基本形（桶／三角／四角と丸／アイロン／丸）に、数字（温度の上限）や線・点の本数（処理の強さの段階）を組み合わせて意味を表します。例えば「洗濯桶に『40』、下に線1本」は、液温40℃を上限に洗濯機の弱水流で洗えることを示します。
+        </p>
+        <p>
+          検索は固定データ表の記号名・キーワード・正式な意味を対象にした文字列一致で行っており、計算は行っていません（記号1つずつの意味とお手入れ方法を調べるための一覧・検索です）。カメラで記号を撮影して自動判定する機能は本ツールの対象外です。
+        </p>
+        <p>
+          新JIS表示は全41記号ありますが、本ツールは5カテゴリの代表的な記号（洗濯・漂白・乾燥・アイロン・クリーニングの計31記号）を収録したデータ表を参照しています。未収録の記号は今後追加予定です。
+        </p>
+        <p>
+          記号の意味は一般的な目安です。実際の取り扱いは衣類ごとのタグ表示を優先してください。ドライクリーニング・ウェットクリーニング専用の表示や手洗い指定がある衣類は、家庭で洗うと型崩れ・縮み・色落ちのリスクが高いため、不安な場合は専門のクリーニング店にご相談ください。
+        </p>
       </>
     ),
   },

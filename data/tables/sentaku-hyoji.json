@@ -1,0 +1,299 @@
+{
+  "$comment": "洗濯表示検索（Q3-17）のデータ表。家庭用品品質表示法に基づく新JIS表示（JIS L 0001、2016年12月1日改正・施行）のうち、5カテゴリ（洗濯・漂白・乾燥・アイロン・クリーニング）の代表記号を収録。specs/b-tools/41-laundry-care-label-search.md の「データ表」節に対応する。新JIS表示は全41記号あり、本表はそのうち意味・見た目が整理しやすい代表例（洗濯7・漂白3・乾燥9・アイロン4・クリーニング8＝計31記号）を収録したサンプルで、未収録の記号は今後追加する。",
+  "source": {
+    "label": "消費者庁「洗濯表示（衣類等の取扱い表示）」",
+    "url": "https://www.caa.go.jp/policies/policy/consumer_partnership/information/care_labeling/"
+  },
+  "lastVerified": "2026-07-17",
+  "nextCheckDue": "2027-01-01",
+  "effectiveDateLabel": "2016年12月1日改正・施行",
+  "oldJisNote": "2016年11月30日以前に購入した衣類には、これとは異なる旧JIS表示（22記号）が付いていることがあります。お手持ちの衣類のタグが古い場合は、表示の形が異なることがあります。",
+  "generalCautionNote": "記号の意味は一般的な目安です。実際の取り扱いは、衣類ごとのタグ表示を優先してください。",
+  "delicateCautionNote": "表示に忠実に、家庭での洗濯に不安がある場合は自己判断で洗わず、専門のクリーニング店へ相談することをおすすめします。",
+  "unreadableNote": "表示が読み取れない場合は、無理に家庭で洗濯せず、クリーニング店に相談することをおすすめします。",
+  "notFoundNote": "まだ登録がありません。今後追加予定です。",
+  "categories": ["洗濯", "漂白", "乾燥", "アイロン", "クリーニング"],
+  "symbols": [
+    {
+      "id": "sen_95",
+      "category": "洗濯",
+      "symbolShape": "洗濯桶の中に「95」",
+      "meaning": "液温95℃を限度に、洗濯機で通常の強さの洗濯処理ができる",
+      "handlingTip": "洗濯機の通常コースで、95℃までのお湯を使って洗えます。家庭用洗濯機では実際にそこまで高温にできない場合が多いので、洗える上限の目安として覚えておいてください。",
+      "keywords": ["洗濯機", "95度", "高温", "通常コース"]
+    },
+    {
+      "id": "sen_60_tsujou",
+      "category": "洗濯",
+      "symbolShape": "洗濯桶の中に「60」",
+      "meaning": "液温60℃を限度に、洗濯機で通常の強さの洗濯処理ができる",
+      "handlingTip": "洗濯機の通常コースで、60℃までのお湯で洗えます。",
+      "keywords": ["洗濯機", "60度", "通常コース"]
+    },
+    {
+      "id": "sen_40_tsujou",
+      "category": "洗濯",
+      "symbolShape": "洗濯桶の中に「40」",
+      "meaning": "液温40℃を限度に、洗濯機で通常の強さの洗濯処理ができる",
+      "handlingTip": "洗濯機の通常コースで、40℃以下のお湯（ぬるま湯）や水で洗えます。特別なコース選択は不要です。",
+      "keywords": ["洗濯機", "40度", "通常コース", "ぬるま湯"]
+    },
+    {
+      "id": "sen_40_yowai",
+      "category": "洗濯",
+      "symbolShape": "洗濯桶の中に「40」、下に線1本",
+      "meaning": "液温40℃を限度に、洗濯機で弱い洗濯処理ができる",
+      "handlingTip": "40℃以下のぬるま湯で、洗濯機の「弱水流」や「デリケートコース」を使ってください。通常コースだと生地を傷めることがあります。",
+      "keywords": ["洗濯機", "40度", "弱水流", "デリケートコース"]
+    },
+    {
+      "id": "sen_30_hijou_yowai",
+      "category": "洗濯",
+      "symbolShape": "洗濯桶の中に「30」、下に線2本",
+      "meaning": "液温30℃を限度に、洗濯機で非常に弱い洗濯処理ができる",
+      "handlingTip": "30℃以下の水またはぬるま湯で、洗濯機の「非常に弱い」「ドライ/おしゃれ着」コースを使ってください。線が2本のときは、線1本のときよりさらに優しい扱いが必要という意味です。",
+      "keywords": ["洗濯機", "30度", "非常に弱い", "おしゃれ着コース"]
+    },
+    {
+      "id": "sen_tearai",
+      "category": "洗濯",
+      "symbolShape": "洗濯桶の中に手のマーク、「40」",
+      "meaning": "液温40℃を限度に、手洗いによる洗濯処理ができる",
+      "handlingTip": "洗濯機は使わず、40℃以下の水またはぬるま湯で優しく手洗いしてください。もみ洗いは避け、押し洗いが基本です。",
+      "keywords": ["手洗い", "40度", "押し洗い"]
+    },
+    {
+      "id": "sen_fuka",
+      "category": "洗濯",
+      "symbolShape": "洗濯桶に「×」",
+      "meaning": "家庭での洗濯（水洗い）はできない",
+      "handlingTip": "自宅での洗濯機洗い・手洗いはできません。専門のクリーニング店に相談してください。",
+      "keywords": ["洗濯不可", "水洗い不可", "自宅で洗えない"]
+    },
+    {
+      "id": "hyou_kanou",
+      "category": "漂白",
+      "symbolShape": "三角形（塗りつぶしなし）",
+      "meaning": "塩素系及び酸素系漂白剤による漂白ができる",
+      "handlingTip": "塩素系・酸素系のどちらの漂白剤も使えます。製品の使用方法に従って、色柄物には酸素系を選ぶなど用途に応じて使い分けてください。",
+      "keywords": ["漂白剤", "塩素系", "酸素系", "漂白できる"]
+    },
+    {
+      "id": "hyou_sanso_nomi",
+      "category": "漂白",
+      "symbolShape": "三角形の中に斜線2本",
+      "meaning": "酸素系漂白剤による漂白はできるが、塩素系漂白剤による漂白はできない",
+      "handlingTip": "酸素系漂白剤（色柄物にも使えるタイプ）のみ使用できます。塩素系漂白剤を使うと色落ちや生地の傷みの原因になるため使わないでください。",
+      "keywords": ["漂白剤", "酸素系のみ", "塩素系不可", "色柄物"]
+    },
+    {
+      "id": "hyou_fuka",
+      "category": "漂白",
+      "symbolShape": "三角形に「×」",
+      "meaning": "漂白処理はできない",
+      "handlingTip": "塩素系・酸素系のどちらの漂白剤も使用できません。シミが気になる場合はクリーニング店に相談してください。",
+      "keywords": ["漂白不可", "漂白剤使えない"]
+    },
+    {
+      "id": "kansou_tumble_kou",
+      "category": "乾燥",
+      "symbolShape": "丸を四角で囲み、中に点1つ",
+      "meaning": "タンブル乾燥ができる（排気温度上限80℃・高温）",
+      "handlingTip": "乾燥機（タンブラー乾燥）が使えます。点1つは高温（排気温度上限80℃）設定で乾燥できるという意味です。",
+      "keywords": ["タンブル乾燥", "乾燥機", "高温"]
+    },
+    {
+      "id": "kansou_tumble_tei",
+      "category": "乾燥",
+      "symbolShape": "丸を四角で囲み、中に点2つ",
+      "meaning": "タンブル乾燥ができる（排気温度上限60℃・低温）",
+      "handlingTip": "乾燥機（タンブラー乾燥）が使えますが、点2つは低温（排気温度上限60℃）設定を選んでください。高温設定は生地を傷める可能性があります。",
+      "keywords": ["タンブル乾燥", "乾燥機", "低温"]
+    },
+    {
+      "id": "kansou_tumble_fuka",
+      "category": "乾燥",
+      "symbolShape": "丸を四角で囲み「×」",
+      "meaning": "タンブル乾燥はできない",
+      "handlingTip": "乾燥機（タンブラー乾燥）は使えません。つり干しや平干しなど、自然乾燥で乾かしてください。",
+      "keywords": ["タンブル乾燥不可", "乾燥機使えない"]
+    },
+    {
+      "id": "kansou_tsuri",
+      "category": "乾燥",
+      "symbolShape": "四角の中に縦線1本",
+      "meaning": "つり干しがよい",
+      "handlingTip": "ハンガーなどにかけて、つり干しで乾かしてください。",
+      "keywords": ["つり干し", "ハンガー"]
+    },
+    {
+      "id": "kansou_tsuri_kage",
+      "category": "乾燥",
+      "symbolShape": "四角の中に縦線1本、左上に斜め線",
+      "meaning": "日陰のつり干しがよい",
+      "handlingTip": "直射日光を避け、日陰でつり干しにしてください。色あせや変色を防ぐためです。",
+      "keywords": ["日陰干し", "つり干し", "直射日光を避ける"]
+    },
+    {
+      "id": "kansou_hira",
+      "category": "乾燥",
+      "symbolShape": "四角の中に横線1本",
+      "meaning": "平干しがよい",
+      "handlingTip": "ハンガーにかけず、平らな場所に広げて干してください。ニットなど型崩れしやすい衣類向けです。",
+      "keywords": ["平干し", "型崩れ防止"]
+    },
+    {
+      "id": "kansou_hira_kage",
+      "category": "乾燥",
+      "symbolShape": "四角の中に横線1本、左上に斜め線",
+      "meaning": "日陰の平干しがよい",
+      "handlingTip": "直射日光を避け、日陰で平らに広げて干してください。",
+      "keywords": ["日陰干し", "平干し"]
+    },
+    {
+      "id": "kansou_nure_tsuri",
+      "category": "乾燥",
+      "symbolShape": "四角の中に縦線2本",
+      "meaning": "ぬれたまま、つり干しがよい",
+      "handlingTip": "脱水せず、ぬれた状態のままハンガーなどにかけてつり干ししてください。",
+      "keywords": ["ぬれたまま", "つり干し", "脱水しない"]
+    },
+    {
+      "id": "kansou_nure_hira",
+      "category": "乾燥",
+      "symbolShape": "四角の中に横線2本",
+      "meaning": "ぬれたまま、平干しがよい",
+      "handlingTip": "脱水せず、ぬれた状態のまま平らな場所に広げて干してください。",
+      "keywords": ["ぬれたまま", "平干し", "脱水しない"]
+    },
+    {
+      "id": "iron_kou",
+      "category": "アイロン",
+      "symbolShape": "アイロンのマークに点3つ",
+      "meaning": "底面温度200℃を限度にアイロン仕上げ処理ができる（高温）",
+      "handlingTip": "アイロンの高温設定（200℃まで）でかけられます。綿・麻など高温に強い素材の目安です。",
+      "keywords": ["アイロン", "高温", "200度"]
+    },
+    {
+      "id": "iron_chuu",
+      "category": "アイロン",
+      "symbolShape": "アイロンのマークに点2つ",
+      "meaning": "底面温度150℃を限度にアイロン仕上げ処理ができる（中温）",
+      "handlingTip": "アイロンの中温設定（150℃まで）でかけられます。ポリエステルや毛混素材によく見られる目安です。",
+      "keywords": ["アイロン", "中温", "150度"]
+    },
+    {
+      "id": "iron_tei",
+      "category": "アイロン",
+      "symbolShape": "アイロンのマークに点1つ",
+      "meaning": "底面温度110℃を限度にアイロン仕上げ処理ができる（低温・スチームなし）",
+      "handlingTip": "アイロンの低温設定（110℃まで）で、スチームを使わずにかけてください。アクリルやポリウレタンなど熱に弱い素材向けです。",
+      "keywords": ["アイロン", "低温", "110度", "スチームなし"]
+    },
+    {
+      "id": "iron_fuka",
+      "category": "アイロン",
+      "symbolShape": "アイロンのマークに「×」",
+      "meaning": "アイロン仕上げ処理はできない",
+      "handlingTip": "アイロンは使えません。しわが気になる場合はスチーマーで軽く整える程度にとどめてください。",
+      "keywords": ["アイロン不可", "アイロン使えない"]
+    },
+    {
+      "id": "dry_p",
+      "category": "クリーニング",
+      "symbolShape": "丸の中に「P」",
+      "meaning": "パークロロエチレン及び石油系溶剤によるドライクリーニングができる（通常の強さ）",
+      "handlingTip": "家庭では洗わず、クリーニング店でドライクリーニングを依頼してください（通常の強さの処理が可能な表示です）。",
+      "keywords": ["ドライクリーニング", "クリーニング店"]
+    },
+    {
+      "id": "dry_p_yowai",
+      "category": "クリーニング",
+      "symbolShape": "丸の中に「P」、下に線1本",
+      "meaning": "パークロロエチレン及び石油系溶剤によるドライクリーニングができる（弱い操作）",
+      "handlingTip": "クリーニング店でドライクリーニングを依頼する際、「弱い操作」が必要な表示です。お店に表示を見せて伝えると安心です。",
+      "keywords": ["ドライクリーニング", "弱い操作", "クリーニング店"]
+    },
+    {
+      "id": "dry_f",
+      "category": "クリーニング",
+      "symbolShape": "丸の中に「F」",
+      "meaning": "石油系溶剤によるドライクリーニングができる（通常の強さ）",
+      "handlingTip": "石油系溶剤を使うドライクリーニングのみ対応可能です。クリーニング店に依頼してください。",
+      "keywords": ["ドライクリーニング", "石油系溶剤", "クリーニング店"]
+    },
+    {
+      "id": "dry_fuka",
+      "category": "クリーニング",
+      "symbolShape": "丸の中に「ドライ」の絵に「×」",
+      "meaning": "ドライクリーニングはできない",
+      "handlingTip": "ドライクリーニングはできません。他の記号（洗濯・ウェットクリーニング等）の指示に従うか、クリーニング店に相談してください。",
+      "keywords": ["ドライクリーニング不可"]
+    },
+    {
+      "id": "wet_kanou",
+      "category": "クリーニング",
+      "symbolShape": "丸の中に「W」",
+      "meaning": "ウェットクリーニングができる",
+      "handlingTip": "家庭では洗わず、クリーニング店で「ウェットクリーニング」という専門の水洗い処理を依頼してください。",
+      "keywords": ["ウェットクリーニング", "クリーニング店"]
+    },
+    {
+      "id": "wet_yowai",
+      "category": "クリーニング",
+      "symbolShape": "丸の中に「W」、下に線1本",
+      "meaning": "ウェットクリーニングができる（弱い操作）",
+      "handlingTip": "クリーニング店でウェットクリーニングを依頼する際、「弱い操作」が必要な表示です。",
+      "keywords": ["ウェットクリーニング", "弱い操作", "クリーニング店"]
+    },
+    {
+      "id": "wet_hijou_yowai",
+      "category": "クリーニング",
+      "symbolShape": "丸の中に「W」、下に線2本",
+      "meaning": "ウェットクリーニングができる（非常に弱い操作）",
+      "handlingTip": "クリーニング店でウェットクリーニングを依頼する際、「非常に弱い操作」が必要な表示です。デリケートな素材のことが多いので、必ずお店に表示を見せてください。",
+      "keywords": ["ウェットクリーニング", "非常に弱い操作", "クリーニング店"]
+    },
+    {
+      "id": "wet_fuka",
+      "category": "クリーニング",
+      "symbolShape": "丸の中に「W」に「×」",
+      "meaning": "ウェットクリーニングはできない",
+      "handlingTip": "ウェットクリーニングはできません。他の記号（ドライクリーニング等）の指示に従うか、クリーニング店に相談してください。",
+      "keywords": ["ウェットクリーニング不可"]
+    }
+  ],
+  "relatedSymbols": {
+    "sen_95": ["sen_60_tsujou"],
+    "sen_60_tsujou": ["sen_95", "sen_40_tsujou"],
+    "sen_40_tsujou": ["sen_60_tsujou", "sen_40_yowai"],
+    "sen_40_yowai": ["sen_40_tsujou", "sen_30_hijou_yowai"],
+    "sen_30_hijou_yowai": ["sen_40_yowai"],
+    "sen_tearai": ["sen_40_tsujou", "sen_fuka"],
+    "sen_fuka": ["sen_tearai"],
+    "hyou_kanou": ["hyou_sanso_nomi"],
+    "hyou_sanso_nomi": ["hyou_kanou", "hyou_fuka"],
+    "hyou_fuka": ["hyou_sanso_nomi"],
+    "kansou_tumble_kou": ["kansou_tumble_tei"],
+    "kansou_tumble_tei": ["kansou_tumble_kou", "kansou_tumble_fuka"],
+    "kansou_tumble_fuka": ["kansou_tumble_tei"],
+    "kansou_tsuri": ["kansou_tsuri_kage"],
+    "kansou_tsuri_kage": ["kansou_tsuri"],
+    "kansou_hira": ["kansou_hira_kage"],
+    "kansou_hira_kage": ["kansou_hira"],
+    "kansou_nure_tsuri": ["kansou_nure_hira", "kansou_tsuri"],
+    "kansou_nure_hira": ["kansou_nure_tsuri", "kansou_hira"],
+    "iron_kou": ["iron_chuu"],
+    "iron_chuu": ["iron_kou", "iron_tei"],
+    "iron_tei": ["iron_chuu", "iron_fuka"],
+    "iron_fuka": ["iron_tei"],
+    "dry_p": ["dry_p_yowai", "dry_f"],
+    "dry_p_yowai": ["dry_p", "dry_fuka"],
+    "dry_f": ["dry_p", "dry_fuka"],
+    "dry_fuka": ["dry_p_yowai"],
+    "wet_kanou": ["wet_yowai"],
+    "wet_yowai": ["wet_kanou", "wet_hijou_yowai"],
+    "wet_hijou_yowai": ["wet_yowai", "wet_fuka"],
+    "wet_fuka": ["wet_hijou_yowai"]
+  }
+}
