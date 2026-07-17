@@ -6,8 +6,11 @@
  * ここに数値を書かない（例外は「2」「100」「1000」のような算術・百分率上の定数と月数12）。
  *
  * ★このファイルが守っている「罠」★（仕様書 §9）
- *   1. 区分②（賃金が開始時賃金月額の90%超100%未満）は「調整後の支給率」の算式が未確認。
- *      10%を掛ける暫定実装は禁止（逓減後は必ず10%未満のため過大表示になる）。金額を出さない。
+ *   1. 区分②（賃金が開始時賃金月額の90%超100%未満）の調整後の支給率は
+ *      雇用保険法施行規則第101条の47で確定（2026-07-17 データ第2弾で解禁）。
+ *      支給率(%) = 9,000 ÷ 賃金率 − 90。★端数処理が区分①と異なる★
+ *      賃金率・支給率を先に小数第2位へ丸めてから支給額を算定する（J.adjustedRateRounding）。
+ *      推測されがちな「支給率 = (W0−W)÷W」は誤り（90%境界で11.1%となり法文に反する）。
  *   2. 根拠条文は雇用保険法第61条の12。★ひとつ手前の条番号は給付制限の準用規定であり別物★
  *      なので取り違えないこと（J.rate.note）。条番号の取り違えは信頼性を直撃するため、
  *      tests/jitan-kyuyo.test.ts が実装・UI に誤った条番号が現れないことを機械的に固定している。
@@ -127,7 +130,7 @@ export interface JitanInput {
 export type Kubun =
   /** 区分① 賃金 ≦ 開始時賃金月額 × 90% → 賃金 × 10% */
   | "rule1"
-  /** 区分② 90% < 賃金 < 100% → ★調整後の支給率が未確認のため金額を出さない★ */
+  /** 区分② 90% < 賃金 < 100% → 調整後の支給率（9,000÷賃金率−90）で算定 */
   | "rule2"
   /** 賃金が減っていない（区分外。rules に定めがない） */
   | "noReduction";
@@ -151,6 +154,8 @@ export interface BenefitResult {
   capped: boolean;
   /** 区分①の上端（開始時賃金月額 × 90%）。丸めない */
   threshold: number;
+  /** 区分②の調整後の支給率（%・小数第2位）。区分②以外は null */
+  adjustedRatePercent: number | null;
   /** 利用者に見せる説明 */
   reason: string;
 }
@@ -377,12 +382,32 @@ export function benefitRule1(wageAfter: number): number {
 }
 
 /**
+ * 区分②の調整後の支給率（%・小数第2位まで）と支給額。
+ * 根拠: 雇用保険法施行規則第101条の47（J.adjustedRateFormula、2026-07-17 確定）
+ *   賃金率 X(%) = 賃金額 ÷ 開始時賃金月額 × 100（小数点以下第3位を四捨五入）
+ *   支給率 Y(%) = 9,000 ÷ X − 90（小数点以下第3位を四捨五入）
+ *   支給額 = 賃金額 × Y%（小数点以下切捨て）
+ * ★端数処理が区分①と異なる★ 率を先に丸めてから支給額を算定する（J.adjustedRateRounding）。
+ * ★浮動小数の罠の回避★ 率は「百分率の100倍」の整数（hundredths）で持ち回る。
+ */
+export function benefitRule2(
+  wageBefore: number,
+  wageAfter: number,
+): { amount: number; ratePercent: number } {
+  // X を百分率の100分の1単位の整数で（93.33% → 9333）
+  const xHundredths = Math.round((wageAfter / wageBefore) * 10000);
+  // Y(%) = 9,000 ÷ X − 90 → hundredths 表現では 90,000,000 ÷ xHundredths − 9,000
+  const yHundredths = Math.round(90000000 / xHundredths - 9000);
+  const amount = Math.floor((wageAfter * Math.max(0, yHundredths)) / 10000);
+  return { amount, ratePercent: Math.max(0, yHundredths) / 100 };
+}
+
+/**
  * 支給額の算定。
  *
- * ★区分②では金額を出さない（最重要の設計判断・§4.4）★
- * RULES[1].note が「調整後の支給率の厳密な算式は未確認。実装時は雇用保険法施行規則の
- * 該当条文を必ず参照すること」と明記している。10%を掛ける暫定実装は禁止
- * （逓減後の率は必ず10%未満のため、過大表示になる）。
+ * 区分②の調整後の支給率は2026-07-17に雇用保険法施行規則第101条の47で確定し、
+ * benefitRule2 で算定する（従前は未確認のため金額を出さない設計だった）。
+ * 区分①②とも、区分③（支給限度額の頭打ち）→最低限度額の順に適用する。
  */
 export function calcBenefit(wageBefore: number, wageAfter: number): BenefitResult {
   const threshold = (wageBefore * LOWER_PERCENT) / 100;
@@ -395,26 +420,16 @@ export function calcBenefit(wageBefore: number, wageAfter: number): BenefitResul
       amount: null,
       capped: false,
       threshold,
+      adjustedRatePercent: null,
       reason:
         "時短を始める前の賃金月額から賃金が減っていないため、本ツールでは支給額を算定できません。育児時短就業給付金は、賃金が下がった分を補うための給付です。",
     };
   }
-  if (kubun === "rule2") {
-    // ★上限の目安★ RULES[1].note の趣旨「賃金額と支給額の合計が育児時短就業開始時
-    // 賃金月額を超えないよう支給率を調整する」から、A < W0 − Wm であることのみ言える。
-    return {
-      kind: "undeterminable",
-      kubun,
-      amount: null,
-      capped: false,
-      threshold,
-      reason: `時短による賃金の減り方が${100 - LOWER_PERCENT}%未満のため、給付の支給率が${RATE * 100}%から調整（逓減）されます。この調整後の支給率は厚生労働省令で定められており、本ツールでは確認できていないため金額を表示していません。ハローワークにご確認ください。なお、賃金額と支給額の合計が時短を始める前の賃金月額（${wageBefore.toLocaleString("ja-JP")}円）を超えることはありません。`,
-    };
-  }
 
-  // 区分① → 区分③（頭打ち） → 最低限度額 の順に適用する。
+  // 区分①② → 区分③（頭打ち） → 最低限度額 の順に適用する。
   // ★二重判定を書かない★「賃金が支給限度額以上なら不支給」は、この流れから自然に0になる。
-  let amount = benefitRule1(wageAfter);
+  const rule2 = kubun === "rule2" ? benefitRule2(wageBefore, wageAfter) : null;
+  let amount = rule2 ? rule2.amount : benefitRule1(wageAfter);
   let capped = false;
   if (amount + wageAfter > SUPPORT_LIMIT) {
     amount = SUPPORT_LIMIT - wageAfter;
@@ -427,6 +442,7 @@ export function calcBenefit(wageBefore: number, wageAfter: number): BenefitResul
       amount: 0,
       capped,
       threshold,
+      adjustedRatePercent: rule2?.ratePercent ?? null,
       reason: capped
         ? `時短後の賃金が支給限度額（${SUPPORT_LIMIT.toLocaleString("ja-JP")}円）に近いため、算定額が最低限度額（${MINIMUM_AMOUNT.toLocaleString("ja-JP")}円）以下になり、支給されません。`
         : `算定額が最低限度額（${MINIMUM_AMOUNT.toLocaleString("ja-JP")}円）以下のため、支給されません。`,
@@ -438,9 +454,12 @@ export function calcBenefit(wageBefore: number, wageAfter: number): BenefitResul
     amount,
     capped,
     threshold,
+    adjustedRatePercent: rule2?.ratePercent ?? null,
     reason: capped
       ? `支給限度額（${SUPPORT_LIMIT.toLocaleString("ja-JP")}円）に達したため、支給限度額から賃金額を差し引いた額になります。`
-      : `支給対象月に支払われた賃金額の${RATE * 100}%です。`,
+      : rule2
+        ? `時短による賃金の減り方が${100 - LOWER_PERCENT}%未満のため、支給率が${RATE * 100}%から調整されます。賃金率（時短後の賃金 ÷ 時短前の賃金月額）をもとにした調整後の支給率 ${rule2.ratePercent.toFixed(2)}%で計算しています（雇用保険法施行規則第101条の47）。`
+        : `支給対象月に支払われた賃金額の${RATE * 100}%です。`,
   };
 }
 
@@ -576,6 +595,7 @@ export function simulate(input: JitanInput): JitanResult {
     amount: 0,
     capped: false,
     threshold: (input.wageMonthBefore * LOWER_PERCENT) / 100,
+    adjustedRatePercent: null,
     reason,
   });
 
@@ -587,6 +607,7 @@ export function simulate(input: JitanInput): JitanResult {
       amount: null,
       capped: false,
       threshold: 0,
+      adjustedRatePercent: null,
       reason: expired
         ? "支給限度額・最低限度額の改定時期を迎えているため、計算を停止しています。"
         : "入力内容をご確認ください。",
@@ -598,6 +619,7 @@ export function simulate(input: JitanInput): JitanResult {
       amount: null,
       capped: false,
       threshold: (input.wageMonthBefore * LOWER_PERCENT) / 100,
+      adjustedRatePercent: null,
       reason: eligibility.reason,
     };
   } else if (!checks[0].ok) {
@@ -612,6 +634,7 @@ export function simulate(input: JitanInput): JitanResult {
       amount: null,
       capped: false,
       threshold: (input.wageMonthBefore * LOWER_PERCENT) / 100,
+      adjustedRatePercent: null,
       reason:
         "育児休業給付・介護休業給付を受け取る月と重なる場合、その月に育児時短就業給付金が支給されるかどうかは、月のどの期間に受給したかによります。復職月などが当てはまります。ハローワークにご確認ください。",
     };

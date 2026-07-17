@@ -293,13 +293,12 @@ export function JitanKyuyo() {
             note={r.benefit.reason}
           />
 
-          {r.benefit.kubun === "rule2" && (
-            <Callout tone="caution">
-              時短による賃金の減り方が10%未満のため、給付の支給率が調整されます。
-              <strong>金額は本ツールでは算定できません</strong>
-              （調整後の支給率の算式が厚生労働省令で定められており、確認できていないためです）。
-              ハローワークにご確認ください。
-              <strong>制度の対象外という意味ではありません。</strong>
+          {r.benefit.kubun === "rule2" && r.benefit.adjustedRatePercent !== null && (
+            <Callout>
+              時短による賃金の減り方が小さいため、支給率が10%から
+              <strong>調整後の支給率 {r.benefit.adjustedRatePercent.toFixed(2)}%</strong>
+              に逓減しています（雇用保険法施行規則第101条の47）。賃金額と支給額の合計が、時短を始める前の賃金月額を超えることはありません。
+              端数処理の関係で、実際に支給される額と1円単位で異なる場合があります。
             </Callout>
           )}
 
