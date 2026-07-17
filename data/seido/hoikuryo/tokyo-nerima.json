@@ -165,6 +165,7 @@
     }
   ],
   "verify": {
+    "sourceId": "nerima-hoikuryo-page",
     "expect": [
       "令和7年9月以降、すべての児童の基本保育料が無料になります"
     ]

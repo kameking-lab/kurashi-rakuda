@@ -431,9 +431,40 @@ function checkStructure(file, data) {
     }
   }
 
+  // --- verify の照合先解決（★沈黙の照合漏れを許さない★）
+  // 照合先は verify.sourceId ?? 同ノードの sourceId。どちらも無い verify.expect は
+  // checkAgainstSources が黙ってスキップしてしまう＝「照合しているつもりで照合していない」
+  // 状態になるため、構造検査の段階でエラーにする。
+  // （実例: トップレベル verify は隣接 sourceId が無く、41自治体の階層表照合が
+  //   一度も実行されていなかった。verify.sourceId の必須化で解決した。）
+  walk(data, (path, node) => {
+    if (path.startsWith('$.sources')) return;
+    if (!node || typeof node !== 'object' || Array.isArray(node)) return;
+    const v = node.verify;
+    if (!v || typeof v !== 'object') return;
+    if (v.sourceId !== undefined) {
+      if (typeof v.sourceId !== 'string' || !sourceIds.has(v.sourceId)) {
+        err(rel, `${path}.verify`, `verify.sourceId "${v.sourceId}" が sources に存在しません`);
+      }
+    }
+    if (v.skip) return;
+    if (Array.isArray(v.expect) && v.expect.length) {
+      if (typeof v.sourceId !== 'string' && typeof node.sourceId !== 'string') {
+        err(
+          rel,
+          `${path}.verify`,
+          'verify.expect の照合先が特定できません（verify.sourceId か、同ノードの sourceId が必要）。このままでは出典照合が沈黙してスキップされます'
+        );
+      }
+    }
+  });
+
   // --- sourceId 参照の健全性 & valueNode の必須項目
   walk(data, (path, node) => {
     if (path.startsWith('$.sources')) return;
+    // verify オブジェクト自体の sourceId は「照合指示の宛先」であってデータノードではない。
+    // 存在チェックは上の verify 専用ブロックで済んでおり、checkedAt は所有ノード側が担保する。
+    if (path.endsWith('.verify')) return;
     if (!hasSourceRef(node)) return;
     if (!sourceIds.has(node.sourceId)) {
       err(rel, path, `sourceId "${node.sourceId}" が sources に存在しません`);
@@ -549,15 +580,19 @@ async function checkAgainstSources(file, data) {
   const jobs = [];
   walk(data, (path, node) => {
     if (path.startsWith('$.sources')) return;
-    if (!hasSourceRef(node)) return;
+    if (!node || typeof node !== 'object' || Array.isArray(node)) return;
     const v = node.verify;
-    if (!v) return;
+    if (!v || typeof v !== 'object') return;
     if (v.skip) {
       stats.skipped++;
       return;
     }
+    // 照合先は verify.sourceId を優先し、無ければ同ノードの sourceId。
+    // どちらも無い場合は checkStructure が既にエラーにしている（ここでは黙って落とさない）。
+    const sourceId = typeof v.sourceId === 'string' ? v.sourceId : node.sourceId;
+    if (typeof sourceId !== 'string') return;
     if (Array.isArray(v.expect) && v.expect.length) {
-      jobs.push({ path, sourceId: node.sourceId, expect: v.expect });
+      jobs.push({ path, sourceId, expect: v.expect });
     }
   });
 

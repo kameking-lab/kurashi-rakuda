@@ -562,6 +562,7 @@
     }
   ],
   "verify": {
+    "sourceId": "edogawa-riyousha",
     "expect": [
       "令和7年9月から保育料の第1子無償化",
       "基本保育料（利用者負担額）が無償",
