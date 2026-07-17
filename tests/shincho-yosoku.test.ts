@@ -3,7 +3,8 @@ import {
   calcShinchoYosoku,
   FATHER_HEIGHT_MAX,
   FATHER_HEIGHT_MIN,
-  MARGIN_CM,
+  MARGIN_CM_FEMALE,
+  MARGIN_CM_MALE,
   MOTHER_HEIGHT_MAX,
   MOTHER_HEIGHT_MIN,
   validateShinchoYosokuInput,
@@ -28,7 +29,7 @@ describe("calcShinchoYosoku — 仕様書テストケース表", () => {
     expect(r.rangeHighCm).toBe(185.5);
   });
 
-  it("#2 女児・父180/母160 → 163.5cm（154.5〜172.5）", () => {
+  it("#2 女児・父180/母160 → 163.5cm（155.5〜171.5・±8cm）", () => {
     const r = calcShinchoYosoku({
       sex: "female",
       fatherHeightCm: 180,
@@ -37,8 +38,9 @@ describe("calcShinchoYosoku — 仕様書テストケース表", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.predictedHeightCm).toBe(163.5);
-    expect(r.rangeLowCm).toBe(154.5);
-    expect(r.rangeHighCm).toBe(172.5);
+    expect(r.rangeLowCm).toBe(155.5);
+    expect(r.rangeHighCm).toBe(171.5);
+    expect(r.marginCm).toBe(8);
   });
 
   it("#3 男児・父170/母155 → 169.0cm（160.0〜178.0）", () => {
@@ -54,7 +56,7 @@ describe("calcShinchoYosoku — 仕様書テストケース表", () => {
     expect(r.rangeHighCm).toBe(178);
   });
 
-  it("#4 女児・父170/母155 → 156.0cm（147.0〜165.0）", () => {
+  it("#4 女児・父170/母155 → 156.0cm（148.0〜164.0・±8cm）", () => {
     const r = calcShinchoYosoku({
       sex: "female",
       fatherHeightCm: 170,
@@ -63,8 +65,8 @@ describe("calcShinchoYosoku — 仕様書テストケース表", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.predictedHeightCm).toBe(156);
-    expect(r.rangeLowCm).toBe(147);
-    expect(r.rangeHighCm).toBe(165);
+    expect(r.rangeLowCm).toBe(148);
+    expect(r.rangeHighCm).toBe(164);
   });
 
   it("#5 男児・父165/母150 → 164.0cm（155.0〜173.0）", () => {
@@ -80,7 +82,7 @@ describe("calcShinchoYosoku — 仕様書テストケース表", () => {
     expect(r.rangeHighCm).toBe(173);
   });
 
-  it("#6 女児・父165/母150 → 151.0cm（142.0〜160.0）", () => {
+  it("#6 女児・父165/母150 → 151.0cm（143.0〜159.0・±8cm）", () => {
     const r = calcShinchoYosoku({
       sex: "female",
       fatherHeightCm: 165,
@@ -89,8 +91,8 @@ describe("calcShinchoYosoku — 仕様書テストケース表", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.predictedHeightCm).toBe(151);
-    expect(r.rangeLowCm).toBe(142);
-    expect(r.rangeHighCm).toBe(160);
+    expect(r.rangeLowCm).toBe(143);
+    expect(r.rangeHighCm).toBe(159);
   });
 
   it("#7 男児・父100(下限)/母100(下限) → 106.5cm（97.5〜115.5）", () => {
@@ -106,7 +108,7 @@ describe("calcShinchoYosoku — 仕様書テストケース表", () => {
     expect(r.rangeHighCm).toBe(115.5);
   });
 
-  it("#8 女児・父250(上限)/母220(上限) → 228.5cm（219.5〜237.5）・注意表示あり", () => {
+  it("#8 女児・父250(上限)/母220(上限) → 228.5cm（220.5〜236.5）・注意表示あり", () => {
     const r = calcShinchoYosoku({
       sex: "female",
       fatherHeightCm: 250,
@@ -115,8 +117,8 @@ describe("calcShinchoYosoku — 仕様書テストケース表", () => {
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.predictedHeightCm).toBe(228.5);
-    expect(r.rangeLowCm).toBe(219.5);
-    expect(r.rangeHighCm).toBe(237.5);
+    expect(r.rangeLowCm).toBe(220.5);
+    expect(r.rangeHighCm).toBe(236.5);
     expect(r.extremeInputNotice).toBe(true);
   });
 
@@ -247,8 +249,20 @@ describe("calcShinchoYosoku — エッジケース・バリデーション追加
     expect(r.extremeInputNotice).toBe(false);
   });
 
-  it("参考誤差幅は仕様どおり±9cm", () => {
-    expect(MARGIN_CM).toBe(9);
+  it("参考誤差幅は出典（Ogata et al. 2007）どおり男児±9cm・女児±8cm", () => {
+    expect(MARGIN_CM_MALE).toBe(9);
+    expect(MARGIN_CM_FEMALE).toBe(8);
+  });
+
+  it("男児の結果には marginCm=9 が入る", () => {
+    const r = calcShinchoYosoku({
+      sex: "male",
+      fatherHeightCm: 175,
+      motherHeightCm: 160,
+    });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.marginCm).toBe(9);
   });
 });
 

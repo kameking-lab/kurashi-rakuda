@@ -83,7 +83,7 @@ export function ShinchoYosoku() {
             label="予測身長（目安）"
             value={`${result.predictedHeightCm}`}
             unit="cm前後"
-            note={`参考レンジ: ${result.rangeLowCm}cm 〜 ${result.rangeHighCm}cm（±9cm程度の目安）`}
+            note={`参考レンジ: ${result.rangeLowCm}cm 〜 ${result.rangeHighCm}cm（±${result.marginCm}cm程度の目安）`}
           />
           {result.extremeInputNotice && (
             <Callout tone="caution">

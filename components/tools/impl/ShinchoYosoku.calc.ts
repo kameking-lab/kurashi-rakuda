@@ -4,6 +4,11 @@
  *
  * 両親身長法（Mid-Parental Height法の通称）は小児科領域・育児メディアで
  * 広く紹介されている統計的な経験式であり、断定的な予測ではない。
+ * 式とターゲットレンジの出典: Ogata T, Tanaka T, Kagami M.
+ * "Target Height and Target Range for Japanese Children: Revisited."
+ * Clin Pediatr Endocrinol 2007;16(4):85-87. doi:10.1297/cpe.16.85
+ * （https://www.jstage.jst.go.jp/article/cpe/16/4/16_4_85/_article）
+ * 男児 TH={PH+(MH+13)}/2, TR=TH±9cm ／ 女児 TH={(PH−13)+MH}/2, TR=TH±8cm。
  * 医学的な低身長・成長障害の診断や判定は一切行わない。
  */
 
@@ -14,8 +19,10 @@ export const FATHER_HEIGHT_MAX = 250;
 export const MOTHER_HEIGHT_MIN = 100;
 export const MOTHER_HEIGHT_MAX = 220;
 
-/** 参考誤差幅（±cm）。育児・小児科領域で紹介される目安幅であり保証ではない */
-export const MARGIN_CM = 9;
+/** 参考誤差幅（±cm・男児）。Ogata et al. 2007 のターゲットレンジ。保証ではない */
+export const MARGIN_CM_MALE = 9;
+/** 参考誤差幅（±cm・女児）。同上（女児は±8cm。男児と異なる点に注意） */
+export const MARGIN_CM_FEMALE = 8;
 
 export interface ShinchoYosokuInput {
   /** 子の性別。男児/女児のいずれか必須 */
@@ -34,6 +41,8 @@ export interface ShinchoYosokuResult {
   rangeLowCm: number;
   /** 参考レンジ上限（cm） */
   rangeHighCm: number;
+  /** 適用した参考誤差幅（±cm。男児9／女児8） */
+  marginCm: number;
   /** 極端な入力値（現実的にまれな組み合わせ）の場合に注意表示を出すフラグ */
   extremeInputNotice: boolean;
 }
@@ -99,7 +108,7 @@ function isExtremeInput(fatherHeightCm: number, motherHeightCm: number): boolean
  * 男児 = (父親の身長 + 母親の身長 + 13) / 2
  * 女児 = (父親の身長 + 母親の身長 − 13) / 2
  * 計算結果は小数第1位まで（四捨五入しない。単純な割り算の結果をそのまま表示）。
- * 参考レンジは 予測身長 ± 9cm（保証ではなく紹介されている目安幅）。
+ * 参考レンジは 男児±9cm／女児±8cm（Ogata et al. 2007。保証ではなく目安幅）。
  */
 export function calcShinchoYosoku(
   input: ShinchoYosokuInput,
@@ -116,13 +125,15 @@ export function calcShinchoYosoku(
 
   const raw =
     sex === "male" ? (father + mother + 13) / 2 : (father + mother - 13) / 2;
+  const marginCm = sex === "male" ? MARGIN_CM_MALE : MARGIN_CM_FEMALE;
   const predictedHeightCm = Math.trunc(raw * 10) / 10;
 
   return {
     ok: true,
     predictedHeightCm,
-    rangeLowCm: Math.trunc((raw - MARGIN_CM) * 10) / 10,
-    rangeHighCm: Math.trunc((raw + MARGIN_CM) * 10) / 10,
+    rangeLowCm: Math.trunc((raw - marginCm) * 10) / 10,
+    rangeHighCm: Math.trunc((raw + marginCm) * 10) / 10,
+    marginCm,
     extremeInputNotice: isExtremeInput(father, mother),
   };
 }
