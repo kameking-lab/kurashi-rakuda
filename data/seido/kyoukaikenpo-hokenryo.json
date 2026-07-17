@@ -1,0 +1,1456 @@
+{
+  "$schema": "../schema/seido-common.schema.json",
+  "id": "kyoukaikenpo-hokenryo",
+  "name": "健康保険・厚生年金保険の保険料額表（全国健康保険協会／令和8年度）",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "kyoukaikenpo-rate-r08",
+      "title": "令和8年度の協会けんぽの保険料率は3月分（4月納付分）から改定されます｜都道府県毎の保険料率",
+      "publisher": "全国健康保険協会（協会けんぽ）",
+      "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html",
+      "checkedAt": "2026-07-17",
+      "tier": "agency",
+      "contentType": "html",
+      "note": "★47都道府県の健康保険料率の一次情報★ 令和7年度→令和8年度の新旧対照表の形で全47都道府県が1ページに掲載されている。本ファイルの rates.kenkoHoken.rows は右列（令和8年度）を採用した。★注意: 数値が全角（例『９．８５％』）で書かれているため半角で literal 検索しても当たらない。verify-seido.mjs の normalize() が NFKC 正規化を行うため機械照合は成立する。★ 介護保険料率1.62%・子ども・子育て支援金率0.23%も本ページの注記に明記されている。"
+    },
+    {
+      "id": "kyoukaikenpo-r08-tokyo",
+      "title": "令和８年３月分（４月納付分）からの健康保険・厚生年金保険の保険料額表（東京支部）",
+      "publisher": "全国健康保険協会（協会けんぽ）",
+      "url": "https://www.kyoukaikenpo.or.jp/assets/R8_13tokyo.pdf",
+      "landingUrl": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/premium_prefectures/r08/index.html",
+      "checkedAt": "2026-07-17",
+      "tier": "agency",
+      "contentType": "pdf",
+      "note": "★標準報酬月額等級表（健保50等級・厚年32等級）の一次情報★ 都道府県別の料額表PDFのうち東京支部版を代表として採用した。★等級表が全国一律であることは推測ではなく実測で確認済み★ 47都道府県すべてのPDFをPyMuPDFでテキスト化し、等級・標準報酬月額・報酬月額の境界の全50行が47支部すべてで完全一致することを確認した（2026-07-17）。都道府県で異なるのは健康保険料率のみ。法令上の裏付けは健康保険法第40条第1項・厚生年金保険法第20条第1項（等級表は法律の別表で定められ支部ごとの定めは存在しない）。厚生年金保険料率18.300%・子ども・子育て支援金率0.23%・介護保険料率1.62%も47支部すべてのPDFに同一記載があることを確認済み。"
+    },
+    {
+      "id": "kyoukaikenpo-premium-r08",
+      "title": "令和8年度保険料額表｜都道府県毎の保険料額表",
+      "publisher": "全国健康保険協会（協会けんぽ）",
+      "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/premium_prefectures/r08/index.html",
+      "checkedAt": "2026-07-17",
+      "tier": "agency",
+      "contentType": "html",
+      "note": "47都道府県の料額表PDFの掲載元ページ。各行の premiumTableUrl はこのページからリンクされているPDFの直URL。"
+    },
+    {
+      "id": "egov-kenpo-hou",
+      "title": "健康保険法（大正十一年法律第七十号）",
+      "publisher": "e-Gov法令検索（デジタル庁）",
+      "url": "https://laws.e-gov.go.jp/law/322AC0000000070",
+      "checkedAt": "2026-07-17",
+      "tier": "law",
+      "contentType": "html",
+      "note": "標準報酬月額の等級区分（第40条第1項）・都道府県単位保険料率（第160条第1項）・標準賞与額の年間上限573万円（第45条第1項）の根拠条文。"
+    },
+    {
+      "id": "egov-kounen-hou",
+      "title": "厚生年金保険法（昭和二十九年法律第百十五号）",
+      "publisher": "e-Gov法令検索（デジタル庁）",
+      "url": "https://laws.e-gov.go.jp/law/329AC0000000115",
+      "checkedAt": "2026-07-17",
+      "tier": "law",
+      "contentType": "html",
+      "note": "厚生年金の標準報酬月額の等級区分（第20条第1項）・保険料率18.3%（第81条第4項）・標準賞与額の月間上限150万円（第24条の4第1項）の根拠条文。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和8年度の都道府県単位健康保険料率が令和8年3月分（4月納付分）から適用。47都道府県中40都道府県で引下げ、7県（青森・秋田・山形・栃木・神奈川・島根・沖縄）は据置き。引上げはなし。",
+      "status": "in-force",
+      "effectiveFrom": "2026-03-01",
+      "sourceId": "kyoukaikenpo-rate-r08",
+      "impact": "手取り計算・社会保険料概算を使う全ツール（保育料推計8a・扶養の壁・時短・復職後手取り）の健康保険料が変わる。料率は毎年度3月分から改定されるため令和9年度分は2027年2月頃に公表される見込み（data.nextCheckDue で監視）。"
+    },
+    {
+      "summary": "★子ども・子育て支援金の徴収開始★ 子ども・子育て支援金率0.23%が令和8年4月分（5月納付分）から新たに徴収される（労使折半）。",
+      "status": "in-force",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "kyoukaikenpo-r08-tokyo",
+      "impact": "★新規の被保険者負担★ 手取り計算に0.23%（本人負担0.115%）が新たに加わる。★健康保険料率の適用開始（令和8年3月分）と1か月ずれる★ため令和8年3月分だけは支援金の徴収がない。年額ベースの概算では通年0.23%でよいが、月次で厳密に出す場合は3月分を除外すること。段階的に引き上げられる予定で令和9年度以降の率は未公表。"
+    },
+    {
+      "summary": "厚生年金保険料率は平成29年9月分をもって18.300%に到達し、段階的引上げが終了して固定されている（厚生年金保険法第81条第4項）。",
+      "status": "in-force",
+      "effectiveFrom": "2017-09-01",
+      "sourceId": "egov-kounen-hou",
+      "impact": "改定予定なし。"
+    }
+  ],
+  "disclaimer": "本データは全国健康保険協会（協会けんぽ）の令和8年度保険料額表に基づく概算計算用です。実際の保険料は、標準報酬月額の決定（定時決定・随時改定）や端数処理、勤務先が加入する健康保険組合の独自料率、厚生年金基金の免除保険料率により異なります。健康保険組合・共済組合に加入している場合は料率が協会けんぽと異なります。正確な保険料額は勤務先または加入先の保険者にご確認ください。",
+  "data": {
+    "overview": {
+      "description": "全国健康保険協会（協会けんぽ）が管掌する健康保険・介護保険・子ども・子育て支援金・厚生年金保険の令和8年度の保険料率と、標準報酬月額の等級表。標準報酬月額（等級表で決まる）に保険料率を乗じた額が保険料の全額で、被保険者と事業主が折半して負担する。",
+      "scope": "★協会けんぽに限る★ 健康保険組合（組合健保）は組合ごとに独自の料率・負担割合を定めており（労使折半でない組合もある）本データは適用できない。共済組合・国民健康保険も対象外。ツールでは『協会けんぽの料率による概算』と明示すること。",
+      "note": "★被保険者負担の合計料率★ 40歳未満 = （健康保険料率 + 子ども・子育て支援金率0.23% + 厚生年金保険料率18.300%）÷ 2／40歳以上65歳未満（介護保険第2号被保険者）= さらに介護保険料率1.62%を加えて÷2。例（東京都・40歳未満）: (9.85% + 0.23% + 18.300%) ÷ 2 = 14.19% が本人負担率。"
+    },
+    "rates": {
+      "kenkoHoken": {
+        "description": "都道府県単位保険料率（健康保険法第160条第1項）。協会けんぽは支部（都道府県）ごとに料率が異なる。令和8年3月分（4月納付分）から適用。",
+        "label": "令和8年度 都道府県単位健康保険料率（47都道府県）",
+        "sourceId": "kyoukaikenpo-rate-r08",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "令和8年4月分（5月納付分）からは、これに全国一律の子ども・子育て支援金（0.23％）が加わります。",
+            "40歳から64歳までの方（介護保険第2号被保険者）は、上記「健康保険料率」と「子ども・子育て支援金（0.23％）」に全国一律の介護保険料率（1.62％）が加わります。"
+          ]
+        },
+        "amendmentNote": "毎年度3月分（4月納付分）から改定される。令和9年度分は2027年2月頃公表見込み。",
+        "note": "★収集時に47都道府県すべてを二重に照合済み（2026-07-17）★ 本ページ（HTML）から機械抽出した47件の料率と、各都道府県の料額表PDF（各行の premiumTableUrl）のヘッダーに印字された料率を突き合わせ、47件すべてが一致することを確認した（不一致0件）。★rate は小数（0.0985）、ratePercentLabel は原典表記（'9.85%'）★ 浮動小数の誤差を避けるため実装では ratePercentLabel のパースではなく rate を使うこと。",
+        "rows": [
+          {
+            "prefectureCode": 1,
+            "prefecture": "北海道",
+            "rate": 0.1028,
+            "ratePercentLabel": "10.28%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_01hokkaido.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "北海道",
+                "10.28%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 2,
+            "prefecture": "青森県",
+            "rate": 0.0985,
+            "ratePercentLabel": "9.85%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_02aomori.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "青森県",
+                "9.85%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 3,
+            "prefecture": "岩手県",
+            "rate": 0.0951,
+            "ratePercentLabel": "9.51%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_03iwate.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "岩手県",
+                "9.51%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 4,
+            "prefecture": "宮城県",
+            "rate": 0.101,
+            "ratePercentLabel": "10.10%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_04miyagi.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "宮城県",
+                "10.10%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 5,
+            "prefecture": "秋田県",
+            "rate": 0.1001,
+            "ratePercentLabel": "10.01%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_05akita.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "秋田県",
+                "10.01%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 6,
+            "prefecture": "山形県",
+            "rate": 0.0975,
+            "ratePercentLabel": "9.75%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_06yamagata.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "山形県",
+                "9.75%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 7,
+            "prefecture": "福島県",
+            "rate": 0.095,
+            "ratePercentLabel": "9.50%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_07fukushima.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "福島県",
+                "9.50%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 8,
+            "prefecture": "茨城県",
+            "rate": 0.0952,
+            "ratePercentLabel": "9.52%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_08ibaraki.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "茨城県",
+                "9.52%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 9,
+            "prefecture": "栃木県",
+            "rate": 0.0982,
+            "ratePercentLabel": "9.82%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_09tochigi.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "栃木県",
+                "9.82%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 10,
+            "prefecture": "群馬県",
+            "rate": 0.0968,
+            "ratePercentLabel": "9.68%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_10gunma.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "群馬県",
+                "9.68%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 11,
+            "prefecture": "埼玉県",
+            "rate": 0.0967,
+            "ratePercentLabel": "9.67%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_11saitama.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "埼玉県",
+                "9.67%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 12,
+            "prefecture": "千葉県",
+            "rate": 0.0973,
+            "ratePercentLabel": "9.73%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_12chiba.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "千葉県",
+                "9.73%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 13,
+            "prefecture": "東京都",
+            "rate": 0.0985,
+            "ratePercentLabel": "9.85%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_13tokyo.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "東京都",
+                "9.85%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 14,
+            "prefecture": "神奈川県",
+            "rate": 0.0992,
+            "ratePercentLabel": "9.92%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_14kanagawa.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "神奈川県",
+                "9.92%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 15,
+            "prefecture": "新潟県",
+            "rate": 0.0921,
+            "ratePercentLabel": "9.21%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_15niigata.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "新潟県",
+                "9.21%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 16,
+            "prefecture": "富山県",
+            "rate": 0.0959,
+            "ratePercentLabel": "9.59%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_16toyama.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "富山県",
+                "9.59%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 17,
+            "prefecture": "石川県",
+            "rate": 0.097,
+            "ratePercentLabel": "9.70%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_17ishikawa.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "石川県",
+                "9.70%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 18,
+            "prefecture": "福井県",
+            "rate": 0.0971,
+            "ratePercentLabel": "9.71%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_18fukui.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "福井県",
+                "9.71%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 19,
+            "prefecture": "山梨県",
+            "rate": 0.0955,
+            "ratePercentLabel": "9.55%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_19yamanashi.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "山梨県",
+                "9.55%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 20,
+            "prefecture": "長野県",
+            "rate": 0.0963,
+            "ratePercentLabel": "9.63%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_20nagano.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "長野県",
+                "9.63%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 21,
+            "prefecture": "岐阜県",
+            "rate": 0.098,
+            "ratePercentLabel": "9.80%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_21gifu.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "岐阜県",
+                "9.80%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 22,
+            "prefecture": "静岡県",
+            "rate": 0.0961,
+            "ratePercentLabel": "9.61%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_22shizuoka.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "静岡県",
+                "9.61%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 23,
+            "prefecture": "愛知県",
+            "rate": 0.0993,
+            "ratePercentLabel": "9.93%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_23aichi.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "愛知県",
+                "9.93%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 24,
+            "prefecture": "三重県",
+            "rate": 0.0977,
+            "ratePercentLabel": "9.77%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_24mie.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "三重県",
+                "9.77%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 25,
+            "prefecture": "滋賀県",
+            "rate": 0.0988,
+            "ratePercentLabel": "9.88%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_25shiga.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "滋賀県",
+                "9.88%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 26,
+            "prefecture": "京都府",
+            "rate": 0.0989,
+            "ratePercentLabel": "9.89%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_26kyoto.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "京都府",
+                "9.89%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 27,
+            "prefecture": "大阪府",
+            "rate": 0.1013,
+            "ratePercentLabel": "10.13%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_27osaka.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "大阪府",
+                "10.13%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 28,
+            "prefecture": "兵庫県",
+            "rate": 0.1012,
+            "ratePercentLabel": "10.12%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_28hyogo.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "兵庫県",
+                "10.12%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 29,
+            "prefecture": "奈良県",
+            "rate": 0.0991,
+            "ratePercentLabel": "9.91%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_29nara.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "奈良県",
+                "9.91%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 30,
+            "prefecture": "和歌山県",
+            "rate": 0.1006,
+            "ratePercentLabel": "10.06%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_30wakayama.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "和歌山県",
+                "10.06%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 31,
+            "prefecture": "鳥取県",
+            "rate": 0.0986,
+            "ratePercentLabel": "9.86%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_31tottori.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "鳥取県",
+                "9.86%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 32,
+            "prefecture": "島根県",
+            "rate": 0.0994,
+            "ratePercentLabel": "9.94%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_32shimane.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "島根県",
+                "9.94%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 33,
+            "prefecture": "岡山県",
+            "rate": 0.1005,
+            "ratePercentLabel": "10.05%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_33okayama.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "岡山県",
+                "10.05%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 34,
+            "prefecture": "広島県",
+            "rate": 0.0978,
+            "ratePercentLabel": "9.78%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_34hiroshima.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "広島県",
+                "9.78%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 35,
+            "prefecture": "山口県",
+            "rate": 0.1015,
+            "ratePercentLabel": "10.15%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_35yamaguchi.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "山口県",
+                "10.15%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 36,
+            "prefecture": "徳島県",
+            "rate": 0.1024,
+            "ratePercentLabel": "10.24%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_36tokushima.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "徳島県",
+                "10.24%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 37,
+            "prefecture": "香川県",
+            "rate": 0.1002,
+            "ratePercentLabel": "10.02%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_37kagawa.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "香川県",
+                "10.02%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 38,
+            "prefecture": "愛媛県",
+            "rate": 0.0998,
+            "ratePercentLabel": "9.98%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_38ehime.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "愛媛県",
+                "9.98%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 39,
+            "prefecture": "高知県",
+            "rate": 0.1005,
+            "ratePercentLabel": "10.05%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_39kouchi.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "高知県",
+                "10.05%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 40,
+            "prefecture": "福岡県",
+            "rate": 0.1011,
+            "ratePercentLabel": "10.11%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_40fukuoka.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "福岡県",
+                "10.11%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 41,
+            "prefecture": "佐賀県",
+            "rate": 0.1055,
+            "ratePercentLabel": "10.55%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_41saga.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "佐賀県",
+                "10.55%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 42,
+            "prefecture": "長崎県",
+            "rate": 0.1006,
+            "ratePercentLabel": "10.06%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_42nagasaki.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "長崎県",
+                "10.06%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 43,
+            "prefecture": "熊本県",
+            "rate": 0.1008,
+            "ratePercentLabel": "10.08%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_43kumamotoi.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "熊本県",
+                "10.08%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 44,
+            "prefecture": "大分県",
+            "rate": 0.1008,
+            "ratePercentLabel": "10.08%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_44oita.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "大分県",
+                "10.08%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 45,
+            "prefecture": "宮崎県",
+            "rate": 0.0977,
+            "ratePercentLabel": "9.77%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_45miyazaki.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "宮崎県",
+                "9.77%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 46,
+            "prefecture": "鹿児島県",
+            "rate": 0.1013,
+            "ratePercentLabel": "10.13%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_46kagoshima.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "鹿児島県",
+                "10.13%"
+              ]
+            }
+          },
+          {
+            "prefectureCode": 47,
+            "prefecture": "沖縄県",
+            "rate": 0.0944,
+            "ratePercentLabel": "9.44%",
+            "premiumTableUrl": "https://www.kyoukaikenpo.or.jp/assets/R8_47okinawa.pdf",
+            "sourceId": "kyoukaikenpo-rate-r08",
+            "checkedAt": "2026-07-17",
+            "verify": {
+              "expect": [
+                "沖縄県",
+                "9.44%"
+              ]
+            }
+          }
+        ]
+      },
+      "kaigoHoken": {
+        "value": 0.0162,
+        "unit": "rate",
+        "label": "介護保険料率（第2号被保険者・全国一律）",
+        "sourceId": "kyoukaikenpo-rate-r08",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "介護保険料率（1.62％）"
+          ]
+        },
+        "amendmentNote": "毎年度改定される（令和8年3月分〜適用）。令和9年度分は2027年2月頃公表見込み。",
+        "note": "★対象は40歳以上65歳未満（介護保険第2号被保険者）★ 健康保険料率と異なり全国一律。40歳到達月（40歳の誕生日の前日が属する月）から徴収が始まり、65歳到達月の前月分まで。65歳以降は第1号被保険者となり給与天引きではなくなるため本料率の対象外（kaigo-hoken.json 参照）。"
+      },
+      "kodomoKosodateShienkin": {
+        "value": 0.0023,
+        "unit": "rate",
+        "label": "子ども・子育て支援金率（全国一律）",
+        "sourceId": "kyoukaikenpo-rate-r08",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "全国一律の子ども・子育て支援金（0.23％）"
+          ]
+        },
+        "amendmentNote": "★令和8年4月分（5月納付分）から徴収開始の新規負担★ 段階的に引き上げられる予定で、令和9年度以降の率は2026-07-17時点で未公表。",
+        "note": "★健康保険料率の適用開始（令和8年3月分）と1か月ずれる（令和8年4月分から）★ 労使折半で被保険者負担は0.115%。標準報酬月額および標準賞与額に乗じる。子ども・子育て拠出金（事業主のみ負担・0.36%）とは別物なので混同しないこと。"
+      },
+      "kouseiNenkin": {
+        "value": 0.183,
+        "unit": "rate",
+        "label": "厚生年金保険料率（一般・坑内員・船員）",
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "18.300%"
+          ]
+        },
+        "amendmentNote": "平成29年9月分から18.300%で固定。段階的引上げは終了しており改定予定なし（厚生年金保険法第81条第4項）。",
+        "note": "★厚生年金基金の加入員は異なる★ 基金加入者は免除保険料率（2.4%〜5.0%）を控除した率になる（基金ごとに異なる）。本データは基金に加入していない一般の被保険者を前提とする。"
+      },
+      "kodomoKosodateKyoshutsukin": {
+        "value": 0.0036,
+        "unit": "rate",
+        "label": "子ども・子育て拠出金率（事業主のみ負担）",
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "拠出金率（0.36％）"
+          ]
+        },
+        "amendmentNote": "なし（2026-07-17時点）。",
+        "note": "★被保険者の負担はない。手取り計算には使わない★ 児童手当等の財源の一部で事業主が全額負担する。子ども・子育て支援金率（0.23%・労使折半）とは全くの別物であり、名称が似ているため混同に注意。厚生年金の標準報酬月額・標準賞与額に乗じる（健康保険ではない）。"
+      }
+    },
+    "hyojunHoshuGetsugaku": {
+      "description": "標準報酬月額の等級表。健康保険は第1〜50等級（58,000円〜1,390,000円）、厚生年金保険は第1〜32等級（88,000円〜650,000円）。報酬月額（通勤手当・残業代等を含む税引前の月額報酬）がどの区分に入るかで標準報酬月額が決まり、保険料はその標準報酬月額に料率を乗じて算出する。",
+      "label": "標準報酬月額等級表（令和8年度・全国一律）",
+      "sourceId": "kyoukaikenpo-r08-tokyo",
+      "checkedAt": "2026-07-17",
+      "verify": {
+        "expect": [
+          "◆等級欄の（　）内の数字は、厚生年金保険の標準報酬月額等級です。",
+          "4（1）等級の「報酬月額」欄は、厚生年金保険の場合「93,000円未満」と読み替えてください。",
+          "35（32）等級の「報酬月額」欄は、厚生年金保険の場合「635,000円以上」と読み替えてください。"
+        ]
+      },
+      "amendmentNote": "等級表は法律の別表（健康保険法第40条第1項・厚生年金保険法第20条第1項）で定められ、改定は法改正による。令和8年度の改定はない。",
+      "note": "★境界の定義★ remunerationMin は『以上』、remunerationMax は『未満』（原典の『円以上／円未満』の見出しどおり）。第1等級の remunerationMin と第50等級の remunerationMax は原典に記載がないため null。★境界の連続性を検算済み★ 全50行で rows[k].remunerationMax === rows[k+1].remunerationMin が成立することを確認した（隙間・重複なし）。★pensionGrade が null の等級（第1〜3・第36〜50）でも厚生年金の適用はある★ 該当者は pensionRemunerationOverride により厚生年金の第1等級または第32等級に張り付く。",
+      "pensionRemunerationOverride": {
+        "description": "★厚生年金では等級表の両端の境界が健康保険と異なる★ 原典の注記により厚生年金の報酬月額の境界は下限・上限で読み替える。実装で最も間違えやすい箇所。",
+        "lowerGrade": 4,
+        "lowerPensionGrade": 1,
+        "lowerRemunerationMax": 93000,
+        "upperGrade": 35,
+        "upperPensionGrade": 32,
+        "upperRemunerationMin": 635000,
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "note": "報酬月額が93,000円未満のとき厚生年金は第1等級（標準報酬月額88,000円）、635,000円以上のとき第32等級（標準報酬月額650,000円）で頭打ち。したがって高収入者ほど厚生年金保険料の実効負担率は逓減する。健康保険側は第50等級（1,390,000円）まで刻みが続くため、報酬月額665,000円以上では健保と厚年で標準報酬月額が乖離する。"
+      },
+      "rows": [
+        {
+          "grade": 1,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 58000,
+          "remunerationMin": null,
+          "remunerationMax": 63000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17",
+          "note": "★下限等級★ 原典の報酬月額欄は『～63,000』で下限の記載がない（remunerationMin: null）。報酬月額が63,000円未満であればすべて第1等級（標準報酬月額58,000円）となる。"
+        },
+        {
+          "grade": 2,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 68000,
+          "remunerationMin": 63000,
+          "remunerationMax": 73000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 3,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 78000,
+          "remunerationMin": 73000,
+          "remunerationMax": 83000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 4,
+          "pensionGrade": 1,
+          "standardMonthlyRemuneration": 88000,
+          "remunerationMin": 83000,
+          "remunerationMax": 93000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17",
+          "note": "★厚生年金の下限等級（第1等級）★ 原典の注記『4（1）等級の「報酬月額」欄は、厚生年金保険の場合「93,000円未満」と読み替えてください。』により、厚生年金では remunerationMin を適用しない。報酬月額が93,000円未満のすべて（健康保険では第1〜3等級に相当する低報酬を含む）が厚生年金第1等級（標準報酬月額88,000円）になる。pensionRemunerationOverride を参照。"
+        },
+        {
+          "grade": 5,
+          "pensionGrade": 2,
+          "standardMonthlyRemuneration": 98000,
+          "remunerationMin": 93000,
+          "remunerationMax": 101000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 6,
+          "pensionGrade": 3,
+          "standardMonthlyRemuneration": 104000,
+          "remunerationMin": 101000,
+          "remunerationMax": 107000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 7,
+          "pensionGrade": 4,
+          "standardMonthlyRemuneration": 110000,
+          "remunerationMin": 107000,
+          "remunerationMax": 114000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 8,
+          "pensionGrade": 5,
+          "standardMonthlyRemuneration": 118000,
+          "remunerationMin": 114000,
+          "remunerationMax": 122000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 9,
+          "pensionGrade": 6,
+          "standardMonthlyRemuneration": 126000,
+          "remunerationMin": 122000,
+          "remunerationMax": 130000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 10,
+          "pensionGrade": 7,
+          "standardMonthlyRemuneration": 134000,
+          "remunerationMin": 130000,
+          "remunerationMax": 138000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 11,
+          "pensionGrade": 8,
+          "standardMonthlyRemuneration": 142000,
+          "remunerationMin": 138000,
+          "remunerationMax": 146000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 12,
+          "pensionGrade": 9,
+          "standardMonthlyRemuneration": 150000,
+          "remunerationMin": 146000,
+          "remunerationMax": 155000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 13,
+          "pensionGrade": 10,
+          "standardMonthlyRemuneration": 160000,
+          "remunerationMin": 155000,
+          "remunerationMax": 165000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 14,
+          "pensionGrade": 11,
+          "standardMonthlyRemuneration": 170000,
+          "remunerationMin": 165000,
+          "remunerationMax": 175000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 15,
+          "pensionGrade": 12,
+          "standardMonthlyRemuneration": 180000,
+          "remunerationMin": 175000,
+          "remunerationMax": 185000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 16,
+          "pensionGrade": 13,
+          "standardMonthlyRemuneration": 190000,
+          "remunerationMin": 185000,
+          "remunerationMax": 195000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 17,
+          "pensionGrade": 14,
+          "standardMonthlyRemuneration": 200000,
+          "remunerationMin": 195000,
+          "remunerationMax": 210000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 18,
+          "pensionGrade": 15,
+          "standardMonthlyRemuneration": 220000,
+          "remunerationMin": 210000,
+          "remunerationMax": 230000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 19,
+          "pensionGrade": 16,
+          "standardMonthlyRemuneration": 240000,
+          "remunerationMin": 230000,
+          "remunerationMax": 250000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 20,
+          "pensionGrade": 17,
+          "standardMonthlyRemuneration": 260000,
+          "remunerationMin": 250000,
+          "remunerationMax": 270000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 21,
+          "pensionGrade": 18,
+          "standardMonthlyRemuneration": 280000,
+          "remunerationMin": 270000,
+          "remunerationMax": 290000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 22,
+          "pensionGrade": 19,
+          "standardMonthlyRemuneration": 300000,
+          "remunerationMin": 290000,
+          "remunerationMax": 310000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 23,
+          "pensionGrade": 20,
+          "standardMonthlyRemuneration": 320000,
+          "remunerationMin": 310000,
+          "remunerationMax": 330000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 24,
+          "pensionGrade": 21,
+          "standardMonthlyRemuneration": 340000,
+          "remunerationMin": 330000,
+          "remunerationMax": 350000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 25,
+          "pensionGrade": 22,
+          "standardMonthlyRemuneration": 360000,
+          "remunerationMin": 350000,
+          "remunerationMax": 370000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 26,
+          "pensionGrade": 23,
+          "standardMonthlyRemuneration": 380000,
+          "remunerationMin": 370000,
+          "remunerationMax": 395000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 27,
+          "pensionGrade": 24,
+          "standardMonthlyRemuneration": 410000,
+          "remunerationMin": 395000,
+          "remunerationMax": 425000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 28,
+          "pensionGrade": 25,
+          "standardMonthlyRemuneration": 440000,
+          "remunerationMin": 425000,
+          "remunerationMax": 455000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 29,
+          "pensionGrade": 26,
+          "standardMonthlyRemuneration": 470000,
+          "remunerationMin": 455000,
+          "remunerationMax": 485000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 30,
+          "pensionGrade": 27,
+          "standardMonthlyRemuneration": 500000,
+          "remunerationMin": 485000,
+          "remunerationMax": 515000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 31,
+          "pensionGrade": 28,
+          "standardMonthlyRemuneration": 530000,
+          "remunerationMin": 515000,
+          "remunerationMax": 545000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 32,
+          "pensionGrade": 29,
+          "standardMonthlyRemuneration": 560000,
+          "remunerationMin": 545000,
+          "remunerationMax": 575000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 33,
+          "pensionGrade": 30,
+          "standardMonthlyRemuneration": 590000,
+          "remunerationMin": 575000,
+          "remunerationMax": 605000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 34,
+          "pensionGrade": 31,
+          "standardMonthlyRemuneration": 620000,
+          "remunerationMin": 605000,
+          "remunerationMax": 635000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 35,
+          "pensionGrade": 32,
+          "standardMonthlyRemuneration": 650000,
+          "remunerationMin": 635000,
+          "remunerationMax": 665000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17",
+          "note": "★厚生年金の上限等級（第32等級）★ 原典の注記『35（32）等級の「報酬月額」欄は、厚生年金保険の場合「635,000円以上」と読み替えてください。』により、厚生年金では remunerationMax を適用しない。報酬月額が635,000円以上のすべてが厚生年金第32等級（標準報酬月額650,000円）で頭打ちになる。pensionRemunerationOverride を参照。"
+        },
+        {
+          "grade": 36,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 680000,
+          "remunerationMin": 665000,
+          "remunerationMax": 695000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 37,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 710000,
+          "remunerationMin": 695000,
+          "remunerationMax": 730000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 38,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 750000,
+          "remunerationMin": 730000,
+          "remunerationMax": 770000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 39,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 790000,
+          "remunerationMin": 770000,
+          "remunerationMax": 810000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 40,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 830000,
+          "remunerationMin": 810000,
+          "remunerationMax": 855000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 41,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 880000,
+          "remunerationMin": 855000,
+          "remunerationMax": 905000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 42,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 930000,
+          "remunerationMin": 905000,
+          "remunerationMax": 955000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 43,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 980000,
+          "remunerationMin": 955000,
+          "remunerationMax": 1005000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 44,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 1030000,
+          "remunerationMin": 1005000,
+          "remunerationMax": 1055000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 45,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 1090000,
+          "remunerationMin": 1055000,
+          "remunerationMax": 1115000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 46,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 1150000,
+          "remunerationMin": 1115000,
+          "remunerationMax": 1175000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 47,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 1210000,
+          "remunerationMin": 1175000,
+          "remunerationMax": 1235000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 48,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 1270000,
+          "remunerationMin": 1235000,
+          "remunerationMax": 1295000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 49,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 1330000,
+          "remunerationMin": 1295000,
+          "remunerationMax": 1355000,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17"
+        },
+        {
+          "grade": 50,
+          "pensionGrade": null,
+          "standardMonthlyRemuneration": 1390000,
+          "remunerationMin": 1355000,
+          "remunerationMax": null,
+          "sourceId": "kyoukaikenpo-r08-tokyo",
+          "checkedAt": "2026-07-17",
+          "note": "★上限等級★ 原典の報酬月額欄は『1,355,000～』で上限の記載がない（remunerationMax: null）。報酬月額が1,355,000円以上であればすべて第50等級（標準報酬月額1,390,000円）となる。"
+        }
+      ]
+    },
+    "hasuuShori": {
+      "description": "端数処理のルール。標準報酬月額に料率を乗じた保険料額（全額）を労使で折半すると50銭単位の端数が生じるため、原典が処理方法を定めている。",
+      "kyuyoKaranoKojo": {
+        "value": "被保険者負担分の端数が50銭以下の場合は切り捨て、50銭を超える場合は切り上げて1円",
+        "label": "事業主が給与から被保険者負担分を控除する場合の端数処理",
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "被保険者負担分の端数が50銭以下の場合は切り捨て、50銭を超える場合は切り上げて1円となります"
+          ]
+        },
+        "amendmentNote": "なし（2026-07-17時点）。",
+        "note": "★通常の給与天引きはこちら★ 50銭ちょうどは切り捨て（四捨五入ではない）。現金で事業主へ支払う場合は『50銭未満切り捨て・50銭以上切り上げ』となり50銭ちょうどの扱いが反対になる（genkinBarai 参照）。労使間に特約がある場合は特約が優先されるため1円単位の厳密一致は保証できない。"
+      },
+      "genkinBarai": {
+        "value": "被保険者負担分の端数が50銭未満の場合は切り捨て、50銭以上の場合は切り上げて1円",
+        "label": "被保険者が現金で事業主へ支払う場合の端数処理",
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "被保険者負担分の端数が50銭未満の場合は切り捨て、50銭以上の場合は切り上げて1円となります"
+          ]
+        },
+        "amendmentNote": "なし（2026-07-17時点）。",
+        "note": "給与天引きの場合（kyuyoKaranoKojo）と50銭ちょうどの扱いが逆になる。"
+      },
+      "tokuyaku": {
+        "value": "事業主と被保険者間で特約がある場合には、特約に基づき端数処理をすることができる",
+        "label": "特約による端数処理",
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "事業主と被保険者間で特約がある場合には、特約に基づき端数処理をすることができます"
+          ]
+        },
+        "amendmentNote": "なし（2026-07-17時点）。",
+        "note": "★ツールが1円単位の正確性を保証できない根拠★ 端数処理は特約で変わりうるため概算である旨の表示を外さないこと。"
+      }
+    },
+    "shoyo": {
+      "description": "賞与に係る保険料。賞与額から1,000円未満の端数を切り捨てた額（標準賞与額）に保険料率を乗じる。",
+      "hasu": {
+        "value": 1000,
+        "unit": "JPY",
+        "label": "標準賞与額の端数処理（1,000円未満切り捨て）",
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "賞与額から1,000円未満の端数を切り捨てた額（標準賞与額)に、保険料率を乗じた額となります"
+          ]
+        },
+        "amendmentNote": "なし（2026-07-17時点）。",
+        "note": "★原典のタイプミスをそのまま照合している★ 原典は『（標準賞与額)』と開き括弧が全角・閉じ括弧が半角になっている。verify.expect は原典の表記に合わせてある。"
+      },
+      "kenkoHokenNenkanJougen": {
+        "value": 5730000,
+        "unit": "JPY/year",
+        "label": "標準賞与額の上限（健康保険・介護保険・子ども・子育て支援金／年間）",
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "健康保険、介護保険及び子ども・子育て支援金は年間573万円"
+          ]
+        },
+        "amendmentNote": "なし（2026-07-17時点）。健康保険法第45条第1項。",
+        "note": "毎年4月1日から翌年3月31日までの累計額に対する上限。年度をまたぐ賞与の累計に注意。"
+      },
+      "kouseiNenkinGetsugakuJougen": {
+        "value": 1500000,
+        "unit": "JPY/month",
+        "label": "標準賞与額の上限（厚生年金保険・子ども・子育て拠出金／1か月）",
+        "sourceId": "kyoukaikenpo-r08-tokyo",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "厚生年金保険と子ども・子育て拠出金は月間150万円"
+          ]
+        },
+        "amendmentNote": "なし（2026-07-17時点）。厚生年金保険法第24条の4第1項。",
+        "note": "★健康保険（年間573万円）と上限の単位が異なる（厚年は1か月あたり）★ 同月内に複数回支給された賞与は合算して150万円が上限。"
+      }
+    },
+    "ninikeizoku": {
+      "value": 320000,
+      "unit": "JPY/month",
+      "label": "任意継続被保険者の標準報酬月額の上限（令和8年度）",
+      "sourceId": "kyoukaikenpo-r08-tokyo",
+      "checkedAt": "2026-07-17",
+      "verify": {
+        "expect": [
+          "令和8年度の全国健康保険協会の任意継続被保険者における標準報酬月額の上限は、320,000円です"
+        ]
+      },
+      "amendmentNote": "毎年度見直される。令和9年度分は2027年2月頃公表見込み。",
+      "note": "★退職後に任意継続を選ぶ場合の保険料計算に使う★ 在職中の標準報酬月額が320,000円を超えていても任意継続では320,000円が上限となる。★任意継続では労使折半がなく全額自己負担★ になる点に注意（退職タイミング損得 P2-T09 で使用）。"
+    },
+    "nextCheckDue": "2027-02-01",
+    "nextCheckReason": "令和9年度の都道府県単位保険料率・介護保険料率・子ども・子育て支援金率・任意継続の標準報酬月額上限は例年2月頃に公表され、3月分（4月納付分）から適用される。子ども・子育て支援金率は段階的引上げが予定されているため特に要確認。"
+  }
+}
