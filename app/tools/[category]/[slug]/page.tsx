@@ -33,7 +33,13 @@ import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
 import { SITE_URL } from "@/app/lib/site";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
 import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
-import { ikukyuKyufuDataset } from "@/lib/tools/impl/sankyu-ikukyu-money";
+import { ikukyuKyufuDataset, salaryAtWageDailyMax } from "@/lib/tools/impl/sankyu-ikukyu-money";
+import {
+  SUPPORT_LIMIT as JITAN_SUPPORT_LIMIT,
+  MINIMUM_AMOUNT as JITAN_MINIMUM_AMOUNT,
+  EXAMPLE_CAP as JITAN_EXAMPLE_CAP,
+  benefitRule1 as jitanBenefitRule1,
+} from "@/lib/tools/impl/jitan-kyuyo";
 import { kaigoHokenDataset } from "@/lib/tools/impl/kaigo-jikofutan";
 import { todayJst } from "@/lib/tools/seido";
 
@@ -48,6 +54,18 @@ const kondateCounts = {
   soup: kondateData.recipes.filter((r) => r.course === "soup").length,
 };
 const kondateRecipeCount = kondateData.recipes.length;
+
+/**
+ * ★8/1改定に追随させるための導出値★ 育休給付・時短給付の金額は毎年8月1日に改定される。
+ * 散文に金額を直書きせず、data/seido 由来の値から組み立てる（tests のハードコード禁止検査の対象）。
+ */
+const yen = (n: number) => n.toLocaleString("ja-JP");
+/** 賃金日額が上限に到達する月給（万円・概数）。「月給が約◯万円を超えると頭打ち」の表示用 */
+const sankyuCapSalaryMan = Math.round(salaryAtWageDailyMax() / 10_000);
+/** 時短給付の頭打ち例: データの構造化ノード exampleCap から導出 */
+const jitanEx = JITAN_EXAMPLE_CAP;
+const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
+const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
   "chomiryo-kanzan": {
@@ -367,7 +385,7 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           <strong>出産手当金</strong>
           ：健康保険の被保険者ご本人が、出産のために仕事を休んで給与を受けられなかった期間に支給されます。
           支給開始日以前の直近12か月の標準報酬月額を平均し、それを30で割った「標準報酬日額」の
-          3分の2が支給日額です。法令が「3分の2」と定めているため、0.6667のような近似の率ではなく
+          3分の2が支給日額です。法令が「3分の2」と定めているため、小数に丸めた近似の率ではなく
           2÷3の分数で計算しています。端数の扱いも健康保険法第99条第2項のとおり、標準報酬日額は
           5円未満を切り捨て・5円以上10円未満を10円に切り上げ、3分の2にした後の額は50銭未満を切り捨て・
           50銭以上1円未満を1円に切り上げています。国民健康保険の方、ご家族の被扶養者の方は対象外です。
@@ -422,7 +440,7 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           給与の支払いがなければ雇用保険料の負担もなく、給付そのものが非課税であるため、
           手取りでみると10割に近くなる、という説明です。ただし
           <strong>これは最大28日間だけの話で、育児休業給付金の給付率が80%に引き上げられたわけではありません</strong>。
-          29日目以降は67%に戻ります。また賃金日額には上限額があるため、月給がおよそ48万円を超える方は
+          29日目以降は67%に戻ります。また賃金日額には上限額があるため、月給がおよそ{sankyuCapSalaryMan}万円を超える方は
           給付が頭打ちになり、手取り10割には届きません。厚生労働省自身も「相当」と留保している概算です。
           なお給付が非課税であることは、翌年の住民税や保育料の算定基礎に入らないという副次的な効果もあります。
         </p>
@@ -468,10 +486,10 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           ：①支給対象月の賃金額が「育児時短就業を始める前の賃金月額 × 90%」以下のときは、
           支給対象月に支払われた賃金額の10%です。②90%を超えて100%未満のときは、支給率が10%から
           一定の割合で逓減するように調整されます。③①②による支給額と賃金額の合計が支給限度額を超えるときは、
-          「支給限度額 − 賃金額」が支給額になります。たとえば時短前の賃金月額483,300円の方が時短後に430,000円になる場合、
-          430,000円は90%（434,970円）以下なので10%の43,000円……ではなく、合計473,000円が支給限度額471,393円を超えるため、
-          471,393 − 430,000 = 41,393円が支給額になります。時短後の賃金が支給限度額以上の方には支給されません。
-          また算定額が最低限度額（2,411円）以下の場合も支給されません。
+          「支給限度額 − 賃金額」が支給額になります。たとえば時短前の賃金月額{yen(jitanEx.wageAtStart)}円の方が時短後に{yen(jitanEx.wageInMonth)}円になる場合、
+          {yen(jitanEx.wageInMonth)}円は90%（{yen(jitanExNinety)}円）以下なので10%の{yen(jitanExRule1)}円……ではなく、合計{yen(jitanEx.wageInMonth + jitanExRule1)}円が支給限度額{yen(JITAN_SUPPORT_LIMIT)}円を超えるため、
+          {yen(JITAN_SUPPORT_LIMIT)} − {yen(jitanEx.wageInMonth)} = {yen(jitanEx.benefit)}円が支給額になります。時短後の賃金が支給限度額以上の方には支給されません。
+          また算定額が最低限度額（{yen(JITAN_MINIMUM_AMOUNT)}円）以下の場合も支給されません。
         </p>
         <p>
           <strong>区分②の「調整後の支給率」の算式</strong>

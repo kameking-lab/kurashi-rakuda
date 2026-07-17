@@ -38,7 +38,7 @@ import {
   WAGE_DAILY_MIN,
   type SankyuInput,
 } from "@/lib/tools/impl/sankyu-ikukyu-money";
-import { amendmentEffectiveDate, isDataExpired, upcomingChanges, type SeidoDataset } from "@/lib/tools/seido";
+import { addDays, amendmentEffectiveDate, isDataExpired, upcomingChanges, type SeidoDataset } from "@/lib/tools/seido";
 import raw from "@/data/seido/ikukyu-kyufu.json";
 
 /**
@@ -234,9 +234,10 @@ describe("休業開始時賃金日額のクランプ（specs §4.3・§6 #11〜#
     expect(calcWageDaily(inp({}), tlOf()).value).toBe(10_000);
   });
 
-  it("#11 ★上限到達点★ 月給483,300円で W が上限ちょうどになる", () => {
-    expect(salaryAtWageDailyMax()).toBe(483_300);
-    const w = calcWageDaily(inp({ monthlySalary: 483_300 }), tlOf());
+  it("#11 ★上限到達点★ 月給が「賃金日額上限×30」で W が上限ちょうどになる", () => {
+    // ★8/1追随★ 上限到達点の月給はデータから導出する（金額の直書きはドライランで割れた）
+    expect(salaryAtWageDailyMax()).toBe(WAGE_DAILY_MAX * 30);
+    const w = calcWageDaily(inp({ monthlySalary: salaryAtWageDailyMax() }), tlOf());
     expect(w.raw).toBe(WAGE_DAILY_MAX);
     expect(w.atMax).toBe(true);
   });
@@ -309,11 +310,12 @@ describe("育児休業給付金（specs §4.3・§6 #8〜#10）", () => {
     expect(last.end).toBe(tl.childcareLeaveEnd);
   });
 
-  it("★データの自己整合性★ #12 W上限×30日×67% = monthlyMax67（323,811円）", () => {
+  it("★データの自己整合性★ #12 W上限×30日×67% = monthlyMax67", () => {
+    // ★8/1追随★ 絶対値のピン留めはしない。値そのものの正しさは verify-seido --fetch が
+    // 一次資料（厚労省パンフレット）と照合し、ここでは上限額と賃金日額の整合だけを固定する
     expect(ikukyuAmountForDays(WAGE_DAILY_MAX, 30, false)).toBe(
       DATA.ikujiKyugyoKyufuKin.monthlyMax67.value,
     );
-    expect(DATA.ikujiKyugyoKyufuKin.monthlyMax67.value).toBe(323_811);
   });
 
   it("★データの自己整合性★ W上限×30日×50% = monthlyMax50、W下限×30日×67% = monthlyMin67", () => {
@@ -432,10 +434,13 @@ describe("出生後休業支援給付金（specs §4.4・§6 #19〜#25）", () =
     expect(isSpouseRequirementMet(inp({ spouseException: "none" }))).toBe(false);
   });
 
-  it("★データの自己整合性★ #24 W上限×28日×13% = monthlyMax（58,640円・端数切捨）", () => {
-    const r = go({ monthlySalary: 600_000, spouseTakesLeave: true, spouseLeaveDays: 14 });
+  it("★データの自己整合性★ #24 W上限×28日×13% = monthlyMax（端数切捨）", () => {
+    // ★8/1追随★ 月給は上限到達点を確実に超える値をデータから導出（絶対値ピン留めはしない）
+    const r = go({ monthlySalary: salaryAtWageDailyMax() * 2, spouseTakesLeave: true, spouseLeaveDays: 14 });
     expect(r.amount).toBe(DATA.shusshoGoKyugyoShienKyufuKin.monthlyMax.value);
-    expect(r.amount).toBe(58_640);
+    // 浮動小数を避け、百分率の整数で再計算する（16,110×28×13% = 58,640.4 → 58,640）
+    const ratePercent = Math.round(DATA.shusshoGoKyugyoShienKyufuKin.rate.value * 100);
+    expect(r.amount).toBe(Math.floor((WAGE_DAILY_MAX * 28 * ratePercent) / 100));
   });
 
   it("★罠4★ #25 80%は67%＋13%の合算で最大28日限定（給付率が80%になったのではない）", () => {
@@ -600,36 +605,42 @@ describe("総合（simulate）", () => {
 
 describe("★8月1日のデータ差し替えだけで追随すること★（specs §9.1・§6 #45）", () => {
   const ds = ikukyuKyufuDataset;
+  // ★8/1追随★ 期限日・改定日はデータから動的に導出する。日付をテストに直書きすると、
+  // 8/1にデータを差し替えた瞬間このファイルが割れる（2026-07-17 D1ドライランで実証）
+  const expiresAmendment = ds.amendments!.find((x) => x.status === "expires")!;
+  const EXPIRES_ON = expiresAmendment.expiresOn!;
+  const SWITCH_DATE = addDays(EXPIRES_ON, 1);
 
-  it("改定日はコードではなく amendments から導出される（expiresOn=2026-07-31 → 2026-08-01）", () => {
-    const a = ds.amendments!.find((x) => x.status === "expires" && x.expiresOn === "2026-07-31");
-    expect(a).toBeDefined();
-    expect(amendmentEffectiveDate(a!)).toBe("2026-08-01");
-    expect(upcomingChanges(ds, "2026-07-17")[0].date).toBe("2026-08-01");
+  it("改定日はコードではなく amendments から導出される（expiresOn → その翌日）", () => {
+    expect(expiresAmendment).toBeDefined();
+    expect(EXPIRES_ON >= ds.asOf).toBe(true); // 期限切れデータのままテストが通らないこと
+    expect(amendmentEffectiveDate(expiresAmendment)).toBe(SWITCH_DATE);
+    expect(upcomingChanges(ds, ds.asOf)[0].date).toBe(SWITCH_DATE);
   });
 
-  it("2026-07-31 時点では期限内なので金額を出す", () => {
-    const r = simulate(inp({ today: "2026-07-31" }));
+  it("期限日（expiresOn）当日までは期限内なので金額を出す", () => {
+    const r = simulate(inp({ today: EXPIRES_ON }));
     expect(r.expired).toBe(false);
     expect(r.total).toBeGreaterThan(0);
   });
 
-  it("#45 ★安全弁★ 2026-08-01 時点では期限切れを検知し、古い金額で計算し続けない", () => {
-    const r = simulate(inp({ today: "2026-08-01" }));
+  it("#45 ★安全弁★ 改定日（期限日の翌日）には期限切れを検知し、古い金額で計算し続けない", () => {
+    const r = simulate(inp({ today: SWITCH_DATE }));
     expect(r.expired).toBe(true);
     expect(r.total).toBeNull();
-    expect(isDataExpired(ds, "2026-08-01")).toBe(true);
+    expect(isDataExpired(ds, SWITCH_DATE)).toBe(true);
   });
 
-  it("★データを差し替えれば追随する★ expiresOn を1年後にすると期限切れが解消し、次回改定が2027-08-01になる", () => {
+  it("★データを差し替えれば追随する★ expiresOn を1年後にすると期限切れが解消し、次回改定も1年後になる", () => {
+    const nextExpiresOn = `${Number(EXPIRES_ON.slice(0, 4)) + 1}${EXPIRES_ON.slice(4)}`;
     const next: SeidoDataset = {
       ...ds,
       amendments: ds.amendments!.map((a) =>
-        a.status === "expires" && a.expiresOn === "2026-07-31" ? { ...a, expiresOn: "2027-07-31" } : a,
+        a.status === "expires" && a.expiresOn === EXPIRES_ON ? { ...a, expiresOn: nextExpiresOn } : a,
       ),
     };
-    expect(isDataExpired(next, "2026-08-01")).toBe(false);
-    expect(upcomingChanges(next, "2026-08-01")[0].date).toBe("2027-08-01");
+    expect(isDataExpired(next, SWITCH_DATE)).toBe(false);
+    expect(upcomingChanges(next, SWITCH_DATE)[0].date).toBe(addDays(nextExpiresOn, 1));
     // 期限の判定にコード側の日付リテラルが一切関与していないこと
     expect(isDataExpired({ ...ds, amendments: [] }, "2030-01-01")).toBe(false);
   });
@@ -644,10 +655,12 @@ describe("★8月1日のデータ差し替えだけで追随すること★（sp
   });
 
   it("★ハードコード禁止★ 実装に制度の数値の直書きがない（data/seido から読んでいる）", () => {
-    // コメント（解説として数値に言及している箇所）を除いたコードだけを対象にする
-    const src = readFileSync(resolve(process.cwd(), "lib/tools/impl/sankyu-ikukyu-money.ts"), "utf8")
-      .replace(/\/\*[\s\S]*?\*\//g, "")
-      .replace(/\/\/.*$/gm, "");
+    // コメント（解説として数値に言及している箇所）を除いたコードだけを対象にする。
+    // ★2026-07-17 D1ドライランで追加★ ツールページの散文（page.tsx）も対象
+    const strip = (p: string) =>
+      readFileSync(resolve(process.cwd(), p), "utf8")
+        .replace(/\/\*[\s\S]*?\*\//g, "")
+        .replace(/\/\/.*$/gm, "");
     const banned = [
       /\b16[,_]?110\b/, // wageDailyMax
       /\b3[,_]?014\b/, // wageDailyMin
@@ -662,8 +675,11 @@ describe("★8月1日のデータ差し替えだけで追随すること★（sp
       /0\.13/,
       /\b2026-0[78]-\d\d\b/, // 改定日の直書き
     ];
-    for (const b of banned) {
-      expect(src, `${b} が実装に直書きされています`).not.toMatch(b);
+    for (const p of ["lib/tools/impl/sankyu-ikukyu-money.ts", "app/tools/[category]/[slug]/page.tsx"]) {
+      const src = strip(p);
+      for (const b of banned) {
+        expect(src, `${b} が ${p} に直書きされています`).not.toMatch(b);
+      }
     }
   });
 });
