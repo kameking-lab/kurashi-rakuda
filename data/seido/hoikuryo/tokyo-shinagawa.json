@@ -1,0 +1,499 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "tokyo-shinagawa",
+  "name": "東京都品川区",
+  "municipalityCode": "131091",
+  "prefecture": "東京都",
+  "municipalityType": "特別区",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "shinagawa-hoikuryo-page",
+      "title": "保育園等保育料一覧（令和7年9月1日施行）",
+      "publisher": "品川区 保育入園調整課 入園相談担当",
+      "url": "https://www.city.shinagawa.tokyo.jp/PC/kodomo/kodomo-hoyou/kodomo-hoyou-hoikuen/hpg000028019.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "更新日 令和7年10月1日。2026-07-17時点で有効な現行ページ。第1子以降の保育料が無償である旨、階層決定の税年度切替、適用しない税額控除、未申告時の最高階層認定、区内認可保育園では食材料費の保護者負担がない旨を記載。延長夜間保育利用料一覧（区立保育園・区立民営保育園）を階層グループ別（Ａ・Ｂ／Ｃ・Ｄ1〜Ｄ3／Ｄ4〜Ｄ12／Ｄ13〜Ｄ25）に併載。"
+    },
+    {
+      "id": "shinagawa-hoikuryo-pdf",
+      "title": "保育園等保育料一覧（PDF）",
+      "publisher": "品川区 保育入園調整課 入園相談担当",
+      "url": "https://www.city.shinagawa.tokyo.jp/ct/pdf/hpg000028019_1.pdf",
+      "landingUrl": "https://www.city.shinagawa.tokyo.jp/PC/kodomo/kodomo-hoyou/kodomo-hoyou-hoikuen/hpg000028019.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "表題「（令和７年９月１日施行）」。全30階層（Ａ・Ｂ・Ｃ１〜Ｃ３・Ｄ１〜Ｄ２５）。保育料（月額）欄は「保育標準時間（保育園／小規模保育）」「保育短時間（保育園／小規模保育／家庭的保育）」の5列だが、全階層・全列にまたがる結合セルに「無償」の1語のみが記載されており、階層別の金額は存在しない。年度表記なし。"
+    },
+    {
+      "id": "shinagawa-annai-r8-zaien",
+      "title": "保育園のご案内（令和8年4月版）「保育園に在園している方へ」（P.39〜）",
+      "publisher": "品川区 保育入園調整課 入園相談担当",
+      "url": "https://www.city.shinagawa.tokyo.jp/ct/pdf/20250922155841_12.pdf",
+      "landingUrl": "https://www.city.shinagawa.tokyo.jp/PC/kodomo/kodomo-hoyou/kodomo-hoyou-hoikuen/20250922155841.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "令和8年4月版「保育園のご案内」の分割PDF。P.35 に地域型保育事業（家庭的保育事業・小規模保育事業）の保育料、P.39「２ 保育料について」に第1子無償化の経緯、P.40「３ 延長夜間保育について」に延長夜間保育利用料の階層グループ別一覧（令和8年4月時点予定の実施園数を含む）を掲載。令和8年度版として明示された資料だが、階層別の所得割額境界（P.66参照とされる別表）は本冊子には掲載がない。"
+    },
+    {
+      "id": "shinagawa-annai-r8-riyou",
+      "title": "保育園のご案内（令和8年4月版）「保育園の利用を検討している方へ」（P.14〜）",
+      "publisher": "品川区 保育入園調整課 入園相談担当",
+      "url": "https://www.city.shinagawa.tokyo.jp/ct/pdf/20250922155841_11.pdf",
+      "landingUrl": "https://www.city.shinagawa.tokyo.jp/PC/kodomo/kodomo-hoyou/kodomo-hoyou-hoikuen/20250922155841.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-17",
+      "tier": "municipality",
+      "note": "令和8年4月版「保育園のご案内」の分割PDF。P.14 に施設区分別の保育料欄（認可保育園・認定こども園（保育部門）・小規模保育事業・家庭的保育事業・居宅訪問型保育事業がいずれも「無償（P.39参照）」）と、クラス年齢の判定ルール（4月1日現在の年齢）を掲載。P.23 に住民税未申告時の階層算定の注記。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和7年9月1日より、認可保育園等に在園している0〜2歳児クラスの児童の第1子の保育料も無償となり、認可保育園等に在園している全ての児童の保育料が無償となった（令和8年4月版「保育園のご案内」P.39）。2026-07-17時点で有効。",
+      "status": "in-force",
+      "effectiveFrom": "2025-09-01",
+      "sourceId": "shinagawa-annai-r8-zaien",
+      "impact": "全階層の保育料は0円。保育料計算ツールは階層によらず0を返す。ただし延長夜間保育利用料は無償化対象外で階層グループ（Ａ・Ｂ／Ｃ・Ｄ1〜Ｄ3／Ｄ4〜Ｄ12／Ｄ13〜Ｄ25）別に発生するため、階層判定ロジック自体は引き続き必要。"
+    },
+    {
+      "summary": "出典の階層表PDF「保育園等保育料一覧」は「（令和７年９月１日施行）」表記で、令和8年度版として更新された階層表は2026-07-17時点で公表されていない（掲載ページの更新日は令和7年10月1日）。令和8年4月版「保育園のご案内」は階層表そのものを掲載しておらず、施設区分別の保育料欄を「無償」とのみ記載している。",
+      "status": "under-review",
+      "sourceId": "shinagawa-hoikuryo-pdf",
+      "impact": "階層境界（Ｃ２〜Ｄ２５の所得割額）が令和8年度に改定された場合、incomeMin/incomeMax の再取得が必要。保育料自体は0円のため影響は延長夜間保育利用料の階層判定に限られる。"
+    },
+    {
+      "summary": "第1子無償化は東京都の保育所等利用多子世帯負担軽減事業の拡充に対応するものだが、品川区の公表資料には都事業の終了に関する注記がない。また無償化前の階層別保育料額は、現行の「保育園等保育料一覧」では全階層にまたがる結合セルの「無償」に置き換わっており、公表資料からは取得できない。",
+      "status": "under-review",
+      "sourceId": "shinagawa-hoikuryo-pdf",
+      "impact": "無償化前の階層別金額は原典から取得不能のため tiers[].fees はすべて0円。都事業が終了して保育料が復活する場合は区への再照会が必要。"
+    }
+  ],
+  "disclaimer": "本データは品川区公式サイトの公表内容を2026-07-17時点で機械的に整理したものです。品川区は令和7年9月1日以降、認可保育園等に在園している全ての児童の保育料を無償としています。実際の保育料・階層決定は区の決定通知書が優先します。制度改正や個別事情により内容が異なる場合がありますので、必ず品川区保育入園調整課入園相談担当にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育園（区立・区立民営・私立）の保育料（利用者負担額）",
+      "認定こども園（保育部門）の保育料",
+      "小規模保育事業・家庭的保育事業・居宅訪問型保育事業の保育料",
+      "保育料階層（Ａ・Ｂ・Ｃ１〜Ｃ３・Ｄ１〜Ｄ２５）の区分定義"
+    ],
+    "excludes": [
+      "給食費（食材料費）※品川区内の認可保育園（認可施設）では食材料費の保護者負担はないと区が明記しているが、本表の対象外",
+      "延長夜間保育利用料 ※無償化の対象外。区立保育園・区立民営保育園（ぷりすくーる西五反田を除く）は階層グループ別（1時間以内 200〜400円／1時間〜2時間以内 400〜800円／2時間〜3時間30分以内 700〜1,400円）。私立保育園およびぷりすくーる西五反田は利用方法・利用料が異なる",
+      "時間内延長保育利用料（短時間認定の児童が基本開園時間内で8時間以上利用した場合）",
+      "実費負担分（行事費用など）",
+      "地域型保育事業・認証保育所等が施設ごとに設定する延長保育料等",
+      "区外在住で区内認可保育園等に在園している児童の保育料（無償化の対象外となる可能性があり、居住自治体の制度による）",
+      "幼稚園・区立認定こども園（幼児教育部門）の預かり保育利用料・認可外保育施設・認証保育所の保育料および助成"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典表記「階層は、保護者の区市町村民税所得割額に基づき決定します。」未確認: 保護者以外の同居者（祖父母等）を合算対象に含めるか否かの規定は、2026-07-17時点で「保育園等保育料一覧」ページおよび令和8年4月版「保育園のご案内」から確認できず（保育料が全額無償化されたことにより、合算対象世帯範囲の規定が公表資料から消滅している可能性がある）。",
+    "taxYearRule": "原典表記「階層は、保護者の区市町村民税所得割額に基づき決定します。8月までは前年度分、9月以降は当年度分区市町村民税所得割額に基づき決定します。」令和8年度の場合、4〜8月分は令和7年度分、9月〜令和9年3月分は令和8年度分の区市町村民税所得割額による。",
+    "deductionsIgnored": [
+      "住宅借入金特別控除",
+      "寄付金税額控除",
+      "配当控除等"
+    ],
+    "note": "原典表記「なお、区市町村民税所得割額は、調整控除以外の税額控除（住宅借入金特別控除、寄付金税額控除、配当控除等）が適用される前の税額です。」★品川区は「調整控除以外の税額控除を適用する前の税額」＝調整控除のみを控除した額としており、横浜市の「調整控除額・所得割の調整措置の額のみを控除した額」と同型の定義である（世田谷区が『調整控除額と定額減税額を差し引いた金額』とするのに対し、品川区は定額減税の取扱いを明記していない＝未確認）。所得割額の前処理: 品川区は特別区であり政令指定都市の税率調整（6/8 換算等）は適用されない。住民税未申告または税資料（年間給与証明書・年間収入申告書等）の提出がなく税額の確認ができない場合は、区市町村民税所得割額1,031,300円以上の世帯（最高階層＝Ｄ２５）と同様の階層認定をする。会社書式・源泉徴収票等において控除項目等が読み取れない場合は階層算定上不利になる可能性があるため、区所定様式での提出が案内されている（令和8年4月版「保育園のご案内」P.23）。Ａ・Ｂ・Ｃ１階層は所得割額では判別できない（Ａ=生活保護世帯、Ｂ=区市町村民税非課税世帯、Ｃ１=区市町村民税均等割のみの世帯）ため、isWelfare / isNonTaxable フラグと均等割の課税有無で先に分岐すること。なお階層は利用調整（入園選考）でも用いられ、合計指数・基本指数が並んだ場合は階層（区市町村民税所得割額）の低い順に決定される。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "原典表記「保育園は、４月１日現在の児童の年齢によって、その年度のクラスが決まります。」（令和8年4月版「保育園のご案内」P.14）。1歳になった時点で1歳児クラスに進級するのではなく、1歳になった次の4月から1歳児クラスとなる。令和7年9月以降は無償化により階層・年齢によらず0円。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "クラスは4月1日現在の児童の年齢で決まる。国の幼児教育・保育の無償化により従前から無料。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3〜5歳児クラスの保育料は無償",
+      "sourceId": "shinagawa-annai-r8-zaien",
+      "checkedAt": "2026-07-17",
+      "verify": {
+        "expect": [
+          "認可保育園等に在園している全ての児童の保育料が無償となりました"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "国の幼児教育・保育の無償化により従前から無料。令和8年4月版「保育園のご案内」P.14 の施設区分表でも認可保育園・認定こども園（保育部門）の保育料欄は「無償（P.39参照）」。令和7年9月以降は全児童無償化に包含される。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "0〜2歳児クラスの住民税非課税世帯も無償",
+      "sourceId": "shinagawa-hoikuryo-page",
+      "checkedAt": "2026-07-17",
+      "verify": {
+        "expect": [
+          "令和7年9月1日より、第1子以降の保育料は無償です。"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-17時点)",
+      "note": "非課税世帯（Ｂ階層）に限らず、令和7年9月1日以降は全階層（Ａ〜Ｄ２５）の0〜2歳児クラスの保育料が0円。原典の「保育園等保育料一覧」PDFでも保育料欄は全階層にまたがる結合セルで「無償」の1語のみ。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": null,
+        "unit": "unit",
+        "label": "多子カウントの年齢上限（未確認）",
+        "sourceId": "shinagawa-hoikuryo-page",
+        "checkedAt": "2026-07-17",
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "未確認: 品川区は令和7年9月1日より第1子を含む全児童の保育料を無償化したため、多子カウント（第何子か）による保育料軽減の規定が公表資料（「保育園等保育料一覧」ページ・保育料一覧PDF・令和8年4月版「保育園のご案内」）から消滅している。令和8年4月版「保育園のご案内」P.39 は「これまで第２子以降は無償となっておりました」と過去の制度に言及するのみで、きょうだいの数え方の年齢上限は記載していない。2026-07-17時点で公式資料から確認できず。"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子の保育料",
+        "sourceId": "shinagawa-annai-r8-zaien",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "これまで第２子以降は無償となっておりました"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "原典（令和8年4月版「保育園のご案内」P.39）「認可保育園等に在園している０～２歳児クラスの児童の保育料については、これまで第２子以降は無償となっておりましたが、令和７年９月１日より、第１子の保育料も無償となりました。」第1子を含む全児童が無償のため第2子も0円。東京都の第2子無償化（令和5年10月〜）は第1子無償化に包含される。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降の保育料",
+        "sourceId": "shinagawa-annai-r8-zaien",
+        "checkedAt": "2026-07-17",
+        "verify": {
+          "expect": [
+            "認可保育園等に在園している全ての児童の保育料が無償となりました"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-17時点)",
+        "note": "第1子を含む全児童が無償のため0円。"
+      }
+    },
+    "localExtension": "令和7年9月1日より、第1子以降の保育料は無償（原典表記、「保育園等保育料一覧」ページ）。0〜2歳児クラスはこれまで第2子以降が無償だったところ、第1子の保育料も無償となり、認可保育園等に在園している全ての児童の保育料が無償となった（令和8年4月版「保育園のご案内」P.39）。東京都の第1子保育料無償化に対応するもので、東京都の第2子無償化（令和5年10月開始）はこれに包含される。無償化は地域型保育事業（小規模保育事業・家庭的保育事業・居宅訪問型保育事業）にも及ぶ（同 P.35「認可保育園と同様、第１子以降の保育料は無償です。」）。★区独自の上乗せ★として、区は「品川区内の認可保育園（認可施設）では食材料費の保護者負担はありません。」と明記しており、給食費（食材料費）の保護者負担が発生しない点が該当する（給食費は本データの scope 外）。無償化の対象外は、令和7年8月分以前の保育料、実費負担分（行事費用など）、および延長夜間保育利用料。区立認定こども園（幼児教育部門）の保育料も無償だが、預かり保育を利用する場合は別途利用料（日額750円／1,150円、無償制度該当者は日額300円／700円・月額上限11,300円）がかかる。品川区外在住で区内認可保育園等に在園している場合は無償化の対象外となる可能性があり、居住自治体への確認が必要。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": null,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "区市町村民税　非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "区市町村民税　均等割のみの世帯（所得割額0円）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "5,000円未満の世帯（区市町村民税所得割額）",
+      "incomeMin": 1,
+      "incomeMax": 5000,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "5,000円以上 48,700円未満の世帯",
+      "incomeMin": 5000,
+      "incomeMax": 48700,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "48,700円以上 50,500円未満の世帯",
+      "incomeMin": 48700,
+      "incomeMax": 50500,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "50,500円以上 59,800円未満の世帯",
+      "incomeMin": 50500,
+      "incomeMax": 59800,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "59,800円以上 68,500円未満の世帯",
+      "incomeMin": 59800,
+      "incomeMax": 68500,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "68,500円以上 88,600円未満の世帯",
+      "incomeMin": 68500,
+      "incomeMax": 88600,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "88,600円以上 108,600円未満の世帯",
+      "incomeMin": 88600,
+      "incomeMax": 108600,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "108,600円以上 128,500円未満の世帯",
+      "incomeMin": 108600,
+      "incomeMax": 128500,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "128,500円以上 148,600円未満の世帯",
+      "incomeMin": 128500,
+      "incomeMax": 148600,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "148,600円以上 171,600円未満の世帯",
+      "incomeMin": 148600,
+      "incomeMax": 171600,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "171,600円以上 204,900円未満の世帯",
+      "incomeMin": 171600,
+      "incomeMax": 204900,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "204,900円以上 228,800円未満の世帯",
+      "incomeMin": 204900,
+      "incomeMax": 228800,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "228,800円以上 252,900円未満の世帯",
+      "incomeMin": 228800,
+      "incomeMax": 252900,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "252,900円以上 276,800円未満の世帯",
+      "incomeMin": 252900,
+      "incomeMax": 276800,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D13",
+      "label": "276,800円以上 300,800円未満の世帯",
+      "incomeMin": 276800,
+      "incomeMax": 300800,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D14",
+      "label": "300,800円以上 322,000円未満の世帯",
+      "incomeMin": 300800,
+      "incomeMax": 322000,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D15",
+      "label": "322,000円以上 338,000円未満の世帯",
+      "incomeMin": 322000,
+      "incomeMax": 338000,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D16",
+      "label": "338,000円以上 354,000円未満の世帯",
+      "incomeMin": 338000,
+      "incomeMax": 354000,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D17",
+      "label": "354,000円以上 370,000円未満の世帯",
+      "incomeMin": 354000,
+      "incomeMax": 370000,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D18",
+      "label": "370,000円以上 440,200円未満の世帯",
+      "incomeMin": 370000,
+      "incomeMax": 440200,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D19",
+      "label": "440,200円以上 500,200円未満の世帯",
+      "incomeMin": 440200,
+      "incomeMax": 500200,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D20",
+      "label": "500,200円以上 560,200円未満の世帯",
+      "incomeMin": 500200,
+      "incomeMax": 560200,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D21",
+      "label": "560,200円以上 665,000円未満の世帯",
+      "incomeMin": 560200,
+      "incomeMax": 665000,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D22",
+      "label": "665,000円以上 772,600円未満の世帯",
+      "incomeMin": 665000,
+      "incomeMax": 772600,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D23",
+      "label": "772,600円以上 887,500円未満の世帯",
+      "incomeMin": 772600,
+      "incomeMax": 887500,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D24",
+      "label": "887,500円以上 1,031,300円未満の世帯",
+      "incomeMin": 887500,
+      "incomeMax": 1031300,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D25",
+      "label": "1,031,300円以上の世帯（住民税未申告または税資料の提出がなく税額の確認ができない場合もこの階層＝最高階層）",
+      "incomeMin": 1031300,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "expect": [
+      "（令和７年９月１日施行）",
+      "1,031,300",
+      "円以上の世帯",
+      "無償"
+    ]
+  }
+}
