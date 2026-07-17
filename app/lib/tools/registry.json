@@ -893,5 +893,35 @@
     ],
     "updated": "2026-07-17",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T28",
+    "slug": "shokuhi-meyasu",
+    "category": "money",
+    "title": "食費の目安計算（家族構成別）",
+    "description": "世帯人員数を入れると、総務省統計局「家計調査」に基づく食費（食料費）の1か月の目安と、外食・調理食品などの内訳を表示します。",
+    "solves": [
+      "うちの食費が世間と比べて多いのか少ないのか分からない",
+      "家族の人数が増えたら食費がどれくらい増えるのか目安が分からない",
+      "食費のうち外食や惣菜がどれくらいの割合か知りたい",
+      "食費の目安を根拠のある統計値で知りたい"
+    ],
+    "basisYear": "2025年（令和7年）平均",
+    "sources": [
+      {
+        "label": "総務省統計局「家計調査（家計収支編） 調査結果」",
+        "url": "https://www.stat.go.jp/data/kakei/2.html"
+      },
+      {
+        "label": "総務省統計局「家計調査報告 ―月・四半期・年―」2025年（令和7年）平均（2026年2月6日公表）",
+        "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/index.html#nen"
+      },
+      {
+        "label": "家計調査報告（家計収支編）2025年（令和7年）平均結果の概要（PDF）",
+        "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_gaikyo2025.pdf"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
   }
 ]

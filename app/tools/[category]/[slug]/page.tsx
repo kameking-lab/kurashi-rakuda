@@ -34,6 +34,7 @@ import { YoujiMushoukaChecker } from "@/components/tools/impl/YoujiMushoukaCheck
 import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushoukaChecker.calc";
 import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
 import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
+import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -978,6 +979,37 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           案内しています。
         </p>
         <SeidoNotice datasets={[kaigoNinteiDataset, kaigoHokenDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "shokuhi-meyasu": {
+    ui: <ShokuhiMeyasu />,
+    formula: (
+      <>
+        <p>
+          <strong>出典と集計区分</strong>
+          ：総務省統計局「家計調査（家計収支編）」2025年（令和7年）平均（2026年2月6日公表）の、
+          世帯人員別の実額をそのまま使用しています。単身世帯（1人）は同調査の単身世帯集計、
+          2人〜5人・6人以上（二人以上の世帯）は「第３－１表 世帯人員別１世帯当たり１か月間の収入と支出」の実額です。
+          「6人以上」区分は総務省統計局の集計上の最大区分で、実際の平均世帯人員は6.3人です。
+          7人・10人など6人を超える人数を入力しても、按分・推計はせず同じ「6人以上」区分の実額をそのまま表示します。
+        </p>
+        <p>
+          <strong>表示する金額</strong>
+          ：「食料」（食費全体の目安）に加えて、その内訳のうち統計上区分されている「外食」「調理食品（惣菜・弁当などの中食）」を表示し、
+          残り（食材の購入・飲料・酒類などを含む）は「その他」としてまとめて計算しています（食料－外食－調理食品）。
+          世帯構成（単身/夫婦のみ/夫婦+子どもなど）による違いは、同調査が世帯人員数のみで区分しているため取得できず、
+          推測値を作らずに世帯人員数のみを入力項目としています。
+        </p>
+        <p>
+          参考として、単身世帯の消費支出は173,042円、食料は44,659円。二人以上の世帯（世帯人員を問わない単純平均、平均世帯人員2.87人）の消費支出は314,001円、食料は89,754円です。
+        </p>
+        <p>
+          <strong>
+            表示される金額はあくまで全国平均の統計値であり、個々の家庭にとっての「正しい」食費や目標額を示すものではありません。
+          </strong>
+          地域・家族の年齢構成・自炊の頻度・物価の変動などによって、実際の食費は大きく異なります。次回の「◯◯年平均」の公表時期に合わせてデータを更新します。
+        </p>
       </>
     ),
   },
