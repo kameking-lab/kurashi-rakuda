@@ -287,6 +287,15 @@ function ScheduleResult({
         </p>
       </div>
 
+      {/* 結果一覧そのものを live region にすると再計算のたびに全件読み上げられて冗長なため、
+          件数と直近の目安だけを要約してスクリーンリーダーに通知する（G2検収 残項目: aria-live強化） */}
+      <p role="status" aria-live="polite" className="sr-only">
+        {fmtYM(targetMonth)}入園に向けたスケジュールを計算しました。目安のマイルストーンは
+        {milestones.length}件です。
+        {milestones.length > 0 && `最初の項目は「${milestones[0].name}」、時期の目安は${formatPeriod(milestones[0])}です。`}
+        {urgentAlert && "残り期間が短いため、申込み時期を過ぎている可能性があります。"}
+      </p>
+
       <ul className="space-y-3">
         {milestones.map((m) => (
           <li
