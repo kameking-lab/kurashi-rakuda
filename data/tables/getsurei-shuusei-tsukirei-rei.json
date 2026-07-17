@@ -1,0 +1,39 @@
+{
+  "$comment": "月齢計算（修正月齢）ツール併走記事（content/articles/tool-narisou-getsurei.md）が本文中で使う『修正月齢の具体例』の数値の対照表。こども家庭庁「小さく生まれた赤ちゃんの成長・発達」（mchbook.cfa.go.jp）に掲載されている具体例（『出産予定日より2か月早く生まれた赤ちゃんの場合・生後３か月時点で、修正月齢は１か月』）と、修正月齢・年齢を目安として使う期間の目安（『3歳までは修正月齢・年齢で見ていくことが多いようです』）をそのまま転記したもの。これらの数値は本ツール（components/tools/impl/Getsurei.calc.ts）の計算ロジックの定数ではなく、記事本文の説明用の具体例であることに注意（計算ロジック自体は生年月日・出産予定日の入力に応じて汎用的に計算するため、これらの値をハードコードしていない）。2026-07-17、fix/stub-facts-getsurei で新設。",
+  "sources": [
+    {
+      "id": "cfa-mchbook-shuusei-tsukirei",
+      "label": "小さく生まれた赤ちゃんの成長・発達｜赤ちゃんが小さく生まれた方へ",
+      "url": "https://mchbook.cfa.go.jp/category01/page01_02.php",
+      "org": "こども家庭庁",
+      "checkedAt": "2026-07-17",
+      "note": "WebFetchで生存確認済み（2026-07-17）。ページ内に『出産予定日より2か月早く生まれた赤ちゃんの場合・生後３か月時点で、修正月齢は１か月』という具体例、および『いつまで修正月齢を使うかについては明確な答えはありませんが、3歳までは修正月齢・年齢で見ていくことが多いようです。』という記述の両方を確認した。"
+    }
+  ],
+  "lastVerified": "2026-07-17",
+  "nextCheckDue": "2027-01-01",
+  "hayaku_umareta_kagetsu": {
+    "value": 2,
+    "unit": "ヶ月",
+    "sourceId": "cfa-mchbook-shuusei-tsukirei",
+    "label": "具体例：出産予定日より早く生まれた月数"
+  },
+  "jitsurei_kagetsu": {
+    "value": 3,
+    "unit": "ヶ月",
+    "sourceId": "cfa-mchbook-shuusei-tsukirei",
+    "label": "具体例：生後（実齢）の月数"
+  },
+  "shuusei_tsukirei_kagetsu": {
+    "value": 1,
+    "unit": "ヶ月",
+    "sourceId": "cfa-mchbook-shuusei-tsukirei",
+    "label": "具体例：上記時点での修正月齢"
+  },
+  "meyasu_nenrei_sai": {
+    "value": 3,
+    "unit": "歳",
+    "sourceId": "cfa-mchbook-shuusei-tsukirei",
+    "label": "修正月齢・年齢を目安として使うことが多いとされる年齢の目安"
+  }
+}
