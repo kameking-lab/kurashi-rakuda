@@ -24,6 +24,8 @@ import { SentakuHyoji } from "@/components/tools/impl/SentakuHyoji";
 import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
 import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc";
 import { SuihanMizu } from "@/components/tools/impl/SuihanMizu";
+import { KondateTeian } from "@/components/tools/impl/KondateTeian";
+import { KONDATE_DISCLAIMER, kondateData } from "@/lib/tools/impl/kondate-teian";
 import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
@@ -36,6 +38,14 @@ import { todayJst } from "@/lib/tools/seido";
  * ツール実装のマッピング。G2（Q3-01〜20）で実装が増えるたびにここへ1行追加し、
  * registry.json の status を "live" に変える。
  */
+/** 献立自動提案の件数は data/kondate から数える（数値を文章に直書きしない） */
+const kondateCounts = {
+  main: kondateData.recipes.filter((r) => r.course === "main").length,
+  side: kondateData.recipes.filter((r) => r.course === "side").length,
+  soup: kondateData.recipes.filter((r) => r.course === "soup").length,
+};
+const kondateRecipeCount = kondateData.recipes.length;
+
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
   "chomiryo-kanzan": {
     ui: <ChomiryoKanzan />,
@@ -571,6 +581,57 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         <p>
           ここに示す数値はあくまで一般的な計量の目安です。米の産地・精米からの経過日数・お好みの硬さによって最適な水加減は変わります。お使いの炊飯器の内釜に目盛り線がある場合は、そちらに従うのが最も正確です。
         </p>
+      </>
+    ),
+  },
+  "kondate-teian": {
+    ui: <KondateTeian />,
+    formula: (
+      <>
+        <p>
+          計算式はありません。あらかじめ収録した{" "}
+          <strong>レシピ{kondateRecipeCount}品（主菜{kondateCounts.main}・副菜{kondateCounts.side}・汁物{kondateCounts.soup}）</strong>
+          から、条件に合うものを抽選しているだけです。レシピと食材のデータはすべて自作で、
+          一般的な家庭料理の名称・主材料・調理法だけを持っています。分量や手順文は持っていません。
+          抽選はすべてお使いのブラウザの中で行われ、入力した条件はどこにも送信されません。
+        </p>
+        <p>
+          <strong>条件は2種類に分けています。</strong>
+          「使わない食材」「1日の合計調理時間の上限」「ジャンル」「汁物の要否」は
+          <strong>絶対条件</strong>で、1つでも満たせないレシピは候補から取り除きます。満たす組合せが
+          作れないときは、中途半端な献立を出さずに「作れません」とお伝えし、
+          どの条件をどう変えると候補が何品になるかを具体的な数字で示します。
+          一方「前日と作り方が重ならない」「主材料の種類が続かない」「同じ日にコンロが重ならない」
+          「食材を使い回せる」は<strong>優先条件</strong>で、満たせなくても献立は出します
+          （満たせなかった場合はその旨を表示します）。
+        </p>
+        <p>
+          <strong>同じ URL なら、いつ開いても同じ献立が出ます。</strong>
+          抽選にはシード（URL の <code>s</code>）から作る擬似乱数を使っており、
+          時刻や端末には一切依存しません。候補はレシピの並び順ではなく
+          <strong>ID の順に並べ替えてから</strong>抽選するため、レシピを追加してもデータの並びが変わるだけでは
+          献立は変わりません。逆に、レシピそのものを増やしたり抽選の重みを変えたりすると献立は変わるため、
+          そのときは URL の <code>v</code> が合わなくなり「再現できません」と表示します
+          （黙って別の献立に差し替えることはしません）。「1日だけ引き直す」「1品だけ引き直す」を押しても、
+          他の日・他の品は1品も動きません。
+        </p>
+        <p>
+          <strong>表示している時間について</strong>
+          ：主菜・副菜・汁物の目安時間を<strong>そのまま足した数字</strong>です。実際には並行して作るので
+          これより短くなりますが、「並行できる時間」を推定すると根拠のない数字になるため、
+          あえて単純な合計のままにし、「順番に作った場合の目安」と表示しています。
+          人数は表示のためだけに使っており、抽選には影響しません（レシピは2人分が基準です）。
+        </p>
+        <p>
+          <strong>このツールが判断していないこと</strong>
+          ：{KONDATE_DISCLAIMER.nutrition}
+          {KONDATE_DISCLAIMER.pregnancy}
+        </p>
+        <p>
+          <strong>「使わない食材」について</strong>
+          ：{KONDATE_DISCLAIMER.allergy}
+        </p>
+        <p>{KONDATE_DISCLAIMER.data}</p>
       </>
     ),
   },
