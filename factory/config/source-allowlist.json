@@ -18,7 +18,8 @@
     { "domain": "ncchd.go.jp", "org": "国立成育医療研究センター", "note": "小児成長・発達の公的研究情報" },
     { "domain": "jaog.or.jp", "org": "日本産婦人科医会", "note": "妊娠週数・出産に関する一次情報" },
     { "domain": "kokusen.go.jp", "org": "国民生活センター", "note": "生活トラブル・消費生活相談の一次情報" },
-    { "domain": "lg.jp", "org": "地方自治体（都道府県・市区町村共通ドメイン）", "note": "保育料・児童手当窓口・自治体独自助成など。記事化時に自治体名を本文中に明記すること" }
+    { "domain": "lg.jp", "org": "地方自治体（都道府県・市区町村共通ドメイン）", "note": "保育料・児童手当窓口・自治体独自助成など。記事化時に自治体名を本文中に明記すること" },
+    { "domain": "stat.go.jp", "org": "総務省統計局", "note": "社会生活基本調査（家事関連時間の男女差等）をはじめとする公的統計。data/tables/kaji-jikan-toukei-danjyosa.json の出典" }
   ],
   "excluded_examples": [
     { "domain": "kurashi-keisan.jp", "reason": "自社姉妹サイトだが一次情報ではないため出典としては使わない（内部リンクとしての送客は別途許可）" },

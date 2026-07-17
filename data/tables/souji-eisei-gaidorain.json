@@ -1,0 +1,16 @@
+{
+  "$comment": "家庭向け掃除・衛生管理ガイドラインの対照表（非制度）。想定記事:「掃除・衛生管理の家庭向けガイドラインとは」（type=dandori）。厚生労働省「ノロウイルスに関するＱ＆Ａ」に基づく、次亜塩素酸ナトリウムによる調理器具・床・廃棄物の消毒濃度（塩素濃度ppm）と熱湯消毒の目安。",
+  "org": "厚生労働省",
+  "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/syokuchu/kanren/yobou/040204-1.html",
+  "last_verified": "2026-07-17",
+  "next_check_due": "2026-10-01",
+  "jikou_ensosan_shoudoku_ppm": {
+    "chouri_kigu_manaita_fukin_ppm": 200,
+    "yuka_ousei_funben_ppm": 200,
+    "haikibutsu_omutsu_ppm": 1000
+  },
+  "necchu_shoudoku_meyasu": {
+    "manaita_hocho_ondo_do": 85,
+    "manaita_hocho_jikan_bun": 1
+  }
+}
