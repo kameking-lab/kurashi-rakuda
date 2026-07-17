@@ -161,9 +161,26 @@
       "第3子加算の数え方が分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "児童手当制度のご案内（こども家庭庁）",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/"
+      },
+      {
+        "label": "児童手当Q&A（一般）（こども家庭庁）",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan"
+      },
+      {
+        "label": "もっと子育て応援！児童手当（令和6年10月分からの拡充）（こども家庭庁）",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/mottoouen"
+      },
+      {
+        "label": "児童手当法（昭和四十六年法律第七十三号）（e-Gov法令検索）",
+        "url": "https://laws.e-gov.go.jp/law/346AC0000000073"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-09",
