@@ -29,7 +29,11 @@ const UNIT_TOKENS = [
 // 長いトークンを先にマッチさせる（"日間"が"日"に食われないように）
 const SORTED_UNITS = [...UNIT_TOKENS].sort((a, b) => b.length - a.length);
 const UNIT_ALT = SORTED_UNITS.map((u) => u.replace(/[%％]/g, (c) => `\\${c}`)).join("|");
-const NUMBER_RE = new RegExp(`([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?)(万)?(${UNIT_ALT})`, "g");
+// 負数の表記（「マイナス18度」「−18度」）も1つの数値として認識する。
+// 冷凍庫の目安温度のような負の値を、符号を落とした正の数として照合してしまわないため
+// （data/tables/reitou-hozon.json（旧）が符号曖昧な 18 を持っていた問題の再発防止）。
+// ASCIIハイフンは英数式・ISO日付（2026-08-01）と衝突しやすいため含めない。
+const NUMBER_RE = new RegExp(`(マイナス|−|－)?([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?)(万)?(${UNIT_ALT})`, "g");
 
 function normUnit(u) {
   if (u === "％") return "%";
@@ -60,11 +64,13 @@ export function extractBodyNumbers(body) {
   const found = [];
   for (const m of body.matchAll(NUMBER_RE)) {
     const raw = m[0];
-    const numStr = m[1].replace(/,/g, "");
-    const manFlag = m[2] === "万";
-    const unit = normUnit(m[3]);
+    const minus = m[1] !== undefined;
+    const numStr = m[2].replace(/,/g, "");
+    const manFlag = m[3] === "万";
+    const unit = normUnit(m[4]);
     let value = parseFloat(numStr);
     if (manFlag) value *= 10000;
+    if (minus) value = -value;
     found.push({ raw, value, unit, key: `${value}${unit}` });
   }
   return found;
@@ -75,7 +81,21 @@ export function factKey(fact) {
 }
 
 function resolvePath(obj, dotted) {
-  return dotted.split(".").reduce((acc, key) => (acc == null ? undefined : acc[key]), obj);
+  // 配列は「items[id=gohan]」のように [<キー>=<値>] で要素を選択できる。
+  // インデックス参照（items.3）は並べ替えで壊れるため、id を持つ配列はセレクタを使うこと。
+  let acc = obj;
+  for (const token of dotted.split(".")) {
+    if (acc == null) return undefined;
+    const sel = /^([^[]+)\[([^=\]]+)=([^\]]+)\]$/.exec(token);
+    if (sel) {
+      const arr = acc[sel[1]];
+      if (!Array.isArray(arr)) return undefined;
+      acc = arr.find((e) => e != null && String(e[sel[2]]) === sel[3]);
+    } else {
+      acc = acc[token];
+    }
+  }
+  return acc;
 }
 
 let refMapCache = null;

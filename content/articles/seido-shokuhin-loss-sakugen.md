@@ -63,16 +63,16 @@
     },
     {
       "key": "reitou_hozon.reitouko_meyasu_ondo_do",
-      "value": 18,
+      "value": -18,
       "unit": "度",
-      "seido_ref": "reitou-hozon.json#katei_reitouko_meyasu_ondo_do",
+      "seido_ref": "reito-hozon.json#kateiReitoukoMeyasuOndoDo",
       "status": "verified"
     },
     {
       "key": "reitou_hozon.gohan_hozon_kagetsu",
-      "value": 1,
-      "unit": "ヶ月",
-      "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.gohan",
+      "value": 4,
+      "unit": "週",
+      "seido_ref": "reito-hozon.json#items[id=gohan].periodWeeksMax",
       "status": "verified"
     }
   ],
@@ -103,7 +103,7 @@
 食品ロスを減らすために、家庭では次の順番で保存ルールを見直すとよいでしょう。
 
 1. **冷凍保存を活用する**
-   使い切れない食材や作りすぎた料理は、傷む前に冷凍庫へ移しましょう。家庭用冷凍庫の目安温度はマイナス18度です。たとえばご飯は、冷凍庫で1ヶ月を目安に食べ切ると品質を保ちやすいとされています。冷凍する際は小分けにしてラップや保存袋に入れ、日付を書いておくと管理しやすくなります。
+   使い切れない食材や作りすぎた料理は、傷む前に冷凍庫へ移しましょう。家庭用冷凍庫の目安温度はマイナス18度です。たとえばご飯は、冷凍庫で4週間を目安に食べ切ると品質を保ちやすいとされています。冷凍する際は小分けにしてラップや保存袋に入れ、日付を書いておくと管理しやすくなります。
 
 2. **食材を使い切る工夫をする**
    買い物の前に冷蔵庫・冷凍庫の中身を確認し、使い切れる量だけ購入しましょう。野菜の皮や芯なども、過剰に除去せず食べられる部分は活用すると、廃棄量を減らせます。作り置きは食べきれる分だけ作り、余った食材は別の料理に転用するのがおすすめです。
