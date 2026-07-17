@@ -87,11 +87,11 @@
 
 ## Q4: コンテンツ（Q3 と並列可）
 
-- [ ] Q4-1 (S) 記事工場ソース許可リスト差し替え＋YMYL忠実性ゲート強化（anzen-ai 側）
+- [x] Q4-1 (S) 記事工場ソース許可リスト差し替え＋YMYL忠実性ゲート強化（anzen-ai 側） → **完了**。基本設計（factory/config/source-allowlist.json 総入れ替え・facts[]機械照合ゲート・3記事型テンプレ）はfactory/README.mdの構築セッションで完了済み。**2026-07-17 最終追加**: 社長決裁により courts.go.jp・moj.go.jp・mext.go.jp の3ドメインを factory/config/source-allowlist.json と scripts/verify-seido.mjs の両方に用途注記つきで追加（PR#81）。Q4-038のブロッカー解消＋Q4-018/022の出典を実データの直接出典（mext.go.jp）に補強。
 - [x] Q4-2 (B) 制度解説記事 バッチ1 → **G2検収済（2026-07-17、40本時点で全数検収）**。修正済み: 扶養の壁2本のYMYL（106万撤廃時期・年分/特例期限ほか）、産前起算点の反転2本、tool_ref不正9件全件、8/1失効値参照2本の next_check_due 前倒し（PR#48）
-- [~] Q4-3 (B) 制度解説記事 バッチ2（随時マージ中）→ 新着分も同基準で検収（tool_ref照合は check-fidelity にゲート追加済み）
-- [ ] Q4-4 (B) 制度解説記事 バッチ3（20本）blocked-by: Q4-3 検収
-- [ ] Q4-5 (A) ツール併走記事 20本（各ツール完成後に1本ずつ）blocked-by: 対応する Q3
+- [x] Q4-3 (B) 制度解説記事 バッチ2 → **完了（2026-07-17）**: 全件gated_pass。tool_ref照合は check-fidelity にゲート追加済み
+- [x] Q4-4 (B) 制度解説記事 バッチ3（20本） → **完了（2026-07-17）**: 最後まで残っていたQ4-038（養育費の相場・裁判所算定表の読み方）を、courts.go.jp/moj.go.jpの許可リスト追加を受けて執筆・check-fidelity PASS。**factory/queue 60/60ジョブが全件gated_passに到達**（factory/queue/index.json にstatusサマリ追記）
+- [x] Q4-5 (A) ツール併走記事 20本 → **完了（2026-07-17）**: 全20ツールの併走記事カバレッジ監査を実施。既存12ツールは記事あり／2ツール（suihan-mizu・yobousesshu）は既存の制度解説記事にtool_refを紐付けて実質解消／残り6ツール（shussan-yoteibi・inunohi・getsurei・rinyushoku-ryo・shincho-yosoku・junyu-milk-ryo）にtool-narisou型記事を新規執筆。一次データがdata/seido・data/tablesの数値ノードとして未収録の項目はfacts[]をstub扱い（stub_reason明記）で正直に運用し、一次情報が許可リスト外ドメイン（例: shincho-yosokuのJ-STAGE論文）の場合もURL捏造はせず同様にstub化。check-fidelity.mjs 70/70 PASS。
 - [x] Q4-6 (B) 固定ページ → **完了（PR#49）**: /about（サイト概要・運営方針）/policy（紹介ポリシー全文）/privacy /disclaimer /contact ＋ /sources（既存）
 - [x] **Q4-7 (B) ★差し戻し★ 段取り記事5本の改稿** → **完了（2026-07-17）**: 5本とも到着済みの実データで書き替え、facts[]宣言・fidelityゲートPASS。dandori-sango-tetsuzuki-todoke-jidouteate（出生届14日以内・過料5万/10万円、児童手当15日特例・月額15,000/30,000円、出産育児一時金50万円）／dandori-sankyu-ikukyu-fukki-gyakuzan（1歳到達日締切・通勤30分基準・給付率67%→50%切替180日・社保料免除14日ルール）／dandori-youkaigo-nintei-nagare（二段階判定・認定等基準時間7区分・介護休暇5日/10日）／dandori-hokatsu-schedule-jiki・dandori-hokatsu-tejun（全国統一の申込期限データは存在しないため断定せず、育休延長がらみの1歳到達日・通勤30分・無償化上限額など実在する数値で補強。2本は時期論／手順論で役割分担し重複回避）。**★例示の「要介護認定は原則30日以内」は一次データ未収録と判明したため本文に記載せず★**（介護保険法施行規則の標準処理期間データが未整備。data/seido/への追加は別途起票）
 - [x] **Q4-8 (A) 新旧重複記事8ペアの統廃合判断** → **完了（2026-07-17）**: 8ペア中7ペアを統合、1ペア（保活）は明示的な棲み分けを選択。
