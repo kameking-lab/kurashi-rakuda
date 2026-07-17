@@ -5,7 +5,7 @@
   "summary": "2016年12月に施行された新JIS表示では、洗濯表示の記号は全41種類。検索ツールを使えば記号から意味をすぐに調べられる。",
   "type": "tool-narisou",
   "category": "家事・料理",
-  "tool_ref": "sentaku-hyouji-search",
+  "tool_ref": "sentaku-hyoji",
   "persona": "家事の時短をしたい共働き世帯",
   "revision_year": 2026,
   "sources": [

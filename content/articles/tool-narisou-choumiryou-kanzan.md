@@ -5,7 +5,7 @@
   "summary": "大さじ1杯=15ml、小さじ1杯=5mlという体積の基準と、調味料ごとに重さ（グラム数）が変わる理由（比重の違い）を、調味料換算ツールの計算根拠として解説する。",
   "type": "tool-narisou",
   "category": "家事・料理",
-  "tool_ref": "choumiryou-kanzan",
+  "tool_ref": "chomiryo-kanzan",
   "persona": "佐藤美咲（32歳・専業主婦・子ども2人）",
   "revision_year": 2026,
   "sources": [

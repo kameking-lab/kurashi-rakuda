@@ -5,7 +5,7 @@
   "summary": "家庭用冷凍庫（マイナス18度以下）での保存を前提に、ほうれん草・生の鶏肉・ご飯はいずれも1ヶ月が目安。検索ツールの数値の読み方を解説する。",
   "type": "tool-narisou",
   "category": "家事・料理",
-  "tool_ref": "reitou-hozon-search",
+  "tool_ref": "reito-hozon",
   "persona": "作り置き・時短調理をしたい親",
   "revision_year": 2026,
   "sources": [

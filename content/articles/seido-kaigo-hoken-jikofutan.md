@@ -5,7 +5,7 @@
   "summary": "介護保険サービスの利用者負担は原則1割。一定以上の所得がある人は2割、特に所得が高い人は3割になる。",
   "type": "seido-kaisetsu",
   "category": "介護",
-  "tool_ref": "kaigo-hoken-jikofutan-calc",
+  "tool_ref": "kaigo-jikofutan",
   "persona": "親の介護を控える40〜50代",
   "revision_year": 2026,
   "sources": [

@@ -4,13 +4,13 @@
   "category": "子育て",
   "type": "tool-narisou",
   "title_draft": "保育料はどう決まる？世帯年収別の計算のしくみ",
-  "tool_ref": "hoikuryou-keisan",
+  "tool_ref": "hoikuryo",
   "related_tool_list_no": 21,
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
   "priority": "S",
   "seido_data": [
     {
-      "file": "hoikuryou-keisan-kijun.json",
+      "file": "hoikuryo-kijun.json",
       "status": "stub"
     }
   ],
