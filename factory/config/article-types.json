@@ -10,7 +10,7 @@
       "required_body_headings": ["## 結論", "## 対象と金額", "## 出典・根拠"],
       "required_footer_markers": ["最終更新日", "準拠年度", "出典"],
       "min_facts": 1,
-      "notes": "金額・日数・条件の数値はすべて facts[] に宣言し、seido_ref で factory/data/seido/ の値と機械照合する。改定年度メタデータ(revision_year)必須。"
+      "notes": "金額・日数・条件の数値はすべて facts[] に宣言し、seido_ref で root data/seido/（単一ソース）の値と機械照合する。参照形式は '<ファイル>.json#data.<パス>.value'（旧 factory/data/ 形式は config/seido-ref-map.json で互換解決）。改定年度メタデータ(revision_year)必須。"
     },
     "tool-narisou": {
       "label": "ツール併走型",

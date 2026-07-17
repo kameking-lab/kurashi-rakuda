@@ -1,0 +1,26 @@
+{
+  "$comment": "Lighthouse CI バジェット（docs/04 UI十原則: LCP 2.0s以内・CLSほぼゼロ・Performance/Accessibility 90以上）。LCP のエラー閾値は CI 環境の揺らぎを考慮して 2500ms（Google の good 境界）とし、実測 2.0s 以内の維持は VPS 自律改善エンジンの定点観測（Q5-2）で追う。",
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run start",
+      "startServerReadyPattern": "Ready",
+      "url": [
+        "http://localhost:3000/",
+        "http://localhost:3000/tools",
+        "http://localhost:3000/tools/kaji/chomiryo-kanzan"
+      ],
+      "numberOfRuns": 3
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.9 }],
+        "categories:accessibility": ["error", { "minScore": 0.9 }],
+        "categories:best-practices": ["error", { "minScore": 0.9 }],
+        "categories:seo": ["warn", { "minScore": 0.9 }],
+        "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.05 }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 300 }]
+      }
+    }
+  }
+}

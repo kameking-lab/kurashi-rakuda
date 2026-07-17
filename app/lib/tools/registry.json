@@ -12,9 +12,18 @@
       "安定期がいつからか知りたい"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "日本産科婦人科学会 産科婦人科用語集・用語解説集",
+        "url": "https://www.jsog.or.jp/medical/447/"
+      },
+      {
+        "label": "公益社団法人 日本産科婦人科学会",
+        "url": "https://www.jsog.or.jp/"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-02",
@@ -28,9 +37,22 @@
       "帯祝いの時期が分からない"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "国立天文台暦計算室「暦Wiki/干支」「暦Wiki/十二支」",
+        "url": "https://eco.mtk.nao.ac.jp/koyomi/wiki/"
+      },
+      {
+        "label": "2026年（令和8年）戌の日カレンダー（社寺・出産準備専門店公開情報、実在日検証用）",
+        "url": "https://www.mikaduki.co.jp/inu-no-hi/"
+      },
+      {
+        "label": "日本産科婦人科学会（妊娠期間の基本日数・ネーゲレ概算法、ツール1と共通の出典）",
+        "url": "https://www.jsog.or.jp/"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-03",
@@ -44,9 +66,12 @@
       "生理周期の平均を計算したい"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      { "label": "日本産科婦人科学会", "url": "https://www.jsog.or.jp/" },
+      { "label": "日本家族計画協会", "url": "https://www.jfpa.or.jp/" }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-04",
@@ -79,9 +104,18 @@
       "生後100日目がいつか知りたい"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "specs/b-tools/17-age-in-months-calculator.md（月齢計算 ロジック仕様）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/17-age-in-months-calculator.md"
+      },
+      {
+        "label": "グレゴリオ暦のうるう年規則（国立天文台 暦計算室）",
+        "url": "https://eco.mtk.nao.ac.jp/koyomi/faq/urudosi.html"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-06",
@@ -127,9 +161,26 @@
       "第3子加算の数え方が分からない"
     ],
     "basisYear": "2026年度",
-    "sources": [],
+    "sources": [
+      {
+        "label": "児童手当制度のご案内（こども家庭庁）",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/"
+      },
+      {
+        "label": "児童手当Q&A（一般）（こども家庭庁）",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan"
+      },
+      {
+        "label": "もっと子育て応援！児童手当（令和6年10月分からの拡充）（こども家庭庁）",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/mottoouen"
+      },
+      {
+        "label": "児童手当法（昭和四十六年法律第七十三号）（e-Gov法令検索）",
+        "url": "https://laws.e-gov.go.jp/law/346AC0000000073"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-09",
