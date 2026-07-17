@@ -71,6 +71,11 @@ const ALLOWED_HOSTS = [
   'www.kaigokensaku.mhlw.go.jp',
   'www.hellowork.mhlw.go.jp',
   'jsite.mhlw.go.jp',
+  // ↓2026-07-17 社長決裁で追加した3ドメイン。各団体が自ら策定する基準の出典に限定して使う。
+  'www.jasso.or.jp', // 日本肥満学会。肥満度分類（同学会が策定主体）のみ
+  'www.jcia.org', // 日本化粧品工業会。SPF/PA測定・表示基準（同会が策定主体）のみ
+  'w-health.jp', // 厚生労働省研究班「女性の健康推進室 ヘルスケアラボ」（厚労省事業サイト・非go.jpドメイン）
+  'www.w-health.jp',
 ];
 const ALLOWED_HOST_SUFFIXES = ['.lg.jp', '.go.jp'];
 /**
