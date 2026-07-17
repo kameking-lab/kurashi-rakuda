@@ -1,0 +1,440 @@
+/**
+ * 保育料計算 全国版 の計算ロジック（specs/s-tools/01-hoikuryo-keisan.md）。
+ *
+ * すべての制度数値は data/seido/hoikuryo/<pref>-<city>.json から読む。ここに数値を書かない。
+ * （唯一の例外は「0」「1」のような算術・境界判定上の定数）
+ *
+ * ★このツールの3つの正常系★（仕様書 §1.1）
+ *   ① 階層表から金額が出る（横浜・大阪〜R8/8・札幌・福岡・川崎・名古屋）
+ *   ② 無償のため0円（東京23区6区、大阪 R8/9〜）
+ *   ③ データ未収集・未確認 → 金額を出さず確認先を案内
+ *
+ * ★設計の柱★
+ *   - A/B/C階層は所得割額0円で判別不能。isWelfare/isNonTaxable と課税状況を先に見る（§4 ステップ3）
+ *   - 階層表がある前提にしない（練馬は1行、東京23区は全階層0円、大阪はR8/9〜 tiers 参照禁止）
+ *   - 所得割額の前処理（6/8換算等）は自治体ごとに全く違い、構造化データが無い。
+ *     推測で換算せず、bracketBasis.note の原文を提示して「前処理後の額」を入力させる（§9.1）
+ */
+
+import aichiNagoya from "@/data/seido/hoikuryo/aichi-nagoya.json";
+import fukuokaFukuoka from "@/data/seido/hoikuryo/fukuoka-fukuoka.json";
+import hokkaidoSapporo from "@/data/seido/hoikuryo/hokkaido-sapporo.json";
+import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
+import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
+import osakaOsaka from "@/data/seido/hoikuryo/osaka-osaka.json";
+import tokyoAdachi from "@/data/seido/hoikuryo/tokyo-adachi.json";
+import tokyoEdogawa from "@/data/seido/hoikuryo/tokyo-edogawa.json";
+import tokyoNerima from "@/data/seido/hoikuryo/tokyo-nerima.json";
+import tokyoOta from "@/data/seido/hoikuryo/tokyo-ota.json";
+import tokyoSetagaya from "@/data/seido/hoikuryo/tokyo-setagaya.json";
+import tokyoSuginami from "@/data/seido/hoikuryo/tokyo-suginami.json";
+import type { SeidoAmendment, SeidoDataset, SeidoSource } from "@/lib/tools/seido";
+
+// ---------------------------------------------------------------- 型
+
+export type AgeKey = "under3" | "age3plus";
+export type CareNeed = "standard" | "short";
+
+/**
+ * 世帯の課税状況。★所得割額より先に聞く★（§4 ステップ3）
+ * A/B/C階層はいずれも所得割額0円のため、金額では判別できない。
+ */
+export type TaxStatus = "welfare" | "nonTaxable" | "equalOnly" | "incomeTaxed";
+
+export interface TierFees {
+  standard?: number;
+  short?: number;
+}
+
+export interface HoikuryoTier {
+  /** 自治体表記の階層名（"Ａ階層" は全角、"第8(8A)" 等）。tier 名で機械分岐しない（§9.2-13） */
+  tier: string;
+  label?: string;
+  /** 所得割額の下限（円）。この値を含む（以上） */
+  incomeMin: number;
+  /** 所得割額の上限（円）。この値を含まない（未満）。最上位は null */
+  incomeMax: number | null;
+  isNonTaxable?: boolean;
+  isWelfare?: boolean;
+  fees: { under3?: TierFees; age3plus?: TierFees };
+}
+
+export interface HoikuryoValueNode {
+  value?: unknown;
+  unit?: string;
+  label?: string;
+  sourceId?: string;
+  note?: string;
+}
+
+export interface HoikuryoMunicipality {
+  id: string;
+  name: string;
+  municipalityCode: string;
+  prefecture: string;
+  municipalityType?: string;
+  fiscalYear: number;
+  asOf: string;
+  sources: SeidoSource[];
+  amendments?: SeidoAmendment[];
+  disclaimer: string;
+  scope: { includes: string[]; excludes: string[] };
+  bracketBasis: {
+    basis: string;
+    householdScope?: string;
+    taxYearRule: string;
+    deductionsIgnored?: string[];
+    note: string;
+  };
+  ageClasses?: { key: AgeKey; label: string; rule?: string }[];
+  freeTuition?: {
+    age3plusFree?: HoikuryoValueNode;
+    under3NonTaxableFree?: HoikuryoValueNode;
+    multiChildPolicy?: {
+      countingRule?: HoikuryoValueNode;
+      secondChild?: HoikuryoValueNode;
+      thirdChildOnwards?: HoikuryoValueNode;
+    };
+    localExtension?: string;
+  };
+  tiers: HoikuryoTier[];
+}
+
+// ---------------------------------------------------------------- 自治体データ
+
+/**
+ * 収集済み自治体（2026-07-17時点で12件）。
+ * ★選択肢はこの配列からのみ生成する★ 未収集自治体の階層を創作しない（§7）。
+ */
+export const municipalities: HoikuryoMunicipality[] = [
+  hokkaidoSapporo,
+  tokyoSetagaya,
+  tokyoNerima,
+  tokyoOta,
+  tokyoEdogawa,
+  tokyoAdachi,
+  tokyoSuginami,
+  kanagawaYokohama,
+  kanagawaKawasaki,
+  aichiNagoya,
+  osakaOsaka,
+  fukuokaFukuoka,
+] as unknown as HoikuryoMunicipality[];
+
+export function getMunicipality(id: string): HoikuryoMunicipality | undefined {
+  return municipalities.find((m) => m.id === id);
+}
+
+/**
+ * 自治体データを共通の制度データ層（lib/tools/seido.ts）の型に変換する。
+ * SeidoNotice に渡して準拠年度・次回改定予定・免責をデータ駆動で表示させるため。
+ */
+export function toSeidoDataset(m: HoikuryoMunicipality): SeidoDataset {
+  return {
+    id: m.id,
+    name: `${m.name}の保育料（認可保育所）`,
+    fiscalYear: m.fiscalYear,
+    asOf: m.asOf,
+    sources: m.sources,
+    amendments: m.amendments,
+    disclaimer: m.disclaimer,
+    data: m,
+  };
+}
+
+// ---------------------------------------------------------------- 年度・日付
+
+/** 年月（YYYY-MM）が属する日本の年度。4月始まり */
+export function fiscalYearOf(month: string): number {
+  const [y, mo] = month.split("-").map(Number);
+  return mo >= 4 ? y : y - 1;
+}
+
+/**
+ * データの年度が試算対象月の年度と違うか（§4 ステップ0）。
+ * 名古屋市は fiscalYear:2025（令和8年度版が未公表）のため、令和8年度の試算では必ず true。
+ */
+export function isFiscalYearMismatch(m: HoikuryoMunicipality, month: string): boolean {
+  return m.fiscalYear !== fiscalYearOf(month);
+}
+
+/** 施行日未定・確定版でない等、ユーザーに伝えるべき「未確定」の改正（§7） */
+export function underReviewAmendments(m: HoikuryoMunicipality): SeidoAmendment[] {
+  return (m.amendments ?? []).filter((a) => a.status === "under-review");
+}
+
+/**
+ * 試算対象月の時点で「階層表を参照せず一律0円」になる改正を返す（§4 ステップ1）。
+ *
+ * ★大阪市★ amendments[0] は effectiveFrom:"2026-09-01"、impact に
+ * 「ツールで令和8年9月以降の月を試算する場合は tiers を参照せず一律0円を返すこと」と明記。
+ * 判定はこの impact の記述（一律0円）に依拠する。データ側にこの意味を持つ構造化フィールドが
+ * 無いため、原文の指示を読む形をとっている（データが変わったらここも見直す）。
+ */
+export function fullFreeAmendment(
+  m: HoikuryoMunicipality,
+  month: string,
+): SeidoAmendment | null {
+  for (const a of m.amendments ?? []) {
+    if (a.status !== "scheduled" || !a.effectiveFrom) continue;
+    if (!(a.impact ?? "").includes("一律0円")) continue;
+    // 対象月の初日が施行日以降なら適用
+    if (`${month}-01` >= a.effectiveFrom) return a;
+  }
+  return null;
+}
+
+/** 対象月より後に控えている「一律0円」の改正（まだ効いていないが予告する） */
+export function upcomingFullFreeAmendment(
+  m: HoikuryoMunicipality,
+  month: string,
+): SeidoAmendment | null {
+  for (const a of m.amendments ?? []) {
+    if (a.status !== "scheduled" || !a.effectiveFrom) continue;
+    if (!(a.impact ?? "").includes("一律0円")) continue;
+    if (`${month}-01` < a.effectiveFrom) return a;
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------- 階層の解決
+
+/** A・B（生活保護・非課税）のフラグが立っていない階層 */
+function generalTiers(m: HoikuryoMunicipality): HoikuryoTier[] {
+  return m.tiers.filter((t) => !t.isWelfare && !t.isNonTaxable);
+}
+
+/**
+ * 「均等割のみ課税（所得割額0円）」に対応する階層（§4 ステップ3）。
+ *
+ * ★incomeMax の表現が自治体間で不統一★（横浜=1／札幌=48600／川崎=1 …）なので、
+ * 上限値では判別しない。A・B のフラグが立っていない階層のうち、
+ * 所得割額0円を含む（incomeMin === 0）最初のものを採る。tiers は原典の階層順。
+ *
+ * これで札幌の例外（「所得割が非課税で均等割のみ課税の世帯はＣ階層」＝ C1 11,000円）も
+ * 特別扱いなしに解決できる。世田谷のように該当階層が無い自治体では null を返す。
+ */
+export function resolveEqualOnlyTier(m: HoikuryoMunicipality): HoikuryoTier | null {
+  return generalTiers(m).find((t) => t.incomeMin === 0) ?? null;
+}
+
+/**
+ * 所得割額で分かれる階層の候補。
+ * 「均等割のみ」専用の目印（0以上1未満＝所得割0円ちょうど）は除く。
+ */
+function incomeTierCandidates(m: HoikuryoMunicipality): HoikuryoTier[] {
+  return generalTiers(m).filter((t) => !(t.incomeMin === 0 && t.incomeMax === 1));
+}
+
+/**
+ * 所得割額の入力に意味があるか。
+ * 候補が1つしかない自治体（練馬＝全階層1行／足立＝D階層の境界が未公表）では、
+ * 所得割額を聞いても階層は動かない。→ 上級者モード（所得割額の直接入力）を開かない（§7）。
+ */
+export function isIncomeInputUseful(m: HoikuryoMunicipality): boolean {
+  return incomeTierCandidates(m).length >= 2;
+}
+
+export type TierResolution =
+  | { tier: HoikuryoTier; reason: null }
+  | { tier: null; reason: "needIncome" | "noMatch" | "noTierForStatus" };
+
+/**
+ * 課税状況（と必要なら前処理後の所得割額）から階層を決める。
+ * ★所得割額より先に課税状況を見る★（§4 ステップ3、§9.2-2）
+ *
+ * income は「前処理後」の市町村民税所得割額。前処理（6/8換算等）は自治体ごとに違い、
+ * 構造化データが無いためツールでは行わない（§9.1、UI が bracketBasis.note を提示する）。
+ */
+export function resolveTier(
+  m: HoikuryoMunicipality,
+  taxStatus: TaxStatus,
+  income: number | null,
+): TierResolution {
+  if (taxStatus === "welfare") {
+    const t = m.tiers.find((x) => x.isWelfare === true);
+    return t ? { tier: t, reason: null } : { tier: null, reason: "noTierForStatus" };
+  }
+  if (taxStatus === "nonTaxable") {
+    const t = m.tiers.find((x) => x.isNonTaxable === true);
+    return t ? { tier: t, reason: null } : { tier: null, reason: "noTierForStatus" };
+  }
+  if (taxStatus === "equalOnly") {
+    const t = resolveEqualOnlyTier(m);
+    return t ? { tier: t, reason: null } : { tier: null, reason: "noTierForStatus" };
+  }
+
+  // incomeTaxed
+  const candidates = incomeTierCandidates(m);
+  if (income === null) {
+    // 階層が1つしかないなら所得割額を聞かなくても決まる（練馬・足立）
+    if (candidates.length === 1) return { tier: candidates[0], reason: null };
+    return { tier: null, reason: "needIncome" };
+  }
+  // 所得割が課税されている世帯の所得割額は1円以上。0円なら「均等割のみ」を選ぶべき
+  if (income < 1) return { tier: null, reason: "noMatch" };
+
+  const t = generalTiers(m).find(
+    (x) => income >= x.incomeMin && (x.incomeMax === null || income < x.incomeMax),
+  );
+  return t ? { tier: t, reason: null } : { tier: null, reason: "noMatch" };
+}
+
+// ---------------------------------------------------------------- 金額
+
+/** 階層・年齢区分・保育必要量から月額を取る。fees は optional（§9.2-11） */
+export function feeOf(tier: HoikuryoTier, age: AgeKey, need: CareNeed): number | null {
+  return tier.fees[age]?.[need] ?? null;
+}
+
+/**
+ * その年齢区分・保育必要量では全階層が0円か。
+ * 全額無償の自治体（東京23区6区）は階層を特定できなくても0円と答えられる。
+ * 「階層は分からないが金額は0円」を正しく切り分けるための判定（足立・世田谷）。
+ */
+export function isAllZero(m: HoikuryoMunicipality, age: AgeKey, need: CareNeed): boolean {
+  const fees = m.tiers.map((t) => feeOf(t, age, need));
+  return fees.length > 0 && fees.every((f) => f === 0);
+}
+
+/** 3歳以上児が無償か（§4 ステップ2）。ハードコードせず必ず値を読む */
+export function isAge3plusFree(m: HoikuryoMunicipality): boolean {
+  return m.freeTuition?.age3plusFree?.value === true;
+}
+
+// ---------------------------------------------------------------- 多子・ひとり親
+
+export type MultiChildKind = "free" | "described" | "none";
+
+export interface MultiChildInfo {
+  kind: MultiChildKind;
+  /** 「第2子以降0円」と明示されている自治体のみ true */
+  isFree: boolean;
+  /** 原典の記述（value が数値でない自治体は文章、川崎は 0.5 rate） */
+  secondChild?: HoikuryoValueNode;
+  countingRule?: HoikuryoValueNode;
+}
+
+/**
+ * 第2子以降の扱い（§4 ステップ7）。
+ * ★金額を自動計算しない★ 数え方も軽減方式も自治体ごとに違う（§2.2）。
+ * secondChild.value の型が混在する（number 0／number 0.5＋unit:"rate"／長文 string）ため
+ * typeof で分岐する（§9.2-12）。
+ */
+export function multiChildInfo(m: HoikuryoMunicipality, birthOrder: number): MultiChildInfo {
+  const policy = m.freeTuition?.multiChildPolicy;
+  if (birthOrder < 2 || !policy) return { kind: "none", isFree: false };
+
+  const second = policy.secondChild;
+  const isFree = typeof second?.value === "number" && second.value === 0;
+  return {
+    kind: isFree ? "free" : "described",
+    isFree,
+    secondChild: second,
+    countingRule: policy.countingRule,
+  };
+}
+
+// ---------------------------------------------------------------- 総合結果
+
+export interface HoikuryoInput {
+  municipalityId: string;
+  /** 試算対象月（YYYY-MM） */
+  month: string;
+  age: AgeKey;
+  need: CareNeed;
+  taxStatus: TaxStatus;
+  /** 前処理後の市町村民税所得割額（上級者モード）。未入力は null */
+  income: number | null;
+  /** この子は上から何番目か */
+  birthOrder: number;
+  /** ひとり親世帯・在宅障害者等に該当するか */
+  isSingleParentOrDisability: boolean;
+}
+
+export type FeeBasis =
+  | "amendmentFullFree" // 施行日以降の全員無償化（大阪 R8/9〜）
+  | "age3plusFree" // 3歳以上児の無償化
+  | "tier" // 階層表から取得
+  | "allZeroFallback" // 階層は特定できないが全階層0円
+  | "unknown"; // 金額を出さない
+
+export interface HoikuryoResult {
+  municipality: HoikuryoMunicipality;
+  /** 月額（円）。null は「答えを出さない」（§7） */
+  fee: number | null;
+  basis: FeeBasis;
+  tier: HoikuryoTier | null;
+  /** 階層を特定できなかった理由 */
+  tierIssue: TierResolution["reason"];
+  /** 施行済みの全員無償化（大阪 R8/9〜） */
+  fullFree: SeidoAmendment | null;
+  /** これから来る全員無償化（予告） */
+  upcomingFullFree: SeidoAmendment | null;
+  /** データの年度が試算対象月の年度と違う（名古屋） */
+  fiscalYearMismatch: boolean;
+  underReview: SeidoAmendment[];
+  multiChild: MultiChildInfo;
+  /** 所得割額の直接入力を提供してよいか（練馬・足立は false） */
+  incomeInputUseful: boolean;
+}
+
+/**
+ * 保育料の試算。仕様書 §4 のステップ0〜7 の順序をそのまま実装している。
+ * 金額を出せないときは fee=null を返す。最寄りの階層に丸めない（§7）。
+ */
+export function calc(input: HoikuryoInput): HoikuryoResult | null {
+  const m = getMunicipality(input.municipalityId);
+  if (!m) return null;
+
+  const base = {
+    municipality: m,
+    fiscalYearMismatch: isFiscalYearMismatch(m, input.month),
+    underReview: underReviewAmendments(m),
+    multiChild: multiChildInfo(m, input.birthOrder),
+    incomeInputUseful: isIncomeInputUseful(m),
+    upcomingFullFree: upcomingFullFreeAmendment(m, input.month),
+  };
+
+  // ステップ1: 施行日による分岐（大阪 R8/9〜は tiers を参照しない）
+  const fullFree = fullFreeAmendment(m, input.month);
+  if (fullFree) {
+    return {
+      ...base,
+      fee: 0,
+      basis: "amendmentFullFree",
+      tier: null,
+      tierIssue: null,
+      fullFree,
+    };
+  }
+
+  // ステップ2: 年齢区分による分岐
+  if (input.age === "age3plus" && isAge3plusFree(m)) {
+    return { ...base, fee: 0, basis: "age3plusFree", tier: null, tierIssue: null, fullFree: null };
+  }
+
+  // ステップ3〜6: 課税状況 → 階層 → 金額
+  const res = resolveTier(m, input.taxStatus, input.income);
+  if (res.tier) {
+    const fee = feeOf(res.tier, input.age, input.need);
+    if (fee !== null) {
+      return { ...base, fee, basis: "tier", tier: res.tier, tierIssue: null, fullFree: null };
+    }
+    return { ...base, fee: null, basis: "unknown", tier: res.tier, tierIssue: null, fullFree: null };
+  }
+
+  // 階層は特定できないが、その区分は全階層0円 → 0円と答えてよい（東京23区）
+  if (isAllZero(m, input.age, input.need)) {
+    return {
+      ...base,
+      fee: 0,
+      basis: "allZeroFallback",
+      tier: null,
+      tierIssue: res.reason,
+      fullFree: null,
+    };
+  }
+
+  return { ...base, fee: null, basis: "unknown", tier: null, tierIssue: res.reason, fullFree: null };
+}
