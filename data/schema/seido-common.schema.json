@@ -4,7 +4,7 @@
   "title": "制度データ共通スキーマ",
   "description": "data/seido/ 配下の全制度データが従う共通構造。全ての数値ノードは sourceId・checkedAt を持ち、scripts/verify-seido.mjs が出典ページと機械照合できる形を強制する。",
   "type": "object",
-  "required": ["id", "name", "fiscalYear", "asOf", "sources", "disclaimer", "data"],
+  "required": ["id", "name", "fiscalYear", "asOf", "nextCheckDue", "sources", "disclaimer", "data"],
   "additionalProperties": false,
   "properties": {
     "$schema": { "type": "string" },
@@ -23,6 +23,11 @@
       "type": "string",
       "format": "date",
       "description": "このデータセット全体の基準日。この日時点で有効な制度内容を表す。"
+    },
+    "nextCheckDue": {
+      "type": "string",
+      "format": "date",
+      "description": "次回再確認日（P2-I01 データ鮮度の定期監査）。expiresOn=確定失効とは別の「改正が無くても定期的に一次情報と突き合わせる」日付。年度データは原則、翌年度の4月1日。verify-seido.mjs が超過でエラー・30日前で警告し、日次CIが起票する。再確認したら checkedAt/asOf の更新とセットで次回日付に進める。"
     },
     "sources": {
       "type": "array",

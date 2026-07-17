@@ -172,7 +172,7 @@
 | P2-T14 | #5 | 妊婦健診スケジュール生成 | B(ソネット) | ✔ninshin-kenshin-jyosei・sanpu-kenshin-jyosei | 簡易 |
 | P2-T15 | #6 | 妊娠中の体重増加チェッカー | B(ソネット) | 要: 妊娠中の体重増加指導の目安（厚労省/学会） | 要（YMYL中） |
 | P2-T16 | #7 | 出産準備チェックリスト（予定日逆算） | B(ソネット) | なし（日付演算＋自前リスト） | 簡易 |
-| P2-T17 | #10 | 陣痛間隔カウンター（オフライン必須） | B(ソネット) | なし | 簡易 |
+| [x] P2-T17 | #10 | 陣痛間隔カウンター（オフライン必須） | B(ソネット) | なし | 簡易 → **完了（slug: jintsuu-kankaku-counter, 2026-07-17）**: localStorage永続化・平均間隔/持続時間・出典はncchd.go.jp（国立成育医療研究センター） |
 | P2-T18 | #11 | 産後手続きリスト生成（期限つき） | B(ソネット) | ✔shussho-todoke-kigen・jido-teate・ikukyu-kyufu | 簡易 |
 | [x] P2-T19 | #27 | 幼児教育・保育無償化 対象チェッカー | B(ソネット) | ✔youji-kyouiku-mushouka | 簡易 → **完了（feat/tool-youji-mushouka-checker）**: slug `youji-mushouka-checker`（childcare）。specs/b-tools/p2-t19-youji-mushouka-checker.md・YoujiMushoukaChecker.calc.ts/tsx・tests/youji-mushouka-checker.test.ts（18件）・registry.json 追加済み |
 | P2-T20 | #28 | 学童・小1の壁 段取りチェック | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
@@ -201,11 +201,11 @@
 
 ### P2データ・インフラ（P2-D／P2-I）
 
-- [ ] **P2-I01 (S) ★データ鮮度の定期監査★**（陳腐化がゲートをすり抜ける問題への恒久対応。D2=洗濯表示の教訓: 期限が既に経過した改正を誰も監視していなかった）
-  - ①data/seido 全ファイルに `nextCheckDue`（次回再確認日）を必須化し、verify-seido.mjs の構造検査に「超過でエラー・30日前で警告」を追加（expiresOn=確定失効 と nextCheckDue=定期再確認 の二本立て）
-  - ②data/tables にもメタ（nextCheckDue・出典）を義務化（現状は verify-seido の監視外＝D2型の死角）
-  - ③記事 front-matter の `next_check_due` 超過を日次CI（verify-seido.yml）が検出して **Issue 自動起票**（現状は次回チェック日が形骸化しうる）
-  - ④起票された Issue の消化手順（再確認→checkedAt更新 or 値差し替え）を docs/10 に追記
+- [x] **P2-I01 (S) ★データ鮮度の定期監査★**（陳腐化がゲートをすり抜ける問題への恒久対応。D2=洗濯表示の教訓: 期限が既に経過した改正を誰も監視していなかった）**→ 2026-07-17 完了**
+  - ①✔ data/seido 全76ファイルに `nextCheckDue` を必須化（スキーマ2本＋全ファイル付与。年度データは翌年度4/1、下限は作業日+90日）。verify-seido.mjs の構造検査に「欠落・超過でエラー・30日前で警告」を追加
+  - ②✔ data/tables のメタ（nextCheckDue/next_check_due・出典・確認日）を `scripts/check-freshness.mjs` が義務化（camel/snake 両表記対応。19ファイル現状充足）
+  - ③✔ 記事 front-matter の `next_check_due` を全70本に義務化（dandori 9本に付与）し、日次CI（verify-seido.yml の freshness ジョブ）が超過を検出して **Issue 自動起票**（label: freshness-audit。同日の検出は1本に集約し、open があればコメント追記＝1日1Issue）
+  - ④✔ 消化手順を docs/10 付記2 に追記
 - [ ] P2-D01 (A) 保育料 残り自治体の収集継続（オーパス並行中: [queue/hoikuryo-backlog.md](queue/hoikuryo-backlog.md) §1）→ プログラマティックSEO「保育料 政令市/中核市62p」の前提
 - [x] **P2-D02 (A) 協会けんぽ料額表（標準報酬等級・都道府県別料率）** → **完了（2026-07-17）**: `data/seido/kyoukaikenpo-hokenryo.json` を新設。47都道府県の健康保険料率（令和8年3月分〜）・標準報酬月額等級表（健保50等級／厚年32等級）・厚生年金18.300%・介護1.62%・★子ども・子育て支援金0.23%（令和8年4月分〜の新規負担）★・端数処理・賞与上限・任意継続上限を収録。`verify-seido.mjs --fetch` で110文字列を照合しエラー0。
   - **★47件を二重照合済み★**: 料率ページ（HTML・全角数値）から機械抽出した47件と、各都道府県の料額表PDFヘッダーの印字料率を突き合わせ**不一致0件**。等級表50行が**47支部すべてで完全一致**することも実測（＝全国一律であることを推測でなく確認）
