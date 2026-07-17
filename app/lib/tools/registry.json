@@ -1464,5 +1464,35 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T29",
+    "slug": "yosan-haibun-keisan",
+    "category": "money",
+    "title": "手取りからの予算配分計算（費目テンプレ）",
+    "description": "世帯人員数と手取り月収を入れると、総務省統計局「家計調査」の費目別支出構成比（全国平均）に基づいて、食費・住居費・水道光熱費など10費目にどれくらい配分するのが平均的かの目安金額を表示します。",
+    "solves": [
+      "手取り収入をどう振り分ければいいか目安が分からない",
+      "家賃や食費が世間の平均と比べて多いのか少ないのか分からない",
+      "費目ごとの支出バランスを統計データで確認したい",
+      "家計の予算配分を根拠のある統計値で知りたい"
+    ],
+    "basisYear": "2025年（令和7年）平均",
+    "sources": [
+      {
+        "label": "総務省統計局「家計調査（家計収支編） 調査結果」",
+        "url": "https://www.stat.go.jp/data/kakei/2.html"
+      },
+      {
+        "label": "総務省統計局「家計調査報告 ―月・四半期・年―」2025年（令和7年）平均（2026年2月6日公表）",
+        "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/index.html#nen"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/tables/yosan-haibun-hiritsu.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/tables/yosan-haibun-hiritsu.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]

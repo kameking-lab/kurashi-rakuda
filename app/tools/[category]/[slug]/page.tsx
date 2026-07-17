@@ -78,6 +78,7 @@ import {
 } from "@/components/tools/impl/GakudouKabeDandoriCheck.calc";
 import { SangoTetsuzukiChecklist } from "@/components/tools/impl/SangoTetsuzukiChecklist";
 import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
+import { YosanHaibunKeisan } from "@/components/tools/impl/YosanHaibunKeisan";
 import { RecipeNinzuuKansan } from "@/components/tools/impl/RecipeNinzuuKansan";
 import { HoikuenOmukaeGyakusan } from "@/components/tools/impl/HoikuenOmukaeGyakusan";
 import { HOIKUEN_OMUKAE_DISCLAIMER } from "@/components/tools/impl/HoikuenOmukaeGyakusan.calc";
@@ -1333,6 +1334,33 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
             表示される金額はあくまで全国平均の統計値であり、個々の家庭にとっての「正しい」食費や目標額を示すものではありません。
           </strong>
           地域・家族の年齢構成・自炊の頻度・物価の変動などによって、実際の食費は大きく異なります。次回の「◯◯年平均」の公表時期に合わせてデータを更新します。
+        </p>
+      </>
+    ),
+  },
+  "yosan-haibun-keisan": {
+    ui: <YosanHaibunKeisan />,
+    formula: (
+      <>
+        <p>
+          <strong>出典と集計区分</strong>
+          ：総務省統計局「家計調査（家計収支編）」2025年（令和7年）平均（2026年2月6日公表）の、
+          世帯人員別・費目別（10大費目）の実額をもとにした構成比を使用しています。世帯人員区分は「食費の目安計算」（食料の目安）と同じ区分（単身世帯・2人〜5人・6人以上（二人以上の世帯））で、
+          「6人以上」区分は総務省統計局の集計上の最大区分（実際の平均世帯人員は6.3人）です。7人・10人など6人を超える人数を入力しても、按分・推計はせず同じ「6人以上」区分の構成比をそのまま使います。
+        </p>
+        <p>
+          <strong>計算方法</strong>
+          ：各費目（食料・住居・光熱水道・家具家事用品・被服及び履物・保健医療・交通通信・教育・教養娯楽・その他の消費支出）の実額を、その世帯人員区分の消費支出合計で割った割合（構成比）を求め、入力していただいた手取り月収にその構成比をそのまま掛けて目安金額を計算しています。費目ごとに個別に四捨五入しているため、10費目の合計額は入力した手取り月収と数円程度ずれることがあります。
+        </p>
+        <p>
+          <strong>「消費支出」と「手取り収入」は別の概念です</strong>
+          ：家計調査の「消費支出」は、実際に使われた生活費の平均額であり、貯蓄に回した分は含まれていません。本ツールはこの消費支出の費目別構成比を、入力された手取り月収にそのまま当てはめて按分する簡易な計算方法を採っており、構成比のもとになった世帯の実際の貯蓄率や可処分所得の水準とは無関係に計算しています。
+        </p>
+        <p>
+          <strong>
+            表示される金額はあくまで全国平均の統計上の構成比を機械的に当てはめた目安であり、あなたの家庭が従うべき配分を示すものではありません。
+          </strong>
+          地域・住居費（持家か賃貸か）・家族の年齢構成・生活スタイルなどによって、実際に望ましい配分は大きく異なります。次回の「◯◯年平均」の公表時期に合わせてデータを更新します。
         </p>
       </>
     ),
