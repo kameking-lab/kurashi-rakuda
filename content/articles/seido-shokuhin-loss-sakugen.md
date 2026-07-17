@@ -7,19 +7,74 @@
   "category": "家事・料理",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "食品を無駄にしない保存方法が分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.caa.go.jp/notice/entry/046549/", "title": "食品ロス量（令和6年度推計値）の公表について", "org": "消費者庁", "accessed": "2026-07-17" },
-    { "url": "https://www.caa.go.jp/policies/policy/consumer_safety/child/food_safety/", "title": "家庭での食品の冷凍保存の目安", "org": "消費者庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.caa.go.jp/notice/entry/046549/",
+      "title": "食品ロス量（令和6年度推計値）の公表について",
+      "org": "消費者庁",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.caa.go.jp/policies/policy/consumer_safety/child/food_safety/",
+      "title": "家庭での食品の冷凍保存の目安",
+      "org": "消費者庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "shokuhin_loss.nenkan_soryou_manton", "value": 461, "unit": "万トン", "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#nenkan_shokuhin_loss_ryou_mantonn", "status": "verified" },
-    { "key": "shokuhin_loss.katei_kei_ryou_manton", "value": 224, "unit": "万トン", "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#katei_kei_shokuhin_loss_ryou_mantonn", "status": "verified" },
-    { "key": "shokuhin_loss.jigyou_kei_ryou_manton", "value": 237, "unit": "万トン", "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#jigyou_kei_shokuhin_loss_ryou_mantonn", "status": "verified" },
-    { "key": "shokuhin_loss.katei_kei_wariai", "value": 48.6, "unit": "%", "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#katei_kei_wariai_percent", "status": "verified" },
-    { "key": "shokuhin_loss.kokumin_1nin_1nichi_g", "value": 102, "unit": "g", "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#kokumin_1nin_1nichi_ryou_g", "status": "verified" },
-    { "key": "reitou_hozon.reitouko_meyasu_ondo_do", "value": 18, "unit": "度", "seido_ref": "reitou-hozon.json#katei_reitouko_meyasu_ondo_do", "status": "verified" },
-    { "key": "reitou_hozon.gohan_hozon_kagetsu", "value": 1, "unit": "ヶ月", "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.gohan", "status": "verified" }
+    {
+      "key": "shokuhin_loss.nenkan_soryou_manton",
+      "value": 461,
+      "unit": "万トン",
+      "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#nenkan_shokuhin_loss_ryou_mantonn",
+      "status": "verified"
+    },
+    {
+      "key": "shokuhin_loss.katei_kei_ryou_manton",
+      "value": 224,
+      "unit": "万トン",
+      "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#katei_kei_shokuhin_loss_ryou_mantonn",
+      "status": "verified"
+    },
+    {
+      "key": "shokuhin_loss.jigyou_kei_ryou_manton",
+      "value": 237,
+      "unit": "万トン",
+      "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#jigyou_kei_shokuhin_loss_ryou_mantonn",
+      "status": "verified"
+    },
+    {
+      "key": "shokuhin_loss.katei_kei_wariai",
+      "value": 48.6,
+      "unit": "%",
+      "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#katei_kei_wariai_percent",
+      "status": "verified"
+    },
+    {
+      "key": "shokuhin_loss.kokumin_1nin_1nichi_g",
+      "value": 102,
+      "unit": "g",
+      "seido_ref": "shokuhin-loss-sakugen-gaidorain.json#kokumin_1nin_1nichi_ryou_g",
+      "status": "verified"
+    },
+    {
+      "key": "reitou_hozon.reitouko_meyasu_ondo_do",
+      "value": 18,
+      "unit": "度",
+      "seido_ref": "reitou-hozon.json#katei_reitouko_meyasu_ondo_do",
+      "status": "verified"
+    },
+    {
+      "key": "reitou_hozon.gohan_hozon_kagetsu",
+      "value": 1,
+      "unit": "ヶ月",
+      "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.gohan",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

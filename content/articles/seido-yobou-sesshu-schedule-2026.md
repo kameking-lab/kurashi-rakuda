@@ -7,20 +7,81 @@
   "category": "子育て",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "予防接種をいつ何を受ければいいか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou28/01.html", "title": "定期接種の対象疾病とワクチン", "org": "厚生労働省", "accessed": "2026-07-17" },
-    { "url": "https://laws.e-gov.go.jp/law/323AC0000000068", "title": "予防接種法（昭和二十三年法律第六十八号）", "org": "e-Gov法令検索（デジタル庁）", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou28/01.html",
+      "title": "定期接種の対象疾病とワクチン",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://laws.e-gov.go.jp/law/323AC0000000068",
+      "title": "予防接種法（昭和二十三年法律第六十八号）",
+      "org": "e-Gov法令検索（デジタル庁）",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "yobousesshu.hepb_start_months", "value": 2, "unit": "ヶ月", "seido_ref": "yobousesshu.json#vaccines.0.startMonths", "status": "verified" },
-    { "key": "yobousesshu.bcg_start_months", "value": 5, "unit": "ヶ月", "seido_ref": "yobousesshu.json#vaccines.4.startMonths", "status": "verified" },
-    { "key": "yobousesshu.mr1_start_months", "value": 12, "unit": "ヶ月", "seido_ref": "yobousesshu.json#vaccines.5.startMonths", "status": "verified" },
-    { "key": "yobousesshu.nippon_noen1_start_months", "value": 36, "unit": "ヶ月", "seido_ref": "yobousesshu.json#vaccines.7.startMonths", "status": "verified" },
-    { "key": "yobousesshu.nippon_noen2_start_months", "value": 108, "unit": "ヶ月", "seido_ref": "yobousesshu.json#vaccines.9.startMonths", "status": "verified" },
-    { "key": "yobousesshu.nishu_kongo2_start_months", "value": 132, "unit": "ヶ月", "seido_ref": "yobousesshu.json#vaccines.10.startMonths", "status": "verified" },
-    { "key": "yobousesshu.hpv_start_years", "value": 11, "unit": "歳", "seido_ref": "yobousesshu.json#vaccines.11.startYears", "status": "verified" },
-    { "key": "yobousesshu.hpv_end_cutoff_age", "value": 16, "unit": "歳", "seido_ref": "yobousesshu.json#vaccines.11.endCutoffAge", "status": "verified" }
+    {
+      "key": "yobousesshu.hepb_start_months",
+      "value": 2,
+      "unit": "ヶ月",
+      "seido_ref": "yobousesshu.json#vaccines.0.startMonths",
+      "status": "verified"
+    },
+    {
+      "key": "yobousesshu.bcg_start_months",
+      "value": 5,
+      "unit": "ヶ月",
+      "seido_ref": "yobousesshu.json#vaccines.4.startMonths",
+      "status": "verified"
+    },
+    {
+      "key": "yobousesshu.mr1_start_months",
+      "value": 12,
+      "unit": "ヶ月",
+      "seido_ref": "yobousesshu.json#vaccines.5.startMonths",
+      "status": "verified"
+    },
+    {
+      "key": "yobousesshu.nippon_noen1_start_months",
+      "value": 36,
+      "unit": "ヶ月",
+      "seido_ref": "yobousesshu.json#vaccines.7.startMonths",
+      "status": "verified"
+    },
+    {
+      "key": "yobousesshu.nippon_noen2_start_months",
+      "value": 108,
+      "unit": "ヶ月",
+      "seido_ref": "yobousesshu.json#vaccines.9.startMonths",
+      "status": "verified"
+    },
+    {
+      "key": "yobousesshu.nishu_kongo2_start_months",
+      "value": 132,
+      "unit": "ヶ月",
+      "seido_ref": "yobousesshu.json#vaccines.10.startMonths",
+      "status": "verified"
+    },
+    {
+      "key": "yobousesshu.hpv_start_years",
+      "value": 11,
+      "unit": "歳",
+      "seido_ref": "yobousesshu.json#vaccines.11.startYears",
+      "status": "verified"
+    },
+    {
+      "key": "yobousesshu.hpv_end_cutoff_age",
+      "value": 16,
+      "unit": "歳",
+      "seido_ref": "yobousesshu.json#vaccines.11.endCutoffAge",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

@@ -7,21 +7,87 @@
   "category": "妊娠・出産",
   "tool_ref": "sankyu-ikukyu-money",
   "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "solves": [
+    "産休育休中の収入が総額いくらか分からない",
+    "給付金がいつ振り込まれるか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/index.html", "title": "出産手当金", "org": "全国健康保険協会（協会けんぽ）", "accessed": "2026-07-17" },
-    { "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html", "title": "出産育児一時金", "org": "全国健康保険協会（協会けんぽ）", "accessed": "2026-07-17" },
-    { "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_childcareleave.html", "title": "育児休業等給付について", "org": "ハローワークインターネットサービス（厚生労働省）", "accessed": "2026-07-17" },
-    { "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/menjo/20140122-01.html", "title": "厚生年金保険料等の免除（産前産後休業・育児休業等期間）", "org": "日本年金機構", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/index.html",
+      "title": "出産手当金",
+      "org": "全国健康保険協会（協会けんぽ）",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html",
+      "title": "出産育児一時金",
+      "org": "全国健康保険協会（協会けんぽ）",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_childcareleave.html",
+      "title": "育児休業等給付について",
+      "org": "ハローワークインターネットサービス（厚生労働省）",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/menjo/20140122-01.html",
+      "title": "厚生年金保険料等の免除（産前産後休業・育児休業等期間）",
+      "org": "日本年金機構",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "timeline.shussan_teate_sanzen", "value": 42, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirth.value", "status": "verified" },
-    { "key": "timeline.shussan_teate_sango", "value": 56, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodAfterBirth.value", "status": "verified" },
-    { "key": "timeline.shussan_ichijikin_gaku", "value": 500000, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.shussanIkujiIchijikin.amount.value", "status": "verified" },
-    { "key": "timeline.ikuji_kyugyo_180nichi_made", "value": 67, "unit": "%", "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.kaishi_kara_180nichi_made", "status": "verified" },
-    { "key": "timeline.ikuji_kyugyo_181nichime_ikou", "value": 50, "unit": "%", "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.181nichime_ikou", "status": "verified" },
-    { "key": "timeline.ikuji_kyugyo_kirikae", "value": 180, "unit": "日", "seido_ref": "ikuji-kyugyou-kyufu.json#kirikae_nissu", "status": "verified" },
-    { "key": "timeline.hoken_menjo_14nichi", "value": 14, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shakaiHokenryoMenjo.childcareLeave.fourteenDayRule.value", "status": "verified" }
+    {
+      "key": "timeline.shussan_teate_sanzen",
+      "value": 42,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirth.value",
+      "status": "verified"
+    },
+    {
+      "key": "timeline.shussan_teate_sango",
+      "value": 56,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodAfterBirth.value",
+      "status": "verified"
+    },
+    {
+      "key": "timeline.shussan_ichijikin_gaku",
+      "value": 500000,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanIkujiIchijikin.amount.value",
+      "status": "verified"
+    },
+    {
+      "key": "timeline.ikuji_kyugyo_180nichi_made",
+      "value": 67,
+      "unit": "%",
+      "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.kaishi_kara_180nichi_made",
+      "status": "verified"
+    },
+    {
+      "key": "timeline.ikuji_kyugyo_181nichime_ikou",
+      "value": 50,
+      "unit": "%",
+      "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.181nichime_ikou",
+      "status": "verified"
+    },
+    {
+      "key": "timeline.ikuji_kyugyo_kirikae",
+      "value": 180,
+      "unit": "日",
+      "seido_ref": "ikuji-kyugyou-kyufu.json#kirikae_nissu",
+      "status": "verified"
+    },
+    {
+      "key": "timeline.hoken_menjo_14nichi",
+      "value": 14,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shakaiHokenryoMenjo.childcareLeave.fourteenDayRule.value",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

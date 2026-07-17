@@ -7,20 +7,82 @@
   "category": "子育て",
   "tool_ref": null,
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "solves": [
+    "児童手当がいくらもらえるか分からない",
+    "児童手当の所得制限がどうなったか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/", "title": "児童手当制度のご案内", "org": "こども家庭庁", "accessed": "2026-07-17" },
-    { "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/mottoouen", "title": "もっと子育て応援！児童手当（令和6年10月分からの拡充）", "org": "こども家庭庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/",
+      "title": "児童手当制度のご案内",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/mottoouen",
+      "title": "もっと子育て応援！児童手当（令和6年10月分からの拡充）",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "jido_teate.under3_1_2", "value": 15000, "unit": "円", "seido_ref": "jido-teate.json#data.monthlyAmounts.under3.firstSecondChild.value", "status": "verified" },
-    { "key": "jido_teate.dai3ji", "value": 30000, "unit": "円", "seido_ref": "jido-teate.json#data.monthlyAmounts.under3.thirdChildOnwards.value", "status": "verified" },
-    { "key": "jido_teate.age3_koukou_1_2", "value": 10000, "unit": "円", "seido_ref": "jido-teate.json#data.monthlyAmounts.age3ToHighSchool.firstSecondChild.value", "status": "verified" },
-    { "key": "jido_teate.age_0", "value": 0, "unit": "歳", "seido_ref": "jido-teate.json#data.eligibility.ageBoundaries.fromAge.value", "status": "verified" },
-    { "key": "jido_teate.age_3", "value": 3, "unit": "歳", "seido_ref": "jido-teate.json#data.eligibility.ageBoundaries.rateChangeAge.value", "status": "verified" },
-    { "key": "jido_teate.age_18", "value": 18, "unit": "歳", "seido_ref": "jido-teate.json#data.eligibility.ageBoundaries.untilAge.value", "status": "verified" },
-    { "key": "jido_teate.shiharai_kaisu", "value": 6, "unit": "回", "seido_ref": "jido-teate.json#data.payment.timesPerYear.value", "status": "verified" },
-    { "key": "jido_teate.shinsei_tokurei_nissu", "value": 15, "unit": "日", "seido_ref": "jido-teate.json#data.application.deadline.value", "status": "verified" }
+    {
+      "key": "jido_teate.under3_1_2",
+      "value": 15000,
+      "unit": "円",
+      "seido_ref": "jido-teate.json#data.monthlyAmounts.under3.firstSecondChild.value",
+      "status": "verified"
+    },
+    {
+      "key": "jido_teate.dai3ji",
+      "value": 30000,
+      "unit": "円",
+      "seido_ref": "jido-teate.json#data.monthlyAmounts.under3.thirdChildOnwards.value",
+      "status": "verified"
+    },
+    {
+      "key": "jido_teate.age3_koukou_1_2",
+      "value": 10000,
+      "unit": "円",
+      "seido_ref": "jido-teate.json#data.monthlyAmounts.age3ToHighSchool.firstSecondChild.value",
+      "status": "verified"
+    },
+    {
+      "key": "jido_teate.age_0",
+      "value": 0,
+      "unit": "歳",
+      "seido_ref": "jido-teate.json#data.eligibility.ageBoundaries.fromAge.value",
+      "status": "verified"
+    },
+    {
+      "key": "jido_teate.age_3",
+      "value": 3,
+      "unit": "歳",
+      "seido_ref": "jido-teate.json#data.eligibility.ageBoundaries.rateChangeAge.value",
+      "status": "verified"
+    },
+    {
+      "key": "jido_teate.age_18",
+      "value": 18,
+      "unit": "歳",
+      "seido_ref": "jido-teate.json#data.eligibility.ageBoundaries.untilAge.value",
+      "status": "verified"
+    },
+    {
+      "key": "jido_teate.shiharai_kaisu",
+      "value": 6,
+      "unit": "回",
+      "seido_ref": "jido-teate.json#data.payment.timesPerYear.value",
+      "status": "verified"
+    },
+    {
+      "key": "jido_teate.shinsei_tokurei_nissu",
+      "value": 15,
+      "unit": "日",
+      "seido_ref": "jido-teate.json#data.application.deadline.value",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

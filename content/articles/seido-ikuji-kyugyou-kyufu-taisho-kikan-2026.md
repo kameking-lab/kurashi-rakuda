@@ -7,25 +7,115 @@
   "category": "妊娠・出産",
   "tool_ref": null,
   "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "solves": [
+    "育児休業給付金がいつまでもらえるか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://laws.e-gov.go.jp/law/349AC0000000116", "title": "雇用保険法（第61条の7）", "org": "デジタル庁 e-Gov法令検索", "accessed": "2026-07-17" },
-    { "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_childcareleave.html", "title": "育児休業等給付について", "org": "ハローワークインターネットサービス（厚生労働省）", "accessed": "2026-07-17" },
-    { "url": "https://www.mhlw.go.jp/content/11600000/001461102.pdf", "title": "育児休業等給付の内容と支給申請手続", "org": "厚生労働省", "accessed": "2026-07-17" }
+    {
+      "url": "https://laws.e-gov.go.jp/law/349AC0000000116",
+      "title": "雇用保険法（第61条の7）",
+      "org": "デジタル庁 e-Gov法令検索",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_childcareleave.html",
+      "title": "育児休業等給付について",
+      "org": "ハローワークインターネットサービス（厚生労働省）",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.mhlw.go.jp/content/11600000/001461102.pdf",
+      "title": "育児休業等給付の内容と支給申請手続",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "ikuji_kyugyo.kyufu_180nichi_made", "value": 67, "unit": "%", "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.kaishi_kara_180nichi_made", "status": "verified" },
-    { "key": "ikuji_kyugyo.kyufu_181nichime_ikou", "value": 50, "unit": "%", "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.181nichime_ikou", "status": "verified" },
-    { "key": "ikuji_kyugyo.kirikae_nissu", "value": 180, "unit": "日", "seido_ref": "ikuji-kyugyou-kyufu.json#kirikae_nissu", "status": "verified" },
-    { "key": "ikuji_kyugyo.chingin_nichigaku_jougen", "value": 16110, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.wageDailyMax.value", "status": "verified" },
-    { "key": "ikuji_kyugyo.chingin_nichigaku_kagen", "value": 3014, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.wageDailyMin.value", "status": "verified" },
-    { "key": "ikuji_kyugyo.tsuki_jougen_67", "value": 323811, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.monthlyMax67.value", "status": "verified" },
-    { "key": "ikuji_kyugyo.tsuki_jougen_50", "value": 241650, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.monthlyMax50.value", "status": "verified" },
-    { "key": "ikuji_kyugyo.tsuki_kagen_67", "value": 60581, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.monthlyMin67.value", "status": "verified" },
-    { "key": "ikuji_kyugyo.tsuki_kagen_50", "value": 45210, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.monthlyMin50.value", "status": "verified" },
-    { "key": "ikuji_kyugyo.bunkatsu_kaisuu", "value": 2, "unit": "回", "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.maxLeaveCount.value", "status": "verified" },
-    { "key": "ikuji_kyugyo.taisho_nenrei_gensoku", "value": 1, "unit": "歳", "status": "stub", "stub_reason": "育児休業給付金の対象期間（原則1歳まで）は育児・介護休業法上の休業取得可能期間に連動する数値であり、data/seido/ikukyu-kyufu.jsonには独立した数値ノードとして未収録のため個別確認が必要" },
-    { "key": "ikuji_kyugyo.taisho_nenrei_saichouki", "value": 2, "unit": "歳", "status": "stub", "stub_reason": "保育所に入れないなどの事情がある場合の再延長後の上限（最長2歳まで）は育児・介護休業法上の数値であり、data/seido/ikukyu-kyufu.jsonには独立した数値ノードとして未収録のため個別確認が必要" }
+    {
+      "key": "ikuji_kyugyo.kyufu_180nichi_made",
+      "value": 67,
+      "unit": "%",
+      "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.kaishi_kara_180nichi_made",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.kyufu_181nichime_ikou",
+      "value": 50,
+      "unit": "%",
+      "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.181nichime_ikou",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.kirikae_nissu",
+      "value": 180,
+      "unit": "日",
+      "seido_ref": "ikuji-kyugyou-kyufu.json#kirikae_nissu",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.chingin_nichigaku_jougen",
+      "value": 16110,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.wageDailyMax.value",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.chingin_nichigaku_kagen",
+      "value": 3014,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.wageDailyMin.value",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.tsuki_jougen_67",
+      "value": 323811,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.monthlyMax67.value",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.tsuki_jougen_50",
+      "value": 241650,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.monthlyMax50.value",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.tsuki_kagen_67",
+      "value": 60581,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.monthlyMin67.value",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.tsuki_kagen_50",
+      "value": 45210,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.monthlyMin50.value",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.bunkatsu_kaisuu",
+      "value": 2,
+      "unit": "回",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiKyugyoKyufuKin.maxLeaveCount.value",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyo.taisho_nenrei_gensoku",
+      "value": 1,
+      "unit": "歳",
+      "status": "stub",
+      "stub_reason": "育児休業給付金の対象期間（原則1歳まで）は育児・介護休業法上の休業取得可能期間に連動する数値であり、data/seido/ikukyu-kyufu.jsonには独立した数値ノードとして未収録のため個別確認が必要"
+    },
+    {
+      "key": "ikuji_kyugyo.taisho_nenrei_saichouki",
+      "value": 2,
+      "unit": "歳",
+      "status": "stub",
+      "stub_reason": "保育所に入れないなどの事情がある場合の再延長後の上限（最長2歳まで）は育児・介護休業法上の数値であり、data/seido/ikukyu-kyufu.jsonには独立した数値ノードとして未収録のため個別確認が必要"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-08-01"

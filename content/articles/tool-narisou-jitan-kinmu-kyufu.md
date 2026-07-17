@@ -7,13 +7,33 @@
   "category": "仕事・キャリア",
   "tool_ref": "jitan-kyuyo",
   "persona": "時短勤務を検討する共働き親",
+  "solves": [
+    "時短勤務で給料がいくら減るか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_continue.html", "title": "育児時短就業給付金について", "org": "ハローワークインターネットサービス（厚生労働省）", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_continue.html",
+      "title": "育児時短就業給付金について",
+      "org": "ハローワークインターネットサービス（厚生労働省）",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "jitan.kyufu_wariai", "value": 10, "unit": "%", "seido_ref": "jitan-kinmu-kyufu.json#kyufu_ritsu.jitan_chingin_ni_taisuru_wariai", "status": "verified" },
-    { "key": "jitan.age_2_miman", "value": 2, "unit": "歳", "seido_ref": "jitan-kinmu-kyufu.json#taisho_nenrei_miman_sai", "status": "verified" }
+    {
+      "key": "jitan.kyufu_wariai",
+      "value": 10,
+      "unit": "%",
+      "seido_ref": "jitan-kinmu-kyufu.json#kyufu_ritsu.jitan_chingin_ni_taisuru_wariai",
+      "status": "verified"
+    },
+    {
+      "key": "jitan.age_2_miman",
+      "value": 2,
+      "unit": "歳",
+      "seido_ref": "jitan-kinmu-kyufu.json#taisho_nenrei_miman_sai",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

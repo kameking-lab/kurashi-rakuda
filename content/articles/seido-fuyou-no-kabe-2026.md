@@ -7,22 +7,96 @@
   "category": "お金",
   "tool_ref": "fuyo-kabe",
   "persona": "パートで働く配偶者",
+  "solves": [
+    "扶養内でいくらまで働けるか分からない",
+    "106万・130万の壁を超えると損か得か分からない",
+    "106万円の壁がいつなくなるのか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/tanjikan.html", "title": "短時間労働者に対する健康保険・厚生年金保険の適用拡大", "org": "日本年金機構", "accessed": "2026-07-17" },
-    { "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html", "title": "健康保険の被扶養者の認定基準", "org": "日本年金機構", "accessed": "2026-07-17" },
-    { "url": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf", "title": "源泉所得税の改正のあらまし（令和8年4月）", "org": "国税庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/tanjikan.html",
+      "title": "短時間労働者に対する健康保険・厚生年金保険の適用拡大",
+      "org": "日本年金機構",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html",
+      "title": "健康保険の被扶養者の認定基準",
+      "org": "日本年金機構",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf",
+      "title": "源泉所得税の改正のあらまし（令和8年4月）",
+      "org": "国税庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "fuyou.shakai_hoken", "value": 1060000, "unit": "円", "seido_ref": "fuyou-no-kabe.json#kabe_en.shakai_hoken_kanyu_meyasu", "status": "verified" },
-    { "key": "fuyou.shakai_hoken_getsugaku", "value": 88000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.socialInsurance.shortTimeWorker.monthlyWageThreshold.value", "status": "verified" },
-    { "key": "fuyou.hifuyousha", "value": 1300000, "unit": "円", "seido_ref": "fuyou-no-kabe.json#kabe_en.hifuyousha_ninnei", "status": "verified" },
-    { "key": "fuyou.tokubetsu_koujo_man", "value": 1590000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.fullAmountSalaryLine.value", "status": "verified" },
-    { "key": "fuyou.tokubetsu_koujo_shoushitsu", "value": 2070000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.vanishSalaryLine.value", "status": "verified" },
-    { "key": "fuyou.tokubetsu_koujo_man_kyuu", "value": 1500000, "unit": "円", "status": "stub", "stub_reason": "令和7年分（2025年分）までの旧満額ライン。改正経緯の説明のための言及であり、2026年分の制度値ではないため data/ には保持しない。根拠は fuyou-kabe.json の haiguushaTokubetsuKoujo.fullAmountSalaryLine.amendmentNote を参照。" },
-    { "key": "fuyou.tokubetsu_koujo_shoushitsu_kyuu", "value": 2010000, "unit": "円", "status": "stub", "stub_reason": "令和7年分（2025年分）までの旧消失ライン（201万5,999円の通称）。改正経緯の説明のための言及。根拠は fuyou-kabe.json の haiguushaTokubetsuKoujo.vanishSalaryLine.amendmentNote を参照。" },
-    { "key": "fuyou.shotokuzei_kazei_saitei", "value": 1780000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.walls.items.1.amount2026", "status": "verified" },
-    { "key": "fuyou.kyu_103man", "value": 1030000, "unit": "円", "status": "stub", "stub_reason": "引き上げ前（旧基準）の通称。fuyou-kabe.json の walls.items[1].legacyName に文字列として記録されている改正経緯の参考値。" }
+    {
+      "key": "fuyou.shakai_hoken",
+      "value": 1060000,
+      "unit": "円",
+      "seido_ref": "fuyou-no-kabe.json#kabe_en.shakai_hoken_kanyu_meyasu",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.shakai_hoken_getsugaku",
+      "value": 88000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.socialInsurance.shortTimeWorker.monthlyWageThreshold.value",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.hifuyousha",
+      "value": 1300000,
+      "unit": "円",
+      "seido_ref": "fuyou-no-kabe.json#kabe_en.hifuyousha_ninnei",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.tokubetsu_koujo_man",
+      "value": 1590000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.fullAmountSalaryLine.value",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.tokubetsu_koujo_shoushitsu",
+      "value": 2070000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.vanishSalaryLine.value",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.tokubetsu_koujo_man_kyuu",
+      "value": 1500000,
+      "unit": "円",
+      "status": "stub",
+      "stub_reason": "令和7年分（2025年分）までの旧満額ライン。改正経緯の説明のための言及であり、2026年分の制度値ではないため data/ には保持しない。根拠は fuyou-kabe.json の haiguushaTokubetsuKoujo.fullAmountSalaryLine.amendmentNote を参照。"
+    },
+    {
+      "key": "fuyou.tokubetsu_koujo_shoushitsu_kyuu",
+      "value": 2010000,
+      "unit": "円",
+      "status": "stub",
+      "stub_reason": "令和7年分（2025年分）までの旧消失ライン（201万5,999円の通称）。改正経緯の説明のための言及。根拠は fuyou-kabe.json の haiguushaTokubetsuKoujo.vanishSalaryLine.amendmentNote を参照。"
+    },
+    {
+      "key": "fuyou.shotokuzei_kazei_saitei",
+      "value": 1780000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.walls.items.1.amount2026",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.kyu_103man",
+      "value": 1030000,
+      "unit": "円",
+      "status": "stub",
+      "stub_reason": "引き上げ前（旧基準）の通称。fuyou-kabe.json の walls.items[1].legacyName に文字列として記録されている改正経緯の参考値。"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"
@@ -46,7 +120,7 @@
 
 - **106万円と130万円、両方気にする必要がある？** 勤務先の規模や労働時間によって、どちらの壁が先に関係してくるかが変わります。2026年10月の賃金要件撤廃後は、130万円（被扶養者認定）の壁の方が主な分かれ目になる方が増えます。ご自身の勤務条件を出典の資料と照らし合わせてご確認ください。
 - **壁を超えたら必ず損？** 社会保険に加入すると将来の年金が増えるなどのメリットもあるため、単純な損得だけでは判断できません。
-- **本人の所得税はいくらからかかる？** 2026年分（令和8年分）からは年収178万円までは所得税がかかりません（期間限定の特例を含む金額です）。
+- **本人の所得税はいくらからかかる？** 2026年分（令和8年分）からは年収178万円までは所得税がかかりません（期限付きの特例を含む金額です）。
 
 ## 出典・根拠
 

@@ -7,10 +7,28 @@
   "category": "仕事・キャリア",
   "tool_ref": null,
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "solves": [
+    "育休からの復帰日をどう決めればいいか分からない"
+  ],
   "sources": [
-    { "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyoukintou/ryouritsu01/index.html", "title": "育児・介護休業法について", "org": "厚生労働省", "accessed": "2026-07-17" },
-    { "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_continue05.html", "title": "育児休業給付について", "org": "ハローワークインターネットサービス", "accessed": "2026-07-17" },
-    { "url": "https://www.cfa.go.jp/policies/kokoseido/", "title": "保育所等の利用について", "org": "こども家庭庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyoukintou/ryouritsu01/index.html",
+      "title": "育児・介護休業法について",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_continue05.html",
+      "title": "育児休業給付について",
+      "org": "ハローワークインターネットサービス",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.cfa.go.jp/policies/kokoseido/",
+      "title": "保育所等の利用について",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [],
   "last_updated": "2026-07-17"

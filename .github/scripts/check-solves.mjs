@@ -1,11 +1,11 @@
 /**
  * solves メタ検証・集計スクリプト（docs/07 の Phase 完了条件「解決できる悩み数」の計測器）。
  * - app/lib/tools/registry.json の全エントリを検証
+ * - content/articles/*.md のフロントマター solves も集計対象（記事が実際に答えている悩みのみ。水増し禁止）
  * - 一意な solves 数を集計して出力
- * 将来、記事コンテンツ（factory/ からの出力）にフロントマターが載ったらここに集計を追加する。
  */
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { readFileSync, readdirSync } from "node:fs";
+import { resolve, join } from "node:path";
 
 const CATEGORIES = new Set([
   "pregnancy",
@@ -67,13 +67,44 @@ for (const t of tools) {
   }
 }
 
-const uniqueSolves = new Set(tools.flatMap((t) => t.solves ?? []));
+// 記事フロントマターの solves を集計（JSONフロントマター形式）
+const articlesDir = resolve(process.cwd(), "content/articles");
+const articleSolves = [];
+let articleCount = 0;
+for (const f of readdirSync(articlesDir)) {
+  if (!f.endsWith(".md")) continue;
+  articleCount += 1;
+  const raw = readFileSync(join(articlesDir, f), "utf8");
+  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!m) {
+    errors.push(`[記事 ${f}] フロントマターを読み取れません`);
+    continue;
+  }
+  let fm;
+  try {
+    fm = JSON.parse(m[1]);
+  } catch (e) {
+    errors.push(`[記事 ${f}] フロントマターのJSONが不正です: ${e.message}`);
+    continue;
+  }
+  if (fm.solves !== undefined) {
+    if (!Array.isArray(fm.solves) || fm.solves.some((s) => typeof s !== "string" || s.trim() === "")) {
+      errors.push(`[記事 ${f}] solves は空でない文字列の配列にしてください`);
+    } else {
+      articleSolves.push(...fm.solves);
+    }
+  }
+}
+
+const toolSolves = new Set(tools.flatMap((t) => t.solves ?? []));
+const uniqueSolves = new Set([...toolSolves, ...articleSolves]);
 const live = tools.filter((t) => t.status === "live");
 
 console.log("--- solves メタ集計 ---");
 console.log(`ツール総数        : ${tools.length}`);
 console.log(`公開中（live）    : ${live.length}`);
-console.log(`解決できる悩み数  : ${uniqueSolves.size}（一意）`);
+console.log(`記事総数          : ${articleCount}`);
+console.log(`解決できる悩み数  : ${uniqueSolves.size}（一意。ツール由来${toolSolves.size}＋記事による追加${uniqueSolves.size - toolSolves.size}）`);
 console.log(
   `Phase 1 完了条件  : ツール20本・悩み100種（docs/07_ロードマップ.md）`,
 );

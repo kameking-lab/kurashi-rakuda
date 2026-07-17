@@ -7,17 +7,62 @@
   "category": "子育て",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "幼児教育・保育の無償化の対象になるか分からない",
+    "0〜2歳児が無償化の対象になる条件が分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka", "title": "幼児教育・保育の無償化", "org": "こども家庭庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka",
+      "title": "幼児教育・保育の無償化",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "mushouka.age_3", "value": 3, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllFrom.value", "status": "verified" },
-    { "key": "mushouka.age_5", "value": 5, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllTo.value", "status": "verified" },
-    { "key": "mushouka.age_0", "value": 0, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableFrom.value", "status": "verified" },
-    { "key": "mushouka.age_2", "value": 2, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableTo.value", "status": "verified" },
-    { "key": "mushouka.ninkagai_3_5", "value": 37000, "unit": "円", "seido_ref": "youji-kyouiku-mushouka.json#data.ninkagaiCaps.age3to5.value", "status": "verified" },
-    { "key": "mushouka.ninkagai_0_2_hikazei", "value": 42000, "unit": "円", "seido_ref": "youji-kyouiku-mushouka.json#data.ninkagaiCaps.age0to2NonTaxable.value", "status": "verified" }
+    {
+      "key": "mushouka.age_3",
+      "value": 3,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllFrom.value",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_5",
+      "value": 5,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllTo.value",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_0",
+      "value": 0,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableFrom.value",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_2",
+      "value": 2,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableTo.value",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.ninkagai_3_5",
+      "value": 37000,
+      "unit": "円",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.ninkagaiCaps.age3to5.value",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.ninkagai_0_2_hikazei",
+      "value": 42000,
+      "unit": "円",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.ninkagaiCaps.age0to2NonTaxable.value",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

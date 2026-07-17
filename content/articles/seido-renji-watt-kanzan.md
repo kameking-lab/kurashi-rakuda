@@ -7,17 +7,61 @@
   "category": "家事・料理",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "電子レンジのワット数が違うときの加熱時間が分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.city.ageo.lg.jp/uploaded/attachment/82931.pdf", "title": "レンジ出力換算表（消費生活情報ページ掲載PDF）", "org": "埼玉県上尾市", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.city.ageo.lg.jp/uploaded/attachment/82931.pdf",
+      "title": "レンジ出力換算表（消費生活情報ページ掲載PDF）",
+      "org": "埼玉県上尾市",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "renji_kanzan.500W_kara_600W.moto_byou", "value": 120, "unit": "秒", "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.500W_kara_600W.moto_byou", "status": "verified" },
-    { "key": "renji_kanzan.500W_kara_600W.henkango_byou", "value": 100, "unit": "秒", "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.500W_kara_600W.henkan_go_byou", "status": "verified" },
-    { "key": "renji_kanzan.600W_kara_500W.moto_byou", "value": 60, "unit": "秒", "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.600W_kara_500W_ageo_hyou.moto_byou", "status": "verified" },
-    { "key": "renji_kanzan.600W_kara_500W.henkango_byou", "value": 70, "unit": "秒", "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.600W_kara_500W_ageo_hyou.henkan_go_byou", "status": "verified" },
-    { "key": "renji_kanzan.600W_kara_700W.moto_byou", "value": 60, "unit": "秒", "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.600W_kara_700W_ageo_hyou.moto_byou", "status": "verified" },
-    { "key": "renji_kanzan.600W_kara_700W.henkango_byou", "value": 50, "unit": "秒", "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.600W_kara_700W_ageo_hyou.henkan_go_byou", "status": "verified" }
+    {
+      "key": "renji_kanzan.500W_kara_600W.moto_byou",
+      "value": 120,
+      "unit": "秒",
+      "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.500W_kara_600W.moto_byou",
+      "status": "verified"
+    },
+    {
+      "key": "renji_kanzan.500W_kara_600W.henkango_byou",
+      "value": 100,
+      "unit": "秒",
+      "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.500W_kara_600W.henkan_go_byou",
+      "status": "verified"
+    },
+    {
+      "key": "renji_kanzan.600W_kara_500W.moto_byou",
+      "value": 60,
+      "unit": "秒",
+      "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.600W_kara_500W_ageo_hyou.moto_byou",
+      "status": "verified"
+    },
+    {
+      "key": "renji_kanzan.600W_kara_500W.henkango_byou",
+      "value": 70,
+      "unit": "秒",
+      "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.600W_kara_500W_ageo_hyou.henkan_go_byou",
+      "status": "verified"
+    },
+    {
+      "key": "renji_kanzan.600W_kara_700W.moto_byou",
+      "value": 60,
+      "unit": "秒",
+      "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.600W_kara_700W_ageo_hyou.moto_byou",
+      "status": "verified"
+    },
+    {
+      "key": "renji_kanzan.600W_kara_700W.henkango_byou",
+      "value": 50,
+      "unit": "秒",
+      "seido_ref": "renji-watt-kanzan-kijun.json#kanzan_rei.600W_kara_700W_ageo_hyou.henkan_go_byou",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

@@ -7,10 +7,29 @@
   "category": "妊娠・出産",
   "tool_ref": null,
   "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "solves": [
+    "産後の手続きの順番が分からない",
+    "出生届や児童手当の申請先が分からない"
+  ],
   "sources": [
-    { "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/", "title": "児童手当制度のご案内", "org": "こども家庭庁", "accessed": "2026-07-17" },
-    { "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/boshi-hoken/sango-care.html", "title": "産後ケア事業について", "org": "厚生労働省", "accessed": "2026-07-17" },
-    { "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/koseki-jumin/todokede/shussho.html", "title": "出生届の届出について", "org": "横浜市", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/",
+      "title": "児童手当制度のご案内",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/boshi-hoken/sango-care.html",
+      "title": "産後ケア事業について",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/koseki-jumin/todokede/shussho.html",
+      "title": "出生届の届出について",
+      "org": "横浜市",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [],
   "last_updated": "2026-07-17"

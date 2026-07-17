@@ -7,18 +7,69 @@
   "category": "子育て",
   "tool_ref": null,
   "persona": "保育園・幼稚園を検討する保護者",
+  "solves": [
+    "幼児教育・保育の無償化の対象になるか分からない",
+    "認可外保育の無償化の上限額が分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www8.cao.go.jp/shoushi/shinseido/outline/mushouka/", "title": "幼児教育・保育の無償化", "org": "内閣府", "accessed": "2026-07-17" }
+    {
+      "url": "https://www8.cao.go.jp/shoushi/shinseido/outline/mushouka/",
+      "title": "幼児教育・保育の無償化",
+      "org": "内閣府",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "mushouka.ninkagai_3_5", "value": 37000, "unit": "円", "seido_ref": "youji-kyouiku-mushouka.json#ninkagai_jougen_gaku_en.3sai_kara_5sai", "status": "verified" },
-    { "key": "mushouka.ninkagai_0_2_hikazei", "value": 42000, "unit": "円", "seido_ref": "youji-kyouiku-mushouka.json#ninkagai_jougen_gaku_en.0sai_kara_2sai_hikazei", "status": "verified" },
-    { "key": "mushouka.age_3", "value": 3, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#taisho_nenrei_sai.zensetai_kara", "status": "verified" },
-    { "key": "mushouka.age_5", "value": 5, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#taisho_nenrei_sai.zensetai_made", "status": "verified" },
-    { "key": "mushouka.age_0", "value": 0, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#taisho_nenrei_sai.hikazei_kara", "status": "verified" },
-    { "key": "mushouka.age_2", "value": 2, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#taisho_nenrei_sai.hikazei_made", "status": "verified" },
-    { "key": "hoiku.jichitai_kaisou_keigen", "value": 0, "unit": "円", "status": "stub", "stub_reason": "保育料計算 全国版（docs/02 #21、docs/08 P1-18/P2-04）は自治体ごとの階層データ収集が完了していないため、本記事では機械照合を保留しスタブとする" }
+    {
+      "key": "mushouka.ninkagai_3_5",
+      "value": 37000,
+      "unit": "円",
+      "seido_ref": "youji-kyouiku-mushouka.json#ninkagai_jougen_gaku_en.3sai_kara_5sai",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.ninkagai_0_2_hikazei",
+      "value": 42000,
+      "unit": "円",
+      "seido_ref": "youji-kyouiku-mushouka.json#ninkagai_jougen_gaku_en.0sai_kara_2sai_hikazei",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_3",
+      "value": 3,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#taisho_nenrei_sai.zensetai_kara",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_5",
+      "value": 5,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#taisho_nenrei_sai.zensetai_made",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_0",
+      "value": 0,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#taisho_nenrei_sai.hikazei_kara",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_2",
+      "value": 2,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#taisho_nenrei_sai.hikazei_made",
+      "status": "verified"
+    },
+    {
+      "key": "hoiku.jichitai_kaisou_keigen",
+      "value": 0,
+      "unit": "円",
+      "status": "stub",
+      "stub_reason": "保育料計算 全国版（docs/02 #21、docs/08 P1-18/P2-04）は自治体ごとの階層データ収集が完了していないため、本記事では機械照合を保留しスタブとする"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

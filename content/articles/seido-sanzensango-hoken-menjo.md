@@ -7,14 +7,41 @@
   "category": "妊娠・出産",
   "tool_ref": null,
   "persona": "産休を控える会社員",
+  "solves": [
+    "産休中の社会保険料がいつからいつまで免除されるか分からない",
+    "社会保険料の免除でいくら浮くか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.nenkin.go.jp/service/kounen/sanzensango/index.html", "title": "産前産後休業保険料免除制度", "org": "日本年金機構", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.nenkin.go.jp/service/kounen/sanzensango/index.html",
+      "title": "産前産後休業保険料免除制度",
+      "org": "日本年金機構",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "menjo.sanzen_tanmine", "value": 42, "unit": "日", "seido_ref": "sanzensango-hoken-menjo.json#menjo_kikan_nissu.sanzen_tanmine", "status": "verified" },
-    { "key": "menjo.sanzen_tatai", "value": 98, "unit": "日", "seido_ref": "sanzensango-hoken-menjo.json#menjo_kikan_nissu.sanzen_tatai", "status": "verified" },
-    { "key": "menjo.sango", "value": 56, "unit": "日", "seido_ref": "sanzensango-hoken-menjo.json#menjo_kikan_nissu.sango", "status": "verified" }
+    {
+      "key": "menjo.sanzen_tanmine",
+      "value": 42,
+      "unit": "日",
+      "seido_ref": "sanzensango-hoken-menjo.json#menjo_kikan_nissu.sanzen_tanmine",
+      "status": "verified"
+    },
+    {
+      "key": "menjo.sanzen_tatai",
+      "value": 98,
+      "unit": "日",
+      "seido_ref": "sanzensango-hoken-menjo.json#menjo_kikan_nissu.sanzen_tatai",
+      "status": "verified"
+    },
+    {
+      "key": "menjo.sango",
+      "value": 56,
+      "unit": "日",
+      "seido_ref": "sanzensango-hoken-menjo.json#menjo_kikan_nissu.sango",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

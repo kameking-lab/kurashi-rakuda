@@ -7,15 +7,46 @@
   "category": "妊娠・出産",
   "tool_ref": null,
   "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "solves": [
+    "出産育児一時金の直接支払制度の仕組みが分からない",
+    "出産育児一時金の申請方法が分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html", "title": "出産育児一時金", "org": "全国健康保険協会（協会けんぽ）", "accessed": "2026-07-17" },
-    { "url": "https://laws.e-gov.go.jp/law/215IO0000000243", "title": "健康保険法施行令（第36条）", "org": "デジタル庁 e-Gov法令検索", "accessed": "2026-07-17" },
-    { "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html", "title": "出産育児一時金等について", "org": "厚生労働省", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html",
+      "title": "出産育児一時金",
+      "org": "全国健康保険協会（協会けんぽ）",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://laws.e-gov.go.jp/law/215IO0000000243",
+      "title": "健康保険法施行令（第36条）",
+      "org": "デジタル庁 e-Gov法令検索",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html",
+      "title": "出産育児一時金等について",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "shussan_ichijikin.gaku", "value": 500000, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.shussanIkujiIchijikin.amount.value", "status": "verified" },
-    { "key": "shussan_ichijikin.gaku_hoshou_nashi", "value": 488000, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.shussanIkujiIchijikin.amountWithoutCompensation.value", "status": "verified" }
+    {
+      "key": "shussan_ichijikin.gaku",
+      "value": 500000,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanIkujiIchijikin.amount.value",
+      "status": "verified"
+    },
+    {
+      "key": "shussan_ichijikin.gaku_hoshou_nashi",
+      "value": 488000,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanIkujiIchijikin.amountWithoutCompensation.value",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

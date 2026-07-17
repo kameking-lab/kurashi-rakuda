@@ -7,20 +7,82 @@
   "category": "介護",
   "tool_ref": null,
   "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "solves": [
+    "介護保険の自己負担割合がなぜ2割・3割になるのか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/gaiyo/index.html", "title": "介護保険制度の概要", "org": "厚生労働省", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/gaiyo/index.html",
+      "title": "介護保険制度の概要",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "kaigo.futan_gensoku", "value": 1, "unit": "割", "seido_ref": "kaigo-hoken.json#data.futanWariai.gensoku.value", "status": "verified" },
-    { "key": "kaigo.futan_niwari", "value": 2, "unit": "割", "seido_ref": "kaigo-hoken.json#data.futanWariai.niwari.value", "status": "verified" },
-    { "key": "kaigo.futan_sanwari", "value": 3, "unit": "割", "seido_ref": "kaigo-hoken.json#data.futanWariai.sanwari.value", "status": "verified" },
-    { "key": "kaigo.niwari_shotoku", "value": 1600000, "unit": "円", "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.1.totalIncomeMin", "status": "verified" },
-    { "key": "kaigo.niwari_nenkin_tanshin", "value": 2800000, "unit": "円", "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.1.pensionPlusOtherIncomeMinSingle", "status": "verified" },
-    { "key": "kaigo.niwari_nenkin_fuufu", "value": 3460000, "unit": "円", "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.1.pensionPlusOtherIncomeMinCouple", "status": "verified" },
-    { "key": "kaigo.sanwari_shotoku", "value": 2200000, "unit": "円", "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.0.totalIncomeMin", "status": "verified" },
-    { "key": "kaigo.sanwari_nenkin_tanshin", "value": 3400000, "unit": "円", "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.0.pensionPlusOtherIncomeMinSingle", "status": "verified" },
-    { "key": "kaigo.sanwari_nenkin_fuufu", "value": 4630000, "unit": "円", "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.0.pensionPlusOtherIncomeMinCouple", "status": "verified" }
+    {
+      "key": "kaigo.futan_gensoku",
+      "value": 1,
+      "unit": "割",
+      "seido_ref": "kaigo-hoken.json#data.futanWariai.gensoku.value",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.futan_niwari",
+      "value": 2,
+      "unit": "割",
+      "seido_ref": "kaigo-hoken.json#data.futanWariai.niwari.value",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.futan_sanwari",
+      "value": 3,
+      "unit": "割",
+      "seido_ref": "kaigo-hoken.json#data.futanWariai.sanwari.value",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.niwari_shotoku",
+      "value": 1600000,
+      "unit": "円",
+      "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.1.totalIncomeMin",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.niwari_nenkin_tanshin",
+      "value": 2800000,
+      "unit": "円",
+      "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.1.pensionPlusOtherIncomeMinSingle",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.niwari_nenkin_fuufu",
+      "value": 3460000,
+      "unit": "円",
+      "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.1.pensionPlusOtherIncomeMinCouple",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.sanwari_shotoku",
+      "value": 2200000,
+      "unit": "円",
+      "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.0.totalIncomeMin",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.sanwari_nenkin_tanshin",
+      "value": 3400000,
+      "unit": "円",
+      "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.0.pensionPlusOtherIncomeMinSingle",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.sanwari_nenkin_fuufu",
+      "value": 4630000,
+      "unit": "円",
+      "seido_ref": "kaigo-hoken.json#data.futanWariai.brackets.0.pensionPlusOtherIncomeMinCouple",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

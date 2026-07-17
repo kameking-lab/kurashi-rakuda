@@ -7,14 +7,40 @@
   "category": "家事・料理",
   "tool_ref": "kondate-teian",
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "献立を考えるのが苦痛"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.maff.go.jp/j/syokuiku/index.html", "title": "食育の推進", "org": "農林水産省", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.maff.go.jp/j/syokuiku/index.html",
+      "title": "食育の推進",
+      "org": "農林水産省",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "kondate.shusai_kensu", "value": 36, "unit": "件", "seido_ref": "kondate-teian-shikumi.json#recipe_kensu.shusai", "status": "verified" },
-    { "key": "kondate.fukusai_kensu", "value": 27, "unit": "件", "seido_ref": "kondate-teian-shikumi.json#recipe_kensu.fukusai", "status": "verified" },
-    { "key": "kondate.shirumono_kensu", "value": 13, "unit": "件", "seido_ref": "kondate-teian-shikumi.json#recipe_kensu.shirumono", "status": "verified" }
+    {
+      "key": "kondate.shusai_kensu",
+      "value": 36,
+      "unit": "件",
+      "seido_ref": "kondate-teian-shikumi.json#recipe_kensu.shusai",
+      "status": "verified"
+    },
+    {
+      "key": "kondate.fukusai_kensu",
+      "value": 27,
+      "unit": "件",
+      "seido_ref": "kondate-teian-shikumi.json#recipe_kensu.fukusai",
+      "status": "verified"
+    },
+    {
+      "key": "kondate.shirumono_kensu",
+      "value": 13,
+      "unit": "件",
+      "seido_ref": "kondate-teian-shikumi.json#recipe_kensu.shirumono",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

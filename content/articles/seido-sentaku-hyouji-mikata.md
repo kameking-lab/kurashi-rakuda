@@ -7,12 +7,26 @@
   "category": "家事・料理",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "洗濯タグの記号の意味が分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.caa.go.jp/policies/policy/consumer_partnership/information/care_labeling/", "title": "洗濯表示（衣料品等の取扱い表示）", "org": "消費者庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.caa.go.jp/policies/policy/consumer_partnership/information/care_labeling/",
+      "title": "洗濯表示（衣料品等の取扱い表示）",
+      "org": "消費者庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "sentaku.kigou_sousuu", "value": 41, "unit": "種類", "seido_ref": "sentaku-hyouji.json#kigou_sousuu", "status": "verified" }
+    {
+      "key": "sentaku.kigou_sousuu",
+      "value": 41,
+      "unit": "種類",
+      "seido_ref": "sentaku-hyouji.json#kigou_sousuu",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

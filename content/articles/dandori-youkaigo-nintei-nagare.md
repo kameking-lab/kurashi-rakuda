@@ -7,9 +7,23 @@
   "category": "介護",
   "tool_ref": null,
   "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "solves": [
+    "要介護認定の申請方法が分からない",
+    "要介護認定の結果がいつ出るか分からない"
+  ],
   "sources": [
-    { "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/nintei/index.html", "title": "要介護認定はどのように行われるか", "org": "厚生労働省", "accessed": "2026-07-17" },
-    { "url": "https://www.city.yokohama.lg.jp/kurashi/fukushi-kaigo/koreisha-fukushi/kaigohoken/nintei/", "title": "要介護認定の申請について", "org": "横浜市", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/nintei/index.html",
+      "title": "要介護認定はどのように行われるか",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/fukushi-kaigo/koreisha-fukushi/kaigohoken/nintei/",
+      "title": "要介護認定の申請について",
+      "org": "横浜市",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [],
   "last_updated": "2026-07-17"

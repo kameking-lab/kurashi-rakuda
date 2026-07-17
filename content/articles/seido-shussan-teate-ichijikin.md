@@ -7,15 +7,47 @@
   "category": "妊娠・出産",
   "tool_ref": null,
   "persona": "出産を控える会社員",
+  "solves": [
+    "出産手当金と出産育児一時金の違いが分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.kyoukaikenpo.or.jp/g3/cat330/sb3170/sbb3172/", "title": "出産手当金・出産育児一時金のご案内", "org": "全国健康保険協会（協会けんぽ）", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.kyoukaikenpo.or.jp/g3/cat330/sb3170/sbb3172/",
+      "title": "出産手当金・出産育児一時金のご案内",
+      "org": "全国健康保険協会（協会けんぽ）",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "shussan_teate.sanzen_nissu", "value": 42, "unit": "日", "seido_ref": "shussan-teate-ichijikin.json#shussan_teate.taisho_nissu_sanzen", "status": "verified" },
-    { "key": "shussan_teate.sanzen_nissu_tatai", "value": 98, "unit": "日", "seido_ref": "shussan-teate-ichijikin.json#shussan_teate.taisho_nissu_sanzen_tatai", "status": "verified" },
-    { "key": "shussan_teate.sango_nissu", "value": 56, "unit": "日", "seido_ref": "shussan-teate-ichijikin.json#shussan_teate.taisho_nissu_sango", "status": "verified" },
-    { "key": "shussan_ichijikin.gaku", "value": 500000, "unit": "円", "seido_ref": "shussan-teate-ichijikin.json#shussan_ikuji_ichijikin.kingaku_kanousan_taisho", "status": "verified" }
+    {
+      "key": "shussan_teate.sanzen_nissu",
+      "value": 42,
+      "unit": "日",
+      "seido_ref": "shussan-teate-ichijikin.json#shussan_teate.taisho_nissu_sanzen",
+      "status": "verified"
+    },
+    {
+      "key": "shussan_teate.sanzen_nissu_tatai",
+      "value": 98,
+      "unit": "日",
+      "seido_ref": "shussan-teate-ichijikin.json#shussan_teate.taisho_nissu_sanzen_tatai",
+      "status": "verified"
+    },
+    {
+      "key": "shussan_teate.sango_nissu",
+      "value": 56,
+      "unit": "日",
+      "seido_ref": "shussan-teate-ichijikin.json#shussan_teate.taisho_nissu_sango",
+      "status": "verified"
+    },
+    {
+      "key": "shussan_ichijikin.gaku",
+      "value": 500000,
+      "unit": "円",
+      "seido_ref": "shussan-teate-ichijikin.json#shussan_ikuji_ichijikin.kingaku_kanousan_taisho",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

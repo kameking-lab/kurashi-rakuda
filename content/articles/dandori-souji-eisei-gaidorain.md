@@ -7,15 +7,53 @@
   "category": "家事・料理",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "家庭の掃除・衛生管理の基準が分からない"
+  ],
   "sources": [
-    { "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/syokuchu/kanren/yobou/040204-1.html", "title": "ノロウイルスに関するＱ＆Ａ", "org": "厚生労働省", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/syokuchu/kanren/yobou/040204-1.html",
+      "title": "ノロウイルスに関するＱ＆Ａ",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "souji.chouri_kigu_ppm", "value": 200, "unit": "ppm", "seido_ref": "souji-eisei-gaidorain.json#jikou_ensosan_shoudoku_ppm.chouri_kigu_manaita_fukin_ppm", "status": "verified" },
-    { "key": "souji.yuka_ousei_ppm", "value": 200, "unit": "ppm", "seido_ref": "souji-eisei-gaidorain.json#jikou_ensosan_shoudoku_ppm.yuka_ousei_funben_ppm", "status": "verified" },
-    { "key": "souji.haikibutsu_ppm", "value": 1000, "unit": "ppm", "seido_ref": "souji-eisei-gaidorain.json#jikou_ensosan_shoudoku_ppm.haikibutsu_omutsu_ppm", "status": "verified" },
-    { "key": "souji.necchu_ondo", "value": 85, "unit": "度", "seido_ref": "souji-eisei-gaidorain.json#necchu_shoudoku_meyasu.manaita_hocho_ondo_do", "status": "verified" },
-    { "key": "souji.necchu_jikan", "value": 1, "unit": "分", "seido_ref": "souji-eisei-gaidorain.json#necchu_shoudoku_meyasu.manaita_hocho_jikan_bun", "status": "verified" }
+    {
+      "key": "souji.chouri_kigu_ppm",
+      "value": 200,
+      "unit": "ppm",
+      "seido_ref": "souji-eisei-gaidorain.json#jikou_ensosan_shoudoku_ppm.chouri_kigu_manaita_fukin_ppm",
+      "status": "verified"
+    },
+    {
+      "key": "souji.yuka_ousei_ppm",
+      "value": 200,
+      "unit": "ppm",
+      "seido_ref": "souji-eisei-gaidorain.json#jikou_ensosan_shoudoku_ppm.yuka_ousei_funben_ppm",
+      "status": "verified"
+    },
+    {
+      "key": "souji.haikibutsu_ppm",
+      "value": 1000,
+      "unit": "ppm",
+      "seido_ref": "souji-eisei-gaidorain.json#jikou_ensosan_shoudoku_ppm.haikibutsu_omutsu_ppm",
+      "status": "verified"
+    },
+    {
+      "key": "souji.necchu_ondo",
+      "value": 85,
+      "unit": "度",
+      "seido_ref": "souji-eisei-gaidorain.json#necchu_shoudoku_meyasu.manaita_hocho_ondo_do",
+      "status": "verified"
+    },
+    {
+      "key": "souji.necchu_jikan",
+      "value": 1,
+      "unit": "分",
+      "seido_ref": "souji-eisei-gaidorain.json#necchu_shoudoku_meyasu.manaita_hocho_jikan_bun",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17"
 }

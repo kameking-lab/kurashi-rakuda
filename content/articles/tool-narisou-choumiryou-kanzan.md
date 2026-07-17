@@ -7,31 +7,162 @@
   "category": "家事・料理",
   "tool_ref": "chomiryo-kanzan",
   "persona": "佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "大さじ1が何グラムか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.city.osaka.lg.jp/kenko/page/0000017084.html", "title": "計量スプーン・カップの重量換算表", "org": "大阪市（新潟市農林水産部食育・花育センター、船橋市学校栄養士会の資料もあわせて参照）", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.city.osaka.lg.jp/kenko/page/0000017084.html",
+      "title": "計量スプーン・カップの重量換算表",
+      "org": "大阪市（新潟市農林水産部食育・花育センター、船橋市学校栄養士会の資料もあわせて参照）",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "choumiryou.oosaji_ml", "value": 15, "unit": "ml", "seido_ref": "choumiryou-kanzan-kijun.json#tan_i.oosaji_ml", "status": "verified" },
-    { "key": "choumiryou.kosaji_ml", "value": 5, "unit": "ml", "seido_ref": "choumiryou-kanzan-kijun.json#tan_i.kosaji_ml", "status": "verified" },
-    { "key": "choumiryou.mizu_oosaji_g", "value": 15, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.mizu", "status": "verified" },
-    { "key": "choumiryou.shouyu_oosaji_g", "value": 18, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.shouyu", "status": "verified" },
-    { "key": "choumiryou.mirin_oosaji_g", "value": 18, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.mirin", "status": "verified" },
-    { "key": "choumiryou.ryourishu_oosaji_g", "value": 15, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.ryourishu", "status": "verified" },
-    { "key": "choumiryou.su_oosaji_g", "value": 15, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.su", "status": "verified" },
-    { "key": "choumiryou.miso_oosaji_g", "value": 18, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.miso", "status": "verified" },
-    { "key": "choumiryou.satou_jouhakutou_oosaji_g", "value": 9, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.satou_jouhakutou", "status": "verified" },
-    { "key": "choumiryou.shio_oosaji_g", "value": 18, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.shio", "status": "verified" },
-    { "key": "choumiryou.komugiko_hakurikiko_oosaji_g", "value": 9, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.komugiko_hakurikiko", "status": "verified" },
-    { "key": "choumiryou.katakuriko_oosaji_g", "value": 9, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.katakuriko", "status": "verified" },
-    { "key": "choumiryou.sarada_abura_oosaji_g", "value": 12, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.sarada_abura", "status": "verified" },
-    { "key": "choumiryou.bataa_oosaji_g", "value": 12, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.bataa", "status": "verified" },
-    { "key": "choumiryou.mayonezu_oosaji_g", "value": 12, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.mayonezu", "status": "verified" },
-    { "key": "choumiryou.hachimitsu_oosaji_g", "value": 21, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.hachimitsu", "status": "verified" },
-    { "key": "choumiryou.gyuunyuu_oosaji_g", "value": 15, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.gyuunyuu", "status": "verified" },
-    { "key": "choumiryou.kechappu_oosaji_g", "value": 18, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.kechappu", "status": "stub", "stub_reason": "ツール実装値は18gだが、確認できた自治体一次資料（大阪市・新潟市・船橋市系資料）はいずれも15gで一致しないため、本文では数値を明示せず参考値としての注記にとどめている。" },
-    { "key": "choumiryou.namakuriimu_oosaji_g", "value": 15, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.namakuriimu", "status": "stub", "stub_reason": "許可ドメイン内で確認できる一次資料が見つからず、ツール実装値をそのまま参考値として扱っているため、本文では数値を明示していない。" },
-    { "key": "choumiryou.mentsuyu_oosaji_g", "value": 18, "unit": "g", "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.mentsuyu", "status": "stub", "stub_reason": "許可ドメイン内で確認できる一次資料が見つからず、ツール実装値をそのまま参考値として扱っているため、本文では数値を明示していない。" }
+    {
+      "key": "choumiryou.oosaji_ml",
+      "value": 15,
+      "unit": "ml",
+      "seido_ref": "choumiryou-kanzan-kijun.json#tan_i.oosaji_ml",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.kosaji_ml",
+      "value": 5,
+      "unit": "ml",
+      "seido_ref": "choumiryou-kanzan-kijun.json#tan_i.kosaji_ml",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.mizu_oosaji_g",
+      "value": 15,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.mizu",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.shouyu_oosaji_g",
+      "value": 18,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.shouyu",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.mirin_oosaji_g",
+      "value": 18,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.mirin",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.ryourishu_oosaji_g",
+      "value": 15,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.ryourishu",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.su_oosaji_g",
+      "value": 15,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.su",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.miso_oosaji_g",
+      "value": 18,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.miso",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.satou_jouhakutou_oosaji_g",
+      "value": 9,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.satou_jouhakutou",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.shio_oosaji_g",
+      "value": 18,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.shio",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.komugiko_hakurikiko_oosaji_g",
+      "value": 9,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.komugiko_hakurikiko",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.katakuriko_oosaji_g",
+      "value": 9,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.katakuriko",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.sarada_abura_oosaji_g",
+      "value": 12,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.sarada_abura",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.bataa_oosaji_g",
+      "value": 12,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.bataa",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.mayonezu_oosaji_g",
+      "value": 12,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.mayonezu",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.hachimitsu_oosaji_g",
+      "value": 21,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.hachimitsu",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.gyuunyuu_oosaji_g",
+      "value": 15,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.gyuunyuu",
+      "status": "verified"
+    },
+    {
+      "key": "choumiryou.kechappu_oosaji_g",
+      "value": 18,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.kechappu",
+      "status": "stub",
+      "stub_reason": "ツール実装値は18gだが、確認できた自治体一次資料（大阪市・新潟市・船橋市系資料）はいずれも15gで一致しないため、本文では数値を明示せず参考値としての注記にとどめている。"
+    },
+    {
+      "key": "choumiryou.namakuriimu_oosaji_g",
+      "value": 15,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.namakuriimu",
+      "status": "stub",
+      "stub_reason": "許可ドメイン内で確認できる一次資料が見つからず、ツール実装値をそのまま参考値として扱っているため、本文では数値を明示していない。"
+    },
+    {
+      "key": "choumiryou.mentsuyu_oosaji_g",
+      "value": 18,
+      "unit": "g",
+      "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.mentsuyu",
+      "status": "stub",
+      "stub_reason": "許可ドメイン内で確認できる一次資料が見つからず、ツール実装値をそのまま参考値として扱っているため、本文では数値を明示していない。"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

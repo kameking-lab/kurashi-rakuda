@@ -7,10 +7,29 @@
   "category": "妊娠・出産",
   "tool_ref": null,
   "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "solves": [
+    "里帰り出産で何の手続きが必要か分からない",
+    "里帰り先で妊婦健診の補助券が使えるか分からない"
+  ],
   "sources": [
-    { "url": "https://www.jaog.or.jp/sanka/", "title": "妊娠・出産に関する情報", "org": "日本産婦人科医会", "accessed": "2026-07-17" },
-    { "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/boshi-hoken/index.html", "title": "母子保健関連施策について", "org": "厚生労働省", "accessed": "2026-07-17" },
-    { "url": "https://www.city.yokohama.lg.jp/kurashi/kosodate-kyoiku/ninshin-shussan/boshitecho.html", "title": "母子健康手帳の交付について", "org": "横浜市", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.jaog.or.jp/sanka/",
+      "title": "妊娠・出産に関する情報",
+      "org": "日本産婦人科医会",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/boshi-hoken/index.html",
+      "title": "母子保健関連施策について",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/kosodate-kyoiku/ninshin-shussan/boshitecho.html",
+      "title": "母子健康手帳の交付について",
+      "org": "横浜市",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [],
   "last_updated": "2026-07-17"
