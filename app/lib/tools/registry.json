@@ -1030,5 +1030,30 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T26",
+    "slug": "renji-watt-kansan",
+    "category": "kaji",
+    "title": "電子レンジ ワット数・加熱時間換算",
+    "description": "元のワット数・加熱時間と変更後のワット数を入れると、基本式（T2=T1×W1÷W2）で換算後の加熱時間の目安を計算します。500/600/700Wのプリセットつき。",
+    "solves": [
+      "レシピが500W表記だけど自分のレンジは600Wで何秒にすればいいか分からない",
+      "電子レンジのワット数と加熱時間の換算式を知りたい",
+      "ワット数を変えたときの加熱時間の目安をすぐ計算したい"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "埼玉県上尾市「レンジ出力換算表」（PDF。原典は宝島社TJMook『デリッシュキッチン 驚きの電子レンジおかず』からの転載である旨がPDF内に明記）",
+        "url": "https://www.city.ageo.lg.jp/uploaded/attachment/82931.pdf"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/tables/renji-watt-kanzan-kijun.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/tables/renji-watt-kanzan-kijun.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
