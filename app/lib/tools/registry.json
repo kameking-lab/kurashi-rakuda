@@ -700,7 +700,6 @@
     "status": "live"
   },
   {
-<<<<<<< HEAD
     "queueId": "P2-T19",
     "slug": "youji-mushouka-checker",
     "category": "childcare",
@@ -720,7 +719,12 @@
       {
         "label": "e-Gov法令検索（デジタル庁）「子ども・子育て支援法（平成二十四年法律第六十五号）」",
         "url": "https://laws.e-gov.go.jp/law/424AC0000000065"
-=======
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
     "queueId": "P2-T17",
     "slug": "jintsuu-kankaku-counter",
     "category": "pregnancy",
@@ -741,7 +745,6 @@
       {
         "label": "国立成育医療研究センター 産科「入院について」（陣痛の間隔・破水時の連絡目安）",
         "url": "https://www.ncchd.go.jp/hospital/pregnancy/bunben/nyuin.html"
->>>>>>> origin/master
       }
     ],
     "updated": "2026-07-17",
