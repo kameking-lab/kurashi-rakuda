@@ -7,27 +7,131 @@
   "category": "お金",
   "tool_ref": "fuyo-kabe",
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "solves": [
+    "2026年の年収の壁の変更点が分からない",
+    "103万円の壁がどうなったのか分からない",
+    "106万円の壁がいつなくなるのか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf", "title": "源泉所得税の改正のあらまし（令和8年4月）", "org": "国税庁", "accessed": "2026-07-17" },
-    { "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/tanjikan.html", "title": "短時間労働者に対する健康保険・厚生年金保険の適用拡大", "org": "日本年金機構", "accessed": "2026-07-17" },
-    { "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html", "title": "健康保険の被扶養者の認定基準", "org": "日本年金機構", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf",
+      "title": "源泉所得税の改正のあらまし（令和8年4月）",
+      "org": "国税庁",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/tanjikan.html",
+      "title": "短時間労働者に対する健康保険・厚生年金保険の適用拡大",
+      "org": "日本年金機構",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html",
+      "title": "健康保険の被扶養者の認定基準",
+      "org": "日本年金機構",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "fuyou.kyu_103man", "value": 1030000, "unit": "円", "status": "stub", "stub_reason": "引き上げ前（旧基準）の参考値。data/seido/fuyou-kabe.json の walls.items[1].legacyName に文字列としてのみ記録され、独立した数値ノードが存在しないため機械照合対象外（本文では比較のための参考値として言及）。" },
-    { "key": "fuyou.kyu_160man", "value": 1600000, "unit": "円", "status": "stub", "stub_reason": "令和7年分（2025年分）の課税最低限。fuyou-kabe.json の walls.items[1].legacyName と amendments の summary に文字列として記録されている改正経緯の参考値。" },
-    { "key": "fuyou.shotokuzei_178man", "value": 1780000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.walls.items.1.amount2026", "status": "verified" },
-    { "key": "fuyou.tokurei_go_168man", "value": 1680000, "unit": "円", "status": "stub", "stub_reason": "令和10年分以後の課税最低限（特例失効後）。fuyou-kabe.json の amendments に文字列として記録（給与所得控除の最低保障額69万円＋基礎控除99万円）。" },
-    { "key": "fuyou.shaho_106man", "value": 1060000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.walls.items.6.amount2026", "status": "verified" },
-    { "key": "fuyou.shaho_gessu_88sen", "value": 88000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.socialInsurance.shortTimeWorker.monthlyWageThreshold.value", "status": "verified" },
-    { "key": "fuyou.hifuyousha_130man", "value": 1300000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.socialInsurance.dependentCertification.annualIncomeThreshold.value", "status": "verified" },
-    { "key": "fuyou.hifuyousha_150man_19to22", "value": 1500000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.socialInsurance.dependentCertification.annualIncomeThreshold19to22.value", "status": "verified" },
-    { "key": "fuyou.hifuyousha_180man_korei", "value": 1800000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.socialInsurance.dependentCertification.annualIncomeThresholdElderlyOrDisabled.value", "status": "verified" },
-    { "key": "fuyou.age_19", "value": 19, "unit": "歳", "status": "stub", "stub_reason": "被扶養者認定150万円特例の対象年齢の下限。データでは annualIncomeThreshold19to22 のキー名・注記として保持され、独立した数値ノードがないため。" },
-    { "key": "fuyou.age_23", "value": 23, "unit": "歳", "status": "stub", "stub_reason": "同上（対象年齢の上限。19歳以上23歳未満）。" },
-    { "key": "fuyou.age_60", "value": 60, "unit": "歳", "status": "stub", "stub_reason": "被扶養者認定180万円基準の対象年齢。データでは annualIncomeThresholdElderlyOrDisabled の注記として保持。" },
-    { "key": "fuyou.haigusha_mangaku_159man", "value": 1590000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.fullAmountSalaryLine.value", "status": "verified" },
-    { "key": "fuyou.haigusha_shoshitsu_207man", "value": 2070000, "unit": "円", "seido_ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.vanishSalaryLine.value", "status": "verified" }
+    {
+      "key": "fuyou.kyu_103man",
+      "value": 1030000,
+      "unit": "円",
+      "status": "stub",
+      "stub_reason": "引き上げ前（旧基準）の参考値。data/seido/fuyou-kabe.json の walls.items[1].legacyName に文字列としてのみ記録され、独立した数値ノードが存在しないため機械照合対象外（本文では比較のための参考値として言及）。"
+    },
+    {
+      "key": "fuyou.kyu_160man",
+      "value": 1600000,
+      "unit": "円",
+      "status": "stub",
+      "stub_reason": "令和7年分（2025年分）の課税最低限。fuyou-kabe.json の walls.items[1].legacyName と amendments の summary に文字列として記録されている改正経緯の参考値。"
+    },
+    {
+      "key": "fuyou.shotokuzei_178man",
+      "value": 1780000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.walls.items.1.amount2026",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.tokurei_go_168man",
+      "value": 1680000,
+      "unit": "円",
+      "status": "stub",
+      "stub_reason": "令和10年分以後の課税最低限（特例失効後）。fuyou-kabe.json の amendments に文字列として記録（給与所得控除の最低保障額69万円＋基礎控除99万円）。"
+    },
+    {
+      "key": "fuyou.shaho_106man",
+      "value": 1060000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.walls.items.6.amount2026",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.shaho_gessu_88sen",
+      "value": 88000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.socialInsurance.shortTimeWorker.monthlyWageThreshold.value",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.hifuyousha_130man",
+      "value": 1300000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.socialInsurance.dependentCertification.annualIncomeThreshold.value",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.hifuyousha_150man_19to22",
+      "value": 1500000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.socialInsurance.dependentCertification.annualIncomeThreshold19to22.value",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.hifuyousha_180man_korei",
+      "value": 1800000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.socialInsurance.dependentCertification.annualIncomeThresholdElderlyOrDisabled.value",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.age_19",
+      "value": 19,
+      "unit": "歳",
+      "status": "stub",
+      "stub_reason": "被扶養者認定150万円特例の対象年齢の下限。データでは annualIncomeThreshold19to22 のキー名・注記として保持され、独立した数値ノードがないため。"
+    },
+    {
+      "key": "fuyou.age_23",
+      "value": 23,
+      "unit": "歳",
+      "status": "stub",
+      "stub_reason": "同上（対象年齢の上限。19歳以上23歳未満）。"
+    },
+    {
+      "key": "fuyou.age_60",
+      "value": 60,
+      "unit": "歳",
+      "status": "stub",
+      "stub_reason": "被扶養者認定180万円基準の対象年齢。データでは annualIncomeThresholdElderlyOrDisabled の注記として保持。"
+    },
+    {
+      "key": "fuyou.haigusha_mangaku_159man",
+      "value": 1590000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.fullAmountSalaryLine.value",
+      "status": "verified"
+    },
+    {
+      "key": "fuyou.haigusha_shoshitsu_207man",
+      "value": 2070000,
+      "unit": "円",
+      "seido_ref": "fuyou-kabe.json#data.haiguushaTokubetsuKoujo.vanishSalaryLine.value",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"
@@ -38,7 +142,7 @@
 
 ## 結論
 
-かつて「103万円の壁」と呼ばれていた、本人に所得税がかかり始める年収ラインは、2025年分（令和7年分）で160万円に引き上げられ、2026年分（令和8年分）からは期間限定の特例でさらに178万円になりました。一方、「106万円の壁」と呼ばれてきた社会保険加入の賃金要件は2026年10月に撤廃される予定で、健康保険の扶養に入れる上限（130万円）は変わっていません。壁ごとに根拠となる制度が違うため、分けて確認するのが確実です。
+かつて「103万円の壁」と呼ばれていた、本人に所得税がかかり始める年収ラインは、2025年分（令和7年分）で160万円に引き上げられ、2026年分（令和8年分）からは期限付きの特例でさらに178万円になりました。一方、「106万円の壁」と呼ばれてきた社会保険加入の賃金要件は2026年10月に撤廃される予定で、健康保険の扶養に入れる上限（130万円）は変わっていません。壁ごとに根拠となる制度が違うため、分けて確認するのが確実です。
 
 ## 対象と金額
 

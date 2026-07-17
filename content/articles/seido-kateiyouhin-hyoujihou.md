@@ -7,13 +7,33 @@
   "category": "家事・料理",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "衣類の品質表示の見方が分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.caa.go.jp/policies/policy/representation/household_goods/", "title": "家庭用品品質表示法", "org": "消費者庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.caa.go.jp/policies/policy/representation/household_goods/",
+      "title": "家庭用品品質表示法",
+      "org": "消費者庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "kateiyouhin.seitei_nen", "value": 1962, "unit": "年", "seido_ref": "kateiyouhin-hinshitsu-hyoujihou.json#seitei_nen", "status": "verified" },
-    { "key": "kateiyouhin.taishou_hinmoku_kubun_kazu", "value": 4, "unit": "種類", "seido_ref": "kateiyouhin-hinshitsu-hyoujihou.json#taishou_hinmoku_kubun.length", "status": "verified" }
+    {
+      "key": "kateiyouhin.seitei_nen",
+      "value": 1962,
+      "unit": "年",
+      "seido_ref": "kateiyouhin-hinshitsu-hyoujihou.json#seitei_nen",
+      "status": "verified"
+    },
+    {
+      "key": "kateiyouhin.taishou_hinmoku_kubun_kazu",
+      "value": 4,
+      "unit": "種類",
+      "seido_ref": "kateiyouhin-hinshitsu-hyoujihou.json#taishou_hinmoku_kubun.length",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

@@ -7,34 +7,179 @@
   "category": "家事・料理",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "家事分担の偏りを客観的な数字で知りたい"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.stat.go.jp/data/shakai/2021/index.html", "title": "令和3年社会生活基本調査 生活時間及び生活行動に関する結果", "org": "総務省統計局", "accessed": "2026-07-17" },
-    { "url": "https://www.stat.go.jp/info/today/pdf/190.pdf", "title": "統計Today No.190 我が国における家事関連時間の男女の差～生活時間からみたジェンダーギャップ～", "org": "総務省統計局", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.stat.go.jp/data/shakai/2021/index.html",
+      "title": "令和3年社会生活基本調査 生活時間及び生活行動に関する結果",
+      "org": "総務省統計局",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.stat.go.jp/info/today/pdf/190.pdf",
+      "title": "統計Today No.190 我が国における家事関連時間の男女の差～生活時間からみたジェンダーギャップ～",
+      "org": "総務省統計局",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "kaji_jikan.zenkoku_dansei_2021", "value": 51, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#zenkoku_10sai_ijo_danjyobetsu_kaji_kanren_jikan_fun.dansei_2021", "status": "verified" },
-    { "key": "kaji_jikan.zenkoku_josei_2021", "value": 204, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#zenkoku_10sai_ijo_danjyobetsu_kaji_kanren_jikan_fun.josei_2021", "status": "verified" },
-    { "key": "kaji_jikan.zenkoku_danjyosa_2021", "value": 153, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#zenkoku_10sai_ijo_danjyobetsu_kaji_kanren_jikan_fun.danjyosa_2021_fun", "status": "verified" },
-    { "key": "kaji_jikan.muma_otto_2021", "value": 114, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.otto_2021", "status": "verified" },
-    { "key": "kaji_jikan.muma_tsuma_2021", "value": 448, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.tsuma_2021", "status": "verified" },
-    { "key": "kaji_jikan.uchiwake_kaji_otto", "value": 30, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaji_otto", "status": "verified" },
-    { "key": "kaji_jikan.uchiwake_kaji_tsuma", "value": 178, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaji_tsuma", "status": "verified" },
-    { "key": "kaji_jikan.uchiwake_ikuji_otto", "value": 65, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.ikuji_otto", "status": "verified" },
-    { "key": "kaji_jikan.uchiwake_ikuji_tsuma", "value": 234, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.ikuji_tsuma", "status": "verified" },
-    { "key": "kaji_jikan.uchiwake_kaimono_otto", "value": 18, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaimono_otto", "status": "verified" },
-    { "key": "kaji_jikan.uchiwake_kaimono_tsuma", "value": 33, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaimono_tsuma", "status": "verified" },
-    { "key": "kaji_jikan.uchiwake_kaigo_otto", "value": 1, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaigo_kango_otto", "status": "verified" },
-    { "key": "kaji_jikan.uchiwake_kaigo_tsuma", "value": 3, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaigo_kango_tsuma", "status": "verified" },
-    { "key": "kaji_jikan.kyoudaraki_otto_2021", "value": 115, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.kyoudaraki_otto_2021", "status": "verified" },
-    { "key": "kaji_jikan.kyoudaraki_tsuma_2021", "value": 393, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.kyoudaraki_tsuma_2021", "status": "verified" },
-    { "key": "kaji_jikan.senkatsu_otto_2021", "value": 107, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.senkatsu_otto_2021", "status": "verified" },
-    { "key": "kaji_jikan.senkatsu_tsuma_2021", "value": 564, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.senkatsu_tsuma_2021", "status": "verified" },
-    { "key": "kaji_jikan.kyoudaraki_tsuma_taisenkatsu_tsuma_sa", "value": 171, "unit": "分", "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.kyoudaraki_tsuma_taisenkatsu_tsuma_sa_fun", "status": "verified" },
-    { "key": "kaji_jikan.chousa_taisho_nenrei", "value": 10, "unit": "歳", "status": "stub", "stub_reason": "社会生活基本調査の調査対象年齢（10歳以上）を示す調査設計上の定義値であり、data/tables/kaji-jikan-toukei-danjyosa.json内に数値フィールドとして格納された実測値ではないため機械照合の対象外" },
-    { "key": "kaji_jikan.muma_kodomo_nenrei", "value": 6, "unit": "歳", "status": "stub", "stub_reason": "「6歳未満の子を持つ夫婦」という集計区分の年齢境界を示す調査設計上の定義値であり、data/tables/kaji-jikan-toukei-danjyosa.json内に数値フィールドとして格納された実測値ではないため機械照合の対象外" },
-    { "key": "kaji_jikan.sokutei_tan_i_nichi", "value": 1, "unit": "日", "status": "stub", "stub_reason": "「1人1日当たり」という調査の測定単位を示す定義値であり、data/tables/kaji-jikan-toukei-danjyosa.json内に数値フィールドとして格納された実測値ではないため機械照合の対象外" },
-    { "key": "kaji_jikan.sokutei_tan_i_nin", "value": 1, "unit": "人", "status": "stub", "stub_reason": "「1人1日当たり」という調査の測定単位を示す定義値であり、data/tables/kaji-jikan-toukei-danjyosa.json内に数値フィールドとして格納された実測値ではないため機械照合の対象外" }
+    {
+      "key": "kaji_jikan.zenkoku_dansei_2021",
+      "value": 51,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#zenkoku_10sai_ijo_danjyobetsu_kaji_kanren_jikan_fun.dansei_2021",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.zenkoku_josei_2021",
+      "value": 204,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#zenkoku_10sai_ijo_danjyobetsu_kaji_kanren_jikan_fun.josei_2021",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.zenkoku_danjyosa_2021",
+      "value": 153,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#zenkoku_10sai_ijo_danjyobetsu_kaji_kanren_jikan_fun.danjyosa_2021_fun",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.muma_otto_2021",
+      "value": 114,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.otto_2021",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.muma_tsuma_2021",
+      "value": 448,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.tsuma_2021",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.uchiwake_kaji_otto",
+      "value": 30,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaji_otto",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.uchiwake_kaji_tsuma",
+      "value": 178,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaji_tsuma",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.uchiwake_ikuji_otto",
+      "value": 65,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.ikuji_otto",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.uchiwake_ikuji_tsuma",
+      "value": 234,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.ikuji_tsuma",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.uchiwake_kaimono_otto",
+      "value": 18,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaimono_otto",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.uchiwake_kaimono_tsuma",
+      "value": 33,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaimono_tsuma",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.uchiwake_kaigo_otto",
+      "value": 1,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaigo_kango_otto",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.uchiwake_kaigo_tsuma",
+      "value": 3,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#muma_kodomo_setai_fuufu_kaji_kanren_jikan_fun.uchiwake_2021_fun.kaigo_kango_tsuma",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.kyoudaraki_otto_2021",
+      "value": 115,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.kyoudaraki_otto_2021",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.kyoudaraki_tsuma_2021",
+      "value": 393,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.kyoudaraki_tsuma_2021",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.senkatsu_otto_2021",
+      "value": 107,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.senkatsu_otto_2021",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.senkatsu_tsuma_2021",
+      "value": 564,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.senkatsu_tsuma_2021",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.kyoudaraki_tsuma_taisenkatsu_tsuma_sa",
+      "value": 171,
+      "unit": "分",
+      "seido_ref": "kaji-jikan-toukei-danjyosa.json#kyoudaraki_vs_senkatsu_setai_muma_kodomo_setai_kaji_kanren_jikan_fun.kyoudaraki_tsuma_taisenkatsu_tsuma_sa_fun",
+      "status": "verified"
+    },
+    {
+      "key": "kaji_jikan.chousa_taisho_nenrei",
+      "value": 10,
+      "unit": "歳",
+      "status": "stub",
+      "stub_reason": "社会生活基本調査の調査対象年齢（10歳以上）を示す調査設計上の定義値であり、data/tables/kaji-jikan-toukei-danjyosa.json内に数値フィールドとして格納された実測値ではないため機械照合の対象外"
+    },
+    {
+      "key": "kaji_jikan.muma_kodomo_nenrei",
+      "value": 6,
+      "unit": "歳",
+      "status": "stub",
+      "stub_reason": "「6歳未満の子を持つ夫婦」という集計区分の年齢境界を示す調査設計上の定義値であり、data/tables/kaji-jikan-toukei-danjyosa.json内に数値フィールドとして格納された実測値ではないため機械照合の対象外"
+    },
+    {
+      "key": "kaji_jikan.sokutei_tan_i_nichi",
+      "value": 1,
+      "unit": "日",
+      "status": "stub",
+      "stub_reason": "「1人1日当たり」という調査の測定単位を示す定義値であり、data/tables/kaji-jikan-toukei-danjyosa.json内に数値フィールドとして格納された実測値ではないため機械照合の対象外"
+    },
+    {
+      "key": "kaji_jikan.sokutei_tan_i_nin",
+      "value": 1,
+      "unit": "人",
+      "status": "stub",
+      "stub_reason": "「1人1日当たり」という調査の測定単位を示す定義値であり、data/tables/kaji-jikan-toukei-danjyosa.json内に数値フィールドとして格納された実測値ではないため機械照合の対象外"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

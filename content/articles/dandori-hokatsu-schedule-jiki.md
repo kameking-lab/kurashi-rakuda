@@ -7,8 +7,17 @@
   "category": "子育て",
   "tool_ref": null,
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "solves": [
+    "保活をいつ始めればいいか分からない",
+    "保育園の申込締切がいつか分からない"
+  ],
   "sources": [
-    { "url": "https://www.cfa.go.jp/policies/kokoseido/", "title": "保育所等の利用について", "org": "こども家庭庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.cfa.go.jp/policies/kokoseido/",
+      "title": "保育所等の利用について",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [],
   "last_updated": "2026-07-17"

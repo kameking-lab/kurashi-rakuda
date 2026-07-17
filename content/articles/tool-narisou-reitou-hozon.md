@@ -7,15 +7,47 @@
   "category": "家事・料理",
   "tool_ref": "reito-hozon",
   "persona": "作り置き・時短調理をしたい親",
+  "solves": [
+    "この食材が冷凍で何日もつか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.caa.go.jp/policies/policy/consumer_safety/child/food_safety/", "title": "食品の保存に関する情報", "org": "消費者庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.caa.go.jp/policies/policy/consumer_safety/child/food_safety/",
+      "title": "食品の保存に関する情報",
+      "org": "消費者庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "reitou.ondo", "value": 18, "unit": "度", "seido_ref": "reitou-hozon.json#katei_reitouko_meyasu_ondo_do", "status": "verified" },
-    { "key": "reitou.hourensou", "value": 1, "unit": "ヶ月", "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.hourensou", "status": "verified" },
-    { "key": "reitou.toriniku", "value": 1, "unit": "ヶ月", "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.toriniku_nama", "status": "verified" },
-    { "key": "reitou.gohan", "value": 1, "unit": "ヶ月", "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.gohan", "status": "verified" }
+    {
+      "key": "reitou.ondo",
+      "value": 18,
+      "unit": "度",
+      "seido_ref": "reitou-hozon.json#katei_reitouko_meyasu_ondo_do",
+      "status": "verified"
+    },
+    {
+      "key": "reitou.hourensou",
+      "value": 1,
+      "unit": "ヶ月",
+      "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.hourensou",
+      "status": "verified"
+    },
+    {
+      "key": "reitou.toriniku",
+      "value": 1,
+      "unit": "ヶ月",
+      "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.toriniku_nama",
+      "status": "verified"
+    },
+    {
+      "key": "reitou.gohan",
+      "value": 1,
+      "unit": "ヶ月",
+      "seido_ref": "reitou-hozon.json#shokuzai_reitou_hozon_meyasu_kagetsu.gohan",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

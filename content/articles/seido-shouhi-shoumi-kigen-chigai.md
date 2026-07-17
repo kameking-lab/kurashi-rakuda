@@ -7,12 +7,27 @@
   "category": "家事・料理",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "消費期限と賞味期限の違いが分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.caa.go.jp/policies/policy/food_labeling/food_sanitation/expiration_date/", "title": "食品の期限表示に関する情報", "org": "消費者庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.caa.go.jp/policies/policy/food_labeling/food_sanitation/expiration_date/",
+      "title": "食品の期限表示に関する情報",
+      "org": "消費者庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "shokuhin_hyouji.gonichi_rule_haishi", "value": 5, "unit": "日", "seido_ref": "shokuhin-hyouji-kikan.json#kubun_kijun_no_hi_kazu_ni_tsuite", "status": "stub", "stub_reason": "「5日」はかつて示されていた区分目安（平成20年に厚生省・農林水産省が解消し、消費者庁も現在は非推奨としている）を説明する文脈でのみ使う数値。参照先データ（data/tables/shokuhin-hyouji-kikan.jsonのkubun_kijun_no_hi_kazu_ni_tsuiteフィールド）は文章記述のみで、機械照合できる数値フィールドを持たないためstub扱いとする。" }
+    {
+      "key": "shokuhin_hyouji.gonichi_rule_haishi",
+      "value": 5,
+      "unit": "日",
+      "seido_ref": "shokuhin-hyouji-kikan.json#kubun_kijun_no_hi_kazu_ni_tsuite",
+      "status": "stub",
+      "stub_reason": "「5日」はかつて示されていた区分目安（平成20年に厚生省・農林水産省が解消し、消費者庁も現在は非推奨としている）を説明する文脈でのみ使う数値。参照先データ（data/tables/shokuhin-hyouji-kikan.jsonのkubun_kijun_no_hi_kazu_ni_tsuiteフィールド）は文章記述のみで、機械照合できる数値フィールドを持たないためstub扱いとする。"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

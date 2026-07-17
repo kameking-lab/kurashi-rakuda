@@ -7,20 +7,81 @@
   "category": "子育て",
   "tool_ref": "hoikuryo",
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "solves": [
+    "保育料がいくらになるか分からない",
+    "保育料が9月に変わる理由が分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.city.osaka.lg.jp/kodomo/page/0000501253.html", "title": "令和8年度 保育施設等の保育料のお知らせ", "org": "大阪市こども青少年局", "accessed": "2026-07-17" },
-    { "url": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/hoiku-yoji/shisetsu/riyou/riyouryo/riyouryosantei/default20190319.html", "title": "利用料（保育料）および副食費の免除対象の決定方法", "org": "横浜市こども青少年局", "accessed": "2026-07-17" },
-    { "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka", "title": "幼児教育・保育の無償化", "org": "こども家庭庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.city.osaka.lg.jp/kodomo/page/0000501253.html",
+      "title": "令和8年度 保育施設等の保育料のお知らせ",
+      "org": "大阪市こども青少年局",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/hoiku-yoji/shisetsu/riyou/riyouryo/riyouryosantei/default20190319.html",
+      "title": "利用料（保育料）および副食費の免除対象の決定方法",
+      "org": "横浜市こども青少年局",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka",
+      "title": "幼児教育・保育の無償化",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "mushouka.age_3", "value": 3, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllFrom.value", "status": "verified" },
-    { "key": "mushouka.age_5", "value": 5, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllTo.value", "status": "verified" },
-    { "key": "mushouka.age_0", "value": 0, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableFrom.value", "status": "verified" },
-    { "key": "mushouka.age_2", "value": 2, "unit": "歳", "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableTo.value", "status": "verified" },
-    { "key": "hoikuryo.osaka_tier4_under3", "value": 10100, "unit": "円", "seido_ref": "hoikuryo/osaka-osaka.json#tiers.3.fees.under3.standard", "status": "verified" },
-    { "key": "hoikuryo.yokohama_tierD2_under3", "value": 10000, "unit": "円", "seido_ref": "hoikuryo/kanagawa-yokohama.json#tiers.4.fees.under3.standard", "status": "verified" },
-    { "key": "hoikuryo.osaka_age3plus_free", "value": 0, "unit": "円", "seido_ref": "hoikuryo/osaka-osaka.json#tiers.0.fees.age3plus.standard", "status": "verified" }
+    {
+      "key": "mushouka.age_3",
+      "value": 3,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllFrom.value",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_5",
+      "value": 5,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.freeForAllTo.value",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_0",
+      "value": 0,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableFrom.value",
+      "status": "verified"
+    },
+    {
+      "key": "mushouka.age_2",
+      "value": 2,
+      "unit": "歳",
+      "seido_ref": "youji-kyouiku-mushouka.json#data.targetAges.nonTaxableTo.value",
+      "status": "verified"
+    },
+    {
+      "key": "hoikuryo.osaka_tier4_under3",
+      "value": 10100,
+      "unit": "円",
+      "seido_ref": "hoikuryo/osaka-osaka.json#tiers.3.fees.under3.standard",
+      "status": "verified"
+    },
+    {
+      "key": "hoikuryo.yokohama_tierD2_under3",
+      "value": 10000,
+      "unit": "円",
+      "seido_ref": "hoikuryo/kanagawa-yokohama.json#tiers.4.fees.under3.standard",
+      "status": "verified"
+    },
+    {
+      "key": "hoikuryo.osaka_age3plus_free",
+      "value": 0,
+      "unit": "円",
+      "seido_ref": "hoikuryo/osaka-osaka.json#tiers.0.fees.age3plus.standard",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

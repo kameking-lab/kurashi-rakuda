@@ -7,17 +7,60 @@
   "category": "妊娠・出産",
   "tool_ref": null,
   "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "solves": [
+    "産休中の社会保険料がいつからいつまで免除されるか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://laws.e-gov.go.jp/law/211AC0000000070", "title": "健康保険法（第159条・第159条の3）", "org": "デジタル庁 e-Gov法令検索", "accessed": "2026-07-17" },
-    { "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/menjo/20140122-01.html", "title": "厚生年金保険料等の免除（産前産後休業・育児休業等期間）", "org": "日本年金機構", "accessed": "2026-07-17" }
+    {
+      "url": "https://laws.e-gov.go.jp/law/211AC0000000070",
+      "title": "健康保険法（第159条・第159条の3）",
+      "org": "デジタル庁 e-Gov法令検索",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/menjo/20140122-01.html",
+      "title": "厚生年金保険料等の免除（産前産後休業・育児休業等期間）",
+      "org": "日本年金機構",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "sango_menjo.sanzen_tanmine", "value": 42, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirth.value", "status": "verified" },
-    { "key": "sango_menjo.sanzen_tatai", "value": 98, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirthMultiple.value", "status": "verified" },
-    { "key": "sango_menjo.sango", "value": 56, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodAfterBirth.value", "status": "verified" },
-    { "key": "sango_menjo.ikuji_14nichi_rule", "value": 14, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shakaiHokenryoMenjo.childcareLeave.fourteenDayRule.value", "status": "verified" },
-    { "key": "sango_menjo.ikuji_taisho_nenrei", "value": 3, "unit": "歳", "status": "stub", "stub_reason": "育児休業等の保険料免除の対象年齢（3歳未満）は一次データ上テキストのvalueフィールドに格納されており、独立した数値ノードがないため個別確認が必要" }
+    {
+      "key": "sango_menjo.sanzen_tanmine",
+      "value": 42,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirth.value",
+      "status": "verified"
+    },
+    {
+      "key": "sango_menjo.sanzen_tatai",
+      "value": 98,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirthMultiple.value",
+      "status": "verified"
+    },
+    {
+      "key": "sango_menjo.sango",
+      "value": 56,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodAfterBirth.value",
+      "status": "verified"
+    },
+    {
+      "key": "sango_menjo.ikuji_14nichi_rule",
+      "value": 14,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shakaiHokenryoMenjo.childcareLeave.fourteenDayRule.value",
+      "status": "verified"
+    },
+    {
+      "key": "sango_menjo.ikuji_taisho_nenrei",
+      "value": 3,
+      "unit": "歳",
+      "status": "stub",
+      "stub_reason": "育児休業等の保険料免除の対象年齢（3歳未満）は一次データ上テキストのvalueフィールドに格納されており、独立した数値ノードがないため個別確認が必要"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

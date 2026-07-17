@@ -7,15 +7,47 @@
   "category": "妊娠・出産",
   "tool_ref": null,
   "persona": "ペルソナ4: 鈴木奈々（34歳・妊活→プレママ）",
+  "solves": [
+    "出産手当金がいくらもらえるか分からない",
+    "出産が予定日より遅れたら手当はどうなるか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://laws.e-gov.go.jp/law/211AC0000000070", "title": "健康保険法（第99条・第102条）", "org": "デジタル庁 e-Gov法令検索", "accessed": "2026-07-17" },
-    { "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/index.html", "title": "出産手当金", "org": "全国健康保険協会（協会けんぽ）", "accessed": "2026-07-17" }
+    {
+      "url": "https://laws.e-gov.go.jp/law/211AC0000000070",
+      "title": "健康保険法（第99条・第102条）",
+      "org": "デジタル庁 e-Gov法令検索",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/index.html",
+      "title": "出産手当金",
+      "org": "全国健康保険協会（協会けんぽ）",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "shussan_teate.sanzen_tanmine", "value": 42, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirth.value", "status": "verified" },
-    { "key": "shussan_teate.sanzen_tatai", "value": 98, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirthMultiple.value", "status": "verified" },
-    { "key": "shussan_teate.sango", "value": 56, "unit": "日", "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodAfterBirth.value", "status": "verified" }
+    {
+      "key": "shussan_teate.sanzen_tanmine",
+      "value": 42,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirth.value",
+      "status": "verified"
+    },
+    {
+      "key": "shussan_teate.sanzen_tatai",
+      "value": 98,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodBeforeBirthMultiple.value",
+      "status": "verified"
+    },
+    {
+      "key": "shussan_teate.sango",
+      "value": 56,
+      "unit": "日",
+      "seido_ref": "ikukyu-kyufu.json#data.shussanTeateKin.periodAfterBirth.value",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

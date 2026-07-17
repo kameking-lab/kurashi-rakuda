@@ -7,19 +7,75 @@
   "category": "家事・料理",
   "tool_ref": null,
   "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）",
+  "solves": [
+    "お米1合に水を何ml入れるか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2111/spe3_01.html", "title": "「和ごはん」のすすめ ごはんの炊き方の基本", "org": "農林水産省", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2111/spe3_01.html",
+      "title": "「和ごはん」のすすめ ごはんの炊き方の基本",
+      "org": "農林水産省",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "suihan.ichigo_ml", "value": 180, "unit": "ml", "seido_ref": "suihan-mizukagen-kijun.json#ichigo_ml", "status": "verified" },
-    { "key": "suihan.hakumai_ichigo_g", "value": 150, "unit": "g", "seido_ref": "suihan-mizukagen-kijun.json#hakumai_ichigo_g", "status": "verified" },
-    { "key": "suihan.hakumai_gousuu_kani_ml_per_go", "value": 200, "unit": "ml", "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.hakumai_gousuu_kani_ml_per_go", "status": "verified" },
-    { "key": "suihan.musenmai_tsuika_min", "value": 15, "unit": "ml", "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.musenmai_tsuika_ml_per_go_min", "status": "verified" },
-    { "key": "suihan.musenmai_tsuika_max", "value": 30, "unit": "ml", "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.musenmai_tsuika_ml_per_go_max", "status": "verified" },
-    { "key": "suihan.hakumai_juuryou_baiitsu", "value": 1.2, "unit": "倍", "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.hakumai_juuryou_base", "status": "verified" },
-    { "key": "suihan.genmai_baiitsu", "value": 1.5, "unit": "倍", "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.genmai", "status": "verified" },
-    { "key": "suihan.mochigome_baiitsu", "value": 1.0, "unit": "倍", "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.mochigome", "status": "verified" }
+    {
+      "key": "suihan.ichigo_ml",
+      "value": 180,
+      "unit": "ml",
+      "seido_ref": "suihan-mizukagen-kijun.json#ichigo_ml",
+      "status": "verified"
+    },
+    {
+      "key": "suihan.hakumai_ichigo_g",
+      "value": 150,
+      "unit": "g",
+      "seido_ref": "suihan-mizukagen-kijun.json#hakumai_ichigo_g",
+      "status": "verified"
+    },
+    {
+      "key": "suihan.hakumai_gousuu_kani_ml_per_go",
+      "value": 200,
+      "unit": "ml",
+      "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.hakumai_gousuu_kani_ml_per_go",
+      "status": "verified"
+    },
+    {
+      "key": "suihan.musenmai_tsuika_min",
+      "value": 15,
+      "unit": "ml",
+      "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.musenmai_tsuika_ml_per_go_min",
+      "status": "verified"
+    },
+    {
+      "key": "suihan.musenmai_tsuika_max",
+      "value": 30,
+      "unit": "ml",
+      "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.musenmai_tsuika_ml_per_go_max",
+      "status": "verified"
+    },
+    {
+      "key": "suihan.hakumai_juuryou_baiitsu",
+      "value": 1.2,
+      "unit": "倍",
+      "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.hakumai_juuryou_base",
+      "status": "verified"
+    },
+    {
+      "key": "suihan.genmai_baiitsu",
+      "value": 1.5,
+      "unit": "倍",
+      "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.genmai",
+      "status": "verified"
+    },
+    {
+      "key": "suihan.mochigome_baiitsu",
+      "value": 1.0,
+      "unit": "倍",
+      "seido_ref": "suihan-mizukagen-kijun.json#kasui_baiitsu.mochigome",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

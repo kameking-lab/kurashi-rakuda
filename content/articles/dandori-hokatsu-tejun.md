@@ -7,8 +7,17 @@
   "category": "子育て",
   "tool_ref": null,
   "persona": "0〜1歳児の保活をする保護者",
+  "solves": [
+    "保活で何から始めればいいか分からない",
+    "保活の見学で何を確認すればいいか分からない"
+  ],
   "sources": [
-    { "url": "https://www.cfa.go.jp/policies/kokoseido/", "title": "保育所等の利用について", "org": "こども家庭庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.cfa.go.jp/policies/kokoseido/",
+      "title": "保育所等の利用について",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [],
   "last_updated": "2026-07-17"

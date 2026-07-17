@@ -7,14 +7,40 @@
   "category": "介護",
   "tool_ref": "kaigo-jikofutan",
   "persona": "親の介護を控える40〜50代",
+  "solves": [
+    "介護サービスの自己負担が月いくらか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/gaiyo/index.html", "title": "介護保険制度の概要", "org": "厚生労働省", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/gaiyo/index.html",
+      "title": "介護保険制度の概要",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "kaigo.jikofutan_gensoku", "value": 1, "unit": "割", "seido_ref": "kaigo-hoken-jikofutan.json#jikofutan_wariai.gensoku", "status": "verified" },
-    { "key": "kaigo.jikofutan_2wari", "value": 2, "unit": "割", "seido_ref": "kaigo-hoken-jikofutan.json#jikofutan_wariai.ittei_ijou_shotoku", "status": "verified" },
-    { "key": "kaigo.jikofutan_3wari", "value": 3, "unit": "割", "seido_ref": "kaigo-hoken-jikofutan.json#jikofutan_wariai.toku_ni_takai_shotoku", "status": "verified" }
+    {
+      "key": "kaigo.jikofutan_gensoku",
+      "value": 1,
+      "unit": "割",
+      "seido_ref": "kaigo-hoken-jikofutan.json#jikofutan_wariai.gensoku",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.jikofutan_2wari",
+      "value": 2,
+      "unit": "割",
+      "seido_ref": "kaigo-hoken-jikofutan.json#jikofutan_wariai.ittei_ijou_shotoku",
+      "status": "verified"
+    },
+    {
+      "key": "kaigo.jikofutan_3wari",
+      "value": 3,
+      "unit": "割",
+      "seido_ref": "kaigo-hoken-jikofutan.json#jikofutan_wariai.toku_ni_takai_shotoku",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

@@ -7,16 +7,54 @@
   "category": "仕事・キャリア",
   "tool_ref": null,
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "solves": [
+    "育児時短就業給付がいくらもらえるか分からない",
+    "育児時短就業給付の対象条件が分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.mhlw.go.jp/content/11600000/001395102.pdf", "title": "育児時短就業給付金のご案内", "org": "厚生労働省", "accessed": "2026-07-17" },
-    { "url": "https://laws.e-gov.go.jp/law/349AC0000000116", "title": "雇用保険法", "org": "デジタル庁 e-Gov法令検索", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.mhlw.go.jp/content/11600000/001395102.pdf",
+      "title": "育児時短就業給付金のご案内",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://laws.e-gov.go.jp/law/349AC0000000116",
+      "title": "雇用保険法",
+      "org": "デジタル庁 e-Gov法令検索",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "jitan.kyufu_ritsu", "value": 10, "unit": "%", "seido_ref": "jitan-kinmu-kyufu.json#kyufu_ritsu.jitan_chingin_ni_taisuru_wariai", "status": "verified" },
-    { "key": "jitan.taisho_nenrei", "value": 2, "unit": "歳", "seido_ref": "jitan-kinmu-kyufu.json#taisho_nenrei_miman_sai", "status": "verified" },
-    { "key": "jitan.shikyu_gendogaku", "value": 471393, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.ikujiJitanShugyoKyufuKin.supportLimit.value", "status": "verified" },
-    { "key": "jitan.saitei_shikyugaku", "value": 2411, "unit": "円", "seido_ref": "ikukyu-kyufu.json#data.ikujiJitanShugyoKyufuKin.minimumAmount.value", "status": "verified" }
+    {
+      "key": "jitan.kyufu_ritsu",
+      "value": 10,
+      "unit": "%",
+      "seido_ref": "jitan-kinmu-kyufu.json#kyufu_ritsu.jitan_chingin_ni_taisuru_wariai",
+      "status": "verified"
+    },
+    {
+      "key": "jitan.taisho_nenrei",
+      "value": 2,
+      "unit": "歳",
+      "seido_ref": "jitan-kinmu-kyufu.json#taisho_nenrei_miman_sai",
+      "status": "verified"
+    },
+    {
+      "key": "jitan.shikyu_gendogaku",
+      "value": 471393,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiJitanShugyoKyufuKin.supportLimit.value",
+      "status": "verified"
+    },
+    {
+      "key": "jitan.saitei_shikyugaku",
+      "value": 2411,
+      "unit": "円",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiJitanShugyoKyufuKin.minimumAmount.value",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-08-01"

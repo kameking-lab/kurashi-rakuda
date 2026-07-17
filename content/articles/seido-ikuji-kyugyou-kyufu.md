@@ -7,14 +7,41 @@
   "category": "仕事・キャリア",
   "tool_ref": null,
   "persona": "育休取得を検討する会社員",
+  "solves": [
+    "育児休業給付金がいくらもらえるか分からない",
+    "180日を過ぎると給付率がどう変わるか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_continue.html", "title": "育児休業給付について", "org": "ハローワークインターネットサービス（厚生労働省）", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_continue.html",
+      "title": "育児休業給付について",
+      "org": "ハローワークインターネットサービス（厚生労働省）",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "ikuji_kyugyou.kyufu_180", "value": 67, "unit": "%", "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.kaishi_kara_180nichi_made", "status": "verified" },
-    { "key": "ikuji_kyugyou.kyufu_after", "value": 50, "unit": "%", "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.181nichime_ikou", "status": "verified" },
-    { "key": "ikuji_kyugyou.kirikae", "value": 180, "unit": "日", "seido_ref": "ikuji-kyugyou-kyufu.json#kirikae_nissu", "status": "verified" }
+    {
+      "key": "ikuji_kyugyou.kyufu_180",
+      "value": 67,
+      "unit": "%",
+      "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.kaishi_kara_180nichi_made",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyou.kyufu_after",
+      "value": 50,
+      "unit": "%",
+      "seido_ref": "ikuji-kyugyou-kyufu.json#kyufu_ritsu.181nichime_ikou",
+      "status": "verified"
+    },
+    {
+      "key": "ikuji_kyugyou.kirikae",
+      "value": 180,
+      "unit": "日",
+      "seido_ref": "ikuji-kyugyou-kyufu.json#kirikae_nissu",
+      "status": "verified"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"

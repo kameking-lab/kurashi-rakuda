@@ -7,10 +7,29 @@
   "category": "健康・美容",
   "tool_ref": null,
   "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "solves": [
+    "更年期の症状をどこに相談すればいいか分からない",
+    "婦人科を受診する前に何を準備すればいいか分からない"
+  ],
   "sources": [
-    { "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/joseinokenko/index.html", "title": "女性の健康推進に関する取り組み", "org": "厚生労働省", "accessed": "2026-07-17" },
-    { "url": "https://www.jsog.or.jp/general_info/", "title": "一般の方へ（女性の健康に関する情報）", "org": "日本産科婦人科学会", "accessed": "2026-07-17" },
-    { "url": "https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/kenko/soudan/", "title": "保健センターの健康相談窓口", "org": "横浜市", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/joseinokenko/index.html",
+      "title": "女性の健康推進に関する取り組み",
+      "org": "厚生労働省",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.jsog.or.jp/general_info/",
+      "title": "一般の方へ（女性の健康に関する情報）",
+      "org": "日本産科婦人科学会",
+      "accessed": "2026-07-17"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/kenko/soudan/",
+      "title": "保健センターの健康相談窓口",
+      "org": "横浜市",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [],
   "last_updated": "2026-07-17"

@@ -7,19 +7,76 @@
   "category": "子育て",
   "tool_ref": "jido-teate",
   "persona": "共働き子育て世帯",
+  "solves": [
+    "児童手当がいくらもらえるか分からない",
+    "児童手当がいつ振り込まれるか分からない"
+  ],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/", "title": "児童手当制度のご案内", "org": "こども家庭庁", "accessed": "2026-07-17" }
+    {
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/",
+      "title": "児童手当制度のご案内",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-17"
+    }
   ],
   "facts": [
-    { "key": "jidou_teate.0_2", "value": 15000, "unit": "円", "seido_ref": "jidou-teate.json#monthly_amount.0_to_2", "status": "verified" },
-    { "key": "jidou_teate.3_koukou", "value": 10000, "unit": "円", "seido_ref": "jidou-teate.json#monthly_amount.3_to_high_school", "status": "verified" },
-    { "key": "jidou_teate.dai3ji", "value": 30000, "unit": "円", "seido_ref": "jidou-teate.json#monthly_amount.3_to_high_school_third_or_later", "status": "verified" },
-    { "key": "jidou_teate.shiharai_kaisu", "value": 6, "unit": "回", "seido_ref": "jidou-teate.json#payment.times_per_year", "status": "verified" },
-    { "key": "jidou_teate.age_0", "value": 0, "unit": "歳", "seido_ref": "jidou-teate.json#age_boundary.nyuji_kara_sai", "status": "verified" },
-    { "key": "jidou_teate.age_3", "value": 3, "unit": "歳", "seido_ref": "jidou-teate.json#age_boundary.jidou_kara_sai", "status": "verified" },
-    { "key": "jidou_teate.age_18", "value": 18, "unit": "歳", "seido_ref": "jidou-teate.json#age_boundary.koukou_nendo_made_sai", "status": "verified" },
-    { "key": "jidou_teate.jichitai_uwanose", "value": 0, "unit": "円", "status": "stub", "stub_reason": "自治体独自の上乗せ給付は全国データ未整備。docs/08_タスク分解.md P2-04の自治体データ収集と合わせてPhase 2で整備予定" }
+    {
+      "key": "jidou_teate.0_2",
+      "value": 15000,
+      "unit": "円",
+      "seido_ref": "jidou-teate.json#monthly_amount.0_to_2",
+      "status": "verified"
+    },
+    {
+      "key": "jidou_teate.3_koukou",
+      "value": 10000,
+      "unit": "円",
+      "seido_ref": "jidou-teate.json#monthly_amount.3_to_high_school",
+      "status": "verified"
+    },
+    {
+      "key": "jidou_teate.dai3ji",
+      "value": 30000,
+      "unit": "円",
+      "seido_ref": "jidou-teate.json#monthly_amount.3_to_high_school_third_or_later",
+      "status": "verified"
+    },
+    {
+      "key": "jidou_teate.shiharai_kaisu",
+      "value": 6,
+      "unit": "回",
+      "seido_ref": "jidou-teate.json#payment.times_per_year",
+      "status": "verified"
+    },
+    {
+      "key": "jidou_teate.age_0",
+      "value": 0,
+      "unit": "歳",
+      "seido_ref": "jidou-teate.json#age_boundary.nyuji_kara_sai",
+      "status": "verified"
+    },
+    {
+      "key": "jidou_teate.age_3",
+      "value": 3,
+      "unit": "歳",
+      "seido_ref": "jidou-teate.json#age_boundary.jidou_kara_sai",
+      "status": "verified"
+    },
+    {
+      "key": "jidou_teate.age_18",
+      "value": 18,
+      "unit": "歳",
+      "seido_ref": "jidou-teate.json#age_boundary.koukou_nendo_made_sai",
+      "status": "verified"
+    },
+    {
+      "key": "jidou_teate.jichitai_uwanose",
+      "value": 0,
+      "unit": "円",
+      "status": "stub",
+      "stub_reason": "自治体独自の上乗せ給付は全国データ未整備。docs/08_タスク分解.md P2-04の自治体データ収集と合わせてPhase 2で整備予定"
+    }
   ],
   "last_updated": "2026-07-17",
   "next_check_due": "2026-10-01"
