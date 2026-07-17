@@ -1,0 +1,455 @@
+{
+  "$schema": "../schema/seido-common.schema.json",
+  "id": "kodomo-iryouhi-jyosei",
+  "name": "こども医療費助成（子ども医療費助成・乳幼児医療費助成）",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-17",
+  "sources": [
+    {
+      "id": "cfa-iryouhi-chosa-r7",
+      "title": "令和7年度「こどもに係る医療費の助成についての調査」",
+      "publisher": "こども家庭庁",
+      "url": "https://www.cfa.go.jp/policies/boshihoken/kodomoiryouhityousa-r7",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "html",
+      "note": "2026-07-17時点で公表されている最新の全国調査（令和7年4月1日現在、2025年12月24日公表）の掲載元ページ。調査結果のポイントと別紙1〜3へのリンクを掲載。"
+    },
+    {
+      "id": "cfa-iryouhi-besshi1-r7",
+      "title": "令和7年度「こどもに係る医療費の助成についての調査」別紙1（こども医療費に対する助成の実施状況・令和7年4月1日現在）",
+      "publisher": "こども家庭庁成育局母子保健課",
+      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/6a9b8926-411c-4044-81aa-d8c26b21aaf5/39db7d2e/20251224policies-boshihoken-kodomoiryouhityousa-r7-01.pdf",
+      "landingUrl": "https://www.cfa.go.jp/policies/boshihoken/kodomoiryouhityousa-r7",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "全国集計表。都道府県・市区町村別に、対象年齢／所得制限の有無／一部自己負担の有無の分布を通院・入院別に集計した一次データ。本データの統計値の根拠。別紙2＝都道府県別の詳細、別紙3＝市区町村別の詳細。"
+    },
+    {
+      "id": "mhlw-genngaku-haishi",
+      "title": "こどもにとってより良い医療の在り方（第180回社会保障審議会医療保険部会 資料3）",
+      "publisher": "厚生労働省保険局",
+      "url": "https://www.mhlw.go.jp/content/12401000/001270728.pdf",
+      "landingUrl": "https://www.mhlw.go.jp/stf/newpage_41124.html",
+      "checkedAt": "2026-07-17",
+      "tier": "ministry",
+      "contentType": "pdf",
+      "note": "国民健康保険の国庫負担金減額調整措置の廃止（未就学児は平成30年度以降対象外、18歳年度末までは令和6年度から廃止）の根拠。減額調整措置の仕組みと、廃止に伴い懸念される課題（受診行動の変容・抗菌薬処方への影響等）も記載。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "こども医療費助成は国の制度ではなく、地方単独事業（各市区町村が実施し、各都道府県が要綱等に基づき補助する事業）である。全国一律の法定基準・法定給付は存在しない。",
+      "status": "in-force",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "cfa-iryouhi-chosa-r7",
+      "impact": "★実装上の最重要論点★ 対象年齢・所得制限・自己負担額・現物給付か償還払いか・助成対象範囲のすべてが市区町村ごとに異なる。ツールは全国共通の金額計算をしてはならない。できるのは『分布を示す』『自治体の窓口・サイトで確認するよう促す』ところまで。個別自治体の値を持たせる場合は自治体ごとにデータを持つ必要がある。"
+    },
+    {
+      "summary": "こども医療費助成に係る国民健康保険の国庫負担金減額調整措置について、未就学児までを対象とする分は平成30年度（2018年度）以降に対象外とされ、さらに市町村の助成内容（自己負担や所得制限の有無等）を問わず18歳に達する日以後の最初の3月31日までの間にあるこどもの医療費助成に係る分が令和6年度（2024年度）から廃止された（省令事項）。",
+      "status": "in-force",
+      "effectiveFrom": "2024-04-01",
+      "sourceId": "mhlw-genngaku-haishi",
+      "impact": "自治体が助成を拡充しても国庫負担金を減額されなくなったため、対象年齢の拡大・窓口負担の無償化・償還払いの現物給付化が進む方向。2026年度以降も自治体の助成内容が変わりやすいことを意味するため、データの陳腐化に注意。読者への影響は間接的（自治体の判断を通じて及ぶ）であり、直接の給付ではない点を混同しないこと。"
+    },
+    {
+      "summary": "令和8年度（2026年4月1日現在）の「こどもに係る医療費の助成についての調査」は、2026-07-17時点で未公表。本データの統計値は令和7年4月1日現在の調査（2025年12月24日公表）による。",
+      "status": "under-review",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "cfa-iryouhi-chosa-r7",
+      "impact": "statistics 配下の値は令和7年4月1日時点。例年12月下旬に前年度4月1日現在の調査が公表されるため、2026年12月頃に cfa-iryouhi-chosa-r7 と同系列のページを再確認して更新すること。自治体の助成拡充は毎年進んでいるため、18歳年度末までの実施市区町村数は増加している可能性が高い。"
+    }
+  ],
+  "disclaimer": "こども医療費助成は国の制度ではなく、各市区町村が独自に実施する地方単独事業です。そのため、対象年齢・所得制限の有無・窓口での自己負担の有無や金額・助成の受け方（現物給付か償還払いか）・申請方法は、お住まいの市区町村によって大きく異なります。本ツールが示すのは、こども家庭庁の全国調査に基づく分布・傾向であり、あなたが実際に受けられる助成の内容ではありません。転居によって助成内容が変わることもあります。実際の助成内容は、必ずお住まいの市区町村の公式サイトまたは担当窓口でご確認ください。また、助成があっても保険適用外の費用（予防接種・健診・差額ベッド代・入院時食事療養費など）は対象外となるのが一般的です。",
+  "data": {
+    "overview": {
+      "isNationalProgram": {
+        "value": false,
+        "label": "国の制度か（全国一律の法定基準があるか）",
+        "sourceId": "cfa-iryouhi-chosa-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["各市区町村が実施するこどもに係る医療費の助成については、各都道府県が要綱等に基づき補助している"] },
+        "amendmentNote": "なし（2026-07-17時点）。国の制度化の予定は2026-07-17時点で確認されていない。",
+        "note": "★このデータで最も重要な事実★ false = 国の制度ではない。児童手当（国の法定給付）とは根本的に性質が異なる。実施主体は市区町村、都道府県は要綱等に基づく補助を行う立場。国（こども家庭庁）は実施状況を調査・集計しているだけで、基準を定めていない。"
+      },
+      "implementationBody": {
+        "value": "各市区町村が実施し、各都道府県が要綱等に基づき補助する（地方単独事業）",
+        "label": "実施主体",
+        "sourceId": "cfa-iryouhi-chosa-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["各都道府県が要綱等に基づき補助しているところです"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "都道府県の補助基準（例：通院は就学前まで）に市区町村が独自に上乗せする二層構造。市区町村の対象年齢が都道府県の補助基準より広いのが通例で、その差額は市区町村の一般財源で賄われる。これが自治体間格差の直接の原因。"
+      },
+      "commonNames": {
+        "value": "こども医療費助成／子ども医療費助成／乳幼児医療費助成／マル乳・マル子（東京都）等、自治体ごとに名称が異なる",
+        "label": "名称",
+        "sourceId": "cfa-iryouhi-chosa-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "自治体独自の通称を列挙した本データ独自の補足であり、こども家庭庁の調査ページ上に同一文字列は存在しない。こども家庭庁の調査名称は『こどもに係る医療費の助成についての調査』であり、これは overview.surveyName で照合済み。" },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "検索・窓口照会の際は自治体の呼称を使う必要がある。記事では『自治体によって名称が違うので〈自治体名＋子ども医療費〉で検索を』と案内すると実用的。"
+      },
+      "surveyName": {
+        "value": "こどもに係る医療費の助成についての調査",
+        "label": "こども家庭庁の全国調査の名称",
+        "sourceId": "cfa-iryouhi-chosa-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["「こどもに係る医療費の助成についての調査」"] },
+        "amendmentNote": "令和4年度・5年度までは『こどもに係る医療費の援助についての調査』の名称だった（『援助』→『助成』）。2026-07-17時点の最新は『助成』。",
+        "note": "検索時の注意：旧称『乳幼児等に係る医療費の援助についての調査』『こどもに係る医療費の援助についての調査』でも過去分がヒットする。"
+      },
+      "surveyDate": {
+        "value": "2025-04-01",
+        "label": "最新調査の基準日",
+        "sourceId": "cfa-iryouhi-besshi1-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["（令和７年４月１日現在）"] },
+        "amendmentNote": "令和8年度調査（2026年4月1日現在）は2026-07-17時点で未公表。例年12月下旬公表。"
+      }
+    },
+    "nationalCoverage": {
+      "description": "こども家庭庁『令和7年度こどもに係る医療費の助成についての調査』（令和7年4月1日現在）による全国の実施状況。全ての都道府県及び市区町村が実施している。",
+      "allMunicipalitiesImplement": {
+        "value": true,
+        "label": "全ての都道府県及び市区町村が実施しているか",
+        "sourceId": "cfa-iryouhi-chosa-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["全ての都道府県及び市区町村がこどもに係る医療費の助成を実施していた"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "true = 全1,741市区町村・全47都道府県で実施済み。『助成が全くない自治体』は存在しない。したがって記事では『あるかないか』ではなく『内容がどう違うか』を論点にすべき。"
+      },
+      "totalMunicipalities": {
+        "value": 1741,
+        "unit": "count",
+        "label": "実施市区町村数（通院・入院とも）",
+        "sourceId": "cfa-iryouhi-besshi1-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["実施市区町村数計", "1,741"] },
+        "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+        "note": "全国の市区町村数と一致＝実施率100%。通院・入院いずれも1,741。"
+      },
+      "totalPrefectures": {
+        "value": 47,
+        "unit": "count",
+        "label": "実施都道府県数（通院・入院とも）",
+        "sourceId": "cfa-iryouhi-besshi1-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["実施都道府県数計", "47"] },
+        "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。"
+      },
+      "mostCommonPattern": {
+        "value": "都道府県では通院が就学前まで・入院が15歳年度末まで（中学生まで）が最も多く、市区町村では通院・入院ともに18歳年度末（高校生まで）が最も多い",
+        "label": "最も多い対象年齢のパターン（令和7年4月1日時点）",
+        "sourceId": "cfa-iryouhi-chosa-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["都道府県では、通院が就学前まで、入院が15歳年度末まで（中学生まで）が最も多く、市区町村では、通院、入院ともに18歳年度末（高校生まで）が最も多かった"] },
+        "amendmentNote": "令和7年4月1日現在。令和6年4月1日時点も同じ傾向だった。次回調査で更新される。",
+        "note": "★記事の核心★ 都道府県の補助基準（通院＝就学前）と市区町村の実際の助成（通院＝18歳年度末）の落差が、市区町村の持ち出しの大きさを示している。読者が『県のサイトを見て就学前までだと誤解する』典型的な混乱ポイント。"
+      }
+    },
+    "municipalityStatistics": {
+      "description": "市区町村における実施状況（令和7年4月1日現在、単位：市区町村、母数1,741）。対象年齢は通院・入院別に集計されている。",
+      "targetAgeOutpatient": {
+        "preschool": {
+          "value": 9,
+          "unit": "count",
+          "label": "通院：就学前まで",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "別紙1は表形式のPDFであり、PyMuPDFの読み順では『就学前』の行と数値『9』が通院列・入院列に分離して出力されるため、数値と項目名の対応をリテラル照合できない。同PDFの通院列は上から 9 / 0 / 1 / 145 / 1,576 / 0 / 4 / 6 / 0 の順で並ぶ。母数1,741の照合は totalMunicipalities で実施済み。" },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "令和6年4月1日時点は12。減少＝拡充が進んでいる。"
+        },
+        "age12FiscalYearEnd": {
+          "value": 1,
+          "unit": "count",
+          "label": "通院：12歳年度末（小学生）まで",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "別紙1の表構造をリテラル照合できないため（targetAgeOutpatient.preschool の skipReason 参照）。" },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "令和6年4月1日時点は11。ほぼ消滅した区分。"
+        },
+        "age15FiscalYearEnd": {
+          "value": 145,
+          "unit": "count",
+          "label": "通院：15歳年度末（中学生）まで",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["145"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "令和6年4月1日時点は263。1年で118減少し、高校生まで拡充する自治体が急速に増えている。全体の約8.3%。"
+        },
+        "age18FiscalYearEnd": {
+          "value": 1576,
+          "unit": "count",
+          "label": "通院：18歳年度末（高校生）まで【最多】",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["1,576"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "★最多区分★ 全1,741市区町村の約90.5%。令和6年4月1日時点は1,448だったため1年で128増。『高校生まで無料』が今や標準であることを示す。"
+        },
+        "age20FiscalYearEnd": {
+          "value": 4,
+          "unit": "count",
+          "label": "通院：20歳年度末まで",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "別紙1の表構造をリテラル照合できないため（targetAgeOutpatient.preschool の skipReason 参照）。また『4』は1桁の数値であり、PDF内の他の箇所（都道府県の集計値等）と区別できないためリテラル照合が無意味になる。" },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。"
+        },
+        "age22FiscalYearEnd": {
+          "value": 6,
+          "unit": "count",
+          "label": "通院：22歳年度末まで",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "別紙1の表構造をリテラル照合できないため（targetAgeOutpatient.preschool の skipReason 参照）。1桁の数値のためリテラル照合が特定性を持たない。" },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "大学生年代まで助成する自治体も少数ながら存在する（令和6年4月1日時点は3、令和7年は6と倍増）。"
+        }
+      },
+      "targetAgeInpatient": {
+        "preschool": {
+          "value": 1,
+          "unit": "count",
+          "label": "入院：就学前まで",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "別紙1の表構造をリテラル照合できないため（targetAgeOutpatient.preschool の skipReason 参照）。同PDFの入院列は上から 1 / 0 / 7 / 116 / 1,600 / 0 / 4 / 7 / 6 の順で並ぶ。" },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。"
+        },
+        "age12FiscalYearEnd": {
+          "value": 7,
+          "unit": "count",
+          "label": "入院：12歳年度末（小学生）まで",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "別紙1の表構造をリテラル照合できないため（targetAgeOutpatient.preschool の skipReason 参照）。" },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。"
+        },
+        "age15FiscalYearEnd": {
+          "value": 116,
+          "unit": "count",
+          "label": "入院：15歳年度末（中学生）まで",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["116"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "令和6年4月1日時点は223。"
+        },
+        "age18FiscalYearEnd": {
+          "value": 1600,
+          "unit": "count",
+          "label": "入院：18歳年度末（高校生）まで【最多】",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["1,600"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "★最多区分★ 全1,741市区町村の約91.9%。令和6年4月1日時点は1,490。入院の方が通院よりわずかに手厚い（1,600 > 1,576）のが一貫した傾向。"
+        }
+      },
+      "incomeLimit": {
+        "outpatientNoLimit": {
+          "value": 1692,
+          "unit": "count",
+          "label": "通院：所得制限なしの市区町村数",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["1,692"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "全1,741市区町村の約97.2%。令和6年4月1日時点は1,645。所得制限を撤廃する自治体が増えている。"
+        },
+        "outpatientWithLimit": {
+          "value": 49,
+          "unit": "count",
+          "label": "通院：所得制限ありの市区町村数",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["49"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "全体の約2.8%。令和6年4月1日時点は96だったため1年でほぼ半減。少数派だが存在するため、記事で『所得制限はない』と断定してはならない。"
+        },
+        "inpatientNoLimit": {
+          "value": 1693,
+          "unit": "count",
+          "label": "入院：所得制限なしの市区町村数",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["1,693"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。"
+        },
+        "inpatientWithLimit": {
+          "value": 48,
+          "unit": "count",
+          "label": "入院：所得制限ありの市区町村数",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["48"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。"
+        }
+      },
+      "copayment": {
+        "outpatientNoCopay": {
+          "value": 1319,
+          "unit": "count",
+          "label": "通院：一部自己負担なしの市区町村数",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["1,319"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "全1,741市区町村の約75.8%。令和6年4月1日時点は1,266。"
+        },
+        "outpatientWithCopay": {
+          "value": 422,
+          "unit": "count",
+          "label": "通院：一部自己負担ありの市区町村数",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["422"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "★記事の要点★ 全体の約24.2%＝約4分の1の市区町村では通院時に自己負担がある。『子どもの医療費は無料』は正確ではない。1回500円・1日300円・月上限額など負担の形も自治体ごとに異なるが、その内訳は本調査（別紙1）では集計されていない（未確認：金額の分布は一次情報で確認できず）。"
+        },
+        "inpatientNoCopay": {
+          "value": 1410,
+          "unit": "count",
+          "label": "入院：一部自己負担なしの市区町村数",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["1,410"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "全体の約81.0%。令和6年4月1日時点は1,358。"
+        },
+        "inpatientWithCopay": {
+          "value": 331,
+          "unit": "count",
+          "label": "入院：一部自己負担ありの市区町村数",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "expect": ["331"] },
+          "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+          "note": "全体の約19.0%。"
+        },
+        "copaymentAmountDistribution": {
+          "value": null,
+          "label": "一部自己負担の金額（1回あたり／1日あたり／月上限）の全国分布",
+          "sourceId": "cfa-iryouhi-besshi1-r7",
+          "checkedAt": "2026-07-17",
+          "verify": { "skip": true, "skipReason": "値が null（未確認）のため照合対象なし。" },
+          "amendmentNote": "なし（2026-07-17時点）",
+          "note": "未確認: こども家庭庁『令和7年度こどもに係る医療費の助成についての調査』別紙1（全国集計）は、一部自己負担について『あり／なし』の二値でしか集計しておらず、金額の分布を集計していない。別紙3（市区町村別の詳細）には個別自治体ごとの記載があるが、これは全国集計値ではなく1,741件の個別データであり、単一の代表値・分布として要約できない。他に金額分布を集計した一次情報（府省庁の公表資料）は2026-07-17時点で発見できなかったため null とする。記事では『自己負担額は自治体ごとに異なるため、お住まいの自治体で確認を』と記述し、金額の目安を推定で示さないこと。"
+        }
+      }
+    },
+    "prefectureStatistics": {
+      "description": "都道府県における実施状況（令和7年4月1日現在、単位：都道府県、母数47）。都道府県は市区町村への補助を行う立場であり、この値は『補助基準』であって住民が実際に受ける助成内容ではない点に注意。『その他』1件は交付金方式のため対象年齢・所得制限・一部自己負担に関する規定がなく（交付金の規模は12歳年度末までに相当）、所得制限・一部自己負担の内訳は46都道府県が母数となる。",
+      "targetAgeOutpatientPreschool": {
+        "value": 17,
+        "unit": "count",
+        "label": "通院：就学前までとする都道府県数【最多】",
+        "sourceId": "cfa-iryouhi-besshi1-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "別紙1は表形式PDFであり、PyMuPDFの読み順では『就学前』の行と通院列の値『17』・入院列の値『13』が分離して出力されるためリテラル照合できない。都道府県の通院列は上から 0 / 1 / 17 / 4 / 4 / 8 / 12 / 1 の順で並ぶ。最多である事実は nationalCoverage.mostCommonPattern で照合済み。" },
+        "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+        "note": "★市区町村（18歳年度末が1,576で最多）との落差が最大の論点★ 都道府県の補助は就学前までが最多であり、それを超える部分は市区町村の持ち出し。令和6年4月1日時点は18。"
+      },
+      "targetAgeInpatientAge15": {
+        "value": 15,
+        "unit": "count",
+        "label": "入院：15歳年度末までとする都道府県数【最多】",
+        "sourceId": "cfa-iryouhi-besshi1-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "別紙1の表構造をリテラル照合できないため（prefectureStatistics.targetAgeOutpatientPreschool の skipReason 参照）。最多である事実は nationalCoverage.mostCommonPattern で照合済み。" },
+        "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+        "note": "令和6年4月1日時点も15で変化なし。"
+      },
+      "incomeLimitOutpatientNone": {
+        "value": 26,
+        "unit": "count",
+        "label": "通院：所得制限なしの都道府県数",
+        "sourceId": "cfa-iryouhi-besshi1-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "別紙1の表構造をリテラル照合できないため（prefectureStatistics.targetAgeOutpatientPreschool の skipReason 参照）。所得制限欄の通院列は上から 26 / 20 / 1 の順で並ぶ。" },
+        "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+        "note": "令和6年4月1日時点は24。所得制限ありは20（うち『その他』1を除く46が母数）。市区町村レベル（所得制限なし97.2%）と比べ、都道府県の補助基準では所得制限ありが依然として約4割を占める。"
+      },
+      "copaymentOutpatientNone": {
+        "value": 13,
+        "unit": "count",
+        "label": "通院：一部自己負担なしの都道府県数",
+        "sourceId": "cfa-iryouhi-besshi1-r7",
+        "checkedAt": "2026-07-17",
+        "verify": { "skip": true, "skipReason": "別紙1の表構造をリテラル照合できないため（prefectureStatistics.targetAgeOutpatientPreschool の skipReason 参照）。一部自己負担欄の通院列は上から 13 / 33 / 1 の順で並ぶ。" },
+        "amendmentNote": "令和7年4月1日現在の値。次回調査で更新される。",
+        "note": "令和6年4月1日時点は10。一部自己負担ありは33。都道府県の補助基準では自己負担ありが多数派だが、市区町村が上乗せして無料化している構図。"
+      }
+    },
+    "nhiAdjustment": {
+      "description": "こども医療費助成に係る国民健康保険の国庫負担金減額調整措置。自治体の助成拡充を国が財政的にペナルティで抑制していた仕組みで、その廃止が近年の助成拡充の背景にある。住民が直接受け取る給付ではない。",
+      "mechanism": {
+        "value": "自治体が行う医療費助成により患者の自己負担が減額される場合、国民健康保険財政に与える影響や限られた財源の公平な配分等の観点から、負担軽減に伴い増加した医療費分の公費負担を減額調整する措置",
+        "label": "減額調整措置の仕組み",
+        "sourceId": "mhlw-genngaku-haishi",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["負担軽減に伴い増加した医療費分の公費負担を減額調整している"] },
+        "amendmentNote": "こども医療費助成に係る分は令和6年度から廃止済み。2026-07-17時点で復活の予定は確認されていない。",
+        "note": "いわゆる『国のペナルティ』。窓口無料化すると受診が増えて医療費が膨らむため、その分の国庫負担を減らすという仕組みだった。なお償還払いの場合は波及効果が生じないため減額調整は行っていない旨も資料に明記されている。"
+      },
+      "preschoolExemptionFrom": {
+        "value": "平成30年度",
+        "label": "未就学児分が減額調整措置の対象外となった年度",
+        "sourceId": "mhlw-genngaku-haishi",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["平成30年度以降、減額調整措置の対象外としている"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "『未就学児までを対象とする医療費助成については、すべての市町村において、何らかの助成が実施されていた実態を踏まえ』対象外とされた（資料の文言）。2018年度から。"
+      },
+      "fullAbolitionFrom": {
+        "value": "令和6年度",
+        "label": "18歳年度末までのこども分の減額調整措置が廃止された年度",
+        "sourceId": "mhlw-genngaku-haishi",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["18", "歳に達する日以後の最初の３月31", "日までの間にあるこどもの医療費助成に係る減額調整措置について、令和６年度"] },
+        "amendmentNote": "令和6年度（2024年度）から廃止済み（省令事項）。2026-07-17時点で有効。",
+        "note": "★重要★ 市町村の助成内容（自己負担や所得制限の有無等）を問わず廃止された。根拠は『こども未来戦略』（令和5年12月22日閣議決定）。法律改正ではなく省令事項として実施。"
+      },
+      "abolitionScope": {
+        "value": "市町村の助成内容（自己負担や所得制限の有無等）を問わず、18歳に達する日以後の最初の3月31日までの間にあるこどもの医療費助成に係る減額調整措置",
+        "label": "廃止の範囲",
+        "sourceId": "mhlw-genngaku-haishi",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["市町村の助成内容（自己負担や所得制限の有無等）を問わず"] },
+        "amendmentNote": "令和6年度から。2026-07-17時点で有効。"
+      },
+      "basisDecision": {
+        "value": "こども未来戦略（令和5年12月22日閣議決定）において『おおむね全ての地方自治体において実施されているこども医療費助成について、国民健康保険の国庫負担の減額調整措置を廃止する』とされた",
+        "label": "廃止の根拠となった政府決定",
+        "sourceId": "mhlw-genngaku-haishi",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["国民健康保険の国庫負担の減額調整措置を廃止する"] },
+        "amendmentNote": "なし（2026-07-17時点）"
+      },
+      "expectedEffects": {
+        "value": "償還払いの現物給付化、対象年齢の拡大、窓口負担の無償化など、助成内容の拡充等が想定される",
+        "label": "廃止により想定される影響（厚労省の見込み）",
+        "sourceId": "mhlw-genngaku-haishi",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["償還払いの現物給付化、対象年齢の拡大、窓口負担の無償化など、助成内容の拡充等が想定される"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "実際に令和6年→令和7年の1年で、通院18歳年度末までが1,448→1,576、通院所得制限ありが96→49と急速に拡充が進んでおり、厚労省の見込みどおりの動きが統計に表れている。記事ではこの因果関係を示すと説得力が出る。"
+      },
+      "concerns": {
+        "value": "窓口での自己負担無償化等の拡充による、被保険者（保護者を含む。）の受診行動の変容／抗菌薬の処方など、医療機関での診療内容への影響／小児医療提供体制への影響／医療保険財政への影響",
+        "label": "拡充に伴い厚労省が挙げる課題",
+        "sourceId": "mhlw-genngaku-haishi",
+        "checkedAt": "2026-07-17",
+        "verify": { "expect": ["被保険者（保護者を含む。）の受診行動の変容"] },
+        "amendmentNote": "なし（2026-07-17時点）",
+        "note": "国民健康保険の保険者努力支援制度等で、こどもの抗菌薬処方の適正化や適切な受診の周知・啓発の取組を評価する指標を設定する方針が示されている。記事でバランスを取る際の材料になる。"
+      }
+    }
+  }
+}
