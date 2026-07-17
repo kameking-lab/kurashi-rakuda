@@ -4,7 +4,7 @@
   "category": "健康・美容",
   "type": "tool-narisou",
   "title_draft": "PMS・体調予測カレンダーはどう使う？周期連動の仕組み",
-  "tool_ref": "pms-taichou-yosoku",
+  "tool_ref": "seiri-shuki",
   "related_tool_list_no": 67,
   "persona": "ペルソナ3: 山本遥（29歳・独身・総合職）",
   "priority": "A",
@@ -15,6 +15,6 @@
       "path": "data/tables/pms-yosoku-shikumi.json"
     }
   ],
-  "status": "queued",
-  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"pms-yosoku-shikumi.json#data.<パス>.value\"）。"
+  "status": "gated_pass",
+  "notes": "seido_data は全て status=ready（一次データ整備済み）。facts[].seido_ref は path のファイルを root 形式で参照すること（例: \"pms-yosoku-shikumi.json#data.<パス>.value\"）。★2026-07-17 tool_ref修正★ job作成時点の tool_ref \"pms-taichou-yosoku\" は app/lib/tools/registry.json に存在しないslugだった（該当ツール未リリース）。PMS予測は周期計算に直接依拠するため、稼働中のツール「生理周期・排卵日予測」（slug: seiri-shuki）を tool_ref として採用し、記事 content/articles/tool-narisou-pms-yosoku-shikumi.md を作成。check-fidelity.mjs PASS（0 violations）を確認済み。"
 }
