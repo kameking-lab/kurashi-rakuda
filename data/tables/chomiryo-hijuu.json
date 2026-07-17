@@ -1,0 +1,28 @@
+{
+  "$comment": "調味料換算（Q3-14）の比重（大さじ1杯=15mlあたりのグラム数）対照表。★本ファイルが比重データの単一の情報源(SSOT)★ 2026-07-17 に ChomiryoKanzan.calc.ts のハードコード18種を移設した（BACKLOG Q3-14 の残項目消化）。値は一般的な調理用計量表（計量スプーン・カップの重量換算表）で広く共有されている参考値であり、法令・公的制度の値ではない（data/tables/ に置く理由）。★出典の特定性向上（公的・準公的な単一出典への紐付け）と食材の拡充は Q2-4 の課題として残る★ メーカー・製品・温度・すりきり方で数グラム変わりうるため、レシピの再現性が要る場面では実測を促すこと。",
+  "org": "一般的な調理用計量表の参考値（出典の特定はQ2-4で実施予定）",
+  "lastVerified": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
+  "tbspMl": 15,
+  "tspMl": 5,
+  "items": [
+    { "name": "水", "gPerTbsp": 15 },
+    { "name": "しょうゆ", "gPerTbsp": 18 },
+    { "name": "みりん", "gPerTbsp": 18 },
+    { "name": "料理酒", "gPerTbsp": 15 },
+    { "name": "酢", "gPerTbsp": 15 },
+    { "name": "みそ", "gPerTbsp": 18 },
+    { "name": "砂糖（上白糖）", "gPerTbsp": 9 },
+    { "name": "塩", "gPerTbsp": 18 },
+    { "name": "小麦粉（薄力粉）", "gPerTbsp": 9 },
+    { "name": "片栗粉", "gPerTbsp": 9 },
+    { "name": "サラダ油", "gPerTbsp": 12 },
+    { "name": "バター", "gPerTbsp": 12 },
+    { "name": "マヨネーズ", "gPerTbsp": 12 },
+    { "name": "ケチャップ", "gPerTbsp": 18 },
+    { "name": "はちみつ", "gPerTbsp": 21 },
+    { "name": "牛乳", "gPerTbsp": 15 },
+    { "name": "生クリーム", "gPerTbsp": 15 },
+    { "name": "めんつゆ", "gPerTbsp": 18 }
+  ]
+}
