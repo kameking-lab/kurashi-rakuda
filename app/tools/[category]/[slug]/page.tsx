@@ -38,6 +38,8 @@ import { ShussanJunbiChecklist } from "@/components/tools/impl/ShussanJunbiCheck
 import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
 import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
 import { RecipeNinzuuKansan } from "@/components/tools/impl/RecipeNinzuuKansan";
+import { HoikuenOmukaeGyakusan } from "@/components/tools/impl/HoikuenOmukaeGyakusan";
+import { HOIKUEN_OMUKAE_DISCLAIMER } from "@/components/tools/impl/HoikuenOmukaeGyakusan.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1125,6 +1127,29 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           </strong>
           特に大人数の調理では、塩分などを人数分そのまま倍にすると味が濃くなりすぎることが知られています。本ツールは分量の比例計算のみを行い、加熱時間や調理方法の調整は行わないため、実際に作る際は味見をしながら調整してください。
         </p>
+      </>
+    ),
+  },
+  "hoikuen-omukae-gyakusan": {
+    ui: <HoikuenOmukaeGyakusan />,
+    formula: (
+      <>
+        <p>
+          <strong>退勤限界時刻</strong>
+          ：「お迎え締切時刻 − 職場から保育園までの移動時間 − 退勤後の準備時間（バッファ）」で計算します。この時刻より後に退勤すると、お迎え締切に間に合わない可能性がある、という目安です。
+        </p>
+        <p>
+          <strong>実労働可能時間</strong>
+          ：出勤時刻（勤務開始時刻）を入力した場合のみ、「退勤限界時刻 − 出勤時刻」で計算します。
+        </p>
+        <p>
+          <strong>朝、保育園を出発する目安時刻（参考）</strong>
+          ：出勤時刻を入力した場合、「出勤時刻 − 保育園から職場までの移動時間」で計算し、参考情報として表示します。この値がマイナスになる場合（出勤時刻までに間に合わない場合）は、退勤限界時刻・実労働可能時間の結果はそのまま表示しつつ、この項目のみ「算出できません」と表示します。
+        </p>
+        <p>
+          このツールは制度・統計データに一切依存せず、入力された時刻の加減算のみを行います。日をまたぐ計算（夜勤等）は対象外で、退勤限界時刻が0:00より前になる場合や、実労働可能時間が負になる場合はエラーとして表示します。
+        </p>
+        <p>{HOIKUEN_OMUKAE_DISCLAIMER}</p>
       </>
     ),
   },

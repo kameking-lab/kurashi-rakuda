@@ -50,6 +50,23 @@ export function DateField({
   );
 }
 
+export function TimeField({
+  label,
+  hint,
+  ...props
+}: LabelledProps & InputHTMLAttributes<HTMLInputElement>) {
+  const id = useId();
+  return (
+    <div className="flex flex-col gap-1">
+      <label htmlFor={id} className="text-sm font-medium">
+        {label}
+      </label>
+      <input id={id} type="time" className={fieldClass} {...props} />
+      {hint && <p className="text-sm text-ink-muted">{hint}</p>}
+    </div>
+  );
+}
+
 export function SelectField({
   label,
   hint,
