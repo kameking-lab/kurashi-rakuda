@@ -442,9 +442,14 @@
       "1週間分の献立をまとめて決めたい"
     ],
     "basisYear": null,
-    "sources": [],
+    "sources": [
+      {
+        "label": "くらしラクダ「献立自動提案」のレシピ・食材データ（data/kondate。一般的な家庭料理の名称・主材料・調理法のみを自作したもので、外部レシピの転載はありません）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/tree/master/data/kondate"
+      }
+    ],
     "updated": "2026-07-17",
-    "status": "planned"
+    "status": "live"
   },
   {
     "queueId": "Q3-17",
