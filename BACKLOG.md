@@ -174,7 +174,7 @@
 | P2-T16 | #7 | 出産準備チェックリスト（予定日逆算） | B(ソネット) | なし（日付演算＋自前リスト） | 簡易 |
 | [x] P2-T17 | #10 | 陣痛間隔カウンター（オフライン必須） | B(ソネット) | なし | 簡易 → **完了（slug: jintsuu-kankaku-counter, 2026-07-17）**: localStorage永続化・平均間隔/持続時間・出典はncchd.go.jp（国立成育医療研究センター） |
 | P2-T18 | #11 | 産後手続きリスト生成（期限つき） | B(ソネット) | ✔shussho-todoke-kigen・jido-teate・ikukyu-kyufu | 簡易 |
-| P2-T19 | #27 | 幼児教育・保育無償化 対象チェッカー | B(ソネット) | ✔youji-kyouiku-mushouka | 簡易 |
+| [x] P2-T19 | #27 | 幼児教育・保育無償化 対象チェッカー | B(ソネット) | ✔youji-kyouiku-mushouka | 簡易 → **完了（feat/tool-youji-mushouka-checker）**: slug `youji-mushouka-checker`（childcare）。specs/b-tools/p2-t19-youji-mushouka-checker.md・YoujiMushoukaChecker.calc.ts/tsx・tests/youji-mushouka-checker.test.ts（18件）・registry.json 追加済み |
 | P2-T20 | #28 | 学童・小1の壁 段取りチェック | B(ソネット) | ✔gakudou-hoiku-kijun | 簡易 |
 | P2-T21 | #42 | 味付け黄金比計算（人数スケール） | B(ソネット) | 要: data/tables 黄金比表（出典設計含む） | 簡易 |
 | P2-T22 | #43 | レシピ人数スケール換算 | B(ソネット) | なし（#38部品流用） | 不要 |
