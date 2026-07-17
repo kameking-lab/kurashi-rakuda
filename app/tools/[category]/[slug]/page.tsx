@@ -53,7 +53,7 @@ import { HoikuenOmukaeGyakusan } from "@/components/tools/impl/HoikuenOmukaeGyak
 import { HOIKUEN_OMUKAE_DISCLAIMER } from "@/components/tools/impl/HoikuenOmukaeGyakusan.calc";
 import { Shou1KabeKinmuSimulation } from "@/components/tools/impl/Shou1KabeKinmuSimulation";
 import {
-  gakudouHoikuDataset,
+  gakudouHoikuDataset as shou1KabeGakudouHoikuDataset,
   GRADE_RANGE_LABEL,
   SHOU1_KABE_DISCLAIMER,
   SUPPORT_UNIT_MAX_CHILDREN,
@@ -1219,7 +1219,7 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           参考情報として、制度上の対象学年（{GRADE_RANGE_LABEL}）、支援の単位（クラスに相当）の定員（おおむね{SUPPORT_UNIT_MAX_CHILDREN}人）、待機児童数（全国合計{WAITING_CHILDREN_TOTAL.toLocaleString("ja-JP")}人、学年別。令和7年5月1日現在で最多は小学4年生の5,589人）を、判定結果とは独立した情報として画面内に表示します。
         </p>
         <p>{SHOU1_KABE_DISCLAIMER}</p>
-        <SeidoNotice datasets={[gakudouHoikuDataset]} today={todayJst()} />
+        <SeidoNotice datasets={[shou1KabeGakudouHoikuDataset]} today={todayJst()} />
       </>
     ),
   },
