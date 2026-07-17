@@ -6,7 +6,24 @@
  * 行うのは「最終月経開始日（LMP）を起点にした日付の加減算」のみ（ネーゲレ概算法）。
  * すべて YYYY-MM-DD の文字列で入出力し、内部では Date.UTC ベースの
  * 「1970-01-01からの経過日数（整数）」に変換して演算することでタイムゾーン依存を排除する。
+ *
+ * ネーゲレ概算法系の定数（280・28・97・195・20・45）のSSOTは
+ * data/tables/san-fujinka-kijun.json（Inunohi.calc.ts と共有）。ここに数値を書かない。
  */
+import sanFujinkaKijun from "@/data/tables/san-fujinka-kijun.json";
+
+/** ネーゲレ概算法の基本日数（40週0日） */
+const KIHON_NISSUU = sanFujinkaKijun.kihon_nissuu_280.value;
+/** ネーゲレ概算法が前提とする標準的な月経周期日数 */
+const HYOUJUN_SHUUKI_NISSUU = sanFujinkaKijun.hyoujun_shuuki_nissuu_28.value;
+/** 妊娠初期の境界（13週6日換算） */
+const SHOKI_KYOUKAI_NISSUU = sanFujinkaKijun.shoki_kyoukai_nissuu_97.value;
+/** 妊娠中期の境界（27週6日換算） */
+const CHUUKI_KYOUKAI_NISSUU = sanFujinkaKijun.chuuki_kyoukai_nissuu_195.value;
+/** 月経周期バリデーションの下限 */
+const SHUUKI_KANI_MIN = sanFujinkaKijun.shuuki_kani_min_20.value;
+/** 月経周期バリデーションの上限 */
+const SHUUKI_KANI_MAX = sanFujinkaKijun.shuuki_kani_max_45.value;
 
 const MS_PER_DAY = 86_400_000;
 
@@ -62,11 +79,11 @@ export interface DueDateResult {
  */
 export function calcDueDate(
   lastPeriodStart: string,
-  cycleLength: number = 28,
+  cycleLength: number = HYOUJUN_SHUUKI_NISSUU,
 ): DueDateResult {
-  const correctionDays = cycleLength - 28;
+  const correctionDays = cycleLength - HYOUJUN_SHUUKI_NISSUU;
   return {
-    dueDate: addDays(lastPeriodStart, 280 + correctionDays),
+    dueDate: addDays(lastPeriodStart, KIHON_NISSUU + correctionDays),
     correctionDays,
   };
 }
@@ -106,12 +123,12 @@ export function calcPregnancyMonth(weeks: number): number | null {
 export type PregnancyPeriod = "初期" | "中期" | "後期";
 
 /**
- * 妊娠期（日本産科婦人科学会の用語定義）。
+ * 妊娠期（日本産婦人科医会の用語定義）。
  * 初期: 〜13週6日（diffDays<=97）／中期: 14週0日〜27週6日（diffDays<=195）／後期: 28週0日〜
  */
 export function calcPregnancyPeriod(diffDays: number): PregnancyPeriod {
-  if (diffDays <= 97) return "初期";
-  if (diffDays <= 195) return "中期";
+  if (diffDays <= SHOKI_KYOUKAI_NISSUU) return "初期";
+  if (diffDays <= CHUUKI_KYOUKAI_NISSUU) return "中期";
   return "後期";
 }
 
@@ -189,9 +206,13 @@ export function validateShussanYoteibiInput(
   if (!input.baseDate || !isValidDateString(input.baseDate)) {
     return "基準日を正しい日付で入力してください";
   }
-  const cycleLength = input.cycleLength ?? 28;
-  if (!Number.isInteger(cycleLength) || cycleLength < 20 || cycleLength > 45) {
-    return "周期日数は20〜45の整数で入力してください";
+  const cycleLength = input.cycleLength ?? HYOUJUN_SHUUKI_NISSUU;
+  if (
+    !Number.isInteger(cycleLength) ||
+    cycleLength < SHUUKI_KANI_MIN ||
+    cycleLength > SHUUKI_KANI_MAX
+  ) {
+    return `周期日数は${SHUUKI_KANI_MIN}〜${SHUUKI_KANI_MAX}の整数で入力してください`;
   }
   if (diffInDays(input.baseDate, input.lmp) < 0) {
     return "基準日は最終月経開始日より後の日付を指定してください";
@@ -215,13 +236,13 @@ export function calcShussanYoteibi(
     return { ok: false, message: validationMessage };
   }
 
-  const cycleLength = input.cycleLength ?? 28;
+  const cycleLength = input.cycleLength ?? HYOUJUN_SHUUKI_NISSUU;
   const { dueDate, correctionDays } = input.knownEdd
     ? { dueDate: input.knownEdd, correctionDays: 0 }
     : calcDueDate(input.lmp, cycleLength);
 
   const effectiveLmp = input.knownEdd
-    ? addDays(input.knownEdd, -280)
+    ? addDays(input.knownEdd, -KIHON_NISSUU)
     : input.lmp;
 
   const gestational = calcGestationalWeek(effectiveLmp, input.baseDate);

@@ -4,7 +4,11 @@
  *
  * すべて純関数。日付は文字列 "YYYY-MM-DD" で受け渡しし、
  * 内部演算はタイムゾーンに依存しない UTC ミリ秒で行う。
+ *
+ * ネーゲレ概算法系の定数（280・112）のSSOTは
+ * data/tables/san-fujinka-kijun.json（ShussanYoteibi.calc.ts と共有）。ここに数値を書かない。
  */
+import sanFujinkaKijun from "@/data/tables/san-fujinka-kijun.json";
 
 export type InunohiInputMode = "lmp" | "edd";
 
@@ -41,10 +45,10 @@ export type InunohiOutput =
   | { ok: false; error: string };
 
 /** ネーゲレ概算法による妊娠期間の基本日数（ツール1と共通） */
-export const PREGNANCY_DAYS = 280;
+export const PREGNANCY_DAYS = sanFujinkaKijun.kihon_nissuu_280.value;
 
 /** LMP から妊娠5ヶ月（16週0日）に入る日までの日数 */
-export const MONTH5_OFFSET_DAYS = 112;
+export const MONTH5_OFFSET_DAYS = sanFujinkaKijun.ninshin_5kagetsu_kasan_nissuu_112.value;
 
 /** 十二支「戌」の周期日数 */
 export const INU_CYCLE_DAYS = 12;
