@@ -73,6 +73,8 @@ import { PartShiftShunyuuKeisan } from "@/components/tools/impl/PartShiftShunyuu
 import { partShiftKabeDataset } from "@/components/tools/impl/PartShiftShunyuuKeisan.calc";
 import { KaigoServiceGyakuHiki } from "@/components/tools/impl/KaigoServiceGyakuHiki";
 import { kaigoHokenDataset as kaigoServiceGyakuHikiDataset } from "@/components/tools/impl/KaigoServiceGyakuHiki.calc";
+import { JoseiTekiseiTaijuuShihyou } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou";
+import { TEKISEI_TAIJUU_DISCLAIMER } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1439,6 +1441,45 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           ：「このサービスを使えば必ず解決する」という保証ではなく、あくまで一般的な対応の目安です。実際にどのサービスをどれだけ使えるかは要介護度・お住まいの地域・事業所の空き状況などで変わるため、実際の利用にあたっては担当のケアマネジャーやお住まいの市区町村・地域包括支援センターへの相談が必要です。訪問介護・通所介護は、要支援1・2の方については市町村の地域支援事業（介護予防・日常生活支援総合事業）として提供され内容が市町村ごとに異なる場合があるため、この点も断定的に判定していません。
         </p>
         <SeidoNotice datasets={[kaigoServiceGyakuHikiDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "josei-tekisei-taijuu-shihyou": {
+    ui: <JoseiTekiseiTaijuuShihyou />,
+    formula: (
+      <>
+        <p>
+          <strong>BMI（体格指数）の計算式</strong>
+          ：BMI = 体重(kg) ÷ 身長(m)の2乗（身長はcmではなくmで計算します）。厚生労働省
+          e-ヘルスネットが紹介する、国際的に用いられている指数です。
+        </p>
+        <p>
+          <strong>肥満度分類（低体重〜肥満4度）</strong>
+          ：日本肥満学会が定める分類です。18.5未満は「低体重（やせ）」、18.5以上25.0未満は「普通体重」、
+          25.0以上30.0未満は「肥満（1度）」、30.0以上35.0未満は「肥満（2度）」、35.0以上40.0未満は「肥満（3度）」、
+          40.0以上は「肥満（4度）」です（境界値ちょうどは上位側の区分に含まれます）。日本の基準はWHOの基準（30以上を
+          Obese）とは異なります。
+        </p>
+        <p>
+          <strong>標準体重の計算基準（BMI22）</strong>
+          ：標準体重(kg) = 身長(m)の2乗 × 22。日本肥満学会がもっとも疾病の少ないBMIとして標準体重の計算に用いる基準値であり、
+          個人の「理想体重」として提示するものではありません。
+        </p>
+        <p>
+          <strong>目標とするBMIの範囲（年齢を入力した場合のみ）</strong>
+          ：厚生労働省「日本人の食事摂取基準（2025年版）」表1（18歳以上が対象）に基づき、18〜49歳は18.5〜24.9、
+          50〜64歳は20.0〜24.9、65〜74歳・75歳以上は21.5〜24.9と年齢によって範囲が変わります。この範囲は
+          「エネルギー収支バランスの維持を示す指標」として設定されたものであり、肥満・やせの医学的な「判定」基準
+          ではありません。18歳未満はこの表の対象外のため判定しません。
+        </p>
+        <p>
+          <strong>妊娠中の体重増加指導の目安について</strong>
+          ：現在の肥満度分類に対応する、こども家庭庁「妊娠前からはじめる妊産婦のための食生活指針 解説要領」表8の
+          目安（日本肥満学会の肥満度分類に準じた4区分）を参考情報として1行のみ表示します。医師が指導を行うときの
+          目安であり個人差を考慮した指導が必要なため、妊娠週数や目標体重の専用計算は行いません（妊娠中の体重増加を
+          詳しく調べたい場合は別のツールをご利用ください）。
+        </p>
+        <p>{TEKISEI_TAIJUU_DISCLAIMER}</p>
       </>
     ),
   },

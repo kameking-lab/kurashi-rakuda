@@ -1250,6 +1250,45 @@
     "status": "live"
   },
   {
+    "queueId": "P2-T30",
+    "slug": "josei-tekisei-taijuu-shihyou",
+    "category": "health",
+    "title": "女性の適正体重・体型指標",
+    "description": "身長・体重（・任意で年齢）を入力すると、BMI（体格指数）を計算し、日本肥満学会の肥満度分類（低体重〜肥満4度）と、厚生労働省の年齢別「目標とするBMIの範囲」を比較表示します。",
+    "solves": [
+      "自分のBMIがどの肥満度分類（低体重〜肥満4度）に当てはまるか分からない",
+      "年齢によって『目標とするBMIの範囲』が変わることを知らなかった",
+      "標準体重の計算基準（BMI22）と自分の体重の差を知りたい",
+      "肥満と肥満症の違いが分からず必要以上に不安になっていた",
+      "妊娠前の体格による体重増加指導の目安をおおまかに知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "厚生労働省 e-ヘルスネット「BMI」",
+        "url": "https://kennet.mhlw.go.jp/information/information/dictionary/metabolic/ym-002.html"
+      },
+      {
+        "label": "厚生労働省 e-ヘルスネット「肥満と肥満症」",
+        "url": "https://kennet.mhlw.go.jp/information/information/metabolic/m-05-009.html"
+      },
+      {
+        "label": "厚生労働省「日本人の食事摂取基準（2025年版）の策定ポイント」（目標とするBMIの範囲）",
+        "url": "https://www.mhlw.go.jp/content/10904750/001396865.pdf"
+      },
+      {
+        "label": "日本肥満学会「肥満度分類」（肥満症診療ガイドライン 図表 chart_A）",
+        "url": "https://www.jasso.or.jp/data/magazine/pdf/chart_A.pdf"
+      },
+      {
+        "label": "こども家庭庁「妊娠前からはじめる妊産婦のための食生活指針 解説要領」（表8）",
+        "url": "https://www.cfa.go.jp/policies/boshihoken/shokuji"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
+  },
+  {
     "queueId": "P2-T40",
     "slug": "kaigo-service-gyaku-hiki",
     "category": "care",
