@@ -7,6 +7,7 @@
   "municipalityType": "特別区",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "suginami-hoikuryo",
@@ -648,10 +649,11 @@
     }
   ],
   "verify": {
+    "sourceId": "suginami-hoikuryo",
     "expect": [
       "令和7年9月から保育料等第1子無償化を実施",
       "所得階層に関わらず無料",
-      "0～2歳児クラス（課税世帯）の第2子以降"
+      "0～2歳児クラス（住民税課税世帯）の第2子以降"
     ]
   }
 }

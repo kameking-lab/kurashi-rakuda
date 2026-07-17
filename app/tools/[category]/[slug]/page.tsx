@@ -4,9 +4,11 @@ import type { ReactNode } from "react";
 import { getLiveTools, getTool } from "@/app/lib/tools/registry";
 import { ToolShell } from "@/components/tools/ToolShell";
 import { ChomiryoKanzan } from "@/components/tools/impl/ChomiryoKanzan";
+import { AjitsukeOugonhi } from "@/components/tools/impl/AjitsukeOugonhi";
 import { JidoTeate } from "@/components/tools/impl/JidoTeate";
 import { JIDO_TEATE_DISCLAIMER } from "@/components/tools/impl/JidoTeate.calc";
 import { Getsurei } from "@/components/tools/impl/Getsurei";
+import { JintsuuKankakuCounter } from "@/components/tools/impl/JintsuuKankakuCounter";
 import { ShussanYoteibi } from "@/components/tools/impl/ShussanYoteibi";
 import { SeiriShuki } from "@/components/tools/impl/SeiriShuki";
 import { Inunohi } from "@/components/tools/impl/Inunohi";
@@ -20,6 +22,7 @@ import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
 import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SankyuIkukyuMoney } from "@/components/tools/impl/SankyuIkukyuMoney";
 import { JitanKyuyo } from "@/components/tools/impl/JitanKyuyo";
+import { FukkiBiKeisan } from "@/components/tools/impl/FukkiBiKeisan";
 import { SentakuHyoji } from "@/components/tools/impl/SentakuHyoji";
 import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
 import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc";
@@ -27,6 +30,11 @@ import { SuihanMizu } from "@/components/tools/impl/SuihanMizu";
 import { KondateTeian } from "@/components/tools/impl/KondateTeian";
 import { KONDATE_DISCLAIMER, kondateData } from "@/lib/tools/impl/kondate-teian";
 import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
+import { YoujiMushoukaChecker } from "@/components/tools/impl/YoujiMushoukaChecker";
+import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushoukaChecker.calc";
+import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
+import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
+import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -37,12 +45,22 @@ import { juuminzeiDataset } from "@/lib/tools/impl/hoikuryo-shotokuwari";
 import { kyoukaikenpoDataset, koyouHokenDataset } from "@/lib/tools/impl/shakai-hoken";
 import { ikukyuKyufuDataset, salaryAtWageDailyMax } from "@/lib/tools/impl/sankyu-ikukyu-money";
 import {
+  ikukyuEnchoDataset,
+  POSTNATAL_LEAVE_DAYS as FUKKIBI_POSTNATAL_LEAVE_DAYS,
+  RATE_SWITCH_DAYS as FUKKIBI_RATE_SWITCH_DAYS,
+  RATE_FIRST as FUKKIBI_RATE_FIRST,
+  RATE_AFTER as FUKKIBI_RATE_AFTER,
+  LEAVE_EXTENSION_1_MONTHS,
+  LEAVE_EXTENSION_2_MONTHS,
+} from "@/components/tools/impl/FukkiBiKeisan.calc";
+import {
   SUPPORT_LIMIT as JITAN_SUPPORT_LIMIT,
   MINIMUM_AMOUNT as JITAN_MINIMUM_AMOUNT,
   EXAMPLE_CAP as JITAN_EXAMPLE_CAP,
   benefitRule1 as jitanBenefitRule1,
 } from "@/lib/tools/impl/jitan-kyuyo";
 import { kaigoHokenDataset } from "@/lib/tools/impl/kaigo-jikofutan";
+import { kaigoNinteiDataset } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi.calc";
 import { todayJst } from "@/lib/tools/seido";
 
 /**
@@ -86,6 +104,28 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
       </>
     ),
   },
+  "ajitsuke-ougonhi": {
+    ui: <AjitsukeOugonhi />,
+    formula: (
+      <>
+        <p>
+          料理ごとに定められた調味料の配合比率（例: 煮物はだし:しょうゆ:みりん=8:1:1）をもとに、基準となる調味料の量（だし・しょうゆなど）に応じて他の調味料の量を計算しています。基準量は「人数 ×
+          1人あたりの目安量」で自動計算するか、直接ml指定で上書きできます。単位は大さじ1杯=15ml・小さじ1杯=5mlで換算しています。
+        </p>
+        <p>
+          <strong>万能だれ（照り焼き用）・煮魚・煮物・めんつゆ・万能合わせだれ</strong>
+          の5品目は、農林水産省「伝統調味料は『黄金比』で手間いらず」（Let&apos;s！和ごはんプロジェクト）に掲載された比率をそのまま使用しています。
+        </p>
+        <p>
+          <strong>すき焼きの割り下・天つゆ・酢の物（三杯酢）</strong>
+          の3品目は、同記事に比率の記載がなく、許可している官公庁ドメイン内にも比率を裏付ける一次情報が見つからなかったため、複数の一般的なレシピで比較的よく紹介される比率を「一般的な目安（出典なし）」として採用しています。画面には常に注意書きを表示し、公的機関の見解であるかのような断定表示はしていません。
+        </p>
+        <p>
+          味付けの好みには個人差・地域差・家庭差があります。ここに示す分量はあくまで目安とし、実際に作るときは味を見ながら調整してください。
+        </p>
+      </>
+    ),
+  },
   "jido-teate": {
     ui: <JidoTeate />,
     formula: (
@@ -125,6 +165,25 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         </p>
         <p>
           この計算はグレゴリオ暦の一般的な暦法規則（うるう年判定・大の月/小の月）のみに基づき、制度改定の概念はありません。
+        </p>
+      </>
+    ),
+  },
+  "jintsuu-kankaku-counter": {
+    ui: <JintsuuKankakuCounter />,
+    formula: (
+      <>
+        <p>
+          「持続時間」は1回の陣痛の「開始〜終了」の経過時間、「間隔」は「前回の陣痛の開始〜今回の陣痛の開始」までの経過時間です。どちらも記録した時刻（エポックミリ秒）の単純な差分を秒単位に丸めて計算します。時計のズレ等で差分がマイナスになった場合は不正な値として「—」表示にとどめ、平均計算からも除外します。
+        </p>
+        <p>
+          「平均間隔」「平均持続時間」は、直近5回分の有効な値だけを対象にした単純平均です。日をまたぐ記録でも、時刻はすべて絶対時刻（エポックミリ秒）で保持しているため、日付境界の特別な処理は行わずそのまま正しく計算されます。
+        </p>
+        <p>
+          記録はすべてこの端末のlocalStorageに保存され、サーバーへの送信は一切行いません。タブの再読み込みやアプリの再起動をしても記録は消えず、オフライン環境でも問題なく記録・計算できます。
+        </p>
+        <p>
+          一般的な連絡目安（初産婦は10分間隔、経産婦は10〜15分間隔、破水時は間隔を問わずすぐ連絡）は国立成育医療研究センター産科の案内による一施設の運用例であり、本ツールはこれを踏まえた記録・計算のみを行います。医学的な判断や診断は行わないため、実際の連絡タイミングは必ずご自身の受診先の指示に従ってください。
         </p>
       </>
     ),
@@ -485,6 +544,55 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
       </>
     ),
   },
+  "fukki-bi-keisan": {
+    ui: <FukkiBiKeisan />,
+    formula: (
+      <>
+        <p>
+          <strong>産後休業終了日の目安</strong>
+          ：出産日から{FUKKIBI_POSTNATAL_LEAVE_DAYS}日後です。健康保険法が定める出産手当金の産後の支給期間（多胎でも変わりません）と同じ日数を使っています。
+          出産日が確定していない場合は、出産予定日で試算します。
+        </p>
+        <p>
+          <strong>育休の各期限</strong>
+          ：育休の原則終了日は「子が1歳に達する日」、延長した場合は「1歳6か月に達する日」「2歳に達する日」です。
+          「◯歳に達する日」は誕生日そのものではなく、
+          <strong>誕生日の前日</strong>
+          を指します（年齢計算ニ関スル法律・民法143条の一般原則）。1歳6か月は12か月＋6か月、2歳は
+          育児・介護休業法が定める育休の上限年齢からの計算です。復帰日はそれぞれの期限の翌日になります。
+        </p>
+        <p>
+          <strong>育児休業給付金の給付率</strong>
+          ：休業開始から通算{FUKKIBI_RATE_SWITCH_DAYS}日目までは{Math.round(FUKKIBI_RATE_FIRST * 100)}%、
+          {FUKKIBI_RATE_SWITCH_DAYS + 1}日目以降は{Math.round(FUKKIBI_RATE_AFTER * 100)}%に下がります。
+          育休を長く取るほど、給付率が下がった期間の割合が増えることになります（本ツールでは金額の計算は行いません。
+          金額を知りたい場合は「産休育休まるごとお金シミュレーター」をご利用ください）。
+        </p>
+        <p>
+          <strong>育休を延長するための要件</strong>
+          ：育休そのものの延長（育児・介護休業法、勤務先への申出）と、育児休業給付金の支給対象期間の延長
+          （雇用保険法、ハローワークへの申請）は別々の制度で、要件も異なります。
+          いずれも「保育所等に入所できない」等の事由が必要で、単に希望するだけでは延長できません。
+          2025年4月からは、育児休業給付金の延長審査に「速やかな職場復帰のための申込みか」という要件が加わり、
+          保育所等の利用申込書の写しなどの提出が必須になっています。申込みの時点でコピーを保管しておくことが重要です。
+        </p>
+        <p>
+          <strong>保育園入園の申込み時期</strong>
+          ：自治体ごとに申込みの受付時期・審査スケジュールが大きく異なるため、本ツールでは各期限の4か月前〜2か月前を
+          「検討を始める一般的な目安」として示すのみで、具体的な自治体名や締切日は案内していません。
+          お住まいの自治体の窓口・ウェブサイトで早めにご確認ください。
+        </p>
+        <p>
+          育児休業の延長は
+          {LEAVE_EXTENSION_1_MONTHS}
+          か月・
+          {LEAVE_EXTENSION_2_MONTHS}
+          か月（1歳6か月・2歳）の2段階までで、それ以上の延長制度はありません。
+        </p>
+        <SeidoNotice datasets={[ikukyuKyufuDataset, ikukyuEnchoDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "jitan-kyuyo": {
     ui: <JitanKyuyo />,
     formula: (
@@ -790,6 +898,139 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           2026年度は現行の基準で計算しています。
         </p>
         <SeidoNotice datasets={[kaigoHokenDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "youji-mushouka-checker": {
+    ui: <YoujiMushoukaChecker />,
+    formula: (
+      <>
+        <p>
+          3〜5歳児クラスは全世帯が無償化の対象です。0〜2歳児クラスは住民税非課税世帯のみが対象で、課税世帯は原則対象外です（自治体独自の減免制度がある場合があります）。この年齢区分の境界は「4月1日時点の満年齢（クラス年齢）」で判定します。
+        </p>
+        <p>
+          認可保育所・認定こども園・幼稚園（新制度）は、入園にあたって既に受けている保育の必要性の認定（2号・3号認定）または教育標準時間認定（1号認定）に無償化の適用が含まれるため、追加の手続きは不要です。一方、幼稚園（未移行・預かり保育含む）・認可外保育施設等・企業主導型保育等は、無償化を受けるために市区町村へ別途「施設等利用給付認定」を申請する必要があるため、本ツールではこれらを「条件付き対象」として表示します。
+        </p>
+        <p>
+          月額上限が定められているのは認可外保育施設等のみで、3〜5歳児クラスは37,000円、0〜2歳児クラス（住民税非課税世帯）は42,000円です（こども家庭庁「幼児教育・保育の無償化」に基づく2026年度時点の値）。幼稚園（未移行）・企業主導型保育等にも上限が定められている場合がありますが、本ツールが参照する制度データには数値の収録がないため、上限額は「データなし・要確認」として断定表示していません。
+        </p>
+        <p>
+          幼稚園（新制度・未移行いずれも）は満3歳以上のお子さまが対象のため、0〜2歳児クラスでの幼稚園利用という組み合わせは対象外として扱います。
+        </p>
+        <p>{YOUJI_MUSHOUKA_DISCLAIMER}</p>
+      </>
+    ),
+  },
+  "ninshin-kenshin-schedule": {
+    ui: <NinshinKenshinSchedule />,
+    formula: (
+      <>
+        <p>
+          <strong>受診間隔の考え方</strong>
+          ：厚生労働省が示す標準的な妊婦健診の例（1回目を妊娠8週頃とした場合）に基づき、妊娠23週までは4週間に1回、妊娠24週から35週までは2週間に1回、妊娠36週から出産までは1週間に1回という間隔で、出産予定日から逆算して各回の目安日・妊娠週数を計算しています。標準的な入力では合計14回が生成され、これは厚生労働省の例示・母子保健法第13条第2項に基づく「望ましい基準」（平成27年3月31日厚生労働省告示第226号）が示す回数と一致します。
+        </p>
+        <p>
+          最終月経開始日（LMP）のみを入力した場合は、LMP+280日（40週0日）を出産予定日の目安として計算します。出産予定日とLMPの両方を入力し食い違いがある場合は、医師の診察・超音波検査で確定していることが多い出産予定日を優先し、食い違いの日数は注意表示のみ行います。
+        </p>
+        <p>
+          <strong>公費助成との関係</strong>
+          ：各回が「公費助成の目安回数（データ由来。現時点で14回）」以内かどうかを判定して表示します。こども家庭庁調査（令和6年4月1日現在）では、全ての市区町村（1,741）が14回以上を公費助成していますが、
+          <strong>助成の金額・対象となる検査項目・受診券の方式は市区町村ごとに異なります</strong>
+          。金額を断定せず、目安回数内であることのみを示しています。
+        </p>
+        <p>
+          あわせて、産後の産婦健康診査（産後2週間・産後1か月が目安）の参考日も、出産予定日を起点に計算して表示します。国庫補助の対象は2回分ですが、令和6年度時点で全1,741市区町村中1,445市区町村の実施にとどまり、全国一律に受けられる制度ではありません。
+        </p>
+        <p>
+          <strong>
+            本ツールが行うのは、これらの制度上の標準スケジュールの日付計算のみです。
+          </strong>
+          実際に何回・いつ受診するかは妊娠経過・体調・医療機関の方針によって異なり、医学的な受診指示・診断は一切行っていません。必ず担当医の指示、お住まいの市区町村の母子保健担当窓口の案内を優先してください。
+        </p>
+      </>
+    ),
+  },
+  "youkaigo-nintei-dandori-navi": {
+    ui: <YoukaigoNinteiDandoriNavi />,
+    formula: (
+      <>
+        <p>
+          <strong>原則の処理期間（30日）</strong>
+          ：介護保険法<strong>第27条第11項</strong>
+          は、要介護認定の申請に対する処分（認定または非該当の通知）を
+          <strong>申請のあった日から30日以内</strong>
+          に行うのが原則であると定めています。ただし、認定調査や主治医意見書の準備に時間を要する等の
+          特別な理由があるときは、市区町村がその30日以内に「あとどれくらいかかりそうか（処理見込期間）」
+          と理由を書面で通知したうえで延期することが同項ただし書で認められています。この延期は制度上
+          想定された正規の手続であり、必ずしも異常事態ではありません。同第12項は、30日を超えても
+          処分・延期通知がない場合等に、被保険者側から市区町村が却下したものとみなすことができる旨も
+          定めています。
+        </p>
+        <p>
+          <strong>「30日以内」は保証ではありません</strong>
+          ：厚生労働省の集計（介護保険総合データベース、令和5年度4月〜令和6年3月申請分、保険者数1,559）
+          によると、<strong>全国平均の認定審査期間は39.8日</strong>
+          で、申請から30日以内に認定された割合は平均<strong>25.1%</strong>にとどまります。
+          法律上の原則である30日を、実際には多くの申請で超えているのが全国的な実態です。
+          本ツールはこの実態を隠さず表示します。
+        </p>
+        <p>
+          <strong>手続の流れ</strong>
+          ：①申請（第27条第1項。申請書に被保険者証を添付）②認定調査（第2項。市区町村職員等による面接調査）
+          ③主治医意見書（第3項。主治の医師に心身の状況等の意見を求める）④一次判定（第4項。コンピュータ判定）
+          ⑤介護認定審査会による審査判定＝二次判定（第4項・第5項）⑥認定結果の通知（第7項・第9項）という順序です。
+          認定調査と主治医意見書は、多くの場合ほぼ同時に依頼され並行して進みます。
+        </p>
+        <p>
+          <strong>目安のタイムライン</strong>
+          ：厚生労働省は、認定審査期間の平均が30日以内に収まっている保険者（全体の約4.2%にあたる66保険者）
+          の実績（認定調査所要期間6.6日・主治医意見書所要期間12.7日・審査会等事務処理期間12.3日）を踏まえ、
+          令和7年2月20日時点の「対応（案）」として、認定調査は依頼から<strong>7日以内</strong>、
+          主治医意見書は依頼から<strong>13日以内</strong>、介護認定審査会は調査票・意見書が揃ってから
+          <strong>12日以内</strong>という目安を示しました。本ツールはこの目安（認定調査と主治医意見書は並行、
+          遅い方に審査会の日数を足す＝13日＋12日＝申請から通算25日ごろ）を参考のタイムラインとして表示しますが、
+          <strong>法的拘束力のある確定基準ではなく</strong>、地域や時期によって大きく変動します。
+        </p>
+        <p>
+          <strong>認定後について</strong>
+          ：認定される要介護度は「介護の必要性を量るものさし（要介護認定等基準時間）」で決まり、
+          状態像による公式な定義は存在しません。認定後は、要介護の方はケアマネジャーにケアプランの作成を、
+          要支援の方は地域包括支援センターに相談するのが一般的な流れです。ケアプラン作成・サービス利用開始に
+          ついては、標準処理期間のような一次データがないため、本ツールは日数の目安を示さず、手続の順序のみを
+          案内しています。
+        </p>
+        <SeidoNotice datasets={[kaigoNinteiDataset, kaigoHokenDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "shokuhi-meyasu": {
+    ui: <ShokuhiMeyasu />,
+    formula: (
+      <>
+        <p>
+          <strong>出典と集計区分</strong>
+          ：総務省統計局「家計調査（家計収支編）」2025年（令和7年）平均（2026年2月6日公表）の、
+          世帯人員別の実額をそのまま使用しています。単身世帯（1人）は同調査の単身世帯集計、
+          2人〜5人・6人以上（二人以上の世帯）は「第３－１表 世帯人員別１世帯当たり１か月間の収入と支出」の実額です。
+          「6人以上」区分は総務省統計局の集計上の最大区分で、実際の平均世帯人員は6.3人です。
+          7人・10人など6人を超える人数を入力しても、按分・推計はせず同じ「6人以上」区分の実額をそのまま表示します。
+        </p>
+        <p>
+          <strong>表示する金額</strong>
+          ：「食料」（食費全体の目安）に加えて、その内訳のうち統計上区分されている「外食」「調理食品（惣菜・弁当などの中食）」を表示し、
+          残り（食材の購入・飲料・酒類などを含む）は「その他」としてまとめて計算しています（食料－外食－調理食品）。
+          世帯構成（単身/夫婦のみ/夫婦+子どもなど）による違いは、同調査が世帯人員数のみで区分しているため取得できず、
+          推測値を作らずに世帯人員数のみを入力項目としています。
+        </p>
+        <p>
+          参考として、単身世帯の消費支出は173,042円、食料は44,659円。二人以上の世帯（世帯人員を問わない単純平均、平均世帯人員2.87人）の消費支出は314,001円、食料は89,754円です。
+        </p>
+        <p>
+          <strong>
+            表示される金額はあくまで全国平均の統計値であり、個々の家庭にとっての「正しい」食費や目標額を示すものではありません。
+          </strong>
+          地域・家族の年齢構成・自炊の頻度・物価の変動などによって、実際の食費は大きく異なります。次回の「◯◯年平均」の公表時期に合わせてデータを更新します。
+        </p>
       </>
     ),
   },

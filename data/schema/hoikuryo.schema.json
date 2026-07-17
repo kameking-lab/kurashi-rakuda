@@ -11,6 +11,7 @@
     "prefecture",
     "fiscalYear",
     "asOf",
+    "nextCheckDue",
     "sources",
     "disclaimer",
     "scope",
@@ -38,6 +39,11 @@
     },
     "fiscalYear": { "type": "integer" },
     "asOf": { "type": "string", "format": "date" },
+    "nextCheckDue": {
+      "type": "string",
+      "format": "date",
+      "description": "次回再確認日（P2-I01）。年度データのため原則、翌年度の4月1日（令和8年度版なら2027-04-01）。R7版に留まる自治体（例: 名古屋）はR8版の公表を待つ近い日付にする。verify-seido.mjs が超過でエラー・30日前で警告する。"
+    },
     "sources": {
       "type": "array",
       "minItems": 1,
@@ -84,7 +90,16 @@
           "items": { "type": "string" },
           "description": "所得割額の算定で適用しない控除。例: 住宅借入金等特別税額控除、寄附金税額控除、配当控除"
         },
-        "note": { "type": "string" }
+        "note": { "type": "string" },
+        "sourceId": {
+          "type": "string",
+          "description": "階層判定基礎（税額控除の不適用等）の記載元。verify を付ける場合に checkedAt とセットで使う"
+        },
+        "checkedAt": { "type": "string", "format": "date" },
+        "verify": {
+          "$ref": "seido-common.schema.json#/definitions/verify",
+          "description": "税額控除の不適用文言など、階層判定基礎の原文照合。トップレベル verify の出典と記載元が異なる場合（例: 荒川区＝階層表はPDF・控除の説明はHTMLページ）にここで分けて照合する"
+        }
       }
     },
     "ageClasses": {
@@ -228,7 +243,7 @@
     },
     "verify": {
       "$ref": "seido-common.schema.json#/definitions/verify",
-      "description": "階層表全体の照合指示。代表的な数値(最低額・最高額・階層数)を expect に入れる。"
+      "description": "階層表全体の照合指示。代表的な数値(最低額・最高額・階層数)を expect に入れる。★トップレベルには隣接する sourceId が無いため、verify.sourceId（照合先＝階層表の採録元）が必須★（無いと照合先が特定できず、verify-seido.mjs の構造検査がエラーにする）"
     }
   }
 }

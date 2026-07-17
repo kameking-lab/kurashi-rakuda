@@ -7,6 +7,7 @@
   "municipalityType": "特別区",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "shinjuku-hoikuryo-page",
@@ -117,7 +118,9 @@
       "checkedAt": "2026-07-17",
       "amendmentNote": "なし(2026-07-17時点)",
       "verify": {
-        "expect": ["令和元年10月から国が「幼児教育・保育の無償化」を実施したことにより3～5歳児クラスの全てのお子さんの基本保育料は無償となりました"]
+        "expect": [
+          "令和元年10月から国が「幼児教育・保育の無償化」を実施したことにより3～5歳児クラスの全てのお子さんの基本保育料は無償となりました"
+        ]
       },
       "note": "国の幼児教育・保育の無償化による。令和7年9月以降は全児童の基本保育料無償化に包含。"
     },
@@ -129,7 +132,9 @@
       "checkedAt": "2026-07-17",
       "amendmentNote": "なし(2026-07-17時点)",
       "verify": {
-        "expect": ["これにより、年齢、きょうだいの有無等にかかわらず、全てのお子さんが基本保育料の無償化の対象となりました"]
+        "expect": [
+          "これにより、年齢、きょうだいの有無等にかかわらず、全てのお子さんが基本保育料の無償化の対象となりました"
+        ]
       },
       "note": "区（市町村）民税非課税世帯の0〜2歳児クラスは国の「幼児教育・保育の無償化」の対象、それ以外の0〜2歳児クラスは東京都保育所等利用世帯負担軽減事業の対象となり、いずれも0円。"
     },
@@ -172,8 +177,14 @@
       "incomeMax": null,
       "isWelfare": true,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -183,8 +194,14 @@
       "incomeMax": 1,
       "isNonTaxable": true,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -193,12 +210,19 @@
       "incomeMin": 0,
       "incomeMax": null,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     }
   ],
   "verify": {
+    "sourceId": "shinjuku-hoikuryo-page",
     "expect": [
       "認可保育園・認定こども園〔保育園機能〕等における基本保育料は令和7年9月分から全額公費負担（無償）です",
       "保育料階層（全30段階のうちいずれか）を決定する必要があります",

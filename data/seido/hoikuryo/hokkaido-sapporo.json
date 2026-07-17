@@ -7,6 +7,7 @@
   "municipalityType": "政令指定都市",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "r8-pamphlet",
@@ -88,7 +89,9 @@
       "sourceId": "hoikuryo-page",
       "checkedAt": "2026-07-17",
       "verify": {
-        "expect": ["無償化"]
+        "expect": [
+          "無償化"
+        ]
       },
       "amendmentNote": "なし(2026-07-17時点)",
       "note": "国の幼児教育・保育の無償化により、世帯の所得にかかわらず無料。副食費は別途実費負担。"
@@ -138,8 +141,14 @@
       "incomeMax": 0,
       "isWelfare": true,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -149,8 +158,14 @@
       "incomeMax": 0,
       "isNonTaxable": true,
       "fees": {
-        "under3": { "standard": 0, "short": 0 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -159,8 +174,14 @@
       "incomeMin": 0,
       "incomeMax": 48600,
       "fees": {
-        "under3": { "standard": 11000, "short": 10820 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 11000,
+          "short": 10820
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -169,8 +190,14 @@
       "incomeMin": 48600,
       "incomeMax": 67000,
       "fees": {
-        "under3": { "standard": 15680, "short": 15420 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 15680,
+          "short": 15420
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -179,8 +206,14 @@
       "incomeMin": 67000,
       "incomeMax": 97000,
       "fees": {
-        "under3": { "standard": 22550, "short": 22170 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 22550,
+          "short": 22170
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -189,8 +222,14 @@
       "incomeMin": 97000,
       "incomeMax": 140000,
       "fees": {
-        "under3": { "standard": 30250, "short": 29740 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 30250,
+          "short": 29740
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -199,8 +238,14 @@
       "incomeMin": 140000,
       "incomeMax": 169000,
       "fees": {
-        "under3": { "standard": 39600, "short": 38930 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 39600,
+          "short": 38930
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -209,8 +254,14 @@
       "incomeMin": 169000,
       "incomeMax": 254000,
       "fees": {
-        "under3": { "standard": 45870, "short": 45100 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 45870,
+          "short": 45100
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -219,8 +270,14 @@
       "incomeMin": 254000,
       "incomeMax": 301000,
       "fees": {
-        "under3": { "standard": 53740, "short": 52830 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 53740,
+          "short": 52830
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -229,8 +286,14 @@
       "incomeMin": 301000,
       "incomeMax": 341000,
       "fees": {
-        "under3": { "standard": 60170, "short": 59150 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 60170,
+          "short": 59150
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -239,8 +302,14 @@
       "incomeMin": 341000,
       "incomeMax": 397000,
       "fees": {
-        "under3": { "standard": 65450, "short": 64340 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 65450,
+          "short": 64340
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     },
     {
@@ -249,12 +318,19 @@
       "incomeMin": 397000,
       "incomeMax": null,
       "fees": {
-        "under3": { "standard": 75900, "short": 74610 },
-        "age3plus": { "standard": 0, "short": 0 }
+        "under3": {
+          "standard": 75900,
+          "short": 74610
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
       }
     }
   ],
   "verify": {
+    "sourceId": "r8-pamphlet",
     "expect": [
       "利用者負担額表",
       "１１，０００円",

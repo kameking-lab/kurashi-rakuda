@@ -15,6 +15,7 @@ on:
       - 'content/**'
       - 'factory/**'
       - 'scripts/verify-seido.mjs'
+      - 'scripts/check-freshness.mjs'
       - '.github/workflows/verify-seido.yml'
   push:
     branches: [master]
@@ -23,6 +24,7 @@ on:
       - 'content/**'
       - 'factory/**'
       - 'scripts/verify-seido.mjs'
+      - 'scripts/check-freshness.mjs'
   schedule:
     # 毎日 JST 07:00（UTC 22:00）に出典照合を実行し、制度改正・ページ改稿を検知する。
     - cron: '0 22 * * *'
@@ -93,6 +95,69 @@ jobs:
         if: steps.structure.outcome == 'failure'
         run: |
           echo '構造検査に失敗しました。上のログを確認してください。'
+          exit 1
+
+  # ------------------------------------------------------------ データ鮮度監査
+  freshness:
+    name: データ鮮度監査（nextCheckDue / next_check_due。P2-I01）
+    # data/seido の nextCheckDue は structure ジョブ（verify-seido.mjs）が検査する。
+    # 本ジョブはその監視外だった data/tables と記事 front-matter を担当する。
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 鮮度監査（data/tables + 記事 front-matter）
+        id: freshness
+        run: node scripts/check-freshness.mjs 2>&1 | tee freshness-report.txt && exit ${PIPESTATUS[0]}
+        shell: bash
+        continue-on-error: true
+
+      - name: 期限超過の検出時に Issue を起票（スケジュール実行時・1日1Issue集約）
+        # 再確認期限（nextCheckDue / next_check_due）の超過を日次で検知して起票する。
+        # ★1項目1Issueにはしない★ 同日の検出は1本のレポートに集約し、既に open の
+        # freshness-audit Issue があればコメントで追記する（Issue の乱立＝誤爆をさせない）。
+        if: steps.freshness.outcome == 'failure' && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = 'データ鮮度監査（P2-I01）で再確認期限の超過を検出しました。\n\n';
+            try {
+              body += '```\n' + fs.readFileSync('freshness-report.txt', 'utf8').slice(0, 55000) + '\n```\n';
+            } catch (e) {
+              body += '(レポートの読み込みに失敗しました)\n';
+            }
+            body += '\n---\n## 対応手順（docs/10_公開チェックリスト.md「データ鮮度監査 Issue の消化手順」参照）\n';
+            body += '1. 該当ファイルの出典URLを開き、値が現行と一致しているかを一次情報で再確認する\n';
+            body += '2. **値が変わっていない場合**: 確認日（checkedAt / lastVerified / last_verified）を更新し、nextCheckDue / next_check_due を次の周期に進める\n';
+            body += '3. **値が変わっていた場合**: 値・出典・amendments を更新し、依存するツール・記事も追随させる\n';
+            body += '4. data/seido の期限超過は verify-seido の構造検査（seido-expiry Issue）側で検知される\n\n';
+            body += '⚠️ YMYL領域のため、実装者≠検算者のダブルチェックを行うこと。\n';
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'freshness-audit',
+            });
+            if (existing.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.data[0].number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: `[データ鮮度] 再確認期限の超過 (${new Date().toISOString().slice(0, 10)})`,
+                body, labels: ['freshness-audit', 'YMYL'],
+              });
+            }
+
+      - name: 鮮度監査の結果を反映
+        if: steps.freshness.outcome == 'failure'
+        run: |
+          echo 'データ鮮度監査に失敗しました。上のログを確認してください。'
           exit 1
 
   # ------------------------------------------------------------ 記事忠実性ゲート

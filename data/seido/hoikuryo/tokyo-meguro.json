@@ -7,6 +7,7 @@
   "municipalityType": "特別区",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "meguro-hoikuryo-page",
@@ -632,6 +633,7 @@
     }
   ],
   "verify": {
+    "sourceId": "meguro-hoikuryo-page",
     "expect": [
       "認可保育所等利用者負担額（区立延長保育料）階層表",
       "全ての児童の保育料が無償です",

@@ -124,26 +124,6 @@ const STAGE_ORDER: StageCode[] = [
   "STAGE_AFTER",
 ];
 
-/** 各段階が開始する月齢（STAGE_BEFORE は 0 として扱う） */
-const STAGE_START_MONTH: Record<StageCode, number> = {
-  STAGE_BEFORE: 0,
-  STAGE_GOKKUN: 5,
-  STAGE_MOGUMOGU: 7,
-  STAGE_KAMIKAMI: 9,
-  STAGE_PAKUPAKU: 12,
-  STAGE_AFTER: 19,
-};
-
-/** 離乳段階の判定（仕様書 determineStage 準拠） */
-export function determineStage(ageMonths: number): StageCode {
-  if (ageMonths < 5) return "STAGE_BEFORE";
-  if (ageMonths <= 6) return "STAGE_GOKKUN";
-  if (ageMonths <= 8) return "STAGE_MOGUMOGU";
-  if (ageMonths <= 11) return "STAGE_KAMIKAMI";
-  if (ageMonths <= 18) return "STAGE_PAKUPAKU";
-  return "STAGE_AFTER";
-}
-
 export interface StageFoodGroups {
   grain: string;
   vegFruit: string;
@@ -154,10 +134,16 @@ export interface StageFoodGroups {
   dairy: string;
 }
 
+export interface StageAgeRangeMonths {
+  from: number;
+  to: number | null;
+}
+
 export interface StageTableEntry {
   code: StageCode;
   label: string;
   ageRangeLabel: string;
+  ageRangeMonths: StageAgeRangeMonths | null;
   mealsPerDay: string | null;
   textureLabel: string | null;
   message: string | null;
@@ -170,6 +156,33 @@ function getStageTableEntry(code: StageCode): StageTableEntry {
   const entry = STAGES.find((s) => s.code === code);
   if (!entry) throw new Error(`data/tables/rinyushoku-ryo.json に段階が見つかりません: ${code}`);
   return entry;
+}
+
+/**
+ * 各段階が開始する月齢（STAGE_BEFORE は範囲を持たないため 0 として扱う）。
+ * data/tables/rinyushoku-ryo.json の stages[].ageRangeMonths.from を単一の情報源(SSOT)とする
+ * （マジックナンバーを排除し、月齢区分の変更はJSON側の更新だけで追随させるため）。
+ */
+const STAGE_START_MONTH: Record<StageCode, number> = Object.fromEntries(
+  STAGE_ORDER.map((code) => [code, getStageTableEntry(code).ageRangeMonths?.from ?? 0]),
+) as Record<StageCode, number>;
+
+/**
+ * 離乳段階の判定（仕様書 determineStage 準拠）。
+ * STAGE_ORDER を月齢の昇順に走査し、開始月齢（STAGE_START_MONTH）を超えない最後の段階を採用する。
+ * 各段階の区間は隣接段階の開始月齢どうしで連続している（例: GOKKUNの終わり6ヶ月＝MOGUMOGUの開始7ヶ月の前日まで）ため、
+ * 「開始月齢以上か」の判定だけで元の境界値判定（<=6, <=8 等）と同じ結果になる。
+ */
+export function determineStage(ageMonths: number): StageCode {
+  let result: StageCode = "STAGE_BEFORE";
+  for (const code of STAGE_ORDER) {
+    if (STAGE_START_MONTH[code] <= ageMonths) {
+      result = code;
+    } else {
+      break;
+    }
+  }
+  return result;
 }
 
 export interface NextStageInfo {

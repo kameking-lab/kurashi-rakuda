@@ -4,6 +4,7 @@
   "name": "児童手当",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "cfa-annai",
@@ -70,7 +71,11 @@
         "label": "支給対象児童",
         "sourceId": "cfa-annai",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["18歳に達する日以後の最初の3月31日"] },
+        "verify": {
+          "expect": [
+            "18歳に達する日以後の最初の3月31日"
+          ]
+        },
         "amendmentNote": "令和6年10月分から中学生までを高校生年代まで延長。2026年度時点で変更なし。",
         "note": "いわゆる「高校生年代まで」。実際に高校に在学しているかは要件ではない（年齢のみで判定）。"
       },
@@ -79,7 +84,11 @@
         "label": "所得制限の有無",
         "sourceId": "cfa-mottoouen",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["所得上限限度額"] },
+        "verify": {
+          "expect": [
+            "所得上限限度額"
+          ]
+        },
         "amendmentNote": "令和6年10月分から所得制限・所得上限限度額をともに撤廃。2026年度時点で復活の予定なし。",
         "note": "false = 所得制限なし。撤廃前の「特例給付（月額5,000円）」も廃止済み。verify の expect は、拡充ページに旧制度からの移行説明として所得上限限度額の語が残っていることを利用した照合。"
       },
@@ -88,7 +97,10 @@
         "label": "居住要件",
         "sourceId": "cfa-annai",
         "checkedAt": "2026-07-17",
-        "verify": { "skip": true, "skipReason": "条文の要約であり、出典ページ上に同一文字列が存在しないため機械照合の対象外とする。実装時は cfa-annai の原文を参照。" },
+        "verify": {
+          "skip": true,
+          "skipReason": "条文の要約であり、出典ページ上に同一文字列が存在しないため機械照合の対象外とする。実装時は cfa-annai の原文を参照。"
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "ageBoundaries": {
@@ -99,7 +111,10 @@
           "label": "支給対象の下限年齢（出生から）",
           "sourceId": "cfa-annai",
           "checkedAt": "2026-07-17",
-          "verify": { "skip": true, "skipReason": "targetAge ノードの verify（18歳に達する日以後の最初の3月31日）で対象範囲全体を照合済み。0歳という単独表記は出典ページに存在しないため照合対象外。" },
+          "verify": {
+            "skip": true,
+            "skipReason": "targetAge ノードの verify（18歳に達する日以後の最初の3月31日）で対象範囲全体を照合済み。0歳という単独表記は出典ページに存在しないため照合対象外。"
+          },
           "amendmentNote": "なし（2026-07-17時点）"
         },
         "rateChangeAge": {
@@ -108,7 +123,11 @@
           "label": "月額が変わる年齢境界（3歳未満/3歳以上）",
           "sourceId": "cfa-annai",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["3歳"] },
+          "verify": {
+            "expect": [
+              "3歳"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）",
           "note": "3歳の誕生日の前日が属する月までが15,000円（第1子・第2子の場合）。"
         },
@@ -118,7 +137,11 @@
           "label": "支給対象の上限年齢（高校生年代）",
           "sourceId": "cfa-annai",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["18歳に達する日以後の最初の3月31日"] },
+          "verify": {
+            "expect": [
+              "18歳に達する日以後の最初の3月31日"
+            ]
+          },
           "amendmentNote": "令和6年10月分から高校生年代まで延長。2026年度時点で変更なし。"
         }
       }
@@ -131,7 +154,11 @@
           "label": "3歳未満・第1子/第2子",
           "sourceId": "cfa-annai",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["15,000円"] },
+          "verify": {
+            "expect": [
+              "15,000円"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）",
           "note": "3歳の誕生日の前日が属する月まで（月単位で判定）。"
         },
@@ -141,7 +168,11 @@
           "label": "3歳未満・第3子以降",
           "sourceId": "cfa-annai",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["30,000円"] },
+          "verify": {
+            "expect": [
+              "30,000円"
+            ]
+          },
           "amendmentNote": "令和6年10月分から15,000円→30,000円。2026年度時点で変更なし。"
         }
       },
@@ -152,7 +183,11 @@
           "label": "3歳以上・高校生年代まで・第1子/第2子",
           "sourceId": "cfa-annai",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["10,000円"] },
+          "verify": {
+            "expect": [
+              "10,000円"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）",
           "note": "令和6年10月拡充で、従来あった「小学校修了前の第3子以降15,000円／中学生一律10,000円」の区分は廃止され、3歳以上は高校生年代まで一律10,000円（第3子以降は30,000円）に統一された。"
         },
@@ -162,7 +197,11 @@
           "label": "3歳以上・高校生年代まで・第3子以降",
           "sourceId": "cfa-annai",
           "checkedAt": "2026-07-17",
-          "verify": { "expect": ["30,000円"] },
+          "verify": {
+            "expect": [
+              "30,000円"
+            ]
+          },
           "amendmentNote": "なし（2026-07-17時点）"
         }
       }
@@ -173,7 +212,11 @@
         "label": "多子加算のカウント方法",
         "sourceId": "cfa-annai",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["年齢が上の子から数えて3人目以降"] },
+        "verify": {
+          "expect": [
+            "年齢が上の子から数えて3人目以降"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "countedSiblingUpperAge": {
@@ -181,7 +224,11 @@
         "label": "算定対象に含める兄姉等の年齢上限",
         "sourceId": "cfa-faq",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["22歳に達する日以後の最初の3月31日"] },
+        "verify": {
+          "expect": [
+            "22歳に達する日以後の最初の3月31日"
+          ]
+        },
         "amendmentNote": "令和6年10月拡充で新設（従来は18歳年度末までの子のみで数えていた）。2026年度時点で変更なし。",
         "note": "★実装上の最重要論点★ 支給対象は18歳年度末までだが、多子加算の『数える』対象は22歳年度末まで。つまり大学生年代の兄姉は手当を受け取らないが、下の子を第3子に押し上げる効果を持つ。"
       },
@@ -190,18 +237,33 @@
         "label": "18歳超22歳以下の兄姉を算入する要件",
         "sourceId": "cfa-faq",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["経済的負担"] },
+        "verify": {
+          "expect": [
+            "経済的負担"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "単に兄姉が存在するだけでは足りず、親が学費・生活費等を負担している必要がある。別途『監護相当・生計費の負担についての確認書』の提出を市区町村から求められる。ツールUIでは「経済的に養っているか」を明示的に質問すること。"
       }
     },
     "payment": {
       "months": {
-        "value": [2, 4, 6, 8, 10, 12],
+        "value": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12
+        ],
         "label": "支給月",
         "sourceId": "cfa-annai",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["偶数月"] },
+        "verify": {
+          "expect": [
+            "偶数月"
+          ]
+        },
         "amendmentNote": "令和6年12月支給分から年3回（2月・6月・10月）→偶数月の年6回に変更。2026年度時点で変更なし。"
       },
       "timesPerYear": {
@@ -210,7 +272,11 @@
         "label": "年間の支給回数（偶数月）",
         "sourceId": "cfa-annai",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["偶数月"] },
+        "verify": {
+          "expect": [
+            "偶数月"
+          ]
+        },
         "amendmentNote": "令和6年12月支給分から年3回→年6回に変更。2026年度時点で変更なし。",
         "note": "months ノード（[2,4,6,8,10,12]）の要約値。"
       },
@@ -219,7 +285,11 @@
         "label": "各支給月が対象とする月",
         "sourceId": "cfa-annai",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["前月分まで"] },
+        "verify": {
+          "expect": [
+            "前月分まで"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "例: 6月支給分は4月分・5月分の2か月分。"
       },
@@ -228,7 +298,11 @@
         "label": "支給開始",
         "sourceId": "cfa-annai",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["申請した月の翌月分"] },
+        "verify": {
+          "expect": [
+            "申請した月の翌月分"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "出生・転入の日の翌日から15日以内に申請すれば、申請が翌月になっても出生・転入の月の翌月分から支給される（15日特例）。ツールでは申請遅れによる不支給を警告すること。"
       }
@@ -240,7 +314,11 @@
         "label": "15日特例の日数",
         "sourceId": "cfa-annai",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["15日以内"] },
+        "verify": {
+          "expect": [
+            "15日以内"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       },
       "authority": {
@@ -248,7 +326,11 @@
         "label": "申請先",
         "sourceId": "cfa-annai",
         "checkedAt": "2026-07-17",
-        "verify": { "expect": ["認定請求書"] },
+        "verify": {
+          "expect": [
+            "認定請求書"
+          ]
+        },
         "amendmentNote": "なし（2026-07-17時点）"
       }
     }

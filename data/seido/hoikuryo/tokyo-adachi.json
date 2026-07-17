@@ -7,6 +7,7 @@
   "municipalityType": "特別区",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "adachi-hoikuryo",
@@ -196,6 +197,7 @@
     }
   ],
   "verify": {
+    "sourceId": "adachi-hoikuryo",
     "expect": [
       "令和７年９月から「無料」となりました",
       "保育料は4月から8月までは前年度、9月から3月までは今年度の区民税所得割額をもとに算出します",

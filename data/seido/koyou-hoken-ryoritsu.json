@@ -4,6 +4,7 @@
   "name": "雇用保険料率（令和8年度・令和7年度）",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "mhlw-koyou-r08",

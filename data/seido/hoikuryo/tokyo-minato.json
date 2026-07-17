@@ -7,6 +7,7 @@
   "municipalityType": "特別区",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "minato-hoikuryo-page",
@@ -182,6 +183,7 @@
     }
   ],
   "verify": {
+    "sourceId": "minato-annai-r8",
     "expect": [
       "認可保育園、認定こども園及び港区保育室に通うお子さんの基本保育料は無償です"
     ]

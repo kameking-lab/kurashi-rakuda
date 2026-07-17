@@ -67,8 +67,14 @@
     ],
     "basisYear": null,
     "sources": [
-      { "label": "日本産科婦人科学会", "url": "https://www.jsog.or.jp/" },
-      { "label": "日本家族計画協会", "url": "https://www.jfpa.or.jp/" }
+      {
+        "label": "日本産科婦人科学会",
+        "url": "https://www.jsog.or.jp/"
+      },
+      {
+        "label": "日本家族計画協会",
+        "url": "https://www.jfpa.or.jp/"
+      }
     ],
     "updated": "2026-07-17",
     "status": "live"
@@ -694,6 +700,225 @@
       {
         "label": "厚生労働省「要介護認定はどのように行われるか」",
         "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/nintei/gaiyo2.html"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
+    "queueId": "P2-T19",
+    "slug": "youji-mushouka-checker",
+    "category": "childcare",
+    "title": "幼児教育・保育無償化 対象チェッカー",
+    "description": "お子さまのクラス年齢・利用施設の種別から、幼児教育・保育の無償化の対象になるか、月額上限や必要な手続きをその場で判定します。",
+    "solves": [
+      "幼児教育・保育の無償化が自分の子に当てはまるか分からない",
+      "認可外保育施設の無償化の月額上限が分からない",
+      "無償化を受けるのに何の手続きが必要か分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "こども家庭庁「幼児教育・保育の無償化」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka"
+      },
+      {
+        "label": "e-Gov法令検索（デジタル庁）「子ども・子育て支援法（平成二十四年法律第六十五号）」",
+        "url": "https://laws.e-gov.go.jp/law/424AC0000000065"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
+    "queueId": "P2-T17",
+    "slug": "jintsuu-kankaku-counter",
+    "category": "pregnancy",
+    "title": "陣痛間隔カウンター",
+    "description": "陣痛の開始・終了をタップして記録し、間隔・持続時間・平均を自動計算します。記録は端末内だけに保存され、オフラインでも使えます。",
+    "solves": [
+      "陣痛の間隔をどう測ればいいか分からない",
+      "陣痛の記録を紙やメモで管理するのが大変",
+      "何分間隔になったら病院に連絡すればいいか分からない",
+      "陣痛の記録が通信環境のせいで消えないか不安"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "specs/b-tools/p2-t17-jintsuu-kankaku-counter.md（陣痛間隔カウンター ロジック仕様）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/main/specs/b-tools/p2-t17-jintsuu-kankaku-counter.md"
+      },
+      {
+        "label": "国立成育医療研究センター 産科「入院について」（陣痛の間隔・破水時の連絡目安）",
+        "url": "https://www.ncchd.go.jp/hospital/pregnancy/bunben/nyuin.html"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
+    "queueId": "P2-T34",
+    "slug": "fukki-bi-keisan",
+    "category": "career",
+    "title": "復帰日計算（産休育休の各期限から逆算）",
+    "description": "出産日（予定日）と育休延長の意向から、産後休業終了日・育休の原則終了日・延長した場合の各期限と、複数の復帰候補日を一覧で計算します。",
+    "solves": [
+      "産休・育休がいつまでか分からない",
+      "育休を延長できる期限が分からない",
+      "育休を延長すると育児休業給付金の給付率がどう変わるか分からない",
+      "育休の延長には保育園に入れなかった等の要件が必要なことを知らない",
+      "保育園の入園申込をいつから検討すればいいか分からない",
+      "育休の延長と育児休業給付金の延長が別の手続きだと知らない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索（デジタル庁）「健康保険法（大正十一年法律第七十号）」",
+        "url": "https://laws.e-gov.go.jp/law/211AC0000000070"
+      },
+      {
+        "label": "e-Gov法令検索（デジタル庁）「雇用保険法（昭和四十九年法律第百十六号）」",
+        "url": "https://laws.e-gov.go.jp/law/349AC0000000116"
+      },
+      {
+        "label": "e-Gov法令検索（デジタル庁）「育児休業、介護休業等育児又は家族介護を行う労働者の福祉に関する法律（平成三年法律第七十六号）」",
+        "url": "https://laws.e-gov.go.jp/law/403AC0000000076"
+      },
+      {
+        "label": "厚生労働省「育児休業等給付の内容と支給申請手続（令和7年8月1日改訂版）」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html"
+      },
+      {
+        "label": "厚生労働省「育児休業給付金の支給対象期間延長手続き」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000160564_00040.html"
+      },
+      {
+        "label": "厚生労働省・都道府県労働局・ハローワーク「2025年４月から 保育所等に入れなかったことを理由とする育児休業給付金の支給対象期間延長手続きが変わります」",
+        "url": "https://www.mhlw.go.jp/content/001269748.pdf"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
+    "queueId": "P2-T14",
+    "slug": "ninshin-kenshin-schedule",
+    "category": "pregnancy",
+    "title": "妊婦健診スケジュール生成",
+    "description": "出産予定日（または最終月経開始日）から、標準的な妊婦健診の受診間隔に基づく受診スケジュールを一覧で計算します。",
+    "solves": [
+      "妊婦健診に何回・いつ行けばいいか分からない",
+      "妊婦健診の受診間隔の目安が分からない",
+      "妊婦健診が公費助成の対象回数に入っているか分からない",
+      "産後の産婦健診がいつごろか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "厚生労働省「“妊婦健診”を受けましょう（リーフレット）」（標準的な“妊婦健診”の例）",
+        "url": "https://www.mhlw.go.jp/bunya/kodomo/boshi-hoken13/dl/02.pdf"
+      },
+      {
+        "label": "こども家庭庁「妊婦健診に関する取組み」",
+        "url": "https://www.cfa.go.jp/policies/boshihoken/nimpukenshin"
+      },
+      {
+        "label": "こども家庭庁「妊婦健康診査の公費負担の状況に係る調査結果について（令和6年4月1日現在）」",
+        "url": "https://www.cfa.go.jp/press/2cf467a4-025c-4b69-a1a6-8a69626fd658"
+      },
+      {
+        "label": "こども家庭庁「令和8年度こども家庭庁当初予算案（参考資料）」（産婦健康診査事業）",
+        "url": "https://www.cfa.go.jp/policies/budget"
+      },
+      {
+        "label": "母子保健法（昭和四十年法律第百四十一号）第13条（e-Gov法令検索）",
+        "url": "https://laws.e-gov.go.jp/law/340AC0000000141"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
+    "queueId": "P2-T37",
+    "slug": "youkaigo-nintei-dandori-navi",
+    "category": "care",
+    "title": "要介護認定 申請段取りナビ",
+    "description": "申請日から、認定調査・主治医意見書・審査判定までの目安と、今どの段階かをチェックリストで確認できます。",
+    "solves": [
+      "要介護認定の申請から結果が出るまで何日かかるか分からない",
+      "認定調査や主治医意見書がどういう順番で進むか分からない",
+      "申請してから今どの段階なのか分からない",
+      "認定後にケアプラン作成やサービス利用開始までの流れが分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索「介護保険法（平成九年法律第百二十三号）第27条（認定）」",
+        "url": "https://laws.e-gov.go.jp/law/409AC0000000123"
+      },
+      {
+        "label": "厚生労働省老健局「要介護認定の認定審査期間について」社会保障審議会介護保険部会（第117回）資料2（令和7年2月20日）",
+        "url": "https://www.mhlw.go.jp/stf/newpage_50085.html"
+      },
+      {
+        "label": "厚生労働省老健局「介護保険制度の概要（令和7年7月）」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/gaiyo/index.html"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
+    "queueId": "P2-T21",
+    "slug": "ajitsuke-ougonhi",
+    "category": "kaji",
+    "title": "味付け黄金比計算（人数・分量スケール）",
+    "description": "料理の種類と人数（またはだし等の基準の分量）を入れると、しょうゆ・みりんなど調味料の使用量を大さじ・小さじ・mlで計算します。",
+    "solves": [
+      "煮物や照り焼きの調味料の割合が分からない",
+      "人数分に合わせて調味料の量をどう変えればいいか分からない",
+      "だしの量からしょうゆ・みりんの量を計算したい",
+      "すき焼きの割り下や天つゆの配合が分からない"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "農林水産省「伝統調味料は『黄金比』で手間いらず」（Let's！和ごはんプロジェクト）",
+        "url": "https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2202/spe6_01.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/tables/ajitsuke-ougonhi.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/tables/ajitsuke-ougonhi.json"
+      }
+    ],
+    "updated": "2026-07-17",
+    "status": "live"
+  },
+  {
+    "queueId": "P2-T28",
+    "slug": "shokuhi-meyasu",
+    "category": "money",
+    "title": "食費の目安計算（家族構成別）",
+    "description": "世帯人員数を入れると、総務省統計局「家計調査」に基づく食費（食料費）の1か月の目安と、外食・調理食品などの内訳を表示します。",
+    "solves": [
+      "うちの食費が世間と比べて多いのか少ないのか分からない",
+      "家族の人数が増えたら食費がどれくらい増えるのか目安が分からない",
+      "食費のうち外食や惣菜がどれくらいの割合か知りたい",
+      "食費の目安を根拠のある統計値で知りたい"
+    ],
+    "basisYear": "2025年（令和7年）平均",
+    "sources": [
+      {
+        "label": "総務省統計局「家計調査（家計収支編） 調査結果」",
+        "url": "https://www.stat.go.jp/data/kakei/2.html"
+      },
+      {
+        "label": "総務省統計局「家計調査報告 ―月・四半期・年―」2025年（令和7年）平均（2026年2月6日公表）",
+        "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/index.html#nen"
+      },
+      {
+        "label": "家計調査報告（家計収支編）2025年（令和7年）平均結果の概要（PDF）",
+        "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_gaikyo2025.pdf"
       }
     ],
     "updated": "2026-07-17",

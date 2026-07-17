@@ -1,0 +1,30 @@
+{
+  "$comment": "子どもの身長予測（両親身長法）ツール（Q3-22）の計算定数。仕様: specs/b-tools/22-height-prediction.md。teisuu_cm・margin_cm_male・margin_cm_female は学術論文 Ogata T, Tanaka T, Kagami M. \"Target Height and Target Range for Japanese Children: Revisited.\" Clin Pediatr Endocrinol 2007;16(4):85-87. doi:10.1297/cpe.16.85 のTarget Height式・ターゲットレンジ（要旨に Boys, TH = {PH + (MH + 13)} / 2, TR = TH ± 9 ／ Girls, TH = {(PH - 13) + MH} / 2, TR = TH ± 8 と明記）の転記。iden_kiyo_wari は国立成育医療研究センターのプレスリリースに記載の一般的な説明の要約値。inputRange以下はいずれも本ツール自身の入力バリデーション仕様であり、外部の学術的一次情報が主張する数値ではない（academic papers do not specify input widget bounds）。2026-07-17の社長決裁でjst.go.jpがfactory/config/source-allowlist.jsonに追加されたことを受けて新設。",
+  "sources": {
+    "ogata2007": {
+      "label": "Ogata T, Tanaka T, Kagami M. \"Target Height and Target Range for Japanese Children: Revisited.\" Clin Pediatr Endocrinol 2007;16(4):85-87. doi:10.1297/cpe.16.85",
+      "url": "https://www.jstage.jst.go.jp/article/cpe/16/4/16_4_85/_article",
+      "note": "J-STAGE掲載。要旨にTarget Height式・ターゲットレンジ（男児±9cm・女児±8cm、補正値13cm）が明記されている。"
+    },
+    "ncchd2017": {
+      "label": "国立成育医療研究センター「日本人の平均身長は低下傾向―低出生体重児増加が影響している可能性あり―」",
+      "url": "https://www.ncchd.go.jp/press/2017/adultheight.html"
+    },
+    "tool_spec": {
+      "label": "本ツールの入力許容範囲（外部一次情報なし）",
+      "note": "specs/b-tools/22-height-prediction.md に定める本ツール自身の入力バリデーション仕様。学術論文等の外部一次情報が主張する数値ではないため、機械照合対象外（facts[]はstubのまま運用する）。"
+    }
+  },
+  "lastVerified": "2026-07-17",
+  "nextCheckDue": "2027-07-01",
+  "teisuu_cm": { "value": 13, "unit": "cm", "sourceId": "ogata2007" },
+  "margin_cm_male": { "value": 9, "unit": "cm", "sourceId": "ogata2007" },
+  "margin_cm_female": { "value": 8, "unit": "cm", "sourceId": "ogata2007" },
+  "iden_kiyo_wari": { "value": 8, "unit": "割", "sourceId": "ncchd2017" },
+  "inputRange": {
+    "fatherHeightMinCm": { "value": 100, "unit": "cm", "sourceId": "tool_spec" },
+    "fatherHeightMaxCm": { "value": 250, "unit": "cm", "sourceId": "tool_spec" },
+    "motherHeightMinCm": { "value": 100, "unit": "cm", "sourceId": "tool_spec" },
+    "motherHeightMaxCm": { "value": 220, "unit": "cm", "sourceId": "tool_spec" }
+  }
+}

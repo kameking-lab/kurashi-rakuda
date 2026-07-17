@@ -81,6 +81,14 @@ const ALLOWED_HOSTS = [
   'www.courts.go.jp', // 裁判所。養育費・婚姻費用算定表等の一次情報
   'www.moj.go.jp', // 法務省。民法改正（養育費関連）等の一次情報
   'www.mext.go.jp', // 文部科学省。高等学校等就学支援金・就学援助等の一次情報
+  // ↓2026-07-17 社長決裁で追加。★用途は「ツールロジックの学術的根拠」に限定★
+  // J-STAGE（科学技術振興機構の論文プラットフォーム）。掲載論文＝査読済み一次文献を、
+  // ツールの計算式・目安値の学術的根拠として引く場合のみ許可する。
+  // 個別製品・治療法・ダイエット法など消費行動に直結する記述の出典には使わない。
+  // （.go.jp サフィックスで機械的には既に通るが、用途限定の決裁記録として個別列挙する。
+  //   J-STAGE の論文URLは www.jstage.jst.go.jp 配下）
+  'www.jst.go.jp',
+  'www.jstage.jst.go.jp',
 ];
 const ALLOWED_HOST_SUFFIXES = ['.lg.jp', '.go.jp'];
 /**
@@ -404,6 +412,25 @@ function checkStructure(file, data) {
     err(rel, '$.disclaimer', '免責表示文が短すぎます（20文字以上必須。YMYL領域のため）');
   }
 
+  // --- nextCheckDue（定期再確認日。P2-I01 データ鮮度の定期監査）
+  // expiresOn（確定失効＝この日に数値が変わると分かっている）と別に、
+  // 「改正が無くても定期的に一次情報と突き合わせる」日付を全ファイルに義務化する。
+  // D2=洗濯表示の教訓: 期限が既に経過した改正を誰も監視しておらず陳腐化がすり抜けた。
+  if (!data.nextCheckDue) {
+    err(rel, '$.nextCheckDue', 'nextCheckDue（次回再確認日）がありません（全制度データ必須。年度データは原則、翌年度の4月1日）');
+  } else if (data.nextCheckDue < TODAY) {
+    err(
+      rel,
+      '$.nextCheckDue',
+      `★再確認期限超過★ nextCheckDue "${data.nextCheckDue}" を過ぎています。一次情報と突き合わせ、checkedAt/asOf を更新するか値を差し替えたうえで次回日付を設定してください（手順: docs/10_公開チェックリスト.md）`
+    );
+  } else {
+    const days = Math.ceil((new Date(data.nextCheckDue) - new Date(TODAY)) / 86400000);
+    if (days <= 30) {
+      warn(rel, '$.nextCheckDue', `再確認期限まで残り${days}日（${data.nextCheckDue}）`);
+    }
+  }
+
   // --- sources
   const sourceIds = new Set();
   if (Array.isArray(data.sources)) {
@@ -431,9 +458,40 @@ function checkStructure(file, data) {
     }
   }
 
+  // --- verify の照合先解決（★沈黙の照合漏れを許さない★）
+  // 照合先は verify.sourceId ?? 同ノードの sourceId。どちらも無い verify.expect は
+  // checkAgainstSources が黙ってスキップしてしまう＝「照合しているつもりで照合していない」
+  // 状態になるため、構造検査の段階でエラーにする。
+  // （実例: トップレベル verify は隣接 sourceId が無く、41自治体の階層表照合が
+  //   一度も実行されていなかった。verify.sourceId の必須化で解決した。）
+  walk(data, (path, node) => {
+    if (path.startsWith('$.sources')) return;
+    if (!node || typeof node !== 'object' || Array.isArray(node)) return;
+    const v = node.verify;
+    if (!v || typeof v !== 'object') return;
+    if (v.sourceId !== undefined) {
+      if (typeof v.sourceId !== 'string' || !sourceIds.has(v.sourceId)) {
+        err(rel, `${path}.verify`, `verify.sourceId "${v.sourceId}" が sources に存在しません`);
+      }
+    }
+    if (v.skip) return;
+    if (Array.isArray(v.expect) && v.expect.length) {
+      if (typeof v.sourceId !== 'string' && typeof node.sourceId !== 'string') {
+        err(
+          rel,
+          `${path}.verify`,
+          'verify.expect の照合先が特定できません（verify.sourceId か、同ノードの sourceId が必要）。このままでは出典照合が沈黙してスキップされます'
+        );
+      }
+    }
+  });
+
   // --- sourceId 参照の健全性 & valueNode の必須項目
   walk(data, (path, node) => {
     if (path.startsWith('$.sources')) return;
+    // verify オブジェクト自体の sourceId は「照合指示の宛先」であってデータノードではない。
+    // 存在チェックは上の verify 専用ブロックで済んでおり、checkedAt は所有ノード側が担保する。
+    if (path.endsWith('.verify')) return;
     if (!hasSourceRef(node)) return;
     if (!sourceIds.has(node.sourceId)) {
       err(rel, path, `sourceId "${node.sourceId}" が sources に存在しません`);
@@ -549,15 +607,19 @@ async function checkAgainstSources(file, data) {
   const jobs = [];
   walk(data, (path, node) => {
     if (path.startsWith('$.sources')) return;
-    if (!hasSourceRef(node)) return;
+    if (!node || typeof node !== 'object' || Array.isArray(node)) return;
     const v = node.verify;
-    if (!v) return;
+    if (!v || typeof v !== 'object') return;
     if (v.skip) {
       stats.skipped++;
       return;
     }
+    // 照合先は verify.sourceId を優先し、無ければ同ノードの sourceId。
+    // どちらも無い場合は checkStructure が既にエラーにしている（ここでは黙って落とさない）。
+    const sourceId = typeof v.sourceId === 'string' ? v.sourceId : node.sourceId;
+    if (typeof sourceId !== 'string') return;
     if (Array.isArray(v.expect) && v.expect.length) {
-      jobs.push({ path, sourceId: node.sourceId, expect: v.expect });
+      jobs.push({ path, sourceId, expect: v.expect });
     }
   });
 

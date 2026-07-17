@@ -7,6 +7,7 @@
   "municipalityType": "特別区",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "chuo-hoikuryo-page",
@@ -688,6 +689,7 @@
     }
   ],
   "verify": {
+    "sourceId": "chuo-annai-r8",
     "expect": [
       "保育料を決定する区分",
       "区市町村民税所得割非課税世帯",

@@ -7,6 +7,7 @@
   "municipalityType": "特別区",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "kita-hoikuryo-page",
@@ -634,6 +635,7 @@
     }
   ],
   "verify": {
+    "sourceId": "kita-annai-r8",
     "expect": [
       "保 育 料 基 準 額 表",
       "階層・保育必要量にかかわらず0 円",

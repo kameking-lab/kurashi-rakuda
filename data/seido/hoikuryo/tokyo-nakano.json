@@ -7,6 +7,7 @@
   "municipalityType": "特別区",
   "fiscalYear": 2026,
   "asOf": "2026-07-17",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "nakano-hoikuryo-page",
@@ -664,6 +665,7 @@
     }
   ],
   "verify": {
+    "sourceId": "nakano-encho-pdf",
     "expect": [
       "区立保育園の延長保育料一覧",
       "Ｃ３０",
