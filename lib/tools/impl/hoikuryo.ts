@@ -17,11 +17,16 @@
  */
 
 import aichiNagoya from "@/data/seido/hoikuryo/aichi-nagoya.json";
+import chibaChiba from "@/data/seido/hoikuryo/chiba-chiba.json";
 import fukuokaFukuoka from "@/data/seido/hoikuryo/fukuoka-fukuoka.json";
 import hokkaidoSapporo from "@/data/seido/hoikuryo/hokkaido-sapporo.json";
 import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
+import kanagawaSagamihara from "@/data/seido/hoikuryo/kanagawa-sagamihara.json";
 import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
+import miyagiSendai from "@/data/seido/hoikuryo/miyagi-sendai.json";
+import niigataNiigata from "@/data/seido/hoikuryo/niigata-niigata.json";
 import osakaOsaka from "@/data/seido/hoikuryo/osaka-osaka.json";
+import saitamaSaitama from "@/data/seido/hoikuryo/saitama-saitama.json";
 import tokyoAdachi from "@/data/seido/hoikuryo/tokyo-adachi.json";
 import tokyoArakawa from "@/data/seido/hoikuryo/tokyo-arakawa.json";
 import tokyoBunkyo from "@/data/seido/hoikuryo/tokyo-bunkyo.json";
@@ -118,12 +123,15 @@ export interface HoikuryoMunicipality {
 // ---------------------------------------------------------------- 自治体データ
 
 /**
- * 収集済み自治体（2026-07-17時点で27件）。
+ * 収集済み自治体（2026-07-17時点で32件）。
  * ★選択肢はこの配列からのみ生成する★ 未収集自治体の階層を創作しない（§7）。
  * 並び順は全国地方公共団体コード順（＝都道府県順・特別区は区番号順）。UIの選択肢の順序になる。
  */
 export const municipalities: HoikuryoMunicipality[] = [
   hokkaidoSapporo,
+  miyagiSendai,
+  saitamaSaitama,
+  chibaChiba,
   tokyoChiyoda,
   tokyoChuo,
   tokyoMinato,
@@ -147,6 +155,8 @@ export const municipalities: HoikuryoMunicipality[] = [
   tokyoEdogawa,
   kanagawaYokohama,
   kanagawaKawasaki,
+  kanagawaSagamihara,
+  niigataNiigata,
   aichiNagoya,
   osakaOsaka,
   fukuokaFukuoka,

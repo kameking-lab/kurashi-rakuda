@@ -107,6 +107,9 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   // files.city.shibuya.tokyo.jp で配信するため、サブドメイン一致で両方を許可する。
   'city.shibuya.tokyo.jp',
   'city.arakawa.tokyo.jp',
+  'city.chiba.jp',
+  'city.sagamihara.kanagawa.jp',
+  'city.sendai.jp', // city.sendai.lg.jp は存在しない（DNS解決せず）
 ];
 
 const args = process.argv.slice(2);
