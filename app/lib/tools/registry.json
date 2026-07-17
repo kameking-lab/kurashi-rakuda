@@ -1009,5 +1009,26 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T35",
+    "slug": "hoikuen-omukae-gyakusan",
+    "category": "career",
+    "title": "保育園お迎え逆算 勤務可能時間計算",
+    "description": "保育園のお迎え締切時刻・職場との往復の移動時間・退勤後の準備時間を入れると、何時までに退勤する必要があるか、出勤時刻からその日の実労働可能時間は何時間何分かを計算します。",
+    "solves": [
+      "お迎え締切に間に合うには何時までに退勤すればいいか分からない",
+      "移動時間や準備時間を考えると実際に働ける時間がどれくらいか分からない",
+      "残業がどこまで許されるか、締切から逆算して把握したい"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "本ツールのロジック仕様（時刻の加減算のみ。制度・統計データには依存しない）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/specs/b-tools/p2-t35-hoikuen-omukae-gyakusan.md"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
