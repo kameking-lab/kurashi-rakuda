@@ -10,19 +10,29 @@
  * （https://www.jstage.jst.go.jp/article/cpe/16/4/16_4_85/_article）
  * 男児 TH={PH+(MH+13)}/2, TR=TH±9cm ／ 女児 TH={(PH−13)+MH}/2, TR=TH±8cm。
  * 医学的な低身長・成長障害の診断や判定は一切行わない。
+ *
+ * 定数は data/tables/shincho-yosoku-kijun.json を単一の情報源(SSOT)とする
+ * （JidoTeate.calc.ts と同様のデータ駆動パターン）。学術論文由来の値
+ * （teisuu_cm・margin_cm_male・margin_cm_female）と、ツール自身の入力
+ * バリデーション仕様（inputRange以下。外部一次情報の主張ではない）の
+ * 出典区分は同JSON内のsourcesを参照。
  */
+import kijun from "@/data/tables/shincho-yosoku-kijun.json";
 
 export type ShinchoSex = "male" | "female";
 
-export const FATHER_HEIGHT_MIN = 100;
-export const FATHER_HEIGHT_MAX = 250;
-export const MOTHER_HEIGHT_MIN = 100;
-export const MOTHER_HEIGHT_MAX = 220;
+export const FATHER_HEIGHT_MIN = kijun.inputRange.fatherHeightMinCm.value;
+export const FATHER_HEIGHT_MAX = kijun.inputRange.fatherHeightMaxCm.value;
+export const MOTHER_HEIGHT_MIN = kijun.inputRange.motherHeightMinCm.value;
+export const MOTHER_HEIGHT_MAX = kijun.inputRange.motherHeightMaxCm.value;
 
 /** 参考誤差幅（±cm・男児）。Ogata et al. 2007 のターゲットレンジ。保証ではない */
-export const MARGIN_CM_MALE = 9;
+export const MARGIN_CM_MALE = kijun.margin_cm_male.value;
 /** 参考誤差幅（±cm・女児）。同上（女児は±8cm。男児と異なる点に注意） */
-export const MARGIN_CM_FEMALE = 8;
+export const MARGIN_CM_FEMALE = kijun.margin_cm_female.value;
+
+/** 男女差の経験的補正値（cm）。Ogata et al. 2007 のTarget Height式の定数 */
+const TEISUU_CM = kijun.teisuu_cm.value;
 
 export interface ShinchoYosokuInput {
   /** 子の性別。男児/女児のいずれか必須 */
@@ -124,7 +134,9 @@ export function calcShinchoYosoku(
   const mother = input.motherHeightCm as number;
 
   const raw =
-    sex === "male" ? (father + mother + 13) / 2 : (father + mother - 13) / 2;
+    sex === "male"
+      ? (father + mother + TEISUU_CM) / 2
+      : (father + mother - TEISUU_CM) / 2;
   const marginCm = sex === "male" ? MARGIN_CM_MALE : MARGIN_CM_FEMALE;
   const predictedHeightCm = Math.trunc(raw * 10) / 10;
 
