@@ -5,8 +5,10 @@ import { getLiveTools, getTool } from "@/app/lib/tools/registry";
 import { ToolShell } from "@/components/tools/ToolShell";
 import { ChomiryoKanzan } from "@/components/tools/impl/ChomiryoKanzan";
 import { FuyoKabe } from "@/components/tools/impl/FuyoKabe";
+import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
+import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
 import { todayJst } from "@/lib/tools/seido";
 
 /**
@@ -65,6 +67,66 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           年収に乗じた概算です。実際は標準報酬月額をもとに計算され、健康保険料率は都道府県ごとに異なります。
         </p>
         <SeidoNotice datasets={[fuyoKabeDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  hoikuryo: {
+    ui: <Hoikuryo />,
+    formula: (
+      <>
+        <p>
+          <strong>保育料は自治体ごとに違います。</strong>
+          認可保育所の保育料（利用者負担額）は、お住まいの市区町村が独自の階層表で決めています。
+          全国共通の計算式はありません。このツールは、各自治体が公表している金額表そのものを収録し、
+          あなたが選んだ条件に当たる行を引いて表示しています。数値の推測はしていません。
+        </p>
+        <p>
+          <strong>金額が決まる順番</strong>
+          ：①その月に全世帯無償化が始まっていないか →
+          ②3歳以上児クラスか（幼児教育・保育の無償化により、対応12自治体すべてで0円）→
+          ③世帯の課税状況（生活保護／住民税非課税／均等割のみ課税／所得割が課税）で階層を決める →
+          ④所得割が課税されている世帯だけ、市町村民税所得割額で階層を細かく分ける →
+          ⑤その階層の「年齢区分 × 保育必要量」の金額を読む、の順です。
+        </p>
+        <p>
+          <strong>課税状況を所得割額より先に聞く理由</strong>
+          ：生活保護世帯・住民税非課税世帯・均等割のみ課税世帯は、いずれも
+          <strong>市町村民税所得割額が0円</strong>
+          です。つまり所得割額だけでは3つを見分けられません。しかも、この3つは金額が違います。
+          横浜市では非課税世帯が0円、均等割のみ課税世帯は6,700円（0〜2歳児クラス・保育標準時間）です。
+          札幌市はさらに独自で、均等割のみ課税の世帯はB階層ではなくC1階層（11,000円）に当たると
+          パンフレットに明記されています。このツールは金額ではなく、あなたが選んだ課税状況で階層を決めています。
+        </p>
+        <p>
+          <strong>所得割額は課税明細書の数字そのままではありません</strong>
+          ：階層を引くのに使う所得割額は、自治体ごとに前処理が違います。大阪市は「税額控除前所得割額 ×
+          6／8」、名古屋市は「税源移譲前の税率で算定した額」、横浜市は「調整控除額と所得割の調整措置の額だけを引いた額」、
+          川崎市は3つの控除を引いたうえで6／8を掛け、しかも定額減税だけは適用後の額を使います。
+          住宅ローン控除やふるさと納税（寄附金税額控除）は、多くの自治体で「無かったもの」として扱われます。
+          このツールは換算を代行しません。換算の端数処理が公表されておらず、数円の違いで階層が変わるためです。
+          上級者モードでは、その自治体の前処理の説明を入力欄と同じ画面に表示しています。
+        </p>
+        <p>
+          <strong>4〜8月分と9月以降で使う年度が違います</strong>
+          ：多くの自治体で、4〜8月分は前年度の課税額、9月〜翌3月分はその年度の課税額を使います。
+          9月に保育料が変わるのはこのためです。区切りの表記は自治体により異なるため、
+          このツールは各自治体の原文をそのまま表示しています。
+        </p>
+        <p>
+          <strong>自動計算していないもの</strong>
+          ：第2子以降の軽減、ひとり親世帯・在宅障害者等の軽減の金額は計算していません。
+          きょうだいの数え方（年齢の上限があるか、就学前の子だけを数えるか）も、減額の方式
+          （半額なのか、専用の金額列があるのか、0円なのか）も自治体ごとに違い、名古屋市のように
+          階層によって数え方が切り替わる自治体もあるためです。該当する制度の原文をお見せしています。
+          給食費・延長保育料・教材費・私立園の上乗せ徴収も含みません。
+        </p>
+        <p>
+          <strong>対応していない自治体について</strong>
+          ：現在の対応は{municipalities.length}自治体です。それ以外の自治体では金額を表示せず、
+          お手元の課税明細書からご自身で階層表を読むための手順をご案内しています。
+          推測した金額や「一般的な相場」はお見せしません。
+        </p>
+        <SeidoNotice datasets={municipalities.map(toSeidoDataset)} today={todayJst()} />
       </>
     ),
   },
