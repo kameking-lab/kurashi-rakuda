@@ -94,7 +94,13 @@ import type { SeidoAmendment, SeidoDataset, SeidoSource } from "@/lib/tools/seid
 
 // ---------------------------------------------------------------- 型
 
-export type AgeKey = "under3" | "age3plus";
+/**
+ * 年齢区分キー。既定は under3(0〜2歳児クラス)/age3plus(3〜5歳児クラス)の2区分。
+ * age2(2歳児クラス) は、2歳児クラスのみ別扱いにする自治体（例: 青森市＝R8から2歳児クラス以上を
+ * 独自無償化し0・1歳児クラスのみ課税）でのみ登場する。既存自治体の ageClasses に age2 は無く、
+ * 従来どおり under3 が0〜2歳を一律に扱う（後方互換）。
+ */
+export type AgeKey = "under3" | "age2" | "age3plus";
 export type CareNeed = "standard" | "short";
 
 /**
@@ -142,7 +148,7 @@ export interface HoikuryoTier {
   incomeMax: number | null;
   isNonTaxable?: boolean;
   isWelfare?: boolean;
-  fees: { under3?: TierFees; age3plus?: TierFees };
+  fees: { under3?: TierFees; age2?: TierFees; age3plus?: TierFees };
 }
 
 export interface HoikuryoValueNode {
@@ -176,6 +182,8 @@ export interface HoikuryoMunicipality {
   timeBands?: TimeBands;
   freeTuition?: {
     age3plusFree?: HoikuryoValueNode;
+    /** 2歳児クラスが自治体独自に無償か（例: 青森市）。設定時は ageClasses に age2 を持ち under3 は0・1歳のみ */
+    age2Free?: HoikuryoValueNode;
     under3NonTaxableFree?: HoikuryoValueNode;
     multiChildPolicy?: {
       countingRule?: HoikuryoValueNode;
@@ -500,6 +508,14 @@ export function isAge3plusFree(m: HoikuryoMunicipality): boolean {
   return m.freeTuition?.age3plusFree?.value === true;
 }
 
+/**
+ * 2歳児クラスが自治体独自に無償か（例: 青森市はR8から2歳児クラス以上を無償化）。
+ * age3plusFree と同じ流儀。設定していない既存自治体では常に false（＝under3が0〜2歳を一律に扱う）。
+ */
+export function isAge2Free(m: HoikuryoMunicipality): boolean {
+  return m.freeTuition?.age2Free?.value === true;
+}
+
 // ---------------------------------------------------------------- 多子・ひとり親
 
 export type MultiChildKind = "free" | "described" | "none";
@@ -558,6 +574,7 @@ export interface HoikuryoInput {
 export type FeeBasis =
   | "amendmentFullFree" // 施行日以降の全員無償化（大阪 R8/9〜）
   | "age3plusFree" // 3歳以上児の無償化
+  | "age2Free" // 2歳児クラスの自治体独自無償化（青森市など）
   | "tier" // 階層表から取得
   | "allZeroFallback" // 階層は特定できないが全階層0円
   | "unknown"; // 金額を出さない
@@ -619,6 +636,10 @@ export function calc(input: HoikuryoInput): HoikuryoResult | null {
   // ステップ2: 年齢区分による分岐
   if (input.age === "age3plus" && isAge3plusFree(m)) {
     return { ...base, fee: 0, basis: "age3plusFree", tier: null, tierIssue: null, fullFree: null };
+  }
+  // 2歳児クラスの自治体独自無償化（青森市など）。0・1歳児クラス（under3）は下の階層判定へ進む
+  if (input.age === "age2" && isAge2Free(m)) {
+    return { ...base, fee: 0, basis: "age2Free", tier: null, tierIssue: null, fullFree: null };
   }
 
   // ステップ3〜6: 課税状況 → 階層 → 金額

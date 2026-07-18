@@ -216,6 +216,22 @@
 §2.4 の `facilityType` 軸・§2.5 の 0歳／1・2歳分割は引き続き未解決（中核市の収集開始前に判断）。
 UI 側の分岐追加が前提になる。
 
+### 2.8 「2歳児クラスのみ別扱い（青森市＝2歳児以上を独自無償化）」★2026-07-18 スキーマ拡張で解消・後方互換★
+
+★共有ファイル改修の周知（wo-opus 主導）★ 青森市はR8から**2歳児クラス以上を独自無償化し、0・1歳児クラスのみ課税**する。
+従来の `under3`（0〜2歳一律）では表現できず収集がブロックされていた。**後方互換なスキーマ拡張で解消済み**（`feat/hoikuryo-age2-class`）:
+
+- **スキーマ**: `ageClasses[].key` に `age2` を追加、`tiers[].fees` に任意の `age2`、`freeTuition.age2Free`（valueNode）を追加。
+- **型/ロジック**（`lib/tools/impl/hoikuryo.ts`）: `AgeKey` に `age2`、`isAge2Free(m)`、`FeeBasis` に `age2Free`、`calc` に age2 無償分岐（age3plusFree と同流儀）。
+- **UI**（`Hoikuryo.tsx`）: 年齢選択肢は `m.ageClasses` 由来のためデータ側で `age2` を足せば自動で選択肢に出る。結果メッセージに age2Free 分岐を1行追加。
+- **後方互換の実証**: 既存69自治体は `age2` を持たず `isAge2Free=false`＝従来どおり `under3` が0〜2歳を一律に扱う。tests/hoikuryo.test.ts の「★年齢クラス拡張 age2★」で「既存69で age2 は未使用・feeOf age2=null・basis≠age2Free」を全数固定。verify-seido 構造検査エラー0。
+
+**★青森市の収集は wo（東日本担当）に引き継ぐ★**（データは wo が収集）。収集時の書き方:
+1. `ageClasses` を `[{key:"under3", label:"0・1歳児クラス", ...}, {key:"age2", label:"2歳児クラス", ...}, {key:"age3plus", label:"3〜5歳児クラス", ...}]` にする（under3 のラベルを「0・1歳児クラス」にする点に注意）。
+2. `tiers[].fees.under3` には**0・1歳児クラスの課税額のみ**を収める（2歳を含めない）。`fees.age2` は無くてよい（無償のため）。
+3. `freeTuition.age2Free` を `{value:true, label:"2歳児クラスは無償です（青森市の独自無償化）", sourceId, checkedAt, verify:{expect:[...]}}` で設定。age3plusFree と同じ流儀。
+4. 2歳が**課税**の自治体が将来出た場合は `fees.age2` に階層別額を入れる（age2Free は設定しない）。
+
 ### 2.6 「ひとり親世帯等の軽減階層」
 
 横浜（E0〜E5）・大阪（各階層内サブ行）・名古屋（軽減制度）にひとり親等の軽減がある。スキーマに対応フィールドがないため `tiers` には一般世帯の額を収録し、詳細を `bracketBasis.note` に原典表記のまま保存している。
