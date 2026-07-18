@@ -194,6 +194,8 @@
 
 ★2026-07-18 完了（ソネット・東日本ブロック・一般市バッチ2）★: [x] 松戸市（27階層・R8）・市川市（26階層・R7、R8版未公表のためunder-review。**令和8年9月〜第1子含め全員無償化を予定**とamendmentsに記録）・藤沢市（21階層・年度表記のない常設表型）・町田市（1階層、東京都独自の負担軽減事業（R7/9〜）で無償。八王子・府中・調布と同型）・津市（20階層・年度表記なし・under-review）・市原市（17階層・R8。city.ichihara.chiba.jpはAngular SPAのため機械照合不可な箇所2件をverify.skipで明記）・府中市（33階層、東京都独自の負担軽減事業で無償）・調布市（1階層、同事業で無償）。全市 --fetch照合エラー0。新規ドメイン許可7件（松戸`city.matsudo.chiba.jp`・町田`kosodate-machida.tokyo.jp`・府中`city.fuchu.tokyo.jp`・津`city.tsu.mie.jp`・藤沢`city.fujisawa.kanagawa.jp`・市原`city.ichihara.chiba.jp`＋添付PDF格納先`prdurbanosichapp1.blob.core.windows.net`（Azure Blobの共有ドメインのためこの1サブドメインのみ許可）。市川・調布は`.lg.jp`のみで完結し追加不要）。★発見★ 東京都は令和7年9月から都独自の负担軽減事業で0〜2歳児クラスを所得に関わらず無償化しており、八王子市に続き町田市・府中市・調布市も同型（階層表が公表されなくなる）。次バッチは人口順で継続（残候補: 上尾・西東京・流山・八千代・小平・鈴鹿・三鷹・日野等）。
 
+★2026-07-18 着手宣言（ソネット・東日本ブロック・一般市バッチ3）★: [~] 埼玉県上尾市（saitama-ageo）・東京都西東京市（tokyo-nishitokyo）・千葉県流山市（chiba-nagareyama）・千葉県八千代市（chiba-yachiyo）・東京都小平市（tokyo-kodaira）・三重県鈴鹿市（mie-suzuka）・東京都三鷹市（tokyo-mitaka）・東京都日野市（tokyo-hino）。人口10万以上の一般市を人口順に収集する第3弾。
+
 ---
 
 ## 2. 収集済みデータから分かった実装上の論点
