@@ -1,0 +1,295 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "chiba-narashino",
+  "name": "千葉県習志野市",
+  "municipalityCode": "122165",
+  "prefecture": "千葉県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "narashino-hoikuryo-page",
+      "title": "保育所保育料",
+      "publisher": "習志野市",
+      "url": "https://www.city.narashino.lg.jp/kosodate/hoikugakko/hoikusho/hoikusyohoikuryo.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "html",
+      "note": "保育料の算定方法・算定対象者(扶養義務者の範囲)・税額(税年度切替ルール・適用しない税額控除・政令指定都市からの転入者の扱い)・保育所保育料徴収基準額表(PDFへのリンク)・多子軽減について・低所得のひとり親、在宅障がい児(者)のいる世帯等・保育料の支払先・保育料の指定納入期限を説明するページ。ページ更新日表示は2026年4月1日。納入期限表は「令和8年度分」と明記され令和8年4月〜令和9年3月の各月分を掲載しており、令和7年度の記載は本文中に見当たらない。"
+    },
+    {
+      "id": "narashino-r8-kijunhyo-pdf",
+      "title": "保育所保育料 基準額表",
+      "publisher": "習志野市",
+      "url": "https://www.city.narashino.lg.jp/material/files/group/136/ri.pdf",
+      "landingUrl": "https://www.city.narashino.lg.jp/kosodate/hoikugakko/hoikusho/hoikusyohoikuryo.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "全1ページ。階層(A・B・C1・C2・D1〜D17)ごとの0歳児〜2歳児クラスの利用者負担額(月額、括弧外が保育標準時間・括弧内が保育短時間)を掲載。3歳児クラス以上は無償化により表内「保育料無償」。下段に低所得のひとり親世帯・在宅障がい児(者)のいる世帯等向けの軽減後表(CH1・CH2・DH1・DH2・DH3)を別掲。文書内に年度表記の直接記載はないが、掲載元ページの納入期限表(令和8年度分)と一致し、ページ更新日(2026-04-01)からR8現行版と判断。"
+    }
+  ],
+  "disclaimer": "本データは千葉県習志野市の自治体公式資料に基づく参考情報です。実際の保育料は税額、世帯状況、きょうだい構成等により自治体が決定するため、決定通知書または担当窓口（習志野市こども部保育認定課）で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所等（2・3号認定）の一般世帯・第1子の月額保育料（0歳児〜2歳児クラス）"
+    ],
+    "excludes": [
+      "3歳児クラスから5歳児クラスの保育料（幼児教育・保育の無償化により無償）",
+      "給食費（副食費）等の実費（本ページ・PDFに具体的な規定の記載なし。一次情報で確認できず未確認。国の無償化制度上は原則対象外だが習志野市独自の減免有無は未確認）",
+      "延長保育料等の実費徴収（本ページ・PDFに記載なし。未確認）",
+      "低所得のひとり親世帯・在宅障がい児（者）のいる世帯等に適用される軽減後金額（CH1・CH2・DH1・DH2・DH3。freeTuition.localExtension参照）",
+      "第2子以降の軽減後金額（多子軽減により第2子は半額、第3子以降は無料。freeTuition.multiChildPolicy参照）",
+      "入園料・教材費・行事費等の諸経費実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則、父母を保育料算定上の扶養義務者とし、父母の合算税額で算定する。ただし父母の市区町村民税が非課税で同居している祖父母がいる場合、祖父母の税額から算定する（祖父母で算定する場合で、祖父母ともに課税の場合は、税額の高い方のみで算定する）。",
+    "taxYearRule": "利用月に応じて、前年度または当年度の市区町村民税額から算定する。4月〜8月：前年度の市区町村民税額より算定（例: 2026年4月〜8月は2025年度税額＝2024年中の収入に基づく）。9月〜翌3月：当年度の市区町村民税額より算定（例: 2026年9月〜2027年3月は2026年度税額＝2025年中の収入に基づく）。年度途中で保育料が変更となる可能性がある。",
+    "deductionsIgnored": [
+      "住宅借入金特別控除",
+      "配当控除",
+      "外国税額控除",
+      "寄付金控除"
+    ],
+    "note": "習志野市は政令指定都市ではないため、大阪市・名古屋市等でみられる6/8税率換算等は原則対象外。ただし原典に「政令指定都市より転入した方は、所得割額を本市の税率に適用させた上で、算定します。」との規定があり、政令市（税率8%）からの転入者に限り本市の税率で再計算する条件付き規定が存在する（他市の「政令市転入者にのみ6/8換算」と同型。具体的な換算率・端数処理は原典に明記がなく未確認）。適用しない税額控除は「住宅借入金特別控除、配当控除、外国税額控除、寄付金控除等の税額控除（調整控除を除く）」と原典にあり、「等」で終わるため他にも対象がある可能性を示唆（deductionsIgnoredには明記された4項目のみ収録）。定額減税の反映方向（適用前/適用後）は原典に明記がなく未確認。転入や税の未申告等で税額が確認できない場合は暫定的に最高階層区分（D17）で保育料を決定する。「均等割のみ課税」（C1、所得割額0円）は「非課税世帯」（B、均等割・所得割ともに非課税）とは別区分であり、B・C1いずれもincomeMin:0/incomeMax:1で表現するがisNonTaxableはBのみに付与した（C1は均等割は課税されているため）。",
+    "sourceId": "narashino-hoikuryo-page",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "sourceId": "narashino-hoikuryo-page",
+      "expect": [
+        "利用月が4月〜8月と9月〜翌3月では算定に用いる税年度が異なる",
+        "住宅借入金特別控除、配当控除、外国税額控除、寄付金控除",
+        "政令指定都市より転入した方は",
+        "父母の市町村民税が非課税で同居している祖父母"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0歳児〜2歳児クラス",
+      "rule": "毎年度4月1日時点の年齢区分（在籍クラス年齢）を基準に算定する。年度の途中で誕生日を迎えても年齢区分は変わらない。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳児〜5歳児クラス",
+      "rule": "幼児教育・保育の無償化により保育料は無償。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳児クラス以上の保育所保育料は無償",
+      "unit": "JPY",
+      "sourceId": "narashino-hoikuryo-page",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）",
+      "verify": {
+        "sourceId": "narashino-hoikuryo-page",
+        "expect": ["3歳児クラス以上の保育所保育料は無償となります"]
+      }
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "世帯の市区町村民税所得割額が57,700円未満の場合、こどもの年齢・利用施設の制限なく生計を同一にするこどもの数でカウントする。57,700円以上の場合は、小学校就学前のこどものうち指定施設（認可保育所、幼稚園、認定こども園、地域型保育事業（小規模保育事業等）、特別支援学校幼稚部、児童心理治療施設通所部、児童発達支援施設、居宅訪問型児童発達支援、企業主導型保育事業）を利用するこどもの数でカウントする。何番目の子であるかのカウントは子ども・子育て支援法施行令に基づき判定する（税額により算出方法が異なる）。私立幼稚園等を利用している兄姉がいる場合は在園証明書等の提出により多子軽減を適用する（認可外保育施設、認可保育園の一時預かり、プレ幼稚園、保育ルームは対象外）。",
+        "unit": "unit",
+        "sourceId": "narashino-r8-kijunhyo-pdf",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）",
+        "verify": {
+          "sourceId": "narashino-r8-kijunhyo-pdf",
+          "expect": [
+            "何番目の子であるかのカウントは",
+            "子ども・子育て支援法施行令に基づき",
+            "57,700円未満",
+            "57,700円以上"
+          ]
+        }
+      },
+      "secondChild": {
+        "value": 0.5,
+        "unit": "ratio",
+        "label": "第2子は半額（10円未満切捨て）",
+        "sourceId": "narashino-r8-kijunhyo-pdf",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "第3子以降は無料",
+        "sourceId": "narashino-r8-kijunhyo-pdf",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      }
+    },
+    "localExtension": "低所得のひとり親世帯や在宅障がい児（者）のいる世帯等は、負担軽減後の下表（0〜2歳児クラス、標準時間/短時間の順）が一般世帯の額に代わり適用される。上表C1階層である世帯→CH1: 3,900円/3,830円。上表C2階層である世帯→CH2: 4,450円/4,370円。上表D1階層である世帯→DH1: 5,900円/5,790円。上表D2階層である世帯→DH2: 6,940円/6,820円。上表D3階層のうち市区町村民税所得割額が77,101円未満である世帯→DH3: 8,350円/8,200円。この軽減表に該当する世帯の第2子以降の保育料はこどもの年齢・利用施設の制限なく「無料」となる（出典: narashino-r8-kijunhyo-pdf）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": { "under3": { "standard": 0, "short": 0 } }
+    },
+    {
+      "tier": "B",
+      "label": "非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": { "under3": { "standard": 0, "short": 0 } }
+    },
+    {
+      "tier": "C1",
+      "label": "均等割のみ課税",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": { "under3": { "standard": 8440, "short": 8290 } }
+    },
+    {
+      "tier": "C2",
+      "label": "所得割額48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": { "under3": { "standard": 9660, "short": 9490 } }
+    },
+    {
+      "tier": "D1",
+      "label": "所得割額58,200円未満",
+      "incomeMin": 48600,
+      "incomeMax": 58200,
+      "fees": { "under3": { "standard": 12140, "short": 11930 } }
+    },
+    {
+      "tier": "D2",
+      "label": "所得割額67,900円未満",
+      "incomeMin": 58200,
+      "incomeMax": 67900,
+      "fees": { "under3": { "standard": 14290, "short": 14040 } }
+    },
+    {
+      "tier": "D3",
+      "label": "所得割額77,600円未満",
+      "incomeMin": 67900,
+      "incomeMax": 77600,
+      "fees": { "under3": { "standard": 17180, "short": 16880 } }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割額87,300円未満",
+      "incomeMin": 77600,
+      "incomeMax": 87300,
+      "fees": { "under3": { "standard": 23090, "short": 22690 } }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割額97,000円未満",
+      "incomeMin": 87300,
+      "incomeMax": 97000,
+      "fees": { "under3": { "standard": 29850, "short": 29340 } }
+    },
+    {
+      "tier": "D6",
+      "label": "所得割額121,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 121000,
+      "fees": { "under3": { "standard": 37210, "short": 36570 } }
+    },
+    {
+      "tier": "D7",
+      "label": "所得割額145,000円未満",
+      "incomeMin": 121000,
+      "incomeMax": 145000,
+      "fees": { "under3": { "standard": 40880, "short": 40180 } }
+    },
+    {
+      "tier": "D8",
+      "label": "所得割額169,000円未満",
+      "incomeMin": 145000,
+      "incomeMax": 169000,
+      "fees": { "under3": { "standard": 44500, "short": 43740 } }
+    },
+    {
+      "tier": "D9",
+      "label": "所得割額195,400円未満",
+      "incomeMin": 169000,
+      "incomeMax": 195400,
+      "fees": { "under3": { "standard": 50070, "short": 49210 } }
+    },
+    {
+      "tier": "D10",
+      "label": "所得割額221,800円未満",
+      "incomeMin": 195400,
+      "incomeMax": 221800,
+      "fees": { "under3": { "standard": 56000, "short": 55040 } }
+    },
+    {
+      "tier": "D11",
+      "label": "所得割額248,200円未満",
+      "incomeMin": 221800,
+      "incomeMax": 248200,
+      "fees": { "under3": { "standard": 57250, "short": 56270 } }
+    },
+    {
+      "tier": "D12",
+      "label": "所得割額274,600円未満",
+      "incomeMin": 248200,
+      "incomeMax": 274600,
+      "fees": { "under3": { "standard": 57570, "short": 56590 } }
+    },
+    {
+      "tier": "D13",
+      "label": "所得割額301,000円未満",
+      "incomeMin": 274600,
+      "incomeMax": 301000,
+      "fees": { "under3": { "standard": 57910, "short": 56920 } }
+    },
+    {
+      "tier": "D14",
+      "label": "所得割額333,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 333000,
+      "fees": { "under3": { "standard": 58250, "short": 57250 } }
+    },
+    {
+      "tier": "D15",
+      "label": "所得割額365,000円未満",
+      "incomeMin": 333000,
+      "incomeMax": 365000,
+      "fees": { "under3": { "standard": 63850, "short": 62760 } }
+    },
+    {
+      "tier": "D16",
+      "label": "所得割額397,000円未満",
+      "incomeMin": 365000,
+      "incomeMax": 397000,
+      "fees": { "under3": { "standard": 65370, "short": 64250 } }
+    },
+    {
+      "tier": "D17",
+      "label": "所得割額397,000円以上（最高階層）",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": { "under3": { "standard": 71000, "short": 69790 } }
+    }
+  ],
+  "verify": {
+    "sourceId": "narashino-r8-kijunhyo-pdf",
+    "expect": [
+      "生活保護",
+      "非課税世帯",
+      "均等割のみ課税",
+      "397,000円以上",
+      "71,000（69,790）",
+      "8,440（8,290）",
+      "こどもが複数いる世帯は、第２子の場合「半額」（10円未満切捨て）、第３子以降は「無料」です"
+    ]
+  }
+}
