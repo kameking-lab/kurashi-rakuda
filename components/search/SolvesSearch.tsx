@@ -1,13 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { tools } from "@/app/lib/tools/registry";
-import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
-import type { ToolMeta } from "@/app/lib/tools/types";
 import { Rakku } from "@/components/mascot/Rakku";
-import { isHighlighted, isProfileEmpty, sortByAudience } from "@/lib/personalize";
-import { usePersonalization } from "@/components/personalize/usePersonalization";
+import type { SearchHit } from "./searchSolves";
 
 /**
  * 悩み検索 — registry の solves タグ（「◯◯がわからない」）を全文検索する。
@@ -16,48 +12,15 @@ import { usePersonalization } from "@/components/personalize/usePersonalization"
  * ツール検索はこのコンポーネントを使い続ける。
  */
 
-interface Hit {
-  tool: ToolMeta;
-  matchedSolve: string | null;
-}
-
-function normalize(s: string): string {
-  // ひらがな→カタカナ・全角半角ゆれを吸収した素朴な正規化
-  return s
-    .normalize("NFKC")
-    .toLowerCase()
-    .replace(/[ぁ-ゖ]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) + 0x60))
-    .replace(/\s/g, "");
-}
-
-function search(query: string): Hit[] {
-  const q = normalize(query);
-  if (q.length === 0) return [];
-  const hits: { hit: Hit; score: number }[] = [];
-  for (const tool of tools) {
-    const matchedSolve = tool.solves.find((s) => normalize(s).includes(q)) ?? null;
-    const inTitle = normalize(tool.title).includes(q);
-    const inDescription = normalize(tool.description).includes(q);
-    const inCategory = normalize(TOOL_CATEGORIES[tool.category]).includes(q);
-    if (!matchedSolve && !inTitle && !inDescription && !inCategory) continue;
-    const score =
-      (matchedSolve ? 4 : 0) + (inTitle ? 3 : 0) + (inDescription ? 1 : 0) + (tool.status === "live" ? 2 : 0);
-    hits.push({ hit: { tool, matchedSolve }, score });
-  }
-  return hits.sort((a, b) => b.score - a.score).map((h) => h.hit);
-}
-
 export function SolvesSearch() {
   const [query, setQuery] = useState("");
-  const { settings, ready } = usePersonalization();
-  const profile = ready && !isProfileEmpty(settings.profile) ? settings.profile : null;
-  const hits = useMemo(() => {
-    const raw = search(query);
-    const orderedTools = sortByAudience(raw.map((h) => h.tool), profile);
-    let ordered = orderedTools.map((tool) => raw.find((h) => h.tool.slug === tool.slug)!);
-    if (settings.relatedOnly && profile) ordered = ordered.filter((h) => isHighlighted(profile, h.tool.audience));
-    return ordered.slice(0, 8);
-  }, [query, profile, settings.relatedOnly]);
+  const [hits, setHits] = useState<SearchHit[]>([]);
+  useEffect(() => {
+    if (!query.trim()) { setHits([]); return; }
+    let current = true;
+    void import("./searchSolves").then(({ searchSolves }) => { if (current) setHits(searchSolves(query)); });
+    return () => { current = false; };
+  }, [query]);
   const active = query.trim().length > 0;
 
   return (
@@ -78,15 +41,15 @@ export function SolvesSearch() {
         <div className="mt-3" role="status" aria-live="polite">
           {hits.length > 0 ? (
             <ul className="search-results grid gap-2 sm:grid-cols-2">
-              {hits.map(({ tool, matchedSolve }) =>
+              {hits.map(({ tool, matchedSolve, highlighted }) =>
                 tool.status === "live" ? (
                   <li key={tool.slug}>
                     <Link
                       prefetch={false}
                       href={`/tools/${tool.category}/${tool.slug}`}
-                      className={`tool-card block h-full rounded-card border bg-paper p-4 ${profile && isHighlighted(profile, tool.audience) ? "is-personalized" : "border-line"}`}
+                      className={`tool-card block h-full rounded-card border bg-paper p-4 ${highlighted ? "is-personalized" : "border-line"}`}
                     >
-                      {profile && isHighlighted(profile, tool.audience) && <span className="personalized-label">あなた向け</span>}
+                      {highlighted && <span className="personalized-label">あなた向け</span>}
                       <span className="font-medium">{tool.title}</span>
                       {matchedSolve && (
                         <span className="mt-0.5 block text-sm text-ink-muted">
