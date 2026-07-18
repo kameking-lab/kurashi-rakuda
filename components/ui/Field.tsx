@@ -9,7 +9,7 @@ import { useId } from "react";
  */
 
 const fieldClass =
-  "min-h-12 w-full rounded-card border border-line bg-paper px-4 text-base text-ink";
+  "field-control min-h-12 w-full rounded-card border border-line bg-paper px-4 text-base text-ink";
 
 interface LabelledProps {
   label: string;
@@ -23,8 +23,8 @@ export function NumberField({
 }: LabelledProps & InputHTMLAttributes<HTMLInputElement>) {
   const id = useId();
   return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium">
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className="text-sm font-bold">
         {label}
       </label>
       <input id={id} type="number" inputMode="decimal" className={fieldClass} {...props} />
@@ -40,8 +40,8 @@ export function DateField({
 }: LabelledProps & InputHTMLAttributes<HTMLInputElement>) {
   const id = useId();
   return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium">
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className="text-sm font-bold">
         {label}
       </label>
       <input id={id} type="date" className={fieldClass} {...props} />
@@ -57,8 +57,8 @@ export function TimeField({
 }: LabelledProps & InputHTMLAttributes<HTMLInputElement>) {
   const id = useId();
   return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium">
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className="text-sm font-bold">
         {label}
       </label>
       <input id={id} type="time" className={fieldClass} {...props} />
@@ -75,8 +75,8 @@ export function SelectField({
 }: LabelledProps & SelectHTMLAttributes<HTMLSelectElement>) {
   const id = useId();
   return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium">
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className="text-sm font-bold">
         {label}
       </label>
       <select id={id} className={fieldClass} {...props}>

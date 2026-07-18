@@ -4,6 +4,7 @@ import { SourceList } from "@/components/ui/SourceList";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RelatedTools } from "./RelatedTools";
 import { SisterSiteLinks } from "./SisterSiteLinks";
+import { Rakku } from "@/components/mascot/Rakku";
 
 /**
  * ツールページ共通シェル（docs/08 P1-04）。
@@ -22,11 +23,17 @@ export function ToolShell({
   children: ReactNode;
 }) {
   return (
-    <article>
-      <h1 className="text-xl font-bold sm:text-2xl">{meta.title}</h1>
-      <p className="mt-2 text-ink-muted">{meta.description}</p>
+    <article className="mx-auto max-w-4xl">
+      <header className="tool-hero">
+        <div>
+          <p className="eyebrow">くらしの無料ツール</p>
+          <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-4xl">{meta.title}</h1>
+          <p className="mt-3 max-w-2xl text-ink-muted">{meta.description}</p>
+        </div>
+        <Rakku pose="calc" size={108} />
+      </header>
 
-      <div className="mt-6">{children}</div>
+      <div className="tool-workspace mt-6">{children}</div>
 
       <SectionHeading id="formula">根拠・計算式</SectionHeading>
       <div className="space-y-3 text-sm sm:text-base">{formula}</div>
