@@ -115,7 +115,20 @@
     }
   ],
   "last_updated": "2026-07-17",
-  "next_check_due": "2027-04-01"
+  "next_check_due": "2027-04-01",
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "adult",
+      "senior"
+    ],
+    "lifeEvents": [
+      "caregiving",
+      "working"
+    ],
+    "childAgeBands": [],
+    "gender": null
+  }
 }
 ---
 

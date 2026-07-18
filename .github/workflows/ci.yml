@@ -27,6 +27,8 @@ jobs:
         run: npm run check:solves
       - name: ブランド哲学リンター
         run: npm run check:brand
+      - name: 対象属性メタ検証（audience・パーソナライズの土台）
+        run: npm run check:audience
       - name: ビルド
         run: npm run build
 

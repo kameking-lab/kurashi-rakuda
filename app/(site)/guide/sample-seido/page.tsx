@@ -23,6 +23,7 @@ const meta: SeidoArticleMeta = {
     },
   ],
   updated: "2026-07-17",
+  audience: { universal: true, lifeStages: [], lifeEvents: [], childAgeBands: [], gender: null },
   basisYear: "2026年度",
   nextReviewDate: "2027-04-01",
 };

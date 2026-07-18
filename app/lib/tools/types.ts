@@ -1,3 +1,5 @@
+import type { Audience } from "@/app/lib/audience";
+
 /** ツールカテゴリ（docs/02_ツール一覧.md の7カテゴリと1:1） */
 export const TOOL_CATEGORIES = {
   pregnancy: "妊娠・出産",
@@ -37,6 +39,11 @@ export interface ToolMeta {
   /** ISO日付。live のツールはロジック・データの最終確認日 */
   updated: string;
   status: ToolStatus;
+  /**
+   * 対象属性メタ（任意プロフィールに基づく並べ替え・ハイライト用。docs/12）。
+   * 絞り込み（非表示）には使わない。未設定ユーザー・Googlebot には常に全件表示。
+   */
+  audience: Audience;
 }
 
 export function isToolCategory(value: string): value is ToolCategory {

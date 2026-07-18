@@ -87,7 +87,24 @@
     "介護休業と介護休暇の違いが分からない",
     "親の介護が始まったとき、何日休めるのか不安",
     "会社に相談したら不利益な扱いを受けないか心配"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "infant",
+      "adult",
+      "senior"
+    ],
+    "lifeEvents": [
+      "parenting",
+      "caregiving",
+      "working"
+    ],
+    "childAgeBands": [
+      "age0_1"
+    ],
+    "gender": null
+  }
 }
 ---
 

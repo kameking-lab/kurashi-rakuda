@@ -94,7 +94,22 @@
     "時短勤務で収入が下がったが、所得制限に引っかからないか心配",
     "子どもが複数いる場合、加算額がいくらになるのか知りたい",
     "養育費を受け取ると手当が減ると聞いたので、仕組みを知りたい"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "infant",
+      "adult"
+    ],
+    "lifeEvents": [
+      "parenting",
+      "working"
+    ],
+    "childAgeBands": [
+      "age0_1"
+    ],
+    "gender": null
+  }
 }
 ---
 

@@ -17,6 +17,7 @@ const meta: HeisoArticleMeta = {
   solves: ["（サンプル）ツール併走型テンプレートの構成を確認したい"],
   sources: [],
   updated: "2026-07-17",
+  audience: { universal: true, lifeStages: [], lifeEvents: [], childAgeBands: [], gender: null },
   toolCategory: "kaji",
   toolSlug: "chomiryo-kanzan",
 };
