@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Header } from "@/components/site/Header";
-import { Footer } from "@/components/site/Footer";
 import { JsonLd } from "@/components/site/JsonLd";
 import {
   SITE_DESCRIPTION,
@@ -53,11 +51,7 @@ export default function RootLayout({
             inLanguage: "ja",
           }}
         />
-        <Header />
-        <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6 sm:py-10">
-          {children}
-        </main>
-        <Footer />
+        {children}
         {/* クッキーレス解析（Vercel Analytics / Speed Insights）。GA4・同意バナーは置かない方針（プライバシーポリシー第3条） */}
         <Analytics />
         <SpeedInsights />

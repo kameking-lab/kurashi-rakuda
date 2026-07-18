@@ -675,7 +675,7 @@ describe("★8月1日のデータ差し替えだけで追随すること★（sp
       /0\.13/,
       /\b2026-0[78]-\d\d\b/, // 改定日の直書き
     ];
-    for (const p of ["lib/tools/impl/sankyu-ikukyu-money.ts", "app/tools/[category]/[slug]/page.tsx"]) {
+    for (const p of ["lib/tools/impl/sankyu-ikukyu-money.ts", "app/(site)/tools/[category]/[slug]/page.tsx"]) {
       const src = strip(p);
       for (const b of banned) {
         expect(src, `${b} が ${p} に直書きされています`).not.toMatch(b);

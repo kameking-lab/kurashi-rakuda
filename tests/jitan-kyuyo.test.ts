@@ -625,7 +625,7 @@ describe("★8月1日のデータ差し替えだけで追随すること★（sp
     for (const p of [
       "lib/tools/impl/jitan-kyuyo.ts",
       "components/tools/impl/JitanKyuyo.tsx",
-      "app/tools/[category]/[slug]/page.tsx",
+      "app/(site)/tools/[category]/[slug]/page.tsx",
     ]) {
       const src = strip(p);
       for (const b of banned) {
