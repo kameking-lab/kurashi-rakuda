@@ -25,6 +25,7 @@ import ehimeMatsuyama from "@/data/seido/hoikuryo/ehime-matsuyama.json";
 import fukuokaFukuoka from "@/data/seido/hoikuryo/fukuoka-fukuoka.json";
 import fukuokaKitakyushu from "@/data/seido/hoikuryo/fukuoka-kitakyushu.json";
 import hiroshimaHiroshima from "@/data/seido/hoikuryo/hiroshima-hiroshima.json";
+import hiroshimaKure from "@/data/seido/hoikuryo/hiroshima-kure.json";
 import hokkaidoSapporo from "@/data/seido/hoikuryo/hokkaido-sapporo.json";
 import hyogoKobe from "@/data/seido/hoikuryo/hyogo-kobe.json";
 import hyogoHimeji from "@/data/seido/hoikuryo/hyogo-himeji.json";
@@ -37,6 +38,7 @@ import kanagawaSagamihara from "@/data/seido/hoikuryo/kanagawa-sagamihara.json";
 import kochiKochi from "@/data/seido/hoikuryo/kochi-kochi.json";
 import miyazakiMiyazaki from "@/data/seido/hoikuryo/miyazaki-miyazaki.json";
 import nagasakiNagasaki from "@/data/seido/hoikuryo/nagasaki-nagasaki.json";
+import nagasakiSasebo from "@/data/seido/hoikuryo/nagasaki-sasebo.json";
 import nahaOkinawa from "@/data/seido/hoikuryo/naha-okinawa.json";
 import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
 import kyotoKyoto from "@/data/seido/hoikuryo/kyoto-kyoto.json";
@@ -85,6 +87,8 @@ import fukuokaKurume from "@/data/seido/hoikuryo/fukuoka-kurume.json";
 import hiroshimaFukuyama from "@/data/seido/hoikuryo/hiroshima-fukuyama.json";
 import kagawaTakamatsu from "@/data/seido/hoikuryo/kagawa-takamatsu.json";
 import yamaguchiShimonoseki from "@/data/seido/hoikuryo/yamaguchi-shimonoseki.json";
+import shimaneMatsue from "@/data/seido/hoikuryo/shimane-matsue.json";
+import tottoriTottori from "@/data/seido/hoikuryo/tottori-tottori.json";
 import type { SeidoAmendment, SeidoDataset, SeidoSource } from "@/lib/tools/seido";
 
 // ---------------------------------------------------------------- 型
@@ -198,6 +202,10 @@ export const municipalities: HoikuryoMunicipality[] = [
   hiroshimaFukuyama as unknown as HoikuryoMunicipality,
   kagawaTakamatsu as unknown as HoikuryoMunicipality,
   yamaguchiShimonoseki as unknown as HoikuryoMunicipality,
+  shimaneMatsue as unknown as HoikuryoMunicipality,
+  hiroshimaKure as unknown as HoikuryoMunicipality,
+  nagasakiSasebo as unknown as HoikuryoMunicipality,
+  tottoriTottori as unknown as HoikuryoMunicipality,
   kochiKochi,
   miyazakiMiyazaki,
   nagasakiNagasaki,

@@ -367,7 +367,7 @@
     "slug": "hoikuryo",
     "category": "childcare",
     "title": "保育料計算（全国版・政令市から）",
-    "description": "お住まいの自治体と世帯の住民税額から、認可保育園の保育料を計算します。東京23区すべてと政令指定都市20市すべて、中核市15市（船橋市・川口市・八王子市・姫路市・鹿児島市・松山市・西宮市・東大阪市・大分市・倉敷市・尼崎市・金沢市・豊田市・豊中市・富山市）に対応。",
+    "description": "お住まいの自治体と世帯の住民税額から、認可保育園の保育料を計算します。東京23区すべてと政令指定都市20市すべて、中核市に対応。",
     "solves": [
       "保育料がいくらになるか分からない",
       "住民税のどの数字で保育料が決まるか分からない",
@@ -555,12 +555,28 @@
         "label": "高知市「保育料の額について」",
         "url": "https://www.city.kochi.kochi.jp/soshiki/34/hoikuryo.html"
       },
+      {
+        "label": "松江市「保育所等の保育料」",
+        "url": "https://www.city.matsue.lg.jp/kosodate_kyoiku/kosodateshien/7/7/13/13370.html"
+      },
+      {
+        "label": "呉市「令和8年度当初予算について（0～2歳児の保育料無償化）」",
+        "url": "https://www.city.kure.lg.jp/uploaded/attachment/109580.pdf"
+      },
+      {
+        "label": "佐世保市「保育料（利用者負担額）の算定」",
+        "url": "https://www.city.sasebo.lg.jp/kodomomirai/hoyou/hoikuryo.html"
+      },
+      {
+        "label": "鳥取市「保育料について」",
+        "url": "https://www.city.tottori.lg.jp/site/kosodate/4830.html"
+      },
       "data/seido/hoikuryo/fukuoka-kurume.json",
       "data/seido/hoikuryo/hiroshima-fukuyama.json",
       "data/seido/hoikuryo/kagawa-takamatsu.json",
       "data/seido/hoikuryo/yamaguchi-shimonoseki.json"
     ],
-    "updated": "2026-07-17",
+    "updated": "2026-07-18",
     "status": "live",
     "audience": {
       "universal": false,

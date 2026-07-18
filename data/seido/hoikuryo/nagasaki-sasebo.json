@@ -1,0 +1,220 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "nagasaki-sasebo",
+  "name": "長崎県佐世保市",
+  "municipalityCode": "422029",
+  "prefecture": "長崎県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "sasebo-r8-table",
+      "title": "令和8年度佐世保市利用者負担金（保育料）",
+      "publisher": "佐世保市",
+      "url": "https://www.city.sasebo.lg.jp/documents/19040/2026hoyou.pdf",
+      "landingUrl": "https://www.city.sasebo.lg.jp/kodomomirai/hoyou/hoikuryo.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    }
+  ],
+  "disclaimer": "本データは長崎県佐世保市の公式公表資料に基づく参考情報です。実際の保育料は世帯状況、税額、きょうだい構成等により市が決定するため、決定通知書または市の窓口で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園等の2号・3号認定月額保育料"
+    ],
+    "excludes": [
+      "延長保育料",
+      "3歳以上児の給食費・副食費",
+      "行事費・教材費等の実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税均等割・所得割",
+    "householdScope": "原則として父母等の市民税額を合計。収入が少ない場合は同居祖父母等のうち収入の高い者を算入する場合あり。",
+    "taxYearRule": "4～8月は前年度、9月～翌8月は当年度の市民税額（令和8年度表は令和8年9月～令和9年8月を令和8年度税額で算定）",
+    "deductionsIgnored": [
+      "寄附金税額控除",
+      "外国税額控除",
+      "配当控除",
+      "配当割額・株式等譲渡所得割額控除",
+      "住宅借入金等特別税額控除"
+    ],
+    "note": "標準時間・短時間の別が原典表にないため単一額としてstandardのみ収録。6/8換算は一次情報で確認できず未確認。母子世帯等のB2・C2軽減行はスキーマ未対応のため一般世帯tiersから除外しnote記録。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0～2歳児クラス",
+      "rule": "年度初日の前日（3月31日）の満年齢で年度中固定"
+    },
+    {
+      "key": "age3plus",
+      "label": "3～5歳児クラス",
+      "rule": "幼児教育・保育の無償化により保育料0円"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "sourceId": "sasebo-r8-table",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "sourceId": "sasebo-r8-table",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "原則、保育所等を同時利用する兄姉から数える。所得割57,699円以下は年長の兄姉から数える。",
+        "sourceId": "sasebo-r8-table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "sasebo-r8-table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "0歳児を除く第2子以降は無料。0歳児第2子は半額。C2は同時在園を問わず第2子以降無料。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "sasebo-r8-table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      }
+    },
+    "localExtension": "0歳児を除く第2子以降を無料とする独自拡充。0歳児は第2子半額・第3子以降無料。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護・里親世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 0
+        }
+      },
+      "isWelfare": true
+    },
+    {
+      "tier": "B1",
+      "label": "市民税均等割非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 0
+        }
+      },
+      "isNonTaxable": true
+    },
+    {
+      "tier": "B",
+      "label": "市民税所得割非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 12400
+        }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "所得割額48,599円以下",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 17600
+        }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "所得割額48,600円以上77,100円以下",
+      "incomeMin": 48600,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": {
+          "standard": 22200
+        }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "所得割額77,101円以上96,999円以下",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 27000
+        }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "所得割額97,000円以上168,999円以下",
+      "incomeMin": 97000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 33600
+        }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "所得割額169,000円以上211,200円以下",
+      "incomeMin": 169000,
+      "incomeMax": 211201,
+      "fees": {
+        "under3": {
+          "standard": 40000
+        }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割額211,201円以上300,999円以下",
+      "incomeMin": 211201,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 44000
+        }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割額301,000円以上396,999円以下",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": {
+          "standard": 48000
+        }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "所得割額397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 62400
+        }
+      }
+    }
+  ]
+}

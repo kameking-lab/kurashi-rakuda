@@ -1,0 +1,254 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "tottori-tottori",
+  "name": "鳥取県鳥取市",
+  "municipalityCode": "312011",
+  "prefecture": "鳥取県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "tottori-r8-table",
+      "title": "令和8年度 鳥取市保育料金額表（2号・3号認定）",
+      "publisher": "鳥取市",
+      "url": "https://www.city.tottori.lg.jp/uploaded/attachment/47205.pdf",
+      "landingUrl": "https://www.city.tottori.lg.jp/site/kosodate/4830.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    }
+  ],
+  "disclaimer": "本データは鳥取県鳥取市の公式公表資料に基づく参考情報です。実際の保育料は世帯状況、税額、きょうだい構成等により市が決定するため、決定通知書または市の窓口で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園等の2号・3号認定月額保育料"
+    ],
+    "excludes": [
+      "延長保育料",
+      "3歳以上児の給食費・副食費",
+      "行事費・教材費等の実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "児童と生計を一にする父母の税額を合算。父母以外の扶養義務者が家計主宰者の場合はその税額も含む。",
+    "taxYearRule": "4～8月は前年度、9月～翌3月は当年度の市町村民税所得割額",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除",
+      "配当控除",
+      "外国税額控除",
+      "寄附金税額控除"
+    ],
+    "note": "6/8換算は一次情報で確認できず未確認。ひとり親世帯等のC1・D1a・D1b・D2a軽減行はスキーマ未対応のため一般世帯額のみ収録。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0～2歳児クラス",
+      "rule": "年度初日の前日（3月31日）の満年齢で年度中固定"
+    },
+    {
+      "key": "age3plus",
+      "label": "3～5歳児クラス",
+      "rule": "幼児教育・保育の無償化により保育料0円"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "sourceId": "tottori-r8-table",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "sourceId": "tottori-r8-table",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同時入所時は最年長児が3歳以上なら第2子半額、3歳未満なら第2子5分の1。所得割57,700円未満は第1子が未入所でも第2子半額。",
+        "sourceId": "tottori-r8-table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      },
+      "secondChild": {
+        "value": 0.5,
+        "unit": "ratio",
+        "sourceId": "tottori-r8-table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "条件により5分の1または無料"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "tottori-r8-table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "所得制限なし"
+      }
+    },
+    "localExtension": "同一世帯の第3子以降は市町村民税額にかかわらず無料。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      },
+      "isWelfare": true
+    },
+    {
+      "tier": "B2",
+      "label": "市町村民税非課税世帯（一般）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      },
+      "isNonTaxable": true
+    },
+    {
+      "tier": "C2",
+      "label": "所得割額48,600円未満（均等割のみを含む・一般）",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 13600,
+          "short": 12900
+        }
+      }
+    },
+    {
+      "tier": "D1a",
+      "label": "所得割額48,600円以上57,700円未満（一般）",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": {
+          "standard": 19200,
+          "short": 18200
+        }
+      }
+    },
+    {
+      "tier": "D1b",
+      "label": "所得割額57,700円以上72,800円未満（一般）",
+      "incomeMin": 57700,
+      "incomeMax": 72800,
+      "fees": {
+        "under3": {
+          "standard": 19200,
+          "short": 18200
+        }
+      }
+    },
+    {
+      "tier": "D2a",
+      "label": "所得割額72,800円以上77,101円未満（一般）",
+      "incomeMin": 72800,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": {
+          "standard": 23800,
+          "short": 22600
+        }
+      }
+    },
+    {
+      "tier": "D2b",
+      "label": "所得割額77,101円以上97,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 23800,
+          "short": 22600
+        }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "所得割額97,000円以上133,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": {
+          "standard": 28000,
+          "short": 26600
+        }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割額133,000円以上169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 34000,
+          "short": 32300
+        }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割額169,000円以上235,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": {
+          "standard": 40000,
+          "short": 38000
+        }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "所得割額235,000円以上301,000円未満",
+      "incomeMin": 235000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 46000,
+          "short": 43700
+        }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "所得割額301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": {
+          "standard": 52000,
+          "short": 49400
+        }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "所得割額397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 58000,
+          "short": 55100
+        }
+      }
+    }
+  ]
+}
