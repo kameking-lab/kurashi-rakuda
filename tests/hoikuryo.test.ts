@@ -49,12 +49,13 @@ function input(over: Partial<HoikuryoInput> & { municipalityId: string }): Hoiku
 const feeOfCalc = (over: Partial<HoikuryoInput> & { municipalityId: string }) =>
   calc(input(over))?.fee;
 
-describe("収集済み自治体（58件）", () => {
-  it("58自治体を収録しており、id はファイル名と一致する", () => {
-    expect(municipalities).toHaveLength(58);
+describe("収集済み自治体（61件）", () => {
+  it("61自治体を収録しており、id はファイル名と一致する", () => {
+    expect(municipalities).toHaveLength(61);
     expect(municipalities.map((m) => m.id)).toEqual([
       "hokkaido-sapporo",
       "miyagi-sendai",
+      "yamagata-yamagata",
       "saitama-saitama",
       "saitama-kawaguchi",
       "saitama-kawagoe",
@@ -87,6 +88,8 @@ describe("収集済み自治体（58件）", () => {
       "kanagawa-kawasaki",
       "kanagawa-sagamihara",
       "niigata-niigata",
+      "yamanashi-kofu",
+      "nagano-nagano",
       "toyama-toyama",
       "ishikawa-kanazawa",
       "shizuoka-shizuoka",
@@ -138,6 +141,91 @@ describe("収集済み自治体（58件）", () => {
     expect(ds.name).toContain("大阪市");
     // 大阪の 2026-09-01 全員無償化が「次回改定予定」として出る
     expect(upcomingChanges(ds, "2026-07-17")[0].date).toBe("2026-09-01");
+  });
+});
+
+describe("★山形市★ 二人親第1子の階層額・未満境界・3歳以上児無償（東日本）", () => {
+  const yamagata = { municipalityId: "yamagata-yamagata" };
+
+  it("生活保護・非課税は0円、均等割のみ（所得割0）はC=9,200円", () => {
+    expect(feeOfCalc({ ...yamagata, taxStatus: "welfare" })).toBe(0);
+    expect(feeOfCalc({ ...yamagata, taxStatus: "nonTaxable" })).toBe(0);
+    expect(feeOfCalc({ ...yamagata, taxStatus: "equalOnly" })).toBe(9200);
+  });
+
+  it("所得割で D1〜D7 の二人親第1子・保育標準時間の額を返す", () => {
+    expect(feeOfCalc({ ...yamagata, income: 10000 })).toBe(12700); // D1 <15,000
+    expect(feeOfCalc({ ...yamagata, income: 15000 })).toBe(16900); // D2 15,000以上
+    expect(feeOfCalc({ ...yamagata, income: 48600 })).toBe(20900); // D3 48,600以上（未満境界）
+    expect(feeOfCalc({ ...yamagata, income: 96999 })).toBe(20900); // D3-3 77,101〜97,000未満
+    expect(feeOfCalc({ ...yamagata, income: 97000 })).toBe(35600); // D4
+    expect(feeOfCalc({ ...yamagata, income: 397000 })).toBe(56700); // D7 397,000以上
+  });
+
+  it("保育短時間はD7で55,800円", () => {
+    expect(feeOfCalc({ ...yamagata, income: 397000, need: "short" })).toBe(55800);
+  });
+
+  it("3歳以上児は所得によらず0円（無償化）", () => {
+    expect(feeOfCalc({ ...yamagata, age: "age3plus", income: 500000 })).toBe(0);
+  });
+});
+
+describe("★甲府市★ C1(均等割のみ)とC2(所得割<48,600)の区別・未満境界・3歳以上児無償（東日本）", () => {
+  const kofu = { municipalityId: "yamanashi-kofu" };
+
+  it("生活保護・非課税は0円、均等割のみ（所得割0）はC1=10,400円（特別世帯4,400は本体に載せない）", () => {
+    expect(feeOfCalc({ ...kofu, taxStatus: "welfare" })).toBe(0);
+    expect(feeOfCalc({ ...kofu, taxStatus: "nonTaxable" })).toBe(0);
+    expect(feeOfCalc({ ...kofu, taxStatus: "equalOnly" })).toBe(10400);
+  });
+
+  it("所得割<48,600はC2=14,200円（均等割のみのC1と別）", () => {
+    expect(feeOfCalc({ ...kofu, income: 30000 })).toBe(14200);
+  });
+
+  it("D1〜D10の二人親第1子・保育標準時間の額を返す（未満境界）", () => {
+    expect(feeOfCalc({ ...kofu, income: 48600 })).toBe(17200); // D1 48,600以上
+    expect(feeOfCalc({ ...kofu, income: 96999 })).toBe(27400); // D4 85,000〜97,000未満
+    expect(feeOfCalc({ ...kofu, income: 97000 })).toBe(29800); // D5
+    expect(feeOfCalc({ ...kofu, income: 301000 })).toBe(48400); // D10 301,000以上
+  });
+
+  it("保育短時間はD10で47,600円", () => {
+    expect(feeOfCalc({ ...kofu, income: 301000, need: "short" })).toBe(47600);
+  });
+
+  it("3歳以上児は所得によらず0円（無償化）", () => {
+    expect(feeOfCalc({ ...kofu, age: "age3plus", income: 500000 })).toBe(0);
+  });
+});
+
+describe("★長野市★ C階層が均等割のみと所得割<48,600を包含・第2子以降無償（東日本）", () => {
+  const nagano = { municipalityId: "nagano-nagano" };
+
+  it("生活保護・非課税は0円、均等割のみ（所得割0）はC=4,950円", () => {
+    expect(feeOfCalc({ ...nagano, taxStatus: "welfare" })).toBe(0);
+    expect(feeOfCalc({ ...nagano, taxStatus: "nonTaxable" })).toBe(0);
+    expect(feeOfCalc({ ...nagano, taxStatus: "equalOnly" })).toBe(4950);
+  });
+
+  it("所得割<48,600も同じC階層=4,950円（均等割のみと同額・同一階層）", () => {
+    expect(feeOfCalc({ ...nagano, income: 30000 })).toBe(4950);
+  });
+
+  it("D1〜D11の二人親第1子・保育標準時間の額を返す（未満境界）", () => {
+    expect(feeOfCalc({ ...nagano, income: 48600 })).toBe(7100); // D1 48,600以上
+    expect(feeOfCalc({ ...nagano, income: 57700 })).toBe(14200); // D1-2 57,700以上
+    expect(feeOfCalc({ ...nagano, income: 97000 })).toBe(31500); // D4
+    expect(feeOfCalc({ ...nagano, income: 397000 })).toBe(56700); // D11 397,000以上
+  });
+
+  it("保育短時間はD11で55,700円", () => {
+    expect(feeOfCalc({ ...nagano, income: 397000, need: "short" })).toBe(55700);
+  });
+
+  it("3歳以上児は所得によらず0円（無償化）", () => {
+    expect(feeOfCalc({ ...nagano, age: "age3plus", income: 500000 })).toBe(0);
   });
 });
 
@@ -684,9 +772,9 @@ describe("★京都市★ 保育利用時間バンド（timeBands・6段階）",
     }
   });
 
-  it("★他57自治体への影響なし★ timeBands を持つのは京都市のみで、バンド指定は金額を変えない", () => {
+  it("★他60自治体への影響なし★ timeBands を持つのは京都市のみで、バンド指定は金額を変えない", () => {
     const others = municipalities.filter((x) => x.id !== "kyoto-kyoto");
-    expect(others).toHaveLength(57);
+    expect(others).toHaveLength(60);
     for (const o of others) {
       expect(o.timeBands, o.id).toBeUndefined();
       expect(isTimeBandApplicable(o, "standard"), o.id).toBe(false);

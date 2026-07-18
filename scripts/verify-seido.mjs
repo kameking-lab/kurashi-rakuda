@@ -134,6 +134,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.oita.oita.jp', // 大分市（中核市）は city.oita.oita.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）
   'city.kurashiki.okayama.jp', // 倉敷市（中核市）は .lg.jp 版が存在しない（P2-D01・2026-07-18）
   'city.kawagoe.saitama.jp', // 川越市（中核市）の公式サイトは city.kawagoe.saitama.jp（P2-D01 東日本・2026-07-18）
+  'city.kofu.yamanashi.jp', // 甲府市（中核市）の公式サイトは city.kofu.yamanashi.jp（.lg.jp版なし。P2-D01 東日本・2026-07-18）
+  'city.nagano.nagano.jp', // 長野市（中核市）の公式サイトは city.nagano.nagano.jp（.lg.jp版なし。P2-D01 東日本・2026-07-18）
   // 西宮市（中核市）の公式サイトは独自ドメイン nishi.or.jp。旧 city.nishinomiya.lg.jp は
   // 現在別サービス（CDN）を指しており使えないため個別に許可する（P2-D01・2026-07-18）。
   'nishi.or.jp',
