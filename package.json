@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "gen:hoikuryo": "node scripts/gen-hoikuryo-municipalities.mjs",
+    "postinstall": "node scripts/gen-hoikuryo-municipalities.mjs",
+    "predev": "node scripts/gen-hoikuryo-municipalities.mjs",
+    "prebuild": "node scripts/gen-hoikuryo-municipalities.mjs",
+    "pretest": "node scripts/gen-hoikuryo-municipalities.mjs",
+    "pretypecheck": "node scripts/gen-hoikuryo-municipalities.mjs",
+    "prelint": "node scripts/gen-hoikuryo-municipalities.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
