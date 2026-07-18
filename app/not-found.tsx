@@ -2,16 +2,6 @@ import Link from "next/link";
 import { Rakku } from "@/components/mascot/Rakku";
 
 export default function NotFound() {
-  const isStandalone = !!process.env.STANDALONE && process.env.STANDALONE !== "false" && process.env.STANDALONE !== "0";
-
-  if (isStandalone) {
-    return (
-      <div style={{ padding: "50px", textAlign: "center" }}>
-        <p>このページは現在ご利用いただけません。</p>
-      </div>
-    );
-  }
-
   return (
     <div className="py-10 text-center">
       <div className="flex justify-center">
