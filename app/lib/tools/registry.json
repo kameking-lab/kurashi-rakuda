@@ -1776,5 +1776,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T08",
+    "slug": "youikuhi-santeihyou",
+    "category": "money",
+    "title": "養育費 目安（裁判所算定表）",
+    "description": "子どもの人数と年齢区分から、裁判所の養育費算定表（表1〜9）のどれを使うかを特定し公式PDFへ案内します。算定表から読み取った合計額を公式の「子の指数」で子ごとに按分し、法定養育費・先取特権の額も表示します。",
+    "solves": [
+      "自分のケースで使う養育費算定表がどれか分からない",
+      "算定表で読み取った養育費を子どもごとにどう分けるか知りたい",
+      "子どもの年齢で養育費の分け方（指数）が変わるのか知りたい",
+      "取り決めがなくても請求できる法定養育費の額を知りたい",
+      "養育費の先取特権でいくらまで差し押さえできるか知りたい"
+    ],
+    "basisYear": "令和元年版",
+    "sources": [
+      {
+        "label": "裁判所「養育費・婚姻費用算定表」",
+        "url": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/youikuhi-tetsuzuki/index.html"
+      },
+      {
+        "label": "法務省「養育費と面会交流」",
+        "url": "https://www.moj.go.jp/MINJI/1-1-1-2-3-1.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/youikuhi-santeihyou.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/youikuhi-santeihyou.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
