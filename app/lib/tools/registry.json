@@ -1621,5 +1621,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T06",
+    "slug": "kougaku-kaigo-service-hi",
+    "category": "care",
+    "title": "高額介護サービス費 該当チェック",
+    "description": "1か月の介護サービス利用者負担と世帯の所得区分から、負担限度額を超えて払い戻される高額介護サービス費の目安を計算します。世帯合算・按分、非課税かつ低年金の方への個人15,000円の適用にも対応します。",
+    "solves": [
+      "介護サービスの自己負担が高額介護サービス費で払い戻されるか知りたい",
+      "自分の所得区分だと負担の上限額が月いくらか分からない",
+      "夫婦とも介護サービスを使うとき世帯で合算できるのか知りたい",
+      "非課税世帯だと上限が24,600円なのか15,000円なのか分からない",
+      "払い戻し後に実際いくら負担が残るのか知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索「介護保険法施行令」",
+        "url": "https://laws.e-gov.go.jp/law/410CO0000000412"
+      },
+      {
+        "label": "厚生労働省「サービスにかかる利用料（介護サービス情報公表システム）」",
+        "url": "https://www.kaigokensaku.mhlw.go.jp/commentary/fee.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kougaku-kaigo-service-hi.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kougaku-kaigo-service-hi.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]

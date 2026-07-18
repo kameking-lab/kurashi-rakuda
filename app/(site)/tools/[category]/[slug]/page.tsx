@@ -125,6 +125,17 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { KougakuKaigoServiceHi } from "@/components/tools/impl/KougakuKaigoServiceHi";
+import {
+  kougakuKaigoServiceHiDataset,
+  KOUGAKU_KAIGO_DISCLAIMER,
+  LIMIT_KAZEI690,
+  LIMIT_KAZEI380,
+  LIMIT_KAZEI_UNDER380,
+  LIMIT_HIKAZEI,
+  LIMIT_INDIVIDUAL,
+  fmtYen as kougakuKaigoFmtYen,
+} from "@/components/tools/impl/KougakuKaigoServiceHi.calc";
 import { KaigoKyugyouKyufukin } from "@/components/tools/impl/KaigoKyugyouKyufukin";
 import {
   kaigoKyugyouKyufukinDataset,
@@ -197,6 +208,38 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "kougaku-kaigo-service-hi": {
+    ui: <KougakuKaigoServiceHi />,
+    formula: (
+      <>
+        <p>
+          高額介護サービス費は、1か月に支払った介護サービスの利用者負担（1〜3割）の合計が、所得区分ごとの
+          <strong>負担限度額（月額）</strong>
+          を超えたとき、超えた分が払い戻される制度です。払い戻し額は「1か月の利用者負担 − 負担限度額」で計算します。
+        </p>
+        <p>
+          負担限度額は所得区分によって変わります。課税所得690万円以上は{kougakuKaigoFmtYen(LIMIT_KAZEI690)}
+          円、380万〜690万円未満は{kougakuKaigoFmtYen(LIMIT_KAZEI380)}円、課税〜380万円未満は
+          {kougakuKaigoFmtYen(LIMIT_KAZEI_UNDER380)}円、世帯全員が市町村民税非課税なら
+          {kougakuKaigoFmtYen(LIMIT_HIKAZEI)}円、生活保護受給者は{kougakuKaigoFmtYen(LIMIT_INDIVIDUAL)}円です。
+        </p>
+        <p>
+          ★世帯単位と個人単位の二段構え★
+          課税区分・非課税区分の限度額は、同じ世帯で介護サービスを使う人の負担を
+          <strong>合算</strong>
+          して判定し、世帯全体の払い戻し額を各人の負担割合で按分します。一方、世帯が非課税で
+          <strong>かつ年金収入等が低い方</strong>
+          については、世帯の限度額（24,600円）ではなく個人の限度額15,000円と比べて、払い戻しが多くなる有利な方を適用します（介護保険法施行令第22条の2の2）。
+        </p>
+        <p>
+          この払い戻しには、福祉用具の購入費・住宅改修費（別枠の給付）、施設の食費・居住費・日常生活費、区分支給限度基準額を超えて全額自己負担になった分は
+          <strong>含まれません</strong>。所得区分の判定は、世帯内の65歳以上の方の課税所得（サービス利用月の前年分）で月ごとに行われます。
+        </p>
+        <p>{KOUGAKU_KAIGO_DISCLAIMER}</p>
+        <SeidoNotice datasets={[kougakuKaigoServiceHiDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "kaigo-kyugyou-kyufukin": {
     ui: <KaigoKyugyouKyufukin />,
     formula: (
