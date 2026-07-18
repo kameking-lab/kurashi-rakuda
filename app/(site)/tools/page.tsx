@@ -1,9 +1,8 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { tools } from "@/app/lib/tools/registry";
 import { TOOL_CATEGORIES, type ToolCategory } from "@/app/lib/tools/types";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Rakku } from "@/components/mascot/Rakku";
+import { ProfileSettings } from "@/components/personalize/ProfileSettings";
+import { PersonalizedToolDirectory } from "@/components/personalize/PersonalizedToolDirectory";
 
 const CATEGORY_UI: Record<ToolCategory, { icon: string; className: string; copy: string }> = {
  pregnancy:{icon:"○",className:"category-pregnancy",copy:"妊娠週数から出産準備まで"}, childcare:{icon:"◇",className:"category-childcare",copy:"成長と毎日の育児を支える"},
@@ -26,41 +25,10 @@ export default function ToolsPage() {
       <header className="index-hero"><div><p className="eyebrow">48+ FREE TOOLS</p><h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-5xl">暮らしの答えを、すぐ手元に。</h1>
       <p className="mt-2 text-ink-muted">
         すべて無料・登録不要。準備中のツールも順次公開します。
-      </p></div><Rakku pose="calc" size={180} /></header>
+      </p></div><Rakku pose="calc" size={180} priority /></header>
       <nav aria-label="ツールカテゴリ" className="category-nav mt-5">{categories.map((cat)=><a key={cat} href={`#${cat}`} className={`category-chip ${CATEGORY_UI[cat].className}`}><span aria-hidden="true">{CATEGORY_UI[cat].icon}</span>{TOOL_CATEGORIES[cat]}</a>)}</nav>
-      {categories.map((cat) => {
-        const list = tools.filter((t) => t.category === cat);
-        if (list.length === 0) return null;
-        return (
-          <section key={cat} aria-labelledby={`cat-${cat}`} className={`category-section ${CATEGORY_UI[cat].className}`}>
-            <SectionHeading id={cat}><span aria-hidden="true" className="mr-2">{CATEGORY_UI[cat].icon}</span>{TOOL_CATEGORIES[cat]}<span className="ml-3 text-sm font-normal text-ink-muted">{CATEGORY_UI[cat].copy}</span></SectionHeading>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {list.map((t) =>
-                t.status === "live" ? (
-                  <li key={t.slug}>
-                    <Link
-                      href={`/tools/${t.category}/${t.slug}`}
-                      className="tool-card block h-full rounded-card border border-line bg-paper p-5"
-                    >
-                      <span className="font-medium">{t.title}</span>
-                      <span className="mt-1 block text-sm text-ink-muted">
-                        {t.description}
-                      </span>
-                    </Link>
-                  </li>
-                ) : (
-                  <li key={t.slug}>
-                    <div className="h-full rounded-card border border-dashed border-line p-4 text-ink-muted">
-                      <span className="font-medium">{t.title}</span>
-                      <span className="mt-1 block text-sm">準備中</span>
-                    </div>
-                  </li>
-                ),
-              )}
-            </ul>
-          </section>
-        );
-      })}
+      <div className="mt-5"><ProfileSettings /></div>
+      <PersonalizedToolDirectory />
     </div>
   );
 }

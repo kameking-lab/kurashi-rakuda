@@ -6,6 +6,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Callout } from "@/components/ui/Callout";
 import { SolvesSearch } from "@/components/search/SolvesSearch";
 import { Rakku } from "@/components/mascot/Rakku";
+import { ProfileSettings } from "@/components/personalize/ProfileSettings";
+import { PersonalizedHomeTools } from "@/components/personalize/PersonalizedHomeTools";
 
 /** ライフステージ導線（docs/04 §3.1 の2軸ナビのうちステージ軸。専用ハブは Phase 2） */
 const stages: { label: string; category: ToolCategory }[] = [
@@ -48,6 +50,9 @@ export default function Home() {
         <div><strong>一次情報</strong><span>根拠と出典を明記</span></div>
         <div><strong>機械照合</strong><span>計算結果を継続検査</span></div>
       </section>
+
+      <div className="mt-6"><ProfileSettings /></div>
+      <PersonalizedHomeTools />
 
       <SectionHeading>ライフステージからさがす</SectionHeading>
       <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">

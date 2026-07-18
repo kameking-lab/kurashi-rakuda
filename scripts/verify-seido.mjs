@@ -149,6 +149,16 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
    * 一次情報が存在しない」ことを確認した場合に限る。★
    */
   'www1.g-reiki.net',
+  /**
+   * 金沢市（中核市）の例規集ホスティング先。市公式サイト（www4.city.kanazawa.lg.jp）の
+   * 「条例・規則・要綱」ページから直接リンクされる、金沢市自身が運営するReiki-Base例規集。
+   * 保育料の階層表（子ども・子育て支援法施行細則 別表）が公式サイト本体には掲載されておらず、
+   * この例規集ドメインが唯一の一次情報であるため許可する（P2-D01・2026-07-18）。
+   */
+  'city.kanazawa.ishikawa.jp',
+  'city.toyonaka.osaka.jp', // 豊中市（中核市）は .lg.jp 版が存在しない（P2-D01・2026-07-18）
+  'city.toyota.aichi.jp', // 豊田市（中核市）は .lg.jp 版が存在しない。www2.city.toyota.aichi.jp もサブドメイン一致で許可される（P2-D01・2026-07-18）
+  'city.amagasaki.hyogo.jp', // 尼崎市（中核市）は city.amagasaki.lg.jp にAレコードが存在しない（P2-D01・2026-07-18）
 ];
 
 const args = process.argv.slice(2);
