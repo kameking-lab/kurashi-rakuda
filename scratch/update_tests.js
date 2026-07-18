@@ -1,0 +1,10 @@
+const fs = require('fs');
+let f = fs.readFileSync('tests/hoikuryo.test.ts', 'utf8');
+f = f.replace(/toHaveLength\(46\)/g, 'toHaveLength(50)');
+f = f.replace(/toHaveLength\(45\)/g, 'toHaveLength(49)');
+f = f.replace(/toEqual\(\[\n      "hokkaido-sapporo",/g, 'toEqual([\n      "kochi-kochi",\n      "miyazaki-miyazaki",\n      "nagasaki-nagasaki",\n      "naha-okinawa",\n      "hokkaido-sapporo",');
+f = f.replace(/収集済み自治体（46件）/g, '収集済み自治体（50件）');
+f = f.replace(/46自治体を収録しており/g, '50自治体を収録しており');
+f = f.replace(/★他45自治体への影響なし★/g, '★他49自治体への影響なし★');
+f = f.replace(/他45自治体/g, '他49自治体');
+fs.writeFileSync('tests/hoikuryo.test.ts', f);

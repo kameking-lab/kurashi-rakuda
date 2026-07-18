@@ -1,0 +1,250 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "naha-okinawa",
+  "name": "沖縄県那覇市",
+  "municipalityCode": "472018",
+  "prefecture": "沖縄県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "naha-hoikuryo-table",
+      "title": "階層別保育料算定表 保育園・認定こども園（0～2歳クラス）",
+      "publisher": "那覇市",
+      "url": "https://www.city.naha.okinawa.jp/_res/projects/default_project/_page_/001/002/785/r8kaisou.pdf",
+      "landingUrl": "https://www.city.naha.okinawa.jp/child/hoikuen/1002750/1002752.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    },
+    {
+      "id": "naha-hoikuryo-guide",
+      "title": "保育料算定および階層認定について",
+      "publisher": "那覇市",
+      "url": "https://www.city.naha.okinawa.jp/_res/projects/default_project/_page_/001/002/785/r8hoikuryou.pdf",
+      "landingUrl": "https://www.city.naha.okinawa.jp/child/hoikuen/1002750/1002752.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    }
+  ],
+  "disclaimer": "本データは那覇市の公式公表資料に基づき作成していますが、正確性を保証するものではありません。実際の保育料は市の決定通知書等で確認してください。",
+  "scope": {
+    "includes": [
+      "保育所",
+      "認定こども園"
+    ],
+    "excludes": [
+      "延長保育料",
+      "給食費（副食費等）",
+      "その他実費負担"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "taxYearRule": "4月〜8月は前年度の課税額、9月〜翌年3月は当年度の課税額により算定",
+    "note": "配当控除・外国税額控除・住宅借入金等特別控除、寄附金税額控除等の税額控除は適用されません。ひとり親世帯・在宅障がい者のいる世帯は、77,101円未満までの階層で軽減措置（「A」階層）が適用されます。"
+  },
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "sourceId": "naha-hoikuryo-guide",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "sourceId": "naha-hoikuryo-table",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "市町村民税所得割額57,700円未満（ひとり親等は77,101円未満）の世帯は年齢に関係なく第1子から数えます。それ以外の世帯は、対象施設に在籍している未就学のきょうだいのみを数えます。",
+        "sourceId": "naha-hoikuryo-guide",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "naha-hoikuryo-table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      }
+    }
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "B2",
+      "label": "市町村民税非課税世帯 (B1以外の世帯)",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C1B",
+      "label": "市町村民税の均等割のみ課税 (C1A以外の世帯)",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 13200,
+          "short": 12900
+        }
+      }
+    },
+    {
+      "tier": "C2B",
+      "label": "所得割額 48,600円未満 (C2A以外の世帯)",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 15600,
+          "short": 15300
+        }
+      }
+    },
+    {
+      "tier": "D1B",
+      "label": "所得割額 56,300円未満 (D1A以外の世帯)",
+      "incomeMin": 48600,
+      "incomeMax": 56300,
+      "fees": {
+        "under3": {
+          "standard": 19100,
+          "short": 18700
+        }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "所得割額 65,500円未満",
+      "incomeMin": 56300,
+      "incomeMax": 65500,
+      "fees": {
+        "under3": {
+          "standard": 22900,
+          "short": 22500
+        }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "所得割額 84,900円未満",
+      "incomeMin": 65500,
+      "incomeMax": 84900,
+      "fees": {
+        "under3": {
+          "standard": 26400,
+          "short": 25900
+        }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割額 97,000円未満",
+      "incomeMin": 84900,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 29400,
+          "short": 28900
+        }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割額 119,800円未満",
+      "incomeMin": 97000,
+      "incomeMax": 119800,
+      "fees": {
+        "under3": {
+          "standard": 34300,
+          "short": 33700
+        }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "所得割額 169,000円未満",
+      "incomeMin": 119800,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 38200,
+          "short": 37500
+        }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "所得割額 301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 39600,
+          "short": 38900
+        }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "所得割額 397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": {
+          "standard": 40800,
+          "short": 40100
+        }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "所得割額 397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 53000,
+          "short": 52000
+        }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "naha-hoikuryo-table",
+    "expect": [
+      "13,200",
+      "12,900",
+      "19,100",
+      "22,900",
+      "29,400",
+      "34,300",
+      "40,800",
+      "53,000"
+    ]
+  }
+}

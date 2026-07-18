@@ -107,6 +107,10 @@ const ALLOWED_HOST_SUFFIXES = ['.lg.jp', '.go.jp'];
  */
 const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.sapporo.jp',
+  'city.kochi.kochi.jp',
+  'city.naha.okinawa.jp',
+  'city.nagasaki.lg.jp',
+  'city.miyazaki.miyazaki.jp',
   'city.kawasaki.jp',
   'city.nagoya.jp',
   'city.nerima.tokyo.jp',
@@ -232,7 +236,7 @@ async function fetchText(url, contentType) {
   const res = await fetch(url, {
     headers: {
       // 一次情報サイトはUA未設定を弾く場合がある
-      'User-Agent': 'kurashi-rakuda-seido-verifier/1.0 (+https://github.com/kameking-lab/kurashi-rakuda)',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
       'Accept-Language': 'ja',
     },
     redirect: 'follow',

@@ -28,6 +28,10 @@ import hyogoHimeji from "@/data/seido/hoikuryo/hyogo-himeji.json";
 import kagoshimaKagoshima from "@/data/seido/hoikuryo/kagoshima-kagoshima.json";
 import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
 import kanagawaSagamihara from "@/data/seido/hoikuryo/kanagawa-sagamihara.json";
+import kochiKochi from "@/data/seido/hoikuryo/kochi-kochi.json";
+import miyazakiMiyazaki from "@/data/seido/hoikuryo/miyazaki-miyazaki.json";
+import nagasakiNagasaki from "@/data/seido/hoikuryo/nagasaki-nagasaki.json";
+import nahaOkinawa from "@/data/seido/hoikuryo/naha-okinawa.json";
 import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
 import kyotoKyoto from "@/data/seido/hoikuryo/kyoto-kyoto.json";
 import kumamotoKumamoto from "@/data/seido/hoikuryo/kumamoto-kumamoto.json";
@@ -169,6 +173,10 @@ export interface HoikuryoMunicipality {
  * 船橋市・川口市・八王子市・姫路市・鹿児島市（人口順1〜5位）。
  */
 export const municipalities: HoikuryoMunicipality[] = [
+  kochiKochi,
+  miyazakiMiyazaki,
+  nagasakiNagasaki,
+  nahaOkinawa,
   hokkaidoSapporo,
   miyagiSendai,
   saitamaSaitama,
