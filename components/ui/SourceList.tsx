@@ -14,7 +14,8 @@ export function SourceList({
   updated: string;
 }) {
   return (
-    <section aria-label="出典と更新情報" className="mt-8 border-t border-line pt-4 text-sm text-ink-muted">
+    <section aria-label="出典と更新情報" className="source-panel mt-10 rounded-card border border-line bg-sand-soft p-5 text-sm text-ink-muted">
+      <p className="mb-3 font-bold text-ink">根拠と更新情報</p>
       <dl className="flex flex-wrap gap-x-6 gap-y-1">
         <div className="flex gap-2">
           <dt>最終更新</dt>
