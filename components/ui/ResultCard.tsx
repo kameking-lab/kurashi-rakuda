@@ -19,13 +19,13 @@ export function ResultCard({
 }) {
   return (
     <div
-      className="rounded-card bg-result-bg p-5 text-result-ink sm:p-6"
+      className="result-card rounded-card bg-result-bg p-5 text-result-ink sm:p-7"
       role="status"
       aria-live="polite"
     >
       <p className="text-sm opacity-90">{label}</p>
       <p className="mt-1">
-        <span className="text-3xl font-bold tabular-nums sm:text-4xl">{value}</span>
+        <span className="text-3xl font-bold tracking-tight tabular-nums sm:text-4xl">{value}</span>
         {unit && <span className="ml-1 text-lg">{unit}</span>}
       </p>
       {note && <p className="mt-2 text-sm opacity-90">{note}</p>}

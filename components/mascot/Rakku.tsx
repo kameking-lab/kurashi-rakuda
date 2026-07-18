@@ -54,6 +54,8 @@ export function Rakku({
         height={size}
         alt={label ?? ""}
         aria-hidden={label ? undefined : true}
+        priority={resolvedPose === "front" && size >= 200}
+        sizes={`${size}px`}
       />
     );
   }

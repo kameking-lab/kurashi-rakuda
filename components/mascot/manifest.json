@@ -1,4 +1,11 @@
 {
   "$comment": "public/mascot/ に受け入れ済みの画像の台帳。手で編集せず `npm run mascot:manifest` で再生成する（scripts/mascot-manifest.mjs が配置規約を検査して書き出す）。ここに載っていないポーズは Rakku.tsx が簡易SVGでフォールバック描画する。",
-  "files": {}
+  "files": {
+    "calc": "calc.png",
+    "carry": "carry.png",
+    "front": "front.png",
+    "sit": "sit.png",
+    "sleep": "sleep.png",
+    "worried": "worried.png"
+  }
 }

@@ -2,8 +2,9 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-line">
-      <div className="mx-auto max-w-3xl px-4 py-8 text-sm text-ink-muted">
+    <footer className="mt-20 border-t border-line bg-sand-soft/60">
+      <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-ink-muted sm:px-6">
+        <p className="mb-5 text-lg font-bold text-ink">くらしのラクダ</p>
         <nav aria-label="フッター">
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             <li>
