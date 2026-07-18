@@ -60,7 +60,19 @@
     "特養と有料老人ホームで費用の仕組みがどう違うのか分からない",
     "食費や居住費が軽減される制度があるのか知りたい",
     "有料老人ホームの費用相場がどこにも書いていない理由が分からない"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "adult",
+      "senior"
+    ],
+    "lifeEvents": [
+      "caregiving"
+    ],
+    "childAgeBands": [],
+    "gender": null
+  }
 }
 ---
 

@@ -106,7 +106,28 @@
     "何年生まで学童を利用できるのか知りたい",
     "学童の利用料がいくらになるのか分からない",
     "小4の壁で退所しなければならないのか心配"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "newborn",
+      "infant",
+      "toddler",
+      "schoolAge",
+      "adult"
+    ],
+    "lifeEvents": [
+      "parenting",
+      "working"
+    ],
+    "childAgeBands": [
+      "age0_1",
+      "age1_3",
+      "age3_6",
+      "age6_12"
+    ],
+    "gender": null
+  }
 }
 ---
 

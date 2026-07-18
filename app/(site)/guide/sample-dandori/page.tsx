@@ -18,6 +18,7 @@ const meta: DandoriArticleMeta = {
   solves: ["（サンプル）段取り型テンプレートの構成を確認したい"],
   sources: [],
   updated: "2026-07-17",
+  audience: { universal: true, lifeStages: [], lifeEvents: [], childAgeBands: [], gender: null },
 };
 
 export const metadata: Metadata = {

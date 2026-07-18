@@ -92,7 +92,26 @@
     "生活保護を受けていないと申請できないと思い込んでいる",
     "入学準備にお金がかかるが、援助がいくら支給されるのか分からない",
     "申請の窓口や認定の基準がどこにあるのか分からない"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "newborn",
+      "infant",
+      "toddler",
+      "schoolAge"
+    ],
+    "lifeEvents": [
+      "parenting"
+    ],
+    "childAgeBands": [
+      "age0_1",
+      "age1_3",
+      "age3_6",
+      "age6_12"
+    ],
+    "gender": null
+  }
 }
 ---
 

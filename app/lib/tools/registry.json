@@ -23,7 +23,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-02",
@@ -52,7 +65,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-03",
@@ -77,7 +103,18 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [],
+      "gender": "female"
+    }
   },
   {
     "queueId": "Q3-04",
@@ -122,7 +159,24 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-05",
@@ -148,7 +202,24 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-06",
@@ -177,7 +248,26 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-07",
@@ -202,7 +292,21 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "infant"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-08",
@@ -235,7 +339,28 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-09",
@@ -416,7 +541,24 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-10",
@@ -436,7 +578,26 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-11",
@@ -461,7 +622,26 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1",
+        "age1_3"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-12",
@@ -482,7 +662,21 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T24",
@@ -512,7 +706,14 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-13",
@@ -537,7 +738,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-14",
@@ -559,7 +767,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-15",
@@ -580,7 +795,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-16",
@@ -601,7 +823,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-17",
@@ -622,7 +851,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-18",
@@ -660,7 +896,18 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-19",
@@ -692,7 +939,25 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-20",
@@ -733,7 +998,19 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T19",
@@ -758,7 +1035,21 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T17",
@@ -784,7 +1075,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T34",
@@ -828,7 +1132,23 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T14",
@@ -866,7 +1186,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T37",
@@ -896,7 +1229,18 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T38",
@@ -926,7 +1270,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving",
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T21",
@@ -952,7 +1309,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T28",
@@ -982,7 +1346,16 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T01",
@@ -1021,7 +1394,25 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T18",
@@ -1056,7 +1447,23 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T16",
@@ -1082,7 +1489,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T22",
@@ -1103,7 +1523,14 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T36",
@@ -1132,7 +1559,21 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "schoolAge"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age6_12"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T35",
@@ -1153,7 +1594,24 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T26",
@@ -1178,7 +1636,14 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T25",
@@ -1208,7 +1673,16 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T20",
@@ -1238,7 +1712,21 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "schoolAge"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age6_12"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T33",
@@ -1273,7 +1761,17 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": "female"
+    }
   },
   {
     "queueId": "P2-T27",
@@ -1307,7 +1805,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T30",
@@ -1346,7 +1855,16 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": "female"
+    }
   },
   {
     "queueId": "P2-T39",
@@ -1385,7 +1903,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T40",
@@ -1416,7 +1945,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T23",
@@ -1437,7 +1977,14 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T15",
@@ -1463,7 +2010,20 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": "female"
+    }
   },
   {
     "queueId": "P2-T29",
@@ -1493,7 +2053,16 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T31",
@@ -1528,7 +2097,16 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": "female"
+    }
   },
   {
     "queueId": "P2-T32",
@@ -1558,7 +2136,21 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T03",
@@ -1589,7 +2181,28 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T05",
@@ -1620,7 +2233,20 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving",
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T06",
@@ -1651,7 +2277,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T07",
@@ -1682,7 +2319,19 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T13",
@@ -1713,7 +2362,28 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T10",
@@ -1744,7 +2414,24 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T11",
@@ -1775,7 +2462,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T08",
@@ -1806,7 +2504,28 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T04",
@@ -1837,7 +2556,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T09",
@@ -1868,7 +2598,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T02",
@@ -1899,7 +2640,31 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T12",
@@ -1930,6 +2695,27 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   }
 ]

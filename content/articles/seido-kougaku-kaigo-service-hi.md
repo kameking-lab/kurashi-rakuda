@@ -79,7 +79,19 @@
     "介護サービスの自己負担がいくらを超えたら払い戻されるか分からない",
     "親の所得区分によって上限額がどう変わるのか知りたい",
     "施設の食費や居住費も高額介護サービス費の対象になるのか不安"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "adult",
+      "senior"
+    ],
+    "lifeEvents": [
+      "caregiving"
+    ],
+    "childAgeBands": [],
+    "gender": null
+  }
 }
 ---
 

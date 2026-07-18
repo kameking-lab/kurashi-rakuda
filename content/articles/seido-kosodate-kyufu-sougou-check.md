@@ -68,7 +68,25 @@
     }
   ],
   "last_updated": "2026-07-17",
-  "next_check_due": "2027-04-01"
+  "next_check_due": "2027-04-01",
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "toddler",
+      "schoolAge",
+      "adult"
+    ],
+    "lifeEvents": [
+      "parenting",
+      "working"
+    ],
+    "childAgeBands": [
+      "age1_3",
+      "age3_6",
+      "age6_12"
+    ],
+    "gender": null
+  }
 }
 ---
 

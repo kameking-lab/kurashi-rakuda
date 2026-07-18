@@ -56,6 +56,7 @@ export default async function ArticlePage({
     solves: article.solves,
     sources: article.sources,
     updated: article.updated,
+    audience: article.audience,
   };
   const meta: ArticleMeta =
     article.type === "seido"
