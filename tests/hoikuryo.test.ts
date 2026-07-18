@@ -1,4 +1,6 @@
 import { describe, it, expect } from "vitest";
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
 import {
   calc,
   feeOf,
@@ -53,97 +55,34 @@ const feeOfCalc = (over: Partial<HoikuryoInput> & { municipalityId: string }) =>
   calc(input(over))?.fee;
 
 describe("収集済み自治体（87件）", () => {
-  it("87自治体を収録しており、id はファイル名と一致する", () => {
-    expect(municipalities).toHaveLength(87);
-    expect(municipalities.map((m) => m.id)).toEqual([
-      "fukuoka-kurume",
-      "hiroshima-fukuyama",
-      "kagawa-takamatsu",
-      "yamaguchi-shimonoseki",
-      "shimane-matsue",
-      "hiroshima-kure",
-      "nagasaki-sasebo",
-      "tottori-tottori",
-      "kochi-kochi",
-      "miyazaki-miyazaki",
-      "nagasaki-nagasaki",
-      "naha-okinawa",
-      "hokkaido-sapporo",
-      "miyagi-sendai",
-      "yamagata-yamagata",
-      "iwate-morioka",
-      "fukushima-koriyama",
-      "ibaraki-mito",
-      "gunma-maebashi",
-      "saitama-saitama",
-      "saitama-kawaguchi",
-      "saitama-kawagoe",
-      "chiba-chiba",
-      "chiba-funabashi",
-      "chiba-kashiwa",
-      "tokyo-chiyoda",
-      "tokyo-chuo",
-      "tokyo-minato",
-      "tokyo-shinjuku",
-      "tokyo-bunkyo",
-      "tokyo-taito",
-      "tokyo-sumida",
-      "tokyo-koto",
-      "tokyo-shinagawa",
-      "tokyo-meguro",
-      "tokyo-ota",
-      "tokyo-setagaya",
-      "tokyo-shibuya",
-      "tokyo-nakano",
-      "tokyo-suginami",
-      "tokyo-toshima",
-      "tokyo-kita",
-      "tokyo-arakawa",
-      "tokyo-nerima",
-      "tokyo-adachi",
-      "tokyo-edogawa",
-      "tokyo-hachioji",
-      "kanagawa-yokohama",
-      "kanagawa-kawasaki",
-      "kanagawa-sagamihara",
-      "niigata-niigata",
-      "yamanashi-kofu",
-      "nagano-nagano",
-      "toyama-toyama",
-      "ishikawa-kanazawa",
-      "gifu-gifu",
-      "shizuoka-shizuoka",
-      "shizuoka-hamamatsu",
-      "aichi-nagoya",
-      "aichi-toyohashi",
-      "aichi-okazaki",
-      "aichi-ichinomiya",
-      "aichi-toyota",
-      "shiga-otsu",
-      "kyoto-kyoto",
-      "osaka-osaka",
-      "osaka-sakai",
-      "osaka-toyonaka",
-      "osaka-suita",
-      "osaka-takatsuki",
-      "osaka-hirakata",
-      "osaka-higashiosaka",
-      "hyogo-kobe",
-      "hyogo-himeji",
-      "hyogo-amagasaki",
-      "hyogo-nishinomiya",
-      "nara-nara",
-      "wakayama-wakayama",
-      "okayama-okayama",
-      "okayama-kurashiki",
-      "hiroshima-hiroshima",
-      "ehime-matsuyama",
-      "fukuoka-kitakyushu",
-      "fukuoka-fukuoka",
-      "kumamoto-kumamoto",
-      "oita-oita",
-      "kagoshima-kagoshima",
-    ]);
+  it("data/seido/hoikuryo/*.json と municipalities が1対1（自動生成＝手書き配列を廃止）", () => {
+    // ★件数をハードコードしない★ データファイルと配列の一致だけを検査する（コンフリクト税の撲滅）
+    const dir = join(process.cwd(), "data", "seido", "hoikuryo");
+    const fileSlugs = readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => f.replace(/.json$/, "")).sort();
+    const muniIds = municipalities.map((m) => m.id).sort();
+    expect(muniIds).toEqual(fileSlugs); // 全ファイルが登録され、余計な登録も無い（過不足なし）
+    expect(municipalities.length).toBe(fileSlugs.length);
+  });
+
+  it("全自治体が妥当な構造を持つ（id/名称/6桁コード/tiers/出典/免責/境界）", () => {
+    for (const m of municipalities) {
+      expect(m.id, m.id + " id").toBeTruthy();
+      expect(m.name, m.id + " name").toBeTruthy();
+      expect(String(m.municipalityCode), m.id + " code").toMatch(/^[0-9]{6}$/);
+      expect(m.tiers.length, m.id + " tiers").toBeGreaterThanOrEqual(1);
+      expect(m.sources.length, m.id + " sources").toBeGreaterThan(0);
+      expect(m.disclaimer.length, m.id + " disclaimer").toBeGreaterThan(20);
+      for (const t of m.tiers) {
+        expect(t.incomeMin, m.id + " " + t.tier + " min").toBeGreaterThanOrEqual(0);
+        if (t.incomeMax !== null) expect(t.incomeMax, m.id + " " + t.tier + " max").toBeGreaterThanOrEqual(t.incomeMin);
+      }
+    }
+  });
+
+  it("municipalityCode 順に並び、コードは重複しない（自動生成の決定的順序）", () => {
+    const codes = municipalities.map((m) => String(m.municipalityCode));
+    expect(codes).toEqual([...codes].sort((a, b) => a.localeCompare(b)));
+    expect(new Set(codes).size, "コード重複なし").toBe(codes.length);
   });
 
   /**
@@ -870,9 +809,11 @@ describe("★京都市★ 保育利用時間バンド（timeBands・6段階）",
     }
   });
 
-  it("★他85自治体への影響なし★ timeBands を持つのは京都市・岡崎市のみで、バンド指定は金額を変えない", () => {
-    const others = municipalities.filter((x) => x.id !== "kyoto-kyoto" && x.id !== "aichi-okazaki");
-    expect(others).toHaveLength(85);
+  it("★timeBands を持つのは京都市・岡崎市のみ★ 他自治体はバンド指定で金額が変わらない（件数はデータ由来）", () => {
+    const timeBandOwners = municipalities.filter((x) => x.timeBands).map((x) => x.id).sort();
+    expect(timeBandOwners).toEqual(["aichi-okazaki", "kyoto-kyoto"]);
+    const others = municipalities.filter((x) => !x.timeBands);
+    expect(others.length).toBe(municipalities.length - 2); // ハードコードせず全体から導出
     for (const o of others) {
       expect(o.timeBands, o.id).toBeUndefined();
       expect(isTimeBandApplicable(o, "standard"), o.id).toBe(false);
