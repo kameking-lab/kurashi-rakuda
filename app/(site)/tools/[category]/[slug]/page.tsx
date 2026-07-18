@@ -125,6 +125,15 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { FuninChiryouHokenTekiyou } from "@/components/tools/impl/FuninChiryouHokenTekiyou";
+import {
+  funinChiryouDataset,
+  FUNIN_CHIRYOU_DISCLAIMER,
+  UPPER_AGE_LIMIT as FUNIN_UPPER_AGE_LIMIT,
+  AGE_BOUNDARY as FUNIN_AGE_BOUNDARY,
+  UNDER40_LIMIT as FUNIN_UNDER40_LIMIT,
+  AGE40_TO43_LIMIT as FUNIN_AGE40_TO43_LIMIT,
+} from "@/components/tools/impl/FuninChiryouHokenTekiyou.calc";
 import { ShokujiSesshuKijunNinpu } from "@/components/tools/impl/ShokujiSesshuKijunNinpu";
 import {
   shokujiSesshuDataset,
@@ -225,6 +234,32 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "funin-chiryou-hoken-tekiyou": {
+    ui: <FuninChiryouHokenTekiyou />,
+    formula: (
+      <>
+        <p>
+          令和4年4月から、一般不妊治療（タイミング法・人工授精）と生殖補助医療（体外受精・顕微授精）が保険適用になりました。生殖補助医療には
+          <strong>年齢と回数の要件</strong>があります。年齢は、治療開始日において女性（患者またはパートナー）が
+          {FUNIN_UPPER_AGE_LIMIT}歳未満であることが要件です（一般不妊治療に年齢上限はありません）。
+        </p>
+        <p>
+          回数上限は<strong>初めての治療開始日の年齢</strong>で決まります。40歳未満で始めた場合は通算
+          {FUNIN_UNDER40_LIMIT}回、40歳以上43歳未満で始めた場合は通算{FUNIN_AGE40_TO43_LIMIT}
+          回まで（胚移植術の回数。境界は{FUNIN_AGE_BOUNDARY}歳）。この回数は
+          <strong>子ども1人ごとにリセット</strong>され、出産後に次のお子さんの治療で再び使えます。
+        </p>
+        <p>
+          保険診療の窓口負担は3割で、高額療養費制度も使えます（ひと月の自己負担が所得区分ごとの上限を超えた分が後から戻ります）。本ツールは治療の総額や高額療養費の上限額そのものは示しません（治療内容・所得区分によって大きく変わるためです）。保険総額（10割）を入力した場合のみ、3割の窓口負担額を機械的に計算します。
+        </p>
+        <p>
+          第三者の精子・卵子・胚の提供による生殖補助医療や代理懐胎は保険適用の対象外です。先進医療に位置づけられる治療は保険外ですが、保険診療と併用できます。実施できるのは、施設基準に適合し届出をした保険医療機関です。
+        </p>
+        <p>{FUNIN_CHIRYOU_DISCLAIMER}</p>
+        <SeidoNotice datasets={[funinChiryouDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "shokuji-sesshu-kijun-ninpu": {
     ui: <ShokujiSesshuKijunNinpu />,
     formula: (

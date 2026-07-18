@@ -1745,5 +1745,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T11",
+    "slug": "funin-chiryou-hoken-tekiyou",
+    "category": "pregnancy",
+    "title": "不妊治療 保険適用・回数 早見",
+    "description": "生殖補助医療（体外受精・顕微授精）の保険適用の年齢上限（治療開始日に43歳未満）と、初回治療開始年齢で決まる胚移植の回数上限（40歳未満6回・40〜43歳未満3回）をチェックします。任意で保険総額から3割の窓口負担も計算します。",
+    "solves": [
+      "体外受精・顕微授精が保険適用になる年齢の上限を知りたい",
+      "保険で胚移植を何回まで受けられるか知りたい",
+      "40歳を境に保険適用の回数が変わるのか知りたい",
+      "出産すると回数がリセットされるのか知りたい",
+      "不妊治療の窓口負担（3割）の目安を知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "厚生労働省「不妊治療に関する支援について（保険適用）」",
+        "url": "https://www.mhlw.go.jp/content/000901931.pdf"
+      },
+      {
+        "label": "厚生労働省「不妊治療に関する取組」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/boshi-hoken/funin-01_00004.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/funin-chiryou-hoken-tekiyou.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/funin-chiryou-hoken-tekiyou.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
