@@ -192,6 +192,11 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.suita.osaka.jp', // 吹田市（中核市）は city.suita.lg.jp が存在しない（P2-D01・2026-07-18）
   'city.takatsuki.osaka.jp', // 高槻市（中核市）は city.takatsuki.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）
   'city.wakayama.wakayama.jp', // 和歌山市（中核市）は city.wakayama.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）
+  // 寝屋川市（中核市）は city.neyagawa.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）。
+  // 保育の提供に関する規則（別表・現行R8.4.1施行）を掲載する例規集 www2.city.neyagawa.osaka.jp も
+  // サブドメイン一致で許可される。
+  'city.neyagawa.osaka.jp',
+  'city.yao.osaka.jp', // 八尾市（中核市）は city.yao.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）
 ];
 
 const args = process.argv.slice(2);
