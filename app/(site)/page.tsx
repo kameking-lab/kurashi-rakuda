@@ -6,8 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Callout } from "@/components/ui/Callout";
 import { SolvesSearch } from "@/components/search/SolvesSearch";
 import { Rakku } from "@/components/mascot/Rakku";
-import { ProfileSettings } from "@/components/personalize/ProfileSettings";
-import { PersonalizedHomeTools } from "@/components/personalize/PersonalizedHomeTools";
+import { DeferredHomePersonalization, DeferredProfileSettings } from "@/components/personalize/DeferredPersonalization";
 
 /** ライフステージ導線（docs/04 §3.1 の2軸ナビのうちステージ軸。専用ハブは Phase 2） */
 const stages: { label: string; category: ToolCategory }[] = [
@@ -36,12 +35,13 @@ export default function Home() {
           <h1 className="mt-3 text-4xl font-bold leading-[1.25] tracking-tight sm:text-6xl">
             暮らしの荷物を、<br /><span className="text-brand">ひとつ軽く。</span>
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-ink-muted">
-          妊娠・子育て・家事・お金・仕事・介護の計算と段取りを、すべて無料・登録不要で。広告に答えを邪魔されません。
-          </p>
+          <div className="mt-5 max-w-xl text-lg text-ink-muted">
+            <p>妊娠・子育て・家事・お金・仕事・介護の計算と段取りを、</p>
+            <p>すべて無料・登録不要で。広告に答えを邪魔されません。</p>
+          </div>
           <div className="mt-7 max-w-2xl"><SolvesSearch /></div>
         </div>
-        <div className="hero-mascot" aria-hidden="true"><Rakku pose="front" size={360} /></div>
+        <div className="hero-mascot" aria-hidden="true"><Rakku pose="front" size={360} priority={false} /></div>
       </section>
 
       <section aria-label="信頼の根拠" className="trust-strip">
@@ -51,8 +51,17 @@ export default function Home() {
         <div><strong>機械照合</strong><span>計算結果を継続検査</span></div>
       </section>
 
-      <div className="mt-6"><ProfileSettings /></div>
-      <PersonalizedHomeTools />
+      <div className="mt-6"><DeferredProfileSettings /></div>
+      <section aria-labelledby="for-you-title" className="for-you-section mt-8 rounded-[1.5rem] border border-line bg-brand-soft p-5 sm:p-7">
+        <p className="eyebrow" data-home-personalized-eyebrow>まず使ってほしいツール</p>
+        <h2 id="for-you-title" data-home-personalized-heading className="mt-1 text-2xl font-bold">よく使われるツール</h2>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-3">{live.slice(0, 6).map((tool) => <li key={tool.slug}>
+          <Link data-home-personalized prefetch={false} href={`/tools/${tool.category}/${tool.slug}`} className="personalized-card block h-full rounded-card border border-line bg-paper p-4">
+            <strong data-home-title className="block">{tool.title}</strong><span data-home-description className="mt-1 block text-sm text-ink-muted">{tool.description}</span>
+          </Link>
+        </li>)}</ul>
+        <DeferredHomePersonalization />
+      </section>
 
       <SectionHeading>ライフステージからさがす</SectionHeading>
       <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -83,7 +92,7 @@ export default function Home() {
       </ul>
 
       <SectionHeading>いま使えるツール</SectionHeading>
-      <ul className="grid gap-3 sm:grid-cols-2">
+      <ul className="deferred-tool-grid grid gap-3 sm:grid-cols-2">
         {live.map((t) => (
           <li key={t.slug}>
             <Link
