@@ -216,6 +216,12 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.kamakura.kanagawa.jp', // 鎌倉市の公式サイト
   'city.anjo.aichi.jp', // 安城市（city.anjo.lg.jpはDNS解決不可）
   'city.tomakomai.hokkaido.jp', // 苫小牧市の公式サイト
+  'city.oyama.tochigi.jp', // 小山市（city.oyama.lg.jpは存在しない）の公式サイト
+  'city.iwata.shizuoka.jp', // 磐田市（city.iwata.lg.jpは無応答）の公式サイト
+  'city.nishio.aichi.jp', // 西尾市（city.nishio.lg.jpはDNS解決不可）の公式サイト
+  'city.hadano.kanagawa.jp', // 秦野市の公式サイト
+  'city.obihiro.hokkaido.jp', // 帯広市（city.obihiro.lg.jpはDNS解決不可）の公式サイト
+  'city.takaoka.toyama.jp', // 高岡市（city.takaoka.lg.jpは存在しない）の公式サイト
 ];
 
 const args = process.argv.slice(2);

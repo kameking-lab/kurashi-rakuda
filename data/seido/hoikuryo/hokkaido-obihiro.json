@@ -1,0 +1,296 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "hokkaido-obihiro",
+  "name": "北海道帯広市",
+  "municipalityCode": "012076",
+  "prefecture": "北海道",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-19",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "hoiku-page",
+      "title": "帯広市内の各種保育所",
+      "publisher": "帯広市市民福祉部こども福祉室こども課保育所幼稚園係",
+      "url": "https://www.city.obihiro.hokkaido.jp/kyoiku/kosodate/hoiku/1004598.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-19",
+      "tier": "municipality",
+      "note": "保育料の算定基礎（世帯の市民税所得割額の合計額、4〜8月分は前年度・9月〜翌年3月分は当年度の市民税額）、幼児教育・保育の無償化（3〜5歳児クラス無償）の記載、および「令和8年度保育料金表」「保育料・副食費についてのご案内」「副食費について」の各PDFへのリンクを掲載。ページ更新日2026年5月27日。"
+    },
+    {
+      "id": "fee-pdf",
+      "title": "令和8年度 保育料金表",
+      "publisher": "帯広市市民福祉部こども福祉室こども課保育所幼稚園係",
+      "url": "https://www.city.obihiro.hokkaido.jp/_res/projects/default_project/_page_/001/004/598/r8hoikuryou.pdf",
+      "landingUrl": "https://www.city.obihiro.hokkaido.jp/kyoiku/kosodate/hoiku/1004598.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-19",
+      "tier": "municipality",
+      "note": "3号認定（0〜2歳児クラス）の階層表本体（A・B・C1・C2・D1〜D9）を「ひとり親・障害者以外の世帯」「ひとり親・障がい者世帯」の2系統・保育標準時間/保育短時間で収録。1号認定（教育認定3〜5歳児クラス）・2号認定（保育認定3〜5歳児クラス）の保育料は0円である旨も同一PDF内に明記。多子軽減（第1子・第2子・第3子以降の別）と、その適用範囲（年齢制限なし／小学校就学前限定）の注記あり。"
+    },
+    {
+      "id": "genmen-pdf",
+      "title": "保育料・副食費についてのご案内",
+      "publisher": "帯広市市民福祉部こども福祉室こども課保育所幼稚園係",
+      "url": "https://www.city.obihiro.hokkaido.jp/_res/projects/default_project/_page_/001/004/598/r8menjoannnai.pdf",
+      "landingUrl": "https://www.city.obihiro.hokkaido.jp/kyoiku/kosodate/hoiku/1004598.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-19",
+      "tier": "municipality",
+      "note": "在宅障害児（者）がいる世帯・児童扶養手当等を受給していないひとり親世帯について、市町村民税所得割額が77,101円未満の場合に保育料軽減（ひとり親・障がい者世帯料金表の適用）対象となる旨、および祖父母等と同居し父母の年間総収入が810,800円を下回る場合の取扱いを記載。"
+    },
+    {
+      "id": "nyusho-annai-pdf",
+      "title": "令和8年度 帯広市保育所等 入所案内",
+      "publisher": "帯広市市民福祉部こども福祉室こども課保育所幼稚園係",
+      "url": "https://www.city.obihiro.hokkaido.jp/_res/projects/default_project/_page_/001/010/107/r8nyusyoannnai.pdf",
+      "landingUrl": "https://www.city.obihiro.hokkaido.jp/kyoiku/kosodate/hoiku/1010107.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-19",
+      "tier": "municipality",
+      "note": "保育料の年齢区分（4月1日時点の年齢で決定）、税年度の切替（4〜8月は前年度・9月〜翌年3月は当年度の市町村民税額）、および祖父母等と同居し父母の年間総収入（給与収入換算）が810,800円未満の場合は祖父母等のうち市民税額の高い方と合算して保育料を算定することがある旨（4〜8月分。9月〜翌年3月分は基準額が変更となる場合がある旨）を記載。"
+    },
+    {
+      "id": "musyouka-page",
+      "title": "幼児教育・保育の無償化",
+      "publisher": "帯広市市民福祉部こども福祉室こども課保育所幼稚園係",
+      "url": "https://www.city.obihiro.hokkaido.jp/kyoiku/kosodate/hoiku/1004597.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-19",
+      "tier": "municipality",
+      "note": "幼児教育・保育の無償化（令和元年10月開始）の概要、対象者と月額利用者負担額一覧表、副食費の実費徴収（年収360万円未満相当世帯の子ども・第3子以降は免除）を掲載。"
+    }
+  ],
+  "disclaimer": "本データは帯広市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず帯広市（こども福祉室こども課保育所幼稚園係）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所の保育料（利用者負担額）",
+      "認定こども園（保育所部分）・小規模保育所・事業所内保育所の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "給食費（副食費）",
+      "延長保育利用料",
+      "休日保育利用料",
+      "教材費・行事費等、各施設が独自に徴収する実費",
+      "認可外保育施設・企業主導型保育施設の保育料",
+      "幼稚園（教育認定のみ）の保育料"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "保育料は世帯の市民税所得割額の合計額で決定する（hoiku-page）。父母の年間総収入（給与収入換算）が810,800円未満で、同居している祖父母等がいる場合には、国からの通達を基準に家計の状況を判断し、祖父母等のうち市民税額の高い方と合算して保育料を算定することがある（4月〜8月分保育料。9月〜翌年3月分は基準額が変更となる場合があるが、変更後の具体的な金額は未確認）（nyusho-annai-pdf）。",
+    "taxYearRule": "4月〜8月分は前年度（4月〜8月分の算定基礎となる年度の前年度）の市町村民税所得割額、9月〜翌年3月分は当該年度の市町村民税所得割額を算定基礎とする。",
+    "deductionsIgnored": [],
+    "sourceId": "hoiku-page",
+    "checkedAt": "2026-07-19",
+    "verify": {
+      "expect": ["世帯の市民税所得割額の合計額で決定します", "4月から8月までは前年度の市民税額", "9月から翌年3月までは"]
+    },
+    "note": "税額控除（住宅借入金等特別税額控除・寄附金税額控除・配当控除等）を適用するか、適用前の額を用いるかについては、hoiku-page・fee-pdf・genmen-pdf・nyusho-annai-pdfのいずれにも明記がない（未確認: 税額控除の扱い。他市の例規に倣った推測はしていない）。\n\n階層区分について: A=生活保護世帯・里親はisWelfare。B=市町村民税非課税世帯はisNonTaxable。C1=市町村民税均等割のみ課税（所得割は非課税）の世帯で、金額は発生する（0円ではない）。C2以降が所得割額に応じて金額が上がる階層で、C2は「1円以上48,600円未満」を意味する（0円はC1に該当するため）。tiersのincomeMin/incomeMaxはこの解釈に基づき、A・BはisWelfare/isNonTaxableフラグで判定する便宜上incomeMin=0・incomeMax=0とし、C1はincomeMin=0・incomeMax=1（所得割額ちょうど0円のみを含む区分）とした上でC2のincomeMin=1に接続させている。\n\nD3階層の特記事項: fee-pdf原典の「市町村民税所得割課税額」列ではD3が「71,000円以上〜77,101円未満」と「77,101円以上〜97,000円未満」の2つの所得割区分にまたがって記載されているが、「ひとり親・障害者以外の世帯」の金額（標準時間28,600円/短時間28,200円）はこの2区分を通じて同額のため、本データではD3を「71,000円以上97,000円未満」の1区分に統合した。77,101円という境界値は、genmen-pdfに記載の「ひとり親・障がい者世帯の保育料軽減（市町村民税所得割額が77,101円未満）」の適用上限と一致しており、この境界の前後でひとり親・障がい者世帯側の金額が切り替わる（後述）。\n\nひとり親・障がい者世帯（在宅障害児者がいる世帯を含む。市町村民税所得割額が77,101円未満で対象。genmen-pdf）の軽減額（tiers本体には一般世帯の額のみを収録。以下はfee-pdf「ひとり親・障がい者世帯」列の額。標準時間/短時間）:\nA:0/0　B:0/0　C1:5,850/5,800（一般世帯の約半額）　C2:7,650/7,550（一般世帯の約半額）\nD1:9,000/9,000　D2:9,000/9,000　D3のうち71,000円以上77,101円未満:9,000/9,000（この範囲のみ定額9,000円に軽減）\nD3のうち77,101円以上97,000円未満:28,600/28,200（一般世帯と同額に復帰）\nD4以降（D4〜D9）は一般世帯と同額。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス（3号認定）",
+      "rule": "保育料の年齢区分は、お子さんの4月1日時点での年齢で決定する（nyusho-annai-pdf）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス（1号認定・2号認定）",
+      "rule": "保育料の年齢区分は、お子さんの4月1日時点での年齢で決定する（nyusho-annai-pdf）。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラス（1号認定・2号認定）の保育料は無償",
+      "sourceId": "hoiku-page",
+      "checkedAt": "2026-07-19",
+      "verify": {
+        "expect": ["3歳児～5歳児の保育料は無償となっています"]
+      },
+      "amendmentNote": "なし(2026-07-19時点)",
+      "note": "令和元年10月の幼児教育・保育無償化により、世帯の所得にかかわらず無料。対象は保育料のみで、副食費・教材費・行事費等は保護者負担（fee-pdf・musyouka-page）。fee-pdf本体にも「1号認定（教育認定3歳-5歳児クラス）の保育料 0円」「2号認定（保育認定3歳-5歳児クラス）の保育料 0円」と明記。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "市町村民税非課税世帯（B階層）は0〜2歳児クラスも0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-19",
+      "amendmentNote": "なし(2026-07-19時点)",
+      "note": "利用者負担額表のB階層（市町村民税非課税世帯）が保育標準時間・保育短時間ともに0円（ひとり親・障がい者世帯側も同額）。A階層（生活保護世帯・里親）も同様に0円。C1階層（市町村民税均等割のみ課税）は0円ではない点に注意（一般世帯で標準11,700円/短時間11,600円）。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "A〜D5階層は、生計を一にしている子の年齢に係わらず年齢が高い順に第1子・第2子…と数え、第2子以降は無料（年齢制限なし）。D6〜D9階層は、同一世帯から2人以上の就学前児童が保育所・幼稚園・認定こども園・地域型保育事業所・認可外保育施設・特別支援学校幼稚部・児童心理治療施設・児童発達支援・居宅訪問型発達支援のいずれかを利用している場合、通っている子どもの中で年齢が高い順に1人目は全額、2人目は半額、3人目以降は無料（就学前の子どものみを対象とする年齢制限あり）。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-19",
+        "amendmentNote": "なし(2026-07-19時点)",
+        "note": "fee-pdf内の注1（多子カウント年齢制限なし・生計を一にする子ども）・注2（多子カウント年齢制限あり・小学校就学前子ども）に基づく。注1はA〜D5階層、注2はD6〜D9階層に付されている。"
+      },
+      "secondChild": {
+        "value": "階層により異なる（A〜D5階層は無料、D6〜D9階層は第1子基準額のちょうど半額）",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-19",
+        "amendmentNote": "なし(2026-07-19時点)",
+        "note": "具体的な金額はbracketBasis.noteおよびtiers本体を参照。D6:標準27,200円/短時間26,750円、D7:標準30,500円/短時間30,050円、D8:標準40,000円/短時間39,400円、D9:標準45,700円/短時間44,950円（いずれも第1子額の半額）。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は無料（全階層共通）",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-19",
+        "amendmentNote": "なし(2026-07-19時点)",
+        "note": "A〜D9の全階層で第3子以降は0円。"
+      }
+    },
+    "localExtension": "帯広市独自: A〜D5階層（市町村民税所得割額123,600円未満相当）は、多子カウントに年齢制限を設けず（生計を一にする子であれば年齢を問わず数える）、第2子以降を無料化。D6〜D9階層（同169,000円以上）は国基準どおり就学前児童のみを対象に第2子半額・第3子以降無料。また、市町村民税所得割額が77,101円未満のひとり親世帯（児童扶養手当等を未受給の場合を含む）・在宅障害児（者）がいる世帯は、C1・C2階層で一般世帯のほぼ半額、D1・D2・D3の一部（71,000円以上77,101円未満）で定額9,000円に軽減される専用の料金表が適用される（genmen-pdf・fee-pdf）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯・里親",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市町村民税均等割のみ世帯（所得割非課税）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 11700, "short": 11600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "1円以上48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 15300, "short": 15100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "48,600円以上54,600円未満",
+      "incomeMin": 48600,
+      "incomeMax": 54600,
+      "fees": {
+        "under3": { "standard": 19800, "short": 19500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "54,600円以上71,000円未満",
+      "incomeMin": 54600,
+      "incomeMax": 71000,
+      "fees": {
+        "under3": { "standard": 24000, "short": 23600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "71,000円以上97,000円未満",
+      "incomeMin": 71000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 28600, "short": 28200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "97,000円以上123,600円未満",
+      "incomeMin": 97000,
+      "incomeMax": 123600,
+      "fees": {
+        "under3": { "standard": 33500, "short": 33000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "123,600円以上169,000円未満",
+      "incomeMin": 123600,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 41500, "short": 40800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "169,000円以上248,900円未満",
+      "incomeMin": 169000,
+      "incomeMax": 248900,
+      "fees": {
+        "under3": { "standard": 54400, "short": 53500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "248,900円以上301,000円未満",
+      "incomeMin": 248900,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 61000, "short": 60100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 80000, "short": 78800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 91400, "short": 89900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "保育料金表",
+      "11,700",
+      "91,400",
+      "397,000円以上"
+    ]
+  }
+}
