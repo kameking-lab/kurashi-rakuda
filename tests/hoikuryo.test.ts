@@ -49,14 +49,16 @@ function input(over: Partial<HoikuryoInput> & { municipalityId: string }): Hoiku
 const feeOfCalc = (over: Partial<HoikuryoInput> & { municipalityId: string }) =>
   calc(input(over))?.fee;
 
-describe("収集済み自治体（41件）", () => {
-  it("41自治体を収録しており、id はファイル名と一致する", () => {
-    expect(municipalities).toHaveLength(41);
+describe("収集済み自治体（46件）", () => {
+  it("46自治体を収録しており、id はファイル名と一致する", () => {
+    expect(municipalities).toHaveLength(46);
     expect(municipalities.map((m) => m.id)).toEqual([
       "hokkaido-sapporo",
       "miyagi-sendai",
       "saitama-saitama",
+      "saitama-kawaguchi",
       "chiba-chiba",
+      "chiba-funabashi",
       "tokyo-chiyoda",
       "tokyo-chuo",
       "tokyo-minato",
@@ -78,6 +80,7 @@ describe("収集済み自治体（41件）", () => {
       "tokyo-nerima",
       "tokyo-adachi",
       "tokyo-edogawa",
+      "tokyo-hachioji",
       "kanagawa-yokohama",
       "kanagawa-kawasaki",
       "kanagawa-sagamihara",
@@ -89,11 +92,13 @@ describe("収集済み自治体（41件）", () => {
       "osaka-osaka",
       "osaka-sakai",
       "hyogo-kobe",
+      "hyogo-himeji",
       "okayama-okayama",
       "hiroshima-hiroshima",
       "fukuoka-kitakyushu",
       "fukuoka-fukuoka",
       "kumamoto-kumamoto",
+      "kagoshima-kagoshima",
     ]);
   });
 
@@ -667,9 +672,9 @@ describe("★京都市★ 保育利用時間バンド（timeBands・6段階）",
     }
   });
 
-  it("★他40自治体への影響なし★ timeBands を持つのは京都市のみで、バンド指定は金額を変えない", () => {
+  it("★他45自治体への影響なし★ timeBands を持つのは京都市のみで、バンド指定は金額を変えない", () => {
     const others = municipalities.filter((x) => x.id !== "kyoto-kyoto");
-    expect(others).toHaveLength(40);
+    expect(others).toHaveLength(45);
     for (const o of others) {
       expect(o.timeBands, o.id).toBeUndefined();
       expect(isTimeBandApplicable(o, "standard"), o.id).toBe(false);
@@ -680,6 +685,70 @@ describe("★京都市★ 保育利用時間バンド（timeBands・6段階）",
     )!;
     expect(withBand.fee).toBe(77500);
     expect(withBand.timeBand).toBeNull();
+  });
+});
+
+describe("★中核市バッチ1★ 船橋・川口・鹿児島・八王子・姫路（人口順1〜5位、P2-D01）", () => {
+  it("★八王子市★ 階層表が無く全額0円（東京23区とは別に、都の負担軽減事業で無償化）", () => {
+    const m = getMunicipality("tokyo-hachioji")!;
+    expect(m.tiers).toHaveLength(1);
+    expect(isIncomeInputUseful(m)).toBe(false);
+    const r = calc(input({ municipalityId: "tokyo-hachioji", income: null }))!;
+    expect(r.fee).toBe(0);
+    expect(r.basis).toBe("tier");
+    expect(r.tierIssue).toBeNull();
+  });
+
+  it("★姫路市★ fiscalYear が2025のため2026年度の試算では fiscalYearMismatch が立つ", () => {
+    const m = getMunicipality("hyogo-himeji")!;
+    expect(m.fiscalYear).toBe(2025);
+    expect(isFiscalYearMismatch(m, "2026-06")).toBe(true);
+    // 未確定でも令和7年度の値として金額は出す（3歳未満・C1未満の境界）
+    expect(feeOfCalc({ municipalityId: "hyogo-himeji", income: 48599 })).toBe(13500);
+    expect(feeOfCalc({ municipalityId: "hyogo-himeji", income: 48600 })).toBe(19600);
+  });
+
+  it("★川口市★ 均等割のみ課税（第3階層）は非課税（第2階層=0円）と区別される", () => {
+    const m = getMunicipality("saitama-kawaguchi")!;
+    const equalOnly = resolveEqualOnlyTier(m);
+    expect(equalOnly?.tier).toBe("第3階層");
+    expect(feeOfCalc({ municipalityId: "saitama-kawaguchi", taxStatus: "equalOnly", income: null })).toBe(
+      6000,
+    );
+    expect(feeOfCalc({ municipalityId: "saitama-kawaguchi", taxStatus: "nonTaxable", income: null })).toBe(
+      0,
+    );
+  });
+
+  it("★船橋市★ 3歳以上児は無償化で0円、3歳未満児は境界値どおり階層が変わる", () => {
+    expect(feeOfCalc({ municipalityId: "chiba-funabashi", age: "age3plus", income: 999999 })).toBe(0);
+    expect(feeOfCalc({ municipalityId: "chiba-funabashi", income: 48599 })).toBe(10100); // C3
+    expect(feeOfCalc({ municipalityId: "chiba-funabashi", income: 48600 })).toBe(15000); // D1-1
+    expect(feeOfCalc({ municipalityId: "chiba-funabashi", income: 349000 })).toBe(60000); // D12(最上位)
+  });
+
+  it("★鹿児島市★ 6/8換算なし・境界値どおり階層が変わる（中核市は政令市特有の税率調整がない）", () => {
+    expect(feeOfCalc({ municipalityId: "kagoshima-kagoshima", income: 48599 })).toBe(14500); // C2
+    expect(feeOfCalc({ municipalityId: "kagoshima-kagoshima", income: 48600 })).toBe(19200); // D1
+    expect(feeOfCalc({ municipalityId: "kagoshima-kagoshima", income: 396999 })).toBe(51000); // D6
+    expect(feeOfCalc({ municipalityId: "kagoshima-kagoshima", income: 397000 })).toBe(66300); // D7(最上位)
+  });
+
+  it("5市とも出典・免責・次回確認日を持つ（ハードコードせず値を読む）", () => {
+    for (const id of [
+      "chiba-funabashi",
+      "saitama-kawaguchi",
+      "kagoshima-kagoshima",
+      "tokyo-hachioji",
+      "hyogo-himeji",
+    ]) {
+      const m = getMunicipality(id)!;
+      expect(m.sources.length, id).toBeGreaterThan(0);
+      expect(m.disclaimer.length, id).toBeGreaterThan(0);
+      expect(m.municipalityType, id).toBe("中核市");
+      const ds = toSeidoDataset(m);
+      expect(ds.sources.length, id).toBeGreaterThan(0);
+    }
   });
 });
 

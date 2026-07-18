@@ -127,6 +127,9 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.hamamatsu.shizuoka.jp', // city.hamamatsu.lg.jp は存在しない（DNS解決せず）
   'city.okayama.jp',
   'city.kumamoto.jp', // city.kumamoto.lg.jp は存在しない（DNS解決せず）
+  // 八王子市（中核市）は子育て情報を専用サイト kosodate.city.hachioji.tokyo.jp で公開しており、
+  // 本体ドメイン city.hachioji.tokyo.jp とは別ホストのため個別に許可する（P2-D01・2026-07-18）。
+  'kosodate.city.hachioji.tokyo.jp',
   /**
    * 浜松市例規集のホスティング先。★このドメインだけは自治体自身の運営ではない★
    * 浜松市は保育料表を公式サイトに一切掲載しておらず（保護者向けの案内は民間NPOのサイトに
