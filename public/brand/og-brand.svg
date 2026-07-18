@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffaf0"/><stop offset=".55" stop-color="#f3e4c8"/><stop offset="1" stop-color="#d9eadf"/></linearGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1030" cy="80" r="220" fill="#fff" opacity=".42"/><circle cx="75" cy="600" r="190" fill="#d89072" opacity=".12"/>
+  <g transform="translate(80 115) scale(2.6)">
+    <path d="M18 62c0-24 18-42 42-42h15c20 0 33 14 33 33v24c0 16-13 29-29 29H45c-15 0-27-12-27-27z" fill="#d2b27b"/>
+    <path d="M34 29C38 10 49 3 62 3c14 0 25 9 28 27" fill="#e2c99c" stroke="#644c32" stroke-width="4"/>
+    <circle cx="52" cy="36" r="3.5" fill="#292822"/><circle cx="72" cy="36" r="3.5" fill="#292822"/>
+    <path d="M53 51c6 5 13 5 19 0" fill="none" stroke="#644c32" stroke-width="4" stroke-linecap="round"/>
+    <path d="M22 68c23 12 53 11 82-3" fill="none" stroke="#26523b" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <text x="430" y="270" fill="#233b2e" font-family="'Hiragino Sans','Yu Gothic UI','Yu Gothic',sans-serif" font-size="70" font-weight="800" letter-spacing="3">くらしのラクダ</text>
+  <text x="435" y="350" fill="#4f5d53" font-family="'Hiragino Sans','Yu Gothic UI','Yu Gothic',sans-serif" font-size="29" font-weight="600" letter-spacing="4">暮らしの答えを、やさしく確かに。</text>
+  <rect x="435" y="402" width="440" height="4" rx="2" fill="#d89072"/>
+</svg>
