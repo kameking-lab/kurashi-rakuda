@@ -1,0 +1,7 @@
+{
+  "job_id": "Q4-067", "batch": 3, "category": "介護", "type": "tool-narisou",
+  "title_draft": "高額介護サービス費はいくら戻る？ 該当チェックの読み方", "tool_ref": "kougaku-kaigo-service-hi", "related_tool_list_no": 93,
+  "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）", "priority": "C",
+  "seido_data": [{ "file": "kougaku-kaigo-service-hi.json", "status": "ready", "path": "data/seido/kougaku-kaigo-service-hi.json" }],
+  "status": "gated_pass", "notes": "P3ツール併走記事。制度解説記事と実在ツールへ内部リンクを設置。"
+}

@@ -1,0 +1,7 @@
+{
+  "job_id": "Q4-068", "batch": 3, "category": "介護", "type": "tool-narisou",
+  "title_draft": "医療費と介護費を合算するといくら戻る？ チェック結果の読み方", "tool_ref": "kougaku-iryou-kaigo-gassan", "related_tool_list_no": 96,
+  "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）", "priority": "C",
+  "seido_data": [{ "file": "kougaku-iryou-kaigo-gassan.json", "status": "ready", "path": "data/seido/kougaku-iryou-kaigo-gassan.json" }],
+  "status": "gated_pass", "notes": "P3ツール併走記事。制度解説記事と実在ツールへ内部リンクを設置。"
+}
