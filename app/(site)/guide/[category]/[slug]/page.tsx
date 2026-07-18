@@ -4,10 +4,14 @@ import { getAllArticles, getArticle } from "@/app/lib/articles/loader";
 import type { ArticleMeta } from "@/app/lib/articles/types";
 import { renderMarkdown, extractFaq } from "@/app/lib/articles/markdown";
 import { ArticleShell } from "@/components/articles/ArticleShell";
-import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
+import {
+  JsonLd,
+  breadcrumbList,
+  article as articleLd,
+} from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
 import { tools } from "@/app/lib/tools/registry";
-import { SITE_URL } from "@/app/lib/site";
+import { SITE_NAME, SITE_URL } from "@/app/lib/site";
 
 export function generateStaticParams() {
   return getAllArticles().map((a) => ({ category: a.category, slug: a.slug }));
@@ -23,7 +27,11 @@ export async function generateMetadata({
   const { category, slug } = await params;
   const article = getArticle(category, slug);
   if (!article) return {};
-  return { title: article.title, description: article.lead };
+  return {
+    title: article.title,
+    description: article.lead,
+    alternates: { canonical: `/guide/${article.category}/${article.slug}` },
+  };
 }
 
 export default async function ArticlePage({
@@ -86,6 +94,16 @@ export default async function ArticlePage({
           ],
           SITE_URL,
         )}
+      />
+      <JsonLd
+        data={articleLd({
+          title: article.title,
+          description: article.lead,
+          path: `/guide/${article.category}/${article.slug}`,
+          updated: article.updated,
+          siteName: SITE_NAME,
+          siteUrl: SITE_URL,
+        })}
       />
       {faq.length > 0 && (
         <JsonLd
