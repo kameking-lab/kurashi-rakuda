@@ -485,6 +485,36 @@
     "status": "live"
   },
   {
+    "queueId": "P2-T24",
+    "slug": "tsukurioki-himochi-ichiran",
+    "category": "kaji",
+    "title": "作り置き 日持ち一覧（冷蔵/冷凍別）",
+    "description": "作り置き（常備菜）の料理名やカテゴリを検索すると、冷蔵・冷凍それぞれの日持ちの目安を表示します。",
+    "solves": [
+      "作ったおかずが冷蔵で何日もつか分からない",
+      "カレーや煮込み料理の保存で何に気をつければいいか分からない",
+      "作り置きを冷凍していいか、何週間もつか分からない",
+      "常備菜の保存期間が料理によってどう違うか分からない"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "厚生労働省「家庭でできる食中毒予防の６つのポイント」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/syokuchu/01_00006.html"
+      },
+      {
+        "label": "農林水産省「煮込み料理を楽しむために～ウェルシュ菌による食中毒にご注意を！！～」",
+        "url": "https://www.maff.go.jp/j/syouan/seisaku/foodpoisoning/f_encyclopedia/clostridium.perfringens.html"
+      },
+      {
+        "label": "農林水産省「冷蔵庫のかしこい使い方～知ってお得な食品の保存～」",
+        "url": "https://www.maff.go.jp/j/syouan/seisaku/foodpoisoning/frige.html"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
+  },
+  {
     "queueId": "Q3-13",
     "slug": "reito-hozon",
     "category": "kaji",

@@ -27,6 +27,11 @@ import { FukkiBiKeisan } from "@/components/tools/impl/FukkiBiKeisan";
 import { SentakuHyoji } from "@/components/tools/impl/SentakuHyoji";
 import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
 import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc";
+import { TsukuriokiHimochiIchiran } from "@/components/tools/impl/TsukuriokiHimochiIchiran";
+import {
+  TSUKURIOKI_DISCLAIMERS,
+  TSUKURIOKI_GRANULARITY_LIMITATION,
+} from "@/components/tools/impl/TsukuriokiHimochiIchiran.calc";
 import { SuihanMizu } from "@/components/tools/impl/SuihanMizu";
 import { KondateTeian } from "@/components/tools/impl/KondateTeian";
 import { KONDATE_DISCLAIMER, kondateData } from "@/lib/tools/impl/kondate-teian";
@@ -824,6 +829,31 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         <p>{REITO_HOZON_DISCLAIMERS.noRefreeze}卵は殻付きのままでは冷凍できません（破裂のおそれがあるため、必ず割りほぐしてから冷凍します）。</p>
         <p>
           現在は代表的な26食材のサンプル収録です。未登録の食材は「まだ登録がありません」と表示し、今後の追加をお待ちいただく形にしています。生米の保存やお米の炊飯量の目安など、本ツールの対象外の情報は扱いません。
+        </p>
+      </>
+    ),
+  },
+  "tsukurioki-himochi-ichiran": {
+    ui: <TsukuriokiHimochiIchiran />,
+    formula: (
+      <>
+        <p>
+          計算式はありません。料理名の部分一致検索（ひらがな⇄カタカナの表記ゆれを吸収）またはカテゴリ選択で、あらかじめ収録した5カテゴリ（生野菜サラダ・浅漬け／加熱調理した一般的なおかず／塩分・糖分・酢を多く使ったもの／カレー・シチュー・煮込み料理／汁物・スープ・みそ汁）の固定データ（冷蔵日数・冷凍週数の目安）を検索して表示しているだけです。
+        </p>
+        <p>
+          <strong>出典調査の結果（正直な開示）</strong>
+          ：消費者庁・農林水産省・厚生労働省のサイトを調査しましたが、「きんぴらごぼうは冷蔵3日」のような
+          <strong>料理単位の具体的な保存日数を明記した一次情報は見つかりませんでした</strong>
+          。公的機関が明記しているのは、①調理後はあら熱を早く取り小分けにして冷蔵・冷凍し、なるべく早く食べきる（厚生労働省・農林水産省）、②カレー・煮込み料理はウエルシュ菌（12〜50℃で増殖）対策として「できるだけその日のうちに食べきる」（農林水産省）、③食べる際は温かい料理65℃以上・みそ汁やスープは沸騰するまで加熱（厚生労働省）、という3点の定性的な原則のみです。
+        </p>
+        <p>
+          そのため本ツールの冷蔵日数・冷凍週数は、上記の原則と一般的な食品衛生の考え方（加熱の有無・塩分/糖分/酢の濃さで傷みやすさの傾向が変わる）を踏まえた<strong>カテゴリ単位の一般的な目安</strong>であり、公的機関が個別の料理に対して保証した数値ではありません。{TSUKURIOKI_GRANULARITY_LIMITATION}
+        </p>
+        <p>{TSUKURIOKI_DISCLAIMERS.generalPrinciple}</p>
+        <p>{TSUKURIOKI_DISCLAIMERS.reheat}</p>
+        <p>{TSUKURIOKI_DISCLAIMERS.notSafetyGuarantee}</p>
+        <p>
+          現在は5カテゴリの分類です。カレー・シチュー等の冷凍週数は、#37冷凍保存期間検索（<code>data/tables/reito-hozon.json</code>）のカレー・シチュー項目と同じ目安（約2〜4週間）を使用しています。
         </p>
       </>
     ),
