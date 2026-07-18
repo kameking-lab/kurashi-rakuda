@@ -222,6 +222,9 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.hadano.kanagawa.jp', // 秦野市の公式サイト
   'city.obihiro.hokkaido.jp', // 帯広市（city.obihiro.lg.jpはDNS解決不可）の公式サイト
   'city.takaoka.toyama.jp', // 高岡市（city.takaoka.lg.jpは存在しない）の公式サイト
+  'city.higashimurayama.tokyo.jp', // 東村山市の公式サイト
+  'city.hirosaki.aomori.jp', // 弘前市（city.hirosaki.lg.jpは存在しない）の公式サイト
+  'city.noda.chiba.jp', // 野田市の公式サイト
 ];
 
 const args = process.argv.slice(2);
