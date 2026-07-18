@@ -49,16 +49,18 @@ function input(over: Partial<HoikuryoInput> & { municipalityId: string }): Hoiku
 const feeOfCalc = (over: Partial<HoikuryoInput> & { municipalityId: string }) =>
   calc(input(over))?.fee;
 
-describe("収集済み自治体（56件）", () => {
-  it("56自治体を収録しており、id はファイル名と一致する", () => {
-    expect(municipalities).toHaveLength(56);
+describe("収集済み自治体（58件）", () => {
+  it("58自治体を収録しており、id はファイル名と一致する", () => {
+    expect(municipalities).toHaveLength(58);
     expect(municipalities.map((m) => m.id)).toEqual([
       "hokkaido-sapporo",
       "miyagi-sendai",
       "saitama-saitama",
       "saitama-kawaguchi",
+      "saitama-kawagoe",
       "chiba-chiba",
       "chiba-funabashi",
+      "chiba-kashiwa",
       "tokyo-chiyoda",
       "tokyo-chuo",
       "tokyo-minato",
@@ -682,9 +684,9 @@ describe("★京都市★ 保育利用時間バンド（timeBands・6段階）",
     }
   });
 
-  it("★他55自治体への影響なし★ timeBands を持つのは京都市のみで、バンド指定は金額を変えない", () => {
+  it("★他57自治体への影響なし★ timeBands を持つのは京都市のみで、バンド指定は金額を変えない", () => {
     const others = municipalities.filter((x) => x.id !== "kyoto-kyoto");
-    expect(others).toHaveLength(55);
+    expect(others).toHaveLength(57);
     for (const o of others) {
       expect(o.timeBands, o.id).toBeUndefined();
       expect(isTimeBandApplicable(o, "standard"), o.id).toBe(false);
@@ -903,5 +905,39 @@ describe("階層と金額の取り出し（スキーマ規約）", () => {
     expect(feeOfCalc({ municipalityId: "kanagawa-yokohama", income: 397001, need: "short" })).toBe(
       76100,
     );
+  });
+});
+
+describe("★中核市（東日本・第1弾）★ 柏市・川越市（P2-D01 東日本）", () => {
+  it("★柏市★ 27階層。所得割の境界で階層が変わり、標準/短時間で額が異なる（6/8換算なし）", () => {
+    const m = getMunicipality("chiba-kashiwa")!;
+    expect(m.fiscalYear).toBe(2026);
+    expect(m.tiers).toHaveLength(27);
+    // 3-2(所得割5,000円未満)=7,700 / 3-3(5,000〜18,599)=9,500 の境界
+    expect(feeOfCalc({ municipalityId: "chiba-kashiwa", income: 4999 })).toBe(7700);
+    expect(feeOfCalc({ municipalityId: "chiba-kashiwa", income: 5000 })).toBe(9500);
+    // 最上位 8-3(500,000円以上) 標準71,300 / 短時間70,080
+    expect(feeOfCalc({ municipalityId: "chiba-kashiwa", income: 500000 })).toBe(71300);
+    expect(feeOfCalc({ municipalityId: "chiba-kashiwa", income: 500000, need: "short" })).toBe(70080);
+    // 3歳以上は無償化により0円
+    expect(feeOfCalc({ municipalityId: "chiba-kashiwa", age: "age3plus", income: 999999 })).toBe(0);
+    // 非課税・生活保護は0円
+    expect(feeOfCalc({ municipalityId: "chiba-kashiwa", taxStatus: "nonTaxable", income: null })).toBe(0);
+  });
+
+  it("★川越市★ 21階層（A・B・C・D1〜D18）。均等割のみ6,000円、D2境界、最上位D18。政令市転入者のみ6%換算（自市全体には非適用）", () => {
+    const m = getMunicipality("saitama-kawagoe")!;
+    expect(m.fiscalYear).toBe(2026);
+    expect(m.tiers).toHaveLength(21);
+    // C(均等割のみ)=6,000 / D1(所得割15,000円未満)=6,500
+    expect(feeOfCalc({ municipalityId: "saitama-kawagoe", taxStatus: "equalOnly", income: null })).toBe(6000);
+    expect(feeOfCalc({ municipalityId: "saitama-kawagoe", income: 14999 })).toBe(6500);
+    // D2(15,000〜48,600未満)=7,400 の下端
+    expect(feeOfCalc({ municipalityId: "saitama-kawagoe", income: 15000 })).toBe(7400);
+    // 最上位 D18(365,000円以上)=59,300 / 短時間58,200
+    expect(feeOfCalc({ municipalityId: "saitama-kawagoe", income: 365000 })).toBe(59300);
+    expect(feeOfCalc({ municipalityId: "saitama-kawagoe", income: 365000, need: "short" })).toBe(58200);
+    // 3歳以上は無償化により0円
+    expect(feeOfCalc({ municipalityId: "saitama-kawagoe", age: "age3plus", income: 999999 })).toBe(0);
   });
 });
