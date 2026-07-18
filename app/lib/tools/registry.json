@@ -1838,5 +1838,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T09",
+    "slug": "taishoku-timing-songeki",
+    "category": "career",
+    "title": "退職タイミング損得カレンダー",
+    "description": "退職日・離職理由・年齢・被保険者期間から、退職の時期で変わる3つの扱い（社会保険料の月末退職判定・住民税の一括徴収・雇用保険の所定給付日数と給付制限）を一度に確認できます。保険料の実額は算出せず、制度上の扱いを示します。",
+    "solves": [
+      "月末退職と月末前日退職で社会保険料の扱いがどう変わるか知りたい",
+      "退職する月によって住民税が一括徴収されるのか知りたい",
+      "雇用保険の基本手当を何日分もらえるか知りたい",
+      "自己都合と会社都合で給付制限がどう違うか知りたい",
+      "退職のタイミングで損しない時期を知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "日本年金機構「退職された方の保険料」",
+        "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/nofu/20120330-01.html"
+      },
+      {
+        "label": "ハローワーク「基本手当の所定給付日数」",
+        "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_benefitdays.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/taishoku-timing-songeki.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/taishoku-timing-songeki.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
