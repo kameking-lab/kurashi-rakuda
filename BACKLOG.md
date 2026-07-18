@@ -160,7 +160,7 @@
 | P2-T02 | #58 | 子育て世帯の給付金・助成金 総ざらいチェッカー | S(オーパス) | ✔kosodate-kyufu-sougou-check | 要 |
 | [x] P2-T03 | #59 | 児童扶養手当計算（ひとり親） | S(オーパス) | ✔jidou-fuyou-teate | 要 → **完了（2026-07-18）**: slug `jidou-fuyou-teate`（money）。specs/s-tools/08-jidou-fuyou-teate.md・JidouFuyouTeate.calc.ts/tsx・tests/jidou-fuyou-teate.test.ts（26件）。全部支給/一部支給/支給停止の判定（本人所得＋養育費8割算入 vs 扶養親族数別の所得制限限度額）・一部支給の逓減式（係数0.0264029/0.0040719・10円きざみ）・同居扶養義務者の所得による支給停止・公的年金併給調整は確定額を出さず警告のみ（JSON withPublicPension=null）。金額/係数/限度額は全てdata/seido/jidou-fuyou-teate.json由来（ハードコードなし）。registry.json追加済み |
 | P2-T04 | #80 | 扶養内⇄社保加入 損益分岐 | S(オーパス) | ✔fuyounai-shaho-songeki-bunkiten・fuyou-kabe | 要 |
-| P2-T05 | #91 | 介護休業給付金計算 | S(オーパス) | ✔kaigo-kyugyou-kyufukin | 要 |
+| [x] P2-T05 | #91 | 介護休業給付金計算 | S(オーパス) | ✔kaigo-kyugyou-kyufukin | 要 → **完了（2026-07-18）**: slug `kaigo-kyugyou-kyufukin`（money）。specs/s-tools/09-kaigo-kyugyou-kyufukin.md・KaigoKyugyouKyufukin.calc.ts/tsx・tests/kaigo-kyugyou-kyufukin.test.ts（24件）。支給額＝賃金日額×支給日数×67%を支給単位期間（30日ごと・最終期間は実日数）に分割して合算、通算93日上限。賃金月額クランプ（上限532,200/下限90,420→支給上限356,574/下限60,581）・休業中賃金の80%調整（13%以下は減額なし/80%以上は不支給）・離職予定/対象家族外の支給対象外判定。金額はdata/seido/kaigo-kyugyou-kyufukin.json由来（ハードコードなし）。registry追加済み |
 | P2-T06 | #93 | 高額介護サービス費 該当チェック | S(オーパス) | ✔kougaku-kaigo-service-hi | 要 |
 | P2-T07 | #96 | 高額医療・高額介護合算制度 チェック | S(オーパス) | ✔kougaku-iryou-kaigo-gassan | 要 |
 | P2-T08 | #60 | 養育費 目安計算（裁判所算定表） | S(オーパス) | ✔youikuhi-santeihyou | 要 |

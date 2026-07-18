@@ -125,6 +125,16 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { KaigoKyugyouKyufukin } from "@/components/tools/impl/KaigoKyugyouKyufukin";
+import {
+  kaigoKyugyouKyufukinDataset,
+  KAIGO_KYUGYOU_DISCLAIMER,
+  BENEFIT_RATE as KAIGO_KYUGYOU_RATE,
+  MAX_DAYS as KAIGO_KYUGYOU_MAX_DAYS,
+  MAX_COUNT as KAIGO_KYUGYOU_MAX_COUNT,
+  MONTHLY_MAX as KAIGO_KYUGYOU_MONTHLY_MAX,
+  fmtYen as kaigoKyugyouFmtYen,
+} from "@/components/tools/impl/KaigoKyugyouKyufukin.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList, webApplication } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -187,6 +197,34 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "kaigo-kyugyou-kyufukin": {
+    ui: <KaigoKyugyouKyufukin />,
+    formula: (
+      <>
+        <p>
+          介護休業給付金は、雇用保険の被保険者が対象家族を介護するために介護休業を取得したときに支給されます。1回の支給対象期間あたりの支給額は「
+          <strong>休業開始時賃金日額 × 支給日数 × {Math.round(KAIGO_KYUGYOU_RATE * 100)}%</strong>
+          」です。休業開始時賃金日額は、原則として介護休業開始前6か月間の賃金を180で割った額（＝月額のおおよそ1/30）です。本ツールでは入力された平均月額賃金を30で割って賃金日額としています。
+        </p>
+        <p>
+          賃金月額（＝賃金日額×30）には上限額と下限額があり、上限額は{kaigoKyugyouFmtYen(KAIGO_KYUGYOU_MONTHLY_MAX)}
+          円（支給率67%・30日換算の支給上限額）に対応します。上限を超える高賃金でも給付はこの額で頭打ちになります。★この上限額は毎年8月1日に改定されます★。
+        </p>
+        <p>
+          介護休業は「支給単位期間」（休業開始日から1か月ごと）に区切って計算します。最終期間以外は各30日、最終期間はその期間の実日数を支給日数とします。同一の対象家族について支給日数は通算
+          {KAIGO_KYUGYOU_MAX_DAYS}日、{KAIGO_KYUGYOU_MAX_COUNT}回までの分割が上限です（この枠は対象家族1人ごとに与えられます）。
+        </p>
+        <p>
+          休業中に会社から賃金が支払われる場合は「80%調整」があります。支払われた賃金が「賃金日額×支給日数」の13%以下なら減額されず、13%超〜80%未満なら支払賃金と給付の合計が賃金月額の80%になるよう給付が減額され、80%以上なら給付されません。
+        </p>
+        <p>
+          ★介護休業給付金は育児休業給付と違い、介護休業中の社会保険料は免除されません★。また、休業開始時点で休業後に離職することが予定されている方は支給対象外です。
+        </p>
+        <p>{KAIGO_KYUGYOU_DISCLAIMER}</p>
+        <SeidoNotice datasets={[kaigoKyugyouKyufukinDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "jidou-fuyou-teate": {
     ui: <JidouFuyouTeate />,
     formula: (
