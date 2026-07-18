@@ -1,0 +1,3 @@
+{
+  "job_id": "Q4-071", "batch": 3, "category": "子育て", "type": "tool-narisou", "title_draft": "成長曲線プロットの見方", "tool_ref": "seichou-kyokusen", "related_tool_list_no": 25, "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）", "priority": "C", "seido_data": [{ "file": "seichou-hatsuiku-percentile.json", "status": "ready", "path": "data/tables/seichou-hatsuiku-percentile.json" }], "status": "gated_pass", "notes": "P3ツール併走記事。パーセンタイルを診断と混同せず、経時変化を見る方法を解説。"
+}
