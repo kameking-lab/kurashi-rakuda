@@ -109,7 +109,7 @@
         "type": "object",
         "required": ["key", "label"],
         "properties": {
-          "key": { "enum": ["under3", "age3plus"] },
+          "key": { "enum": ["under3", "age2", "age3plus"] },
           "label": { "type": "string" },
           "rule": { "type": "string", "description": "例: 当該年度の初日の前日における満年齢" }
         }
@@ -161,6 +161,10 @@
         "age3plusFree": {
           "$ref": "seido-common.schema.json#/definitions/valueNode",
           "description": "3歳以上(3号→2号)の保育料が無償か"
+        },
+        "age2Free": {
+          "$ref": "seido-common.schema.json#/definitions/valueNode",
+          "description": "2歳児クラスが自治体独自に無償か（例: 青森市はR8から2歳児クラス以上を無償化し0・1歳児クラスのみ課税）。省略時は under3 が0〜2歳を一律に扱う既存動作（後方互換）。設定する場合は ageClasses に key:\"age2\" を追加し、tiers[].fees.under3 には0・1歳児クラスの額のみを収める"
         },
         "under3NonTaxableFree": {
           "$ref": "seido-common.schema.json#/definitions/valueNode",
@@ -221,6 +225,19 @@
                     "type": "object",
                     "additionalProperties": { "type": "number" },
                     "description": "トップレベル timeBands を定義した自治体のみ。キーは timeBands.bands[].key と完全一致させ、保育標準時間認定のバンド別月額(円)を全バンドぶん収録する。standard には defaultBandKey の額を重複して入れる。short はバンドで変わらない（保育短時間認定は1区分）"
+                  }
+                }
+              },
+              "age2": {
+                "type": "object",
+                "description": "2歳児クラスの月額保育料(円)。2歳児クラスを別区分にする自治体（例: 青森市＝2歳児クラス以上を独自無償化し0・1歳児クラスのみ課税）のみ使う。省略時は under3 が0〜2歳を包含する（既存の後方互換）",
+                "properties": {
+                  "standard": { "type": "number" },
+                  "short": { "type": "number" },
+                  "standardByBand": {
+                    "type": "object",
+                    "additionalProperties": { "type": "number" },
+                    "description": "under3.standardByBand と同じ規約"
                   }
                 }
               },

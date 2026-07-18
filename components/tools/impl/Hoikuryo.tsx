@@ -626,7 +626,9 @@ export function Hoikuryo() {
                   ? "この月から全世帯の保育料が無償になります"
                   : r.basis === "age3plusFree"
                     ? m.freeTuition?.age3plusFree?.label ?? "3歳以上児は無償です"
-                    : r.tier
+                    : r.basis === "age2Free"
+                      ? m.freeTuition?.age2Free?.label ?? "2歳児クラスは無償です"
+                      : r.tier
                       ? `階層 ${r.tier.tier}${r.tier.label ? `（${r.tier.label}）` : ""}${
                           r.timeBand ? `。保育利用時間 ${r.timeBand.label} の額です` : ""
                         }${

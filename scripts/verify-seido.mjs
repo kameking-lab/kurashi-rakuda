@@ -181,6 +181,15 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.toyonaka.osaka.jp', // 豊中市（中核市）は .lg.jp 版が存在しない（P2-D01・2026-07-18）
   'city.toyota.aichi.jp', // 豊田市（中核市）は .lg.jp 版が存在しない。www2.city.toyota.aichi.jp もサブドメイン一致で許可される（P2-D01・2026-07-18）
   'city.amagasaki.hyogo.jp', // 尼崎市（中核市）は city.amagasaki.lg.jp にAレコードが存在しない（P2-D01・2026-07-18）
+  /**
+   * 一宮市（中核市）は独自ドメイン city.ichinomiya.aichi.jp が公式サイト本体。
+   * city.ichinomiya.lg.jp はDNS解決はするがTLS証明書がホスト名と一致せず、
+   * 到達先も404（メール用ドメイン info@city.ichinomiya.lg.jp としてのみ使用と見られる）。
+   * 実サイトは aichi.jp 側のみのため個別に許可する（P2-D01・2026-07-18）。
+   */
+  'city.ichinomiya.aichi.jp',
+  'city.hirakata.osaka.jp', // 枚方市（中核市）は city.hirakata.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）
+  'city.suita.osaka.jp', // 吹田市（中核市）は city.suita.lg.jp が存在しない（P2-D01・2026-07-18）
 ];
 
 const args = process.argv.slice(2);
