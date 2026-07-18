@@ -113,6 +113,8 @@ import {
   PMS_PREVALENCE_TO_PERCENT,
   PMS_DISCLAIMER,
 } from "@/components/tools/impl/PmsYosokuCalendar.calc";
+import { AkachanSuiminGyakusan } from "@/components/tools/impl/AkachanSuiminGyakusan";
+import { AKACHAN_SUIMIN_DISCLAIMER } from "@/components/tools/impl/AkachanSuiminGyakusan.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1762,6 +1764,25 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           <strong>医療判断は行いません</strong>
           ：本ツールが行うのは黄体期・PMSの定義に基づく日付計算のみで、症状の有無・重さの診断は一切行いません。記録機能もなく、入力値・結果は保存されずその場での計算のみです。{PMS_DISCLAIMER}
         </p>
+      </>
+    ),
+  },
+  "akachan-suimin-gyakusan": {
+    ui: <AkachanSuiminGyakusan />,
+    formula: (
+      <>
+        <p>
+          <strong>赤ちゃん・お子さまの推定睡眠時間（参考）</strong>
+          ：就寝予定時刻から起床予定時刻までの時間です。起床予定時刻の「時:分」が就寝予定時刻の「時:分」以下の場合は、日をまたぐ（翌日の起床）とみなして24時間を加算します。1〜2歳（11〜14時間）・3〜5歳（10〜13時間）・小学生（9〜12時間）・中学高校生（8〜10時間）の4区分は、厚生労働省「健康づくりのための睡眠ガイド2023」が米国睡眠医学会の推奨として紹介している値と比較し、目安より短め・範囲内・長めのいずれかを参考表示します。1歳未満は、同ガイドに時間数の記載がないため比較を行いません。
+        </p>
+        <p>
+          <strong>保護者の就寝時刻の目安</strong>
+          ：「赤ちゃん・お子さまの起床予定時刻 − 保護者自身の必要睡眠時間 − 寝かしつけ・夜泣き対応等にかかる時間」で計算します。保護者は赤ちゃん・お子さまの起床予定時刻に合わせて自身も起床する、という前提の逆算です。必要睡眠時間の初期値6時間は、同ガイドの成人の目安「6時間以上を目安として必要な睡眠時間を確保する」に基づく初期値で、編集できます。
+        </p>
+        <p>
+          必要睡眠時間と寝かしつけ・夜泣き対応の時間の合計が、赤ちゃん・お子さまの就寝〜起床の時間枠を超える場合は、計算結果をそのまま表示したうえで、時間枠が窮屈である可能性がある旨を注意書きとして表示します（エラーにはしません）。
+        </p>
+        <p>{AKACHAN_SUIMIN_DISCLAIMER}</p>
       </>
     ),
   },
