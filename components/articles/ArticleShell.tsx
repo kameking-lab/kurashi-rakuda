@@ -5,6 +5,7 @@ import { getTool } from "@/app/lib/tools/registry";
 import { SourceList } from "@/components/ui/SourceList";
 import { Callout } from "@/components/ui/Callout";
 import { Rakku } from "@/components/mascot/Rakku";
+import { ArticleToc } from "@/components/articles/ArticleToc";
 
 const TYPE_LABEL = { seido: "制度をやさしく整理", heiso: "ツールと一緒に確認", dandori: "順番どおりに進める" } as const;
 const TYPE_POSE = { seido: "guide", heiso: "calc", dandori: "carry" } as const;
@@ -62,7 +63,8 @@ export function ArticleShell({
         </div>
       )}
 
-      <div className="prose-kurashi mx-auto mt-9 max-w-[70ch] space-y-5">{children}</div>
+      <ArticleToc contentId="article-content" />
+      <div id="article-content" className="prose-kurashi mx-auto mt-9 max-w-[70ch] space-y-5">{children}</div>
 
       <SourceList
         sources={meta.sources}
