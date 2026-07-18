@@ -17,6 +17,8 @@
  */
 
 import aichiNagoya from "@/data/seido/hoikuryo/aichi-nagoya.json";
+import aichiOkazaki from "@/data/seido/hoikuryo/aichi-okazaki.json";
+import aichiIchinomiya from "@/data/seido/hoikuryo/aichi-ichinomiya.json";
 import aichiToyota from "@/data/seido/hoikuryo/aichi-toyota.json";
 import chibaChiba from "@/data/seido/hoikuryo/chiba-chiba.json";
 import chibaFunabashi from "@/data/seido/hoikuryo/chiba-funabashi.json";
@@ -35,6 +37,7 @@ import ishikawaKanazawa from "@/data/seido/hoikuryo/ishikawa-kanazawa.json";
 import kagoshimaKagoshima from "@/data/seido/hoikuryo/kagoshima-kagoshima.json";
 import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
 import kanagawaSagamihara from "@/data/seido/hoikuryo/kanagawa-sagamihara.json";
+import gifuGifu from "@/data/seido/hoikuryo/gifu-gifu.json";
 import kochiKochi from "@/data/seido/hoikuryo/kochi-kochi.json";
 import miyazakiMiyazaki from "@/data/seido/hoikuryo/miyazaki-miyazaki.json";
 import nagasakiNagasaki from "@/data/seido/hoikuryo/nagasaki-nagasaki.json";
@@ -54,6 +57,8 @@ import okayamaKurashiki from "@/data/seido/hoikuryo/okayama-kurashiki.json";
 import osakaOsaka from "@/data/seido/hoikuryo/osaka-osaka.json";
 import osakaSakai from "@/data/seido/hoikuryo/osaka-sakai.json";
 import osakaToyonaka from "@/data/seido/hoikuryo/osaka-toyonaka.json";
+import osakaSuita from "@/data/seido/hoikuryo/osaka-suita.json";
+import osakaHirakata from "@/data/seido/hoikuryo/osaka-hirakata.json";
 import osakaHigashiosaka from "@/data/seido/hoikuryo/osaka-higashiosaka.json";
 import saitamaSaitama from "@/data/seido/hoikuryo/saitama-saitama.json";
 import saitamaKawaguchi from "@/data/seido/hoikuryo/saitama-kawaguchi.json";
@@ -249,14 +254,19 @@ export const municipalities: HoikuryoMunicipality[] = [
   naganoNagano,
   toyamaToyama,
   ishikawaKanazawa,
+  gifuGifu,
   shizuokaShizuoka,
   shizuokaHamamatsu,
   aichiNagoya,
+  aichiOkazaki,
+  aichiIchinomiya,
   aichiToyota,
   kyotoKyoto,
   osakaOsaka,
   osakaSakai,
   osakaToyonaka,
+  osakaSuita,
+  osakaHirakata,
   osakaHigashiosaka,
   hyogoKobe,
   hyogoHimeji,
