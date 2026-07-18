@@ -125,6 +125,12 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { ShokujiSesshuKijunNinpu } from "@/components/tools/impl/ShokujiSesshuKijunNinpu";
+import {
+  shokujiSesshuDataset,
+  SHOKUJI_SESSHU_DISCLAIMER,
+  folicAcidInfo as shokujiFolicAcidInfo,
+} from "@/components/tools/impl/ShokujiSesshuKijunNinpu.calc";
 import { KodomoIryouhiJyosei } from "@/components/tools/impl/KodomoIryouhiJyosei";
 import {
   kodomoIryouhiDataset,
@@ -219,6 +225,33 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "shokuji-sesshu-kijun-ninpu": {
+    ui: <ShokujiSesshuKijunNinpu />,
+    formula: (
+      <>
+        <p>
+          この早見は「日本人の食事摂取基準（2025年版）」（健康増進法に基づき厚生労働大臣が定める）の妊婦・授乳婦の
+          <strong>付加量</strong>
+          を、妊娠初期・中期・後期・授乳中の別に表示しています。付加量とは、同じ年齢の妊娠・授乳していないときの推奨量に
+          <strong>上乗せする量</strong>で、付加量そのものが1日の摂取目標ではありません。
+        </p>
+        <p>
+          エネルギーの付加量は妊娠が進むほど増え（初期50・中期250・後期450kcal/日）、授乳中は350kcal/日です。鉄は初期＋2.5mg、中期・後期＋8.5mg、授乳中＋2.0mg（いずれも推奨量への付加）。葉酸は食事からの分が中期・後期に＋240µg、授乳中＋100µgです。カルシウムは妊娠・授乳とも付加量がありません（非妊娠時と同じ推奨量）。エネルギーの過不足は、推定エネルギー必要量ではなくBMI・体重変化で評価します。
+        </p>
+        <p>
+          ★妊娠を計画している方・妊娠初期の方は、食事とは別にサプリメント等から葉酸を1日
+          {shokujiFolicAcidInfo().dailyAmount}µg摂ることが推奨されています★
+          （神経管閉鎖障害のリスク低減のため）。ただしサプリメント由来の葉酸（狭義の葉酸）には耐容上限量があり、18〜29歳女性では1日
+          {shokujiFolicAcidInfo().upperLimitFemale18to29}µgです。
+        </p>
+        <p>
+          カフェイン・アルコール・水銀を含む魚などの「控えるべきものの目安」は、この食事摂取基準では定められていないため、本ツールでは数値を扱っていません（食品安全委員会・自治体の案内をご確認ください）。
+        </p>
+        <p>{SHOKUJI_SESSHU_DISCLAIMER}</p>
+        <SeidoNotice datasets={[shokujiSesshuDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "kodomo-iryouhi-jyosei": {
     ui: <KodomoIryouhiJyosei />,
     formula: (
