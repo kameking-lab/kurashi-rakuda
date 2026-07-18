@@ -71,7 +71,26 @@
     "私立高校に進学しても学費の負担が大きすぎないか不安",
     "所得制限がなくなったと聞いたが、うちも対象になるのか知りたい",
     "申請を忘れると支給されないのか心配"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "newborn",
+      "infant",
+      "toddler",
+      "schoolAge"
+    ],
+    "lifeEvents": [
+      "parenting"
+    ],
+    "childAgeBands": [
+      "age0_1",
+      "age1_3",
+      "age3_6",
+      "age6_12"
+    ],
+    "gender": null
+  }
 }
 ---
 

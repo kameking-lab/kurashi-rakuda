@@ -85,7 +85,19 @@
     "算定表の見方が分からない",
     "離婚時に養育費を決めていなかったら何ももらえないと思っている",
     "支払いが滞ったときに何ができるのか知らない"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "adult"
+    ],
+    "lifeEvents": [
+      "parenting",
+      "working"
+    ],
+    "childAgeBands": [],
+    "gender": null
+  }
 }
 ---
 

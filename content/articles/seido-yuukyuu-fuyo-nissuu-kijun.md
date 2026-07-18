@@ -121,7 +121,22 @@
     "時短勤務でも有給休暇は普通にもらえるのか不安",
     "パートでも有給休暇がもらえるか分からない",
     "育休から復帰したら有給休暇はどうなるのか心配"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "infant",
+      "adult"
+    ],
+    "lifeEvents": [
+      "parenting",
+      "working"
+    ],
+    "childAgeBands": [
+      "age0_1"
+    ],
+    "gender": null
+  }
 }
 ---
 

@@ -120,7 +120,25 @@
     }
   ],
   "last_updated": "2026-07-17",
-  "next_check_due": "2026-08-01"
+  "next_check_due": "2026-08-01",
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "pregnancy",
+      "newborn",
+      "infant"
+    ],
+    "lifeEvents": [
+      "pregnant",
+      "parenting",
+      "working"
+    ],
+    "childAgeBands": [
+      "prenatal",
+      "age0_1"
+    ],
+    "gender": null
+  }
 }
 ---
 

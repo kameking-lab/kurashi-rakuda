@@ -4,6 +4,7 @@ import type { ToolCategory, ToolSource } from "@/app/lib/tools/types";
 import { isToolCategory, TOOL_CATEGORIES } from "@/app/lib/tools/types";
 import { tools } from "@/app/lib/tools/registry";
 import type { ArticleType } from "./types";
+import type { Audience } from "@/app/lib/audience";
 
 /**
  * content/articles/ の記事（記事工場出力。JSONフロントマター＋Markdown本文）を
@@ -44,6 +45,7 @@ interface FactoryFrontmatter {
   solves?: string[];
   last_updated: string;
   next_check_due?: string;
+  audience?: Audience;
 }
 
 export interface LoadedArticle {
@@ -60,9 +62,20 @@ export interface LoadedArticle {
   solves: string[];
   sources: ToolSource[];
   updated: string;
+  /** 対象属性メタ（並べ替え・ハイライト用。docs/12）。frontmatter の audience 由来 */
+  audience: Audience;
   /** Markdown本文（フロントマターを除く） */
   body: string;
 }
+
+/** audience 欠落時の安全な既定値（万人向け）。CI が欠落を検出するため通常は使われない */
+const DEFAULT_AUDIENCE: Audience = {
+  universal: true,
+  lifeStages: [],
+  lifeEvents: [],
+  childAgeBands: [],
+  gender: null,
+};
 
 const ARTICLES_DIR = join(process.cwd(), "content", "articles");
 
@@ -98,6 +111,7 @@ function parseArticle(filename: string): LoadedArticle {
       url: s.url,
     })),
     updated: fm.last_updated,
+    audience: fm.audience ?? DEFAULT_AUDIENCE,
     body: match[2],
   };
 }

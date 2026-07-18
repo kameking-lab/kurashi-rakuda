@@ -59,7 +59,16 @@
     "SPFやPAの数字が何を測っているのか分からない",
     "塗り直しのタイミングが分からない",
     "日焼け止めを塗ればシミが消えると思っていいのか分からない"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "adult"
+    ],
+    "lifeEvents": [],
+    "childAgeBands": [],
+    "gender": null
+  }
 }
 ---
 

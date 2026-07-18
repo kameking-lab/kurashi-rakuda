@@ -86,7 +86,19 @@
     "介護休業給付金がいくらもらえるか分からない",
     "介護休業給付金の支給要件が分からない",
     "介護休業を何回まで分けて取れるか分からない"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "adult",
+      "senior"
+    ],
+    "lifeEvents": [
+      "caregiving"
+    ],
+    "childAgeBands": [],
+    "gender": null
+  }
 }
 ---
 

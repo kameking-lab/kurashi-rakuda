@@ -27,7 +27,18 @@
     { "key": "taishoku.shakai_hoken_getsumatsu_2kagetsu", "value": 2, "unit": "ヶ月", "status": "stub", "stub_reason": "「退職月の前月と退職月の2か月分」は元データでは説明文中の記述であり、単独の数値ノードとして保持されていないため機械照合の対象外とする。" }
   ],
   "last_updated": "2026-07-17",
-  "next_check_due": "2027-04-01"
+  "next_check_due": "2027-04-01",
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "adult"
+    ],
+    "lifeEvents": [
+      "working"
+    ],
+    "childAgeBands": [],
+    "gender": null
+  }
 }
 ---
 

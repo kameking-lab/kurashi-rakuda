@@ -35,6 +35,7 @@ export function Rakku({
   expression = "smile",
   pose,
   label,
+  priority = false,
 }: {
   size?: number;
   /** smile=基本形 / sorry=困り顔（404・検索0件用。docs/09 §1.6 により泣き顔・汗は描かない） */
@@ -43,8 +44,11 @@ export function Rakku({
   pose?: RakkuPose;
   /** 意味を持つ場合のみ指定。省略時は装飾扱い（aria-hidden） */
   label?: string;
+  /** Above-the-fold usage only. */
+  priority?: boolean;
 }) {
   const resolvedPose: RakkuPose = pose ?? EXPRESSION_TO_POSE[expression];
+  const shouldPrioritize = priority || (resolvedPose === "front" && size >= 200);
   const file = FILES[resolvedPose];
   if (file) {
     return (
@@ -54,7 +58,8 @@ export function Rakku({
         height={size}
         alt={label ?? ""}
         aria-hidden={label ? undefined : true}
-        priority={resolvedPose === "front" && size >= 200}
+        priority={shouldPrioritize}
+        fetchPriority={shouldPrioritize ? "high" : undefined}
         sizes={`${size}px`}
       />
     );

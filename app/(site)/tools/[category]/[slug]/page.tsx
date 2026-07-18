@@ -125,6 +125,62 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { SeichouKyokusen } from "@/components/tools/impl/SeichouKyokusen";
+import { SEICHOU_EDITION } from "@/components/tools/impl/SeichouKyokusen.calc";
+import { KosodateKyufuSougouCheck } from "@/components/tools/impl/KosodateKyufuSougouCheck";
+import {
+  kosodateKyufuDataset,
+  KOSODATE_KYUFU_DISCLAIMER,
+  ALL_PROGRAMS as KOSODATE_ALL_PROGRAMS,
+} from "@/components/tools/impl/KosodateKyufuSougouCheck.calc";
+import { TaishokuTimingSongeki } from "@/components/tools/impl/TaishokuTimingSongeki";
+import {
+  taishokuTimingDataset,
+  TAISHOKU_TIMING_DISCLAIMER,
+  WAITING_DAYS as TAISHOKU_WAITING_DAYS,
+  RESTRICTION_MONTHS_JIKO as TAISHOKU_RESTRICTION_MONTHS,
+} from "@/components/tools/impl/TaishokuTimingSongeki.calc";
+import { FuyounaiShahoSongeki } from "@/components/tools/impl/FuyounaiShahoSongeki";
+import {
+  fuyounaiShahoSongekiDataset,
+  FUYOUNAI_SHAHO_DISCLAIMER,
+  BURDEN_RATE_UNDER40,
+  BURDEN_RATE_40_TO64,
+  WALL_106,
+  WALL_130,
+  KOKUMIN_NENKIN_MONTHLY,
+  fmtYen as fuyounaiShahoFmtYen,
+} from "@/components/tools/impl/FuyounaiShahoSongeki.calc";
+import { YouikuhiSanteihyou } from "@/components/tools/impl/YouikuhiSanteihyou";
+import {
+  youikuhiSanteihyouDataset,
+  YOUIKUHI_DISCLAIMER,
+  INDEX_AGE_0_14,
+  INDEX_AGE_15_PLUS,
+  HOUTEI_YOUIKUHI_PER_CHILD,
+  SAKIDORI_PER_CHILD,
+  fmtYen as youikuhiFmtYen,
+} from "@/components/tools/impl/YouikuhiSanteihyou.calc";
+import { FuninChiryouHokenTekiyou } from "@/components/tools/impl/FuninChiryouHokenTekiyou";
+import {
+  funinChiryouDataset,
+  FUNIN_CHIRYOU_DISCLAIMER,
+  UPPER_AGE_LIMIT as FUNIN_UPPER_AGE_LIMIT,
+  AGE_BOUNDARY as FUNIN_AGE_BOUNDARY,
+  UNDER40_LIMIT as FUNIN_UNDER40_LIMIT,
+  AGE40_TO43_LIMIT as FUNIN_AGE40_TO43_LIMIT,
+} from "@/components/tools/impl/FuninChiryouHokenTekiyou.calc";
+import { ShokujiSesshuKijunNinpu } from "@/components/tools/impl/ShokujiSesshuKijunNinpu";
+import {
+  shokujiSesshuDataset,
+  SHOKUJI_SESSHU_DISCLAIMER,
+  folicAcidInfo as shokujiFolicAcidInfo,
+} from "@/components/tools/impl/ShokujiSesshuKijunNinpu.calc";
+import { KodomoIryouhiJyosei } from "@/components/tools/impl/KodomoIryouhiJyosei";
+import {
+  kodomoIryouhiDataset,
+  KODOMO_IRYOUHI_DISCLAIMER,
+} from "@/components/tools/impl/KodomoIryouhiJyosei.calc";
 import { KougakuIryouKaigoGassan } from "@/components/tools/impl/KougakuIryouKaigoGassan";
 import {
   kougakuGassanDataset,
@@ -187,6 +243,45 @@ import {
   JIDO_TEATE_EXCEPTION_DAYS,
   ICHIJIKIN_CLAIM_YEARS,
 } from "@/components/tools/impl/SangoTetsuzukiChecklist.calc";
+import { ChildSeatKitei } from "@/components/tools/impl/ChildSeatKitei";
+import {
+  childSeatDataset,
+  AGE_THRESHOLD as CHILD_SEAT_AGE_THRESHOLD,
+  PENALTY as CHILD_SEAT_PENALTY,
+  EXEMPTION_DESCRIPTION as CHILD_SEAT_EXEMPTION_DESCRIPTION,
+} from "@/components/tools/impl/ChildSeatKitei.calc";
+import { YuukyuuFuyoNissuuKijun } from "@/components/tools/impl/YuukyuuFuyoNissuuKijun";
+import {
+  yuukyuuFuyoDataset,
+  ELIGIBLE_CONTINUOUS_SERVICE_MONTHS,
+  ELIGIBLE_ATTENDANCE_RATE,
+  FIRST_GRANT_DAYS,
+  MAX_GRANT_DAYS,
+  WEEKLY_HOURS_THRESHOLD,
+  WEEKLY_WORK_DAYS_THRESHOLD,
+  MANDATORY_5DAYS_THRESHOLD,
+  MANDATORY_5DAYS_REQUIRED_DAYS,
+  PRESCRIPTION_YEARS,
+} from "@/components/tools/impl/YuukyuuFuyoNissuuKijun.calc";
+import { KyouikuKunrenKyufukin } from "@/components/tools/impl/KyouikuKunrenKyufukin";
+import {
+  kyouikuKunrenKyufukinDataset,
+  IPPAN_BENEFIT_RATE,
+  IPPAN_BENEFIT_CAP,
+  TOKUTEI_IPPAN_BENEFIT_RATE,
+  TOKUTEI_IPPAN_BENEFIT_CAP,
+  SENMON_JISSEN_MAX_TOTAL_BENEFIT,
+  MINIMUM_BENEFIT_AMOUNT,
+} from "@/components/tools/impl/KyouikuKunrenKyufukin.calc";
+import { IryouhiKoujoKodomo } from "@/components/tools/impl/IryouhiKoujoKodomo";
+import {
+  iryouhiKoujoDataset,
+  MAX_DEDUCTION as IRYOUHI_MAX_DEDUCTION,
+  THRESHOLD_FIXED as IRYOUHI_THRESHOLD_FIXED,
+  THRESHOLD_RATE as IRYOUHI_THRESHOLD_RATE,
+  REFUND_NOTE as IRYOUHI_REFUND_NOTE,
+  SELF_MEDICATION_IS_EXCLUSIVE_CHOICE,
+} from "@/components/tools/impl/IryouhiKoujoKodomo.calc";
 import { todayJst } from "@/lib/tools/seido";
 
 /**
@@ -214,6 +309,215 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "seichou-kyokusen": {
+    ui: <SeichouKyokusen />,
+    formula: (
+      <>
+        <p>
+          このツールは、お子さんの体重・身長・頭囲の実測値が、同じ月齢・性別の子どもの中で
+          <strong>どのパーセンタイルの位置にあるか</strong>を示します。パーセンタイルは「同じ月齢・性別の子を小さい順に100人並べたとき下から何番目あたりか」を表す目安で、3〜97パーセンタイルの間に約94%の子どもが入ります。
+        </p>
+        <p>
+          基準値は{SEICHOU_EDITION}の3・10・25・50・75・90・97パーセンタイル値（一般調査・病院調査）です。入力された実測値を、選んだ月齢・年齢区分・性別の7つのパーセンタイル値と比べ、どの区間（例: 25〜50パーセンタイルの間）に入るか、中央値（50パーセンタイル）とどれだけ差があるかを表示します。3パーセンタイル未満・97パーセンタイル以上のときは、統計的に少数側にいることを示しますが、それ自体が異常を意味するわけではありません。
+        </p>
+        <p>
+          データは政府統計の総合窓口（e-Stat）が公開する統計表を機械的に転記し、丸めた後も各区分で値が小さい順に並ぶ（p3&lt;…&lt;p97）ことを確認しています。頭囲は原典の区分に合わせて2歳6〜12か月未満までとし、存在しない区分を推測で補うことはしていません。
+        </p>
+        <p>
+          ★このツールは発育が正常か・異常かを判定しません★
+          母子健康手帳の発育曲線は版によって基づく調査年が異なることがあり、数値がわずかに違う場合があります。発育の評価は1回の測定値ではなく経過（曲線の傾き）で見る必要があります。心配なことがあれば、必ず乳幼児健診やかかりつけの小児科でご相談ください。
+        </p>
+      </>
+    ),
+  },
+  "kosodate-kyufu-sougou-check": {
+    ui: <KosodateKyufuSougouCheck />,
+    formula: (
+      <>
+        <p>
+          このチェッカーは、子育て世帯に関係しうる国の支援制度{KOSODATE_ALL_PROGRAMS.length}
+          件（児童手当、産休・育休の給付、妊婦のための支援給付、幼児教育・保育の無償化、児童扶養手当、こども医療費助成、高等学校等就学支援金・高校生等奨学給付金、就学援助制度）を、お子さんの
+          <strong>時期（ライフステージ）</strong>で横断的に洗い出すものです。
+        </p>
+        <p>
+          各制度には「対象となる時期」が設定されており、選んだ時期を対象に含む制度を、
+          <strong>すべての世帯が対象になりうるもの</strong>と<strong>所得などの条件により対象になるもの</strong>
+          に分けて表示します。ひとり親世帯を選ぶと、児童扶養手当を特に確認すべき制度として強調します。
+        </p>
+        <p>
+          ★このツールは金額を計算しません★
+          制度の存在・対象・所管・申請先という「気づき」と「問い合わせ先への道案内」に徹し、支給額や所得制限といった詳細は、それぞれの窓口や、このサイトの個別ツール（児童手当・児童扶養手当・こども医療費助成など）に委ねています。金額と対象条件を二重に管理して食い違うことを避けるための設計です。
+        </p>
+        <p>
+          制度によっては所得制限・申請期限・自治体独自の条件があり、ここに載っていない自治体独自の給付・助成もあります。実際に受けられるかどうかと金額は、必ず各制度の所管・申請先（お住まいの市区町村など）でご確認ください。
+        </p>
+        <p>{KOSODATE_KYUFU_DISCLAIMER}</p>
+        <SeidoNotice datasets={[kosodateKyufuDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "taishoku-timing-songeki": {
+    ui: <TaishokuTimingSongeki />,
+    formula: (
+      <>
+        <p>
+          このカレンダーは、退職の<strong>時期</strong>によって扱いが変わる3つの制度をまとめて示します。保険料や税の実際の金額は、標準報酬月額・お住まいの自治体・前年所得で変わるため計算していません。
+        </p>
+        <p>
+          ①<strong>社会保険料</strong>：資格喪失日は退職日の翌日です。社会保険料は資格喪失日が属する月の前月分まで納め、日割りされません。そのため
+          <strong>月末に退職</strong>すると翌月1日が資格喪失日となり退職月分まで会社経由（労使折半）で控除され、
+          <strong>月末の前日に退職</strong>すると同じ月が資格喪失日となり退職月分は自分で国民健康保険等を負担します。1日違いで負担者が変わります。
+        </p>
+        <p>
+          ②<strong>住民税</strong>：1月〜4月に退職すると申し出の有無にかかわらず残額が一括徴収され、5月退職はその月の給与等から徴収、6月〜12月退職は原則ご自身での納付（普通徴収）に切り替わり、申し出れば一括徴収も選べます。
+        </p>
+        <p>
+          ③<strong>雇用保険（基本手当）</strong>：所定給付日数は離職理由・年齢・被保険者期間で決まります。自己都合（一般の離職者）は最長でも150日ですが、会社都合（特定受給資格者）は最長330日、就職困難者は最長360日です。受給には待期
+          {TAISHOKU_WAITING_DAYS}日があり、自己都合退職には原則{TAISHOKU_RESTRICTION_MONTHS}
+          か月の給付制限が付きます（令和7年4月以降。会社都合等は給付制限なし）。
+        </p>
+        <p>{TAISHOKU_TIMING_DISCLAIMER}</p>
+        <SeidoNotice datasets={[taishokuTimingDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "fuyounai-shaho-songeki-bunkiten": {
+    ui: <FuyounaiShahoSongeki />,
+    formula: (
+      <>
+        <p>
+          このツールは<strong>社会保険料の負担だけ</strong>
+          に着目して、扶養を抜けて働くときの「働き損」ゾーンと、手取りが壁の手前の水準に戻る損益分岐点の年収を計算します。所得税・住民税・配偶者（特別）控除・勤務先の家族手当は含めていません（税・控除まで含めた判定は「扶養の壁シミュレーター」をご利用ください）。
+        </p>
+        <p>
+          106万円（{fuyounaiShahoFmtYen(WALL_106)}
+          円）を超えて勤務先の社会保険に加入すると、健康保険料・厚生年金保険料の本人負担が発生します。本人負担の合計料率は、40歳未満で約
+          {Math.round(BURDEN_RATE_UNDER40 * 1000) / 10}%、介護保険料がかかる40歳以上65歳未満で約
+          {Math.round(BURDEN_RATE_40_TO64 * 1000) / 10}
+          %です。社会保険料は「年収×この料率」で計算し、手取り（税抜き）は「年収−社会保険料」になります。
+        </p>
+        <p>
+          損益分岐点は、加入後の手取りが壁の手前の水準（＝壁の金額）に戻る年収で、「壁の金額 ÷（1−料率）」で求めます。壁からこの分岐点までの間が、働いても手取りがかえって減る「働き損」ゾーンです。
+        </p>
+        <p>
+          130万円（{fuyounaiShahoFmtYen(WALL_130)}
+          円）を超えて扶養を外れ、勤務先の社会保険にも入れない場合は、自分で国民年金（月
+          {fuyounaiShahoFmtYen(KOKUMIN_NENKIN_MONTHLY)}円）と国民健康保険に加入します。
+          <strong>国民健康保険料は自治体・前年所得で大きく変わるため本ツールでは国民年金のみで試算し、国保が上乗せされる旨を明示します</strong>
+          （捏造しません）。なお繁忙期などの一時的な収入増は、事業主の証明で扶養にとどまれる場合があります。
+        </p>
+        <p>
+          社会保険への加入は損だけではなく、傷病手当金・出産手当金や、老齢・障害・遺族の厚生年金といった保障の手厚さというメリットもあります。
+        </p>
+        <p>{FUYOUNAI_SHAHO_DISCLAIMER}</p>
+        <SeidoNotice datasets={[fuyounaiShahoSongekiDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "youikuhi-santeihyou": {
+    ui: <YouikuhiSanteihyou />,
+    formula: (
+      <>
+        <p>
+          このツールは裁判所の「改定標準算定方式・算定表（令和元年版）」を使います。
+          <strong>養育費の金額そのものは、義務者・権利者の年収から自動計算しません</strong>
+          。算定表は縦軸・横軸の年収で読む数値表がPDF（画像）で提供されており、金額表をそのままデータ化できないためです。代わりに、子どもの人数と年齢構成から使うべき算定表（表1〜9）を特定して公式PDFへご案内します。
+        </p>
+        <p>
+          算定表の使い方は、縦軸で養育費を支払う側（義務者）の年収、横軸で受け取る側（権利者）の年収を探し、交わる金額帯を読むというものです。年収は、給与所得者なら源泉徴収票の「支払金額」、自営業者なら確定申告書の「課税される所得金額」を使います。児童手当・児童扶養手当は権利者の年収に含めません。
+        </p>
+        <p>
+          算定表から読み取った合計額を入力すると、公式の<strong>「子の指数」</strong>
+          （親を100としたときの子の生活費割合。0〜14歳＝{INDEX_AGE_0_14}・15歳以上＝{INDEX_AGE_15_PLUS}
+          ）で子ごとに按分します。たとえば合計5万円で10歳と15歳の子がいる場合、指数62:85で分けます。
+        </p>
+        <p>
+          取決めがない場合でも、令和の改正法により1人あたり月{youikuhiFmtYen(HOUTEI_YOUIKUHI_PER_CHILD)}
+          円の<strong>法定養育費</strong>を請求できる仕組みが導入されました（施行日前の離婚等は対象外）。養育費には先取特権も認められ、1人あたり
+          {youikuhiFmtYen(SAKIDORI_PER_CHILD)}円までは債務名義がなくても差押えが可能です。算定表はあくまで簡易迅速な標準額の参考であり、最終的な金額は個別の事情で決まります。
+        </p>
+        <p>{YOUIKUHI_DISCLAIMER}</p>
+        <SeidoNotice datasets={[youikuhiSanteihyouDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "funin-chiryou-hoken-tekiyou": {
+    ui: <FuninChiryouHokenTekiyou />,
+    formula: (
+      <>
+        <p>
+          令和4年4月から、一般不妊治療（タイミング法・人工授精）と生殖補助医療（体外受精・顕微授精）が保険適用になりました。生殖補助医療には
+          <strong>年齢と回数の要件</strong>があります。年齢は、治療開始日において女性（患者またはパートナー）が
+          {FUNIN_UPPER_AGE_LIMIT}歳未満であることが要件です（一般不妊治療に年齢上限はありません）。
+        </p>
+        <p>
+          回数上限は<strong>初めての治療開始日の年齢</strong>で決まります。40歳未満で始めた場合は通算
+          {FUNIN_UNDER40_LIMIT}回、40歳以上43歳未満で始めた場合は通算{FUNIN_AGE40_TO43_LIMIT}
+          回まで（胚移植術の回数。境界は{FUNIN_AGE_BOUNDARY}歳）。この回数は
+          <strong>子ども1人ごとにリセット</strong>され、出産後に次のお子さんの治療で再び使えます。
+        </p>
+        <p>
+          保険診療の窓口負担は3割で、高額療養費制度も使えます（ひと月の自己負担が所得区分ごとの上限を超えた分が後から戻ります）。本ツールは治療の総額や高額療養費の上限額そのものは示しません（治療内容・所得区分によって大きく変わるためです）。保険総額（10割）を入力した場合のみ、3割の窓口負担額を機械的に計算します。
+        </p>
+        <p>
+          第三者の精子・卵子・胚の提供による生殖補助医療や代理懐胎は保険適用の対象外です。先進医療に位置づけられる治療は保険外ですが、保険診療と併用できます。実施できるのは、施設基準に適合し届出をした保険医療機関です。
+        </p>
+        <p>{FUNIN_CHIRYOU_DISCLAIMER}</p>
+        <SeidoNotice datasets={[funinChiryouDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "shokuji-sesshu-kijun-ninpu": {
+    ui: <ShokujiSesshuKijunNinpu />,
+    formula: (
+      <>
+        <p>
+          この早見は「日本人の食事摂取基準（2025年版）」（健康増進法に基づき厚生労働大臣が定める）の妊婦・授乳婦の
+          <strong>付加量</strong>
+          を、妊娠初期・中期・後期・授乳中の別に表示しています。付加量とは、同じ年齢の妊娠・授乳していないときの推奨量に
+          <strong>上乗せする量</strong>で、付加量そのものが1日の摂取目標ではありません。
+        </p>
+        <p>
+          エネルギーの付加量は妊娠が進むほど増え（初期50・中期250・後期450kcal/日）、授乳中は350kcal/日です。鉄は初期＋2.5mg、中期・後期＋8.5mg、授乳中＋2.0mg（いずれも推奨量への付加）。葉酸は食事からの分が中期・後期に＋240µg、授乳中＋100µgです。カルシウムは妊娠・授乳とも付加量がありません（非妊娠時と同じ推奨量）。エネルギーの過不足は、推定エネルギー必要量ではなくBMI・体重変化で評価します。
+        </p>
+        <p>
+          ★妊娠を計画している方・妊娠初期の方は、食事とは別にサプリメント等から葉酸を1日
+          {shokujiFolicAcidInfo().dailyAmount}µg摂ることが推奨されています★
+          （神経管閉鎖障害のリスク低減のため）。ただしサプリメント由来の葉酸（狭義の葉酸）には耐容上限量があり、18〜29歳女性では1日
+          {shokujiFolicAcidInfo().upperLimitFemale18to29}µgです。
+        </p>
+        <p>
+          カフェイン・アルコール・水銀を含む魚などの「控えるべきものの目安」は、この食事摂取基準では定められていないため、本ツールでは数値を扱っていません（食品安全委員会・自治体の案内をご確認ください）。
+        </p>
+        <p>{SHOKUJI_SESSHU_DISCLAIMER}</p>
+        <SeidoNotice datasets={[shokujiSesshuDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "kodomo-iryouhi-jyosei": {
+    ui: <KodomoIryouhiJyosei />,
+    formula: (
+      <>
+        <p>
+          子ども医療費助成は、国が全国一律で定めた制度ではなく、各市区町村が実施し都道府県が補助する
+          <strong>地方単独事業</strong>
+          です。対象年齢・所得制限・一部自己負担の有無は自治体ごとに異なります。そのため本ツールは個別自治体の助成額を計算せず、こども家庭庁の全国調査（令和7年4月1日時点・全1,741市区町村）の統計をもとに、「入力した学齢を対象にしている自治体が全国でどれくらいの割合か」という傾向のみを示します。
+        </p>
+        <p>
+          対象自治体数は「全自治体数 − その学齢より対象年齢の上限が低い（＝対象にしていない）自治体数」で計算します。対象年齢の分布は「就学前まで・小学生まで・中学生まで・高校生年代（18歳年度末）まで…」という区分で集計されており、入院はこの調査では18歳年度末までしか内訳がないため、より上の年齢は総数との差で扱っています。
+        </p>
+        <p>
+          最も多いのは「通院・入院とも18歳年度末（高校生年代）まで・所得制限なし」のパターンです。令和6年度から、18歳年度末までのこども分について国民健康保険の国庫負担の減額調整措置が廃止され、自治体が助成を拡充しやすくなっています。
+        </p>
+        <p>
+          <strong>★この数値は全国の傾向であり、あなたのお住まいの自治体の助成内容ではありません★</strong>
+          実際の対象年齢・助成額・所得制限・手続きは、必ずお住まいの市区町村の子育て支援担当窓口でご確認ください。
+        </p>
+        <p>{KODOMO_IRYOUHI_DISCLAIMER}</p>
+        <SeidoNotice datasets={[kodomoIryouhiDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "kougaku-iryou-kaigo-gassan": {
     ui: <KougakuIryouKaigoGassan />,
     formula: (
@@ -1946,6 +2250,136 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           必要睡眠時間と寝かしつけ・夜泣き対応の時間の合計が、赤ちゃん・お子さまの就寝〜起床の時間枠を超える場合は、計算結果をそのまま表示したうえで、時間枠が窮屈である可能性がある旨を注意書きとして表示します（エラーにはしません）。
         </p>
         <p>{AKACHAN_SUIMIN_DISCLAIMER}</p>
+      </>
+    ),
+  },
+  "child-seat-kitei": {
+    ui: <ChildSeatKitei />,
+    formula: (
+      <>
+        <p>
+          <strong>使用義務の判定</strong>
+          ：道路交通法上、チャイルドシート（幼児用補助装置）の使用義務があるのは「幼児」＝{CHILD_SEAT_AGE_THRESHOLD}
+          歳未満の子です（第14条第3項・第71条の3第3項）。{CHILD_SEAT_AGE_THRESHOLD}
+          歳以上は法的な義務はありませんが、体格等の事情で座席ベルトを適切に着用できない場合はチャイルドシートの継続使用が推奨されています。
+        </p>
+        <p>
+          <strong>免除事由（政令が定める全8号）</strong>
+          ：座席の構造上固定できない・乗車人数の関係で全員分を固定できない・負傷や障害・著しい肥満等の身体の状態・運転者以外の者による授乳等の世話・タクシーやバス等の旅客運送・自家用有償旅客運送等・緊急搬送、のいずれかに該当する場合に限り使用義務が免除されます（道路交通法施行令第26条の3の2第3項）。{CHILD_SEAT_EXEMPTION_DESCRIPTION}
+        </p>
+        <p>
+          <strong>★反則金は存在しません★</strong>
+          ：違反の名称は「{CHILD_SEAT_PENALTY.violationName}」で、制裁は行政処分としての違反点数
+          {CHILD_SEAT_PENALTY.points}
+          点のみです。道路交通法第71条の3には罰則（懲役・罰金）の規定がなく、交通反則通告制度上の「反則行為」に該当しないため反則金という概念自体が存在しません。責任を負うのは{CHILD_SEAT_PENALTY.liablePerson}
+          です（同乗者ではありません）。
+        </p>
+        <p>
+          <strong>安全基準・統計について</strong>
+          ：国土交通省の安全基準（Eマーク・型式指定マーク等）に適合しない「補助用具」ではシートベルトを使用していても使用義務を果たしたことにはなりません。警察庁・JAF合同調査（令和7年）の使用率・致死率・適切な取付け/着座割合は、判定結果とは独立した参考情報として表示しています。
+        </p>
+        <p>
+          国連協定規則第129号（R129）の適用開始日・身長区分等、一次情報で確認できなかった数値は生成していません。
+        </p>
+        <SeidoNotice datasets={[childSeatDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "yuukyuu-fuyo-nissuu-kijun": {
+    ui: <YuukyuuFuyoNissuuKijun />,
+    formula: (
+      <>
+        <p>
+          <strong>発生要件</strong>
+          ：雇入れの日から起算して{ELIGIBLE_CONTINUOUS_SERVICE_MONTHS}
+          か月継続勤務し、かつその間の全労働日の
+          {Math.round(ELIGIBLE_ATTENDANCE_RATE * 100)}
+          ％以上出勤した場合に、最初の年次有給休暇（通常の労働者は{FIRST_GRANT_DAYS}
+          日）が発生します（労働基準法第39条第1項）。以後、6か月・1年6か月・2年6か月…と6か月ごとの基準日に、勤続年数に応じた日数が付与されます。
+        </p>
+        <p>
+          <strong>比例付与</strong>
+          ：週所定労働時間が{WEEKLY_HOURS_THRESHOLD}
+          時間未満、かつ週所定労働日数が{WEEKLY_WORK_DAYS_THRESHOLD}
+          日以下（または年間の所定労働日数が216日以下）のパートタイム等の労働者には、所定労働日数に比例した日数が付与されます（同条第3項）。
+        </p>
+        <p>
+          <strong>年5日の時季指定義務</strong>
+          ：付与日数が{MANDATORY_5DAYS_THRESHOLD}
+          日以上の労働者に対しては、使用者が時季を指定して年
+          {MANDATORY_5DAYS_REQUIRED_DAYS}
+          日を確実に取得させる義務があります（労働基準法第39条第7項・第8項）。
+        </p>
+        <p>
+          <strong>付与日数の頭打ち</strong>
+          ：勤続6年6か月以上は毎年{MAX_GRANT_DAYS}
+          日で頭打ちとなり、以後も同じ日数が繰り返し付与されます。未消化分の請求権は
+          {PRESCRIPTION_YEARS}
+          年で時効消滅します（労働基準法第115条）。
+        </p>
+        <p>
+          直近の基準期間の出勤率はご自身の申告に基づく簡易判定です。本ツールは制度上「いつ・何日発生するか」の計画を示すものであり、実際に取得済み・残っている日数の記録・追跡は行いません。
+        </p>
+        <SeidoNotice datasets={[yuukyuuFuyoDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "kyouiku-kunren-kyufukin": {
+    ui: <KyouikuKunrenKyufukin />,
+    formula: (
+      <>
+        <p>
+          <strong>5つの給付区分</strong>
+          ：雇用保険の教育訓練給付には、一般教育訓練給付金（給付率
+          {Math.round(IPPAN_BENEFIT_RATE * 100)}
+          ％・上限{IPPAN_BENEFIT_CAP.toLocaleString("ja-JP")}
+          円）、特定一般教育訓練給付金（給付率
+          {Math.round(TOKUTEI_IPPAN_BENEFIT_RATE * 100)}
+          ％・上限{TOKUTEI_IPPAN_BENEFIT_CAP.toLocaleString("ja-JP")}
+          円）、専門実践教育訓練給付金（原則の給付率に加え、資格取得＋就職等の条件を満たすと上乗せ。総支給上限
+          {SENMON_JISSEN_MAX_TOTAL_BENEFIT.toLocaleString("ja-JP")}
+          円）、専門実践受講中に失業給付を補う教育訓練支援給付金、令和7年10月創設の教育訓練休暇給付金の5区分があります。それぞれ被保険者期間の要件（初回はより短い期間で足りる場合があります）を満たすかどうかを判定します。
+        </p>
+        <p>
+          支給額が{MINIMUM_BENEFIT_AMOUNT.toLocaleString("ja-JP")}
+          円を超えない場合は支給されません。専門実践教育訓練は6か月ごとの分割支給・資格取得後の上乗せ精算など制度が複雑なため、本ツールは要件を満たすかどうかの判定にとどめ、専門実践の概算給付額の計算は行いません。
+        </p>
+        <p>
+          教育訓練休暇給付金の給付率・給付日数は2026年7月時点で未確定（未公表）のため、金額は計算せず制度の存在のみを案内します。
+        </p>
+        <SeidoNotice datasets={[kyouikuKunrenKyufukinDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "iryouhi-koujo-kodomo": {
+    ui: <IryouhiKoujoKodomo />,
+    formula: (
+      <>
+        <p>
+          <strong>医療費控除額の計算式</strong>
+          ：「支払った医療費の合計額 − 保険金等で補てんされる金額 − （
+          {IRYOUHI_THRESHOLD_FIXED.toLocaleString("ja-JP")}
+          円 と 総所得金額等×{Math.round(IRYOUHI_THRESHOLD_RATE * 100)}
+          ％ のいずれか低い方）」で控除額を算出します（所得税法第73条）。上限は
+          {IRYOUHI_MAX_DEDUCTION.toLocaleString("ja-JP")}
+          円です。
+        </p>
+        <p>
+          <strong>補填額の按分</strong>
+          ：出産育児一時金等は出産費用からのみ差し引き、他の医療費からは差し引きません（按分しません）。差し引いた結果余りが出ても、他の医療費の補填には充当しません。
+        </p>
+        <p>
+          <strong>セルフメディケーション税制との選択</strong>
+          ：{SELF_MEDICATION_IS_EXCLUSIVE_CHOICE
+            ? "通常の医療費控除とセルフメディケーション税制は同一年分では選択制（併用不可）です。"
+            : ""}
+          本ツールは両方の控除額を計算して比較できるようにしていますが、実際に申告できるのはどちらか一方です。
+        </p>
+        <p>{IRYOUHI_REFUND_NOTE}</p>
+        <p>
+          自治体の子ども医療費助成を補填額として差し引くべきかは一次情報で確認できておらず、断定していません。実際の申告可否・要否は最寄りの税務署にご確認ください。
+        </p>
+        <SeidoNotice datasets={[iryouhiKoujoDataset]} today={todayJst()} />
       </>
     ),
   },

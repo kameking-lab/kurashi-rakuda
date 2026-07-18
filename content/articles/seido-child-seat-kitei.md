@@ -44,7 +44,26 @@
     "上の子がもうすぐ6歳になるが、いつまでチャイルドシートが必要なのか分からない",
     "下の子が急に熱を出して病院へ急ぐとき、チャイルドシートなしで乗せてよいのか不安",
     "帰省したとき、祖父母の車にチャイルドシートがなくてどうすればよいか困る"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "newborn",
+      "infant",
+      "toddler",
+      "schoolAge"
+    ],
+    "lifeEvents": [
+      "parenting"
+    ],
+    "childAgeBands": [
+      "age0_1",
+      "age1_3",
+      "age3_6",
+      "age6_12"
+    ],
+    "gender": null
+  }
 }
 ---
 

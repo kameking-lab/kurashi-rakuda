@@ -1,4 +1,5 @@
 import type { ToolCategory, ToolSource } from "@/app/lib/tools/types";
+import type { Audience } from "@/app/lib/audience";
 
 /**
  * 記事は3型のみ（docs/03 §3）。ランキング・レビュー単体・体験談風は型として存在させない。 brand-lint-allow
@@ -16,6 +17,8 @@ interface ArticleMetaBase {
   solves: string[];
   sources: ToolSource[];
   updated: string;
+  /** 対象属性メタ（並べ替え・ハイライト用。docs/12）。非表示には使わない */
+  audience: Audience;
 }
 
 /** 制度解説型: 準拠年度と次回改定チェック日が必須（改定追随の担保） */

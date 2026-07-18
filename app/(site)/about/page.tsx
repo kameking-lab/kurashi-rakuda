@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SITE_NAME, SISTER_SITE } from "@/app/lib/site";
+import { Rakku } from "@/components/mascot/Rakku";
 
 export const metadata: Metadata = {
   title: "サイト概要・運営方針",
@@ -12,11 +13,10 @@ export const metadata: Metadata = {
 /** サイト概要＋運営方針（ブランド哲学 docs/00 §3 の公開版） */
 export default function AboutPage() {
   return (
-    <div>
-      <h1 className="text-xl font-bold sm:text-2xl">サイト概要・運営方針</h1>
-      <p className="mt-4">
+    <div className="static-page static-about">
+      <header className="static-hero"><div><p className="eyebrow">ABOUT US</p><h1>サイト概要・運営方針</h1><p>
         {SITE_NAME}は、妊娠・出産から子育て、家事、お金、仕事、介護まで、女性のライフステージで発生する「調べもの・計算・段取り」を、その場で解決するための完全無料サイトです。
-      </p>
+      </p></div><Rakku pose="sit" size={160} /></header>
 
       <SectionHeading>3つのお約束</SectionHeading>
       <ol className="list-inside list-decimal space-y-3">

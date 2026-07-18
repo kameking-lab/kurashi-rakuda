@@ -6,6 +6,8 @@ import { tools } from "@/app/lib/tools/registry";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
 import type { ToolMeta } from "@/app/lib/tools/types";
 import { Rakku } from "@/components/mascot/Rakku";
+import { isHighlighted, isProfileEmpty, sortByAudience } from "@/lib/personalize";
+import { usePersonalization } from "@/components/personalize/usePersonalization";
 
 /**
  * 悩み検索 — registry の solves タグ（「◯◯がわからない」）を全文検索する。
@@ -42,15 +44,20 @@ function search(query: string): Hit[] {
       (matchedSolve ? 4 : 0) + (inTitle ? 3 : 0) + (inDescription ? 1 : 0) + (tool.status === "live" ? 2 : 0);
     hits.push({ hit: { tool, matchedSolve }, score });
   }
-  return hits
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 8)
-    .map((h) => h.hit);
+  return hits.sort((a, b) => b.score - a.score).map((h) => h.hit);
 }
 
 export function SolvesSearch() {
   const [query, setQuery] = useState("");
-  const hits = useMemo(() => search(query), [query]);
+  const { settings, ready } = usePersonalization();
+  const profile = ready && !isProfileEmpty(settings.profile) ? settings.profile : null;
+  const hits = useMemo(() => {
+    const raw = search(query);
+    const orderedTools = sortByAudience(raw.map((h) => h.tool), profile);
+    let ordered = orderedTools.map((tool) => raw.find((h) => h.tool.slug === tool.slug)!);
+    if (settings.relatedOnly && profile) ordered = ordered.filter((h) => isHighlighted(profile, h.tool.audience));
+    return ordered.slice(0, 8);
+  }, [query, profile, settings.relatedOnly]);
   const active = query.trim().length > 0;
 
   return (
@@ -75,9 +82,11 @@ export function SolvesSearch() {
                 tool.status === "live" ? (
                   <li key={tool.slug}>
                     <Link
+                      prefetch={false}
                       href={`/tools/${tool.category}/${tool.slug}`}
-                      className="tool-card block h-full rounded-card border border-line bg-paper p-4"
+                      className={`tool-card block h-full rounded-card border bg-paper p-4 ${profile && isHighlighted(profile, tool.audience) ? "is-personalized" : "border-line"}`}
                     >
+                      {profile && isHighlighted(profile, tool.audience) && <span className="personalized-label">あなた向け</span>}
                       <span className="font-medium">{tool.title}</span>
                       {matchedSolve && (
                         <span className="mt-0.5 block text-sm text-ink-muted">

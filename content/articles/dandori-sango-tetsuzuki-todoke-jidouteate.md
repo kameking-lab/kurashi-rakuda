@@ -189,7 +189,26 @@
     }
   ],
   "last_updated": "2026-07-17",
-  "next_check_due": "2027-04-01"
+  "next_check_due": "2027-04-01",
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "pregnancy",
+      "newborn",
+      "toddler"
+    ],
+    "lifeEvents": [
+      "pregnant",
+      "parenting"
+    ],
+    "childAgeBands": [
+      "prenatal",
+      "age0_1",
+      "age1_3",
+      "age3_6"
+    ],
+    "gender": null
+  }
 }
 ---
 

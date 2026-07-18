@@ -114,7 +114,24 @@
     "妊娠中に葉酸や鉄分をどれくらい摂ればいいのか分からない",
     "妊娠の時期によって必要な量が変わるのか知りたい",
     "授乳中も妊娠中と同じ量を摂り続ければいいのか不安"
-  ]
+  ],
+  "audience": {
+    "universal": false,
+    "lifeStages": [
+      "pregnancy",
+      "newborn",
+      "adult"
+    ],
+    "lifeEvents": [
+      "pregnant",
+      "parenting"
+    ],
+    "childAgeBands": [
+      "prenatal",
+      "age0_1"
+    ],
+    "gender": null
+  }
 }
 ---
 

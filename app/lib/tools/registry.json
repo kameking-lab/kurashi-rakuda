@@ -23,7 +23,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-02",
@@ -52,7 +65,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-03",
@@ -77,7 +103,18 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [],
+      "gender": "female"
+    }
   },
   {
     "queueId": "Q3-04",
@@ -122,7 +159,24 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-05",
@@ -148,7 +202,24 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-06",
@@ -177,7 +248,26 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-07",
@@ -202,7 +292,21 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "infant"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-08",
@@ -235,14 +339,35 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-09",
     "slug": "hoikuryo",
     "category": "childcare",
     "title": "保育料計算（全国版・政令市から）",
-    "description": "お住まいの自治体と世帯の住民税額から、認可保育園の保育料を計算します。東京23区すべてと政令指定都市20市すべて、中核市5市（船橋市・川口市・八王子市・姫路市・鹿児島市）に対応。",
+    "description": "お住まいの自治体と世帯の住民税額から、認可保育園の保育料を計算します。東京23区すべてと政令指定都市20市すべて、中核市15市（船橋市・川口市・八王子市・姫路市・鹿児島市・松山市・西宮市・東大阪市・大分市・倉敷市・尼崎市・金沢市・豊田市・豊中市・富山市）に対応。",
     "solves": [
       "保育料がいくらになるか分からない",
       "住民税のどの数字で保育料が決まるか分からない",
@@ -432,7 +557,24 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-10",
@@ -452,7 +594,26 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-11",
@@ -477,7 +638,26 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1",
+        "age1_3"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-12",
@@ -498,7 +678,21 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T24",
@@ -528,7 +722,14 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-13",
@@ -553,7 +754,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-14",
@@ -575,7 +783,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-15",
@@ -596,7 +811,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-16",
@@ -617,7 +839,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-17",
@@ -638,7 +867,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-18",
@@ -676,7 +912,18 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-19",
@@ -708,7 +955,25 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "Q3-20",
@@ -749,7 +1014,19 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T19",
@@ -774,7 +1051,21 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T17",
@@ -800,7 +1091,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T34",
@@ -844,7 +1148,23 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T14",
@@ -882,7 +1202,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T37",
@@ -912,7 +1245,18 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T38",
@@ -942,7 +1286,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving",
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T21",
@@ -968,7 +1325,14 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T28",
@@ -998,7 +1362,16 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T01",
@@ -1037,7 +1410,25 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T18",
@@ -1072,7 +1463,23 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T16",
@@ -1098,7 +1505,20 @@
       }
     ],
     "updated": "2026-07-17",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T22",
@@ -1119,7 +1539,14 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T36",
@@ -1148,7 +1575,21 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "schoolAge"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age6_12"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T35",
@@ -1169,7 +1610,24 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T26",
@@ -1194,7 +1652,14 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T25",
@@ -1224,7 +1689,16 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T20",
@@ -1254,7 +1728,21 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "schoolAge"
+      ],
+      "lifeEvents": [
+        "parenting",
+        "working"
+      ],
+      "childAgeBands": [
+        "age6_12"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T33",
@@ -1289,7 +1777,17 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": "female"
+    }
   },
   {
     "queueId": "P2-T27",
@@ -1323,7 +1821,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T30",
@@ -1362,7 +1871,16 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": "female"
+    }
   },
   {
     "queueId": "P2-T39",
@@ -1401,7 +1919,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T40",
@@ -1432,7 +1961,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T23",
@@ -1453,7 +1993,14 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T15",
@@ -1479,7 +2026,20 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [
+        "prenatal"
+      ],
+      "gender": "female"
+    }
   },
   {
     "queueId": "P2-T29",
@@ -1509,7 +2069,16 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T31",
@@ -1544,7 +2113,16 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": "female"
+    }
   },
   {
     "queueId": "P2-T32",
@@ -1574,7 +2152,21 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T03",
@@ -1605,7 +2197,28 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T05",
@@ -1636,7 +2249,20 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving",
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T06",
@@ -1667,7 +2293,18 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
   },
   {
     "queueId": "P2-T07",
@@ -1698,6 +2335,597 @@
       }
     ],
     "updated": "2026-07-18",
-    "status": "live"
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult",
+        "senior"
+      ],
+      "lifeEvents": [
+        "caregiving"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P2-T13",
+    "slug": "kodomo-iryouhi-jyosei",
+    "category": "childcare",
+    "title": "子ども医療費助成 自治体早見",
+    "description": "子どもの学齢と通院・入院の別から、その年齢を医療費助成の対象にしている市区町村が全国でどれくらいの割合かを、こども家庭庁の全国調査（令和7年4月時点）の統計で示します。助成内容は自治体ごとに異なるため、個別の助成額は算出せず傾向のみを示します。",
+    "solves": [
+      "子どもの医療費助成が何歳まで対象か全国の傾向を知りたい",
+      "高校生でも医療費助成の対象になる自治体が多いのか知りたい",
+      "医療費助成に所得制限がある自治体はどれくらいあるのか知りたい",
+      "通院と入院で対象年齢の傾向が違うのか知りたい",
+      "子ども医療費助成が国の制度なのか自治体ごとに違うのか知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "こども家庭庁 令和7年度「こどもに係る医療費の助成についての調査」",
+        "url": "https://www.cfa.go.jp/policies/boshihoken/kodomoiryouhityousa-r7"
+      },
+      {
+        "label": "厚生労働省「こどもにとってより良い医療の在り方（減額調整措置の見直し）」",
+        "url": "https://www.mhlw.go.jp/content/12401000/001270728.pdf"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kodomo-iryouhi-jyosei.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kodomo-iryouhi-jyosei.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P2-T10",
+    "slug": "shokuji-sesshu-kijun-ninpu",
+    "category": "pregnancy",
+    "title": "妊娠中・授乳中の栄養付加量 早見",
+    "description": "妊娠初期・中期・後期・授乳中の別に、エネルギー・たんぱく質・鉄・葉酸・ビタミンC・カルシウム・食塩相当量の付加量（非妊娠時の推奨量に上乗せする量）を一覧表示します。妊娠初期のサプリメント葉酸400µgの推奨も案内します。",
+    "solves": [
+      "妊娠中に鉄や葉酸をどれくらい多く摂ればいいか知りたい",
+      "妊娠初期・中期・後期で必要な栄養の付加量がどう変わるか知りたい",
+      "授乳中のエネルギーやたんぱく質の付加量を知りたい",
+      "妊娠を計画中に葉酸サプリを何µg摂ればいいか知りたい",
+      "妊娠中にカルシウムの付加量があるのか知りたい"
+    ],
+    "basisYear": "2025年版",
+    "sources": [
+      {
+        "label": "厚生労働省「日本人の食事摂取基準（2025年版）」策定検討会報告書",
+        "url": "https://www.mhlw.go.jp/stf/newpage_44138.html"
+      },
+      {
+        "label": "厚生労働省「日本人の食事摂取基準（2025年版）の策定ポイント」",
+        "url": "https://www.mhlw.go.jp/content/10904750/001396865.pdf"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/shokuji-sesshu-kijun-ninpu.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/shokuji-sesshu-kijun-ninpu.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn",
+        "infant"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1"
+      ],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P2-T11",
+    "slug": "funin-chiryou-hoken-tekiyou",
+    "category": "pregnancy",
+    "title": "不妊治療 保険適用・回数 早見",
+    "description": "生殖補助医療（体外受精・顕微授精）の保険適用の年齢上限（治療開始日に43歳未満）と、初回治療開始年齢で決まる胚移植の回数上限（40歳未満6回・40〜43歳未満3回）をチェックします。任意で保険総額から3割の窓口負担も計算します。",
+    "solves": [
+      "体外受精・顕微授精が保険適用になる年齢の上限を知りたい",
+      "保険で胚移植を何回まで受けられるか知りたい",
+      "40歳を境に保険適用の回数が変わるのか知りたい",
+      "出産すると回数がリセットされるのか知りたい",
+      "不妊治療の窓口負担（3割）の目安を知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "厚生労働省「不妊治療に関する支援について（保険適用）」",
+        "url": "https://www.mhlw.go.jp/content/000901931.pdf"
+      },
+      {
+        "label": "厚生労働省「不妊治療に関する取組」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/boshi-hoken/funin-01_00004.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/funin-chiryou-hoken-tekiyou.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/funin-chiryou-hoken-tekiyou.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "pregnant"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P2-T08",
+    "slug": "youikuhi-santeihyou",
+    "category": "money",
+    "title": "養育費 目安（裁判所算定表）",
+    "description": "子どもの人数と年齢区分から、裁判所の養育費算定表（表1〜9）のどれを使うかを特定し公式PDFへ案内します。算定表から読み取った合計額を公式の「子の指数」で子ごとに按分し、法定養育費・先取特権の額も表示します。",
+    "solves": [
+      "自分のケースで使う養育費算定表がどれか分からない",
+      "算定表で読み取った養育費を子どもごとにどう分けるか知りたい",
+      "子どもの年齢で養育費の分け方（指数）が変わるのか知りたい",
+      "取り決めがなくても請求できる法定養育費の額を知りたい",
+      "養育費の先取特権でいくらまで差し押さえできるか知りたい"
+    ],
+    "basisYear": "令和元年版",
+    "sources": [
+      {
+        "label": "裁判所「養育費・婚姻費用算定表」",
+        "url": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/youikuhi-tetsuzuki/index.html"
+      },
+      {
+        "label": "法務省「養育費と面会交流」",
+        "url": "https://www.moj.go.jp/MINJI/1-1-1-2-3-1.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/youikuhi-santeihyou.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/youikuhi-santeihyou.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P2-T04",
+    "slug": "fuyounai-shaho-songeki-bunkiten",
+    "category": "money",
+    "title": "扶養内⇄社保加入 損益分岐",
+    "description": "106万円・130万円の壁を越えて社会保険に加入すると、社会保険料の負担で手取りが一時的に減る「働き損」ゾーンと、手取りが元に戻る損益分岐点の年収を計算します。所得税・住民税は含めず、社会保険料の影響に特化します。",
+    "solves": [
+      "106万円の壁を越えると手取りがいくら減るのか知りたい",
+      "扶養を抜けても損しないためにいくら稼げばいいか知りたい",
+      "働き損になる年収の範囲がどこからどこまでか知りたい",
+      "40歳以上だと介護保険料で損益分岐点がどう変わるか知りたい",
+      "130万円を越えて自分で国民年金に入る場合の負担を知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "日本年金機構「厚生年金保険の保険料」",
+        "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/hoshu/20150515-01.html"
+      },
+      {
+        "label": "全国健康保険協会（協会けんぽ）令和8年度保険料率",
+        "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/fuyounai-shaho-songeki-bunkiten.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/fuyounai-shaho-songeki-bunkiten.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P2-T09",
+    "slug": "taishoku-timing-songeki",
+    "category": "career",
+    "title": "退職タイミング損得カレンダー",
+    "description": "退職日・離職理由・年齢・被保険者期間から、退職の時期で変わる3つの扱い（社会保険料の月末退職判定・住民税の一括徴収・雇用保険の所定給付日数と給付制限）を一度に確認できます。保険料の実額は算出せず、制度上の扱いを示します。",
+    "solves": [
+      "月末退職と月末前日退職で社会保険料の扱いがどう変わるか知りたい",
+      "退職する月によって住民税が一括徴収されるのか知りたい",
+      "雇用保険の基本手当を何日分もらえるか知りたい",
+      "自己都合と会社都合で給付制限がどう違うか知りたい",
+      "退職のタイミングで損しない時期を知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "日本年金機構「退職された方の保険料」",
+        "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/nofu/20120330-01.html"
+      },
+      {
+        "label": "ハローワーク「基本手当の所定給付日数」",
+        "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_benefitdays.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/taishoku-timing-songeki.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/taishoku-timing-songeki.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P2-T02",
+    "slug": "kosodate-kyufu-sougou-check",
+    "category": "money",
+    "title": "子育て世帯の給付金・助成金 総ざらいチェッカー",
+    "description": "お子さんの時期（妊娠〜高校生）とひとり親かどうかから、関係しうる子育て支援の制度（児童手当・児童扶養手当・こども医療費助成・幼児教育無償化・就学援助・高校就学支援金など）を横断的に洗い出し、対象・所管・申請先へ道案内します。金額は計算しません。",
+    "solves": [
+      "自分の家庭が使える子育て支援の制度を一覧で知りたい",
+      "子どもの年齢の時期にどんな給付・助成があるか知りたい",
+      "ひとり親世帯が特に確認すべき制度を知りたい",
+      "それぞれの制度をどこに申請すればいいか知りたい",
+      "見落としている子育て給付がないか総ざらいしたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "こども家庭庁「児童手当制度のご案内」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/"
+      },
+      {
+        "label": "こども家庭庁「幼児教育・保育の無償化」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kosodate-kyufu-sougou-check.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kosodate-kyufu-sougou-check.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P2-T12",
+    "slug": "seichou-kyokusen",
+    "category": "childcare",
+    "title": "成長曲線プロット（パーセンタイル）",
+    "description": "お子さんの月齢・性別・実測値（体重・身長・頭囲）から、厚生労働省「令和5年乳幼児身体発育調査」のパーセンタイル値のどこに位置するかを表示します。発育の正常・異常は判定せず、統計的な位置と、気になる場合の相談先を案内します。",
+    "solves": [
+      "子どもの体重・身長が同じ月齢の中でどのくらいの位置か知りたい",
+      "測定値が何パーセンタイルくらいに当たるのか知りたい",
+      "頭囲が標準的な範囲のどのあたりか知りたい",
+      "3〜97パーセンタイルの外に出たときにどう考えればいいか知りたい",
+      "成長曲線の見方（パーセンタイルの意味）を知りたい"
+    ],
+    "basisYear": "令和5年調査",
+    "sources": [
+      {
+        "label": "厚生労働省「乳幼児身体発育調査（調査の結果）」",
+        "url": "https://www.mhlw.go.jp/toukei/list/73-22b.html"
+      },
+      {
+        "label": "e-Stat 令和5年乳幼児身体発育調査 統計表（体重・身長・頭囲のパーセンタイル値）",
+        "url": "https://www.e-stat.go.jp/stat-search/files?stat_infid=000040240362"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/tables/seichou-hatsuiku-percentile.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/tables/seichou-hatsuiku-percentile.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P3-T01",
+    "slug": "child-seat-kitei",
+    "category": "childcare",
+    "title": "チャイルドシート適合チェック",
+    "description": "子どもの年齢からチャイルドシートの使用義務の有無を判定し、免除事由・罰則・安全基準・統計を案内します。",
+    "solves": [
+      "チャイルドシートは何歳まで必要か分からない",
+      "免除される『やむを得ない理由』に当てはまるか知りたい",
+      "違反したときの反則金や点数がいくらか知りたい",
+      "安全基準に適合した製品かどうかの確認方法が分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索（デジタル庁）「道路交通法」",
+        "url": "https://laws.e-gov.go.jp/law/335AC0000000105"
+      },
+      {
+        "label": "e-Gov法令検索（デジタル庁）「道路交通法施行令」",
+        "url": "https://laws.e-gov.go.jp/law/335CO0000000270"
+      },
+      {
+        "label": "警察庁交通局「子供を守るチャイルドシート」",
+        "url": "https://www.npa.go.jp/bureau/traffic/anzen/childseat.html"
+      },
+      {
+        "label": "国土交通省物流・自動車局審査・リコール課「チャイルドシートコーナー」",
+        "url": "https://www.mlit.go.jp/jidosha/child/"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/child-seat-kitei.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/child-seat-kitei.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P3-T02",
+    "slug": "yuukyuu-fuyo-nissuu-kijun",
+    "category": "career",
+    "title": "有給残・取得計画",
+    "description": "雇い入れ日・勤務形態・直近の出勤率から、年次有給休暇の発生要件と付与日数、6か月〜6年6か月以上の全区分の基準日・付与予定日をまとめて計算します。年5日の時季指定義務の対象可否もあわせて示します。",
+    "solves": [
+      "自分がいつ有給休暇が発生するのか知りたい",
+      "勤続年数に応じて何日の有給がもらえるのか知りたい",
+      "パート・週4日勤務でも有給がもらえるのか知りたい",
+      "年5日は必ず取らないといけない義務があるのか知りたい",
+      "出勤率が8割に届かなかったらどうなるのか知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索「労働基準法」第39条",
+        "url": "https://laws.e-gov.go.jp/law/322AC0000000049"
+      },
+      {
+        "label": "e-Gov法令検索「労働基準法施行規則」第24条の3",
+        "url": "https://laws.e-gov.go.jp/law/322M40000100023"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/yuukyuu-fuyo-nissuu-kijun.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/yuukyuu-fuyo-nissuu-kijun.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P3-T03",
+    "slug": "kyouiku-kunren-kyufukin",
+    "category": "career",
+    "title": "資格・学び直し 費用と給付金（教育訓練給付）チェック",
+    "description": "雇用保険の被保険者期間・在職/離職の別・受講予定の講座の種類を選ぶと、一般・特定一般・専門実践の教育訓練給付金と教育訓練支援給付金、教育訓練休暇給付金の5区分について支給要件を満たす見込みかどうかを一覧でチェックできます。受講費用の見込み額を入れると、一般・特定一般教育訓練の概算給付額も計算します。",
+    "solves": [
+      "資格取得や学び直しで使える給付金が何種類あるのか分からない",
+      "自分の被保険者期間で教育訓練給付金の対象になるか分からない",
+      "離職している場合、いつまでに受講を始めれば給付を受けられるか分からない",
+      "特定一般・専門実践の給付率が資格取得や就職でどう変わるか分からない",
+      "専門実践教育訓練を受講しながら失業中の生活費を補う給付があることを知らない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "ハローワークインターネットサービス「教育訓練給付金」",
+        "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_education.html"
+      },
+      {
+        "label": "厚生労働省「令和６年10月から教育訓練給付金を拡充します」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000160564_00042.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kyouiku-kunren-kyufukin.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kyouiku-kunren-kyufukin.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P3-T04",
+    "slug": "iryouhi-koujo-kodomo",
+    "category": "money",
+    "title": "子ども関連の医療費控除 対象チェック",
+    "description": "出産費用や子どもの通院費など、年間の医療費・保険金や出産育児一時金などの補てん額・総所得金額等を入力すると、医療費控除額の目安を計算します。妊婦健診・タクシー代・不妊治療・歯列矯正など子育て世帯で判断に迷う費目の対象/対象外の目安と、セルフメディケーション税制との比較もあわせて確認できます。",
+    "solves": [
+      "出産費用や子どもの医療費が医療費控除の対象になるか知りたい",
+      "出産育児一時金を受け取った場合の差し引き方が分からない",
+      "妊婦健診・通院のタクシー代・付添人の交通費が対象になるか知りたい",
+      "子どもの歯列矯正が医療費控除の対象になるか知りたい",
+      "セルフメディケーション税制と医療費控除のどちらが得か比較したい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "国税庁「No.1120 医療費を支払ったとき（医療費控除）」",
+        "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+      },
+      {
+        "label": "国税庁「No.1124 医療費控除の対象となる出産費用の具体例」",
+        "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1124.htm"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/iryouhi-koujo-kodomo.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/iryouhi-koujo-kodomo.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting"
+      ],
+      "childAgeBands": [
+        "prenatal",
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
   }
 ]
