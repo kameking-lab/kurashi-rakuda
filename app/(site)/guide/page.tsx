@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "ガイド記事",
   description:
     "制度やお金の疑問に、出典つきの平易な言葉で答えるガイド記事の一覧です。",
+  alternates: { canonical: "/guide" },
 };
 
 export default function GuidePage() {

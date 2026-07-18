@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getLiveTools, tools } from "@/app/lib/tools/registry";
 import { TOOL_CATEGORIES, type ToolCategory } from "@/app/lib/tools/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -15,6 +16,11 @@ const stages: { label: string; category: ToolCategory }[] = [
   { label: "介護", category: "care" },
   { label: "自分の暮らし", category: "kaji" },
 ];
+
+// トップは title テンプレートの %s を付けず、ルートの既定タイトル（サイト名＋タグライン）を使う。
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   const live = getLiveTools();

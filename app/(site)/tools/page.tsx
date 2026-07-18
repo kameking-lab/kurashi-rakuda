@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "ツール一覧",
   description:
     "妊娠・出産から子育て、家事、お金、仕事、介護まで。すべて無料・登録不要で使える計算ツールの一覧です。",
+  alternates: { canonical: "/tools" },
 };
 
 export default function ToolsPage() {
