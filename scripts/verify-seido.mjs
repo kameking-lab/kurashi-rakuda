@@ -213,6 +213,9 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'prdurbanosichapp1.blob.core.windows.net', // 市原市のPDF添付ファイル格納先（Azure Blob。共有ドメインのためこのサブドメインのみ許可）
   'city.kodaira.tokyo.jp', // 小平市の公式サイト（東京都独自の負担軽減事業拡大＋条例改正でR8は無償）
   'city.nagareyama.chiba.jp', // 流山市の公式サイト
+  'city.kamakura.kanagawa.jp', // 鎌倉市の公式サイト
+  'city.anjo.aichi.jp', // 安城市（city.anjo.lg.jpはDNS解決不可）
+  'city.tomakomai.hokkaido.jp', // 苫小牧市の公式サイト
 ];
 
 const args = process.argv.slice(2);

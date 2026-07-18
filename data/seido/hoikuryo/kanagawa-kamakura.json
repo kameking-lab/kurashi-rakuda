@@ -1,0 +1,357 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kanagawa-kamakura",
+  "name": "神奈川県鎌倉市",
+  "municipalityCode": "142042",
+  "prefecture": "神奈川県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "kamakura-r8-hoikuryouhyou",
+      "title": "令和８年度　鎌倉市保育所等保育料（利用料）月額表",
+      "publisher": "鎌倉市",
+      "url": "https://www.city.kamakura.kanagawa.jp/hoiku/documents/r8hoikuryouhyou.pdf",
+      "landingUrl": "https://www.city.kamakura.kanagawa.jp/hoiku/hoikuryou.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "国階層1～9・市階層1～19（計19階層）の保育料月額表。座標復元（PyMuPDF page.get_text/find_tables）で読み取り。原文注記:「０歳児～２歳児クラスの児童について、給食費は保育料に含まれます。延長保育料は含まれません。」「３歳児～５歳児クラスの児童について、保育料は無償化（０円）されていますが、給食費や延長保育料は別途徴収されます。」「家庭的保育事業については上記表の額に10分の7を乗じた金額（100円未満切捨て）とします。」「市民税所得割合算額が77,101円未満のひとり親世帯及び同居の障がい者がいる世帯については、保育料は無償です。」多子軽減について:「同一世帯で就学前の児童が２人以上保育所等を利用している場合、年齢順に２人目以降の保育料は無償です。また、市民税所得割合算額57,700円未満の世帯については、年齢制限なく、第２子以降の保育料は無償です。なお、令和８年（2026年）９月以降の保育料について、保育料の多子世帯減免に係る年齢及び所得制限の撤廃を検討しています（実施にあたっては各種規定の改正について市議会の承認を得る必要があります）。」税額控除の不適用:「算定にあたっては、配当控除・外国税額控除・住宅借入金等特別控除・市町村等に対する寄附金控除・住宅特定改修特別税額控除・認定長期優良住宅新築等特別税額控除・配当割額控除・株式等譲渡所得割額控除・税額調整を考慮しません。」税年度切替:「４月分～８月分は前年度の市民税所得割額、９月分～翌年３月分は当年度の市民税所得割額を基に算定します。」"
+    },
+    {
+      "id": "kamakura-hoikuryou-page",
+      "title": "保育料について",
+      "publisher": "鎌倉市",
+      "url": "https://www.city.kamakura.kanagawa.jp/hoiku/hoikuryou.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "ページ更新日2026年6月3日。基準額表PDFの掲載元ページ。祖父母合算ルールを記載:「全ての保護者が非課税の場合は、同居している祖父母等のうち最も収入の多い者を家計の主宰者としてみなし」算定する旨。ひとり親・障がい者同居世帯の無償化措置、多子軽減制度の概要も同旨で再掲。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "鎌倉市は令和8年（2026年）9月以降の保育料について、多子世帯減免（第2子以降の無償化）に係る年齢制限（就学前限定）及び所得制限（市民税所得割合算額57,700円未満）の撤廃を検討している。実施には市議会の承認（規定改正）が必要で、2026-07-18時点では検討段階。",
+      "status": "under-review",
+      "sourceId": "kamakura-r8-hoikuryouhyou",
+      "effectiveFrom": "2026-09-01",
+      "impact": "実施されれば freeTuition.multiChildPolicy.countingRule の年齢・所得の制限条件が撤廃され、就学前限定でなく生計を一にする全ての子を対象に、所得に関わらず年齢順に2人目以降無償となる。市議会承認後、正式版の告知を待って countingRule と note を更新すること。"
+    }
+  ],
+  "disclaimer": "本データは神奈川県鎌倉市の自治体公式資料に基づく参考情報です。実際の保育料は税額、世帯状況、きょうだい構成、ひとり親・同居障がい者世帯等の該当有無により自治体が決定するため、最終的な金額は決定通知書または保育・幼稚園課にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育部分）・小規模保育事業・事業所内保育事業・家庭的保育事業等の3号認定（0～2歳児クラス）の月額保育料（一般世帯・第1子・基本額）。給食費は保育料に含まれる。",
+      "同施設の2号認定（3～5歳児クラス）の基本保育料（幼児教育・保育の無償化により全階層0円）"
+    ],
+    "excludes": [
+      "0～2歳児クラスの延長保育料",
+      "3～5歳児クラスの給食費（主食費・副食費）実費徴収及び延長保育料",
+      "ひとり親世帯・同居障がい者がいる世帯（市民税所得割合算額77,101円未満）向けの無償化措置（tiers本体は一般世帯の額のみを収録し、当該措置は freeTuition.localExtension に別途記録）",
+      "家庭的保育事業の実額調整（表の額に10分の7を乗じ100円未満切捨てした額が適用されるが、tiers には調整前の基準額のみ収録）",
+      "幼稚園・認定こども園幼稚園部分（1号認定・教育標準時間）の利用料",
+      "行事費・教材費等の実費徴収"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "父母等、全ての保護者の市民税所得割額を合算する。全ての保護者が市民税非課税の場合は、同居している祖父母等のうち最も収入の多い者を家計の主宰者とみなし、その者の額を加えて算定する。",
+    "taxYearRule": "4月分～8月分は前年度（令和7年度）の市民税所得割額、9月分～翌年3月分は当年度（令和8年度）の市民税所得割額を基に算定する（原文どおり）。",
+    "deductionsIgnored": [
+      "配当控除",
+      "外国税額控除",
+      "住宅借入金等特別控除",
+      "市町村等に対する寄附金控除",
+      "住宅特定改修特別税額控除",
+      "認定長期優良住宅新築等特別税額控除",
+      "配当割額控除",
+      "株式等譲渡所得割額控除",
+      "税額調整"
+    ],
+    "sourceId": "kamakura-r8-hoikuryouhyou",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "sourceId": "kamakura-r8-hoikuryouhyou",
+      "expect": [
+        "配当控除",
+        "税額調整を考慮しません"
+      ]
+    },
+    "note": "鎌倉市は政令指定都市ではないため6/8換算（旧税率換算）は適用されない（該当なし）。市階層3「市民税均等割のみの世帯」は所得割額が0円だが、市民税非課税世帯（市階層2）とは異なり均等割は課税されているため isNonTaxable は付与していない（income は0～1未満で市階層1・2と同じ範囲になるが、isWelfare/isNonTaxable フラグで区別する）。家庭的保育事業のみ本表の額に10分の7を乗じ100円未満切捨てした額を適用する旨が注記されている（本ファイルの tiers には反映せず note に留める）。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0～2歳児クラス",
+      "rule": "保育の実施の日の属する年度の4月1日における年齢で決定する（原文の対象年齢の定義）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3～5歳児クラス",
+      "rule": "幼児教育・保育の無償化により2号認定の基本保育料は全階層0円。給食費・延長保育料は無償化の対象外で別途実費徴収。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3～5歳児クラス（2号認定）の基本保育料は無償化により0円",
+      "sourceId": "kamakura-r8-hoikuryouhyou",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし(2026-07-18時点)",
+      "verify": {
+        "sourceId": "kamakura-r8-hoikuryouhyou",
+        "expect": ["保育料は無償化（０円）されていますが"]
+      },
+      "note": "月額表でも3歳児～5歳児クラスの2号認定欄は全階層0円と明記されている。1号認定（幼稚園部分）は本ファイルの対象外。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "被保護世帯（市階層1）・市民税非課税世帯（市階層2）は0～2歳児クラスも0円",
+      "sourceId": "kamakura-r8-hoikuryouhyou",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし(2026-07-18時点)",
+      "verify": {
+        "sourceId": "kamakura-r8-hoikuryouhyou",
+        "expect": ["被保護世帯", "市民税非課税世帯"]
+      },
+      "note": "市民税均等割のみの世帯（市階層3）は非課税世帯に該当せず0円にはならない（標準時間6,700円/短時間6,600円）。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同一世帯で就学前の児童が2人以上、認可保育所・認定こども園・小規模保育事業・事業所内保育事業・家庭的保育事業・幼稚園・都道府県知事に届出のある認可外保育施設・特別支援学校幼稚部・企業主導型保育事業・児童発達支援・児童心理治療施設のいずれかを利用している場合、年齢順に2人目以降を数える（就学前限定）。市民税所得割合算額57,700円未満の世帯は年齢制限なく（就学前に限らず）第2子以降を数える。",
+        "sourceId": "kamakura-r8-hoikuryouhyou",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "令和8年9月以降、年齢制限・所得制限の撤廃を検討中（amendments参照、2026-07-18時点で未実施）。",
+        "verify": {
+          "sourceId": "kamakura-r8-hoikuryouhyou",
+          "expect": ["同一世帯で就学前の児童が２人以上保育所等"]
+        },
+        "note": "原文（要旨）:「同一世帯で就学前の児童が２人以上保育所等※3を利用している場合、年齢順に２人目以降の保育料は無償です。また、市民税所得割合算額57,700円未満の世帯については、年齢制限なく、第２子以降の保育料は無償です。」※3の対象施設は上記value欄のとおり（都道府県知事届出の認可外保育施設は令和6年度から鎌倉市独自に対象追加）。"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子（年齢順に2人目）は無償（0円）",
+        "sourceId": "kamakura-r8-hoikuryouhyou",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "平塚市等の「半額」方式と異なり、鎌倉市は第2子から無償（0円）。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降も無償（0円）",
+        "sourceId": "kamakura-r8-hoikuryouhyou",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "countingRule のカウント方法で3人目以降となった児童も第2子と同様に無償。"
+      }
+    },
+    "localExtension": "市民税所得割合算額が77,101円未満のひとり親世帯及び同居の障がい者がいる世帯については、第1子以降の保育料が無償（0円）になる独自軽減がある（本ファイルの tiers には一般世帯の額のみを収録し、当該軽減は反映していない）。また、都道府県知事に届出のある認可外保育施設を多子軽減の対象施設に含める運用は令和6年度（2024年度）から鎌倉市独自に追加されたもの。令和8年9月以降は多子世帯減免の年齢・所得制限の撤廃を検討中（amendments参照）。"
+  },
+  "tiers": [
+    {
+      "tier": "1",
+      "label": "被保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "2",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "3",
+      "label": "市民税均等割のみの世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 6700, "short": 6600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4",
+      "label": "市民税所得割 48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 9000, "short": 8900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "5",
+      "label": "市民税所得割 48,600円～64,800円未満",
+      "incomeMin": 48600,
+      "incomeMax": 64800,
+      "fees": {
+        "under3": { "standard": 12700, "short": 12500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "6",
+      "label": "市民税所得割 64,800円～80,900円未満",
+      "incomeMin": 64800,
+      "incomeMax": 80900,
+      "fees": {
+        "under3": { "standard": 17200, "short": 16900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "7",
+      "label": "市民税所得割 80,900円～97,000円未満",
+      "incomeMin": 80900,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 21600, "short": 21200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "8",
+      "label": "市民税所得割 97,000円～121,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 121000,
+      "fees": {
+        "under3": { "standard": 26600, "short": 26100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "9",
+      "label": "市民税所得割 121,000円～154,000円未満",
+      "incomeMin": 121000,
+      "incomeMax": 154000,
+      "fees": {
+        "under3": { "standard": 33700, "short": 33100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "10",
+      "label": "市民税所得割 154,000円～169,000円未満",
+      "incomeMin": 154000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 40600, "short": 39900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "11",
+      "label": "市民税所得割 169,000円～213,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 213000,
+      "fees": {
+        "under3": { "standard": 45100, "short": 44300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "12",
+      "label": "市民税所得割 213,000円～257,000円未満",
+      "incomeMin": 213000,
+      "incomeMax": 257000,
+      "fees": {
+        "under3": { "standard": 49500, "short": 48700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "13",
+      "label": "市民税所得割 257,000円～301,000円未満",
+      "incomeMin": 257000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 52800, "short": 51900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "14",
+      "label": "市民税所得割 301,000円～333,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 333000,
+      "fees": {
+        "under3": { "standard": 54700, "short": 53800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "15",
+      "label": "市民税所得割 333,000円～365,000円未満",
+      "incomeMin": 333000,
+      "incomeMax": 365000,
+      "fees": {
+        "under3": { "standard": 56800, "short": 55800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "16",
+      "label": "市民税所得割 365,000円～397,000円未満",
+      "incomeMin": 365000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 59000, "short": 58000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "17",
+      "label": "市民税所得割 397,000円～456,000円未満",
+      "incomeMin": 397000,
+      "incomeMax": 456000,
+      "fees": {
+        "under3": { "standard": 65900, "short": 64800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "18",
+      "label": "市民税所得割 456,000円～515,000円未満",
+      "incomeMin": 456000,
+      "incomeMax": 515000,
+      "fees": {
+        "under3": { "standard": 72800, "short": 71600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "19",
+      "label": "市民税所得割 515,000円以上",
+      "incomeMin": 515000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 79700, "short": 78300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "kamakura-r8-hoikuryouhyou",
+    "expect": [
+      "令和８年度　鎌倉市保育所等保育料（利用料）月額表",
+      "9,000",
+      "79,700",
+      "515,000円以上"
+    ]
+  }
+}

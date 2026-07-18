@@ -1,0 +1,351 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "hokkaido-tomakomai",
+  "name": "北海道苫小牧市",
+  "municipalityCode": "012131",
+  "prefecture": "北海道",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "hoikuryo-page",
+      "title": "利用者負担額（保育料）について",
+      "publisher": "苫小牧市こども未来部幼保施設課",
+      "url": "https://www.city.tomakomai.hokkaido.jp/kenko/kosodate/kanrenshisetsu/kyokahoikujo/hoikuryo.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "保育料算定のしくみ（税年度の切替、適用しない税額控除）、階層判定に用いる同居祖父母の合算基準、保育料徴収金額表（PDF）・確認方法（PDF）・多子軽減詳細（PDF）へのリンクを掲載。"
+    },
+    {
+      "id": "fee-pdf",
+      "title": "保育料徴収金額表（令和元年10月以降分）【保育認定用】",
+      "publisher": "苫小牧市こども未来部幼保施設課",
+      "url": "https://www.city.tomakomai.hokkaido.jp/files/00007400/00007418/fee.pdf",
+      "landingUrl": "https://www.city.tomakomai.hokkaido.jp/kenko/kosodate/kanrenshisetsu/kyokahoikujo/hoikuryo.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "0〜2歳児クラスの階層表本体（A・B(AB/B)・C1〜C15）。金額は令和元年10月の幼児教育・保育無償化導入時から据え置きで、掲載PDFはサーバー上のLast-Modifiedが2026-07-16（令和8年度に入ってからの再掲載）。3歳児クラス以上は別途無償化により無償のため本表に含まれない。"
+    },
+    {
+      "id": "howto-pdf",
+      "title": "利用者負担額（保育料）を算定するための「市民税」の確認方法",
+      "publisher": "苫小牧市こども未来部幼保施設課",
+      "url": "https://www.city.tomakomai.hokkaido.jp/files/00007400/00007418/howto.pdf",
+      "landingUrl": "https://www.city.tomakomai.hokkaido.jp/kenko/kosodate/kanrenshisetsu/kyokahoikujo/hoikuryo.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "課税証明書等に記載の所得割額に、住宅ローン控除・寄附金控除等の税額控除額（市民税分のみ）を足し戻し、100円未満を切り上げた額が保育料算定上の「市町村民税の所得割額」となる旨を図解。道民税分は計算に使わない旨も明記。"
+    },
+    {
+      "id": "tashi-keigen-pdf",
+      "title": "多子世帯・ひとり親世帯等の保育料軽減について",
+      "publisher": "苫小牧市こども未来部幼保施設課",
+      "url": "https://www.city.tomakomai.hokkaido.jp/files/00007400/00007418/071016%E5%A4%9A%E5%AD%90%E4%BF%9D%E8%82%B2%E6%96%99%E6%B8%9B%E9%A1%8D.pdf",
+      "landingUrl": "https://www.city.tomakomai.hokkaido.jp/kenko/kosodate/kanrenshisetsu/kyokahoikujo/hoikuryo.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "多子軽減（全階層で第2子半額・第3子以降無料、C2〜C10階層は年齢要件なしで第2子以降無料）とひとり親世帯・在宅障がい者世帯（C2〜C6階層は第1子が基準額の1/4）の具体的な適用例・金額表・保育料算定の税年度切替の当該年度例を掲載。"
+    },
+    {
+      "id": "musyouka-page",
+      "title": "幼児教育・保育の無償化について",
+      "publisher": "苫小牧市こども未来部幼保施設課",
+      "url": "https://www.city.tomakomai.hokkaido.jp/kenko/kosodate/torikumi/musyouka.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "3〜5歳（クラス年齢、小学校入学前3年間）は全世帯で保育料が無償、0〜2歳は住民税非課税世帯のみ無償である旨、および無償化の対象は保育料のみで教材費・通園送迎費・給食費・行事費等は保護者負担である旨を記載。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "保育料徴収金額表（fee.pdf）の金額自体は令和元年10月の幼児教育・保育無償化導入以降ずっと据え置き。苫小牧市公式サイトでも同一内容のPDFが令和8年度に入った後の2026年7月16日付で再掲載されており、令和8年度も継続して適用される表として収録した。",
+      "status": "in-force",
+      "effectiveFrom": "2019-10-01",
+      "sourceId": "fee-pdf",
+      "impact": "金額表そのものは変更なし。次回の実質的な見直しは9月分保育料算定基礎の令和8年度市町村民税への切替（taxYearRule参照）。"
+    }
+  ],
+  "disclaimer": "本データは苫小牧市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず苫小牧市（こども未来部幼保施設課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所の保育料（利用者負担額）",
+      "認定こども園（保育所部分）の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "給食費（主食費・副食費）",
+      "時間外保育料（延長保育料）",
+      "教材費",
+      "通園送迎費（バス代等）",
+      "行事費等、各施設が独自に徴収する実費",
+      "認可外保育施設・企業主導型保育施設の保育料",
+      "幼稚園・認定こども園（幼稚園部分）の保育料"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則、父母の市町村民税所得割額の合計。ただし、同居の祖父母がいる場合で父母の年収合計が一定額以下（令和7年9月以降は父母合わせて概ね180万円以下、ひとり親世帯は概ね140万円以下。令和7年8月以前は父母合わせて概ね170万円以下）のときは、祖父母のうち税額の高い方も合算する。また、婚姻によらずひとり親家庭の父母が同居し事実婚状態となった場合や、離婚後も父母が同居している場合は、2人の市町村民税所得割額の合計で算定する。",
+    "taxYearRule": "保育料は、4月〜8月分は前年度の市町村民税所得割額（前々年1月〜12月の収入等で決定）、9月〜翌3月分は当該年度の市町村民税所得割額（前年1月〜12月の収入等で決定）を算定基礎とする。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除",
+      "配当控除",
+      "外国税額控除",
+      "寄附金税額控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "expect": ["配当控除", "外国税額控除", "住宅借入金特別控除", "寄附金控除等は適用しません"]
+    },
+    "note": "苫小牧市は政令指定都市ではないため、大阪市・札幌市等でみられる6/8税率換算は行わない。控除の扱いは単なる「不適用」ではなく足し戻し方式：課税証明書等に記載済みの所得割額（各種税額控除を適用した後の額）に、住宅借入金等特別税額控除・寄附金税額控除の額（市民税分のみ。道民税分は使わない）を足し戻し、100円未満を切り上げた額を保育料算定上の「市町村民税の所得割額」とする（howto-pdf【図１】〜【図３】に明記）。配当控除・外国税額控除についてはfee-pdf・tashi-keigen-pdfの注記で「適用しません（＝控除する前の額を用いる）」とのみ記載され、howto-pdfの図解には登場しないため、足し戻しの要否（金額が図示される場合の扱い）は未確認。\n\n階層区分について: A=生活保護世帯等（生活保護法による被保護世帯等）はisWelfare。B=市町村民税非課税世帯はisNonTaxable。原典のfee-pdf表ではB階層の「定義」欄がさらに「AB」「B」の2小区分に分かれて記載されているが、いずれも金額は全区分(標準時間/短時間×一般/ひとり親等)で0円であり、「AB」「B」それぞれの定義文言は原典のどこにも明記がない（未確認: 表記の由来。金額計算には影響しない）。C1=市町村民税均等割のみ課税（所得割は非課税）の世帯で、これも金額は0円。C2以降が実際に所得割額に応じて金額が発生する階層で、C2は「市民税所得割33,300円未満」＝所得割額が1円以上33,300円未満を意味する（0円はC1に該当するため）。tiersのincomeMin/incomeMaxはこの解釈に基づき、A/BはisWelfare/isNonTaxableフラグで判定する便宜上incomeMin=0・incomeMax=0とし、C1はincomeMin=0・incomeMax=1（所得割額ちょうど0円のみを含む区分）とした上でC2のincomeMin=1に接続させている。\n\n多子軽減・ひとり親軽減について（tiers本体には一般世帯の第1子相当額のみを収録。以下は原典表の「半額」欄＝第2子相当額とひとり親世帯等の特例額を転記）:\nfee-pdf「保育料徴収金額表」の全額（tashi-keigen-pdfの（）内はひとり親世帯又は在宅障がい者世帯の第1子額）:\n【0〜2歳児クラス・標準時間】基準額(半額) / 【短時間】基準額(半額)\nA:0(0)/0(0)　B(AB/B):0(0)/0(0)　C1:0(0)/0(0)\nC2 所得割33,300円未満:9,800(2,450)/0　9,600(2,400)/0\nC3 48,600円未満:13,200(3,300)/0　13,000(3,250)/0\nC4 50,900円未満:14,100(3,500)/0　13,900(3,500)/0\nC5 63,600円未満:16,700(4,200)/0　16,400(4,100)/0\nC6 78,600円未満:21,400(5,350)/0　21,000(5,250)/0\nC7 97,000円未満:25,400/0　25,000/0（ひとり親等の1/4特例はC2〜C6のみでC7以降は一般世帯と同額）\nC8 117,300円未満:31,600/0　31,100/0\nC9 138,300円未満:39,200/0　38,500/0\nC10 169,000円未満:42,900/0　42,200/0\nC11 183,300円未満:47,100/23,550　46,300/23,150（このC11〜C15区分は一般世帯・ひとり親等世帯とも同額。第2子は半額欄の額、第3子以降は無料）\nC12 228,900円未満:53,000/26,500　52,100/26,050\nC13 301,000円未満:61,000/30,500　60,000/30,000\nC14 346,600円未満:66,500/33,250　65,400/32,700\nC15 346,600円以上:75,600/37,800　74,300/37,150\n※上記「半額」欄はC2〜C10階層では北海道の多子世帯保育料軽減制度（平成29年度創設）により0円（第2子以降無料）で統一されている。C11〜C15階層は国基準どおり第2子は基準額の半額。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "クラス年齢は、園を利用する年度における4月1日時点の年齢を指す（原典の注記どおり）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳児クラス以上",
+      "rule": "クラス年齢は、園を利用する年度における4月1日時点の年齢を指す。小学校入学前の3年間が対象。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳児クラス以上（教育認定の満3歳児を含む）の保育料は無償",
+      "sourceId": "hoikuryo-page",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": ["幼児教育・保育無償化", "３歳児クラス以上の児童", "保育料が無償となりました"]
+      },
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "令和元年10月の幼児教育・保育無償化により、世帯の所得にかかわらず無料。対象は保育料のみで、教材費・通園送迎費・給食費・行事費等は保護者負担（musyouka-page ※注1）。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "市町村民税非課税世帯（B階層）は0〜2歳児クラスも0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "利用者負担額表のB階層（市民税非課税世帯。表内のAB/B両区分とも）が保育標準時間・保育短時間ともに0円。A階層（生活保護世帯等）・C1階層（市民税均等割のみ）も同様に0円。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同一世帯（A階層の世帯を除く）から2人以上の就学前児童が保育所・幼稚園・認定こども園・企業主導型保育施設・特別支援学校幼稚部・児童心理治療施設通所部に入園、または児童発達支援・医療型児童発達支援を利用している場合、年齢が高い順に第1子・第2子…と数える。C2〜C10階層は子の年齢に関係なく数える（年齢上限なし）。C11〜C15階層（国基準の多子軽減）は保育所・幼稚園・こども園等に通っている子から数える（上の子に年齢要件あり）。",
+        "sourceId": "tashi-keigen-pdf",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "fee-pdf注2・tashi-keigen-pdf（3）に基づく。C2〜C10階層の年齢要件撤廃は北海道が平成29年度から創設した多子世帯保育料軽減制度を苫小牧市が活用したもの。"
+      },
+      "secondChild": {
+        "value": "階層により異なる（C2〜C10階層は無料、C11〜C15階層は基準額の半額）",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "具体的な金額はbracketBasis.noteの表（各階層の「半額」欄）を参照。第1子相当額のみをtiers本体に収録している。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は無料（全階層共通）",
+        "sourceId": "tashi-keigen-pdf",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "C2〜C10階層は第2子以降が無料（第3子以降も当然無料）。C11〜C15階層は第2子半額・第3子以降無料。"
+      }
+    },
+    "localExtension": "苫小牧市独自（北海道の制度活用）：C2〜C10階層は北海道が平成29年度から創設した多子世帯（第2子以降かつ3歳未満）保育料無償化制度を活用し、子の年齢に関係なく第2子以降を無料化。また、ひとり親世帯・在宅障がい者世帯（各種手帳交付又は特別児童扶養手当受給世帯）については、平成28年度からC2〜C6階層で第1子の保育料を基準額の1/4に軽減（第2子以降は無料）。教育認定（3歳以上）は国の無償化により別途無償。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等（生活保護法による被保護世帯、中国残留邦人等支援給付受給世帯等）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市町村民税非課税世帯（原典表ではAB・Bの2小区分に分かれるがいずれも0円）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市町村民税均等割のみ（所得割は非課税）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市民税所得割33,300円未満",
+      "incomeMin": 1,
+      "incomeMax": 33300,
+      "fees": {
+        "under3": { "standard": 9800, "short": 9600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "48,600円未満",
+      "incomeMin": 33300,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 13200, "short": 13000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "50,900円未満",
+      "incomeMin": 48600,
+      "incomeMax": 50900,
+      "fees": {
+        "under3": { "standard": 14100, "short": 13900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "63,600円未満",
+      "incomeMin": 50900,
+      "incomeMax": 63600,
+      "fees": {
+        "under3": { "standard": 16700, "short": 16400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "78,600円未満",
+      "incomeMin": 63600,
+      "incomeMax": 78600,
+      "fees": {
+        "under3": { "standard": 21400, "short": 21000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "97,000円未満",
+      "incomeMin": 78600,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 25400, "short": 25000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "117,300円未満",
+      "incomeMin": 97000,
+      "incomeMax": 117300,
+      "fees": {
+        "under3": { "standard": 31600, "short": 31100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "138,300円未満",
+      "incomeMin": 117300,
+      "incomeMax": 138300,
+      "fees": {
+        "under3": { "standard": 39200, "short": 38500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "169,000円未満",
+      "incomeMin": 138300,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 42900, "short": 42200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "183,300円未満",
+      "incomeMin": 169000,
+      "incomeMax": 183300,
+      "fees": {
+        "under3": { "standard": 47100, "short": 46300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "228,900円未満",
+      "incomeMin": 183300,
+      "incomeMax": 228900,
+      "fees": {
+        "under3": { "standard": 53000, "short": 52100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "301,000円未満",
+      "incomeMin": 228900,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 61000, "short": 60000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "346,600円未満",
+      "incomeMin": 301000,
+      "incomeMax": 346600,
+      "fees": {
+        "under3": { "standard": 66500, "short": 65400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "346,600円以上",
+      "incomeMin": 346600,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 75600, "short": 74300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "保育料徴収金額表",
+      "9,800",
+      "75,600",
+      "346,600円以上"
+    ]
+  }
+}
