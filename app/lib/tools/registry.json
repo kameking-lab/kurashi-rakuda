@@ -1869,5 +1869,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T02",
+    "slug": "kosodate-kyufu-sougou-check",
+    "category": "money",
+    "title": "子育て世帯の給付金・助成金 総ざらいチェッカー",
+    "description": "お子さんの時期（妊娠〜高校生）とひとり親かどうかから、関係しうる子育て支援の制度（児童手当・児童扶養手当・こども医療費助成・幼児教育無償化・就学援助・高校就学支援金など）を横断的に洗い出し、対象・所管・申請先へ道案内します。金額は計算しません。",
+    "solves": [
+      "自分の家庭が使える子育て支援の制度を一覧で知りたい",
+      "子どもの年齢の時期にどんな給付・助成があるか知りたい",
+      "ひとり親世帯が特に確認すべき制度を知りたい",
+      "それぞれの制度をどこに申請すればいいか知りたい",
+      "見落としている子育て給付がないか総ざらいしたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "こども家庭庁「児童手当制度のご案内」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/"
+      },
+      {
+        "label": "こども家庭庁「幼児教育・保育の無償化」",
+        "url": "https://www.cfa.go.jp/policies/kokoseido/mushouka"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kosodate-kyufu-sougou-check.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kosodate-kyufu-sougou-check.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
