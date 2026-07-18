@@ -1900,5 +1900,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T12",
+    "slug": "seichou-kyokusen",
+    "category": "childcare",
+    "title": "成長曲線プロット（パーセンタイル）",
+    "description": "お子さんの月齢・性別・実測値（体重・身長・頭囲）から、厚生労働省「令和5年乳幼児身体発育調査」のパーセンタイル値のどこに位置するかを表示します。発育の正常・異常は判定せず、統計的な位置と、気になる場合の相談先を案内します。",
+    "solves": [
+      "子どもの体重・身長が同じ月齢の中でどのくらいの位置か知りたい",
+      "測定値が何パーセンタイルくらいに当たるのか知りたい",
+      "頭囲が標準的な範囲のどのあたりか知りたい",
+      "3〜97パーセンタイルの外に出たときにどう考えればいいか知りたい",
+      "成長曲線の見方（パーセンタイルの意味）を知りたい"
+    ],
+    "basisYear": "令和5年調査",
+    "sources": [
+      {
+        "label": "厚生労働省「乳幼児身体発育調査（調査の結果）」",
+        "url": "https://www.mhlw.go.jp/toukei/list/73-22b.html"
+      },
+      {
+        "label": "e-Stat 令和5年乳幼児身体発育調査 統計表（体重・身長・頭囲のパーセンタイル値）",
+        "url": "https://www.e-stat.go.jp/stat-search/files?stat_infid=000040240362"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/tables/seichou-hatsuiku-percentile.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/tables/seichou-hatsuiku-percentile.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]

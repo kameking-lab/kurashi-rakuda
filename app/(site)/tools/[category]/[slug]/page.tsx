@@ -125,6 +125,8 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { SeichouKyokusen } from "@/components/tools/impl/SeichouKyokusen";
+import { SEICHOU_EDITION } from "@/components/tools/impl/SeichouKyokusen.calc";
 import { KosodateKyufuSougouCheck } from "@/components/tools/impl/KosodateKyufuSougouCheck";
 import {
   kosodateKyufuDataset,
@@ -268,6 +270,27 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "seichou-kyokusen": {
+    ui: <SeichouKyokusen />,
+    formula: (
+      <>
+        <p>
+          このツールは、お子さんの体重・身長・頭囲の実測値が、同じ月齢・性別の子どもの中で
+          <strong>どのパーセンタイルの位置にあるか</strong>を示します。パーセンタイルは「同じ月齢・性別の子を小さい順に100人並べたとき下から何番目あたりか」を表す目安で、3〜97パーセンタイルの間に約94%の子どもが入ります。
+        </p>
+        <p>
+          基準値は{SEICHOU_EDITION}の3・10・25・50・75・90・97パーセンタイル値（一般調査・病院調査）です。入力された実測値を、選んだ月齢・年齢区分・性別の7つのパーセンタイル値と比べ、どの区間（例: 25〜50パーセンタイルの間）に入るか、中央値（50パーセンタイル）とどれだけ差があるかを表示します。3パーセンタイル未満・97パーセンタイル以上のときは、統計的に少数側にいることを示しますが、それ自体が異常を意味するわけではありません。
+        </p>
+        <p>
+          データは政府統計の総合窓口（e-Stat）が公開する統計表を機械的に転記し、丸めた後も各区分で値が小さい順に並ぶ（p3&lt;…&lt;p97）ことを確認しています。頭囲は原典の区分に合わせて2歳6〜12か月未満までとし、存在しない区分を推測で補うことはしていません。
+        </p>
+        <p>
+          ★このツールは発育が正常か・異常かを判定しません★
+          母子健康手帳の発育曲線は版によって基づく調査年が異なることがあり、数値がわずかに違う場合があります。発育の評価は1回の測定値ではなく経過（曲線の傾き）で見る必要があります。心配なことがあれば、必ず乳幼児健診やかかりつけの小児科でご相談ください。
+        </p>
+      </>
+    ),
+  },
   "kosodate-kyufu-sougou-check": {
     ui: <KosodateKyufuSougouCheck />,
     formula: (
