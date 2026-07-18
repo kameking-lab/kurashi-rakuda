@@ -29,11 +29,15 @@ import fukuokaFukuoka from "@/data/seido/hoikuryo/fukuoka-fukuoka.json";
 import fukuokaKitakyushu from "@/data/seido/hoikuryo/fukuoka-kitakyushu.json";
 import hiroshimaHiroshima from "@/data/seido/hoikuryo/hiroshima-hiroshima.json";
 import hiroshimaKure from "@/data/seido/hoikuryo/hiroshima-kure.json";
+import hiroshimaHigashihiroshima from "@/data/seido/hoikuryo/hiroshima-higashihiroshima.json";
 import hokkaidoSapporo from "@/data/seido/hoikuryo/hokkaido-sapporo.json";
 import hyogoKobe from "@/data/seido/hoikuryo/hyogo-kobe.json";
 import hyogoHimeji from "@/data/seido/hoikuryo/hyogo-himeji.json";
 import hyogoAmagasaki from "@/data/seido/hoikuryo/hyogo-amagasaki.json";
 import hyogoNishinomiya from "@/data/seido/hoikuryo/hyogo-nishinomiya.json";
+import hyogoItami from "@/data/seido/hoikuryo/hyogo-itami.json";
+import hyogoKakogawa from "@/data/seido/hoikuryo/hyogo-kakogawa.json";
+import hyogoTakarazuka from "@/data/seido/hoikuryo/hyogo-takarazuka.json";
 import naraNara from "@/data/seido/hoikuryo/nara-nara.json";
 import wakayamaWakayama from "@/data/seido/hoikuryo/wakayama-wakayama.json";
 import ishikawaKanazawa from "@/data/seido/hoikuryo/ishikawa-kanazawa.json";
@@ -69,6 +73,8 @@ import osakaSuita from "@/data/seido/hoikuryo/osaka-suita.json";
 import osakaTakatsuki from "@/data/seido/hoikuryo/osaka-takatsuki.json";
 import osakaHirakata from "@/data/seido/hoikuryo/osaka-hirakata.json";
 import osakaHigashiosaka from "@/data/seido/hoikuryo/osaka-higashiosaka.json";
+import osakaIbaraki from "@/data/seido/hoikuryo/osaka-ibaraki.json";
+import osakaKishiwada from "@/data/seido/hoikuryo/osaka-kishiwada.json";
 import saitamaSaitama from "@/data/seido/hoikuryo/saitama-saitama.json";
 import saitamaKawaguchi from "@/data/seido/hoikuryo/saitama-kawaguchi.json";
 import saitamaKawagoe from "@/data/seido/hoikuryo/saitama-kawagoe.json";
@@ -103,6 +109,8 @@ import kagawaTakamatsu from "@/data/seido/hoikuryo/kagawa-takamatsu.json";
 import yamaguchiShimonoseki from "@/data/seido/hoikuryo/yamaguchi-shimonoseki.json";
 import shimaneMatsue from "@/data/seido/hoikuryo/shimane-matsue.json";
 import tottoriTottori from "@/data/seido/hoikuryo/tottori-tottori.json";
+import tokushimaTokushima from "@/data/seido/hoikuryo/tokushima-tokushima.json";
+import sagaSaga from "@/data/seido/hoikuryo/saga-saga.json";
 import type { SeidoAmendment, SeidoDataset, SeidoSource } from "@/lib/tools/seido";
 
 // ---------------------------------------------------------------- 型
@@ -228,6 +236,14 @@ export const municipalities: HoikuryoMunicipality[] = [
   hiroshimaKure as unknown as HoikuryoMunicipality,
   nagasakiSasebo as unknown as HoikuryoMunicipality,
   tottoriTottori as unknown as HoikuryoMunicipality,
+  osakaIbaraki as unknown as HoikuryoMunicipality,
+  osakaKishiwada as unknown as HoikuryoMunicipality,
+  hyogoKakogawa as unknown as HoikuryoMunicipality,
+  hyogoTakarazuka as unknown as HoikuryoMunicipality,
+  hyogoItami as unknown as HoikuryoMunicipality,
+  tokushimaTokushima as unknown as HoikuryoMunicipality,
+  sagaSaga as unknown as HoikuryoMunicipality,
+  hiroshimaHigashihiroshima as unknown as HoikuryoMunicipality,
   kochiKochi,
   miyazakiMiyazaki,
   nagasakiNagasaki,

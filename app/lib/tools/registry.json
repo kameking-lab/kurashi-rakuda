@@ -571,6 +571,38 @@
         "label": "鳥取市「保育料について」",
         "url": "https://www.city.tottori.lg.jp/site/kosodate/4830.html"
       },
+      {
+        "label": "茨木市「令和8年度利用者負担額（保育料）」",
+        "url": "https://www.city.ibaraki.osaka.jp/kikou/kodomoikusei/jigyou/menu/hoikushokankei/nyuusyo/38725.html"
+      },
+      {
+        "label": "岸和田市「令和7年度 保育施設等利用案内」",
+        "url": "https://www.city.kishiwada.osaka.jp/uploaded/attachment/144018.pdf"
+      },
+      {
+        "label": "加古川市「保育所等利用者負担額」",
+        "url": "https://www.city.kakogawa.lg.jp/soshikikarasagasu/kodomo/hoikuka/kosodate_kyoiku/hoiku_noufu/29033.html"
+      },
+      {
+        "label": "宝塚市「利用者負担額（保育料）」",
+        "url": "https://www.city.takarazuka.hyogo.jp/1060680/1060698/1061552/1061560/gakkoshisetsu/1000105/1038701.html"
+      },
+      {
+        "label": "伊丹市「利用者負担額」",
+        "url": "https://www.city.itami.lg.jp/SOSIKI/KODOMO/HOIKU/riyoushahutangaku/1443756583050.html"
+      },
+      {
+        "label": "徳島市「令和8年度 保育所等利用のてびき」",
+        "url": "https://www.city.tokushima.tokushima.jp/kosodate/youchien_hoikujo/hoikusho_n-kodomoen/R08_hoiku_moushikomi.html"
+      },
+      {
+        "label": "佐賀市「保育料」",
+        "url": "https://www.city.saga.lg.jp/kosodate-kyoiku/mokuteki/2/1/1/4520.html"
+      },
+      {
+        "label": "東広島市「令和8年度 保育料について」",
+        "url": "https://www.city.higashihiroshima.lg.jp/soshiki/kodomomirai/2/7/43935.html"
+      },
       "data/seido/hoikuryo/fukuoka-kurume.json",
       "data/seido/hoikuryo/hiroshima-fukuyama.json",
       "data/seido/hoikuryo/kagawa-takamatsu.json",

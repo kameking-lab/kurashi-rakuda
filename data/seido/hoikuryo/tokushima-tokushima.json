@@ -1,0 +1,236 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "tokushima-tokushima",
+  "name": "徳島県徳島市",
+  "municipalityCode": "362018",
+  "prefecture": "徳島県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "tokushima-r8",
+      "title": "令和8年度 保育所等利用のてびき",
+      "publisher": "徳島市",
+      "url": "https://www.city.tokushima.tokushima.jp/kosodate/youchien_hoikujo/hoikusho_n-kodomoen/R08_hoiku_moushikomi.files/R08_tebiki_hoiku.pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "landingUrl": "https://www.city.tokushima.tokushima.jp/smph/kosodate/youchien_hoikujo/hoikusho_n-kodomoen/R08_hoiku_moushikomi.html"
+    }
+  ],
+  "disclaimer": "本データは徳島県徳島市の自治体公式資料に基づく参考情報です。実際の保育料は税額、世帯状況、きょうだい構成等により自治体が決定するため、決定通知書または担当窓口で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園等の一般世帯・第1子の月額保育料"
+    ],
+    "excludes": [
+      "ひとり親・障害者同居世帯等の軽減後金額",
+      "第2子以降の軽減後金額",
+      "延長保育料",
+      "給食費・副食費・行事費等の実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "taxYearRule": "4～8月は前年度、9月～翌3月は当年度の市町村民税額を基礎に算定。",
+    "note": "4～8月はR7年度、9～3月はR8年度市町村民税。調整控除は適用後、住宅借入金・配当・寄附金・外国税額・配当割・株式等譲渡所得割等は控除前。6/8換算は未確認。課税額不明時はD9で仮算定。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0～2歳児クラス",
+      "rule": "年度初日の年齢区分を年度中適用"
+    },
+    {
+      "key": "age3plus",
+      "label": "3～5歳児クラス",
+      "rule": "幼児教育・保育の無償化により保育料0円"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "sourceId": "tokushima-r8",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "sourceId": "tokushima-r8",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "D1～D7は県補助・市独自拡充により第1子から0円。D8～D9は生計同一の子を数え、第2子半額・第3子以降無料。",
+        "sourceId": "tokushima-r8",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      },
+      "secondChild": {
+        "value": 0.5,
+        "unit": "ratio",
+        "sourceId": "tokushima-r8",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "所得・施設利用等の条件あり"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "tokushima-r8",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "条件はcountingRule参照"
+      }
+    },
+    "localExtension": "D1～D7は県補助・市独自拡充により第1子から0円。D8～D9は生計同一の子を数え、第2子半額・第3子以降無料。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      },
+      "isWelfare": true
+    },
+    {
+      "tier": "B",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      },
+      "isNonTaxable": true
+    },
+    {
+      "tier": "C",
+      "label": "均等割のみ課税",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "所得割額48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "48,600円以上57,700円未満",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "57,700円以上73,000円未満",
+      "incomeMin": 57700,
+      "incomeMax": 73000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "73,000円以上77,101円未満",
+      "incomeMin": 73000,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "77,101円以上97,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "97,000円以上133,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "133,000円以上169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "169,000円以上301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 56000,
+          "short": 55000
+        }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "301,000円以上",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 59000,
+          "short": 57900
+        }
+      }
+    }
+  ]
+}
