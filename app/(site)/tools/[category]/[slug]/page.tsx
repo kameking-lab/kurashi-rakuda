@@ -115,6 +115,16 @@ import {
 } from "@/components/tools/impl/PmsYosokuCalendar.calc";
 import { AkachanSuiminGyakusan } from "@/components/tools/impl/AkachanSuiminGyakusan";
 import { AKACHAN_SUIMIN_DISCLAIMER } from "@/components/tools/impl/AkachanSuiminGyakusan.calc";
+import { JidouFuyouTeate } from "@/components/tools/impl/JidouFuyouTeate";
+import {
+  jidouFuyouTeateDataset,
+  JIDOU_FUYOU_TEATE_DISCLAIMER,
+  FIRST_CHILD_FULL,
+  ADDITIONAL_CHILD_FULL,
+  FIRST_CHILD_COEFFICIENT,
+  ADDITIONAL_CHILD_COEFFICIENT,
+  CHILD_SUPPORT_INCOME_RATE,
+} from "@/components/tools/impl/JidouFuyouTeate.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -177,6 +187,45 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "jidou-fuyou-teate": {
+    ui: <JidouFuyouTeate />,
+    formula: (
+      <>
+        <p>
+          児童扶養手当は「本体額（児童1人目）」＋「加算額（2人目以降1人につき）」の構造です。全部支給・一部支給の別は、受給者本人の
+          <strong>所得額</strong>
+          （年収そのものではなく、年収から給与所得控除・社会保険料相当額・諸控除を引いた額）を、扶養親族の数に応じた所得制限限度額と比べて決まります。所得額が全部支給の限度額
+          <strong>未満</strong>なら全部支給、限度額以上〜一部支給の限度額未満なら一部支給、一部支給の限度額以上なら支給されません。
+        </p>
+        <p>
+          全部支給の月額は、本体額 {yen(FIRST_CHILD_FULL)}円 ＋ 加算額 {yen(ADDITIONAL_CHILD_FULL)}
+          円 ×（児童数−1）です（令和6年11月分から第2子と第3子以降の加算額は同額に統一されています）。
+        </p>
+        <p>
+          一部支給は10円きざみで逓減します。本体額は「{yen(FIRST_CHILD_FULL)}円 −
+          {"{"}（所得額−全部支給限度額）× {FIRST_CHILD_COEFFICIENT} ＋10円{"}"}」、加算額は「
+          {yen(ADDITIONAL_CHILD_FULL)}円 −{"{"}（所得額−全部支給限度額）× {ADDITIONAL_CHILD_COEFFICIENT}{" "}
+          ＋10円{"}"}」で計算し、それぞれの上限・下限の範囲に収めます。係数は毎年4月の物価スライドで手当額とともに改定されます。
+        </p>
+        <p>
+          <strong>養育費は受け取った額の{Math.round(CHILD_SUPPORT_INCOME_RATE * 100)}%が所得に算入されます</strong>
+          。他制度にない大きな特徴で、養育費をきちんと受け取るほど所得額が上がり手当が減る方向に働きます（ただし逆転はしません）。任意入力欄に年額を入れると自動で加算します。
+        </p>
+        <p>
+          離婚後に実家へ戻るなどして<strong>同居している扶養義務者</strong>
+          （親・祖父母・兄弟姉妹等）がいる場合、その方の所得が限度額以上だと、本人の所得が低くても全部支給停止になります。この「扶養義務者等の所得制限額」も扶養親族数に応じた表から判定します。
+        </p>
+        <p>
+          支給は奇数月（1・3・5・7・9・11月）の年6回、各回に前2か月分をまとめて支給します（児童手当は偶数月なので、両方を受給する世帯では毎月どちらかが振り込まれます）。申請は原則さかのぼれず、請求日の属する月の翌月分からの支給です。
+        </p>
+        <p>
+          公的年金（遺族年金・障害年金・老齢年金等）を受給している場合は併給調整があり、正確な支給額は年金の種類によって扱いが分かれます。本ツールでは確定額を出さず、窓口確認を案内します。
+        </p>
+        <p>{JIDOU_FUYOU_TEATE_DISCLAIMER}</p>
+        <SeidoNotice datasets={[jidouFuyouTeateDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "chomiryo-kanzan": {
     ui: <ChomiryoKanzan />,
     formula: (

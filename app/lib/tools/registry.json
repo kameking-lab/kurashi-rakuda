@@ -1559,5 +1559,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T03",
+    "slug": "jidou-fuyou-teate",
+    "category": "money",
+    "title": "児童扶養手当 計算（ひとり親）",
+    "description": "対象児童の人数・受給者本人の所得額・扶養親族の数から、児童扶養手当の全部支給／一部支給／支給停止を判定し、月額・年額・1回あたりの支給額の目安を表示します。養育費8割の所得算入や、同居する扶養義務者の所得による支給停止にも対応します。",
+    "solves": [
+      "児童扶養手当が全部支給・一部支給・支給停止のどれに当たるか分からない",
+      "一部支給の場合に手当が毎月いくらになるか分からない",
+      "受け取っている養育費が手当額にどう影響するか分からない",
+      "実家に戻って親と同居すると手当が止まるのか分からない",
+      "児童が2人・3人いるときに加算額がいくら増えるか分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "こども家庭庁「児童扶養手当について」",
+        "url": "https://www.cfa.go.jp/policies/hitori-oya/fuyou-teate"
+      },
+      {
+        "label": "e-Gov法令検索「児童扶養手当法」",
+        "url": "https://laws.e-gov.go.jp/law/336AC0000000238"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/jidou-fuyou-teate.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/jidou-fuyou-teate.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]

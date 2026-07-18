@@ -158,7 +158,7 @@
 |---|---|---|---|---|---|
 | [x] P2-T01 | #56 | 復職後の手取りシミュレーター（時短×社保×保育料の複合） → **完了（2026-07-18・slug: `fukushoku-tedori`／career）**: ①〜③（賃金・社保2シナリオ・育児時短就業給付・8/1期限停止）は検証済みの jitan-kyuyo エンジンへ委譲し、④保育料（★利用者入力の実額。年収→階層の推計を手取りの実数に合成するとYMYL誤差が複利で乗るため合成せず、保育料計算ツールへ誘導★）を差し引く合成レイヤーを新設。`lib/tools/impl/fukushoku-tedori.ts`・`components/tools/impl/FukushokuTedori.tsx`・`specs/s-tools/07-fukushoku-tedori-simu.md`・テスト24件。新規データ収集なし（依存4データは既存・`verify --fetch` エラー0）。★検算は別セッション★ | S(オーパス) | ✔ikukyu-kyufu・hoikuryo・**kyoukaikenpo-hokenryo（P2-D02）・koyou-hoken-ryoritsu（2026-07-17）＝データ依存すべて解消** | 要 |
 | P2-T02 | #58 | 子育て世帯の給付金・助成金 総ざらいチェッカー | S(オーパス) | ✔kosodate-kyufu-sougou-check | 要 |
-| [~] P2-T03 | #59 | 児童扶養手当計算（ひとり親） | S(オーパス) | ✔jidou-fuyou-teate | 要 |
+| [x] P2-T03 | #59 | 児童扶養手当計算（ひとり親） | S(オーパス) | ✔jidou-fuyou-teate | 要 → **完了（2026-07-18）**: slug `jidou-fuyou-teate`（money）。specs/s-tools/08-jidou-fuyou-teate.md・JidouFuyouTeate.calc.ts/tsx・tests/jidou-fuyou-teate.test.ts（26件）。全部支給/一部支給/支給停止の判定（本人所得＋養育費8割算入 vs 扶養親族数別の所得制限限度額）・一部支給の逓減式（係数0.0264029/0.0040719・10円きざみ）・同居扶養義務者の所得による支給停止・公的年金併給調整は確定額を出さず警告のみ（JSON withPublicPension=null）。金額/係数/限度額は全てdata/seido/jidou-fuyou-teate.json由来（ハードコードなし）。registry.json追加済み |
 | P2-T04 | #80 | 扶養内⇄社保加入 損益分岐 | S(オーパス) | ✔fuyounai-shaho-songeki-bunkiten・fuyou-kabe | 要 |
 | P2-T05 | #91 | 介護休業給付金計算 | S(オーパス) | ✔kaigo-kyugyou-kyufukin | 要 |
 | P2-T06 | #93 | 高額介護サービス費 該当チェック | S(オーパス) | ✔kougaku-kaigo-service-hi | 要 |
