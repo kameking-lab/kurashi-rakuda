@@ -1,0 +1,370 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kanagawa-chigasaki",
+  "name": "神奈川県茅ヶ崎市",
+  "municipalityCode": "142077",
+  "prefecture": "神奈川県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "chigasaki-hoikuryo",
+      "title": "保育料について",
+      "publisher": "茅ヶ崎市 こども育成部 保育課",
+      "url": "https://www.city.chigasaki.kanagawa.jp/kosodate/1024751/hoikuen/1004734.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "html",
+      "note": "更新日 令和7年8月19日。保育料基準額表・多子軽減・算定方法・所得割額確認方法の各PDFへのリンクを掲載。"
+    },
+    {
+      "id": "chigasaki-kijungaku",
+      "title": "保育料（利用者負担額）基準額表（令和元年10月1日～）",
+      "publisher": "茅ヶ崎市 こども育成部 保育課",
+      "url": "https://www.city.chigasaki.kanagawa.jp/_res/projects/default_project/_page_/001/004/734/201910hoikuryo.pdf",
+      "landingUrl": "https://www.city.chigasaki.kanagawa.jp/kosodate/1024751/hoikuen/1004734.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "令和元年10月1日改定の基準額表。0～2歳児クラスの金額はR8版しおり（chigasaki-shiori-r8）P.31の表と完全一致することを確認済み（別枠改定なし）。本PDFには3～5歳児クラス・1号認定の金額欄も残っているが、無償化により実際の負担額は0円（chigasaki-mushouka参照）で、R8版しおりの基準額表は0～2歳児クラスのみを掲載する構成に整理されている。"
+    },
+    {
+      "id": "chigasaki-shiori-r8",
+      "title": "保育所等のしおり（令和7年9月11日発行）【令和8年4月2日修正版】",
+      "publisher": "茅ヶ崎市 こども育成部 保育課",
+      "url": "https://www.city.chigasaki.kanagawa.jp/_res/projects/default_project/_page_/001/058/018/siori20260407.pdf",
+      "landingUrl": "https://www.city.chigasaki.kanagawa.jp/kosodate/1024751/hoikuen/1058018.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "令和8年4月2日修正版。P.31に保育料基準額表（D1～D15）、P.33に算定方法・算定対象、P.34に市民税所得割額の確認方法（税額控除前の市民税所得割額－市民税調整控除額－市民税税額調整額－市民税定額減税額）を掲載。R8年度時点で現行のまま有効であることを確認する一次情報。"
+    },
+    {
+      "id": "chigasaki-tasi-hitorioya",
+      "title": "多子世帯及びひとり親世帯等の保育料軽減",
+      "publisher": "茅ヶ崎市 こども育成部 保育課",
+      "url": "https://www.city.chigasaki.kanagawa.jp/_res/projects/default_project/_page_/001/004/734/2019tasi.youho.genmen.pdf",
+      "landingUrl": "https://www.city.chigasaki.kanagawa.jp/kosodate/1024751/hoikuen/1004734.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf"
+    },
+    {
+      "id": "chigasaki-santei-hoho",
+      "title": "保育料の算定方法（保育所等のしおり抜粋）",
+      "publisher": "茅ヶ崎市 こども育成部 保育課",
+      "url": "https://www.city.chigasaki.kanagawa.jp/_res/projects/default_project/_page_/001/004/734/hoikuryosanteihouhou20230911.pdf",
+      "landingUrl": "https://www.city.chigasaki.kanagawa.jp/kosodate/1024751/hoikuen/1004734.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "算定対象（父母合算・祖父母算入条件）と算定時期（4～8月は前年度、9月以降は当年度）の説明抜粋。令和5年度の例で作成されているが、税年度切替のルール自体はR8年度版しおり（chigasaki-shiori-r8）でも同一表現で確認済み。"
+    },
+    {
+      "id": "chigasaki-shiminzei-kakunin",
+      "title": "市民税の所得割額の確認（保育所等のしおり抜粋）",
+      "publisher": "茅ヶ崎市 こども育成部 保育課",
+      "url": "https://www.city.chigasaki.kanagawa.jp/_res/projects/default_project/_page_/001/004/734/shiminzeishotokuwarimikata20230911.pdf",
+      "landingUrl": "https://www.city.chigasaki.kanagawa.jp/kosodate/1024751/hoikuen/1004734.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "保育料算定の所得割額に適用しない税額控除（寄附金税額控除・住宅借入金等特別控除・配当控除・外国税額控除・配当割額・株式等譲渡所得割額控除）を列挙。令和5年度時点の作成だが、控除の非適用範囲自体はR8版しおりの基準額表脚注（住宅借入金等特別控除、配当控除等を適用する前の税額）と整合。"
+    },
+    {
+      "id": "chigasaki-mushouka",
+      "title": "幼児教育・保育の無償化について",
+      "publisher": "茅ヶ崎市 こども育成部 保育課",
+      "url": "https://www.city.chigasaki.kanagawa.jp/kosodate/1024751/1059736.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "html"
+    },
+    {
+      "id": "chigasaki-fukushokuhi",
+      "title": "3～5歳クラスの児童の給食費（主食費・副食費）について",
+      "publisher": "茅ヶ崎市 こども育成部 保育課",
+      "url": "https://www.city.chigasaki.kanagawa.jp/_res/projects/default_project/_page_/001/004/734/2019hukusyokuhi.pdf",
+      "landingUrl": "https://www.city.chigasaki.kanagawa.jp/kosodate/1024751/hoikuen/1004734.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "保育料無償化後も主食費・副食費は保護者負担である旨の確認用（scope.excludes の裏付け）。"
+    }
+  ],
+  "disclaimer": "本データは神奈川県茅ヶ崎市の自治体公式資料に基づく参考情報です。実際の保育料は税額、世帯状況、きょうだい構成等により自治体が決定するため、決定通知書または担当窓口（保育課 認定給付担当）で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育所部分）・地域型保育事業の一般世帯・第1子の月額保育料（0～2歳児クラス）"
+    ],
+    "excludes": [
+      "3～5歳児クラスの主食費・副食費（幼児教育・保育の無償化後も保護者負担）",
+      "延長保育料",
+      "ひとり親世帯等・多子世帯の軽減後金額（bracketBasis.note・freeTuition.localExtension に軽減の枠組みのみ記録）",
+      "認定こども園（幼稚園部分）・新制度移行幼稚園・地域型保育事業（小規模保育等）で施設が独自に徴収する費用",
+      "通園バス代・制服代・施設整備費等（1号認定）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "保護者（父母）の市民税所得割額の合算。保護者（父母）双方が所得割非課税の場合は、同居（同一建物・同一敷地内）の祖父母のうち家計の主宰者と判断される者の税額（所得割額または均等割額）も算定対象に含める。単身赴任等による別居、離婚前の別居（離婚調停中を除く）、離婚後の元配偶者との同居、内縁関係・パートナーとの同居は同一生計とみなし、保護者として算定する。",
+    "taxYearRule": "4月～8月分は前年度（前年1～12月分の収入）の市民税額で算定、9月～翌3月分は当該年度（当年1～12月分の収入）の市民税額で算定。毎年9月に新年度の市民税額で保育料を算定し直す。県民税は保育料算定の対象外。",
+    "deductionsIgnored": [
+      "寄附金税額控除",
+      "住宅借入金等特別控除",
+      "配当控除",
+      "外国税額控除",
+      "配当割額",
+      "株式等譲渡所得割額控除"
+    ],
+    "note": "市民税所得割額＝税額控除前の市民税所得割額－（市民税調整控除額＋市民税税額調整額＋市民税定額減税額）。令和8年4月2日修正版のしおり（chigasaki-shiori-r8）で定額減税額の控除が明記されており、Chigasakiは所得割額の算定に定額減税を適用後（反映後）の額を用いる区分に該当する（backlog §2.1「定額減税の向き」の分類対象）。政令指定都市ではないため、6/8税率換算は不要（原典に換算規定はなく、そもそも適用対象外）。所得割が0円でも均等割のみ課税されている世帯（階層C）は非課税世帯（階層B）とは区別され、有償（backlog §2.2 のA/B/C問題の実例）。",
+    "sourceId": "chigasaki-shiori-r8",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "sourceId": "chigasaki-shiori-r8",
+      "expect": ["税額控除前の", "市民税調整控除額", "市民税税額調整額", "市民税定額減税額"]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0～2歳児クラス",
+      "rule": "年度当初の年齢区分を年度中適用"
+    },
+    {
+      "key": "age3plus",
+      "label": "3～5歳児クラス",
+      "rule": "幼児教育・保育の無償化により保育料0円（副食費等は別途保護者負担）"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳児クラスから5歳児クラスの子どもの利用料が無償化されます。ただし、副食費（給食のおかず代）は負担していただくことになります。",
+      "sourceId": "chigasaki-mushouka",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": [
+          "3歳児クラスから5歳児クラスの子どもの利用料が無償化されます",
+          "副食費（給食のおかず代）は負担していただくことになります"
+        ]
+      },
+      "amendmentNote": "なし（2026-07-18時点）"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "住民税非課税世帯の0歳児クラスから2歳児クラスの子どもの利用料が無償化されます。",
+      "sourceId": "chigasaki-mushouka",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": ["住民税非課税世帯の0歳児クラスから2歳児クラスの子どもの利用料が無償化されます"]
+      },
+      "amendmentNote": "なし（2026-07-18時点）"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "ひとり親世帯等（離婚調停中や離婚前提別居等を除くひとり親世帯、身体障害者手帳・療育手帳・精神障害者保健福祉手帳の交付を受けた方、特別児童扶養手当の支給対象児童・障害基礎年金の受給者のいる世帯等）で市区町村民税所得割額合算が77,101円未満（D5階層の一部）の世帯は、保護者と生計が同一の子等であれば年齢に関わらず上から順に第1子・第2子・第3子として数える。ひとり親世帯等以外で所得割額合算が57,700円未満（D4階層の一部）の2・3号認定世帯も同様に年齢に関わらず数える。それ以外の世帯は、認可保育所・学校教育法第1条の幼稚園・認定こども園・地域型保育事業・特別支援学校幼稚部・情緒障害児短期治療施設通園部・児童発達支援及び医療型児童発達支援に在籍している就学前のきょうだいを、年齢の高い順に第1子・第2子・第3子として数える（上記以外の施設在園児はきょうだい減免の対象外）。",
+        "sourceId": "chigasaki-tasi-hitorioya",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "secondChild": {
+        "value": 0.5,
+        "unit": "ratio",
+        "label": "所得割合算額77,101円以上（ひとり親世帯等以外は57,700円以上）の世帯の第2子は、表記金額（太枠を除く）の半額",
+        "sourceId": "chigasaki-tasi-hitorioya",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "所得・世帯区分等の条件はcountingRule参照。所得割合算額が77,101円未満（ひとり親世帯等）または57,700円未満（その他）の場合は第1子から軽減される（bracketBasis.note・countingRule参照）。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "chigasaki-tasi-hitorioya",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "条件はcountingRule参照"
+      }
+    },
+    "localExtension": "市区町村民税所得割額合算77,101円未満（D5階層の一部）のひとり親世帯等は、第1子が現行保育料の半額以下・第2子以降無料。57,700円未満（D4階層の一部）のその他世帯（多子世帯）は、第2子が現行保育料の半額・第3子以降無料。上記以外の世帯は国基準どおり第2子半額・第3子以降無料（対象施設の就学前きょうだいを年齢降順で計上）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "非課税（均等割のみ課税の要保護世帯を含む）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "均等割のみ課税（所得割は非課税だが均等割は課税されている世帯。isWelfare/isNonTaxableのいずれにも該当しない）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 6700, "short": 3350 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 7800, "short": 3900 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "48,600円以上52,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 52000,
+      "fees": {
+        "under3": { "standard": 12000, "short": 6000 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "52,000円以上57,000円未満",
+      "incomeMin": 52000,
+      "incomeMax": 57000,
+      "fees": {
+        "under3": { "standard": 15200, "short": 7600 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "57,000円以上65,000円未満",
+      "incomeMin": 57000,
+      "incomeMax": 65000,
+      "fees": {
+        "under3": { "standard": 17700, "short": 8850 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "65,000円以上77,101円未満",
+      "incomeMin": 65000,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 19800, "short": 9000 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "77,101円以上79,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 79000,
+      "fees": {
+        "under3": { "standard": 19800, "short": 19400 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "79,000円以上97,000円未満",
+      "incomeMin": 79000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 24800, "short": 24300 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "97,000円以上132,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 132000,
+      "fees": {
+        "under3": { "standard": 31800, "short": 31200 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "132,000円以上169,000円未満",
+      "incomeMin": 132000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 39300, "short": 38600 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "169,000円以上183,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 183000,
+      "fees": {
+        "under3": { "standard": 41900, "short": 41100 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "183,000円以上214,000円未満",
+      "incomeMin": 183000,
+      "incomeMax": 214000,
+      "fees": {
+        "under3": { "standard": 46900, "short": 46100 }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "214,000円以上253,000円未満",
+      "incomeMin": 214000,
+      "incomeMax": 253000,
+      "fees": {
+        "under3": { "standard": 49200, "short": 48300 }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "253,000円以上301,000円未満",
+      "incomeMin": 253000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 54300, "short": 53300 }
+      }
+    },
+    {
+      "tier": "D13",
+      "label": "301,000円以上358,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 358000,
+      "fees": {
+        "under3": { "standard": 56300, "short": 55300 }
+      }
+    },
+    {
+      "tier": "D14",
+      "label": "358,000円以上397,000円未満",
+      "incomeMin": 358000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 58300, "short": 57300 }
+      }
+    },
+    {
+      "tier": "D15",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 72800, "short": 71500 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "chigasaki-shiori-r8",
+    "expect": ["397,000円以上", "72,800", "71,500", "6,700", "3,350"]
+  }
+}

@@ -188,6 +188,8 @@
 
 ★2026-07-18 着手宣言（ソネット・東日本ブロック・全国展開バッチ1）★: [~] 埼玉県所沢市（saitama-tokorozawa）・愛知県春日井市（aichi-kasugai）・三重県四日市市（mie-yokkaichi）・新潟県長岡市（niigata-nagaoka）・神奈川県平塚市（kanagawa-hiratsuka）・埼玉県草加市（saitama-soka）・静岡県富士市（shizuoka-fuji）・神奈川県茅ヶ崎市（kanagawa-chigasaki）。担当＝東日本ブロック（北海道・東北・関東・甲信越・北陸・東海）の中核市以外の一般市。優先順位どおり施行時特例市8市を先行収集する（中核市の東日本残りはwo-opus担当のため対象外）。
 
+★2026-07-18 完了（ソネット・東日本ブロック・一般市バッチ1）★: [x] 所沢市（20階層・R8）・春日井市（18階層・R8、標準/短時間の区分なし）・四日市市（11階層・R7、R8版未公表のためunder-review）・長岡市（17階層・R8）・平塚市（21階層・R7、料金表の改定サイクルが4月でなく9月のため次回R8版はR8/9〜、under-review）・草加市（24階層・R8、原典の階層分割行あり）・富士市（21階層・R8、常設表型で年度表記なし）・茅ヶ崎市（19階層・R8）。全市 --fetch照合エラー0。新規ドメイン許可6件（所沢`city.tokorozawa.saitama.jp`・長岡`city.nagaoka.niigata.jp`・富士`city.fuji.shizuoka.jp`・草加`city.soka.saitama.jp`・平塚`city.hiratsuka.kanagawa.jp`・茅ヶ崎`city.chigasaki.kanagawa.jp`。春日井・四日市は`.lg.jp`のみで完結し追加不要）。次バッチは人口10万以上の一般市（松戸・市川・藤沢・町田等）へ人口順で継続。
+
 ---
 
 ## 2. 収集済みデータから分かった実装上の論点

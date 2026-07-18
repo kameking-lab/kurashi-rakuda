@@ -198,6 +198,12 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.kishiwada.osaka.jp', // 岸和田市（施行時特例市）の公式サイト
   'city.takarazuka.hyogo.jp', // 宝塚市（施行時特例市）の公式サイト
   'city.tokushima.tokushima.jp', // 徳島市の公式サイト
+  'city.tokorozawa.saitama.jp', // 所沢市（施行時特例市）の公式サイト
+  'city.nagaoka.niigata.jp', // 長岡市（施行時特例市）の公式サイト
+  'city.fuji.shizuoka.jp', // 富士市（施行時特例市）は city.fuji.lg.jp が存在しない（DNS解決せず）
+  'city.soka.saitama.jp', // 草加市（施行時特例市）は city.soka.saitama.lg.jp が存在しない
+  'city.hiratsuka.kanagawa.jp', // 平塚市（施行時特例市）の公式サイト
+  'city.chigasaki.kanagawa.jp', // 茅ヶ崎市（施行時特例市）の公式サイト
 ];
 
 const args = process.argv.slice(2);
