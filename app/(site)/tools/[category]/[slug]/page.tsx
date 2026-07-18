@@ -125,6 +125,12 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { KosodateKyufuSougouCheck } from "@/components/tools/impl/KosodateKyufuSougouCheck";
+import {
+  kosodateKyufuDataset,
+  KOSODATE_KYUFU_DISCLAIMER,
+  ALL_PROGRAMS as KOSODATE_ALL_PROGRAMS,
+} from "@/components/tools/impl/KosodateKyufuSougouCheck.calc";
 import { TaishokuTimingSongeki } from "@/components/tools/impl/TaishokuTimingSongeki";
 import {
   taishokuTimingDataset,
@@ -262,6 +268,32 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "kosodate-kyufu-sougou-check": {
+    ui: <KosodateKyufuSougouCheck />,
+    formula: (
+      <>
+        <p>
+          このチェッカーは、子育て世帯に関係しうる国の支援制度{KOSODATE_ALL_PROGRAMS.length}
+          件（児童手当、産休・育休の給付、妊婦のための支援給付、幼児教育・保育の無償化、児童扶養手当、こども医療費助成、高等学校等就学支援金・高校生等奨学給付金、就学援助制度）を、お子さんの
+          <strong>時期（ライフステージ）</strong>で横断的に洗い出すものです。
+        </p>
+        <p>
+          各制度には「対象となる時期」が設定されており、選んだ時期を対象に含む制度を、
+          <strong>すべての世帯が対象になりうるもの</strong>と<strong>所得などの条件により対象になるもの</strong>
+          に分けて表示します。ひとり親世帯を選ぶと、児童扶養手当を特に確認すべき制度として強調します。
+        </p>
+        <p>
+          ★このツールは金額を計算しません★
+          制度の存在・対象・所管・申請先という「気づき」と「問い合わせ先への道案内」に徹し、支給額や所得制限といった詳細は、それぞれの窓口や、このサイトの個別ツール（児童手当・児童扶養手当・こども医療費助成など）に委ねています。金額と対象条件を二重に管理して食い違うことを避けるための設計です。
+        </p>
+        <p>
+          制度によっては所得制限・申請期限・自治体独自の条件があり、ここに載っていない自治体独自の給付・助成もあります。実際に受けられるかどうかと金額は、必ず各制度の所管・申請先（お住まいの市区町村など）でご確認ください。
+        </p>
+        <p>{KOSODATE_KYUFU_DISCLAIMER}</p>
+        <SeidoNotice datasets={[kosodateKyufuDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "taishoku-timing-songeki": {
     ui: <TaishokuTimingSongeki />,
     formula: (
