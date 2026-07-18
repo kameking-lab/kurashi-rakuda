@@ -19,6 +19,7 @@
 import aichiNagoya from "@/data/seido/hoikuryo/aichi-nagoya.json";
 import chibaChiba from "@/data/seido/hoikuryo/chiba-chiba.json";
 import chibaFunabashi from "@/data/seido/hoikuryo/chiba-funabashi.json";
+import chibaKashiwa from "@/data/seido/hoikuryo/chiba-kashiwa.json";
 import ehimeMatsuyama from "@/data/seido/hoikuryo/ehime-matsuyama.json";
 import fukuokaFukuoka from "@/data/seido/hoikuryo/fukuoka-fukuoka.json";
 import fukuokaKitakyushu from "@/data/seido/hoikuryo/fukuoka-kitakyushu.json";
@@ -43,6 +44,7 @@ import osakaSakai from "@/data/seido/hoikuryo/osaka-sakai.json";
 import osakaHigashiosaka from "@/data/seido/hoikuryo/osaka-higashiosaka.json";
 import saitamaSaitama from "@/data/seido/hoikuryo/saitama-saitama.json";
 import saitamaKawaguchi from "@/data/seido/hoikuryo/saitama-kawaguchi.json";
+import saitamaKawagoe from "@/data/seido/hoikuryo/saitama-kawagoe.json";
 import shizuokaHamamatsu from "@/data/seido/hoikuryo/shizuoka-hamamatsu.json";
 import shizuokaShizuoka from "@/data/seido/hoikuryo/shizuoka-shizuoka.json";
 import tokyoAdachi from "@/data/seido/hoikuryo/tokyo-adachi.json";
@@ -179,8 +181,10 @@ export const municipalities: HoikuryoMunicipality[] = [
   miyagiSendai,
   saitamaSaitama,
   saitamaKawaguchi,
+  saitamaKawagoe,
   chibaChiba,
   chibaFunabashi,
+  chibaKashiwa,
   tokyoChiyoda,
   tokyoChuo,
   tokyoMinato,

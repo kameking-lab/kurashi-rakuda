@@ -1,0 +1,182 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "saitama-kawagoe",
+  "name": "埼玉県川越市",
+  "municipalityCode": "112011",
+  "prefecture": "埼玉県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "kawagoe-hoiku-page",
+      "title": "保育園・認定こども園（保育利用）／保育料の軽減",
+      "publisher": "川越市 こども未来部 保育課",
+      "url": "https://www.city.kawagoe.saitama.jp/kosodatekyoiku/azukeru/hoiku/hoiku.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "令和8年度 保育園等入園の手引き（r8tebiki.pdf）の掲載元。保育料の軽減（多子世帯・ひとり親世帯・障害児者世帯）の解説ページを含む。"
+    },
+    {
+      "id": "kawagoe-tebiki-pdf",
+      "title": "令和8年度 保育園等入園の手引き",
+      "publisher": "川越市 こども未来部 保育課",
+      "url": "https://www.city.kawagoe.saitama.jp/_res/projects/default_project/_page_/001/004/360/r8tebiki.pdf",
+      "landingUrl": "https://www.city.kawagoe.saitama.jp/kosodatekyoiku/azukeru/hoiku/hoiku.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "令和8年度の入園の手引き（全44ページ）。p24に「各月初日の当該子どもが属する世帯の階層区分」による保育料額表（A・B・C・D1〜D18の22階層、0〜2歳児クラス標準時間/短時間、3〜5歳児クラスは0円※無償）。p22に保育料算定所得割は住宅借入金等特別税額控除・配当控除・外国税額控除・寄附金税額控除等の適用前の額を用いること、政令指定都市課税者（政令市からの転入者等）は税源移譲前の税率（6%）に換算した額を用いること、家計の主宰者を合算対象に加える条件、税年度切替（4月分〜8月分は前年度分・9月分〜翌年3月分は当年度分）、多子世帯・要保護世帯の減免を掲載。PyMuPDFのfind_tables()でテキスト層から表構造を機械抽出し全22階層の境界・額を確認済み。"
+    }
+  ],
+  "disclaimer": "本データは川越市公式サイトの公表内容を2026-07-18時点で機械的に整理した参考情報です。実際の利用者負担額（保育料）は世帯状況・課税内容・入所施設により決定され、最終的には川越市こども未来部保育課の決定が優先します。個別の判断は必ず川越市および利用施設にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育利用）・地域型保育施設を利用する2号・3号認定の月額利用者負担額（保育料）（第1子・保育標準時間認定/保育短時間認定）",
+      "3〜5歳児クラス（1号・2号認定）の月額利用者負担額（幼児教育・保育の無償化により0円）",
+      "階層区分A・B・C・D1〜D18（保育料算定所得割額の範囲）"
+    ],
+    "excludes": [
+      "3〜5歳児クラスの給食費：手引きp23で公立は口座振替、私立・認定こども園等は各施設で徴収と明記（無償化対象は保育料のみ）",
+      "時間外（延長）保育料：手引きp23で公立は口座振替、私立・認定こども園等は各施設で徴収と明記（本表に含まれない実費）",
+      "行事費等その他の実費徴収・私立園等の上乗せ徴収",
+      "認可外保育施設の利用料（幼児教育・保育の無償化における施設等利用給付の対象で、本表の対象外）",
+      "小規模保育事業等、地域型保育事業と認可保育所等との施設種別ごとの金額差異（原典の階層表は施設種別ごとの金額差を明示的に区分していないため、本ファイルでは単一の表として扱う。§2.4参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則、その入所児童と同一の世帯に属し生計をひとつにしている父母、およびそれ以外の扶養義務者（家計の主宰者である場合に限る）の市町村民税額の合計額により算定する。",
+    "taxYearRule": "4月分から8月分までの保育料は前年度分の市町村民税、9月分から翌年3月分までは当年度分の市町村民税で算定する。令和8年度は、令和8年4月分〜8月分が令和7年度（令和6年収入）の市民税、令和8年9月分〜令和9年3月分が令和8年度（令和7年収入）の市民税で算定する。市・県民税額が未確定（未申告）の場合は申告が必要。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除（住宅ローン控除）",
+      "配当控除",
+      "外国税額控除",
+      "寄附金税額控除（ふるさと納税等）"
+    ],
+    "note": "原文：「保育料算定所得割は、住宅借入金等特別税額控除・配当控除・外国税額控除・寄附金税額控除等適用前の所得割額を用います。」（「等」とあるため列挙は例示。deductionsIgnoredには明記された4控除のみ収録）／★政令指定都市課税者の税率換算★ 原文：「政令指定都市で課税されている方（政令市からの転入者等）は、税制改正に伴い市民税所得割の税率が8%で算定されておりますが、保育料算定所得割では税源移譲前の税率（6%）に換算した額を用います（都道府県から政令指定都市への税源移譲に伴う特例）。」＝川越市は中核市で市民税率は8%だが、政令市（税率8%）で課税された転入者に限り6%相当へ逆換算する。倉敷市と同型の条件付き換算であり、自市の課税全体に6/8を適用するものではない（§2.1）。乗率・端数処理の明文は手引きにない。／【未確認】定額減税を反映するか否かの記載は手引き・保育課ページに確認できなかった。推測で補完しない。／階層A（生活保護世帯等）・B（市民税非課税世帯）・C（均等割のみ課税世帯＝所得割0円）はいずれも市民税所得割額が0円であり、所得割額だけでは相互に判別できない。isWelfare・isNonTaxable フラグで区別すること（§2.2）。／本ファイルのtiersには一般世帯・第1子の額のみを収録している。多子・ひとり親等の軽減は multiChildPolicy に記録する。",
+    "sourceId": "kawagoe-tebiki-pdf",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "expect": [
+        "住宅借入金等特別税額控除",
+        "税源移譲前の税率",
+        "家計の主宰者"
+      ],
+      "sourceId": "kawagoe-tebiki-pdf"
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス（3号認定）",
+      "rule": "各月初日時点で3歳未満（3号認定）。0〜2歳児クラスは給食費が保育料に含まれる（別途徴収なし）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス（1号・2号認定）",
+      "rule": "3歳児クラス（4月初日時点で3歳）以上。幼児教育・保育の無償化により利用者負担額は0円。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3〜5歳児クラスの利用者負担額は無償",
+      "sourceId": "kawagoe-tebiki-pdf",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": [
+          "３歳になった月からではなく"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "令和元年10月からの幼児教育・保育の無償化による0円。手引きに「保育料額が0円（無償）となるのは、3歳になった月からではなく3歳児クラス（4月時点で3歳）から」と明記。川越市独自の0〜2歳児クラス全世帯無償化は確認できない（localExtension参照）。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "市民税非課税世帯（B階層）の0〜2歳児クラス利用者負担額は0円",
+      "sourceId": "kawagoe-tebiki-pdf",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": [
+          "非課税世帯"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "階層表のB階層（市町村民税非課税世帯）は0〜2歳児クラスも標準時間・短時間とも0円。生活保護世帯等（A階層）も0円。国の無償化制度と一致する範囲。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "多子世帯の第3子以降は、3人以上の子どもが原則として同居・生計をひとつにしている場合に無料。第2子半額は原則「就学前の兄・姉がいる場合」に限るが、市民税所得割額57,700円未満（年収360万円未満相当）の世帯は子の年齢制限なくカウントする（中学生・大学生でも第1子としてカウント）。",
+        "unit": "unit",
+        "label": "多子軽減のカウント対象（所得により年齢制限の有無が異なる）",
+        "sourceId": "kawagoe-tebiki-pdf",
+        "checkedAt": "2026-07-18",
+        "verify": {
+          "expect": [
+            "３人以上の子どもが原則として同居"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "一般世帯は「就学前の兄姉」に限りカウントするが、所得割57,700円未満の世帯は年齢制限なくカウントする点が川越市の特徴。"
+      },
+      "secondChild": {
+        "value": "原則、就学前の兄・姉がいる第2子（入園児）の保育料を半額。市民税所得割額57,700円未満（C階層〜D4階層の一部）の世帯は子の年齢制限なく第2子半額。市民税所得割額77,101円未満（C階層〜D6階層の一部）の要保護世帯（ひとり親世帯・障害児者のいる世帯）は第1子から免除（無料）。",
+        "unit": "rate",
+        "label": "第2子の利用者負担額（半額。低所得・要保護世帯は免除）",
+        "sourceId": "kawagoe-tebiki-pdf",
+        "checkedAt": "2026-07-18",
+        "verify": {
+          "expect": [
+            "第２子半額",
+            "免除（第１子から無料）"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "第2子半額のカウント対象は所得により異なる（countingRule参照）。ひとり親世帯・障害児者のいる世帯（所得割77,101円未満）は第1子から無料。tiers.fees.under3には第1子の額のみを収録。3〜5歳児クラスは無償化により0円。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降の0〜2歳児クラス利用者負担額は無料",
+        "sourceId": "kawagoe-tebiki-pdf",
+        "checkedAt": "2026-07-18",
+        "verify": {
+          "expect": [
+            "第３子以降の児童の保育料を無料"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "3人以上の子どもが原則同居・生計一の世帯の第3子以降は無料。"
+      }
+    },
+    "localExtension": "川越市独自の全世帯一律無償化（0〜2歳児クラスの所得制限なし無償化等）は2026-07-18時点で確認できない。国の無償化制度（3〜5歳児クラス全員無償化、0〜2歳児クラス住民税非課税世帯無償化）を適用するのみ。市独自の軽減に相当するのは、多子世帯（第2子半額・第3子以降無料。所得により年齢カウントが異なる）と要保護世帯（ひとり親・障害児者、所得割77,101円未満で第1子から免除）である。なお0〜2歳児クラスの給食費が保育料に含まれる点が特徴。"
+  },
+  "tiers": [
+    { "tier": "A", "label": "生活保護世帯等", "incomeMin": 0, "incomeMax": 1, "isWelfare": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "B", "label": "市町村民税非課税世帯", "incomeMin": 0, "incomeMax": 1, "isNonTaxable": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C", "label": "市町村民税均等割のみ課税世帯（所得割0円）", "incomeMin": 0, "incomeMax": 1, "fees": { "under3": { "standard": 6000, "short": 5800 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1", "label": "保育料算定所得割 15,000円未満", "incomeMin": 1, "incomeMax": 15000, "fees": { "under3": { "standard": 6500, "short": 6300 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2", "label": "所得割 15,000円以上 48,600円未満", "incomeMin": 15000, "incomeMax": 48600, "fees": { "under3": { "standard": 7400, "short": 7200 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3", "label": "所得割 48,600円以上 53,000円未満", "incomeMin": 48600, "incomeMax": 53000, "fees": { "under3": { "standard": 8200, "short": 8000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D4", "label": "所得割 53,000円以上 60,000円未満", "incomeMin": 53000, "incomeMax": 60000, "fees": { "under3": { "standard": 9900, "short": 9700 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D5", "label": "所得割 60,000円以上 70,000円未満", "incomeMin": 60000, "incomeMax": 70000, "fees": { "under3": { "standard": 11900, "short": 11600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D6", "label": "所得割 70,000円以上 80,000円未満", "incomeMin": 70000, "incomeMax": 80000, "fees": { "under3": { "standard": 16200, "short": 15900 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7", "label": "所得割 80,000円以上 100,000円未満", "incomeMin": 80000, "incomeMax": 100000, "fees": { "under3": { "standard": 21600, "short": 21200 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D8", "label": "所得割 100,000円以上 115,000円未満", "incomeMin": 100000, "incomeMax": 115000, "fees": { "under3": { "standard": 28100, "short": 27600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D9", "label": "所得割 115,000円以上 130,000円未満", "incomeMin": 115000, "incomeMax": 130000, "fees": { "under3": { "standard": 35200, "short": 34600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D10", "label": "所得割 130,000円以上 145,000円未満", "incomeMin": 130000, "incomeMax": 145000, "fees": { "under3": { "standard": 42200, "short": 41400 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D11", "label": "所得割 145,000円以上 170,000円未満", "incomeMin": 145000, "incomeMax": 170000, "fees": { "under3": { "standard": 44400, "short": 43600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D12", "label": "所得割 170,000円以上 200,000円未満", "incomeMin": 170000, "incomeMax": 200000, "fees": { "under3": { "standard": 50400, "short": 49500 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D13", "label": "所得割 200,000円以上 235,000円未満", "incomeMin": 200000, "incomeMax": 235000, "fees": { "under3": { "standard": 52800, "short": 51900 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D14", "label": "所得割 235,000円以上 270,000円未満", "incomeMin": 235000, "incomeMax": 270000, "fees": { "under3": { "standard": 55200, "short": 54200 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D15", "label": "所得割 270,000円以上 300,000円未満", "incomeMin": 270000, "incomeMax": 300000, "fees": { "under3": { "standard": 57200, "short": 56200 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D16", "label": "所得割 300,000円以上 340,000円未満", "incomeMin": 300000, "incomeMax": 340000, "fees": { "under3": { "standard": 58500, "short": 57500 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D17", "label": "所得割 340,000円以上 365,000円未満", "incomeMin": 340000, "incomeMax": 365000, "fees": { "under3": { "standard": 58900, "short": 57800 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D18", "label": "所得割 365,000円以上", "incomeMin": 365000, "incomeMax": null, "fees": { "under3": { "standard": 59300, "short": 58200 }, "age3plus": { "standard": 0, "short": 0 } } }
+  ]
+}
