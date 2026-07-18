@@ -125,6 +125,17 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { FuyounaiShahoSongeki } from "@/components/tools/impl/FuyounaiShahoSongeki";
+import {
+  fuyounaiShahoSongekiDataset,
+  FUYOUNAI_SHAHO_DISCLAIMER,
+  BURDEN_RATE_UNDER40,
+  BURDEN_RATE_40_TO64,
+  WALL_106,
+  WALL_130,
+  KOKUMIN_NENKIN_MONTHLY,
+  fmtYen as fuyounaiShahoFmtYen,
+} from "@/components/tools/impl/FuyounaiShahoSongeki.calc";
 import { YouikuhiSanteihyou } from "@/components/tools/impl/YouikuhiSanteihyou";
 import {
   youikuhiSanteihyouDataset,
@@ -244,6 +255,39 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "fuyounai-shaho-songeki-bunkiten": {
+    ui: <FuyounaiShahoSongeki />,
+    formula: (
+      <>
+        <p>
+          このツールは<strong>社会保険料の負担だけ</strong>
+          に着目して、扶養を抜けて働くときの「働き損」ゾーンと、手取りが壁の手前の水準に戻る損益分岐点の年収を計算します。所得税・住民税・配偶者（特別）控除・勤務先の家族手当は含めていません（税・控除まで含めた判定は「扶養の壁シミュレーター」をご利用ください）。
+        </p>
+        <p>
+          106万円（{fuyounaiShahoFmtYen(WALL_106)}
+          円）を超えて勤務先の社会保険に加入すると、健康保険料・厚生年金保険料の本人負担が発生します。本人負担の合計料率は、40歳未満で約
+          {Math.round(BURDEN_RATE_UNDER40 * 1000) / 10}%、介護保険料がかかる40歳以上65歳未満で約
+          {Math.round(BURDEN_RATE_40_TO64 * 1000) / 10}
+          %です。社会保険料は「年収×この料率」で計算し、手取り（税抜き）は「年収−社会保険料」になります。
+        </p>
+        <p>
+          損益分岐点は、加入後の手取りが壁の手前の水準（＝壁の金額）に戻る年収で、「壁の金額 ÷（1−料率）」で求めます。壁からこの分岐点までの間が、働いても手取りがかえって減る「働き損」ゾーンです。
+        </p>
+        <p>
+          130万円（{fuyounaiShahoFmtYen(WALL_130)}
+          円）を超えて扶養を外れ、勤務先の社会保険にも入れない場合は、自分で国民年金（月
+          {fuyounaiShahoFmtYen(KOKUMIN_NENKIN_MONTHLY)}円）と国民健康保険に加入します。
+          <strong>国民健康保険料は自治体・前年所得で大きく変わるため本ツールでは国民年金のみで試算し、国保が上乗せされる旨を明示します</strong>
+          （捏造しません）。なお繁忙期などの一時的な収入増は、事業主の証明で扶養にとどまれる場合があります。
+        </p>
+        <p>
+          社会保険への加入は損だけではなく、傷病手当金・出産手当金や、老齢・障害・遺族の厚生年金といった保障の手厚さというメリットもあります。
+        </p>
+        <p>{FUYOUNAI_SHAHO_DISCLAIMER}</p>
+        <SeidoNotice datasets={[fuyounaiShahoSongekiDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "youikuhi-santeihyou": {
     ui: <YouikuhiSanteihyou />,
     formula: (
