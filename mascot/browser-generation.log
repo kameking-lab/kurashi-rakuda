@@ -4,3 +4,8 @@
 2026-07-18 worried OK Gemini; happy failed (240s no-image timeout); carry OK Gemini; sit OK Gemini; calc OK Gemini; sleep OK Gemini.
 2026-07-18 cheer failed (service response stalled; outer runner reached 20-minute execution limit). No blind retry performed.
 2026-07-18 accepted assets chroma-key removed locally; front/worried/carry/sit/calc/sleep are 1024x1024 RGBA PNG.
+2026-07-18 retry session: dedicated Chrome CDP 9222, Gemini account, no API billing.
+2026-07-18 happy accepted on retry 1. guide accepted on retry 2 after retry 1 timed out.
+2026-07-18 bow retry 1 had no bow pose; retry 2 omitted bundle; retry 3 accepted with four hooves grounded and bundle on hump.
+2026-07-18 cheer retry 1 had eyelash-like eye corners; retry 2 was anthropomorphic two-legged; retry 3 accepted with normal camel anatomy.
+2026-07-18 bow/guide/happy/cheer chroma-key removed locally; all are 1024x1024 RGBA with four transparent corners. Manifest: 10/10, 0 errors.
