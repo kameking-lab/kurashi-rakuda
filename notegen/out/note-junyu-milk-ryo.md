@@ -94,7 +94,7 @@
 🚨 **ここから先は有料パートです** 🚨
 ご購入いただいた方は、専用の計算ツールと詳細な解説をご利用いただけます。
 
-**専用切り出しツールURL**: https://rakuda-x.vercel.app/x/junyu-milk-ryo
+**専用切り出しツールURL**: https://kurashi-rakuda.vercel.app/tools/childcare/junyu-milk-ryo
 ※このURLはご購入者専用です。将来にわたり変更されません。
 
 ---

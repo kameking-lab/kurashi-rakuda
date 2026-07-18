@@ -23,7 +23,7 @@ for (const tool of liveTools) {
   }
 
   const rawArticle = fs.readFileSync(articlePath, "utf8");
-  const toolUrl = `https://rakuda-x.vercel.app/x/${tool.slug}`;
+  const toolUrl = `https://kurashi-rakuda.vercel.app/tools/${tool.category}/${tool.slug}`;
   const paywallDivider = `
 ---
 
