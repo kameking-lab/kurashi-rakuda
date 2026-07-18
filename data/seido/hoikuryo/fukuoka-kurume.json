@@ -1,0 +1,315 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "fukuoka-kurume",
+  "name": "福岡県久留米市",
+  "municipalityCode": "402036",
+  "prefecture": "福岡県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2025,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "hoikuryokijunhyou",
+      "title": "久留米市 保育料基準表",
+      "publisher": "久留米市子ども未来部子ども保育課",
+      "url": "https://www.city.kurume.fukuoka.jp/1060manabi/2010kosodate/3090hoikusho/files/hoikuryokijunhyou.pdf",
+      "landingUrl": "https://www.city.kurume.fukuoka.jp/1060manabi/2010kosodate/3090hoikusho/hoikuryou.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "令和7年度の基準表"
+    },
+    {
+      "id": "hoikuryou-html",
+      "title": "保育料について",
+      "publisher": "久留米市",
+      "url": "https://www.city.kurume.fukuoka.jp/1060manabi/2010kosodate/3090hoikusho/hoikuryou.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和8年度のデータが未公表のため、令和7年度のデータを使用しています。令和8年度の基準表が公表され次第更新が必要です。",
+      "status": "under-review",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "hoikuryokijunhyou",
+      "impact": "令和8年度の金額や階層に変更があるか要確認"
+    }
+  ],
+  "disclaimer": "本データは久留米市の令和7年度の公式資料に基づく参考情報です。実際の保育料は世帯状況や税額の確定内容により決定されますので、最終的な金額は必ず久留米市の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "保育所・認定こども園（保育所として利用）・地域型保育事業所の保育料",
+      "0〜2歳児クラスに所属する児童の保育料",
+      "保育標準時間・保育短時間の別"
+    ],
+    "excludes": [
+      "給食費（副食費・主食費等の実費徴収）",
+      "延長保育料",
+      "教材代・行事代などの実費徴収費",
+      "基準以上の教員配置・平均的な水準を超えた施設整備費などの特定負担額（上乗せ徴収費）",
+      "認可外保育施設・幼稚園の保育料"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "保護者等の市町村民税額（同居の祖父母がいる場合、父母の所得状況などにより祖父母の市町村民税額を適用することがある）",
+    "taxYearRule": "令和8年4月分から令和8年8月分まで…令和7年度（令和6年分）市町村民税額。令和8年9月分から令和9年3月分まで…令和8年度（令和7年分）市町村民税額（※原文の令和7年度時点の説明を令和8年度に読み替えています）",
+    "deductionsIgnored": [
+      "配当控除",
+      "寄付金税額控除（ふるさと納税など）",
+      "外国税額控除",
+      "住宅借入金等特別税額控除（住宅ローン控除など）",
+      "配当割額控除",
+      "株式等譲渡所得割額控除"
+    ],
+    "note": "久留米市は中核市のため政令指定都市に適用される税率変更（旧税率6%への調整）は該当しない。要保護者世帯向けの階層（第2階層1等）は汎用的な階層表からは除外して通常の階層のみ収録している。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3号認定（3歳未満児）",
+      "rule": "年度の途中で3歳のお誕生日を迎えると、認定区分は自動的に3号認定（3歳未満）から2号認定（3歳以上）に更新されますが、保育料については、年度末（3月分）まで2歳児での算定となります。"
+    },
+    {
+      "key": "age3plus",
+      "label": "2号認定（3歳以上児）",
+      "rule": "年度途中で3歳になる子ども以外"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラスに所属する児童の保育料は0円",
+      "sourceId": "hoikuryokijunhyou",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "住民税非課税世帯は0円",
+      "sourceId": "hoikuryokijunhyou",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "保護者と同一生計の子ども全て",
+        "label": "保護者と同一生計の子ども全てを年齢に関わらずカウントする",
+        "sourceId": "hoikuryou-html",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "secondChild": {
+        "value": "半額",
+        "sourceId": "hoikuryou-html",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "thirdChildOnwards": {
+        "value": "無料",
+        "sourceId": "hoikuryou-html",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      }
+    },
+    "localExtension": "平成28年4月から年収約360万円未満相当の多子世帯及びひとり親世帯などの要保護者世帯については軽減が拡充され、生計を一にする子である場合には、上の子どもの年齢制限がなくなりました。また、令和7年9月より生計が同一の子で3番目以降の子も無料となりました。"
+  },
+  "tiers": [
+    {
+      "tier": "第1階層",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第2階層",
+      "label": "非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第3階層",
+      "label": "均等割のみ課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 8000,
+          "short": 8000
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第4階層",
+      "label": "所得割 48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 11000,
+          "short": 10800
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第5階層",
+      "label": "所得割 48,600円以上 53,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 53000,
+      "fees": {
+        "under3": {
+          "standard": 14000,
+          "short": 13700
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第6階層",
+      "label": "所得割 53,000円以上 70,000円未満",
+      "incomeMin": 53000,
+      "incomeMax": 70000,
+      "fees": {
+        "under3": {
+          "standard": 16000,
+          "short": 15700
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第7階層",
+      "label": "所得割 70,000円以上 97,000円未満",
+      "incomeMin": 70000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 18000,
+          "short": 17600
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第8階層",
+      "label": "所得割 97,000円以上 132,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 132000,
+      "fees": {
+        "under3": {
+          "standard": 27500,
+          "short": 27000
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第9階層",
+      "label": "所得割 132,000円以上 169,000円未満",
+      "incomeMin": 132000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 35500,
+          "short": 34800
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第10階層",
+      "label": "所得割 169,000円以上 301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 45600,
+          "short": 44800
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "第11階層",
+      "label": "所得割 301,000円以上",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 49800,
+          "short": 48900
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "hoikuryokijunhyou",
+    "expect": {
+      "tierCount": 11,
+      "lowestFee": {
+        "standard": 8000,
+        "short": 8000
+      },
+      "highestFee": {
+        "standard": 49800,
+        "short": 48900
+      }
+    }
+  }
+}

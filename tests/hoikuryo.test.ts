@@ -49,10 +49,14 @@ function input(over: Partial<HoikuryoInput> & { municipalityId: string }): Hoiku
 const feeOfCalc = (over: Partial<HoikuryoInput> & { municipalityId: string }) =>
   calc(input(over))?.fee;
 
-describe("収集済み自治体（62件）", () => {
-  it("62自治体を収録しており、id はファイル名と一致する", () => {
-    expect(municipalities).toHaveLength(62);
+describe("収集済み自治体（66件）", () => {
+  it("66自治体を収録しており、id はファイル名と一致する", () => {
+    expect(municipalities).toHaveLength(66);
     expect(municipalities.map((m) => m.id)).toEqual([
+      "fukuoka-kurume",
+      "hiroshima-fukuyama",
+      "kagawa-takamatsu",
+      "yamaguchi-shimonoseki",
       "kochi-kochi",
       "miyazaki-miyazaki",
       "nagasaki-nagasaki",
@@ -688,9 +692,9 @@ describe("★京都市★ 保育利用時間バンド（timeBands・6段階）",
     }
   });
 
-  it("★他61自治体への影響なし★ timeBands を持つのは京都市のみで、バンド指定は金額を変えない", () => {
+  it("★他65自治体への影響なし★ timeBands を持つのは京都市のみで、バンド指定は金額を変えない", () => {
     const others = municipalities.filter((x) => x.id !== "kyoto-kyoto");
-    expect(others).toHaveLength(61);
+    expect(others).toHaveLength(65);
     for (const o of others) {
       expect(o.timeBands, o.id).toBeUndefined();
       expect(isTimeBandApplicable(o, "standard"), o.id).toBe(false);

@@ -1,0 +1,418 @@
+{
+  "id": "hiroshima-fukuyama",
+  "name": "広島県福山市",
+  "municipalityCode": "342076",
+  "prefecture": "広島県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2025,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "method",
+      "tier": "municipality",
+      "publisher": "福山市",
+      "checkedAt": "2026-07-18",
+      "url": "https://www.city.fukuyama.hiroshima.jp/soshiki/hoikushisetsu/204606.html",
+      "title": "保育料の決定及び副食費の免除対象の決定方法"
+    },
+    {
+      "id": "table",
+      "tier": "municipality",
+      "publisher": "福山市",
+      "checkedAt": "2026-07-18",
+      "url": "https://www.city.fukuyama.hiroshima.jp/uploaded/attachment/292402.pdf",
+      "title": "保育所・認定こども園【保育(保育所)部分】保育料表"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和7年度(2025年度)用の更新待ち",
+      "status": "under-review"
+    }
+  ],
+  "disclaimer": "福山市の公式情報（保育料徴収基準額表など）に基づき独自に作成したものです。正確な金額については、必ず福山市の公式資料や窓口でご確認ください。",
+  "scope": {
+    "includes": [
+      "保育所",
+      "認定こども園(保育部分)"
+    ],
+    "excludes": [
+      "副食費(おかず代等)",
+      "延長保育料",
+      "一時預かりの保育料"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "保護者と扶養義務者の合算額",
+    "taxYearRule": "4月〜8月は前年度の課税額、9月以降は当年度の課税額",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除",
+      "配当控除",
+      "外国税額控除",
+      "寄附金税額控除"
+    ],
+    "note": "所得割の額は、住宅借入金等特別控除・配当控除・外国税額控除・寄附金税額控除等の税額控除前の額で算定します。また、階層区分の決定において、年少扶養親族が3人以上の場合は、市民税所得割額から19,800円×（年少扶養親族の数－2）を減算します。この計算では所得割の額を0円未満にはしません。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児",
+      "rule": "3歳未満児クラス（0・1・2歳児クラス）"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上児クラス（3・4・5歳児クラス）"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "無償",
+      "sourceId": "method",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "無償",
+      "sourceId": "method",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "生計を一にする子（年齢上限なし）",
+        "label": "生計を一にする子（年齢上限なし）",
+        "sourceId": "method",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "secondChild": {
+        "value": 0,
+        "label": "無償",
+        "sourceId": "method",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "label": "無償",
+        "sourceId": "method",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      }
+    },
+    "localExtension": "認可保育施設を利用しており、同一生計上の子がいる場合、第2子以降の保育料は無償となります。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市民税均等割のみ課税",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": {
+          "standard": 12200,
+          "short": 12000
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市民税所得割額 4,800円未満",
+      "incomeMin": 0,
+      "incomeMax": 4800,
+      "fees": {
+        "under3": {
+          "standard": 13900,
+          "short": 13700
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "市民税所得割額 4,800円以上 48,600円未満",
+      "incomeMin": 4800,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 15600,
+          "short": 15400
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "市民税所得割額 48,600円以上 56,800円未満",
+      "incomeMin": 48600,
+      "incomeMax": 56800,
+      "fees": {
+        "under3": {
+          "standard": 17600,
+          "short": 17200
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "市民税所得割額 56,800円以上 65,000円未満",
+      "incomeMin": 56800,
+      "incomeMax": 65000,
+      "fees": {
+        "under3": {
+          "standard": 19700,
+          "short": 19300
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "市民税所得割額 65,000円以上 73,000円未満",
+      "incomeMin": 65000,
+      "incomeMax": 73000,
+      "fees": {
+        "under3": {
+          "standard": 21800,
+          "short": 21400
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "市民税所得割額 73,000円以上 81,000円未満",
+      "incomeMin": 73000,
+      "incomeMax": 81000,
+      "fees": {
+        "under3": {
+          "standard": 24000,
+          "short": 23600
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "市民税所得割額 81,000円以上 89,000円未満",
+      "incomeMin": 81000,
+      "incomeMax": 89000,
+      "fees": {
+        "under3": {
+          "standard": 26500,
+          "short": 26100
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "市民税所得割額 89,000円以上 97,000円未満",
+      "incomeMin": 89000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 30000,
+          "short": 29600
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "市民税所得割額 97,000円以上 111,400円未満",
+      "incomeMin": 97000,
+      "incomeMax": 111400,
+      "fees": {
+        "under3": {
+          "standard": 32500,
+          "short": 31900
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "市民税所得割額 111,400円以上 125,800円未満",
+      "incomeMin": 111400,
+      "incomeMax": 125800,
+      "fees": {
+        "under3": {
+          "standard": 34000,
+          "short": 33400
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "市民税所得割額 125,800円以上 140,200円未満",
+      "incomeMin": 125800,
+      "incomeMax": 140200,
+      "fees": {
+        "under3": {
+          "standard": 37500,
+          "short": 36900
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "市民税所得割額 140,200円以上 154,600円未満",
+      "incomeMin": 140200,
+      "incomeMax": 154600,
+      "fees": {
+        "under3": {
+          "standard": 39000,
+          "short": 38400
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "市民税所得割額 154,600円以上 169,000円未満",
+      "incomeMin": 154600,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 44500,
+          "short": 43900
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "市民税所得割額 169,000円以上 301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 57000,
+          "short": 56100
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C16",
+      "label": "市民税所得割額 301,000円以上 397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": {
+          "standard": 61200,
+          "short": 60000
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C17",
+      "label": "市民税所得割額 397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 80000,
+          "short": 78400
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    }
+  ]
+}
