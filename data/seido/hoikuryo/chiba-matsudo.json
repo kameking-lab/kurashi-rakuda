@@ -1,0 +1,365 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "chiba-matsudo",
+  "name": "千葉県松戸市",
+  "municipalityCode": "122076",
+  "prefecture": "千葉県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "matsudo-hoikuryo-page",
+      "title": "保育所保育料",
+      "publisher": "松戸市",
+      "url": "https://www.city.matsudo.chiba.jp/kosodate/matsudodekosodate/kosodatenavi/hoikuenyouchien/hoikuryo.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "html",
+      "note": "保育料の決定方法（世帯課税状況、税額控除の不適用、算定時期の切替）と無償化の対象を説明するページ。ページ内更新日表示は2025年4月8日。掲載されている利用者負担額表PDFへのリンクは令和6・7年度版のままで、令和8年度表はまだ本ページから直接リンクされていない（令和8年度表は入所案内PDF内に格納。matsudo-r8-nyusho-annai-pdf 参照）。"
+    },
+    {
+      "id": "matsudo-r8-nyusho-annai-pdf",
+      "title": "令和8年度 保育所（園）等利用申込みのご案内（入所申込案内）",
+      "publisher": "松戸市",
+      "url": "https://www.city.matsudo.chiba.jp/kosodate/matsudodekosodate/kosodatenavi/hoikuenyouchien/nyuusho_annai.files/R8_nyuusyomoushikomiannnai.pdf",
+      "landingUrl": "https://www.city.matsudo.chiba.jp/kosodate/matsudodekosodate/kosodatenavi/hoikuenyouchien/nyuusho_annai.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "全55ページ。26ページに「令和８年度　利用者負担額表（２，３号認定用）標準時間認定」、27ページに同「短時間認定」を掲載（25ページは１号認定用＝3〜5歳児で無償化対象のため対象外）。金額・階層境界は令和7年度版（matsudo-r7-kingaku2-pdf参照）と完全一致。ファイルサイズが約30MBと大きい点に注意。"
+    },
+    {
+      "id": "matsudo-r7-kingaku2-pdf",
+      "title": "令和7年度利用者負担額表（2号・3号）",
+      "publisher": "松戸市",
+      "url": "https://www.city.matsudo.chiba.jp/kosodate/matsudodekosodate/kosodatenavi/hoikuenyouchien/hoikuryo.files/R7_kingaku2.pdf",
+      "landingUrl": "https://www.city.matsudo.chiba.jp/kosodate/matsudodekosodate/kosodatenavi/hoikuenyouchien/hoikuryo.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "参考として保持。令和8年度表（matsudo-r8-nyusho-annai-pdf）と金額・階層境界が完全一致することを確認済み。1ページ目が標準時間認定、2ページ目が短時間認定。"
+    }
+  ],
+  "disclaimer": "本データは千葉県松戸市の自治体公式資料に基づく参考情報です。実際の保育料は税額、世帯状況、きょうだい構成等により自治体が決定するため、決定通知書または担当窓口（松戸市子ども部保育課）で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所（保育所（園））・小規模保育事業・認定こども園の一般世帯・第1子の月額保育料(0～2歳児クラス)"
+    ],
+    "excludes": [
+      "ひとり親世帯等（8-1階層まで）の軽減後金額（第1子に第2子の利用者負担額の［　］書きの特例額が適用される）",
+      "第2子以降の軽減後金額（第2子は約半額、第3子以降は無料）",
+      "3～5歳児クラスの保育料（幼児教育・保育の無償化により無償）",
+      "1号認定（施設型給付を受ける幼稚園・認定こども園の教育標準時間認定）の保育料（3～5歳児のため無償化対象）",
+      "小規模保育事業・認定こども園を利用する場合の金額（原典の表では「保育所（園）」列より低い額が別途定められている。施設種別の軸が現行スキーマに無いため保育所（園）列のみ収録）",
+      "給食費（副食費）等の実費（8-1階層までの要保護等世帯、6-1階層までの世帯、第3子以降該当児童は免除。詳細は原典参照）",
+      "延長保育料等の実費徴収",
+      "教材費・行事費",
+      "入園料・おむつ代・通園送迎費用等の諸経費実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "保護者の方（父母以外の方が養育している場合はその養育者）の市区町村民税により決定する。祖父母等その他同居親族の合算ルールは原典に明記なく未確認。",
+    "taxYearRule": "階層区分は、4月から8月分は前年度分の市町村民税、9月から翌年3月分は当年度分の市町村民税により決定する。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除",
+      "配当控除",
+      "寄付金税額控除",
+      "外国税額控除",
+      "配当割額・株式等譲渡所得割額控除"
+    ],
+    "note": "松戸市は政令指定都市ではないため、大阪市・名古屋市等でみられる6/8税率換算等の対象外（原典にも換算の記載なし）。調整控除の適用有無、定額減税の反映方向（適用前/適用後）は原典に明記がなく未確認。利用者負担額表（2・3号認定用）は「保育所（園）」列と「認定こども園・小規模保育事業」列の2列に分かれ、後者は前者よりおおむね2割低い（例: 令和8年度23階層・第1子・標準時間: 保育所（園）64,700円、認定こども園・小規模保育事業51,700円）。本データは認可保育所（保育所（園））列の金額のみを収録し、施設種別の軸は現行スキーマに存在しないため scope.excludes に記載する。市町村民税額の確認が取れない世帯（未申告等）は最高階層で算定される。",
+    "sourceId": "matsudo-r8-nyusho-annai-pdf",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "sourceId": "matsudo-r8-nyusho-annai-pdf",
+      "expect": [
+        "階層区分は、４月～８月は前年度分の市町村民税、９月～翌年３月分は当年度分の市町村民税より決定します。",
+        "市町村民税所得割課税額を計算する場合、住宅借入金等特別税額控除や寄付金税額控除等の税額控除は適用されません",
+        "市町村民税額の確認が取れない世帯（未申告等）につきましては最高階層での請求となります"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0～2歳児クラス",
+      "rule": "年齢区分は当該年度4月1日の満年齢とし、その年度中に限り変更はない（年度途中で3歳になっても当該年度中は0～2歳児クラスの保育料のまま）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3～5歳児クラス",
+      "rule": "幼児教育・保育の無償化により保育料は無償。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳児クラスから5歳児クラスの全てのお子さまは無償化の対象",
+      "unit": "JPY",
+      "sourceId": "matsudo-hoikuryo-page",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）",
+      "verify": {
+        "sourceId": "matsudo-hoikuryo-page",
+        "expect": ["3歳児クラスから5歳児クラスの全てのお子さま", "無償化の対象です"]
+      }
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "0歳児クラスから2歳児クラスの住民税非課税世帯のお子さまは無償化の対象",
+      "unit": "JPY",
+      "sourceId": "matsudo-hoikuryo-page",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）",
+      "verify": {
+        "sourceId": "matsudo-hoikuryo-page",
+        "expect": ["0歳児クラスから2歳児クラスの住民税非課税世帯のお子さま", "無償化の対象です"]
+      }
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "小学校就学前のお子さまが2人以上いる世帯で、幼稚園及び保育所（園）等に通園している最年長のお子さまを第1子とした場合、第2子は約半額となる（幼稚園等の場合は在園証明書の提出が必要）。6-1階層までの世帯はこの年齢制限にかかわらず第2子は約半額となる。第3子以降は市町村民税にかかわらず（所得制限なし）、無料となる（年齢制限なし。令和7年9月に小学3年生以下という年齢制限が撤廃され、令和8年度はこの無条件無料の扱いで統一されている）。8-1階層までのひとり親世帯等については、第1子に第2子の利用者負担額の［　］書きの特例額が適用され、第2子以降は無料となる。",
+        "unit": "unit",
+        "sourceId": "matsudo-r8-nyusho-annai-pdf",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）",
+        "verify": {
+          "sourceId": "matsudo-r8-nyusho-annai-pdf",
+          "expect": [
+            "第２子は約半額となります",
+            "第３子以降は市町村民税にかかわらず",
+            "所得制限なし",
+            "ひとり親世帯等については"
+          ]
+        }
+      },
+      "secondChild": {
+        "value": 0.5,
+        "unit": "ratio",
+        "label": "第2子は約半額（8-1階層までのひとり親世帯等は［　］書きの特例額。countingRule参照）",
+        "sourceId": "matsudo-r8-nyusho-annai-pdf",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "第3子以降は所得制限なく無料",
+        "sourceId": "matsudo-r8-nyusho-annai-pdf",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      }
+    }
+  },
+  "tiers": [
+    {
+      "tier": "1A",
+      "label": "生活保護法による被保護世帯（単給世帯を含む）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": { "under3": { "standard": 0, "short": 0 } }
+    },
+    {
+      "tier": "1B",
+      "label": "非課税世帯（ひとり親世帯等）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": { "under3": { "standard": 0, "short": 0 } }
+    },
+    {
+      "tier": "2B",
+      "label": "非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": { "under3": { "standard": 0, "short": 0 } }
+    },
+    {
+      "tier": "2",
+      "label": "均等割額のみ（所得割額は0円）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": { "under3": { "standard": 7600, "short": 7400 } }
+    },
+    {
+      "tier": "3",
+      "label": "市民税所得割額が24,300円未満",
+      "incomeMin": 1,
+      "incomeMax": 24300,
+      "fees": { "under3": { "standard": 9200, "short": 9000 } }
+    },
+    {
+      "tier": "4",
+      "label": "24,300円以上48,600円未満",
+      "incomeMin": 24300,
+      "incomeMax": 48600,
+      "fees": { "under3": { "standard": 10800, "short": 10600 } }
+    },
+    {
+      "tier": "5",
+      "label": "48,600円以上51,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 51000,
+      "fees": { "under3": { "standard": 13900, "short": 13600 } }
+    },
+    {
+      "tier": "6-1",
+      "label": "51,000円以上57,700円未満",
+      "incomeMin": 51000,
+      "incomeMax": 57700,
+      "fees": { "under3": { "standard": 15400, "short": 15100 } }
+    },
+    {
+      "tier": "6-2",
+      "label": "57,700円以上60,700円未満",
+      "incomeMin": 57700,
+      "incomeMax": 60700,
+      "fees": { "under3": { "standard": 15400, "short": 15100 } }
+    },
+    {
+      "tier": "7",
+      "label": "60,700円以上72,800円未満",
+      "incomeMin": 60700,
+      "incomeMax": 72800,
+      "fees": { "under3": { "standard": 18300, "short": 17900 } }
+    },
+    {
+      "tier": "8-1",
+      "label": "72,800円以上77,101円未満",
+      "incomeMin": 72800,
+      "incomeMax": 77101,
+      "fees": { "under3": { "standard": 23300, "short": 22900 } }
+    },
+    {
+      "tier": "8-2",
+      "label": "77,101円以上84,900円未満",
+      "incomeMin": 77101,
+      "incomeMax": 84900,
+      "fees": { "under3": { "standard": 23300, "short": 22900 } }
+    },
+    {
+      "tier": "9",
+      "label": "84,900円以上97,000円未満",
+      "incomeMin": 84900,
+      "incomeMax": 97000,
+      "fees": { "under3": { "standard": 24400, "short": 23900 } }
+    },
+    {
+      "tier": "10",
+      "label": "97,000円以上109,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 109000,
+      "fees": { "under3": { "standard": 28900, "short": 28400 } }
+    },
+    {
+      "tier": "11",
+      "label": "109,000円以上111,000円未満",
+      "incomeMin": 109000,
+      "incomeMax": 111000,
+      "fees": { "under3": { "standard": 31500, "short": 30900 } }
+    },
+    {
+      "tier": "12",
+      "label": "111,000円以上123,000円未満",
+      "incomeMin": 111000,
+      "incomeMax": 123000,
+      "fees": { "under3": { "standard": 35800, "short": 35100 } }
+    },
+    {
+      "tier": "13",
+      "label": "123,000円以上135,000円未満",
+      "incomeMin": 123000,
+      "incomeMax": 135000,
+      "fees": { "under3": { "standard": 36600, "short": 35900 } }
+    },
+    {
+      "tier": "14",
+      "label": "135,000円以上157,000円未満",
+      "incomeMin": 135000,
+      "incomeMax": 157000,
+      "fees": { "under3": { "standard": 42600, "short": 41800 } }
+    },
+    {
+      "tier": "15",
+      "label": "157,000円以上169,000円未満",
+      "incomeMin": 157000,
+      "incomeMax": 169000,
+      "fees": { "under3": { "standard": 44500, "short": 43700 } }
+    },
+    {
+      "tier": "16",
+      "label": "169,000円以上191,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 191000,
+      "fees": { "under3": { "standard": 48100, "short": 47200 } }
+    },
+    {
+      "tier": "17",
+      "label": "191,000円以上213,000円未満",
+      "incomeMin": 191000,
+      "incomeMax": 213000,
+      "fees": { "under3": { "standard": 51300, "short": 50400 } }
+    },
+    {
+      "tier": "18",
+      "label": "213,000円以上235,000円未満",
+      "incomeMin": 213000,
+      "incomeMax": 235000,
+      "fees": { "under3": { "standard": 55900, "short": 54900 } }
+    },
+    {
+      "tier": "19",
+      "label": "235,000円以上257,000円未満",
+      "incomeMin": 235000,
+      "incomeMax": 257000,
+      "fees": { "under3": { "standard": 57000, "short": 56000 } }
+    },
+    {
+      "tier": "20",
+      "label": "257,000円以上279,000円未満",
+      "incomeMin": 257000,
+      "incomeMax": 279000,
+      "fees": { "under3": { "standard": 58500, "short": 57500 } }
+    },
+    {
+      "tier": "21",
+      "label": "279,000円以上301,000円未満",
+      "incomeMin": 279000,
+      "incomeMax": 301000,
+      "fees": { "under3": { "standard": 59600, "short": 58500 } }
+    },
+    {
+      "tier": "22",
+      "label": "301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": { "under3": { "standard": 63200, "short": 62100 } }
+    },
+    {
+      "tier": "23",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": { "under3": { "standard": 64700, "short": 63600 } }
+    }
+  ],
+  "verify": {
+    "sourceId": "matsudo-r8-nyusho-annai-pdf",
+    "expect": [
+      "令和８年度",
+      "利用者負担額表（２，３号認定用）",
+      "397,000円以上",
+      "64,700",
+      "63,600",
+      "均等割額のみ",
+      "非課税世帯（ひとり親世帯等）",
+      "標準時間認定",
+      "短時間認定"
+    ]
+  }
+}
