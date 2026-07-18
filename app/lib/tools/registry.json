@@ -1714,5 +1714,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T10",
+    "slug": "shokuji-sesshu-kijun-ninpu",
+    "category": "pregnancy",
+    "title": "妊娠中・授乳中の栄養付加量 早見",
+    "description": "妊娠初期・中期・後期・授乳中の別に、エネルギー・たんぱく質・鉄・葉酸・ビタミンC・カルシウム・食塩相当量の付加量（非妊娠時の推奨量に上乗せする量）を一覧表示します。妊娠初期のサプリメント葉酸400µgの推奨も案内します。",
+    "solves": [
+      "妊娠中に鉄や葉酸をどれくらい多く摂ればいいか知りたい",
+      "妊娠初期・中期・後期で必要な栄養の付加量がどう変わるか知りたい",
+      "授乳中のエネルギーやたんぱく質の付加量を知りたい",
+      "妊娠を計画中に葉酸サプリを何µg摂ればいいか知りたい",
+      "妊娠中にカルシウムの付加量があるのか知りたい"
+    ],
+    "basisYear": "2025年版",
+    "sources": [
+      {
+        "label": "厚生労働省「日本人の食事摂取基準（2025年版）」策定検討会報告書",
+        "url": "https://www.mhlw.go.jp/stf/newpage_44138.html"
+      },
+      {
+        "label": "厚生労働省「日本人の食事摂取基準（2025年版）の策定ポイント」",
+        "url": "https://www.mhlw.go.jp/content/10904750/001396865.pdf"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/shokuji-sesshu-kijun-ninpu.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/shokuji-sesshu-kijun-ninpu.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
