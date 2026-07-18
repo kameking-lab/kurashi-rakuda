@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SITE_NAME } from "@/app/lib/site";
+import { Rakku } from "@/components/mascot/Rakku";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
@@ -13,12 +14,11 @@ const UPDATED = "2026-07-17";
 
 export default function PrivacyPage() {
   return (
-    <div>
-      <h1 className="text-xl font-bold sm:text-2xl">プライバシーポリシー</h1>
-      <p className="mt-4">
+    <div className="static-page static-privacy">
+      <header className="static-hero"><div><p className="eyebrow">PRIVACY</p><h1>プライバシーポリシー</h1><p>
         {SITE_NAME}
         （以下「当サイト」）は、利用者の個人情報・データを次の方針で取り扱います。
-      </p>
+      </p></div><Rakku pose="sleep" size={160} /></header>
 
       <SectionHeading>1. 会員登録・個人情報の収集について</SectionHeading>
       <p>

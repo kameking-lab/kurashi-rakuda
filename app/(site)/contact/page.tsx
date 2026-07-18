@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SITE_EMAIL, SITE_NAME } from "@/app/lib/site";
+import { Rakku } from "@/components/mascot/Rakku";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
@@ -13,12 +14,11 @@ export const metadata: Metadata = {
  */
 export default function ContactPage() {
   return (
-    <div>
-      <h1 className="text-xl font-bold sm:text-2xl">お問い合わせ</h1>
-      <p className="mt-4">
+    <div className="static-page static-contact">
+      <header className="static-hero"><div><p className="eyebrow">CONTACT</p><h1>お問い合わせ</h1><p>
         {SITE_NAME}
         へのご連絡は、メールでお願いします。外部のフォームサービスを使わないのは、入力内容を当サイト以外に預けない方針のためです。
-      </p>
+      </p></div><Rakku pose="bow" size={160} /></header>
 
       <div className="mt-6 rounded-card border border-line bg-sand-soft p-4 sm:p-5">
         <p className="text-sm text-ink-muted">メールアドレス</p>
