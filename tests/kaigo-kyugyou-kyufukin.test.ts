@@ -179,3 +179,30 @@ describe("KaigoKyugyouKyufukin.calc — ハードコード禁止（金額はJSON
     expect(MAX_DAYS).toBe(seido.data.leaveLimits.maxDays.value);
   });
 });
+
+describe("KaigoKyugyouKyufukin.calc — 8/1改定の失効フェイルセーフ", () => {
+  it("#25 支給限度額の改定日（2026-08-01）以降は計算を停止する（expired=true・金額0）", () => {
+    const r = calcKaigoKyugyou({ monthlyWage: 300000, leaveDays: 93, today: "2026-08-01" });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.expired).toBe(true);
+    expect(r.totalBenefit).toBe(0);
+    expect(r.periods).toHaveLength(0);
+  });
+
+  it("#26 改定日の前日（2026-07-31）は通常どおり計算する（expired=false）", () => {
+    const r = calcKaigoKyugyou({ monthlyWage: 300000, leaveDays: 93, today: "2026-07-31" });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.expired).toBe(false);
+    expect(r.totalBenefit).toBe(623100);
+  });
+
+  it("#27 today未指定なら失効判定せず通常計算（expired=false）", () => {
+    const r = calcKaigoKyugyou({ monthlyWage: 300000, leaveDays: 93 });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.expired).toBe(false);
+    expect(r.totalBenefit).toBe(623100);
+  });
+});

@@ -15,10 +15,21 @@
  *  ・支給日数の通算上限は93日（同一対象家族・3回まで分割可）
  */
 import seido from "@/data/seido/kaigo-kyugyou-kyufukin.json";
-import type { SeidoDataset } from "@/lib/tools/seido";
+import { isDataExpired, type SeidoDataset } from "@/lib/tools/seido";
 
 export const kaigoKyugyouKyufukinDataset = seido as unknown as SeidoDataset;
 export const KAIGO_KYUGYOU_DISCLAIMER = seido.disclaimer;
+
+/**
+ * ★8/1改定の失効フェイルセーフ★
+ * 賃金月額の上限額・下限額（＝支給上限額356,574円等）は毎年8月1日に改定され、
+ * data/seido/kaigo-kyugyou-kyufukin.json の amendments に status:"expires"／
+ * expiresOn:"2026-07-31" として記録されている。基準日がこの日を過ぎたら、
+ * 新しい支給限度額に差し替わるまで古い額で計算しないよう、育休給付（sankyu-ikukyu-money）・
+ * 育児時短就業給付（jitan-kyuyo）と同じく計算を停止する（expired:true）。
+ */
+export const KAIGO_KYUGYOU_EXPIRED_MESSAGE =
+  "賃金月額の上限額・支給限度額の改定時期（毎年8月1日）を迎えているため、最新の額に更新されるまで計算を停止しています。正確な額はお勤め先・ハローワークにご確認ください。";
 
 const S = seido.data.shikyuGaku;
 const W = seido.data.wageAdjustment;
@@ -116,10 +127,14 @@ export interface KaigoKyugyouInput {
   resigningAfterLeave?: boolean;
   /** 対象家族が範囲内か（配偶者・父母・子・配偶者の父母・祖父母・兄弟姉妹・孫） */
   familyInScope?: boolean;
+  /** 基準日（YYYY-MM-DD）。支給限度額の8/1改定の失効判定に使う。未指定なら失効扱いしない */
+  today?: string;
 }
 
 export interface KaigoKyugyouResult {
   ok: true;
+  /** 支給限度額の改定時期（8/1）を過ぎ、最新額に未更新のため計算を停止したか */
+  expired: boolean;
   /** 支給対象外の理由（離職予定・対象家族外）。空なら支給対象 */
   ineligibleReasons: string[];
   /** 93日を超えて入力された場合に切り詰めたか */
@@ -149,6 +164,23 @@ export function calcKaigoKyugyou(input: KaigoKyugyouInput): KaigoKyugyouCalcResu
     return { ok: false, error: "休業中に支払われる賃金は0以上で入力してください。" };
   }
 
+  // ★8/1改定の失効フェイルセーフ★ 基準日が支給限度額の改定日を過ぎていたら、
+  // 古い額で計算せず停止する（育休給付・時短給付と同じ挙動）。
+  if (input.today && isDataExpired(kaigoKyugyouKyufukinDataset, input.today)) {
+    return {
+      ok: true,
+      expired: true,
+      ineligibleReasons: [],
+      cappedToMaxDays: false,
+      effectiveLeaveDays: 0,
+      cappedMonthlyWage: 0,
+      cappedDailyWage: 0,
+      periods: [],
+      totalBenefit: 0,
+      totalBenefitUnpaid: 0,
+    };
+  }
+
   const cappedToMaxDays = rawDays > MAX_DAYS;
   const effectiveLeaveDays = Math.min(rawDays, MAX_DAYS);
 
@@ -173,6 +205,7 @@ export function calcKaigoKyugyou(input: KaigoKyugyouInput): KaigoKyugyouCalcResu
 
   return {
     ok: true,
+    expired: false,
     ineligibleReasons,
     cappedToMaxDays,
     effectiveLeaveDays,

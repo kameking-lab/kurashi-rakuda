@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NumberField, SelectField } from "@/components/ui/Field";
 import { ResultCard } from "@/components/ui/ResultCard";
 import { Callout } from "@/components/ui/Callout";
+import { todayJst } from "@/lib/tools/seido";
 import {
   calcKaigoKyugyou,
   fmtYen,
+  KAIGO_KYUGYOU_EXPIRED_MESSAGE,
   MAX_COUNT,
   MAX_DAYS,
   type KaigoKyugyouInput,
@@ -23,6 +25,11 @@ export function KaigoKyugyouKyufukin() {
   const [wagePaidPerPeriod, setWagePaidPerPeriod] = useState("");
   const [familyInScope, setFamilyInScope] = useState<"yes" | "no">("yes");
   const [resigning, setResigning] = useState<"yes" | "no">("no");
+  const [today, setToday] = useState<string | null>(null);
+
+  useEffect(() => {
+    setToday(todayJst());
+  }, []);
 
   const toNum = (s: string): number | undefined => {
     if (s.trim() === "") return undefined;
@@ -37,8 +44,10 @@ export function KaigoKyugyouKyufukin() {
     wagePaidPerPeriod: toNum(wagePaidPerPeriod),
     familyInScope: familyInScope === "yes",
     resigningAfterLeave: resigning === "yes",
+    today: today ?? undefined,
   };
   const r = calcKaigoKyugyou(input);
+  const expired = r.ok && r.expired;
   const hasWagePaid = (toNum(wagePaidPerPeriod) ?? 0) > 0;
 
   return (
@@ -92,7 +101,9 @@ export function KaigoKyugyouKyufukin() {
         onChange={(e) => setWagePaidPerPeriod(e.target.value)}
       />
 
-      {!r.ok ? (
+      {expired ? (
+        <Callout tone="caution">{KAIGO_KYUGYOU_EXPIRED_MESSAGE}</Callout>
+      ) : !r.ok ? (
         wageEntered && <Callout tone="caution">{r.error}</Callout>
       ) : (
         <>
