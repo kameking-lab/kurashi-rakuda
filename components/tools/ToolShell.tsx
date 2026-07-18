@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RelatedTools } from "./RelatedTools";
 import { SisterSiteLinks } from "./SisterSiteLinks";
 import { Rakku } from "@/components/mascot/Rakku";
+import { ProfilePrefill } from "@/components/personalize/ProfilePrefill";
 
 /**
  * ツールページ共通シェル（docs/08 P1-04）。
@@ -33,7 +34,7 @@ export function ToolShell({
         <Rakku pose="calc" size={108} />
       </header>
 
-      <div className="tool-workspace mt-6">{children}</div>
+      <div className="tool-workspace mt-6"><ProfilePrefill slug={meta.slug} />{children}</div>
 
       <SectionHeading id="formula">根拠・計算式</SectionHeading>
       <div className="space-y-3 text-sm sm:text-base">{formula}</div>
