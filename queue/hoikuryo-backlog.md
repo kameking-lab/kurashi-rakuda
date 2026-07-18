@@ -206,6 +206,8 @@
 
 ★2026-07-19 完了（ソネット・東日本ブロック・一般市バッチ5）★: [x] 西尾市（11階層・R8、副食費込み・標準/短時間区分なし）・小山市（8階層・R8）・新座市（23階層・R8）・佐倉市（18階層、年度表記のない常設表型）・秦野市（21階層・R8）・帯広市（13階層・R8、控除の「足し戻し」方式）・磐田市（9階層・R8）・高岡市（18階層・R8、兄姉の年齢上限なしで多子カウント）。全市 --fetch照合エラー0。新規ドメイン許可6件（小山`city.oyama.tochigi.jp`・磐田`city.iwata.shizuoka.jp`・西尾`city.nishio.aichi.jp`・秦野`city.hadano.kanagawa.jp`・帯広`city.obihiro.hokkaido.jp`・高岡`city.takaoka.toyama.jp`）。新座・佐倉は`.lg.jp`のみで完結し追加不要。次バッチは人口順で継続（次候補: 高岡に続き大垣・刈谷・東村山・ひたちなか・釧路・野田・武蔵野等）。
 
+★2026-07-19 着手宣言（ソネット・東日本ブロック・一般市バッチ6）★: [~] 青森県弘前市（aomori-hirosaki）・岐阜県大垣市（gifu-ogaki）・愛知県刈谷市（aichi-kariya）・東京都東村山市（tokyo-higashimurayama）・茨城県ひたちなか市（ibaraki-hitachinaka）・北海道釧路市（hokkaido-kushiro）・千葉県野田市（chiba-noda）・東京都武蔵野市（tokyo-musashino）。人口10万以上の一般市を人口順に収集する第6弾。
+
 ---
 
 ## 2. 収集済みデータから分かった実装上の論点
