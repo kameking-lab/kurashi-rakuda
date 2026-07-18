@@ -169,6 +169,8 @@
 
 ### 全国展開（P3-05。100自治体/バッチで段階リリース）
 
+★2026-07-18 着手宣言（西日本・全国展開バッチ1）★: [~] 大阪府茨木市（osaka-ibaraki）・兵庫県加古川市（hyogo-kakogawa）・兵庫県宝塚市（hyogo-takarazuka）・大阪府岸和田市（osaka-kishiwada）・徳島県徳島市（tokushima-tokushima）・佐賀県佐賀市（saga-saga）・兵庫県伊丹市（hyogo-itami）・広島県東広島市（hiroshima-higashihiroshima）。施行時特例市4市を先行し、人口10万以上の一般市を人口規模順に続ける。
+
 ---
 
 ## 2. 収集済みデータから分かった実装上の論点
