@@ -1438,5 +1438,31 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T15",
+    "slug": "ninshin-taiju-zoka-checker",
+    "category": "pregnancy",
+    "title": "妊娠中の体重増加チェッカー",
+    "description": "妊娠前の身長・体重（→妊娠前BMI）と現在の体重を入力すると、妊娠前の体格区分に応じた体重増加指導の目安（こども家庭庁 表8）と、現在の増加量を比較して表示します。",
+    "solves": [
+      "妊娠前の体格から見た体重増加の目安が分からない",
+      "今の増加量が目安の範囲に収まっているか知りたい",
+      "肥満2度以上の場合に一律の目安がないことを知らなかった",
+      "多胎の場合の目安値があるのか分からなかった"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "こども家庭庁（策定時: 厚生労働省）「妊娠前からはじめる妊産婦のための食生活指針 解説要領」（令和3年3月改定・表8）",
+        "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/a29a9bee-4d29-482d-a63b-5f9cb8ea0aa2/aaaf2a82/20230401_policies_boshihoken_shokuji_02.pdf"
+      },
+      {
+        "label": "厚生労働省 e-ヘルスネット「BMI」（BMI計算式の根拠）",
+        "url": "https://kennet.mhlw.go.jp/information/information/dictionary/metabolic/ym-002.html"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
