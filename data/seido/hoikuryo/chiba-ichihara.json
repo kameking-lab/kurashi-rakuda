@@ -1,0 +1,337 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "chiba-ichihara",
+  "name": "千葉県市原市",
+  "municipalityCode": "122190",
+  "prefecture": "千葉県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "ichihara-hoikuryo-page",
+      "title": "保育所等の利用者負担額（保育料）について",
+      "publisher": "市原市 子ども未来部 保育課",
+      "url": "https://www.city.ichihara.chiba.jp/article?articleId=60237a83ece4651c88c18b36",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "html",
+      "note": "保育料算定方法（市民税額の算定基礎・税年度切替時期・控除の適用有無）と階層区分（A〜D14）の定義、および「市原市利用者負担額(保育料)表」PDFへのリンクを掲載するページ。ページ内表示の公開日は2024/02/19。"
+    },
+    {
+      "id": "ichihara-hoikuryo-pdf",
+      "title": "市原市利用者負担額(保育料)表",
+      "publisher": "市原市 子ども未来部 保育課",
+      "url": "https://prdurbanosichapp1.blob.core.windows.net/common-article/60237a83ece4651c88c18b36/%E5%B8%82%E5%8E%9F%E5%B8%82%E5%88%A9%E7%94%A8%E8%80%85%E8%B2%A0%E6%8B%85%E9%A1%8D%28%E4%BF%9D%E8%82%B2%E6%96%99%29%E8%A1%A8%20%283%29.pdf",
+      "landingUrl": "https://www.city.ichihara.chiba.jp/article?articleId=60237a83ece4651c88c18b36",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "PDFメタデータの作成日/更新日は2024-03-12（Microsoft Excel生成）。年度表記のない常設表（船橋市・大分市と同型）で、以降の改定を示す情報は確認できない(2026-07-18時点で有効)。A・B・C・D1〜D14の全17階層。保育所（園）・認定こども園・地域型保育事業（家庭的保育を除く）と家庭的保育事業の2施設種別×標準時間/短時間×一般/ひとり親世帯等の列がある。本ファイルのtiers.feesは「保育所（園）、認定こども園、地域型保育事業（家庭的保育を除く）」列の一般世帯（ひとり親世帯等でない）額を採録。"
+    },
+    {
+      "id": "ichihara-2ndchild-page",
+      "title": "【所得制限なし】令和６年４月から第２子以降の保育料を無償化します！",
+      "publisher": "市原市 子ども未来部 保育課",
+      "url": "https://www.city.ichihara.chiba.jp/article?articleId=64d4298b87ac3c158d59f8ea",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "html",
+      "note": "令和6年4月から、保護者の所得や第1子の年齢に関わらず、同一生計の第2子以降（0〜2歳児クラス・認可保育施設利用）の保育料を無償化する独自施策の説明ページ。"
+    },
+    {
+      "id": "ichihara-mushouka-page",
+      "title": "幼児教育・保育の無償化について",
+      "publisher": "市原市 子ども未来部 保育課",
+      "url": "https://www.city.ichihara.chiba.jp/article?articleId=60237a7cece4651c88c18b2c",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "html",
+      "note": "国の幼児教育・保育の無償化制度（3〜5歳児クラス全員・0〜2歳児クラス住民税非課税世帯）を説明するページ。令和8年度の施設等利用費支払いスケジュールが掲載されており、令和8年度時点で現行であることを確認。"
+    }
+  ],
+  "disclaimer": "本データは千葉県市原市の自治体公式資料に基づく参考情報です。実際の保育料は税額、世帯状況、きょうだい構成等により自治体が決定するため、決定通知書または担当窓口（市原市子ども未来部保育課）で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園・地域型保育事業（家庭的保育を除く）の一般世帯・第1子の月額保育料(0～2歳児クラス)"
+    ],
+    "excludes": [
+      "ひとり親世帯等の軽減後金額",
+      "家庭的保育事業（施設種別が異なるため対象外。scope外）の金額",
+      "第2子以降の軽減後金額（令和6年4月から所得制限なく無償）",
+      "3～5歳児クラス(2号)及び満3歳以上児(1号)の保育料（幼児教育・保育の無償化により無償）",
+      "給食費（副食費）等の実費",
+      "延長保育料等の実費徴収",
+      "入園料・行事費・通園送迎費用等の諸経費実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則として入所児童と同一世帯の父母（単身赴任等で別居中の父母を含む）の市民税所得割合計額。父母がともに非課税の場合は、同居する祖父母がいれば、いずれか一方の市民税額の高い方を用いて算定する。",
+    "taxYearRule": "保育料階層の切替時期は9月。4月分から8月分までの保育料は入所前年度の市民税額を基に計算し、9月分から3月分までの保育料は入所年度の市民税額を基に計算する。保育料の決定は年2回実施（4月はクラス年齢の切替、9月は対象課税年度の変更に伴う再計算）。",
+    "deductionsIgnored": ["寄附金控除（寄附金税額控除）", "外国税額控除", "配当控除", "住宅借入金等特別税額控除"],
+    "note": "D1〜D14階層の「所得割の額」は地方税法第292条第1項第2号の所得割の額をいい、算定に当たり同法に規定する寄付金控除・外国税額控除・配当控除・住宅借入金等特別税額控除等の規定は適用しない（税額控除前の所得割額で算定）。市原市は政令指定都市ではないため、大阪市・名古屋市等でみられる6/8税率換算の対象外（原典にも換算の記載なし）。定額減税の反映有無（適用前/適用後）は原典に明記がなく未確認。保育料の年齢は入所年度4月1日の前日の満年齢を適用（年度途中の誕生日では変更しない）。",
+    "sourceId": "ichihara-hoikuryo-pdf",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "sourceId": "ichihara-hoikuryo-pdf",
+      "expect": [
+        "保育料階層の切替時期は９月になります",
+        "４月分から８月分までの保育料は入所前年度の市民税額で決定します",
+        "９月分から３月分までの保育料は入所年度の",
+        "市民税額で決定します",
+        "父母の市民税額が非課税の場合、同居する祖父母の市民税額で階層決定します",
+        "寄付金控除、外国税額控除並びに配当控除、住宅借入金等特別税額控除等の規定は適用しないものとします"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0～2歳児クラス",
+      "rule": "保育料の年齢は、入所年度4月1日の前日の満年齢を適用する（年度の途中で誕生日を迎えても変更にならない）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3～5歳児クラス（2号）及び満3歳以上児（1号）",
+      "rule": "幼児教育・保育の無償化（令和元年10月1日～）により保育料は無償。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3～5歳児クラス(2号)及び満3歳以上児(1号)は幼児教育・保育の無償化により無償",
+      "unit": "JPY",
+      "sourceId": "ichihara-mushouka-page",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし(2026-07-18時点)",
+      "verify": {
+        "sourceId": "ichihara-mushouka-page",
+        "expect": ["3歳から5歳までの全ての子ども及び0歳から2歳までの住民税非課税世帯の子どもについて"],
+        "skip": true,
+        "skipReason": "city.ichihara.chiba.jp はAngular SPAで、通常のUser-Agentによる機械取得ではアプリシェルのみが返り本文が空になる（Googlebot向けプリレンダリングでのみ本文取得可）。収集時にGooglebot UAでの取得により内容は目視確認済み（神戸市スキャンPDFのverify.skipと同種の扱い）"
+      }
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "住民税非課税世帯の0～2歳児クラスの保育料（B階層）は無償",
+      "unit": "JPY",
+      "sourceId": "ichihara-mushouka-page",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし(2026-07-18時点)",
+      "verify": {
+        "sourceId": "ichihara-mushouka-page",
+        "expect": ["0歳から2歳までの住民税非課税世帯の子どもについて"],
+        "skip": true,
+        "skipReason": "city.ichihara.chiba.jp はAngular SPAで、通常のUser-Agentによる機械取得ではアプリシェルのみが返り本文が空になる（Googlebot向けプリレンダリングでのみ本文取得可）。収集時にGooglebot UAでの取得により内容は目視確認済み"
+      }
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "保護者の所得や第1子の年齢に関わらず、同一生計の第2子以降（0～2歳児クラス・市外を含む認可保育施設の利用）の保育料を無償化する（所得制限なし）。入所児童の住民登録が市原市にあることが必要。認可外保育施設（企業主導型保育事業を含む）・幼稚園は対象外。",
+        "unit": "unit",
+        "sourceId": "ichihara-2ndchild-page",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)",
+        "verify": {
+          "sourceId": "ichihara-2ndchild-page",
+          "expect": [
+            "保護者の所得や第１子の年齢に関わらず",
+            "第２子以降の保育料を無償化します",
+            "所得制限はありません"
+          ],
+          "skip": true,
+          "skipReason": "city.ichihara.chiba.jp はAngular SPAで、通常のUser-Agentによる機械取得ではアプリシェルのみが返り本文が空になる（Googlebot向けプリレンダリングでのみ本文取得可）。収集時にGooglebot UAでの取得により内容は目視確認済み"
+        }
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "第2子は無料（所得制限なし）",
+        "sourceId": "ichihara-2ndchild-page",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "第3子以降も無料（第2子と同じ扱い。所得制限なし）",
+        "sourceId": "ichihara-2ndchild-page",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)"
+      }
+    },
+    "localExtension": "市原市独自の取り組みとして、令和6年4月から、第1子の年齢に関わらず、認可保育施設の0～2歳児クラスを利用する第2子以降の保育料を所得制限なく無償化している。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "市民税均等割のみ課税されている世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 8300, "short": 8100 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "24,300円未満",
+      "incomeMin": 1,
+      "incomeMax": 24300,
+      "fees": {
+        "under3": { "standard": 9600, "short": 9400 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "24,300円以上48,600円未満",
+      "incomeMin": 24300,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 11000, "short": 10800 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "48,600円以上57,200円未満",
+      "incomeMin": 48600,
+      "incomeMax": 57200,
+      "fees": {
+        "under3": { "standard": 11900, "short": 11600 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "57,200円以上77,101円未満",
+      "incomeMin": 57200,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 13900, "short": 13600 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "77,101円以上97,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 16600, "short": 16300 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "97,000円以上121,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 121000,
+      "fees": {
+        "under3": { "standard": 22900, "short": 22500 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "121,000円以上145,000円未満",
+      "incomeMin": 121000,
+      "incomeMax": 145000,
+      "fees": {
+        "under3": { "standard": 37400, "short": 36700 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "145,000円以上169,000円未満",
+      "incomeMin": 145000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 42500, "short": 41700 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "169,000円以上211,201円未満",
+      "incomeMin": 169000,
+      "incomeMax": 211201,
+      "fees": {
+        "under3": { "standard": 47800, "short": 46900 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "211,201円以上256,100円未満",
+      "incomeMin": 211201,
+      "incomeMax": 256100,
+      "fees": {
+        "under3": { "standard": 55600, "short": 54600 }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "256,100円以上301,000円未満",
+      "incomeMin": 256100,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 56600, "short": 55600 }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "301,000円以上349,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 349000,
+      "fees": {
+        "under3": { "standard": 57600, "short": 56600 }
+      }
+    },
+    {
+      "tier": "D13",
+      "label": "349,000円以上397,000円未満",
+      "incomeMin": 349000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 58300, "short": 57300 }
+      }
+    },
+    {
+      "tier": "D14",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 75800, "short": 74500 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "ichihara-hoikuryo-pdf",
+    "expect": [
+      "市原市利用者負担額(保育料)表",
+      "397,000円以上",
+      "75,800",
+      "74,500",
+      "均等割のみ課税されている世帯",
+      "8,300",
+      "8,100",
+      "24,300円未満"
+    ]
+  }
+}

@@ -204,6 +204,13 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.soka.saitama.jp', // 草加市（施行時特例市）は city.soka.saitama.lg.jp が存在しない
   'city.hiratsuka.kanagawa.jp', // 平塚市（施行時特例市）の公式サイト
   'city.chigasaki.kanagawa.jp', // 茅ヶ崎市（施行時特例市）の公式サイト
+  'city.matsudo.chiba.jp', // 松戸市の公式サイト
+  'kosodate-machida.tokyo.jp', // 町田市の子育てポータル（東京都独自の負担軽減事業でR8は無償）
+  'city.fuchu.tokyo.jp', // 府中市（東京都独自の負担軽減事業でR8は無償）
+  'city.tsu.mie.jp', // 津市（実サイトはinfo.city.tsu.mie.jpだがサフィックス一致で許可）
+  'city.fujisawa.kanagawa.jp', // 藤沢市の公式サイト
+  'city.ichihara.chiba.jp', // 市原市の公式サイト
+  'prdurbanosichapp1.blob.core.windows.net', // 市原市のPDF添付ファイル格納先（Azure Blob。共有ドメインのためこのサブドメインのみ許可）
 ];
 
 const args = process.argv.slice(2);
