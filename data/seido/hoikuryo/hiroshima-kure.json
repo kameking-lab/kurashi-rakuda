@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "hiroshima-kure",
+  "name": "広島県呉市",
+  "municipalityCode": "342025",
+  "prefecture": "広島県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2026-10-01",
+  "sources": [
+    {
+      "id": "kure-r8-free-budget",
+      "title": "令和8年度当初予算について（0～2歳児の保育料無償化）",
+      "publisher": "呉市",
+      "url": "https://www.city.kure.lg.jp/uploaded/attachment/109580.pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和8年10月から呉市独自に0～2歳児の保育料を無償化し、既に無償の3～5歳児と合わせて全年齢無償化する。",
+      "status": "scheduled",
+      "effectiveFrom": "2026-10-01",
+      "sourceId": "kure-r8-free-budget",
+      "impact": "令和8年10月分以降は全階層・全年齢区分の保育料が一律0円。4～9月の現行階層額は市公式一次情報の公開表を確認できず、tiersの金額を未確認（fees空）としているため推測してはならない。"
+    }
+  ],
+  "disclaimer": "本データは呉市の令和8年度当初予算資料に基づく参考情報です。令和8年10月以降の全年齢無償化は確認済みですが、4～9月の階層別保育料は市公式一次情報で確認できていません。実際の決定は呉市の通知・窓口で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園等の月額保育料"
+    ],
+    "excludes": [
+      "延長保育料",
+      "給食費・副食費",
+      "行事費・教材費等の実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "taxYearRule": "未確認: 令和8年度の呉市公式保育料表を確認できないため税年度切替規則を確定できない。",
+    "note": "未確認: 令和8年4～9月の階層表、税額控除の扱い、世帯合算範囲、6/8換算、多子軽減の現行条件は公式一次情報の公開表を確認できず未収録。"
+  },
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "sourceId": "kure-r8-free-budget",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "国制度により既実施"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "sourceId": "kure-r8-free-budget",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "国制度により既実施"
+    },
+    "localExtension": "令和8年10月から所得・出生順位を問わず0～2歳児も無償化し全年齢無償化。"
+  },
+  "tiers": [
+    {
+      "tier": "未確認",
+      "label": "令和8年4～9月の階層別保育料は市公式表未確認",
+      "incomeMin": 0,
+      "incomeMax": null,
+      "fees": {}
+    }
+  ]
+}
