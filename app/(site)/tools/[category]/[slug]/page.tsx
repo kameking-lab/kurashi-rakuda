@@ -125,6 +125,12 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { KougakuIryouKaigoGassan } from "@/components/tools/impl/KougakuIryouKaigoGassan";
+import {
+  kougakuGassanDataset,
+  KOUGAKU_GASSAN_DISCLAIMER,
+  MINIMUM_PAYMENT as GASSAN_MINIMUM_PAYMENT,
+} from "@/components/tools/impl/KougakuIryouKaigoGassan.calc";
 import { KougakuKaigoServiceHi } from "@/components/tools/impl/KougakuKaigoServiceHi";
 import {
   kougakuKaigoServiceHiDataset,
@@ -208,6 +214,33 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "kougaku-iryou-kaigo-gassan": {
+    ui: <KougakuIryouKaigoGassan />,
+    formula: (
+      <>
+        <p>
+          高額医療・高額介護合算療養費は、毎年8月1日から翌年7月31日までの1年間で、同一世帯（同じ医療保険）の
+          <strong>医療保険の自己負担と介護保険の自己負担を合算</strong>
+          し、所得区分ごとの合算算定基準額を超えた分が支給される制度です。支給額は「1年間の合算額 − 基準額」で計算します。
+        </p>
+        <p>
+          基準額は、加入している医療保険の種類（健康保険・国民健康保険・後期高齢者医療）・年齢（70歳未満／70歳以上）・所得区分によって変わります。区分アや現役並みⅢのような高所得ほど基準額が高く（払い戻しが出にくく）、低所得区分ほど基準額が低くなります。
+        </p>
+        <p>
+          ★2つの重要な条件★ ①<strong>医療保険と介護保険の両方に自己負担があること</strong>
+          （どちらかが0円なら対象外）。②基準額を超えた額が支給の最低額（{GASSAN_MINIMUM_PAYMENT}
+          円）以上であること。支給額は医療保険者と介護保険者に按分され、それぞれから別々に支給されます。
+        </p>
+        <p>
+          入力する自己負担額は、
+          <strong>高額療養費・高額介護サービス費で払い戻された分を先に差し引いた後の額</strong>
+          です（この合算制度はそれらを適用した後、最後に適用されます）。入院時の食費・差額ベッド代・施設の食費居住費は合算対象になりません。申請しないと支給されず、基準日（7月31日）時点の介護保険者への自己負担額証明書の申請から始まります。
+        </p>
+        <p>{KOUGAKU_GASSAN_DISCLAIMER}</p>
+        <SeidoNotice datasets={[kougakuGassanDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "kougaku-kaigo-service-hi": {
     ui: <KougakuKaigoServiceHi />,
     formula: (
