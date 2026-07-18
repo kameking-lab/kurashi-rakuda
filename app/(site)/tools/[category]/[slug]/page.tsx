@@ -125,6 +125,16 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { YouikuhiSanteihyou } from "@/components/tools/impl/YouikuhiSanteihyou";
+import {
+  youikuhiSanteihyouDataset,
+  YOUIKUHI_DISCLAIMER,
+  INDEX_AGE_0_14,
+  INDEX_AGE_15_PLUS,
+  HOUTEI_YOUIKUHI_PER_CHILD,
+  SAKIDORI_PER_CHILD,
+  fmtYen as youikuhiFmtYen,
+} from "@/components/tools/impl/YouikuhiSanteihyou.calc";
 import { FuninChiryouHokenTekiyou } from "@/components/tools/impl/FuninChiryouHokenTekiyou";
 import {
   funinChiryouDataset,
@@ -234,6 +244,33 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "youikuhi-santeihyou": {
+    ui: <YouikuhiSanteihyou />,
+    formula: (
+      <>
+        <p>
+          このツールは裁判所の「改定標準算定方式・算定表（令和元年版）」を使います。
+          <strong>養育費の金額そのものは、義務者・権利者の年収から自動計算しません</strong>
+          。算定表は縦軸・横軸の年収で読む数値表がPDF（画像）で提供されており、金額表をそのままデータ化できないためです。代わりに、子どもの人数と年齢構成から使うべき算定表（表1〜9）を特定して公式PDFへご案内します。
+        </p>
+        <p>
+          算定表の使い方は、縦軸で養育費を支払う側（義務者）の年収、横軸で受け取る側（権利者）の年収を探し、交わる金額帯を読むというものです。年収は、給与所得者なら源泉徴収票の「支払金額」、自営業者なら確定申告書の「課税される所得金額」を使います。児童手当・児童扶養手当は権利者の年収に含めません。
+        </p>
+        <p>
+          算定表から読み取った合計額を入力すると、公式の<strong>「子の指数」</strong>
+          （親を100としたときの子の生活費割合。0〜14歳＝{INDEX_AGE_0_14}・15歳以上＝{INDEX_AGE_15_PLUS}
+          ）で子ごとに按分します。たとえば合計5万円で10歳と15歳の子がいる場合、指数62:85で分けます。
+        </p>
+        <p>
+          取決めがない場合でも、令和の改正法により1人あたり月{youikuhiFmtYen(HOUTEI_YOUIKUHI_PER_CHILD)}
+          円の<strong>法定養育費</strong>を請求できる仕組みが導入されました（施行日前の離婚等は対象外）。養育費には先取特権も認められ、1人あたり
+          {youikuhiFmtYen(SAKIDORI_PER_CHILD)}円までは債務名義がなくても差押えが可能です。算定表はあくまで簡易迅速な標準額の参考であり、最終的な金額は個別の事情で決まります。
+        </p>
+        <p>{YOUIKUHI_DISCLAIMER}</p>
+        <SeidoNotice datasets={[youikuhiSanteihyouDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "funin-chiryou-hoken-tekiyou": {
     ui: <FuninChiryouHokenTekiyou />,
     formula: (
