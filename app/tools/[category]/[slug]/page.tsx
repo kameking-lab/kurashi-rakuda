@@ -106,6 +106,13 @@ import {
   PREGNANCY_GAIN_CAUTION as NINSHIN_TAIJU_PREGNANCY_GAIN_CAUTION,
   APPLICABILITY_NOTE as NINSHIN_TAIJU_APPLICABILITY_NOTE,
 } from "@/components/tools/impl/NinshinTaijuZokaChecker.calc";
+import { PmsYosokuCalendar } from "@/components/tools/impl/PmsYosokuCalendar";
+import {
+  PMS_DEFINITION_TEXT,
+  PMS_PREVALENCE_FROM_PERCENT,
+  PMS_PREVALENCE_TO_PERCENT,
+  PMS_DISCLAIMER,
+} from "@/components/tools/impl/PmsYosokuCalendar.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
 import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
@@ -1730,6 +1737,30 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
         <p>
           {NINSHIN_TAIJU_APPLICABILITY_NOTE}
           （多胎（双子など）の場合の目安値は本ツールでは扱っていません。）
+        </p>
+      </>
+    ),
+  },
+  "pms-yosoku-calendar": {
+    ui: <PmsYosokuCalendar />,
+    formula: (
+      <>
+        <p>
+          <strong>次回月経開始予定日・黄体期の起点</strong>
+          ：生理周期・排卵日予測（Q3-03）と同じ計算関数（calcSeiriShuki）をそのまま呼び出し、独自の周期計算は行いません。次回の月経開始予定日から黄体期の標準日数（約14日）を遡って黄体期の開始（排卵予測日）とし、月経開始前日までを黄体期の終了としています。
+        </p>
+        <p>
+          <strong>PMS症状が出やすいとされる時期の目安</strong>
+          ：{PMS_DEFINITION_TEXT}（日本産婦人科学会の定義）。この定義に基づき、黄体期間のうち後半（月経開始の10日前〜3日前）を「PMS症状が出やすいとされる時期の目安」として表示します。
+        </p>
+        <p>
+          <strong>PMSの有病率</strong>
+          ：PMSは月経がある女性の{PMS_PREVALENCE_FROM_PERCENT}〜{PMS_PREVALENCE_TO_PERCENT}
+          %に起こるとされています（厚生労働省事業「女性の健康推進室 ヘルスケアラボ」出典）。症状の出方には個人差があり、この目安がすべての人に当てはまるわけではありません。
+        </p>
+        <p>
+          <strong>医療判断は行いません</strong>
+          ：本ツールが行うのは黄体期・PMSの定義に基づく日付計算のみで、症状の有無・重さの診断は一切行いません。記録機能もなく、入力値・結果は保存されずその場での計算のみです。{PMS_DISCLAIMER}
         </p>
       </>
     ),

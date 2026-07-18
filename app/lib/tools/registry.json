@@ -1494,5 +1494,40 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T31",
+    "slug": "pms-yosoku-calendar",
+    "category": "health",
+    "title": "PMS・体調予測カレンダー（記録なし版）",
+    "description": "最終月経開始日と平均月経周期日数を入力すると、黄体期（排卵後〜次回月経前）と、PMS（月経前症候群）の症状が出やすいとされる時期の目安をカレンダー表示します。記録機能はなく、その場での予測のみです。",
+    "solves": [
+      "PMSの症状が出やすい時期がいつ頃か知りたい",
+      "黄体期がいつからいつまでか分からない",
+      "PMSが自分にも当てはまるのか、有病率の目安を知りたい",
+      "月経前の不調が病気なのかPMSなのか判断の手がかりが欲しい",
+      "次回月経までにPMSの時期がいつ来るか事前に把握したい"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "厚生労働省 スマート・ライフ・プロジェクト「女性ホルモンとうまく付き合っていくには？」",
+        "url": "https://kennet.mhlw.go.jp/slp/event/womens_health/2021/lecture1.html"
+      },
+      {
+        "label": "独立行政法人日本スポーツ振興センター「成長期女性アスリートハンドブック」",
+        "url": "https://www.jpnsport.go.jp/hpsc/Portals/0/resources/jiss/column/woman/seichoki_handobook_4.pdf"
+      },
+      {
+        "label": "厚生労働省 e-ヘルスネット「女性の睡眠障害」",
+        "url": "https://kennet.mhlw.go.jp/information/information/heart/k-02-005.html"
+      },
+      {
+        "label": "厚生労働省事業「女性の健康推進室 ヘルスケアラボ」PMS（月経前症候群）",
+        "url": "https://w-health.jp/monthly/pms/"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
