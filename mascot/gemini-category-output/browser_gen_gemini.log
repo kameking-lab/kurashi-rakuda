@@ -1,0 +1,30 @@
+[20:00:42] i01 attempt1 newChat & send (got=0)
+[20:01:27]   saved smoke_i01_01.jpg via=canvas bytes=640294
+[20:01:27] i01 DONE got=1
+[20:01:55] i01 attempt1 newChat & send (got=0)
+[20:02:40]   saved i01_01.jpg via=canvas bytes=813841
+[20:02:40] i01 DONE got=1
+[20:02:40]   wait 60s before next prompt
+[20:03:40] i02 attempt1 newChat & send (got=0)
+[20:04:32]   saved i02_01.jpg via=canvas bytes=812868
+[20:04:32] i02 DONE got=1
+[20:04:32]   wait 60s before next prompt
+[20:05:32] i03 attempt1 newChat & send (got=0)
+[20:06:21]   saved i03_01.jpg via=canvas bytes=847808
+[20:06:21] i03 DONE got=1
+[20:06:21]   wait 60s before next prompt
+[20:07:21] i04 attempt1 newChat & send (got=0)
+[20:08:02]   saved i04_01.jpg via=canvas bytes=616598
+[20:08:02] i04 DONE got=1
+[20:08:02]   wait 60s before next prompt
+[20:09:02] i05 attempt1 newChat & send (got=0)
+[20:09:42]   saved i05_01.jpg via=canvas bytes=915570
+[20:09:42] i05 DONE got=1
+[20:09:42]   wait 60s before next prompt
+[20:10:42] i06 attempt1 newChat & send (got=0)
+[20:11:32]   saved i06_01.jpg via=canvas bytes=856956
+[20:11:32] i06 DONE got=1
+[20:11:32]   wait 60s before next prompt
+[20:12:32] i07 attempt1 newChat & send (got=0)
+[20:13:33]   saved i07_01.jpg via=canvas bytes=657620
+[20:13:33] i07 DONE got=1
