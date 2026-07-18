@@ -1807,5 +1807,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T04",
+    "slug": "fuyounai-shaho-songeki-bunkiten",
+    "category": "money",
+    "title": "扶養内⇄社保加入 損益分岐",
+    "description": "106万円・130万円の壁を越えて社会保険に加入すると、社会保険料の負担で手取りが一時的に減る「働き損」ゾーンと、手取りが元に戻る損益分岐点の年収を計算します。所得税・住民税は含めず、社会保険料の影響に特化します。",
+    "solves": [
+      "106万円の壁を越えると手取りがいくら減るのか知りたい",
+      "扶養を抜けても損しないためにいくら稼げばいいか知りたい",
+      "働き損になる年収の範囲がどこからどこまでか知りたい",
+      "40歳以上だと介護保険料で損益分岐点がどう変わるか知りたい",
+      "130万円を越えて自分で国民年金に入る場合の負担を知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "日本年金機構「厚生年金保険の保険料」",
+        "url": "https://www.nenkin.go.jp/service/kounen/hokenryo/hoshu/20150515-01.html"
+      },
+      {
+        "label": "全国健康保険協会（協会けんぽ）令和8年度保険料率",
+        "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/fuyounai-shaho-songeki-bunkiten.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/fuyounai-shaho-songeki-bunkiten.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
