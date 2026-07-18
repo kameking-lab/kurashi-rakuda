@@ -367,7 +367,7 @@
     "slug": "hoikuryo",
     "category": "childcare",
     "title": "保育料計算（全国版・政令市から）",
-    "description": "お住まいの自治体と世帯の住民税額から、認可保育園の保育料を計算します。東京23区すべてと政令指定都市20市すべて、中核市5市（船橋市・川口市・八王子市・姫路市・鹿児島市）に対応。",
+    "description": "お住まいの自治体と世帯の住民税額から、認可保育園の保育料を計算します。東京23区すべてと政令指定都市20市すべて、中核市10市（船橋市・川口市・八王子市・姫路市・鹿児島市・松山市・西宮市・東大阪市・大分市・倉敷市）に対応。",
     "solves": [
       "保育料がいくらになるか分からない",
       "住民税のどの数字で保育料が決まるか分からない",
@@ -2709,6 +2709,200 @@
         "parenting"
       ],
       "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6",
+        "age6_12",
+        "age12_18"
+      ],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P3-T01",
+    "slug": "child-seat-kitei",
+    "category": "childcare",
+    "title": "チャイルドシート適合チェック",
+    "description": "子どもの年齢からチャイルドシートの使用義務の有無を判定し、免除事由・罰則・安全基準・統計を案内します。",
+    "solves": [
+      "チャイルドシートは何歳まで必要か分からない",
+      "免除される『やむを得ない理由』に当てはまるか知りたい",
+      "違反したときの反則金や点数がいくらか知りたい",
+      "安全基準に適合した製品かどうかの確認方法が分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索（デジタル庁）「道路交通法」",
+        "url": "https://laws.e-gov.go.jp/law/335AC0000000105"
+      },
+      {
+        "label": "e-Gov法令検索（デジタル庁）「道路交通法施行令」",
+        "url": "https://laws.e-gov.go.jp/law/335CO0000000270"
+      },
+      {
+        "label": "警察庁交通局「子供を守るチャイルドシート」",
+        "url": "https://www.npa.go.jp/bureau/traffic/anzen/childseat.html"
+      },
+      {
+        "label": "国土交通省物流・自動車局審査・リコール課「チャイルドシートコーナー」",
+        "url": "https://www.mlit.go.jp/jidosha/child/"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/child-seat-kitei.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/child-seat-kitei.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "newborn",
+        "infant",
+        "toddler"
+      ],
+      "lifeEvents": [
+        "parenting"
+      ],
+      "childAgeBands": [
+        "age0_1",
+        "age1_3",
+        "age3_6"
+      ],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P3-T02",
+    "slug": "yuukyuu-fuyo-nissuu-kijun",
+    "category": "career",
+    "title": "有給残・取得計画",
+    "description": "雇い入れ日・勤務形態・直近の出勤率から、年次有給休暇の発生要件と付与日数、6か月〜6年6か月以上の全区分の基準日・付与予定日をまとめて計算します。年5日の時季指定義務の対象可否もあわせて示します。",
+    "solves": [
+      "自分がいつ有給休暇が発生するのか知りたい",
+      "勤続年数に応じて何日の有給がもらえるのか知りたい",
+      "パート・週4日勤務でも有給がもらえるのか知りたい",
+      "年5日は必ず取らないといけない義務があるのか知りたい",
+      "出勤率が8割に届かなかったらどうなるのか知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索「労働基準法」第39条",
+        "url": "https://laws.e-gov.go.jp/law/322AC0000000049"
+      },
+      {
+        "label": "e-Gov法令検索「労働基準法施行規則」第24条の3",
+        "url": "https://laws.e-gov.go.jp/law/322M40000100023"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/yuukyuu-fuyo-nissuu-kijun.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/yuukyuu-fuyo-nissuu-kijun.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P3-T03",
+    "slug": "kyouiku-kunren-kyufukin",
+    "category": "career",
+    "title": "資格・学び直し 費用と給付金（教育訓練給付）チェック",
+    "description": "雇用保険の被保険者期間・在職/離職の別・受講予定の講座の種類を選ぶと、一般・特定一般・専門実践の教育訓練給付金と教育訓練支援給付金、教育訓練休暇給付金の5区分について支給要件を満たす見込みかどうかを一覧でチェックできます。受講費用の見込み額を入れると、一般・特定一般教育訓練の概算給付額も計算します。",
+    "solves": [
+      "資格取得や学び直しで使える給付金が何種類あるのか分からない",
+      "自分の被保険者期間で教育訓練給付金の対象になるか分からない",
+      "離職している場合、いつまでに受講を始めれば給付を受けられるか分からない",
+      "特定一般・専門実践の給付率が資格取得や就職でどう変わるか分からない",
+      "専門実践教育訓練を受講しながら失業中の生活費を補う給付があることを知らない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "ハローワークインターネットサービス「教育訓練給付金」",
+        "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_education.html"
+      },
+      {
+        "label": "厚生労働省「令和６年10月から教育訓練給付金を拡充します」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000160564_00042.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kyouiku-kunren-kyufukin.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kyouiku-kunren-kyufukin.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "adult"
+      ],
+      "lifeEvents": [
+        "working"
+      ],
+      "childAgeBands": [],
+      "gender": null
+    }
+  },
+  {
+    "queueId": "P3-T04",
+    "slug": "iryouhi-koujo-kodomo",
+    "category": "money",
+    "title": "子ども関連の医療費控除 対象チェック",
+    "description": "出産費用や子どもの通院費など、年間の医療費・保険金や出産育児一時金などの補てん額・総所得金額等を入力すると、医療費控除額の目安を計算します。妊婦健診・タクシー代・不妊治療・歯列矯正など子育て世帯で判断に迷う費目の対象/対象外の目安と、セルフメディケーション税制との比較もあわせて確認できます。",
+    "solves": [
+      "出産費用や子どもの医療費が医療費控除の対象になるか知りたい",
+      "出産育児一時金を受け取った場合の差し引き方が分からない",
+      "妊婦健診・通院のタクシー代・付添人の交通費が対象になるか知りたい",
+      "子どもの歯列矯正が医療費控除の対象になるか知りたい",
+      "セルフメディケーション税制と医療費控除のどちらが得か比較したい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "国税庁「No.1120 医療費を支払ったとき（医療費控除）」",
+        "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+      },
+      {
+        "label": "国税庁「No.1124 医療費控除の対象となる出産費用の具体例」",
+        "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1124.htm"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/iryouhi-koujo-kodomo.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/iryouhi-koujo-kodomo.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live",
+    "audience": {
+      "universal": false,
+      "lifeStages": [
+        "pregnancy",
+        "newborn",
+        "infant",
+        "toddler",
+        "schoolAge",
+        "adolescent"
+      ],
+      "lifeEvents": [
+        "pregnant",
+        "parenting"
+      ],
+      "childAgeBands": [
+        "prenatal",
         "age0_1",
         "age1_3",
         "age3_6",

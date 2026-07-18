@@ -243,6 +243,45 @@ import {
   JIDO_TEATE_EXCEPTION_DAYS,
   ICHIJIKIN_CLAIM_YEARS,
 } from "@/components/tools/impl/SangoTetsuzukiChecklist.calc";
+import { ChildSeatKitei } from "@/components/tools/impl/ChildSeatKitei";
+import {
+  childSeatDataset,
+  AGE_THRESHOLD as CHILD_SEAT_AGE_THRESHOLD,
+  PENALTY as CHILD_SEAT_PENALTY,
+  EXEMPTION_DESCRIPTION as CHILD_SEAT_EXEMPTION_DESCRIPTION,
+} from "@/components/tools/impl/ChildSeatKitei.calc";
+import { YuukyuuFuyoNissuuKijun } from "@/components/tools/impl/YuukyuuFuyoNissuuKijun";
+import {
+  yuukyuuFuyoDataset,
+  ELIGIBLE_CONTINUOUS_SERVICE_MONTHS,
+  ELIGIBLE_ATTENDANCE_RATE,
+  FIRST_GRANT_DAYS,
+  MAX_GRANT_DAYS,
+  WEEKLY_HOURS_THRESHOLD,
+  WEEKLY_WORK_DAYS_THRESHOLD,
+  MANDATORY_5DAYS_THRESHOLD,
+  MANDATORY_5DAYS_REQUIRED_DAYS,
+  PRESCRIPTION_YEARS,
+} from "@/components/tools/impl/YuukyuuFuyoNissuuKijun.calc";
+import { KyouikuKunrenKyufukin } from "@/components/tools/impl/KyouikuKunrenKyufukin";
+import {
+  kyouikuKunrenKyufukinDataset,
+  IPPAN_BENEFIT_RATE,
+  IPPAN_BENEFIT_CAP,
+  TOKUTEI_IPPAN_BENEFIT_RATE,
+  TOKUTEI_IPPAN_BENEFIT_CAP,
+  SENMON_JISSEN_MAX_TOTAL_BENEFIT,
+  MINIMUM_BENEFIT_AMOUNT,
+} from "@/components/tools/impl/KyouikuKunrenKyufukin.calc";
+import { IryouhiKoujoKodomo } from "@/components/tools/impl/IryouhiKoujoKodomo";
+import {
+  iryouhiKoujoDataset,
+  MAX_DEDUCTION as IRYOUHI_MAX_DEDUCTION,
+  THRESHOLD_FIXED as IRYOUHI_THRESHOLD_FIXED,
+  THRESHOLD_RATE as IRYOUHI_THRESHOLD_RATE,
+  REFUND_NOTE as IRYOUHI_REFUND_NOTE,
+  SELF_MEDICATION_IS_EXCLUSIVE_CHOICE,
+} from "@/components/tools/impl/IryouhiKoujoKodomo.calc";
 import { todayJst } from "@/lib/tools/seido";
 
 /**
@@ -2211,6 +2250,136 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
           必要睡眠時間と寝かしつけ・夜泣き対応の時間の合計が、赤ちゃん・お子さまの就寝〜起床の時間枠を超える場合は、計算結果をそのまま表示したうえで、時間枠が窮屈である可能性がある旨を注意書きとして表示します（エラーにはしません）。
         </p>
         <p>{AKACHAN_SUIMIN_DISCLAIMER}</p>
+      </>
+    ),
+  },
+  "child-seat-kitei": {
+    ui: <ChildSeatKitei />,
+    formula: (
+      <>
+        <p>
+          <strong>使用義務の判定</strong>
+          ：道路交通法上、チャイルドシート（幼児用補助装置）の使用義務があるのは「幼児」＝{CHILD_SEAT_AGE_THRESHOLD}
+          歳未満の子です（第14条第3項・第71条の3第3項）。{CHILD_SEAT_AGE_THRESHOLD}
+          歳以上は法的な義務はありませんが、体格等の事情で座席ベルトを適切に着用できない場合はチャイルドシートの継続使用が推奨されています。
+        </p>
+        <p>
+          <strong>免除事由（政令が定める全8号）</strong>
+          ：座席の構造上固定できない・乗車人数の関係で全員分を固定できない・負傷や障害・著しい肥満等の身体の状態・運転者以外の者による授乳等の世話・タクシーやバス等の旅客運送・自家用有償旅客運送等・緊急搬送、のいずれかに該当する場合に限り使用義務が免除されます（道路交通法施行令第26条の3の2第3項）。{CHILD_SEAT_EXEMPTION_DESCRIPTION}
+        </p>
+        <p>
+          <strong>★反則金は存在しません★</strong>
+          ：違反の名称は「{CHILD_SEAT_PENALTY.violationName}」で、制裁は行政処分としての違反点数
+          {CHILD_SEAT_PENALTY.points}
+          点のみです。道路交通法第71条の3には罰則（懲役・罰金）の規定がなく、交通反則通告制度上の「反則行為」に該当しないため反則金という概念自体が存在しません。責任を負うのは{CHILD_SEAT_PENALTY.liablePerson}
+          です（同乗者ではありません）。
+        </p>
+        <p>
+          <strong>安全基準・統計について</strong>
+          ：国土交通省の安全基準（Eマーク・型式指定マーク等）に適合しない「補助用具」ではシートベルトを使用していても使用義務を果たしたことにはなりません。警察庁・JAF合同調査（令和7年）の使用率・致死率・適切な取付け/着座割合は、判定結果とは独立した参考情報として表示しています。
+        </p>
+        <p>
+          国連協定規則第129号（R129）の適用開始日・身長区分等、一次情報で確認できなかった数値は生成していません。
+        </p>
+        <SeidoNotice datasets={[childSeatDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "yuukyuu-fuyo-nissuu-kijun": {
+    ui: <YuukyuuFuyoNissuuKijun />,
+    formula: (
+      <>
+        <p>
+          <strong>発生要件</strong>
+          ：雇入れの日から起算して{ELIGIBLE_CONTINUOUS_SERVICE_MONTHS}
+          か月継続勤務し、かつその間の全労働日の
+          {Math.round(ELIGIBLE_ATTENDANCE_RATE * 100)}
+          ％以上出勤した場合に、最初の年次有給休暇（通常の労働者は{FIRST_GRANT_DAYS}
+          日）が発生します（労働基準法第39条第1項）。以後、6か月・1年6か月・2年6か月…と6か月ごとの基準日に、勤続年数に応じた日数が付与されます。
+        </p>
+        <p>
+          <strong>比例付与</strong>
+          ：週所定労働時間が{WEEKLY_HOURS_THRESHOLD}
+          時間未満、かつ週所定労働日数が{WEEKLY_WORK_DAYS_THRESHOLD}
+          日以下（または年間の所定労働日数が216日以下）のパートタイム等の労働者には、所定労働日数に比例した日数が付与されます（同条第3項）。
+        </p>
+        <p>
+          <strong>年5日の時季指定義務</strong>
+          ：付与日数が{MANDATORY_5DAYS_THRESHOLD}
+          日以上の労働者に対しては、使用者が時季を指定して年
+          {MANDATORY_5DAYS_REQUIRED_DAYS}
+          日を確実に取得させる義務があります（労働基準法第39条第7項・第8項）。
+        </p>
+        <p>
+          <strong>付与日数の頭打ち</strong>
+          ：勤続6年6か月以上は毎年{MAX_GRANT_DAYS}
+          日で頭打ちとなり、以後も同じ日数が繰り返し付与されます。未消化分の請求権は
+          {PRESCRIPTION_YEARS}
+          年で時効消滅します（労働基準法第115条）。
+        </p>
+        <p>
+          直近の基準期間の出勤率はご自身の申告に基づく簡易判定です。本ツールは制度上「いつ・何日発生するか」の計画を示すものであり、実際に取得済み・残っている日数の記録・追跡は行いません。
+        </p>
+        <SeidoNotice datasets={[yuukyuuFuyoDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "kyouiku-kunren-kyufukin": {
+    ui: <KyouikuKunrenKyufukin />,
+    formula: (
+      <>
+        <p>
+          <strong>5つの給付区分</strong>
+          ：雇用保険の教育訓練給付には、一般教育訓練給付金（給付率
+          {Math.round(IPPAN_BENEFIT_RATE * 100)}
+          ％・上限{IPPAN_BENEFIT_CAP.toLocaleString("ja-JP")}
+          円）、特定一般教育訓練給付金（給付率
+          {Math.round(TOKUTEI_IPPAN_BENEFIT_RATE * 100)}
+          ％・上限{TOKUTEI_IPPAN_BENEFIT_CAP.toLocaleString("ja-JP")}
+          円）、専門実践教育訓練給付金（原則の給付率に加え、資格取得＋就職等の条件を満たすと上乗せ。総支給上限
+          {SENMON_JISSEN_MAX_TOTAL_BENEFIT.toLocaleString("ja-JP")}
+          円）、専門実践受講中に失業給付を補う教育訓練支援給付金、令和7年10月創設の教育訓練休暇給付金の5区分があります。それぞれ被保険者期間の要件（初回はより短い期間で足りる場合があります）を満たすかどうかを判定します。
+        </p>
+        <p>
+          支給額が{MINIMUM_BENEFIT_AMOUNT.toLocaleString("ja-JP")}
+          円を超えない場合は支給されません。専門実践教育訓練は6か月ごとの分割支給・資格取得後の上乗せ精算など制度が複雑なため、本ツールは要件を満たすかどうかの判定にとどめ、専門実践の概算給付額の計算は行いません。
+        </p>
+        <p>
+          教育訓練休暇給付金の給付率・給付日数は2026年7月時点で未確定（未公表）のため、金額は計算せず制度の存在のみを案内します。
+        </p>
+        <SeidoNotice datasets={[kyouikuKunrenKyufukinDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "iryouhi-koujo-kodomo": {
+    ui: <IryouhiKoujoKodomo />,
+    formula: (
+      <>
+        <p>
+          <strong>医療費控除額の計算式</strong>
+          ：「支払った医療費の合計額 − 保険金等で補てんされる金額 − （
+          {IRYOUHI_THRESHOLD_FIXED.toLocaleString("ja-JP")}
+          円 と 総所得金額等×{Math.round(IRYOUHI_THRESHOLD_RATE * 100)}
+          ％ のいずれか低い方）」で控除額を算出します（所得税法第73条）。上限は
+          {IRYOUHI_MAX_DEDUCTION.toLocaleString("ja-JP")}
+          円です。
+        </p>
+        <p>
+          <strong>補填額の按分</strong>
+          ：出産育児一時金等は出産費用からのみ差し引き、他の医療費からは差し引きません（按分しません）。差し引いた結果余りが出ても、他の医療費の補填には充当しません。
+        </p>
+        <p>
+          <strong>セルフメディケーション税制との選択</strong>
+          ：{SELF_MEDICATION_IS_EXCLUSIVE_CHOICE
+            ? "通常の医療費控除とセルフメディケーション税制は同一年分では選択制（併用不可）です。"
+            : ""}
+          本ツールは両方の控除額を計算して比較できるようにしていますが、実際に申告できるのはどちらか一方です。
+        </p>
+        <p>{IRYOUHI_REFUND_NOTE}</p>
+        <p>
+          自治体の子ども医療費助成を補填額として差し引くべきかは一次情報で確認できておらず、断定していません。実際の申告可否・要否は最寄りの税務署にご確認ください。
+        </p>
+        <SeidoNotice datasets={[iryouhiKoujoDataset]} today={todayJst()} />
       </>
     ),
   },

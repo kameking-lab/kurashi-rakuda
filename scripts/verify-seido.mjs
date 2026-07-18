@@ -130,6 +130,12 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   // 八王子市（中核市）は子育て情報を専用サイト kosodate.city.hachioji.tokyo.jp で公開しており、
   // 本体ドメイン city.hachioji.tokyo.jp とは別ホストのため個別に許可する（P2-D01・2026-07-18）。
   'kosodate.city.hachioji.tokyo.jp',
+  'city.matsuyama.ehime.jp', // 松山市（中核市）は city.matsuyama.ehime.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）
+  'city.oita.oita.jp', // 大分市（中核市）は city.oita.oita.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）
+  'city.kurashiki.okayama.jp', // 倉敷市（中核市）は .lg.jp 版が存在しない（P2-D01・2026-07-18）
+  // 西宮市（中核市）の公式サイトは独自ドメイン nishi.or.jp。旧 city.nishinomiya.lg.jp は
+  // 現在別サービス（CDN）を指しており使えないため個別に許可する（P2-D01・2026-07-18）。
+  'nishi.or.jp',
   /**
    * 浜松市例規集のホスティング先。★このドメインだけは自治体自身の運営ではない★
    * 浜松市は保育料表を公式サイトに一切掲載しておらず（保護者向けの案内は民間NPOのサイトに

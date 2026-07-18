@@ -201,10 +201,10 @@
 
 ### P3ツール（先行候補。P2完了によりソネットが着手宣言 ★2026-07-18★）
 
-- [~] P3-T01 | #30 | チャイルドシート適合チェック（身長体重×法規） | B(ソネット) | ✔child-seat-kitei | 簡易
-- [~] P3-T02 | #84 | 有給残・取得計画 | B(ソネット) | ✔yuukyuu-fuyo-nissuu-kijun | 簡易
-- [~] P3-T03 | #88 | 資格・学び直し 費用と給付金（教育訓練給付）チェック | B(ソネット) | ✔kyouiku-kunren-kyufukin | 簡易
-- [~] P3-T04 | #65 | 子ども関連の医療費控除 対象チェック | B(ソネット) | ✔iryouhi-koujo-kodomo | 簡易
+- [x] P3-T01 | #30 | チャイルドシート適合チェック（身長体重×法規） | B(ソネット) | ✔child-seat-kitei | 簡易 → **完了（2026-07-18）**: slug `child-seat-kitei`（childcare）。specs/b-tools/p3-t01-child-seat-kitei.md・ChildSeatKitei.calc.ts/tsx・tests/child-seat-kitei.test.ts（28件）。年齢のみが法的しきい値（6歳未満）であり身長・体重による法的境界は存在しないため数値入力・判定は行わない設計。反則金は`fineAmount:null`のため金額を一切表示しない（罰則規定なし＝反則行為に該当せず違反点数1点のみ）。registry.json・page.tsx配線済み。npm run check（vitest全件）PASS
+- [x] P3-T02 | #84 | 有給残・取得計画 | B(ソネット) | ✔yuukyuu-fuyo-nissuu-kijun | 簡易 → **完了（2026-07-18）**: slug `yuukyuu-fuyo-nissuu-kijun`（career）。specs/b-tools/p3-t02-yuukyuu-fuyo-nissuu-kijun.md・YuukyuuFuyoNissuuKijun.calc.ts/tsx・tests/yuukyuu-fuyo-nissuu-kijun.test.ts（34件）。雇入れ日から6か月〜6年6か月以上の全区分の基準日を月加算+日クランプで算出、6年6か月以降は12か月刻みの頭打ちとして表現。実際の取得実績（残日数）は追跡せず「発生計画」のみを示す設計。registry.json・page.tsx配線済み
+- [x] P3-T03 | #88 | 資格・学び直し 費用と給付金（教育訓練給付）チェック | B(ソネット) | ✔kyouiku-kunren-kyufukin | 簡易 → **完了（2026-07-18）**: slug `kyouiku-kunren-kyufukin`（career）。specs/b-tools/p3-t03-kyouiku-kunren-kyufukin.md・KyouikuKunrenKyufukin.calc.ts/tsx・tests/kyouiku-kunren-kyufukin.test.ts（25件）。一般/特定一般/専門実践/支援給付金/休暇給付金の5区分を被保険者期間要件で横断判定。専門実践は6か月ごとの分割支給等が複雑なため概算額計算はせず要件判定のみ、教育訓練休暇給付金は給付率・日数が未確定（null）のため金額計算なし。registry.json・page.tsx配線済み
+- [x] P3-T04 | #65 | 子ども関連の医療費控除 対象チェック | B(ソネット) | ✔iryouhi-koujo-kodomo | 簡易 → **完了（2026-07-18）**: slug `iryouhi-koujo-kodomo`（money）。specs/b-tools/p3-t04-iryouhi-koujo-kodomo.md・IryouhiKoujoKodomo.calc.ts/tsx・tests/iryouhi-koujo-kodomo.test.ts（34件）。出産費用/その他医療費の2バケットに分けて保険金等補填額を按分（バケットをまたいで充当しない）、控除額=Math.min(10万円,総所得×5%)を差し引く方式で計算。セルフメディケーション税制は選択制のため両方の控除額を算出し比較のみ提示。総所得金額等は本ツール専用データの範囲外のため直接入力（fuyou-kabe.jsonの給与所得控除表からの自動導出はしない設計上の限界）。registry.json・page.tsx配線済み。npm run check（lint/typecheck/vitest 1911件）全てPASS
 
 ### P2データ・インフラ（P2-D／P2-I）
 
@@ -213,7 +213,7 @@
   - ②✔ data/tables のメタ（nextCheckDue/next_check_due・出典・確認日）を `scripts/check-freshness.mjs` が義務化（camel/snake 両表記対応。19ファイル現状充足）
   - ③✔ 記事 front-matter の `next_check_due` を全70本に義務化（dandori 9本に付与）し、日次CI（verify-seido.yml の freshness ジョブ）が超過を検出して **Issue 自動起票**（label: freshness-audit。同日の検出は1本に集約し、open があればコメント追記＝1日1Issue）
   - ④✔ 消化手順を docs/10 付記2 に追記
-- [~] P2-D01 (A) 保育料 残り自治体の収集継続（オーパス並行中: [queue/hoikuryo-backlog.md](queue/hoikuryo-backlog.md) §1）→ プログラマティックSEO「保育料 政令市/中核市62p」の前提。**中核市62自治体中5市収集済み（2026-07-18、ソネット担当）**: 船橋市・川口市・鹿児島市・八王子市（都の負担軽減事業で無償化）・姫路市（R8未公表のためR7版+under-review）。ツール(`lib/tools/impl/hoikuryo.ts`)のmunicipalities配列・`tests/hoikuryo.test.ts`（46自治体・83件）に追随済み。★2026-07-18 担当調整★: **中核市の残り57自治体はAntigravity（wo-gemini）が担当**するためソネットは以後着手しない。ソネットの担当は「政令指定都市20市の残り（現状0件＝20市すべて収集済みのため無し）」と「**既存自治体の令和8年度版差し替え**」に限定。差し替え対象として着手宣言: aichi-nagoya（名古屋市）・chiba-chiba（千葉市）・kanagawa-sagamihara（相模原市）＝いずれもR7版+under-review、fukuoka-fukuoka（福岡市）＝表題「（案）」の確定版待ち、の4件のR8公表状況を再確認中
+- [~] P2-D01 (A) 保育料 残り自治体の収集継続 → プログラマティックSEO「保育料 政令市/中核市62p」の前提。**中核市62自治体中10市収集済み（2026-07-18、ソネット担当）**: バッチ1=船橋市・川口市・鹿児島市・八王子市（都の負担軽減事業で無償化）・姫路市（R8未公表のためR7版+under-review）、バッチ2=松山市・西宮市（独自ドメインnishi.or.jp）・東大阪市（大阪市の全員無償化に非追随、独自スケジュール）・大分市・倉敷市（政令市課税世帯限定の条件付き6/8換算を発見）。ツール(`lib/tools/impl/hoikuryo.ts`)のmunicipalities配列・`tests/hoikuryo.test.ts`（51自治体・89件）に追随済み。詳細は[queue/hoikuryo-backlog.md](queue/hoikuryo-backlog.md)の中核市節。★2026-07-18 担当調整★: 中核市はAntigravity（wo-gemini）と並行だが、Antigravity側の着手宣言・新規ファイルが継続して見当たらないため、重複を避けて次点の未着手自治体（人口順6〜11位のうち7位=尼崎市を除く）をソネットが補完収集した。名古屋市・千葉市・相模原市・福岡市のR8差し替え確認（4件とも引き続き未公表・変更なし）は2026-07-18に完了済み
 - [x] **P2-D02 (A) 協会けんぽ料額表（標準報酬等級・都道府県別料率）** → **完了（2026-07-17）**: `data/seido/kyoukaikenpo-hokenryo.json` を新設。47都道府県の健康保険料率（令和8年3月分〜）・標準報酬月額等級表（健保50等級／厚年32等級）・厚生年金18.300%・介護1.62%・★子ども・子育て支援金0.23%（令和8年4月分〜の新規負担）★・端数処理・賞与上限・任意継続上限を収録。`verify-seido.mjs --fetch` で110文字列を照合しエラー0。
   - **★47件を二重照合済み★**: 料率ページ（HTML・全角数値）から機械抽出した47件と、各都道府県の料額表PDFヘッダーの印字料率を突き合わせ**不一致0件**。等級表50行が**47支部すべてで完全一致**することも実測（＝全国一律であることを推測でなく確認）
   - **★実装者への申し送り★**: ①厚生年金は等級表の両端の境界が健保と異なる（93,000円未満→第1等級／635,000円以上→第32等級で頭打ち）＝`pensionRemunerationOverride` ②子ども・子育て支援金率0.23%は健保料率と適用開始月が1か月ずれる（健保=3月分／支援金=4月分） ③子ども・子育て**拠出金**0.36%は事業主のみ負担で手取り計算に使わない（支援金と別物・名称酷似） ④組合健保は料率が異なるため「協会けんぽの料率による概算」と明示すること
