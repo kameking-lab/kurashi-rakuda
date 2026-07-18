@@ -1652,5 +1652,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T07",
+    "slug": "kougaku-iryou-kaigo-gassan",
+    "category": "care",
+    "title": "高額医療・高額介護合算療養費 チェック",
+    "description": "1年間（8月〜翌7月）の医療保険と介護保険の自己負担を合算し、所得区分別の基準額を超えた分が支給される高額医療・高額介護合算療養費の目安を計算します。保険種別・年齢・所得区分による限度額の違いと、医療保険者・介護保険者への按分に対応します。",
+    "solves": [
+      "医療費と介護費を合わせると払い戻しがあるのか知りたい",
+      "高額医療・高額介護合算の自分の所得区分の限度額が分からない",
+      "医療か介護どちらかが0円だと対象にならないのか知りたい",
+      "払い戻しが医療と介護でいくらずつ戻るのか知りたい",
+      "高額療養費・高額介護サービス費との適用順序が分からない"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "e-Gov法令検索「介護保険法施行令」",
+        "url": "https://laws.e-gov.go.jp/law/410CO0000000412"
+      },
+      {
+        "label": "全国健康保険協会（協会けんぽ）「高額介護合算療養費」",
+        "url": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/003/index.html"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kougaku-iryou-kaigo-gassan.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kougaku-iryou-kaigo-gassan.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
