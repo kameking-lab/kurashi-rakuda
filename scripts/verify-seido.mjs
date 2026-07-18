@@ -211,6 +211,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.fujisawa.kanagawa.jp', // 藤沢市の公式サイト
   'city.ichihara.chiba.jp', // 市原市の公式サイト
   'prdurbanosichapp1.blob.core.windows.net', // 市原市のPDF添付ファイル格納先（Azure Blob。共有ドメインのためこのサブドメインのみ許可）
+  'city.kodaira.tokyo.jp', // 小平市の公式サイト（東京都独自の負担軽減事業拡大＋条例改正でR8は無償）
+  'city.nagareyama.chiba.jp', // 流山市の公式サイト
 ];
 
 const args = process.argv.slice(2);

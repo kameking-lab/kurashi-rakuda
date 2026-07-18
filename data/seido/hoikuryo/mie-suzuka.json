@@ -1,0 +1,336 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "mie-suzuka",
+  "name": "三重県鈴鹿市",
+  "municipalityCode": "242071",
+  "prefecture": "三重県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "suzuka-santeihyou",
+      "title": "令和８年度　利用者負担額（保育料）算定表",
+      "publisher": "鈴鹿市子ども政策部こども育成課",
+      "url": "https://www.city.suzuka.lg.jp/_res/projects/default_project/_page_/001/012/741/santeihyou.pdf",
+      "landingUrl": "https://www.city.suzuka.lg.jp/kosodate/azukeru/1012741.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "「保育所（園）・認定こども園案内」ページ（ページ番号1012741）に掲載のPDF直リンク。表題に明記どおり令和8年度版。PyMuPDFのfind_tables()で表構造を復元。階層はＡ（生活保護世帯）・Ｂ（市町村民税非課税世帯）・Ｃ（市町村民税均等割のみ課税世帯＝所得割非課税世帯）・Ｄ１～Ｄ13（所得割課税額帯）の全16階層。Ｂ・Ｃ・Ｄ１～Ｄ３の4階層はさらに「ひとり親世帯等」と「上記世帯以外」の2列に分かれる（ひとり親世帯等は軽減後の低い額）。本ファイルの tiers には上記世帯以外（一般世帯）の額のみを収録し、ひとり親世帯等の参考額は bracketBasis.note に記録する。"
+    },
+    {
+      "id": "suzuka-annai-page",
+      "title": "保育所（園）・認定こども園案内",
+      "publisher": "鈴鹿市子ども政策部こども育成課",
+      "url": "https://www.city.suzuka.lg.jp/kosodate/azukeru/1012741.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "保育所（園）・認定こども園の利用申込方法、必要書類、算定表PDFへのリンク等を掲載するページ。"
+    },
+    {
+      "id": "suzuka-faq-hoikuryo",
+      "title": "保育所（園）保育料はいくらかかりますか",
+      "publisher": "鈴鹿市子ども政策部こども育成課",
+      "url": "https://www.city.suzuka.lg.jp/faq/kosodate/1008343/1008346.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "0～2歳児クラスの保育料決定要素（市町村民税所得割額の合計又は均等割額、年齢、保育必要量）、税年度切替、3～5歳児クラスは無償（ただし食材料費（給食費）・その他雑費等は保護者負担）である旨を記載。0～2歳児クラス（3号認定）の給食費（食材料費）が保育料に含まれるか実費徴収かはこのページに明記がない（未確認）。"
+    },
+    {
+      "id": "suzuka-mushouka-page",
+      "title": "幼児教育・保育の無償化",
+      "publisher": "鈴鹿市子ども政策部こども育成課",
+      "url": "https://www.city.suzuka.lg.jp/kosodate/azukeru/1012778.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "3～5歳児クラス（保育所・認定こども園の保育利用）の保育料無償化の対象範囲、副食費（食材料費のうちおかず・おやつ等）の免除対象（年収360万円未満相当世帯の子ども・第3子以降の子ども）を記載。「延長保育料」「実費徴収」「主食費」の語はこのページに存在しない（延長保育料の無償化対象該当性は本ページからは確認できない・未確認）。"
+    }
+  ],
+  "amendments": [],
+  "disclaimer": "本データは三重県鈴鹿市の自治体公式資料（令和8年度利用者負担額（保育料）算定表）に基づく参考情報です。実際の保育料は世帯の税額・状況、きょうだい構成、ひとり親世帯等の軽減の適用有無等により鈴鹿市が決定するため、決定通知書または子ども育成課（059-382-7606）で必ずご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育利用）の0～2歳児クラスの月額保育料（第1子相当額、上記世帯以外＝一般世帯）",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3～5歳児クラスの保育料：幼児教育・保育の無償化により0円",
+      "3～5歳児クラスの食材料費（給食費）・その他雑費等：無償化の対象外のため保護者の実費負担（年収360万円未満相当世帯の子ども・第3子以降の子どもは副食費が免除される場合あり）",
+      "0～2歳児クラス（3号認定）の給食費（食材料費）が保育料に含まれるか実費徴収かは、鈴鹿市の公開ページに明記がなく未確認",
+      "延長保育料：算定表・関連ページのいずれにも記載がなく、本表の対象外（実費または別途徴収とみられるが、鈴鹿市の一次情報から無償化対象該当性は未確認）",
+      "ひとり親世帯等の軽減後金額（bracketBasis.note に参考として記録。本表は上記世帯以外＝一般世帯の額）",
+      "第2子以降の多子軽減後金額（freeTuition.multiChildPolicy に別途記録）",
+      "副食費免除（年収360万円未満相当世帯の子ども・第3子以降の子ども）適用後の給食費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "保護者の市町村民税所得割額の合計又は均等割額に基づき決定（原文）。多子軽減の対象範囲は「保護者と生計を一にする者」（下記 freeTuition.multiChildPolicy.countingRule 参照）。祖父母等を含む家計の主宰者の合算基準についての明記は原典になし（未確認）。",
+    "taxYearRule": "４月分から８月分の保育料については保護者の前年度の市町村民税所得割額の合計又は均等割額、９月分から３月分の保育料については当該年度の市町村民税所得割額の合計又は均等割額に基づいて決定する（算定表PDF原文）。令和8年度の場合：4月～8月分＝令和7年度市民税額、9月～翌3月分＝令和8年度市民税額を基に算定。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除",
+      "配当控除",
+      "寄付金税額控除",
+      "外国税額控除",
+      "配当割額・株式等譲渡所得割額控除"
+    ],
+    "note": "算定表PDF原文：「この表における所得割額を計算する場合には、住宅借入金等特別税額控除、配当控除、寄付金税額控除、外国税額控除、配当割額・株式等譲渡所得割額控除を適用しません。」つまりこれらの税額控除を適用する前（＝控除を反映させない、より高い）所得割額を用いる。★鈴鹿市は政令指定都市・中核市・施行時特例市のいずれでもない一般市であり、大阪市・名古屋市・京都市等で見られる6/8税率換算のような前処理は対象外（原典にも記載なし）。★定額減税の反映有無は原典（PDF・ページとも）に記載がなく未確認。★ひとり親世帯等の軽減額（原典の算定表にＢ・Ｃ・Ｄ１～Ｄ3階層で『上記世帯以外』と並記されている参考値。標準時間/短時間の順）：Ｂ階層 0円/0円（Ｂ階層は非課税世帯のため元々0円）、Ｃ階層 6,000円/5,800円、Ｄ１階層 6,000円/5,800円、Ｄ２階層 6,000円/5,800円、Ｄ３階層 6,000円/5,800円（Ｄ４階層以降＝所得割額77,101円以上はひとり親世帯等の区分自体が無く、上記世帯以外と同額）。ひとり親世帯等の定義は算定表脚注に列挙（児童扶養手当の認定を受けている方、各種障害者手帳の交付を受けている方、特別児童扶養手当の支給対象の方、国民年金の障害基礎年金等の受給者、生活保護法の要保護者等）。本表の tiers には反映せず、この note にのみ記録する（tiers本体との混同禁止）。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児（0～2歳児クラス）",
+      "rule": "保育の利用の日の属する年度の初日の前日において3歳に達していない児童（算定表PDF原文）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児（3～5歳児クラス）",
+      "rule": "保育の利用の日の属する年度の初日の前日において3歳に達している児童。幼児教育・保育の無償化により保育料0円。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3～5歳児クラスの保育料は0円（幼児教育・保育の無償化）",
+      "sourceId": "suzuka-faq-hoikuryo",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": [
+          "3歳から5歳児クラスについては0円です"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "FAQ原文：「3歳から5歳児クラスについては0円です。ただし、食材料費（給食費）、その他雑費等の費用は負担していただきます。」算定表PDFでも3歳以上児の金額欄は全階層0円で収録。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "生活保護世帯（Ａ階層）・市町村民税非課税世帯（Ｂ階層）は0～2歳児クラスも0円",
+      "sourceId": "suzuka-santeihyou",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "Ａ階層（生活保護法による被保護世帯等）・Ｂ階層（Ａ階層を除き市町村民税非課税世帯）は標準時間・短時間とも0円。ただし所得割非課税でも均等割のみ課税される世帯（Ｃ階層＝市町村民税均等割のみ課税世帯）は0円にならず、上記世帯以外は標準時間12,000円・短時間11,700円（ひとり親世帯等は6,000円/5,800円）となる。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "保護者と生計を一にする者の中で最年長の者から第1子と数える。算定表脚注に「※多子計算の算定対象者に年齢制限はありませんが、保護者と生計を一にするこどもに限ります。」と明記されており、所得階層を問わず全世帯で年齢上限・就学状況・同時入所の要件が課されない（津市のように低所得世帯のみ年齢制限を撤廃する方式ではなく、全所得帯で撤廃済み）。",
+        "unit": "unit",
+        "label": "多子軽減のきょうだいのカウント方法",
+        "sourceId": "suzuka-santeihyou",
+        "checkedAt": "2026-07-18",
+        "verify": {
+          "expect": [
+            "多子計算の算定対象者に年齢制限はありません"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "四日市市・津市のように低所得世帯（またはひとり親世帯等）に限り年齢制限を撤廃する方式ではなく、鈴鹿市は所得階層を問わず全世帯で年齢制限を撤廃済み（生計を一にする子どもであれば年齢を問わずカウント対象）。"
+      },
+      "secondChild": {
+        "value": 0.5,
+        "unit": "ratio",
+        "label": "第2子は半額（上記世帯以外。ひとり親世帯等は第2子0円）",
+        "sourceId": "suzuka-santeihyou",
+        "checkedAt": "2026-07-18",
+        "verify": {
+          "expect": [
+            "この表に定める額の半額"
+          ]
+        },
+        "amendmentNote": "なし(2026-07-18時点)",
+        "note": "上記世帯以外（所得割額を問わない）は第2子半額。ひとり親世帯等（市町村民税所得割課税額が77,101円未満の世帯に限る）は第2子0円。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "label": "第3子以降は0円",
+        "sourceId": "suzuka-santeihyou",
+        "checkedAt": "2026-07-18",
+        "verify": {
+          "expect": [
+            "生計を一にする者の中で第３子以降"
+          ]
+        },
+        "amendmentNote": "条件はcountingRule参照"
+      }
+    },
+    "localExtension": "鈴鹿市独自の全所得帯無償化は確認できず。特徴的な点として、多子軽減の年齢制限を所得階層に関わらず全世帯で撤廃している（countingRule参照）。0～2歳児クラス（3号認定）の給食費が保育料に含まれるか実費徴収か、延長保育料の無償化対象該当性は、いずれも公式ページに明記が無く未確認（scope.excludes参照）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護法による被保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "Ａ階層を除き、市町村民税非課税世帯／上記世帯以外",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "Ａ階層を除き、市町村民税均等割のみ課税世帯（所得割非課税世帯）／上記世帯以外",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 12000, "short": 11700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "所得割課税額48,600円未満／上記世帯以外",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 15000, "short": 14700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "48,600円以上57,700円未満／上記世帯以外",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": { "standard": 18500, "short": 18100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "57,700円以上77,101円未満／上記世帯以外",
+      "incomeMin": 57700,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 20000, "short": 19600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "77,101円以上97,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 23000, "short": 22600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "97,000円以上121,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 121000,
+      "fees": {
+        "under3": { "standard": 29000, "short": 28500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "121,000円以上145,000円未満",
+      "incomeMin": 121000,
+      "incomeMax": 145000,
+      "fees": {
+        "under3": { "standard": 33000, "short": 32400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "145,000円以上169,000円未満",
+      "incomeMin": 145000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 36000, "short": 35300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "169,000円以上211,201円未満",
+      "incomeMin": 169000,
+      "incomeMax": 211201,
+      "fees": {
+        "under3": { "standard": 39000, "short": 38300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "211,201円以上256,100円未満",
+      "incomeMin": 211201,
+      "incomeMax": 256100,
+      "fees": {
+        "under3": { "standard": 42000, "short": 41200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "256,100円以上301,000円未満",
+      "incomeMin": 256100,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 44000, "short": 43200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "301,000円以上338,800円未満",
+      "incomeMin": 301000,
+      "incomeMax": 338800,
+      "fees": {
+        "under3": { "standard": 46000, "short": 45200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "338,800円以上397,000円未満",
+      "incomeMin": 338800,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 48000, "short": 47100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D13",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 50000, "short": 49100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "suzuka-santeihyou",
+    "expect": [
+      "令和８年度　利用者負担額（保育料）算定表",
+      "397,000",
+      "50,000",
+      "49,100"
+    ]
+  }
+}
