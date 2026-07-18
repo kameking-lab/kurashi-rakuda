@@ -1,0 +1,350 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "saitama-tokorozawa",
+  "name": "埼玉県所沢市",
+  "municipalityCode": "112089",
+  "prefecture": "埼玉県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "tokorozawa-hoikuryo-page",
+      "title": "保育料について",
+      "publisher": "所沢市",
+      "url": "https://www.city.tokorozawa.saitama.jp/kosodatekyouiku/hoikuen/hoikuryounituite.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "html",
+      "note": "0～2歳児クラスの保育料の決定方法・切替時期・多子軽減を説明するページ。ページ内更新日表示は2020年10月23日（内容改定なし）。"
+    },
+    {
+      "id": "tokorozawa-kijunngaku-pdf",
+      "title": "所沢市保育料徴収基準額表（令和元年10月以降）",
+      "publisher": "所沢市",
+      "url": "https://www.city.tokorozawa.saitama.jp/kosodatekyouiku/hoikuen/hoikuryounituite.files/kijyunngakuhyou31.pdf",
+      "landingUrl": "https://www.city.tokorozawa.saitama.jp/kosodatekyouiku/hoikuen/hoikuryounituite.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "pdf",
+      "note": "0～2歳児クラスの階層別月額表（A・B・C1～C18）。令和元年10月以降適用の基準額表として現在も同ページから公式に配布されており、以降の改定は確認できない。"
+    },
+    {
+      "id": "tokorozawa-mushouka",
+      "title": "幼児教育・保育無償化について(利用者向け)",
+      "publisher": "所沢市",
+      "url": "https://www.city.tokorozawa.saitama.jp/kosodatekyouiku/youji-hoiku/mushoukagaiyou.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "contentType": "html",
+      "note": "3～5歳児の無償化および住民税非課税世帯の0～2歳児無償化を説明するページ。ページ内更新日表示は2026年7月10日。"
+    }
+  ],
+  "disclaimer": "本データは埼玉県所沢市の自治体公式資料に基づく参考情報です。実際の保育料は税額、世帯状況、きょうだい構成等により自治体が決定するため、決定通知書または担当窓口（所沢市こども未来部保育幼稚園課）で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園・地域型保育事業の一般世帯・第1子の月額保育料(0～2歳児クラス)"
+    ],
+    "excludes": [
+      "ひとり親世帯・在宅障害児（者）のいる世帯等の軽減後金額",
+      "第2子以降の軽減後金額",
+      "3～5歳児クラスの保育料（幼児教育・保育の無償化により無償）",
+      "給食費（副食費）等の実費",
+      "延長保育料等の実費徴収",
+      "入園料・おむつ代・通園送迎費用等の諸経費実費",
+      "常態的に土曜日閉所の施設を利用した場合の減額（階層に応じ月0～3,000円減額。当データのtiers額には反映していない）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則として父母の合算した市民税所得割額。父母の所得状況によっては、同居している祖父母等（家計の主宰者）の市民税額も合算する。",
+    "taxYearRule": "毎年9月が保育料の切替時期。4月から8月分までの保育料は前年度の市民税額で算定し、9月から翌年3月分までの保育料は当年度の市民税額で算定する。他市区町村で課税されている、未申告等により市民税額が確認できない場合は最高階層で算定する。",
+    "deductionsIgnored": ["配当控除", "住宅借入金等特別税額控除", "寄附金税額控除"],
+    "note": "調整控除は適用する（＝調整控除適用後の額で判定。調整控除以外の税額控除は適用前）。所沢市は政令指定都市ではないため、大阪市・名古屋市等でみられる6/8税率換算の対象外（原典にも換算の記載なし）。定額減税の反映有無（適用前/適用後）は原典に明記なく未確認。",
+    "sourceId": "tokorozawa-hoikuryo-page",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "sourceId": "tokorozawa-hoikuryo-page",
+      "expect": [
+        "毎年9月が保育料の切替時期",
+        "4月から8月分までの保育料",
+        "前年度の市民税額で算定",
+        "9月から翌年3月分までの保育料",
+        "当年度の市民税額で算定",
+        "配当控除、住宅借入金等特別税額控除、寄附金税額控除などの税額控除の適用前の市民税所得割額となります",
+        "調整控除は適用します"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0～2歳児クラス",
+      "rule": "年度途中で誕生日を迎えて3歳になった場合であっても、当該年度中は2歳児クラスの保育料となる。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3～5歳児クラス",
+      "rule": "幼児教育・保育の無償化（令和元年10月1日～）により保育料は無償。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3～5歳児クラスは幼児教育・保育の無償化により無償",
+      "unit": "JPY",
+      "sourceId": "tokorozawa-mushouka",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）",
+      "verify": {
+        "sourceId": "tokorozawa-mushouka",
+        "expect": ["令和元年10月より保育料が無償となりました"]
+      }
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "住民税非課税世帯の0～2歳児クラスの標準的な利用料は無償",
+      "unit": "JPY",
+      "sourceId": "tokorozawa-mushouka",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）",
+      "verify": {
+        "sourceId": "tokorozawa-mushouka",
+        "expect": ["住民税非課税世帯の0～2歳児の子どもの標準的な利用料が無償となります"]
+      }
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "①年収約360万円未満相当のひとり親世帯等（ひとり親世帯、在宅障害児（者）のいる世帯）は、生計を一にする兄姉がいる場合、年齢に関係なく最年長の子から順に第2子以降無料（C階層は一律2,000円）。②年収約360万円未満相当のその他世帯は、生計を一にする兄姉がいる場合、年齢に関係なく最年長の子から順に第2子（C階層）は半額・第3子以降は無料。③それ以外の世帯は、同一世帯の兄姉が幼稚園・保育園・認定こども園・地域型保育事業等を利用している場合に限り、小学校就学前までの範囲で最年長の子から順に第2子は半額・第3子以降は無料。加えて埼玉県・所沢市独自の取り組みとして、生計を一にする兄姉がいる場合、年齢に関係なく最年長の子から順に第3子以降の0～2歳児クラスの保育料は世帯の収入に関係なく無料。",
+        "unit": "unit",
+        "sourceId": "tokorozawa-hoikuryo-page",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）",
+        "verify": {
+          "sourceId": "tokorozawa-hoikuryo-page",
+          "expect": [
+            "年収約360万円未満相当",
+            "第二子以降は無料",
+            "第二子のC階層は半額、第三子以降は無料",
+            "第二子は半額、第三子以降は無料",
+            "埼玉県・所沢市独自の取り組みとして"
+          ]
+        }
+      },
+      "secondChild": {
+        "value": 0.5,
+        "unit": "ratio",
+        "label": "第2子は原則C階層半額（年収約360万円未満相当のひとり親世帯等はC階層一律2,000円かつ兄姉ありなら第2子以降無料。countingRule参照）",
+        "sourceId": "tokorozawa-hoikuryo-page",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "第3子以降は無料（第3子以降の0～2歳児クラスは所得に関係なく無料。それ以外は所得区分・在園要件あり。countingRule参照）",
+        "sourceId": "tokorozawa-hoikuryo-page",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      }
+    },
+    "localExtension": "埼玉県・所沢市独自の取り組みとして、入園児に生計を一にする兄姉がいる場合、年齢に関係なく最年長の子から順に、第三子以降の0歳から2歳児クラスの児童の保育料は世帯の収入に関係なく無料となる。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯等",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市民税均等割のみ（所得割額なし）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 6000, "short": 5800 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "9,700円未満",
+      "incomeMin": 1,
+      "incomeMax": 9700,
+      "fees": {
+        "under3": { "standard": 6500, "short": 6300 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "19,400円未満",
+      "incomeMin": 9700,
+      "incomeMax": 19400,
+      "fees": {
+        "under3": { "standard": 7300, "short": 7000 }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "29,100円未満",
+      "incomeMin": 19400,
+      "incomeMax": 29100,
+      "fees": {
+        "under3": { "standard": 9000, "short": 8700 }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "38,800円未満",
+      "incomeMin": 29100,
+      "incomeMax": 38800,
+      "fees": {
+        "under3": { "standard": 11000, "short": 10700 }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "48,600円未満",
+      "incomeMin": 38800,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 12700, "short": 12300 }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "72,800円未満",
+      "incomeMin": 48600,
+      "incomeMax": 72800,
+      "fees": {
+        "under3": { "standard": 17100, "short": 16600 }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "97,000円未満",
+      "incomeMin": 72800,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 23800, "short": 23200 }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "133,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 30800, "short": 30200 }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 39900, "short": 39200 }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "202,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 202000,
+      "fees": {
+        "under3": { "standard": 45100, "short": 44300 }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "235,000円未満",
+      "incomeMin": 202000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": { "standard": 47400, "short": 46600 }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "268,000円未満",
+      "incomeMin": 235000,
+      "incomeMax": 268000,
+      "fees": {
+        "under3": { "standard": 50500, "short": 49600 }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "301,000円未満",
+      "incomeMin": 268000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 53800, "short": 52900 }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "349,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 349000,
+      "fees": {
+        "under3": { "standard": 57000, "short": 56000 }
+      }
+    },
+    {
+      "tier": "C16",
+      "label": "397,000円未満",
+      "incomeMin": 349000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 57700, "short": 56700 }
+      }
+    },
+    {
+      "tier": "C17",
+      "label": "493,300円未満",
+      "incomeMin": 397000,
+      "incomeMax": 493300,
+      "fees": {
+        "under3": { "standard": 59500, "short": 58500 }
+      }
+    },
+    {
+      "tier": "C18",
+      "label": "493,300円以上",
+      "incomeMin": 493300,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 61200, "short": 60200 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "tokorozawa-kijunngaku-pdf",
+    "expect": [
+      "Ｃ１８",
+      "493,300円以上",
+      "61,200",
+      "60,200",
+      "市民税均等割のみ",
+      "6,000",
+      "5,800"
+    ]
+  }
+}
