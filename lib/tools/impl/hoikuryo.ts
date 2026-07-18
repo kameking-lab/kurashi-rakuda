@@ -17,6 +17,7 @@
  */
 
 import aichiNagoya from "@/data/seido/hoikuryo/aichi-nagoya.json";
+import aichiToyohashi from "@/data/seido/hoikuryo/aichi-toyohashi.json";
 import aichiOkazaki from "@/data/seido/hoikuryo/aichi-okazaki.json";
 import aichiIchinomiya from "@/data/seido/hoikuryo/aichi-ichinomiya.json";
 import aichiToyota from "@/data/seido/hoikuryo/aichi-toyota.json";
@@ -33,6 +34,8 @@ import hyogoKobe from "@/data/seido/hoikuryo/hyogo-kobe.json";
 import hyogoHimeji from "@/data/seido/hoikuryo/hyogo-himeji.json";
 import hyogoAmagasaki from "@/data/seido/hoikuryo/hyogo-amagasaki.json";
 import hyogoNishinomiya from "@/data/seido/hoikuryo/hyogo-nishinomiya.json";
+import naraNara from "@/data/seido/hoikuryo/nara-nara.json";
+import wakayamaWakayama from "@/data/seido/hoikuryo/wakayama-wakayama.json";
 import ishikawaKanazawa from "@/data/seido/hoikuryo/ishikawa-kanazawa.json";
 import kagoshimaKagoshima from "@/data/seido/hoikuryo/kagoshima-kagoshima.json";
 import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
@@ -44,6 +47,7 @@ import nagasakiNagasaki from "@/data/seido/hoikuryo/nagasaki-nagasaki.json";
 import nagasakiSasebo from "@/data/seido/hoikuryo/nagasaki-sasebo.json";
 import nahaOkinawa from "@/data/seido/hoikuryo/naha-okinawa.json";
 import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
+import shigaOtsu from "@/data/seido/hoikuryo/shiga-otsu.json";
 import kyotoKyoto from "@/data/seido/hoikuryo/kyoto-kyoto.json";
 import kumamotoKumamoto from "@/data/seido/hoikuryo/kumamoto-kumamoto.json";
 import miyagiSendai from "@/data/seido/hoikuryo/miyagi-sendai.json";
@@ -62,6 +66,7 @@ import osakaOsaka from "@/data/seido/hoikuryo/osaka-osaka.json";
 import osakaSakai from "@/data/seido/hoikuryo/osaka-sakai.json";
 import osakaToyonaka from "@/data/seido/hoikuryo/osaka-toyonaka.json";
 import osakaSuita from "@/data/seido/hoikuryo/osaka-suita.json";
+import osakaTakatsuki from "@/data/seido/hoikuryo/osaka-takatsuki.json";
 import osakaHirakata from "@/data/seido/hoikuryo/osaka-hirakata.json";
 import osakaHigashiosaka from "@/data/seido/hoikuryo/osaka-higashiosaka.json";
 import saitamaSaitama from "@/data/seido/hoikuryo/saitama-saitama.json";
@@ -206,13 +211,13 @@ export interface HoikuryoMunicipality {
 // ---------------------------------------------------------------- 自治体データ
 
 /**
- * 収集済み自治体（2026-07-18時点で58件＝東京23区すべて＋政令指定都市20市すべて＋中核市17市）。
+ * 収集済み自治体（2026-07-18時点で79件＝東京23区すべて＋政令指定都市20市すべて＋中核市38市）。
  * ★選択肢はこの配列からのみ生成する★ 未収集自治体の階層を創作しない（§7）。
  * 並び順は全国地方公共団体コード順（＝都道府県順・特別区は区番号順）。UIの選択肢の順序になる。
- * 中核市は人口順に収集している（queue/hoikuryo-backlog.md §1 P2-D01）。バッチ1は
- * 船橋市・川口市・八王子市・姫路市・鹿児島市（人口順1〜5位）、バッチ2は
- * 松山市・西宮市・東大阪市・大分市・倉敷市（人口順6・8・9・10・11位）、バッチ3（地域分割・
- * ソネット担当＝中部・近畿）は尼崎市・金沢市・豊田市・豊中市・富山市（人口順12・13・16・18・19位）。
+ * 中核市は人口順に収集している（queue/hoikuryo-backlog.md §1 P2-D01）。ソネット担当（中部・近畿）は
+ * バッチ1=船橋市・川口市・八王子市・姫路市・鹿児島市、バッチ2=松山市・西宮市・東大阪市・大分市・倉敷市、
+ * バッチ3=尼崎市・金沢市・豊田市・豊中市・富山市、バッチ4=吹田市・岐阜市・枚方市・岡崎市・一宮市、
+ * バッチ5=豊橋市・高槻市・大津市・和歌山市・奈良市。残る東日本・西日本は他系統（wo-opus・wo-codex2）が担当。
  */
 export const municipalities: HoikuryoMunicipality[] = [
   fukuokaKurume as unknown as HoikuryoMunicipality,
@@ -274,20 +279,25 @@ export const municipalities: HoikuryoMunicipality[] = [
   shizuokaShizuoka,
   shizuokaHamamatsu,
   aichiNagoya,
+  aichiToyohashi,
   aichiOkazaki,
   aichiIchinomiya,
   aichiToyota,
+  shigaOtsu,
   kyotoKyoto,
   osakaOsaka,
   osakaSakai,
   osakaToyonaka,
   osakaSuita,
+  osakaTakatsuki,
   osakaHirakata,
   osakaHigashiosaka,
   hyogoKobe,
   hyogoHimeji,
   hyogoAmagasaki,
   hyogoNishinomiya,
+  naraNara,
+  wakayamaWakayama,
   okayamaOkayama,
   okayamaKurashiki,
   hiroshimaHiroshima,
