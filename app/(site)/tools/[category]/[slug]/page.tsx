@@ -125,6 +125,11 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { KodomoIryouhiJyosei } from "@/components/tools/impl/KodomoIryouhiJyosei";
+import {
+  kodomoIryouhiDataset,
+  KODOMO_IRYOUHI_DISCLAIMER,
+} from "@/components/tools/impl/KodomoIryouhiJyosei.calc";
 import { KougakuIryouKaigoGassan } from "@/components/tools/impl/KougakuIryouKaigoGassan";
 import {
   kougakuGassanDataset,
@@ -214,6 +219,30 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "kodomo-iryouhi-jyosei": {
+    ui: <KodomoIryouhiJyosei />,
+    formula: (
+      <>
+        <p>
+          子ども医療費助成は、国が全国一律で定めた制度ではなく、各市区町村が実施し都道府県が補助する
+          <strong>地方単独事業</strong>
+          です。対象年齢・所得制限・一部自己負担の有無は自治体ごとに異なります。そのため本ツールは個別自治体の助成額を計算せず、こども家庭庁の全国調査（令和7年4月1日時点・全1,741市区町村）の統計をもとに、「入力した学齢を対象にしている自治体が全国でどれくらいの割合か」という傾向のみを示します。
+        </p>
+        <p>
+          対象自治体数は「全自治体数 − その学齢より対象年齢の上限が低い（＝対象にしていない）自治体数」で計算します。対象年齢の分布は「就学前まで・小学生まで・中学生まで・高校生年代（18歳年度末）まで…」という区分で集計されており、入院はこの調査では18歳年度末までしか内訳がないため、より上の年齢は総数との差で扱っています。
+        </p>
+        <p>
+          最も多いのは「通院・入院とも18歳年度末（高校生年代）まで・所得制限なし」のパターンです。令和6年度から、18歳年度末までのこども分について国民健康保険の国庫負担の減額調整措置が廃止され、自治体が助成を拡充しやすくなっています。
+        </p>
+        <p>
+          <strong>★この数値は全国の傾向であり、あなたのお住まいの自治体の助成内容ではありません★</strong>
+          実際の対象年齢・助成額・所得制限・手続きは、必ずお住まいの市区町村の子育て支援担当窓口でご確認ください。
+        </p>
+        <p>{KODOMO_IRYOUHI_DISCLAIMER}</p>
+        <SeidoNotice datasets={[kodomoIryouhiDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "kougaku-iryou-kaigo-gassan": {
     ui: <KougakuIryouKaigoGassan />,
     formula: (

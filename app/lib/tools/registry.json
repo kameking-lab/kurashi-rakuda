@@ -1683,5 +1683,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T13",
+    "slug": "kodomo-iryouhi-jyosei",
+    "category": "childcare",
+    "title": "子ども医療費助成 自治体早見",
+    "description": "子どもの学齢と通院・入院の別から、その年齢を医療費助成の対象にしている市区町村が全国でどれくらいの割合かを、こども家庭庁の全国調査（令和7年4月時点）の統計で示します。助成内容は自治体ごとに異なるため、個別の助成額は算出せず傾向のみを示します。",
+    "solves": [
+      "子どもの医療費助成が何歳まで対象か全国の傾向を知りたい",
+      "高校生でも医療費助成の対象になる自治体が多いのか知りたい",
+      "医療費助成に所得制限がある自治体はどれくらいあるのか知りたい",
+      "通院と入院で対象年齢の傾向が違うのか知りたい",
+      "子ども医療費助成が国の制度なのか自治体ごとに違うのか知りたい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "こども家庭庁 令和7年度「こどもに係る医療費の助成についての調査」",
+        "url": "https://www.cfa.go.jp/policies/boshihoken/kodomoiryouhityousa-r7"
+      },
+      {
+        "label": "厚生労働省「こどもにとってより良い医療の在り方（減額調整措置の見直し）」",
+        "url": "https://www.mhlw.go.jp/content/12401000/001270728.pdf"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kodomo-iryouhi-jyosei.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kodomo-iryouhi-jyosei.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
