@@ -1,0 +1,14 @@
+{
+  "job_id": "Q4-062",
+  "batch": 3,
+  "category": "お金",
+  "type": "seido-kaisetsu",
+  "title_draft": "給与所得控除は2026年分からどう変わる？収入と所得の違い",
+  "tool_ref": null,
+  "related_tool_list_no": 80,
+  "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "priority": "C",
+  "seido_data": [{ "file": "kyuyo-shotoku-koujo.json", "status": "ready", "path": "data/seido/kyuyo-shotoku-koujo.json" }],
+  "status": "gated_pass",
+  "notes": "P3未カバー制度記事。扶養の壁・パート収入計算ツールへの導線を設置。"
+}

@@ -1,0 +1,14 @@
+{
+  "job_id": "Q4-063",
+  "batch": 3,
+  "category": "仕事・キャリア",
+  "type": "seido-kaisetsu",
+  "title_draft": "協会けんぽの保険料はどう決まる？2026年度の確認ポイント",
+  "tool_ref": null,
+  "related_tool_list_no": 80,
+  "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
+  "priority": "C",
+  "seido_data": [{ "file": "kyoukaikenpo-hokenryo.json", "status": "ready", "path": "data/seido/kyoukaikenpo-hokenryo.json" }],
+  "status": "gated_pass",
+  "notes": "P3未カバー制度記事。時短勤務の給与・パート収入計算ツールへの導線を設置。"
+}

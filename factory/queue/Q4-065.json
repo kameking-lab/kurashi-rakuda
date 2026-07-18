@@ -1,0 +1,14 @@
+{
+  "job_id": "Q4-065",
+  "batch": 3,
+  "category": "介護",
+  "type": "seido-kaisetsu",
+  "title_draft": "要介護認定は申請から何日かかる？法定期間と実際の目安",
+  "tool_ref": null,
+  "related_tool_list_no": 61,
+  "persona": "ペルソナ5: 高橋京子（52歳・パート・親の介護が視野）",
+  "priority": "C",
+  "seido_data": [{ "file": "kaigo-nintei-shori-kikan.json", "status": "ready", "path": "data/seido/kaigo-nintei-shori-kikan.json" }],
+  "status": "gated_pass",
+  "notes": "P3未カバー制度記事。要介護認定段取りナビと既存段取り記事への導線を設置。"
+}
