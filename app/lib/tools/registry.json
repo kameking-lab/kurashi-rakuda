@@ -1590,5 +1590,36 @@
     ],
     "updated": "2026-07-18",
     "status": "live"
+  },
+  {
+    "queueId": "P2-T05",
+    "slug": "kaigo-kyugyou-kyufukin",
+    "category": "money",
+    "title": "介護休業給付金 計算",
+    "description": "介護休業開始前6か月の平均月額賃金と休業日数（通算93日まで）から、介護休業給付金の総額（賃金日額×支給日数×67%）を支給対象期間ごとに計算します。休業中に賃金が支払われる場合の80%調整にも対応します。",
+    "solves": [
+      "介護休業給付金がいくらもらえるか分からない",
+      "介護休業を93日フルに取ったときの給付総額を知りたい",
+      "休業中に会社から一部給与が出ると給付が減るのか知りたい",
+      "賃金月額の上限額で給付が頭打ちになるラインを知りたい",
+      "介護休業給付金の対象になる家族の範囲を確認したい"
+    ],
+    "basisYear": "2026年度",
+    "sources": [
+      {
+        "label": "厚生労働省「介護休業給付の内容及び支給申請手続について」",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090.html"
+      },
+      {
+        "label": "e-Gov法令検索「雇用保険法」",
+        "url": "https://laws.e-gov.go.jp/law/349AC0000000116"
+      },
+      {
+        "label": "データ表・出典確度の詳細（data/seido/kaigo-kyugyou-kyufukin.json）",
+        "url": "https://github.com/kameking-lab/kurashi-rakuda/blob/master/data/seido/kaigo-kyugyou-kyufukin.json"
+      }
+    ],
+    "updated": "2026-07-18",
+    "status": "live"
   }
 ]
