@@ -34,6 +34,10 @@ import ishikawaKanazawa from "@/data/seido/hoikuryo/ishikawa-kanazawa.json";
 import kagoshimaKagoshima from "@/data/seido/hoikuryo/kagoshima-kagoshima.json";
 import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
 import kanagawaSagamihara from "@/data/seido/hoikuryo/kanagawa-sagamihara.json";
+import kochiKochi from "@/data/seido/hoikuryo/kochi-kochi.json";
+import miyazakiMiyazaki from "@/data/seido/hoikuryo/miyazaki-miyazaki.json";
+import nagasakiNagasaki from "@/data/seido/hoikuryo/nagasaki-nagasaki.json";
+import nahaOkinawa from "@/data/seido/hoikuryo/naha-okinawa.json";
 import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
 import kyotoKyoto from "@/data/seido/hoikuryo/kyoto-kyoto.json";
 import kumamotoKumamoto from "@/data/seido/hoikuryo/kumamoto-kumamoto.json";
@@ -77,6 +81,10 @@ import tokyoSumida from "@/data/seido/hoikuryo/tokyo-sumida.json";
 import tokyoSuginami from "@/data/seido/hoikuryo/tokyo-suginami.json";
 import tokyoTaito from "@/data/seido/hoikuryo/tokyo-taito.json";
 import tokyoToshima from "@/data/seido/hoikuryo/tokyo-toshima.json";
+import fukuokaKurume from "@/data/seido/hoikuryo/fukuoka-kurume.json";
+import hiroshimaFukuyama from "@/data/seido/hoikuryo/hiroshima-fukuyama.json";
+import kagawaTakamatsu from "@/data/seido/hoikuryo/kagawa-takamatsu.json";
+import yamaguchiShimonoseki from "@/data/seido/hoikuryo/yamaguchi-shimonoseki.json";
 import type { SeidoAmendment, SeidoDataset, SeidoSource } from "@/lib/tools/seido";
 
 // ---------------------------------------------------------------- 型
@@ -186,6 +194,14 @@ export interface HoikuryoMunicipality {
  * ソネット担当＝中部・近畿）は尼崎市・金沢市・豊田市・豊中市・富山市（人口順12・13・16・18・19位）。
  */
 export const municipalities: HoikuryoMunicipality[] = [
+  fukuokaKurume as unknown as HoikuryoMunicipality,
+  hiroshimaFukuyama as unknown as HoikuryoMunicipality,
+  kagawaTakamatsu as unknown as HoikuryoMunicipality,
+  yamaguchiShimonoseki as unknown as HoikuryoMunicipality,
+  kochiKochi,
+  miyazakiMiyazaki,
+  nagasakiNagasaki,
+  nahaOkinawa,
   hokkaidoSapporo,
   miyagiSendai,
   yamagataYamagata,

@@ -106,9 +106,27 @@ const ALLOWED_HOST_SUFFIXES = ['.lg.jp', '.go.jp'];
  * 民間の保活情報サイト・まとめサイトは、たとえ自治体名を冠していても追加してはならない。
  */
 const ALLOWED_MUNICIPAL_DOMAINS = [
-  'city.sapporo.jp',
-  'city.kawasaki.jp',
+  'mhlw.go.jp',
+  'cfa.go.jp',
+  'e-gov.go.jp',
+  'nta.go.jp',
   'city.nagoya.jp',
+  'city.toyota.aichi.jp',
+  'city.kurashiki.okayama.jp',
+  'city.amagasaki.hyogo.jp',
+  'city.toyama.toyama.jp',
+  'city.kashiwa.chiba.jp',
+  'city.toyonaka.osaka.jp',
+  'city.kanazawa.ishikawa.jp',
+  'city.kurume.fukuoka.jp',
+  'city.takamatsu.kagawa.jp',
+  'city.fukuyama.hiroshima.jp',
+  'city.sapporo.jp',
+  'city.kochi.kochi.jp',
+  'city.naha.okinawa.jp',
+  'city.nagasaki.lg.jp',
+  'city.miyazaki.miyazaki.jp',
+  'city.kawasaki.jp',
   'city.nerima.tokyo.jp',
   'city.ota.tokyo.jp',
   'city.edogawa.tokyo.jp',
@@ -251,7 +269,7 @@ async function fetchText(url, contentType) {
   const res = await fetch(url, {
     headers: {
       // 一次情報サイトはUA未設定を弾く場合がある
-      'User-Agent': 'kurashi-rakuda-seido-verifier/1.0 (+https://github.com/kameking-lab/kurashi-rakuda)',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
       'Accept-Language': 'ja',
     },
     redirect: 'follow',

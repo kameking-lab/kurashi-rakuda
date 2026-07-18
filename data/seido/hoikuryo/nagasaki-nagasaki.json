@@ -1,0 +1,182 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "nagasaki-nagasaki",
+  "name": "長崎県長崎市",
+  "municipalityCode": "422011",
+  "prefecture": "長崎県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "nagasaki-hoikuryo",
+      "title": "長崎市利用者負担額【保育料】",
+      "publisher": "長崎市",
+      "url": "https://www.city.nagasaki.lg.jp/uploaded/attachment/42978.pdf",
+      "landingUrl": "https://www.city.nagasaki.lg.jp/site/e-kao/20145.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    }
+  ],
+  "disclaimer": "本データは長崎市の公式公表資料に基づき作成していますが、正確性を保証するものではありません。実際の保育料は市の決定通知書等で確認してください。",
+  "scope": {
+    "includes": [
+      "保育所",
+      "認定こども園",
+      "地域型保育事業"
+    ],
+    "excludes": [
+      "延長保育料",
+      "給食費（副食費等）",
+      "その他実費負担"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "taxYearRule": "4月〜8月は前年度、9月以降は当年度の市町村民税額",
+    "note": "住宅借入金等特別税額控除・ふるさと納税（寄付金）控除などの税額控除（調整控除除く）前の税額となります。ひとり親世帯・障害者のいる世帯は、77,101円未満までの階層で軽減措置（【 】内）が適用されます。"
+  },
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "sourceId": "nagasaki-hoikuryo",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "sourceId": "nagasaki-hoikuryo",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "小学校就学前の範囲において、保育所等を同時に利用する最年長の子どもから順に2人目以降は0円。ただし、市民税所得割課税額97,000円未満（D1階層以下）の世帯は、概ね満18歳までの子どもから数えて2人目以降0円。",
+        "sourceId": "nagasaki-hoikuryo",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "nagasaki-hoikuryo",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      }
+    }
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "所得割額 48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 16000,
+          "short": 14400
+        }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "所得割額 97,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 24000,
+          "short": 21600
+        }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "所得割額 169,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 37000,
+          "short": 33300
+        }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "所得割額 301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 47000,
+          "short": 42300
+        }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割額 397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": {
+          "standard": 51000,
+          "short": 45900
+        }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割額 397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 58000,
+          "short": 52200
+        }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "nagasaki-hoikuryo",
+    "expect": [
+      "16,000",
+      "14,400",
+      "24,000",
+      "37,000",
+      "47,000",
+      "51,000",
+      "58,000",
+      "397,000"
+    ]
+  }
+}

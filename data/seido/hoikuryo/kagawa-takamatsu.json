@@ -1,0 +1,277 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kagawa-takamatsu",
+  "name": "香川県高松市",
+  "municipalityCode": "372013",
+  "prefecture": "香川県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-04-01",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "manual",
+      "title": "令和8年度幼稚園・保育施設等利用案内",
+      "publisher": "高松市",
+      "checkedAt": "2026-07-18",
+      "url": "https://www.city.takamatsu.kagawa.jp/kurashi/kosodate/youchien_hoiku/kodomoen/hoiku/h29riyou.files/p1-25.pdf",
+      "tier": "municipality"
+    },
+    {
+      "id": "fee-table",
+      "title": "令和8年度 利用者負担金額表（2歳児クラス以下の子ども）",
+      "publisher": "高松市",
+      "checkedAt": "2026-07-18",
+      "url": "https://www.city.takamatsu.kagawa.jp/kurashi/kosodate/youchien_hoiku/kodomoen/hoiku/h29riyou.files/14hutankingaku.pdf",
+      "tier": "municipality"
+    }
+  ],
+  "disclaimer": "高松市の公式情報に基づき作成していますが、正確性を保証するものではありません。実際の保育料については高松市こども保育教育課にお問い合わせください。",
+  "scope": {
+    "includes": [],
+    "excludes": [
+      "給食費(副食費)実費",
+      "延長保育料"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則として父母の合算。ただし、父母の収入合計額が96.5万円以下で、同居（世帯分離を含む）の祖父母等が生計を維持している場合はその者の税額も合算する。",
+    "taxYearRule": "4月分から8月分は前年度の市区町村民税額に基づいて算定し、9月分から3月分は当年度の市区町村民税額に基づき算定します。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除",
+      "配当控除",
+      "寄附金税額控除",
+      "外国税額控除",
+      "配当割額及び株式等譲渡所得割額の控除"
+    ],
+    "note": "中核市のため、指定都市に適用される税率（8%）に伴う税額の6/8倍調整は不要（標準税率6%が適用される）。",
+    "sourceId": "manual",
+    "checkedAt": "2026-07-18"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "2歳児クラス以下",
+      "rule": "当該年度の初日の前日における満年齢"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳児クラス以上",
+      "rule": "当該年度の初日の前日における満年齢"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "無償",
+      "sourceId": "manual",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "無償",
+      "sourceId": "manual",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし（2026-07-18時点）"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "第2子は施設等を同時利用する子をカウント。第3子以降は18歳到達年度末までの子をカウント。",
+        "label": "第2子は施設等を同時利用する子をカウント。第3子以降は18歳到達年度末までの子をカウント。",
+        "sourceId": "manual",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "secondChild": {
+        "value": 0,
+        "label": "半額（第1子が3歳未満の場合は無償）",
+        "sourceId": "manual",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "label": "無償",
+        "sourceId": "manual",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし（2026-07-18時点）"
+      }
+    },
+    "localExtension": "第3子以降の無償化について、国基準より対象年齢を拡大（18歳到達年度末まで）している。また、第2子についても第1子が3歳未満の場合は無償とする独自の軽減を設けている。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護法による被保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "Ａ階層を除き、市区町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "Ａ階層を除き、市区町村民税均等割のみ課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": {
+          "standard": 15000,
+          "short": 14700
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "1円以上48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 18000,
+          "short": 17600
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "48,600円以上58,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 58000,
+      "fees": {
+        "under3": {
+          "standard": 23000,
+          "short": 22600
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "58,000円以上97,000円未満",
+      "incomeMin": 58000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 30000,
+          "short": 29400
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "97,000円以上134,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 134000,
+      "fees": {
+        "under3": {
+          "standard": 38000,
+          "short": 37300
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "134,000円以上169,000円未満",
+      "incomeMin": 134000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 44500,
+          "short": 43700
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "169,000円以上301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 49000,
+          "short": 48100
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "301,000円以上",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 53000,
+          "short": 52000
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-table",
+    "checkedAt": "2026-07-18",
+    "expect": {
+      "tierCount": 10,
+      "lowestFee": 0,
+      "highestFee": 53000
+    }
+  }
+}

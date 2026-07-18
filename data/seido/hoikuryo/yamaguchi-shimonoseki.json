@@ -1,0 +1,370 @@
+{
+  "id": "yamaguchi-shimonoseki",
+  "name": "山口県下関市",
+  "municipalityCode": "352012",
+  "prefecture": "山口県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-04-01",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "info",
+      "title": "令和8年度下関市の保育料等について",
+      "publisher": "下関市",
+      "url": "https://www.city.shimonoseki.lg.jp/uploaded/attachment/95890.pdf",
+      "landingUrl": "https://www.city.shimonoseki.lg.jp/soshiki/45/4614.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    },
+    {
+      "id": "table",
+      "title": "令和8年度保育料表",
+      "publisher": "下関市",
+      "url": "https://www.city.shimonoseki.lg.jp/uploaded/attachment/95474.pdf",
+      "landingUrl": "https://www.city.shimonoseki.lg.jp/soshiki/45/4614.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    }
+  ],
+  "disclaimer": "当サイトのデータは下関市公式ページ「令和8年度下関市の保育料等について」及び「令和8年度保育料表」等に基づき作成していますが、正確性を保証するものではありません。個別の算定等については下関市幼児保育課へご確認ください。",
+  "scope": {
+    "includes": [
+      "保育料"
+    ],
+    "excludes": [
+      "給食費",
+      "延長保育料",
+      "通園送迎費",
+      "行事費",
+      "保育用品費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "父母の合計所得が48万円未満の場合は、同居している直系親族（祖父母等のうち家計の主宰者と判断される方）の課税額を合算",
+    "taxYearRule": "4月から8月までの階層決定は「前年度の市民税額」、9月から3月までの階層決定は「当該年度の市民税額」をもとに階層を決定",
+    "deductionsIgnored": [
+      "寄附金税額控除",
+      "住宅借入金等特別税額控除",
+      "配当控除"
+    ],
+    "note": "指定都市特例等の調整割合に関する記載なし（中核市のため通常税率を適用）。",
+    "sourceId": "info",
+    "checkedAt": "2026-07-18"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "３号認定子ども"
+    },
+    {
+      "key": "age3plus",
+      "label": "２号認定子ども"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "note": "幼児教育・保育の無償化",
+      "sourceId": "info",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし(2026-07-18時点)"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "note": "幼児教育・保育の無償化",
+      "sourceId": "info",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし(2026-07-18時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同一生計",
+        "note": "同一生計のきょうだいの全員を数える",
+        "sourceId": "table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)"
+      },
+      "secondChild": {
+        "value": "無償",
+        "note": "山口県と下関市の共同事業により無償",
+        "sourceId": "info",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)"
+      },
+      "thirdChildOnwards": {
+        "value": "無償",
+        "note": "山口県と下関市の共同事業により無償",
+        "sourceId": "info",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし(2026-07-18時点)"
+      }
+    }
+  },
+  "tiers": [
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯、里親等",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市民税所得割非課税（均等割のみ課税）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 13600,
+          "short": 13400
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 15600,
+          "short": 15400
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "57,700円未満",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 20200,
+          "short": 19900
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "58,800円未満",
+      "incomeMin": 57700,
+      "incomeMax": 58800,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 20200,
+          "short": 19900
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "77,101円未満",
+      "incomeMin": 58800,
+      "incomeMax": 77101,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 24900,
+          "short": 24500
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "97,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 28000,
+          "short": 27600
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "108,600円未満",
+      "incomeMin": 97000,
+      "incomeMax": 108600,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 32600,
+          "short": 32100
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "169,000円未満",
+      "incomeMin": 108600,
+      "incomeMax": 169000,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 40000,
+          "short": 39400
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "211,201円未満",
+      "incomeMin": 169000,
+      "incomeMax": 211201,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 43600,
+          "short": 42900
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "230,100円未満",
+      "incomeMin": 211201,
+      "incomeMax": 230100,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 45400,
+          "short": 44700
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "301,000円未満",
+      "incomeMin": 230100,
+      "incomeMax": 301000,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 55000,
+          "short": 54100
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D13",
+      "label": "397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 59400,
+          "short": 58500
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "D14",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "isNonTaxable": false,
+      "isWelfare": false,
+      "fees": {
+        "under3": {
+          "standard": 78000,
+          "short": 76800
+        },
+        "age3plus": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "table",
+    "expect": [
+      "211,201円 未満",
+      "397,000円 以上",
+      "13,600",
+      "78,000"
+    ]
+  }
+}

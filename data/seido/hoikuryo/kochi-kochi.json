@@ -1,0 +1,267 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kochi-kochi",
+  "name": "高知県高知市",
+  "municipalityCode": "392014",
+  "prefecture": "高知県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "kochi-hoikuryo-table",
+      "title": "保育料の額について",
+      "publisher": "高知市",
+      "url": "https://www.city.kochi.kochi.jp/uploaded/attachment/155141.pdf",
+      "landingUrl": "https://www.city.kochi.kochi.jp/soshiki/34/hoikuryo.html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality"
+    }
+  ],
+  "disclaimer": "本データは高知市の公式公表資料に基づき作成していますが、正確性を保証するものではありません。実際の保育料は市の決定通知書等で確認してください。",
+  "scope": {
+    "includes": [
+      "保育所",
+      "認定こども園",
+      "地域型保育事業"
+    ],
+    "excludes": [
+      "延長保育料",
+      "給食費（副食費等）",
+      "その他実費負担"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "taxYearRule": "4月〜8月分は前年度、9月以降は当年度の市町村民税額",
+    "note": "ひとり親世帯・在宅障害児(者)のいる世帯などは、77,101円未満までの階層で保育料が軽減されます。また、世帯の階層区分にかかわらず認可保育所等を同時に利用する2人目以降の弟妹の保育料は無料となります。"
+  },
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "sourceId": "kochi-hoikuryo-table",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "sourceId": "kochi-hoikuryo-table",
+      "checkedAt": "2026-07-18",
+      "amendmentNote": "なし"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "認可保育所等を同時に利用している世帯は、階層区分にかかわらず2人目以降の弟妹児の保育料が無料となります。また、C〜D2階層の世帯は、生計を一にするお子さんが2人以上いる場合、第2子は半額、第3子以降は無料となります。",
+        "sourceId": "kochi-hoikuryo-table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "kochi-hoikuryo-table",
+        "checkedAt": "2026-07-18",
+        "amendmentNote": "なし"
+      }
+    }
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市区町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": {
+          "standard": 0,
+          "short": 0
+        }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "市区町村民税所得割非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": {
+          "standard": 10000,
+          "short": 9800
+        }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "所得割額 48,600円未満",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": {
+          "standard": 15000,
+          "short": 14700
+        }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "所得割額 57,700円未満",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": {
+          "standard": 22000,
+          "short": 21600
+        }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "所得割額 77,101円未満",
+      "incomeMin": 57700,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": {
+          "standard": 26000,
+          "short": 25500
+        }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割額 87,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 87000,
+      "fees": {
+        "under3": {
+          "standard": 27500,
+          "short": 27000
+        }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割額 97,000円未満",
+      "incomeMin": 87000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": {
+          "standard": 29000,
+          "short": 28500
+        }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "所得割額 115,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 115000,
+      "fees": {
+        "under3": {
+          "standard": 30000,
+          "short": 29400
+        }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "所得割額 133,000円未満",
+      "incomeMin": 115000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": {
+          "standard": 37000,
+          "short": 36300
+        }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "所得割額 169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": {
+          "standard": 43500,
+          "short": 42700
+        }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "所得割額 211,201円未満",
+      "incomeMin": 169000,
+      "incomeMax": 211201,
+      "fees": {
+        "under3": {
+          "standard": 47000,
+          "short": 46200
+        }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "所得割額 301,000円未満",
+      "incomeMin": 211201,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": {
+          "standard": 54000,
+          "short": 53000
+        }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "所得割額 397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": {
+          "standard": 56000,
+          "short": 55000
+        }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "所得割額 397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": {
+          "standard": 57000,
+          "short": 56000
+        }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "kochi-hoikuryo-table",
+    "expect": [
+      "10,000",
+      "15,000",
+      "22,000",
+      "37,000",
+      "43,500",
+      "47,000",
+      "54,000",
+      "56,000",
+      "57,000"
+    ]
+  }
+}

@@ -538,7 +538,27 @@
       {
         "label": "熊本市健康福祉局保育幼稚園課「令和8年度 保育所・認定こども園等の保育認定(２号・３号認定)利用者負担額（保育料）」",
         "url": "https://www.city.kumamoto.jp/kiji00364241/"
-      }
+      },
+      {
+        "label": "宮崎市「保育料の軽減施策について」",
+        "url": "https://www.city.miyazaki.miyazaki.jp/education/nursery/childcarecost/401146.html"
+      },
+      {
+        "label": "長崎市「利用者負担額（保育料）」",
+        "url": "https://www.city.nagasaki.lg.jp/site/e-kao/20145.html"
+      },
+      {
+        "label": "那覇市「保育料算定および階層認定について」",
+        "url": "https://www.city.naha.okinawa.jp/child/hoikuen/1002750/1002752.html"
+      },
+      {
+        "label": "高知市「保育料の額について」",
+        "url": "https://www.city.kochi.kochi.jp/soshiki/34/hoikuryo.html"
+      },
+      "data/seido/hoikuryo/fukuoka-kurume.json",
+      "data/seido/hoikuryo/hiroshima-fukuyama.json",
+      "data/seido/hoikuryo/kagawa-takamatsu.json",
+      "data/seido/hoikuryo/yamaguchi-shimonoseki.json"
     ],
     "updated": "2026-07-17",
     "status": "live",
