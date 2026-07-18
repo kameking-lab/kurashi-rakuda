@@ -4,6 +4,7 @@ import { getAllArticles } from "@/app/lib/articles/loader";
 import { TOOL_CATEGORIES, type ToolCategory } from "@/app/lib/tools/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Rakku } from "@/components/mascot/Rakku";
+import { CategoryIcon, CategoryVisual } from "@/components/ui/CategoryVisual";
 
 const CATEGORY_UI: Record<ToolCategory, { icon: string; className: string }> = {
   pregnancy: { icon: "○", className: "category-pregnancy" }, childcare: { icon: "◇", className: "category-childcare" },
@@ -34,11 +35,11 @@ export default function GuidePage() {
         </p></div><Rakku pose="guide" size={180} />
       </header>
       <nav aria-label="ガイドカテゴリ" className="category-nav mt-5">
-        {categories.map((cat) => <Link key={cat} href={`#${cat}`} className={`category-chip ${CATEGORY_UI[cat].className}`}><span aria-hidden="true">{CATEGORY_UI[cat].icon}</span>{TOOL_CATEGORIES[cat]}</Link>)}
+        {categories.map((cat) => <Link key={cat} href={`#${cat}`} className={`category-chip ${CATEGORY_UI[cat].className}`}><CategoryIcon category={cat}/>{TOOL_CATEGORIES[cat]}</Link>)}
       </nav>
       {categories.map((cat) => (
         <section key={cat} id={cat} aria-label={TOOL_CATEGORIES[cat]} className={`category-section ${CATEGORY_UI[cat].className}`}>
-          <SectionHeading>{TOOL_CATEGORIES[cat]}</SectionHeading>
+          <div className="category-section-heading"><CategoryVisual category={cat}/><SectionHeading>{TOOL_CATEGORIES[cat]}</SectionHeading></div>
           <ul className="space-y-3">
             {articles
               .filter((a) => a.category === cat)

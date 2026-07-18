@@ -64,7 +64,7 @@ export function ArticleShell({
       )}
 
       <ArticleToc contentId="article-content" />
-      <div id="article-content" className="prose-kurashi mx-auto mt-9 max-w-[70ch] space-y-5">{children}</div>
+      <div className="article-reading-frame"><div id="article-content" className="prose-kurashi mx-auto mt-9 max-w-[70ch] space-y-5">{children}</div></div>
 
       <SourceList
         sources={meta.sources}

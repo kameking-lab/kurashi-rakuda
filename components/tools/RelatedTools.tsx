@@ -10,16 +10,16 @@ export function RelatedTools({ current }: { current: ToolMeta }) {
   const related = getRelatedTools(current);
   if (related.length === 0) return null;
   return (
-    <section aria-label="関連ツール" className="mt-8">
-      <h2 className="text-base font-bold">同じ悩みの人が次に使うツール</h2>
+    <section aria-label="関連ツール" className="related-tools mt-10">
+      <p className="eyebrow">NEXT STEP</p><h2 className="mt-1 text-xl font-bold">同じ悩みの人が次に使うツール</h2>
       <ul className="mt-3 grid gap-3 sm:grid-cols-3">
         {related.map((t) => (
           <li key={t.slug}>
             <Link
               href={`/tools/${t.category}/${t.slug}`}
-              className="block min-h-12 rounded-card border border-line p-3 text-sm hover:border-brand"
+              className="related-tool-link"
             >
-              {t.title}
+              <span>{t.title}</span><b aria-hidden="true">↗</b>
             </Link>
           </li>
         ))}

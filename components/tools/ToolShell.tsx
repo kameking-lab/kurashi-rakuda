@@ -24,7 +24,7 @@ export function ToolShell({
   children: ReactNode;
 }) {
   return (
-    <article className="mx-auto max-w-4xl">
+    <article className="tool-shell mx-auto max-w-4xl">
       <header className="tool-hero">
         <div>
           <p className="eyebrow">くらしの無料ツール</p>
@@ -36,8 +36,11 @@ export function ToolShell({
 
       <div className="tool-workspace mt-6"><ProfilePrefill slug={meta.slug} />{children}</div>
 
-      <SectionHeading id="formula">根拠・計算式</SectionHeading>
-      <div className="space-y-3 text-sm sm:text-base">{formula}</div>
+      <section className="evidence-section" aria-labelledby="formula">
+        <p className="eyebrow">HOW IT WORKS</p>
+        <SectionHeading id="formula">根拠・計算式</SectionHeading>
+        <div className="space-y-3 text-sm sm:text-base">{formula}</div>
+      </section>
 
       <SourceList
         sources={meta.sources}

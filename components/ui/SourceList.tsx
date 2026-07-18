@@ -14,8 +14,8 @@ export function SourceList({
   updated: string;
 }) {
   return (
-    <section aria-label="出典と更新情報" className="source-panel mt-10 rounded-card border border-line bg-sand-soft p-5 text-sm text-ink-muted">
-      <p className="mb-3 font-bold text-ink">根拠と更新情報</p>
+    <section aria-label="出典と更新情報" className="source-panel mt-10 text-sm text-ink-muted">
+      <div className="source-panel-heading"><span aria-hidden="true">✓</span><div><p className="eyebrow">EVIDENCE</p><p className="font-bold text-ink">根拠と更新情報</p></div></div>
       <dl className="flex flex-wrap gap-x-6 gap-y-1">
         <div className="flex gap-2">
           <dt>最終更新</dt>
@@ -29,7 +29,7 @@ export function SourceList({
         )}
       </dl>
       {sources.length > 0 && (
-        <ul className="mt-2 list-inside list-disc">
+        <ul className="source-links mt-4">
           {sources.map((s) => (
             <li key={s.url}>
               <a
