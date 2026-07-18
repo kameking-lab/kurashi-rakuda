@@ -126,9 +126,9 @@ import {
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
 import { SeidoNotice } from "@/components/tools/SeidoNotice";
-import { JsonLd, breadcrumbList } from "@/components/site/JsonLd";
+import { JsonLd, breadcrumbList, webApplication } from "@/components/site/JsonLd";
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
-import { SITE_URL } from "@/app/lib/site";
+import { SITE_NAME, SITE_URL } from "@/app/lib/site";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
 import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
 import { juuminzeiDataset } from "@/lib/tools/impl/hoikuryo-shotokuwari";
@@ -1851,7 +1851,11 @@ export async function generateMetadata({
   const { category, slug } = await params;
   const tool = getTool(category, slug);
   if (!tool) return {};
-  return { title: tool.title, description: tool.description };
+  return {
+    title: tool.title,
+    description: tool.description,
+    alternates: { canonical: `/tools/${tool.category}/${tool.slug}` },
+  };
 }
 
 export default async function ToolPage({
@@ -1879,6 +1883,15 @@ export default async function ToolPage({
           ],
           SITE_URL,
         )}
+      />
+      <JsonLd
+        data={webApplication({
+          name: tool.title,
+          description: tool.description,
+          path: `/tools/${tool.category}/${tool.slug}`,
+          siteName: SITE_NAME,
+          siteUrl: SITE_URL,
+        })}
       />
       <ToolShell meta={tool} formula={impl.formula}>
         {impl.ui}
