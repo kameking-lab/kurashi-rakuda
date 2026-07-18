@@ -1,9 +1,15 @@
+import { notFound } from "next/navigation";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
 export default function SiteLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const isStandalone = !!process.env.STANDALONE && process.env.STANDALONE !== "false" && process.env.STANDALONE !== "0";
+  if (isStandalone) {
+    notFound();
+  }
+
   return (
     <>
       <Header />
