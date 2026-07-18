@@ -4,6 +4,10 @@ import type { ArticleMeta } from "@/app/lib/articles/types";
 import { getTool } from "@/app/lib/tools/registry";
 import { SourceList } from "@/components/ui/SourceList";
 import { Callout } from "@/components/ui/Callout";
+import { Rakku } from "@/components/mascot/Rakku";
+
+const TYPE_LABEL = { seido: "制度をやさしく整理", heiso: "ツールと一緒に確認", dandori: "順番どおりに進める" } as const;
+const TYPE_POSE = { seido: "guide", heiso: "calc", dandori: "carry" } as const;
 
 /**
  * 記事共通シェル。構成: タイトル → 結論（lead、最初の段落） → 本文 → 出典。
@@ -21,12 +25,19 @@ export function ArticleShell({
     meta.type === "heiso" ? getTool(meta.toolCategory, meta.toolSlug) : undefined;
 
   return (
-    <article>
-      <h1 className="text-xl font-bold sm:text-2xl">{meta.title}</h1>
+    <article className={`article-shell article-${meta.type}`}>
+      <header className="article-hero">
+        <div>
+          <p className="eyebrow">{TYPE_LABEL[meta.type]}</p>
+          <h1 className="mt-2 text-2xl font-bold leading-snug tracking-tight sm:text-4xl">{meta.title}</h1>
+          <p className="mt-3 text-sm text-ink-muted">最終更新 {meta.updated}</p>
+        </div>
+        <Rakku pose={TYPE_POSE[meta.type]} size={128} />
+      </header>
 
       {/* 結論を最初に（UI十原則1） */}
-      <div className="mt-4 rounded-card bg-brand-soft p-4 sm:p-5">
-        <p className="text-sm font-bold text-brand">結論</p>
+      <div className="article-lead mt-5 rounded-card bg-brand-soft p-5 sm:p-6">
+        <p className="eyebrow">先に結論</p>
         <p className="mt-1">{meta.lead}</p>
       </div>
 
@@ -51,7 +62,7 @@ export function ArticleShell({
         </div>
       )}
 
-      <div className="prose-kurashi mt-6 space-y-4">{children}</div>
+      <div className="prose-kurashi mx-auto mt-9 max-w-[70ch] space-y-5">{children}</div>
 
       <SourceList
         sources={meta.sources}

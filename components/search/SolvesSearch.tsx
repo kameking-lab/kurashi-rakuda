@@ -54,7 +54,7 @@ export function SolvesSearch() {
   const active = query.trim().length > 0;
 
   return (
-    <div>
+    <div className="search-v2">
       <label htmlFor="solves-search" className="block font-medium">
         いま、なにに困っていますか？
       </label>
@@ -65,18 +65,18 @@ export function SolvesSearch() {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="例: 離乳食の量 / 保育料 / 時短の給料"
         autoComplete="off"
-        className="mt-2 min-h-12 w-full rounded-card border border-line bg-paper px-4 text-base"
+        className="field-control mt-2 min-h-14 w-full rounded-card border border-line bg-paper px-5 text-base shadow-sm"
       />
       {active && (
         <div className="mt-3" role="status" aria-live="polite">
           {hits.length > 0 ? (
-            <ul className="space-y-2">
+            <ul className="search-results grid gap-2 sm:grid-cols-2">
               {hits.map(({ tool, matchedSolve }) =>
                 tool.status === "live" ? (
                   <li key={tool.slug}>
                     <Link
                       href={`/tools/${tool.category}/${tool.slug}`}
-                      className="block rounded-card border border-line p-3 hover:border-brand"
+                      className="tool-card block h-full rounded-card border border-line bg-paper p-4"
                     >
                       <span className="font-medium">{tool.title}</span>
                       {matchedSolve && (
