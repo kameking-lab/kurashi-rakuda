@@ -125,6 +125,13 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
+import { TaishokuTimingSongeki } from "@/components/tools/impl/TaishokuTimingSongeki";
+import {
+  taishokuTimingDataset,
+  TAISHOKU_TIMING_DISCLAIMER,
+  WAITING_DAYS as TAISHOKU_WAITING_DAYS,
+  RESTRICTION_MONTHS_JIKO as TAISHOKU_RESTRICTION_MONTHS,
+} from "@/components/tools/impl/TaishokuTimingSongeki.calc";
 import { FuyounaiShahoSongeki } from "@/components/tools/impl/FuyounaiShahoSongeki";
 import {
   fuyounaiShahoSongekiDataset,
@@ -255,6 +262,31 @@ const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
 const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+  "taishoku-timing-songeki": {
+    ui: <TaishokuTimingSongeki />,
+    formula: (
+      <>
+        <p>
+          このカレンダーは、退職の<strong>時期</strong>によって扱いが変わる3つの制度をまとめて示します。保険料や税の実際の金額は、標準報酬月額・お住まいの自治体・前年所得で変わるため計算していません。
+        </p>
+        <p>
+          ①<strong>社会保険料</strong>：資格喪失日は退職日の翌日です。社会保険料は資格喪失日が属する月の前月分まで納め、日割りされません。そのため
+          <strong>月末に退職</strong>すると翌月1日が資格喪失日となり退職月分まで会社経由（労使折半）で控除され、
+          <strong>月末の前日に退職</strong>すると同じ月が資格喪失日となり退職月分は自分で国民健康保険等を負担します。1日違いで負担者が変わります。
+        </p>
+        <p>
+          ②<strong>住民税</strong>：1月〜4月に退職すると申し出の有無にかかわらず残額が一括徴収され、5月退職はその月の給与等から徴収、6月〜12月退職は原則ご自身での納付（普通徴収）に切り替わり、申し出れば一括徴収も選べます。
+        </p>
+        <p>
+          ③<strong>雇用保険（基本手当）</strong>：所定給付日数は離職理由・年齢・被保険者期間で決まります。自己都合（一般の離職者）は最長でも150日ですが、会社都合（特定受給資格者）は最長330日、就職困難者は最長360日です。受給には待期
+          {TAISHOKU_WAITING_DAYS}日があり、自己都合退職には原則{TAISHOKU_RESTRICTION_MONTHS}
+          か月の給付制限が付きます（令和7年4月以降。会社都合等は給付制限なし）。
+        </p>
+        <p>{TAISHOKU_TIMING_DISCLAIMER}</p>
+        <SeidoNotice datasets={[taishokuTimingDataset]} today={todayJst()} />
+      </>
+    ),
+  },
   "fuyounai-shaho-songeki-bunkiten": {
     ui: <FuyounaiShahoSongeki />,
     formula: (
