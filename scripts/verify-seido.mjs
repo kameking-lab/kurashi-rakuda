@@ -154,6 +154,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.kawagoe.saitama.jp', // 川越市（中核市）の公式サイトは city.kawagoe.saitama.jp（P2-D01 東日本・2026-07-18）
   'city.kofu.yamanashi.jp', // 甲府市（中核市）の公式サイトは city.kofu.yamanashi.jp（.lg.jp版なし。P2-D01 東日本・2026-07-18）
   'city.nagano.nagano.jp', // 長野市（中核市）の公式サイトは city.nagano.nagano.jp（.lg.jp版なし。P2-D01 東日本・2026-07-18）
+  'city.morioka.iwate.jp', // 盛岡市（中核市）の公式サイトは city.morioka.iwate.jp（.lg.jp版なし。P2-D01 東日本・2026-07-18）
+  'city.maebashi.gunma.jp', // 前橋市（中核市）の公式サイトは city.maebashi.gunma.jp（.lg.jp版なし。P2-D01 東日本・2026-07-18）
   // 西宮市（中核市）の公式サイトは独自ドメイン nishi.or.jp。旧 city.nishinomiya.lg.jp は
   // 現在別サービス（CDN）を指しており使えないため個別に許可する（P2-D01・2026-07-18）。
   'nishi.or.jp',
