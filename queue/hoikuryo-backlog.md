@@ -7,10 +7,23 @@
 
 ---
 
+## ★★★ 2026-07-18 コンフリクト税撲滅（全収集系統へ周知）★★★
+
+**保育料の自治体追加は `data/seido/hoikuryo/<pref>-<city>.json` を1個置くだけでよい。以下は編集不要:**
+
+- **`lib/tools/impl/hoikuryo.ts` の municipalities 配列**：`scripts/gen-hoikuryo-municipalities.mjs` が data/seido/hoikuryo/*.json から**自動生成**（municipalityコード順・gitignore済み・postinstall/prebuild/pretest/pretypecheck/predev/prelint で自動再生成）。手書き配列は廃止。
+- **`tests/hoikuryo.test.ts` の件数**：ハードコード廃止。「data/seido/hoikuryo/*.json と municipalities が過不足なく1対1」「全ファイルが妥当な構造」を**データ由来で動的検査**。件数を書き換える必要はない。
+- **`app/lib/tools/registry.json` の hoikuryo sources**：**編集不要**。出典は各自治体の JSON（`sources`）に書き、ツールは選択自治体の出典を動的表示する。registry の sources は代表出典として凍結（増やさない）。
+- **この backlog の §1 の表**：**更新不要**（履歴スナップショット）。件数・残数の書き換えも不要。
+
+→ これにより municipalities配列・テスト件数・backlog表・registry の**3〜4-way コンフリクトが消滅**する（並行収集で「自己解消した」報告が不要になる）。新しい流儀・罠の共有だけ §2 の末尾に追記（末尾追加はコンフリクトしにくい）。**§1 以下の表は歴史記録として残すが、以後は編集しない。**
+
+---
+
 ## 0. このキューの使い方
 
 1 自治体 = 1 タスク。相互依存なしのため**全並列で実行可能**。1 エージェント 3 自治体程度が実績値（所要 8〜13 分／3自治体）。
-着手時は §3 の収集手順をそのまま作業指示に貼る。完了したら §1 の表の「状態」を更新する。
+着手時は §3 の収集手順をそのまま作業指示に貼る。**§1 の表は更新不要**（上記の周知参照。data/seido/hoikuryo/ に JSON を置けば自動反映）。
 
 **絶対ルール**
 - 一次情報（当該自治体の公式サイト）のみ。まとめサイト・保活情報サイト・民間ブログの引用は**禁止**（`scripts/verify-seido.mjs` がドメイン許可リストで機械的に弾く）。

@@ -1,0 +1,3 @@
+{
+  "job_id": "Q4-070", "batch": 3, "category": "子育て", "type": "tool-narisou", "title_draft": "子ども医療費助成 自治体早見の見方", "tool_ref": "kodomo-iryouhi-jyosei", "related_tool_list_no": 26, "persona": "ペルソナ1: 佐藤美咲（32歳・専業主婦・子ども2人）", "priority": "C", "seido_data": [{ "file": "kodomo-iryouhi-jyosei.json", "status": "ready", "path": "data/seido/kodomo-iryouhi-jyosei.json" }], "status": "gated_pass", "notes": "P3ツール併走記事。全国傾向と個別自治体の条件を切り分ける。"
+}

@@ -16,101 +16,7 @@
  *     推測で換算せず、bracketBasis.note の原文を提示して「前処理後の額」を入力させる（§9.1）
  */
 
-import aichiNagoya from "@/data/seido/hoikuryo/aichi-nagoya.json";
-import aichiToyohashi from "@/data/seido/hoikuryo/aichi-toyohashi.json";
-import aichiOkazaki from "@/data/seido/hoikuryo/aichi-okazaki.json";
-import aichiIchinomiya from "@/data/seido/hoikuryo/aichi-ichinomiya.json";
-import aichiToyota from "@/data/seido/hoikuryo/aichi-toyota.json";
-import chibaChiba from "@/data/seido/hoikuryo/chiba-chiba.json";
-import chibaFunabashi from "@/data/seido/hoikuryo/chiba-funabashi.json";
-import chibaKashiwa from "@/data/seido/hoikuryo/chiba-kashiwa.json";
-import ehimeMatsuyama from "@/data/seido/hoikuryo/ehime-matsuyama.json";
-import fukuokaFukuoka from "@/data/seido/hoikuryo/fukuoka-fukuoka.json";
-import fukuokaKitakyushu from "@/data/seido/hoikuryo/fukuoka-kitakyushu.json";
-import hiroshimaHiroshima from "@/data/seido/hoikuryo/hiroshima-hiroshima.json";
-import hiroshimaKure from "@/data/seido/hoikuryo/hiroshima-kure.json";
-import hiroshimaHigashihiroshima from "@/data/seido/hoikuryo/hiroshima-higashihiroshima.json";
-import hokkaidoSapporo from "@/data/seido/hoikuryo/hokkaido-sapporo.json";
-import hyogoKobe from "@/data/seido/hoikuryo/hyogo-kobe.json";
-import hyogoHimeji from "@/data/seido/hoikuryo/hyogo-himeji.json";
-import hyogoAmagasaki from "@/data/seido/hoikuryo/hyogo-amagasaki.json";
-import hyogoNishinomiya from "@/data/seido/hoikuryo/hyogo-nishinomiya.json";
-import hyogoItami from "@/data/seido/hoikuryo/hyogo-itami.json";
-import hyogoKakogawa from "@/data/seido/hoikuryo/hyogo-kakogawa.json";
-import hyogoTakarazuka from "@/data/seido/hoikuryo/hyogo-takarazuka.json";
-import naraNara from "@/data/seido/hoikuryo/nara-nara.json";
-import wakayamaWakayama from "@/data/seido/hoikuryo/wakayama-wakayama.json";
-import ishikawaKanazawa from "@/data/seido/hoikuryo/ishikawa-kanazawa.json";
-import kagoshimaKagoshima from "@/data/seido/hoikuryo/kagoshima-kagoshima.json";
-import kanagawaKawasaki from "@/data/seido/hoikuryo/kanagawa-kawasaki.json";
-import kanagawaSagamihara from "@/data/seido/hoikuryo/kanagawa-sagamihara.json";
-import gifuGifu from "@/data/seido/hoikuryo/gifu-gifu.json";
-import kochiKochi from "@/data/seido/hoikuryo/kochi-kochi.json";
-import miyazakiMiyazaki from "@/data/seido/hoikuryo/miyazaki-miyazaki.json";
-import nagasakiNagasaki from "@/data/seido/hoikuryo/nagasaki-nagasaki.json";
-import nagasakiSasebo from "@/data/seido/hoikuryo/nagasaki-sasebo.json";
-import nahaOkinawa from "@/data/seido/hoikuryo/naha-okinawa.json";
-import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
-import shigaOtsu from "@/data/seido/hoikuryo/shiga-otsu.json";
-import kyotoKyoto from "@/data/seido/hoikuryo/kyoto-kyoto.json";
-import kumamotoKumamoto from "@/data/seido/hoikuryo/kumamoto-kumamoto.json";
-import miyagiSendai from "@/data/seido/hoikuryo/miyagi-sendai.json";
-import iwateMorioka from "@/data/seido/hoikuryo/iwate-morioka.json";
-import yamagataYamagata from "@/data/seido/hoikuryo/yamagata-yamagata.json";
-import fukushimaKoriyama from "@/data/seido/hoikuryo/fukushima-koriyama.json";
-import ibarakiMito from "@/data/seido/hoikuryo/ibaraki-mito.json";
-import gunmaMaebashi from "@/data/seido/hoikuryo/gunma-maebashi.json";
-import yamanashiKofu from "@/data/seido/hoikuryo/yamanashi-kofu.json";
-import naganoNagano from "@/data/seido/hoikuryo/nagano-nagano.json";
-import niigataNiigata from "@/data/seido/hoikuryo/niigata-niigata.json";
-import oitaOita from "@/data/seido/hoikuryo/oita-oita.json";
-import okayamaOkayama from "@/data/seido/hoikuryo/okayama-okayama.json";
-import okayamaKurashiki from "@/data/seido/hoikuryo/okayama-kurashiki.json";
-import osakaOsaka from "@/data/seido/hoikuryo/osaka-osaka.json";
-import osakaSakai from "@/data/seido/hoikuryo/osaka-sakai.json";
-import osakaToyonaka from "@/data/seido/hoikuryo/osaka-toyonaka.json";
-import osakaSuita from "@/data/seido/hoikuryo/osaka-suita.json";
-import osakaTakatsuki from "@/data/seido/hoikuryo/osaka-takatsuki.json";
-import osakaHirakata from "@/data/seido/hoikuryo/osaka-hirakata.json";
-import osakaHigashiosaka from "@/data/seido/hoikuryo/osaka-higashiosaka.json";
-import osakaIbaraki from "@/data/seido/hoikuryo/osaka-ibaraki.json";
-import osakaKishiwada from "@/data/seido/hoikuryo/osaka-kishiwada.json";
-import saitamaSaitama from "@/data/seido/hoikuryo/saitama-saitama.json";
-import saitamaKawaguchi from "@/data/seido/hoikuryo/saitama-kawaguchi.json";
-import saitamaKawagoe from "@/data/seido/hoikuryo/saitama-kawagoe.json";
-import shizuokaHamamatsu from "@/data/seido/hoikuryo/shizuoka-hamamatsu.json";
-import shizuokaShizuoka from "@/data/seido/hoikuryo/shizuoka-shizuoka.json";
-import toyamaToyama from "@/data/seido/hoikuryo/toyama-toyama.json";
-import tokyoAdachi from "@/data/seido/hoikuryo/tokyo-adachi.json";
-import tokyoArakawa from "@/data/seido/hoikuryo/tokyo-arakawa.json";
-import tokyoBunkyo from "@/data/seido/hoikuryo/tokyo-bunkyo.json";
-import tokyoChiyoda from "@/data/seido/hoikuryo/tokyo-chiyoda.json";
-import tokyoChuo from "@/data/seido/hoikuryo/tokyo-chuo.json";
-import tokyoEdogawa from "@/data/seido/hoikuryo/tokyo-edogawa.json";
-import tokyoHachioji from "@/data/seido/hoikuryo/tokyo-hachioji.json";
-import tokyoKoto from "@/data/seido/hoikuryo/tokyo-koto.json";
-import tokyoKita from "@/data/seido/hoikuryo/tokyo-kita.json";
-import tokyoMeguro from "@/data/seido/hoikuryo/tokyo-meguro.json";
-import tokyoMinato from "@/data/seido/hoikuryo/tokyo-minato.json";
-import tokyoNakano from "@/data/seido/hoikuryo/tokyo-nakano.json";
-import tokyoNerima from "@/data/seido/hoikuryo/tokyo-nerima.json";
-import tokyoOta from "@/data/seido/hoikuryo/tokyo-ota.json";
-import tokyoSetagaya from "@/data/seido/hoikuryo/tokyo-setagaya.json";
-import tokyoShibuya from "@/data/seido/hoikuryo/tokyo-shibuya.json";
-import tokyoShinagawa from "@/data/seido/hoikuryo/tokyo-shinagawa.json";
-import tokyoShinjuku from "@/data/seido/hoikuryo/tokyo-shinjuku.json";
-import tokyoSumida from "@/data/seido/hoikuryo/tokyo-sumida.json";
-import tokyoSuginami from "@/data/seido/hoikuryo/tokyo-suginami.json";
-import tokyoTaito from "@/data/seido/hoikuryo/tokyo-taito.json";
-import tokyoToshima from "@/data/seido/hoikuryo/tokyo-toshima.json";
-import fukuokaKurume from "@/data/seido/hoikuryo/fukuoka-kurume.json";
-import hiroshimaFukuyama from "@/data/seido/hoikuryo/hiroshima-fukuyama.json";
-import kagawaTakamatsu from "@/data/seido/hoikuryo/kagawa-takamatsu.json";
-import yamaguchiShimonoseki from "@/data/seido/hoikuryo/yamaguchi-shimonoseki.json";
-import shimaneMatsue from "@/data/seido/hoikuryo/shimane-matsue.json";
-import tottoriTottori from "@/data/seido/hoikuryo/tottori-tottori.json";
-import tokushimaTokushima from "@/data/seido/hoikuryo/tokushima-tokushima.json";
-import sagaSaga from "@/data/seido/hoikuryo/saga-saga.json";
+import { municipalityData } from "./hoikuryo.municipalities.generated";
 import type { SeidoAmendment, SeidoDataset, SeidoSource } from "@/lib/tools/seido";
 
 // ---------------------------------------------------------------- 型
@@ -219,111 +125,14 @@ export interface HoikuryoMunicipality {
 // ---------------------------------------------------------------- 自治体データ
 
 /**
- * 収集済み自治体（2026-07-18時点で79件＝東京23区すべて＋政令指定都市20市すべて＋中核市38市）。
+ * 収集済み自治体。★data/seido/hoikuryo/*.json から自動生成（手書き配列は廃止）★
+ * 収集系統は data/seido/hoikuryo/ に JSON を置くだけでよい。ここ（hoikuryo.ts）も
+ * tests/hoikuryo.test.ts も touch 不要（並行収集の 3-way コンフリクト税を撲滅）。
+ * 索引は scripts/gen-hoikuryo-municipalities.mjs が municipalityCode（全国地方公共団体コード）順に
+ * 生成する（postinstall/prebuild/pretest/pretypecheck/predev/prelint で自動再生成・gitignore 済み）。
  * ★選択肢はこの配列からのみ生成する★ 未収集自治体の階層を創作しない（§7）。
- * 並び順は全国地方公共団体コード順（＝都道府県順・特別区は区番号順）。UIの選択肢の順序になる。
- * 中核市は人口順に収集している（queue/hoikuryo-backlog.md §1 P2-D01）。ソネット担当（中部・近畿）は
- * バッチ1=船橋市・川口市・八王子市・姫路市・鹿児島市、バッチ2=松山市・西宮市・東大阪市・大分市・倉敷市、
- * バッチ3=尼崎市・金沢市・豊田市・豊中市・富山市、バッチ4=吹田市・岐阜市・枚方市・岡崎市・一宮市、
- * バッチ5=豊橋市・高槻市・大津市・和歌山市・奈良市。残る東日本・西日本は他系統（wo-opus・wo-codex2）が担当。
  */
-export const municipalities: HoikuryoMunicipality[] = [
-  fukuokaKurume as unknown as HoikuryoMunicipality,
-  hiroshimaFukuyama as unknown as HoikuryoMunicipality,
-  kagawaTakamatsu as unknown as HoikuryoMunicipality,
-  yamaguchiShimonoseki as unknown as HoikuryoMunicipality,
-  shimaneMatsue as unknown as HoikuryoMunicipality,
-  hiroshimaKure as unknown as HoikuryoMunicipality,
-  nagasakiSasebo as unknown as HoikuryoMunicipality,
-  tottoriTottori as unknown as HoikuryoMunicipality,
-  osakaIbaraki as unknown as HoikuryoMunicipality,
-  osakaKishiwada as unknown as HoikuryoMunicipality,
-  hyogoKakogawa as unknown as HoikuryoMunicipality,
-  hyogoTakarazuka as unknown as HoikuryoMunicipality,
-  hyogoItami as unknown as HoikuryoMunicipality,
-  tokushimaTokushima as unknown as HoikuryoMunicipality,
-  sagaSaga as unknown as HoikuryoMunicipality,
-  hiroshimaHigashihiroshima as unknown as HoikuryoMunicipality,
-  kochiKochi,
-  miyazakiMiyazaki,
-  nagasakiNagasaki,
-  nahaOkinawa,
-  hokkaidoSapporo,
-  miyagiSendai,
-  yamagataYamagata,
-  iwateMorioka,
-  fukushimaKoriyama,
-  ibarakiMito,
-  gunmaMaebashi,
-  saitamaSaitama,
-  saitamaKawaguchi,
-  saitamaKawagoe,
-  chibaChiba,
-  chibaFunabashi,
-  chibaKashiwa,
-  tokyoChiyoda,
-  tokyoChuo,
-  tokyoMinato,
-  tokyoShinjuku,
-  tokyoBunkyo,
-  tokyoTaito,
-  tokyoSumida,
-  tokyoKoto,
-  tokyoShinagawa,
-  tokyoMeguro,
-  tokyoOta,
-  tokyoSetagaya,
-  tokyoShibuya,
-  tokyoNakano,
-  tokyoSuginami,
-  tokyoToshima,
-  tokyoKita,
-  tokyoArakawa,
-  tokyoNerima,
-  tokyoAdachi,
-  tokyoEdogawa,
-  tokyoHachioji,
-  kanagawaYokohama,
-  kanagawaKawasaki,
-  kanagawaSagamihara,
-  niigataNiigata,
-  yamanashiKofu,
-  naganoNagano,
-  toyamaToyama,
-  ishikawaKanazawa,
-  gifuGifu,
-  shizuokaShizuoka,
-  shizuokaHamamatsu,
-  aichiNagoya,
-  aichiToyohashi,
-  aichiOkazaki,
-  aichiIchinomiya,
-  aichiToyota,
-  shigaOtsu,
-  kyotoKyoto,
-  osakaOsaka,
-  osakaSakai,
-  osakaToyonaka,
-  osakaSuita,
-  osakaTakatsuki,
-  osakaHirakata,
-  osakaHigashiosaka,
-  hyogoKobe,
-  hyogoHimeji,
-  hyogoAmagasaki,
-  hyogoNishinomiya,
-  naraNara,
-  wakayamaWakayama,
-  okayamaOkayama,
-  okayamaKurashiki,
-  hiroshimaHiroshima,
-  ehimeMatsuyama,
-  fukuokaKitakyushu,
-  fukuokaFukuoka,
-  kumamotoKumamoto,
-  oitaOita,
-  kagoshimaKagoshima,
-] as unknown as HoikuryoMunicipality[];
+export const municipalities: HoikuryoMunicipality[] = municipalityData;
 
 export function getMunicipality(id: string): HoikuryoMunicipality | undefined {
   return municipalities.find((m) => m.id === id);

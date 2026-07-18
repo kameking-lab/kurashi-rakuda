@@ -21,3 +21,6 @@
 
 # セッション作業用の一時ファイル（コミット対象外。各自の scratchpad を使うこと）
 scratch/
+
+# 自動生成（保育料 自治体索引・コミットしない）
+lib/tools/impl/hoikuryo.municipalities.generated.ts
