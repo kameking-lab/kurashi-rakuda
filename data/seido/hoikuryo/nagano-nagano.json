@@ -1,0 +1,142 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "nagano-nagano",
+  "name": "長野県長野市",
+  "municipalityCode": "202011",
+  "prefecture": "長野県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "nagano-hoikuryo-page",
+      "title": "保育料（利用者負担額）について",
+      "publisher": "長野市 こども未来部 保育・幼稚園課",
+      "url": "https://www.city.nagano.nagano.jp/n117000/kosodate/p001524.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "令和8年度 保育料基準額表・保育料のご案内（PDF）の掲載元ページ。"
+    },
+    {
+      "id": "nagano-kizyun-pdf",
+      "title": "令和8年度 保育料基準額表（軽減拡充後）",
+      "publisher": "長野市 こども未来部 保育・幼稚園課",
+      "url": "https://www.city.nagano.nagano.jp/documents/63/r8hoikuryou_hukusyoku_kizyun.pdf",
+      "landingUrl": "https://www.city.nagano.nagano.jp/n117000/kosodate/p001524.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "令和8年度の保育料基準額表（全2ページ）。表1（3号認定＝0〜2歳児）に階層区分A・B・C・D1〜D11による保育料月額（保育標準時間/短時間、第1子・第2子・第3子以降）、表2・表3に3〜5歳児の副食費免除範囲を掲載。★第2子以降は0円（長野市多子世帯等保育料軽減により無償）★。[　]書きはひとり親世帯・在宅障害児者世帯の軽減額（所得割77,101円未満で一律900円等）。PyMuPDFのfind_tables()でテキスト層から表構造を機械抽出し全階層の境界・額（第1子・二人親）を確認済み。"
+    },
+    {
+      "id": "nagano-goannai-pdf",
+      "title": "令和8年度 保育料のご案内",
+      "publisher": "長野市 こども未来部 保育・幼稚園課",
+      "url": "https://www.city.nagano.nagano.jp/documents/63/r8hoikuryou_goannai.pdf",
+      "landingUrl": "https://www.city.nagano.nagano.jp/n117000/kosodate/p001524.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "令和8年度の保育料のご案内（全4ページ）。保育料の算定方法（市民税額の控除除外、未申告時の最高額、年度当初年齢での決定、日割り）、年度切替（4〜8月＝令和7年度・9〜翌3月＝令和8年度）、多子世帯等軽減、幼児教育・保育の無償化を掲載。"
+    }
+  ],
+  "disclaimer": "本データは長野市公式サイトの公表内容を2026-07-18時点で機械的に整理した参考情報です。実際の利用者負担額（保育料）は世帯状況・課税内容・入所施設により決定され、最終的には長野市こども未来部保育・幼稚園課の決定が優先します。個別の判断は必ず長野市および利用施設にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育利用）・地域型保育施設を利用する3号認定（0〜2歳児）の月額利用者負担額（保育料）（一般＝二人親世帯・第1子・保育標準時間認定/保育短時間認定）",
+      "3〜5歳児（1号・2号認定）の月額利用者負担額（幼児教育・保育の無償化により0円）",
+      "階層区分A・B・C・D1〜D11（市民税所得割課税額の範囲）"
+    ],
+    "excludes": [
+      "第2子以降の保育料（長野市多子世帯等保育料軽減により0円。tiersは第1子の額のみ収録）",
+      "ひとり親世帯・在宅障害児（者）のいる世帯の軽減額（所得割77,101円未満で一律900円等・基準額表の[　]書き）そのものはtiers本体に収録せず bracketBasis.note に記録（tiersは一般＝二人親世帯・第1子の額のみ）",
+      "3〜5歳児の副食費（所得割57,700円未満〈ひとり親等は77,101円未満〉世帯・第3子以降は免除）・行事費等の実費",
+      "認可外保育施設の利用料（別途「長野市認可外保育施設保育料軽減事業」あり・本表の対象外）",
+      "施設ごとの上乗せ徴収"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "保護者（父・母）の市町村民税所得割課税額の合計額により算定する。所得税や住民税が未申告の場合、または海外での収入がわかる証明資料の提出がない場合は最高額（D11階層）となる。",
+    "taxYearRule": "保育料は、4月分から8月分は令和7年度（令和6年中所得）、9月分から翌年3月分は令和8年度（令和7年中所得）の市民税額によりそれぞれ算定する。令和8年度の市民税額が前年度と異なる場合、9月分から階層区分が変更され保育料が変更になる場合がある。保育料は年度当初の年齢で決定する。",
+    "deductionsIgnored": [
+      "配当控除",
+      "住宅借入金等特別控除（住宅ローン控除）",
+      "寄付金控除（ふるさと納税等）"
+    ],
+    "note": "原文：「算定の際の市民税額は、配当控除、住宅借入金等特別控除、寄付金控除などの税額控除については控除前の税額で算定します。」＝上記の税額控除の適用前の所得割額で階層判定する（「など」とあるため列挙は例示。明記された3控除のみ収録）。★長野市の基準額表・ご案内には政令指定都市転入者の税率換算（6/8換算）の記載はない（自市は中核市で通常税率、他市が持つ6/8換算の例外は長野市には存在しない）。定額減税の扱いの明記もない（推測補完しない）。／階層A（生活保護）・B（非課税）はいずれも所得割0円であり所得割額だけでは相互に判別できない。isWelfare・isNonTaxable フラグで区別する。C階層は『市町村民税所得割課税額 48,600円未満』で、均等割のみ課税（所得割0円）も所得割48,600円未満もこのC階層（4,950円）に含まれるため、C階層は incomeMin:0・incomeMax:48600 とし均等割のみ（equalOnly）もincomeTaxed（所得割<48,600）も同一額で解決する。／tiersには一般＝二人親世帯・第1子の額のみを収録している。ひとり親世帯・在宅障害児（者）のいる世帯は所得割77,101円未満で一律900円等（基準額表の[　]書き）に軽減されるが、tool側でその額を算出しないため本体には収録せず本noteに記録する。第2子以降は長野市多子世帯等保育料軽減により無償（0円）。",
+    "sourceId": "nagano-goannai-pdf",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "expect": [
+        "住宅借入金等特別控除",
+        "４月分から８月分は令和７年度",
+        "多子世帯等保育料軽減"
+      ],
+      "sourceId": "nagano-goannai-pdf"
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3号認定（0〜2歳児）",
+      "rule": "各月初日時点で3歳未満（3号認定）。保育料は年度当初の年齢で決定。第2子以降は多子世帯等軽減により無償。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児（1号・2号認定）",
+      "rule": "3歳児クラス以上。幼児教育・保育の無償化により利用者負担額は0円（副食費は別途・免除範囲あり）。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3〜5歳児の利用者負担額は無償",
+      "sourceId": "nagano-goannai-pdf",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": [
+          "３歳から５歳児のお子さん"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "令和元年10月からの幼児教育・保育の無償化による0円。副食費は無償化の対象外（免除範囲あり）。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "市町村民税非課税世帯（A・B階層）の0〜2歳児利用者負担額は0円",
+      "sourceId": "nagano-kizyun-pdf",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": [
+          "市町村民税非課税世帯"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "A階層（生活保護世帯）・B階層（市町村民税非課税世帯）は0〜2歳児も標準時間・短時間とも0円。国の無償化制度と一致する範囲。"
+    },
+    "localExtension": "長野市独自の全世帯一律無償化（0〜2歳児の所得制限なし無償化等）は2026-07-18時点で確認できない。国の無償化制度（3〜5歳児全員無償化、0〜2歳児の住民税非課税世帯無償化）に加え、市独自に『長野市多子世帯等保育料軽減制度』で第2子以降を無償化（生計を一にする最年長の兄姉から順にカウント、年齢制限なし）し、市民税所得割57,700円未満（ひとり親・在宅障害児者と同居は77,101円未満）の低所得世帯はさらに軽減を拡充している。ひとり親世帯・在宅障害児（者）のいる世帯は第1子も所得割77,101円未満で一律900円等に軽減される。"
+  },
+  "tiers": [
+    { "tier": "A", "label": "生活保護世帯", "incomeMin": 0, "incomeMax": 1, "isWelfare": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "B", "label": "市町村民税非課税世帯", "incomeMin": 0, "incomeMax": 1, "isNonTaxable": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C", "label": "市町村民税所得割課税額 48,600円未満（均等割のみ課税を含む）", "incomeMin": 0, "incomeMax": 48600, "fees": { "under3": { "standard": 4950, "short": 4950 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1", "label": "所得割 48,600円以上 57,700円未満", "incomeMin": 48600, "incomeMax": 57700, "fees": { "under3": { "standard": 7100, "short": 7000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1-2", "label": "所得割 57,700円以上 60,000円未満", "incomeMin": 57700, "incomeMax": 60000, "fees": { "under3": { "standard": 14200, "short": 14000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2", "label": "所得割 60,000円以上 76,000円未満", "incomeMin": 60000, "incomeMax": 76000, "fees": { "under3": { "standard": 19400, "short": 19100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3", "label": "所得割 76,000円以上 77,101円未満", "incomeMin": 76000, "incomeMax": 77101, "fees": { "under3": { "standard": 24500, "short": 24100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3-2", "label": "所得割 77,101円以上 97,000円未満", "incomeMin": 77101, "incomeMax": 97000, "fees": { "under3": { "standard": 24500, "short": 24100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D4", "label": "所得割 97,000円以上 123,000円未満", "incomeMin": 97000, "incomeMax": 123000, "fees": { "under3": { "standard": 31500, "short": 31000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D5", "label": "所得割 123,000円以上 148,000円未満", "incomeMin": 123000, "incomeMax": 148000, "fees": { "under3": { "standard": 40500, "short": 39800 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D6", "label": "所得割 148,000円以上 169,000円未満", "incomeMin": 148000, "incomeMax": 169000, "fees": { "under3": { "standard": 44000, "short": 43300 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7", "label": "所得割 169,000円以上 219,000円未満", "incomeMin": 169000, "incomeMax": 219000, "fees": { "under3": { "standard": 50500, "short": 49700 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D8", "label": "所得割 219,000円以上 265,000円未満", "incomeMin": 219000, "incomeMax": 265000, "fees": { "under3": { "standard": 53600, "short": 52700 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D9", "label": "所得割 265,000円以上 301,000円未満", "incomeMin": 265000, "incomeMax": 301000, "fees": { "under3": { "standard": 54500, "short": 53600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D10", "label": "所得割 301,000円以上 397,000円未満", "incomeMin": 301000, "incomeMax": 397000, "fees": { "under3": { "standard": 55600, "short": 54700 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D11", "label": "所得割 397,000円以上", "incomeMin": 397000, "incomeMax": null, "fees": { "under3": { "standard": 56700, "short": 55700 }, "age3plus": { "standard": 0, "short": 0 } } }
+  ]
+}

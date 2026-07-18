@@ -1,0 +1,129 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "yamagata-yamagata",
+  "name": "山形県山形市",
+  "municipalityCode": "062014",
+  "prefecture": "山形県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-18",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "yamagata-riyou-page",
+      "title": "令和8年度 認可保育所等の利用申し込み受付について",
+      "publisher": "山形市 こども未来部 保育育成課",
+      "url": "https://www.city.yamagata-yamagata.lg.jp/kosodatekyoiku/hoiku/1007241/1016711.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "令和8年度 利用者負担額（保育料）表（hutann.pdf）の掲載元ページ。"
+    },
+    {
+      "id": "yamagata-hutan-pdf",
+      "title": "令和8年度 利用者負担額（保育料）表",
+      "publisher": "山形市 こども未来部 保育育成課",
+      "url": "https://www.city.yamagata-yamagata.lg.jp/_res/projects/default_project/_page_/001/016/711/hutann.pdf",
+      "landingUrl": "https://www.city.yamagata-yamagata.lg.jp/kosodatekyoiku/hoiku/1007241/1016711.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-18",
+      "tier": "municipality",
+      "note": "令和8年度の利用者負担額表（全2ページ）。1ページ目に階層区分A・B0・B・C・D1〜D7による3歳未満児（保育標準時間/短時間）の保育料月額と3歳以上児（無償=0円）を掲載。各所得割階層は『二人親世帯』と『ひとり親・障がい児（者）世帯（一律2,600円）』の2列に分かれる。2ページ目に税年度切替（4〜8月=令和7年度市民税、9〜翌3月=令和8年度市民税）、算定所得割の控除除外、定額減税の扱い、指定都市新税率の旧税率換算、副食費免除、合算世帯範囲を掲載。PyMuPDFのfind_tables()でテキスト層から表構造を機械抽出し全階層の境界・額を確認済み。"
+    }
+  ],
+  "disclaimer": "本データは山形市公式サイトの公表内容を2026-07-18時点で機械的に整理した参考情報です。実際の利用者負担額（保育料）は世帯状況・課税内容・入所施設により決定され、最終的には山形市こども未来部保育育成課の決定が優先します。個別の判断は必ず山形市および利用施設にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育利用）・地域型保育施設を利用する2号・3号認定の月額利用者負担額（保育料）（一般＝二人親世帯・第1子・保育標準時間認定/保育短時間認定）",
+      "3歳以上児（1号・2号認定）の月額利用者負担額（幼児教育・保育の無償化により0円）",
+      "階層区分A・B・C・D1〜D7（市民税所得割額の範囲）"
+    ],
+    "excludes": [
+      "3歳未満児クラスの副食費・行事費・通園送迎費等の実費（本表に含まれない。ただし所得割77,101円未満世帯・全世帯の第3子以降の副食費は免除）",
+      "3歳以上児クラスの副食費（所得割57,700円未満〈ひとり親・障がい児者世帯は77,101円未満〉世帯・全世帯の第3子以降は免除）・行事費等の実費",
+      "ひとり親・障がい児（者）世帯の軽減額（C〜D3・所得割77,101円未満で一律2,600円）そのものはtiers本体に収録せず bracketBasis.note に記録（tiersは一般＝二人親世帯・第1子の額のみ）",
+      "認可外保育施設の利用料（施設等利用給付の対象で本表の対象外）",
+      "施設ごとの上乗せ徴収・教材費等"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則、支給認定保護者とその配偶者の市民税所得割課税額を合算した額により算定する。世帯の状況により、父・母の所得だけでは生計が成り立たないと市が判断した場合は、同居の祖父母等も算定に含める場合がある。",
+    "taxYearRule": "令和8年4月分〜8月分の保育料は令和7年度市民税額（令和6年中の収入等）、令和8年9月分〜翌年3月分は令和8年度市民税額（令和7年中の収入等）で算定する。令和7年1月2日以降に山形市へ転入した方は課税証明書等の提出が必要。課税状況が確認できない場合は保育料表の各区分の最高額で仮決定となる。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除（住宅ローン控除）",
+      "配当控除",
+      "寄附金税額控除（ふるさと納税等）",
+      "外国税額控除",
+      "配当割額・株式等譲渡所得割額控除"
+    ],
+    "note": "原文：「市民税の所得割額は、調整控除以外の税額控除（住宅借入金等特別税額控除、配当控除、寄附金税額控除、外国税額控除、配当割額・株式等譲渡所得割額控除）の適用前の額となります。ただし、定額減税は控除後の額を適用します。」＝調整控除は除外せず、上記5控除の適用前の所得割額で判定する。★定額減税は控除後の額を適用する（他市が未確認とする定額減税の扱いを、山形市は明示的に控除後としている）★。／★政令指定都市の税率換算★ 原文：「指定都市の新税率移行後も、旧税率により算出した市民税所得割額を用いて階層判定をします。」＝政令指定都市（税源移譲で市民税所得割の税率が8%）で課税された額は、旧税率（6%）で算出した額に換算して階層判定する。山形市は中核市で自市の課税は通常税率であり、6/8換算は指定都市課税者にのみ適用する（自市全体への一律適用ではない）。乗率・端数処理の明文は表・裏面にない。／階層A（生活保護等）・B（非課税世帯）はいずれも所得割0円であり所得割額だけでは相互に判別できない。isWelfare・isNonTaxable フラグで区別する。／tiersには一般＝二人親世帯・第1子の額のみを収録している。ひとり親・障がい児（者）世帯はC〜D3（所得割77,101円未満）で一律2,600円に軽減されるが、tool側でひとり親の額を算出しないため本体には収録せず本noteに記録する。多子（第2子半額・第3子以降）の保育料軽減の具体額はこの利用者負担額表に明記がないため推測補完せず、副食費免除（第3子以降・所得割77,101円未満）のみ確認済みとして scope.excludes に記録する。",
+    "sourceId": "yamagata-hutan-pdf",
+    "checkedAt": "2026-07-18",
+    "verify": {
+      "expect": [
+        "調整控除以外の税額控除",
+        "旧税率により算出",
+        "定額減税は控除後の額を適用"
+      ],
+      "sourceId": "yamagata-hutan-pdf"
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児（4月1日時点の年齢）",
+      "rule": "4月1日時点で3歳未満（3号認定）。副食費等は実費（所得割77,101円未満・第3子以降は副食費免除）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児（4月1日時点の年齢）",
+      "rule": "4月1日時点で3歳以上。幼児教育・保育の無償化により利用者負担額は0円。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3歳以上児の利用者負担額は無償",
+      "sourceId": "yamagata-hutan-pdf",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": [
+          "3歳以上児（4/1時点の年齢）については保育料は無償"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "令和元年10月からの幼児教育・保育の無償化による0円。教育認定（1号）も無償。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "市民税非課税世帯（A・B・B0階層）の3歳未満児利用者負担額は0円",
+      "sourceId": "yamagata-hutan-pdf",
+      "checkedAt": "2026-07-18",
+      "verify": {
+        "expect": [
+          "非課税世帯"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-18時点)",
+      "note": "A階層（生活保護等）・B階層（二人親非課税）・B0階層（ひとり親・障がい児者の非課税）はいずれも3歳未満児も0円。国の無償化制度と一致する範囲。"
+    },
+    "localExtension": "山形市独自の全世帯一律無償化（3歳未満児の所得制限なし無償化等）は2026-07-18時点で確認できない。国の無償化制度（3歳以上児全員無償化、3歳未満児の住民税非課税世帯無償化）を適用するのみ。市（県事業）独自に相当するのは、ひとり親・障がい児（者）世帯の3歳未満児保育料をC〜D3（所得割77,101円未満）で一律2,600円に軽減する措置と、副食費の免除範囲拡大（所得割77,101円未満・第3子以降）である。"
+  },
+  "tiers": [
+    { "tier": "A", "label": "生活保護法による被保護世帯等", "incomeMin": 0, "incomeMax": 1, "isWelfare": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "B", "label": "市民税非課税世帯", "incomeMin": 0, "incomeMax": 1, "isNonTaxable": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C", "label": "市民税均等割のみ課税世帯（所得割0円）", "incomeMin": 0, "incomeMax": 1, "fees": { "under3": { "standard": 9200, "short": 9100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1", "label": "所得割 15,000円未満", "incomeMin": 1, "incomeMax": 15000, "fees": { "under3": { "standard": 12700, "short": 12500 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2", "label": "所得割 15,000円以上 48,600円未満", "incomeMin": 15000, "incomeMax": 48600, "fees": { "under3": { "standard": 16900, "short": 16700 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3", "label": "所得割 48,600円以上 57,700円未満", "incomeMin": 48600, "incomeMax": 57700, "fees": { "under3": { "standard": 20900, "short": 20600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3-2", "label": "所得割 57,700円以上 77,101円未満", "incomeMin": 57700, "incomeMax": 77101, "fees": { "under3": { "standard": 20900, "short": 20600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3-3", "label": "所得割 77,101円以上 97,000円未満", "incomeMin": 77101, "incomeMax": 97000, "fees": { "under3": { "standard": 20900, "short": 20600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D4", "label": "所得割 97,000円以上 169,000円未満", "incomeMin": 97000, "incomeMax": 169000, "fees": { "under3": { "standard": 35600, "short": 35000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D5", "label": "所得割 169,000円以上 301,000円未満", "incomeMin": 169000, "incomeMax": 301000, "fees": { "under3": { "standard": 43700, "short": 43000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D6", "label": "所得割 301,000円以上 397,000円未満", "incomeMin": 301000, "incomeMax": 397000, "fees": { "under3": { "standard": 51500, "short": 50700 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7", "label": "所得割 397,000円以上", "incomeMin": 397000, "incomeMax": null, "fees": { "under3": { "standard": 56700, "short": 55800 }, "age3plus": { "standard": 0, "short": 0 } } }
+  ]
+}

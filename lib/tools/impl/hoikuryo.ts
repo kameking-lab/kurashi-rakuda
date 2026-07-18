@@ -42,6 +42,9 @@ import kanagawaYokohama from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
 import kyotoKyoto from "@/data/seido/hoikuryo/kyoto-kyoto.json";
 import kumamotoKumamoto from "@/data/seido/hoikuryo/kumamoto-kumamoto.json";
 import miyagiSendai from "@/data/seido/hoikuryo/miyagi-sendai.json";
+import yamagataYamagata from "@/data/seido/hoikuryo/yamagata-yamagata.json";
+import yamanashiKofu from "@/data/seido/hoikuryo/yamanashi-kofu.json";
+import naganoNagano from "@/data/seido/hoikuryo/nagano-nagano.json";
 import niigataNiigata from "@/data/seido/hoikuryo/niigata-niigata.json";
 import oitaOita from "@/data/seido/hoikuryo/oita-oita.json";
 import okayamaOkayama from "@/data/seido/hoikuryo/okayama-okayama.json";
@@ -201,6 +204,7 @@ export const municipalities: HoikuryoMunicipality[] = [
   nahaOkinawa,
   hokkaidoSapporo,
   miyagiSendai,
+  yamagataYamagata,
   saitamaSaitama,
   saitamaKawaguchi,
   saitamaKawagoe,
@@ -233,6 +237,8 @@ export const municipalities: HoikuryoMunicipality[] = [
   kanagawaKawasaki,
   kanagawaSagamihara,
   niigataNiigata,
+  yamanashiKofu,
+  naganoNagano,
   toyamaToyama,
   ishikawaKanazawa,
   shizuokaShizuoka,
