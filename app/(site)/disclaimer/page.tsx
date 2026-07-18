@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SITE_NAME } from "@/app/lib/site";
+import { Rakku } from "@/components/mascot/Rakku";
 
 export const metadata: Metadata = {
   title: "免責事項",
@@ -10,12 +11,11 @@ export const metadata: Metadata = {
 
 export default function DisclaimerPage() {
   return (
-    <div>
-      <h1 className="text-xl font-bold sm:text-2xl">免責事項</h1>
-      <p className="mt-4">
+    <div className="static-page static-disclaimer">
+      <header className="static-hero"><div><p className="eyebrow">PLEASE NOTE</p><h1>免責事項</h1><p>
         {SITE_NAME}
         は、掲載する情報と計算結果の正確さのために、一次情報（法令・省庁・自治体・学会など）に基づく確認と毎日の自動照合を行っていますが、ご利用にあたっては次の点をご了承ください。
-      </p>
+      </p></div><Rakku pose="worried" size={160} /></header>
 
       <SectionHeading>計算結果・情報は「目安」です</SectionHeading>
       <ul className="list-inside list-disc space-y-2">

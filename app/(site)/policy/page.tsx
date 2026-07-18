@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SITE_NAME } from "@/app/lib/site";
+import { Rakku } from "@/components/mascot/Rakku";
 
 export const metadata: Metadata = {
   title: "編集・紹介ポリシー",
@@ -12,13 +13,12 @@ export const metadata: Metadata = {
 /** docs/06_紹介ポリシー.md の公開版（全文掲載は §4 の必須要件） */
 export default function PolicyPage() {
   return (
-    <div>
-      <h1 className="text-xl font-bold sm:text-2xl">編集・紹介ポリシー</h1>
-      <p className="mt-4">
+    <div className="static-page static-policy">
+      <header className="static-hero"><div><p className="eyebrow">OUR POLICY</p><h1>編集・紹介ポリシー</h1><p>
         {SITE_NAME}は完全無料のサイトです。商品・サービスを紹介してよいのは、
         <strong>その商品で生活が確実に改善されると判断できた場合のみ</strong>
         で、紹介料の有無は掲載判断に影響させません。「紹介できる商品が見つからない」ことは失敗ではなく通常の状態と考えており、紹介ゼロのページが大多数であることを健全とみなします。
-      </p>
+      </p></div><Rakku pose="guide" size={160} /></header>
 
       <SectionHeading>掲載の4条件（すべて満たさない限り掲載しません）</SectionHeading>
       <ol className="list-inside list-decimal space-y-3">
