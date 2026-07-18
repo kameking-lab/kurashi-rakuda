@@ -554,7 +554,11 @@
       {
         "label": "高知市「保育料の額について」",
         "url": "https://www.city.kochi.kochi.jp/soshiki/34/hoikuryo.html"
-      }
+      },
+      "data/seido/hoikuryo/fukuoka-kurume.json",
+      "data/seido/hoikuryo/hiroshima-fukuyama.json",
+      "data/seido/hoikuryo/kagawa-takamatsu.json",
+      "data/seido/hoikuryo/yamaguchi-shimonoseki.json"
     ],
     "updated": "2026-07-17",
     "status": "live",
