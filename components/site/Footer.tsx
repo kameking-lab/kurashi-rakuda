@@ -1,12 +1,15 @@
 import Link from "next/link";
+import { BrandLogo } from "./BrandLogo";
+import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
 
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-line bg-sand-soft/60">
-      <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-ink-muted sm:px-6">
-        <p className="mb-5 text-lg font-bold text-ink">くらしのラクダ</p>
-        <nav aria-label="フッター">
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+    <footer className="site-footer mt-24">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-8 sm:py-20">
+        <div className="footer-grid">
+          <div><BrandLogo footer /><p className="mt-5 max-w-sm text-sm text-ink-muted">妊娠・子育てから家事、お金、仕事、介護まで。根拠のある計算と段取りで、暮らしの荷物をひとつ軽くします。</p></div>
+          <nav aria-label="ツールカテゴリ"><p className="footer-heading">ツールを探す</p><ul className="footer-links">{Object.entries(TOOL_CATEGORIES).map(([key,label])=><li key={key}><Link href={`/tools#${key}`}>{label}</Link></li>)}</ul></nav>
+          <nav aria-label="サイト案内"><p className="footer-heading">サイト案内</p><ul className="footer-links">
             <li>
               <Link href="/about" className="hover:text-ink">
                 サイト概要・運営方針
@@ -37,11 +40,10 @@ export function Footer() {
                 お問い合わせ
               </Link>
             </li>
-          </ul>
-        </nav>
-        <p className="mt-4">
-          くらしのラクダは、主婦・女性の毎日を楽にする完全無料のサイトです。すべての機能を登録なしで使えます。
-        </p>
+          </ul></nav>
+        </div>
+        <div className="footer-proof"><span>すべて無料</span><span>広告・会員登録 0</span><span>入力は端末内だけ</span><span>出典と更新日を明記</span></div>
+        <p className="mt-8 border-t border-line pt-6 text-xs text-ink-muted">© 2026 くらしのラクダ。暮らしの判断に必要な根拠を、やさしく整理する独立サイトです。</p>
       </div>
     </footer>
   );

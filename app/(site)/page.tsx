@@ -1,11 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { getLiveTools, tools } from "@/app/lib/tools/registry";
 import { TOOL_CATEGORIES, type ToolCategory } from "@/app/lib/tools/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Callout } from "@/components/ui/Callout";
 import { SolvesSearch } from "@/components/search/SolvesSearch";
-import { Rakku } from "@/components/mascot/Rakku";
 import { DeferredHomePersonalization, DeferredProfileSettings } from "@/components/personalize/DeferredPersonalization";
 
 /** ライフステージ導線（docs/04 §3.1 の2軸ナビのうちステージ軸。専用ハブは Phase 2） */
@@ -29,26 +29,26 @@ export default function Home() {
 
   return (
     <div className="home-v2">
-      <section aria-label="サイト紹介" className="hero-grid">
+      <section aria-label="サイト紹介" className="hero-grid hero-concept-a">
         <div className="relative z-10">
-          <p className="eyebrow">登録不要・広告なし・ずっと無料</p>
-          <h1 className="mt-3 text-4xl font-bold leading-[1.25] tracking-tight sm:text-6xl">
+          <p className="eyebrow">暮らしの判断を、やさしく確かに</p>
+          <h1 className="hero-title mt-4 font-bold leading-[1.18] tracking-tight">
             暮らしの荷物を、<br /><span className="text-brand">ひとつ軽く。</span>
           </h1>
-          <div className="mt-5 max-w-xl text-lg text-ink-muted">
-            <p>妊娠・子育て・家事・お金・仕事・介護の計算と段取りを、</p>
-            <p>すべて無料・登録不要で。広告に答えを邪魔されません。</p>
+          <div className="hero-copy mt-6 max-w-xl text-ink-muted">
+            <p>妊娠・子育て・家事・お金・仕事・介護の計算と段取りを、一次情報と機械検査で確かな形に。</p>
           </div>
           <div className="mt-7 max-w-2xl"><SolvesSearch /></div>
         </div>
-        <div className="hero-mascot" aria-hidden="true"><Rakku pose="front" size={360} priority={false} /></div>
+        <div className="hero-mascot" aria-hidden="true"><Image src="/brand/hero-rakku.png" width={1024} height={1024} alt="" priority sizes="(max-width: 767px) 140px, 440px" /></div>
+        <p className="hero-signature" aria-hidden="true">FREE / NO ADS / EVIDENCE FIRST</p>
       </section>
 
       <section aria-label="信頼の根拠" className="trust-strip">
-        <div><strong>100%</strong><span>全ツール無料</span></div>
-        <div><strong>0</strong><span>広告・会員登録</span></div>
-        <div><strong>一次情報</strong><span>根拠と出典を明記</span></div>
-        <div><strong>機械照合</strong><span>計算結果を継続検査</span></div>
+        <div><strong>64</strong><span>公開中の無料ツール</span></div>
+        <div><strong>437</strong><span>解決できる暮らしの悩み</span></div>
+        <div><strong>0</strong><span>広告・会員登録・外部送信</span></div>
+        <div><strong>一次情報</strong><span>出典・更新日・計算式を公開</span></div>
       </section>
 
       <div className="mt-6"><DeferredProfileSettings /></div>
@@ -63,19 +63,19 @@ export default function Home() {
         <DeferredHomePersonalization />
       </section>
 
-      <SectionHeading>ライフステージからさがす</SectionHeading>
-      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <section className="stage-feature"><div className="section-intro"><p className="eyebrow">LIFE STAGE</p><SectionHeading>今の暮らしから、まっすぐ探す</SectionHeading><p>制度の名前が分からなくても大丈夫。今のあなたに近い入り口から案内します。</p></div>
+      <ul className="stage-editorial-grid">
         {stages.map((s) => (
           <li key={s.label}>
             <Link
               href={`/tools#${s.category}`}
-              className="stage-card flex min-h-24 items-center justify-center rounded-card border border-line bg-sand-soft p-4 font-bold"
+              className="stage-card editorial-stage-card"
             >
-              {s.label}
+              <span>{s.label}</span><small>関連ツールへ <b aria-hidden="true">↗</b></small>
             </Link>
           </li>
         ))}
-      </ul>
+      </ul></section>
 
       <SectionHeading>カテゴリからさがす</SectionHeading>
       <ul className="flex flex-wrap gap-2">
