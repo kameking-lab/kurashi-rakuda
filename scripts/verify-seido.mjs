@@ -192,6 +192,10 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.suita.osaka.jp', // 吹田市（中核市）は city.suita.lg.jp が存在しない（P2-D01・2026-07-18）
   'city.takatsuki.osaka.jp', // 高槻市（中核市）は city.takatsuki.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）
   'city.wakayama.wakayama.jp', // 和歌山市（中核市）は city.wakayama.lg.jp が存在しない（DNS解決せず。P2-D01・2026-07-18）
+  'city.ibaraki.osaka.jp', // 茨木市（施行時特例市）の公式サイト
+  'city.kishiwada.osaka.jp', // 岸和田市（施行時特例市）の公式サイト
+  'city.takarazuka.hyogo.jp', // 宝塚市（施行時特例市）の公式サイト
+  'city.tokushima.tokushima.jp', // 徳島市の公式サイト
 ];
 
 const args = process.argv.slice(2);
