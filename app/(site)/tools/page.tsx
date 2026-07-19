@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { tools } from "@/app/lib/tools/registry";
+import { getLiveTools, tools } from "@/app/lib/tools/registry";
 import { TOOL_CATEGORIES, type ToolCategory } from "@/app/lib/tools/types";
 import { Rakku } from "@/components/mascot/Rakku";
 import { DeferredProfileSettings, DeferredToolDirectoryControls } from "@/components/personalize/DeferredPersonalization";
@@ -23,9 +23,10 @@ export const metadata: Metadata = {
 
 export default function ToolsPage() {
   const categories = Object.keys(TOOL_CATEGORIES) as ToolCategory[];
+  const liveCount = getLiveTools().length;
   return (
     <div className="category-index">
-      <header className="index-hero"><div><p className="eyebrow">48+ FREE TOOLS</p><h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-5xl">暮らしの答えを、すぐ手元に。</h1>
+      <header className="index-hero"><div><p className="eyebrow">{liveCount} FREE TOOLS</p><h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-5xl">暮らしの答えを、すぐ手元に。</h1>
       <p className="mt-2 text-ink-muted">
         すべて無料・登録不要。準備中のツールも順次公開します。
       </p></div><span className="index-hero-mascot"><Rakku pose="calc" size={180} sizes="180px" /></span></header>

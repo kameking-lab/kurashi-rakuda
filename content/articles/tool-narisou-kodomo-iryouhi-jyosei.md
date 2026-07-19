@@ -32,7 +32,7 @@
 
 本記事は「[子ども医療費助成 自治体早見](/tools/childcare/kodomo-iryouhi-jyosei)」に対応しています。学齢と通院・入院の別を選び、こども家庭庁の全国調査における対象年齢の分布や、所得制限・一部自己負担の傾向を確認するツールです。
 
-個別自治体の受給資格や助成額を判定するものではありません。制度の仕組みは「[子ども医療費助成は自治体でどう違う？](/articles/seido-kodomo-iryouhi-josei)」、税の医療費控除との関係は「[子ども関連の医療費控除](/articles/seido-iryouhi-koujo-kodomo)」も参照してください。
+個別自治体の受給資格や助成額を判定するものではありません。制度の仕組みは「[子ども医療費助成は自治体でどう違う？](/guide/childcare/seido-kodomo-iryouhi-josei)」、税の医療費控除との関係は「[子ども関連の医療費控除](/guide/money/seido-iryouhi-koujo-kodomo)」も参照してください。
 
 ## 計算の考え方
 

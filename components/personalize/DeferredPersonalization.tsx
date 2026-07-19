@@ -34,7 +34,7 @@ export function DeferredHomePersonalization() {
   return ready ? <Suspense fallback={null}><HomeController /></Suspense> : null;
 }
 
-const labels = ["すべて", "姊活・姊娠", "産後・0〜1歳", "乳幼児（1〜6歳）", "学童", "働く・お金", "介護", "暮らし全般"];
+const labels = ["すべて", "妊活・妊娠", "産後・0〜1歳", "乳幼児（1〜6歳）", "学童", "働く・お金", "介護", "暮らし全般"];
 export function DeferredToolDirectoryControls() {
   const ready = useAfterLcp();
   if (ready) return <Suspense fallback={<DirectoryPlaceholder />}><DirectoryControls /></Suspense>;

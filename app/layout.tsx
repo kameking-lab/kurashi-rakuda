@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { JsonLd } from "@/components/site/JsonLd";
 import {
+  GSC_VERIFICATION,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_TAGLINE,
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   // 2026-07-18 公開（社長決裁）: noindex を解除し検索エンジンのインデックスを許可。
+  ...(GSC_VERIFICATION ? { verification: { google: GSC_VERIFICATION } } : {}),
 };
 
 export const viewport: Viewport = {

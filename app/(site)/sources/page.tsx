@@ -5,6 +5,7 @@ import { Rakku } from "@/components/mascot/Rakku";
 export const metadata: Metadata = {
   title: "出典一覧",
   robots: { index: false },
+  alternates: { canonical: "/sources" },
 };
 
 /** 全ツールの出典を一覧表示（registry から自動生成） */
