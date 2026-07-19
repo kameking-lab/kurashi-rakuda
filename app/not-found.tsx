@@ -1,5 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Rakku } from "@/components/mascot/Rakku";
+
+export const metadata: Metadata = {
+  title: "ページが見つかりませんでした",
+  robots: { index: false },
+};
 
 export default function NotFound() {
   return (

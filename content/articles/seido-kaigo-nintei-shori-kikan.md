@@ -40,7 +40,7 @@
 
 - **申請後は何もしなくてよい？** 訪問調査の日程調整、主治医の確認、困りごとのメモを進めておくと、その後の説明がしやすくなります。
 - **認定前はサービスを使えない？** 急ぎの場合の扱いは状況で異なるため、地域包括支援センターや自治体へ相談してください。
-- **次の手順を整理したい** 「[要介護認定 段取りナビ](/tools/care/youkaigo-nintei-dandori-navi)」と「[要介護認定の流れ](/articles/dandori-youkaigo-nintei-nagare)」で、申請前後の作業を確認できます。費用は「[介護保険の自己負担割合](/articles/seido-kaigo-hoken-futan-wariai-shotoku)」も参考になります。
+- **次の手順を整理したい** 「[要介護認定 段取りナビ](/tools/care/youkaigo-nintei-dandori-navi)」と「[要介護認定の流れ](/guide/care/dandori-youkaigo-nintei-nagare)」で、申請前後の作業を確認できます。費用は「[介護保険の自己負担割合](/guide/care/seido-kaigo-hoken-futan-wariai-shotoku)」も参考になります。
 
 ## 出典・根拠
 

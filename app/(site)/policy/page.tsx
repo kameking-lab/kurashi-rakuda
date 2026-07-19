@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "編集・紹介ポリシー",
   description:
     "くらしのラクダの編集方針と、商品・サービス紹介の掲載基準の全文です。",
+  alternates: { canonical: "/policy" },
 };
 
 /** docs/06_紹介ポリシー.md の公開版（全文掲載は §4 の必須要件） */

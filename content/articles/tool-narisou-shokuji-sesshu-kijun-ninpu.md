@@ -11,7 +11,7 @@
 
 ## この記事はどのツールと対応している？
 
-本記事は[妊娠中・授乳中の栄養付加量 早見](/tools/pregnancy/shokuji-sesshu-kijun-ninpu)に対応しています。妊娠初期・中期・後期・授乳中を選び、非妊娠時に上乗せする栄養量を整理するツールです。数値の制度的な位置づけは[妊娠中・授乳中の食事摂取基準](/articles/seido-shokuji-sesshu-kijun-ninpu)で確認できます。
+本記事は[妊娠中・授乳中の栄養付加量 早見](/tools/pregnancy/shokuji-sesshu-kijun-ninpu)に対応しています。妊娠初期・中期・後期・授乳中を選び、非妊娠時に上乗せする栄養量を整理するツールです。数値の制度的な位置づけは[妊娠中・授乳中の食事摂取基準](/guide/health/seido-shokuji-sesshu-kijun-ninpu)で確認できます。
 
 ## 計算の考え方
 

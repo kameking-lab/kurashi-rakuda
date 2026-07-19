@@ -141,3 +141,10 @@ export function getArticle(
 export function getArticlesByCategory(category: ToolCategory): LoadedArticle[] {
   return getAllArticles().filter((a) => a.category === category);
 }
+
+/** 解決できる悩みの一意な総数（ツール由来＋記事由来。.github/scripts/check-solves.mjs と同じ集計） */
+export function countUniqueSolvesWithArticles(): number {
+  const toolSolves = tools.flatMap((t) => t.solves);
+  const articleSolves = getAllArticles().flatMap((a) => a.solves);
+  return new Set([...toolSolves, ...articleSolves]).size;
+}

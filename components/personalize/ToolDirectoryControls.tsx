@@ -9,7 +9,7 @@ import { usePersonalization } from "./usePersonalization";
 
 const STAGES: { id: string; label: string; stages?: LifeStage[]; universal?: boolean }[] = [
   { id: "all", label: "すべて" },
-  { id: "pregnancy", label: "姊活・姊娠", stages: ["pregnancy"] },
+  { id: "pregnancy", label: "妊活・妊娠", stages: ["pregnancy"] },
   { id: "baby", label: "産後・0〜1歳", stages: ["newborn", "infant"] },
   { id: "preschool", label: "乳幼児（1〜6歳）", stages: ["infant", "toddler"] },
   { id: "school", label: "学童", stages: ["schoolAge"] },

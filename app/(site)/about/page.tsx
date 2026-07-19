@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "サイト概要・運営方針",
   description:
     "くらしのラクダのサイト概要と運営方針。完全無料・登録不要・広告に邪魔されないことをお約束します。",
+  alternates: { canonical: "/about" },
 };
 
 /** サイト概要＋運営方針（ブランド哲学 docs/00 §3 の公開版） */

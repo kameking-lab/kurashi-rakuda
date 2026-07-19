@@ -6,6 +6,7 @@ import { Rakku } from "@/components/mascot/Rakku";
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description: "くらしのラクダへのお問い合わせ方法です。",
+  alternates: { canonical: "/contact" },
 };
 
 /**

@@ -11,7 +11,7 @@
 
 ## この記事はどのツールと対応している？
 
-本記事は[不妊治療 保険適用・回数 早見](/tools/pregnancy/funin-chiryou-hoken-tekiyou)に対応しています。治療開始時の年齢から生殖補助医療の年齢要件と胚移植の回数上限を確認し、任意で保険診療総額から窓口負担の目安を試算します。対象となる治療の範囲は[不妊治療の保険適用制度](/articles/seido-funin-chiryou-hoken-tekiyou)も参照してください。
+本記事は[不妊治療 保険適用・回数 早見](/tools/pregnancy/funin-chiryou-hoken-tekiyou)に対応しています。治療開始時の年齢から生殖補助医療の年齢要件と胚移植の回数上限を確認し、任意で保険診療総額から窓口負担の目安を試算します。対象となる治療の範囲は[不妊治療の保険適用制度](/guide/pregnancy/seido-funin-chiryou-hoken-tekiyou)も参照してください。
 
 ## 計算の考え方
 

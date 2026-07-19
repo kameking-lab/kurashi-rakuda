@@ -28,3 +28,10 @@ export const SISTER_SITE = {
 export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
+
+/**
+ * GSC（Google Search Console）の所有権確認コード（meta name="google-site-verification"）。
+ * 環境変数 GSC_VERIFICATION 未設定時は undefined を返し、layout.tsx 側で meta 自体を出力しない
+ * （社長がプロパティ作成・コード発行するまでは何も出さない受け口。docs/13 A-2/N-9）。
+ */
+export const GSC_VERIFICATION = process.env.GSC_VERIFICATION || undefined;

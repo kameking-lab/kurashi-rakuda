@@ -7,6 +7,7 @@ import { Rakku } from "@/components/mascot/Rakku";
 export const metadata: Metadata = {
   title: "免責事項",
   description: "くらしのラクダのご利用にあたっての免責事項です。",
+  alternates: { canonical: "/disclaimer" },
 };
 
 export default function DisclaimerPage() {

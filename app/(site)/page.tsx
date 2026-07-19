@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { getLiveTools, tools } from "@/app/lib/tools/registry";
 import { TOOL_CATEGORIES, type ToolCategory } from "@/app/lib/tools/types";
+import { countUniqueSolvesWithArticles } from "@/app/lib/articles/loader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Callout } from "@/components/ui/Callout";
 import { SolvesSearch } from "@/components/search/SolvesSearch";
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
 export default function Home() {
   const live = getLiveTools();
   const planned = tools.length - live.length;
+  const solvesCount = countUniqueSolvesWithArticles();
 
   return (
     <div className="home-v2">
@@ -45,8 +47,8 @@ export default function Home() {
       </section>
 
       <section aria-label="信頼の根拠" className="trust-strip">
-        <div><strong>64</strong><span>公開中の無料ツール</span></div>
-        <div><strong>437</strong><span>解決できる暮らしの悩み</span></div>
+        <div><strong>{live.length}</strong><span>公開中の無料ツール</span></div>
+        <div><strong>{solvesCount}</strong><span>解決できる暮らしの悩み</span></div>
         <div><strong>0</strong><span>広告・会員登録・外部送信</span></div>
         <div><strong>一次情報</strong><span>出典・更新日・計算式を公開</span></div>
       </section>

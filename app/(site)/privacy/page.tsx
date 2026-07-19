@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "プライバシーポリシー",
   description:
     "くらしのラクダの個人情報・データの取り扱いについての方針です。",
+  alternates: { canonical: "/privacy" },
 };
 
 const UPDATED = "2026-07-17";

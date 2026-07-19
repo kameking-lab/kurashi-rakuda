@@ -36,8 +36,8 @@
 ## よくある疑問
 
 - **賞与も対象？** 雇用保険の対象となる賃金に含まれる賞与は計算対象です。
-- **社会保険料と同じ計算？** 異なります。協会けんぽについては「[健康保険料の決まり方](/articles/seido-kyoukaikenpo-hokenryo-2026)」で分けて確認してください。
-- **働く時間を変えたら年収はいくら？** 「[時短勤務の給与計算](/tools/career/jitan-kyuyo)」と「[パート・シフト収入計算](/tools/career/part-shift-shunyuu-keisan)」で見込みを整理できます。
+- **社会保険料と同じ計算？** 異なります。協会けんぽについては「[健康保険料の決まり方](/guide/career/seido-kyoukaikenpo-hokenryo-2026)」で分けて確認してください。
+- **働く時間を変えたら年収はいくら？** 「[時短勤務の給与計算](/tools/career/jitan-kyuyo)」と「[パート・シフト収入計算](/tools/money/part-shift-shunyuu-keisan)」で見込みを整理できます。
 
 ## 出典・根拠
 
