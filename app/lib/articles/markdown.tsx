@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
 import { Fragment } from "react";
+import { parseBlocks } from "./markdown-blocks";
 
 /**
  * 記事工場の Markdown 本文（限定書式）を React 要素に変換する小さなレンダラー。
  * 対応書式: ## / ### 見出し、段落、- 箇条書き（- [ ] チェックリスト含む）、
- * 1. 番号付きリスト、**強調**、[リンク](URL)。
+ * 1. 番号付きリスト、**強調**、[リンク](URL)、``` コードフェンス。
  * 外部ライブラリ・dangerouslySetInnerHTML を使わない（依存最小の方針。docs/05）。
  */
 
@@ -38,62 +39,6 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
   }
   if (last < text.length) nodes.push(text.slice(last));
   return nodes;
-}
-
-type Block =
-  | { kind: "h2" | "h3" | "p"; text: string }
-  | { kind: "ul"; items: string[]; checklist: boolean }
-  | { kind: "ol"; items: string[] };
-
-function parseBlocks(markdown: string): Block[] {
-  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
-  const blocks: Block[] = [];
-  let paragraph: string[] = [];
-  const flush = () => {
-    if (paragraph.length > 0) {
-      blocks.push({ kind: "p", text: paragraph.join(" ") });
-      paragraph = [];
-    }
-  };
-  for (const line of lines) {
-    const t = line.trim();
-    if (t === "") {
-      flush();
-    } else if (t.startsWith("# ")) {
-      // h1 はタイトルとして ArticleShell が表示するため本文では読み飛ばす
-      flush();
-    } else if (t.startsWith("### ")) {
-      flush();
-      blocks.push({ kind: "h3", text: t.slice(4) });
-    } else if (t.startsWith("## ")) {
-      flush();
-      blocks.push({ kind: "h2", text: t.slice(3) });
-    } else if (/^[-*] /.test(t)) {
-      flush();
-      const item = t.slice(2);
-      const checklist = /^\[[ x]\] /.test(item);
-      const value = checklist ? item.slice(4) : item;
-      const prev = blocks[blocks.length - 1];
-      if (prev && prev.kind === "ul" && prev.checklist === checklist) {
-        prev.items.push(value);
-      } else {
-        blocks.push({ kind: "ul", items: [value], checklist });
-      }
-    } else if (/^\d+\. /.test(t)) {
-      flush();
-      const value = t.replace(/^\d+\. /, "");
-      const prev = blocks[blocks.length - 1];
-      if (prev && prev.kind === "ol") {
-        prev.items.push(value);
-      } else {
-        blocks.push({ kind: "ol", items: [value] });
-      }
-    } else {
-      paragraph.push(t);
-    }
-  }
-  flush();
-  return blocks;
 }
 
 export function renderMarkdown(markdown: string): ReactNode {
@@ -143,6 +88,15 @@ export function renderMarkdown(markdown: string): ReactNode {
                   <li key={j}>{renderInline(item, `oli-${i}-${j}`)}</li>
                 ))}
               </ol>
+            );
+          case "code":
+            return (
+              <pre
+                key={i}
+                className="mt-4 overflow-x-auto rounded-card border border-line bg-sand-soft p-4 text-sm"
+              >
+                <code className="font-mono">{b.text}</code>
+              </pre>
             );
           case "p":
             return <p key={i}>{renderInline(b.text, `p-${i}`)}</p>;
