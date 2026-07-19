@@ -262,7 +262,7 @@
 - [ ] DIAG-A5 (A/フェイブル) 扶養の壁 178万/136万の独立再照合（診断検算で期待値側が令和8年度大綱を見落とした教訓。実装が正と判定済みだが第三者再確認）
 - [ ] DIAG-A6 (A/フェイブル) 児童扶養手当の年収→所得換算補助の仕様判断（扶養親族初期値0の罠も含む）
 - [~] DIAG-A7 (A/ソネット+オーパス) 記事表示崩れ: コードフェンス生表示5本・「0.3rate」生値露出・内部用語漏出＋レンダラー対応→ 内容側（ソネット担当分）はPR-2で完了: コードフェンス5本を地の文へ書き換え・funin-chiryou-hoken-tekiyouの「0.3rate」生値を「3割」表記に是正（factsもstub化して整合）・kyuyo-shotoku-koujoの「整備済みデータでは」を除去。check-fidelity 111/111 pass・0 violations。レンダラーのコードフェンス対応（オーパス担当分）は別途
-- [ ] DIAG-A8 (A/ソネット) brand-lint 強化: 収益ドメイン/広告タグ/sponsored属性の機械検知（P2-I06統合）
+- [x] DIAG-A8 (A/ソネット) brand-lint 強化: 収益ドメイン/広告タグ/sponsored属性の機械検知（P2-I06統合）→ PR-3で完了。a8.net/amzn.to/もしも/バリューコマース/アクセストレード/楽天アフィリエイト等のドメイン・adsbygoogle/googletagmanager/googlesyndication/doubleclick等の広告スクリプト・rel="sponsored"属性を検知対象に追加。既存記事111本+components配下全ファイルで誤検知ゼロを確認（`npm run check:brand` green）。ダミー混入5パターン（アフィリエイトURL2種・広告タグ2種・sponsored属性1種）でCIが赤くなることを実地確認済み
 - [x] DIAG-A9 (A/ソネット) サンプル記事3本の本番非公開化 → PR-2で完了。/guide/sample-* の3ページに `process.env.NODE_ENV === "production"` 時のnotFound()を追加。本番相当ビルドで3ページとも404・開発サーバーでは200を確認
 - [ ] DIAG-A10 (A/オーパス) 日付ユーティリティ15重実装の統合（lib/tools/date.ts）
 - [~] DIAG-A11 (A/社長+ソネット) GSC登録＋verification meta＋sitemap送信（D-2）→ verification metaの受け口（env `GSC_VERIFICATION` 未設定時は出力しない）はPR #243で完了。社長のプロパティ作成・コード発行待ち
@@ -271,7 +271,7 @@
 - [ ] DIAG-B1 (B/オーパス) CI強化: check:mascot 追加・LHCI対象に重量ページ＋記事追加（★DIAG-S2完了後。順序厳守★）・記事CLS 0.08是正
 - [ ] DIAG-B2 (B/オーパス) セキュリティヘッダ（XFO/nosniff/Referrer-Policy等）
 - [ ] DIAG-B3 (B/オーパス) verify-seido 死角解消: 空fees検知・「未確認」増分監視・under-review再訪期限
-- [ ] DIAG-B4 (B/ソネット) 呉市空データの扱い変更・R7据置13自治体の9〜10月再訪キュー化・naha-okinawaリネーム
+- [x] DIAG-B4 (B/ソネット) 呉市空データの扱い変更・R7据置13自治体の9〜10月再訪キュー化・naha-okinawaリネーム→ PR-3で完了。呉市: 4〜9月分未確認をamendments[].status=under-reviewとして明示（fees空・推測補完なしは維持）。R7据置13自治体（aichi-nagoya/chiba-chiba/chiba-ichikawa/fukuoka-kurume/hiroshima-fukuyama/hyogo-himeji・itami・kakogawa・takarazuka/kanagawa-hiratsuka・sagamihara/mie-yokkaichi/osaka-kishiwada）を2026-07-20に一次情報へ再アクセスして再チェック: 久留米市・岸和田市はR8版が公表済みで金額据置（fiscalYear:2026へ差し替え。岸和田市は自治体公式ドメインがcity.kishiwada.osaka.jp→city.kishiwada.lg.jpへ移行し旧URLがDNS解決不能になっていたため新ドメインへ差し替え）、残り11自治体は引き続き未公表のためasOf更新のみ。naha-okinawa.json→okinawa-naha.jsonへリネーム（prefecture-city語順の命名規約統一。id・queue/hoikuryo-backlog.mdの参照も追随）。全テストgreen（135件）・verify-seidoエラー0
 - [~] DIAG-B5 (B/ソネット) モバイル表示の粗さ群: 見出し改行・「48+ FREE TOOLS」数字不整合・フッタータップ領域・canonical 6ページ ほか（docs/13 B-7/B-9）→ 「48+ FREE TOOLS」数字不整合とcanonical 6ページ（about/policy/contact/privacy/disclaimer/sources）・404ページtitleはPR #243で完了。見出し改行・フッタータップ領域は未着手
 - [ ] DIAG-B6 (B/フェイブル→社長) マスコット画像の権利方針（Gemini Web UI自動操作生成の扱い）
 

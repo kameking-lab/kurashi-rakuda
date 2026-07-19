@@ -5,7 +5,7 @@
   "prefecture": "広島県",
   "municipalityType": "中核市",
   "fiscalYear": 2025,
-  "asOf": "2026-07-18",
+  "asOf": "2026-07-20",
   "nextCheckDue": "2027-04-01",
   "sources": [
     {
@@ -27,7 +27,7 @@
   ],
   "amendments": [
     {
-      "summary": "令和7年度(2025年度)用の更新待ち",
+      "summary": "令和7年度(2025年度)用の更新待ち。2026-07-20に自治体公式サイト（保育施設課ページ）を再確認したが、掲載PDFは引き続き令和7年度版（r7mimannjihoikuryou.pdf）のままで令和8年度版は未公表。",
       "status": "under-review"
     }
   ],

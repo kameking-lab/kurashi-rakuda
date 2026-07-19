@@ -5,28 +5,31 @@
   "municipalityCode": "272027",
   "prefecture": "大阪府",
   "municipalityType": "その他市",
-  "fiscalYear": 2025,
-  "asOf": "2026-07-18",
-  "nextCheckDue": "2026-09-01",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-20",
+  "nextCheckDue": "2027-04-01",
   "sources": [
     {
-      "id": "kishiwada-r7",
-      "title": "令和7年度 保育施設等利用案内",
+      "id": "kishiwada-r8",
+      "title": "岸和田市保育施設利用者負担額表（令和8年度用）",
       "publisher": "岸和田市",
-      "url": "https://www.city.kishiwada.osaka.jp/uploaded/attachment/144018.pdf",
-      "checkedAt": "2026-07-18",
-      "tier": "municipality"
+      "url": "https://www.city.kishiwada.lg.jp/uploaded/attachment/155005.pdf",
+      "landingUrl": "https://www.city.kishiwada.lg.jp/page/35-hoikusyogaiyou.html",
+      "checkedAt": "2026-07-20",
+      "tier": "municipality",
+      "note": "★岸和田市の公式ドメインが city.kishiwada.osaka.jp から city.kishiwada.lg.jp へ移行済み（2026-07-20確認時点で旧ドメインはDNS解決不能）★ 表題「【令和８年度用】」。特定世帯以外の金額は令和7年度版から据置（変更なし）。"
     }
   ],
   "amendments": [
     {
-      "summary": "令和8年度版の利用者負担額表を自治体公式サイトで確認できないため、令和7年度版を継続収録する。",
-      "status": "under-review",
-      "sourceId": "kishiwada-r7",
-      "impact": "令和8年度の試算では参考値として表示し、令和8年度版の公表を確認次第、階層・金額・軽減条件を再検証して差し替える。"
+      "summary": "令和8年度版の利用者負担額表が岸和田市公式サイト（ドメイン移行後の city.kishiwada.lg.jp）で公表されていることを確認した。特定世帯以外の金額は令和7年度版から変更なし（据置）。",
+      "status": "in-force",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "kishiwada-r8",
+      "impact": "fiscalYearを2026に更新し、tiersの金額はそのまま据置。sources[]を新ドメインの令和8年度版PDFに差し替えた。"
     }
   ],
-  "disclaimer": "本データは大阪府岸和田市の自治体公式資料に基づく参考情報です。実際の保育料は税額、世帯状況、きょうだい構成等により自治体が決定するため、決定通知書または担当窓口で確認してください。",
+  "disclaimer": "本データは大阪府岸和田市の自治体公式資料（令和8年度）に基づく参考情報です。実際の保育料は税額、世帯状況、きょうだい構成等により自治体が決定するため、決定通知書または担当窓口で確認してください。",
   "scope": {
     "includes": [
       "認可保育所・認定こども園等の一般世帯・第1子の月額保育料"
@@ -41,7 +44,7 @@
   "bracketBasis": {
     "basis": "市町村民税所得割額",
     "taxYearRule": "4～8月は前年度、9月～翌3月は当年度の市町村民税額を基礎に算定。",
-    "note": "児童と同住所の世帯員（主に父母）の市民税額を合算。寄附金・配当・外国税額・住宅借入金・配当割・株式等譲渡所得割の各控除前。6/8換算は一次情報で確認できず未確認。R8版未公表のためR7表を収録。"
+    "note": "児童と同住所の世帯員（主に父母）の市民税額を合算。寄附金・配当・外国税額・住宅借入金・配当割・株式等譲渡所得割の各控除前。6/8換算は一次情報で確認できず未確認。令和8年度版で金額据置を確認済み。"
   },
   "ageClasses": [
     {
@@ -58,35 +61,35 @@
   "freeTuition": {
     "age3plusFree": {
       "value": true,
-      "sourceId": "kishiwada-r7",
-      "checkedAt": "2026-07-18",
+      "sourceId": "kishiwada-r8",
+      "checkedAt": "2026-07-20",
       "amendmentNote": "なし"
     },
     "under3NonTaxableFree": {
       "value": true,
-      "sourceId": "kishiwada-r7",
-      "checkedAt": "2026-07-18",
+      "sourceId": "kishiwada-r8",
+      "checkedAt": "2026-07-20",
       "amendmentNote": "なし"
     },
     "multiChildPolicy": {
       "countingRule": {
         "value": "対象施設を同時利用する就学前児童を数え、第2子半額・第3子以降無料。所得割57,700円未満は生計同一のきょうだいを年齢制限なく数える。",
-        "sourceId": "kishiwada-r7",
-        "checkedAt": "2026-07-18",
+        "sourceId": "kishiwada-r8",
+        "checkedAt": "2026-07-20",
         "amendmentNote": "なし"
       },
       "secondChild": {
         "value": 0.5,
         "unit": "ratio",
-        "sourceId": "kishiwada-r7",
-        "checkedAt": "2026-07-18",
+        "sourceId": "kishiwada-r8",
+        "checkedAt": "2026-07-20",
         "amendmentNote": "所得・施設利用等の条件あり"
       },
       "thirdChildOnwards": {
         "value": 0,
         "unit": "yen",
-        "sourceId": "kishiwada-r7",
-        "checkedAt": "2026-07-18",
+        "sourceId": "kishiwada-r8",
+        "checkedAt": "2026-07-20",
         "amendmentNote": "条件はcountingRule参照"
       }
     },
