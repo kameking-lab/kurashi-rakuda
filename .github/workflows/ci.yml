@@ -29,6 +29,8 @@ jobs:
         run: npm run check:brand
       - name: 対象属性メタ検証（audience・パーソナライズの土台）
         run: npm run check:audience
+      - name: AI境界リンター（外部送信は lib/ai・API は app/api/ai のみ）
+        run: npm run check:ai-boundary
       - name: "マスコットマニフェスト検証（診断 B-4・check:mascot の CI 欠落を解消）"
         run: npm run check:mascot
       - name: ビルド
