@@ -10,6 +10,9 @@ import { join, relative } from "node:path";
 const TARGET_DIRS = ["app", "components", "content"];
 // ディレクトリ走査対象外だが煽り語を混ぜてはいけない編集資産（AI-1 同義語辞書。specs/ai/01 §2）
 const EXTRA_FILES = ["data/tables/search-synonyms.json"];
+// 収益タグ検知（DIAG-A8）の対象に含める化粧品データ（specs/tools/cosme-match.md §0.2）。
+// .json はEXTENSIONSに含まれないため、拡張子フィルタなしで別途走査する。
+const EXTRA_JSON_DIRS = ["data/cosme"];
 const EXTENSIONS = [".ts", ".tsx", ".md", ".mdx"];
 
 /** 禁止表現（docs/00 §3.3・docs/06 §3 に由来） */
@@ -54,6 +57,20 @@ function walk(dir, files = []) {
   return files;
 }
 
+function walkJson(dir, files = []) {
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name);
+    const st = statSync(full);
+    if (st.isDirectory()) {
+      if (name === "node_modules" || name.startsWith(".")) continue;
+      walkJson(full, files);
+    } else if (name.endsWith(".json")) {
+      files.push(full);
+    }
+  }
+  return files;
+}
+
 const violations = [];
 const scanFile = (file) => {
   const lines = readFileSync(file, "utf8").split("\n");
@@ -74,6 +91,10 @@ for (const dir of TARGET_DIRS) {
 }
 for (const file of EXTRA_FILES) {
   if (existsSync(file)) scanFile(file);
+}
+for (const dir of EXTRA_JSON_DIRS) {
+  if (!existsSync(dir)) continue;
+  for (const file of walkJson(dir)) scanFile(file);
 }
 
 if (violations.length > 0) {

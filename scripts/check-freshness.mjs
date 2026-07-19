@@ -36,6 +36,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const TABLES_DIR = join(ROOT, 'data', 'tables');
 const ARTICLES_DIR = join(ROOT, 'content', 'articles');
+const COSME_PRODUCTS_DIR = join(ROOT, 'data', 'cosme', 'products');
+const COSME_INGREDIENT_MAP = join(ROOT, 'data', 'cosme', 'ingredient-skin-map.json');
 
 /** 基準日は JST（verify-seido.mjs と同じ理由でタイムゾーン固定） */
 const TODAY = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
@@ -45,7 +47,7 @@ const AS_JSON = process.argv.includes('--json');
 
 /** @type {{level:'error'|'warn', file:string, message:string}[]} */
 const findings = [];
-const stats = { tables: 0, articles: 0 };
+const stats = { tables: 0, articles: 0, cosme: 0 };
 const err = (file, message) => findings.push({ level: 'error', file, message });
 const warn = (file, message) => findings.push({ level: 'warn', file, message });
 
@@ -99,6 +101,35 @@ async function checkTables() {
   }
 }
 
+// data/cosme（cosme-match）はverify-seidoの対象外だが、鮮度監査には含める
+// （specs/tools/cosme-match.md §3）。checkedAt/nextCheckDueともに商品ファイル・
+// ingredient-skin-map.jsonの両方に必須。
+async function checkCosme() {
+  const files = [];
+  if (existsSync(COSME_PRODUCTS_DIR)) {
+    for (const name of (await readdir(COSME_PRODUCTS_DIR)).filter((f) => f.endsWith('.json')).sort()) {
+      files.push(join(COSME_PRODUCTS_DIR, name));
+    }
+  }
+  if (existsSync(COSME_INGREDIENT_MAP)) files.push(COSME_INGREDIENT_MAP);
+
+  for (const fullPath of files) {
+    const file = relative(ROOT, fullPath);
+    stats.cosme++;
+    let d;
+    try {
+      d = JSON.parse(await readFile(fullPath, 'utf8'));
+    } catch (e) {
+      err(file, `JSONとしてパースできません: ${e.message}`);
+      continue;
+    }
+    checkDue(file, d.nextCheckDue, 'nextCheckDue');
+    if (!d.checkedAt && !d.asOf) {
+      err(file, '確認日（checkedAt / asOf）がありません（cosme-match鮮度監査で義務化）');
+    }
+  }
+}
+
 async function checkArticles() {
   if (!existsSync(ARTICLES_DIR)) return;
   for (const name of (await readdir(ARTICLES_DIR)).filter((f) => f.endsWith('.md')).sort()) {
@@ -123,6 +154,7 @@ async function checkArticles() {
 
 async function main() {
   await checkTables();
+  await checkCosme();
   await checkArticles();
 
   const errors = findings.filter((f) => f.level === 'error');
@@ -135,7 +167,9 @@ async function main() {
       console.log(`${f.level === 'error' ? 'ERROR' : 'WARN '} ${f.file}\n      ${f.message}`);
     }
     console.log('');
-    console.log(`検査: data/tables ${stats.tables}ファイル / 記事 ${stats.articles}本（基準日 ${TODAY}）`);
+    console.log(
+      `検査: data/tables ${stats.tables}ファイル / data/cosme ${stats.cosme}ファイル / 記事 ${stats.articles}本（基準日 ${TODAY}）`,
+    );
     console.log(`エラー: ${errors.length} / 警告: ${warns.length}`);
   }
   process.exit(errors.length > 0 ? 1 : 0);

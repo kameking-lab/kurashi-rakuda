@@ -1,5 +1,38 @@
 [
   {
+    "queueId": "P4-T04",
+    "slug": "cosme-match",
+    "category": "health",
+    "title": "肌質から化粧品を探す（実名・超公平）",
+    "description": "肌質・悩み・価格帯を選ぶと、条件にすべて合致する洗顔料・化粧水・乳液/クリーム・日焼け止めを機械的に列挙します。アフィリエイトリンクなし・PR枠なし・全商品に「向かない人」「注意点」を必ず併記する超公平設計です。",
+    "solves": [
+      "自分の肌質に合う化粧品をどう選べばいいかわからない",
+      "化粧品のランキングサイトはPRばかりで信用できない",
+      "プチプラで悩み別に合う化粧品を知りたい",
+      "商品の良いところしか書いていない紹介記事に疲れた"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "日本化粧品工業会「化粧品等の適正広告ガイドライン」（成分の機能分類の出典）",
+        "url": "https://www.jcia.org/user/business/advertising/"
+      },
+      {
+        "label": "厚生労働省「化粧品の全成分表示の表示方法等について」",
+        "url": "https://www.mhlw.go.jp/web/t_doc?dataId=00ta7768&dataType=1&pageNo=1"
+      }
+    ],
+    "updated": "2026-07-20",
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
+  },
+  {
     "queueId": "P4-T01",
     "slug": "kaden-denkidai-keisan",
     "category": "kaji",

@@ -1,0 +1,113 @@
+{
+  "$comment": "成分×肌質の一般論の根拠表（specs/tools/cosme-match.md §2）。ここだけが商品のskinTypeFit/concernsFit判定の根拠であり、商品ファイル側で恣意的にtrueを手書きすることを禁止する（.github/scripts/check-cosme-fairness.mjsが機械照合）。各行は治療効果を主張せず、『一般的に保湿成分として配合され、こうした肌悩みの方に選ばれることが多い』という一般論のみを記述する。出典は公的・業界自主基準（日本化粧品工業会・厚生労働省）に限る。",
+  "asOf": "2026-07-20",
+  "nextCheckDue": "2026-10-20",
+  "sources": [
+    {
+      "id": "jcia-ad-guideline",
+      "title": "化粧品等の適正広告ガイドライン",
+      "publisher": "日本化粧品工業会（薬機法に基づく業界自主基準）",
+      "url": "https://www.jcia.org/user/business/advertising/",
+      "checkedAt": "2026-07-20",
+      "note": "化粧品の効能効果として標榜できる範囲（薬機法上の化粧品効能56項目）と、成分の機能表現の適正基準を定める業界自主ガイドライン。「保湿成分」「洗浄成分」等の機能分類の出典として使用し、治療効果の主張には使わない。"
+    },
+    {
+      "id": "jcia-namelist",
+      "title": "化粧品の成分表示名称リスト",
+      "publisher": "日本化粧品工業会",
+      "url": "https://www.jcia.org/user/business/ingredients/namelist",
+      "checkedAt": "2026-07-20",
+      "note": "化粧品の全成分表示で使う標準成分名称のリスト。本ファイルの成分名表記の典拠。"
+    },
+    {
+      "id": "mhlw-zenseibun-hyouji",
+      "title": "化粧品の全成分表示の表示方法等について（医薬監麻発第220号）",
+      "publisher": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/web/t_doc?dataId=00ta7768&dataType=1&pageNo=1",
+      "checkedAt": "2026-07-20",
+      "note": "化粧品の全成分表示制度そのものの根拠通知。"
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "glycerin",
+      "name": "グリセリン",
+      "role": "hoshitsu",
+      "commonlyChosenFor": ["dry", "sensitive"],
+      "concernsFit": ["kansou"],
+      "generalNote": "水分をひきつけて保つ働きがあるとされる代表的な保湿成分で、化粧品に広く配合される。乾燥が気になる方向けの化粧品に選ばれることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "bg",
+      "name": "BG（ブチレングリコール）",
+      "role": "hoshitsu",
+      "commonlyChosenFor": ["dry", "sensitive"],
+      "concernsFit": ["kansou"],
+      "generalNote": "保湿成分・防腐力を補う成分として化粧品に広く配合される。低刺激性をうたう製品に使われることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "hyaluronic-acid-na",
+      "name": "ヒアルロン酸Na",
+      "role": "hoshitsu",
+      "commonlyChosenFor": ["dry"],
+      "concernsFit": ["kansou"],
+      "generalNote": "水分を抱え込む性質があるとされる保湿成分で、乾燥が気になる方向けの化粧水・美容液に選ばれることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "ceramide",
+      "name": "セラミド（セラミドNP等）",
+      "role": "hoshitsu",
+      "commonlyChosenFor": ["dry", "sensitive"],
+      "concernsFit": ["kansou"],
+      "generalNote": "角質層の細胞間脂質に類する保湿成分で、乾燥・敏感が気になる方向けの化粧品に選ばれることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "trehalose",
+      "name": "トレハロース",
+      "role": "hoshitsu",
+      "commonlyChosenFor": ["dry"],
+      "concernsFit": ["kansou"],
+      "generalNote": "保水性を持つとされる糖類系の保湿成分で、しっとりタイプの化粧品に配合されることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "amino-acid-cleansing",
+      "name": "アミノ酸系洗浄成分（ラウロイルサルコシンNa等）",
+      "role": "senjou",
+      "commonlyChosenFor": ["sensitive", "dry"],
+      "concernsFit": [],
+      "generalNote": "洗浄力がおだやかとされる洗浄成分の分類で、洗い上がりのつっぱりを抑えたい敏感肌・乾燥肌向けの洗顔料に選ばれることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "uv-filter-inorganic",
+      "name": "紫外線散乱剤（酸化チタン等）",
+      "role": "shigaisen",
+      "commonlyChosenFor": ["sensitive"],
+      "concernsFit": [],
+      "generalNote": "紫外線を物理的に反射・散乱させるとされる紫外線防止成分の分類。紫外線吸収剤に比べて肌への刺激が少ないとされ、敏感肌向けの日焼け止めに選ばれることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "uv-filter-organic",
+      "name": "紫外線吸収剤",
+      "role": "shigaisen",
+      "commonlyChosenFor": [],
+      "concernsFit": [],
+      "generalNote": "紫外線を吸収し化学反応を経て熱として放出するとされる紫外線防止成分の分類。使用感が軽く高いSPF/PAを実現しやすい一方、まれに肌への刺激が指摘されることがある。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
+    }
+  ]
+}

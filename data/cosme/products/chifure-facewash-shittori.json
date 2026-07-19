@@ -1,0 +1,42 @@
+{
+  "id": "chifure-facewash-shittori",
+  "name": "洗顔フォーム しっとりタイプ",
+  "brand": "ちふれ",
+  "category": "senganryo",
+  "priceYen": 616,
+  "volume": "150g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    {
+      "name": "グリセリン",
+      "ingredientId": "glycerin",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より（保湿成分）"
+    },
+    {
+      "name": "ラウロイルサルコシンNa（アミノ酸系洗浄成分）",
+      "ingredientId": "amino-acid-cleansing",
+      "role": "senjou",
+      "sourceNote": "全成分表示より（洗浄成分）"
+    }
+  ],
+  "skinTypeFit": { "dry": true, "oily": false, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "皮脂・テカリが気になり、さっぱりとした洗い上がりを求める脂性肌の方（本品は『しっとりタイプ』のため）"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。ニキビ・肌荒れなど症状の治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    {
+      "label": "ちふれ公式 商品ページ「洗顔 フォーム しっとりタイプ」",
+      "url": "https://www.chifure.co.jp/products/facewash/2129"
+    }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}
