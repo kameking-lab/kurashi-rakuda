@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getLiveTools } from "@/app/lib/tools/registry";
 import { getAllArticles } from "@/app/lib/articles/loader";
+import { TOOL_CATEGORIES, type ToolCategory } from "@/app/lib/tools/types";
 import { absoluteUrl } from "@/app/lib/site";
 
 /**
@@ -34,6 +35,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.3,
   }));
 
+  // カテゴリページ（IA-4・IA-5。specs/ui/tools-directory-ia.md §2）。7カテゴリ×2種
+  const categoryPages: MetadataRoute.Sitemap = (Object.keys(TOOL_CATEGORIES) as ToolCategory[]).flatMap(
+    (category) => [
+      { url: absoluteUrl(`/tools/${category}`), changeFrequency: "weekly" as const, priority: 0.7 },
+      { url: absoluteUrl(`/guide/${category}`), changeFrequency: "weekly" as const, priority: 0.6 },
+    ],
+  );
+
   const toolPages: MetadataRoute.Sitemap = getLiveTools().map((t) => ({
     url: absoluteUrl(`/tools/${t.category}/${t.slug}`),
     lastModified: t.updated,
@@ -48,5 +57,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...primaryPages, ...legalPages, ...toolPages, ...articlePages];
+  return [...primaryPages, ...legalPages, ...categoryPages, ...toolPages, ...articlePages];
 }

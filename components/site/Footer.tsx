@@ -8,7 +8,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-8 sm:py-20">
         <div className="footer-grid">
           <div><BrandLogo footer /><p className="mt-5 max-w-sm text-sm text-ink-muted">妊娠・子育てから家事、お金、仕事、介護まで。根拠のある計算と段取りで、暮らしの荷物をひとつ軽くします。</p></div>
-          <nav aria-label="ツールカテゴリ"><p className="footer-heading">ツールを探す</p><ul className="footer-links">{Object.entries(TOOL_CATEGORIES).map(([key,label])=><li key={key}><Link href={`/tools#${key}`}>{label}</Link></li>)}</ul></nav>
+          <nav aria-label="ツールカテゴリ"><p className="footer-heading">ツールを探す</p><ul className="footer-links">{Object.entries(TOOL_CATEGORIES).map(([key,label])=><li key={key}><Link href={`/tools/${key}`}>{label}</Link></li>)}</ul></nav>
           <nav aria-label="サイト案内"><p className="footer-heading">サイト案内</p><ul className="footer-links">
             <li>
               <Link href="/about" className="hover:text-ink">

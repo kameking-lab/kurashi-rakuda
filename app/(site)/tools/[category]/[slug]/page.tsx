@@ -2359,7 +2359,7 @@ export default async function ToolPage({
             { name: "ツール一覧", path: "/tools" },
             {
               name: TOOL_CATEGORIES[tool.category],
-              path: `/tools#${tool.category}`,
+              path: `/tools/${tool.category}`,
             },
             { name: tool.title, path: `/tools/${tool.category}/${tool.slug}` },
           ],
