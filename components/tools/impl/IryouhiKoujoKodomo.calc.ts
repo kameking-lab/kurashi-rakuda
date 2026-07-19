@@ -69,6 +69,49 @@ export const SELF_MEDICATION_REQUIREMENT: string = SELF_MED.requirement.value;
 /** セルフメディケーション税制の適用期間（令和8年12月31日までの支払いが対象） */
 export const SELF_MEDICATION_APPLICABLE_PERIOD: string = SELF_MED.applicablePeriod.value;
 
+/**
+ * 対象品目（特定一般用医薬品等）の確認方法（P4-T03）。
+ * ★取り込み方針★ 厚生労働省の対象品目一覧（商品名・製造販売業者名・成分名の一覧）は
+ * 「必要に応じて１ヶ月に１回更新」される（月次更新）ため、個々の商品名をSSOT化すると
+ * 即座に陳腐化する。かわりに、購入時点でその場で確認できる安定した確認方法（共通識別マーク・
+ * レシート表示）を案内し、網羅的な最新リストが必要な場合は厚生労働省の一覧ページへ誘導する。
+ */
+export const SELF_MEDICATION_IDENTIFICATION_NOTE: string = SELF_MED.eligibleProductIdentification.value;
+
+export interface IdentificationMethod {
+  key: "mark" | "list" | "receipt";
+  label: string;
+  description: string;
+}
+
+/** UI表示用に構造化した3つの確認方法（★本文はSELF_MEDICATION_IDENTIFICATION_NOTEの分解であり、データを追加していない★） */
+export const SELF_MEDICATION_IDENTIFICATION_METHODS: IdentificationMethod[] = [
+  {
+    key: "mark",
+    label: "共通識別マークで確認する",
+    description: "対象医薬品の一部は、パッケージに「セルフメディケーション税制の対象である旨を示す識別マーク」が印刷されています。ただし全ての対象品目にマークがあるわけではないため、マークが無いことだけを理由に対象外と判断しないでください。",
+  },
+  {
+    key: "receipt",
+    label: "レシートの表示で確認する",
+    description: "対象医薬品を扱う多くの薬局・ドラッグストアでは、レシート上に対象品目である旨のマーク（例: 「★」等の記号）が印字されます。購入時のレシートを保管し、確定申告の際の記録として使えます。",
+  },
+  {
+    key: "list",
+    label: "厚生労働省の対象品目一覧で確認する",
+    description: "厚生労働省ホームページに、商品名・製造販売業者名・成分名を記載した対象品目一覧（PDF・EXCEL）が公表されています。月1回程度のペースで更新されるため、正確な最新情報はこちらで確認してください。",
+  },
+];
+
+/** 厚生労働省「セルフメディケーション税制」ページ（対象品目一覧の掲載元）へのリンク */
+export const MHLW_SELF_MEDICATION_LIST_URL = "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000124853.html";
+
+/**
+ * 対象品目の規模感（参考情報。時点付きのスナップショットであり、現在値ではない）。
+ * ★断定しない★ ツールでは必ず時点を明記して表示すること（データのamendmentNote参照）。
+ */
+export const SELF_MEDICATION_SCALE_NOTE: string = SELF_MED.switchOtcIngredientCount.value;
+
 /** 手続き関連 */
 export const PROCEDURE_FILING_METHOD: string = PROCEDURE.filingMethod.value;
 export const PROCEDURE_REQUIRED_DOCUMENTS: string = PROCEDURE.requiredDocuments.value;

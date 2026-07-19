@@ -23,6 +23,9 @@ import {
   SELF_MEDICATION_MAX_DEDUCTION,
   SELF_MEDICATION_REQUIREMENT,
   SELF_MEDICATION_APPLICABLE_PERIOD,
+  SELF_MEDICATION_IDENTIFICATION_METHODS,
+  SELF_MEDICATION_SCALE_NOTE,
+  MHLW_SELF_MEDICATION_LIST_URL,
   MAX_DEDUCTION,
   THRESHOLD_FIXED,
   PROCEDURE_FILING_METHOD,
@@ -141,6 +144,8 @@ export function IryouhiKoujoKodomo() {
           onChange={set("otcExpenses")}
         />
       </div>
+
+      <SelfMedicationIdentificationGuide />
 
       {!anyEntered && (
         <Callout>
@@ -286,6 +291,37 @@ function SelfMedicationSection({
         で、令和9年分（2027年分）以後の取扱いは2026年7月時点で未定です。
       </p>
     </div>
+  );
+}
+
+function SelfMedicationIdentificationGuide() {
+  return (
+    <details className="rounded-card border border-line p-4 text-sm sm:text-base">
+      <summary className="cursor-pointer font-bold">
+        特定一般用医薬品等（対象OTC医薬品）はどう見分ける？
+      </summary>
+      <div className="mt-3 space-y-3">
+        <ul className="space-y-2">
+          {SELF_MEDICATION_IDENTIFICATION_METHODS.map((m) => (
+            <li key={m.key} className="rounded-card border border-line p-3">
+              <p className="font-medium">{m.label}</p>
+              <p className="mt-1 text-ink-muted">{m.description}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="text-ink-muted">{SELF_MEDICATION_SCALE_NOTE}</p>
+        <p>
+          <a
+            href={MHLW_SELF_MEDICATION_LIST_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            厚生労働省「セルフメディケーション税制」対象品目一覧（外部サイト）
+          </a>
+        </p>
+      </div>
+    </details>
   );
 }
 
