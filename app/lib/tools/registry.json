@@ -878,11 +878,12 @@
     "slug": "kondate-teian",
     "category": "kaji",
     "title": "献立自動提案",
-    "description": "条件（調理時間・食材・気分）を選ぶと、今日の献立と1週間分の献立案を提案します。",
+    "description": "条件（調理時間・食材・気分）を選ぶと、今日の献立と1週間分の献立案を提案します。主菜だけ決まっているときは、それに合う副菜・汁物だけを抽選する「副菜だけ提案してもらう」モードも使えます。",
     "solves": [
       "今日の夕飯を何にするか決められない",
       "献立を考えるのが苦痛",
-      "1週間分の献立をまとめて決めたい"
+      "1週間分の献立をまとめて決めたい",
+      "主菜は決まっているが副菜・汁物が思いつかない"
     ],
     "basisYear": null,
     "sources": [
@@ -891,7 +892,7 @@
         "url": "https://github.com/kameking-lab/kurashi-rakuda/tree/master/data/kondate"
       }
     ],
-    "updated": "2026-07-17",
+    "updated": "2026-07-20",
     "status": "live",
     "audience": {
       "universal": true,

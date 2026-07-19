@@ -10,6 +10,8 @@ import {
   rerollDish,
   nextSeed,
   searchExcludableIngredients,
+  searchMains,
+  suggestForFixedMain,
   suggestFromPantry,
   excludeNotice,
   reuseSentence,
@@ -138,6 +140,9 @@ export function KondateTeian() {
   const [nonces, setNonces] = useState<Record<string, number>>({});
   const [overrides, setOverrides] = useState<WeekMenu | null>(null);
   const [query, setQuery] = useState("");
+  const [mainQuery, setMainQuery] = useState("");
+  const [selectedMainId, setSelectedMainId] = useState<string | null>(null);
+  const [fixedMainSeed, setFixedMainSeed] = useState(0);
   const [pantry, setPantry] = useState<string[]>([]);
   const [pantryQuery, setPantryQuery] = useState("");
   const [versionMismatch, setVersionMismatch] = useState(false);
@@ -195,6 +200,15 @@ export function KondateTeian() {
   const setCond = (patch: Partial<Conditions>) => setConditions((c) => ({ ...c, ...patch }));
 
   const candidates = useMemo(() => searchExcludableIngredients(query, D.ingredients), [query]);
+  const mainCandidates = useMemo(() => searchMains(mainQuery), [mainQuery]);
+  const selectedMain = useMemo(
+    () => (selectedMainId ? (D.recipes.find((r) => r.id === selectedMainId && r.course === "main") ?? null) : null),
+    [selectedMainId],
+  );
+  const fixedMainResult = useMemo(
+    () => (selectedMainId ? suggestForFixedMain(selectedMainId, conditions, fixedMainSeed) : null),
+    [selectedMainId, conditions, fixedMainSeed],
+  );
   const pantryCandidates = useMemo(
     () => searchExcludableIngredients(pantryQuery, D.ingredients),
     [pantryQuery],
@@ -330,6 +344,86 @@ export function KondateTeian() {
             <option value="no">つけない</option>
           </SelectField>
         </div>
+      </div>
+
+      {/* ---------------- 副菜だけ提案してもらう（P4-T02。主菜固定→副菜・汁物だけ抽選） ---------------- */}
+      <div>
+        <h2 className="text-base font-bold">副菜だけ提案してもらう</h2>
+        <p className="mt-1 text-sm text-ink-muted">
+          作りたい主菜がもう決まっているときに、それに合う副菜・汁物だけを抽選します。上の「条件を変える」（人数以外）がここにも適用されます。
+        </p>
+        <div className="mt-2 flex flex-col gap-1">
+          <label htmlFor="kondate-main-search" className="text-sm font-medium">
+            主菜を選ぶ
+          </label>
+          <input
+            id="kondate-main-search"
+            type="search"
+            value={mainQuery}
+            placeholder="しょうが焼き / 麻婆豆腐 など"
+            onChange={(e) => setMainQuery(e.target.value)}
+            className="min-h-12 w-full rounded-card border border-line bg-paper px-4 text-base text-ink"
+          />
+        </div>
+        {mainCandidates.length > 0 && (
+          <ul className="mt-2 flex flex-wrap gap-2">
+            {mainCandidates.map((r) => (
+              <li key={r.id}>
+                <button
+                  type="button"
+                  className="rounded-card border border-line px-3 py-1 text-sm"
+                  onClick={() => {
+                    setSelectedMainId(r.id);
+                    setFixedMainSeed(newSeed());
+                    setMainQuery("");
+                  }}
+                >
+                  {r.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+        {selectedMain && fixedMainResult && (
+          <div className="mt-3">
+            {fixedMainResult.ok ? (
+              <div className="space-y-2">
+                <ResultCard
+                  label={`「${selectedMain.name}」に合わせるなら`}
+                  value={fixedMainResult.day.side.name}
+                  note={`${fixedMainResult.day.soup ? `汁物: ${fixedMainResult.day.soup.name}／` : ""}目安 ${fixedMainResult.day.totalTimeMin}分（順番に作った場合）`}
+                />
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setFixedMainSeed(nextSeed(fixedMainSeed))}
+                    className="rounded-card border border-line px-4 py-2 text-sm font-medium"
+                  >
+                    副菜・汁物を引き直す
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedMainId(null)}
+                    className="rounded-card border border-line px-4 py-2 text-sm font-medium"
+                  >
+                    主菜を選び直す
+                  </button>
+                </div>
+                {fixedMainResult.warnings.length > 0 && (
+                  <Callout>
+                    <ul className="list-disc pl-5">
+                      {fixedMainResult.warnings.map((w) => (
+                        <li key={w}>{w}</li>
+                      ))}
+                    </ul>
+                  </Callout>
+                )}
+              </div>
+            ) : (
+              <FailureView failure={fixedMainResult.failure} />
+            )}
+          </div>
+        )}
       </div>
 
       {/* ---------------- 使わない食材（★これはアレルギー対応ではありません。§8.3★） ---------------- */}

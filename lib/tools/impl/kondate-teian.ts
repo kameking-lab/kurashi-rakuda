@@ -1058,6 +1058,123 @@ export function suggestFromPantry(
   return { main: evaluate("main"), side: evaluate("side") };
 }
 
+// ---------------------------------------------------------------- 副菜提案モード（P4-T02。主菜固定→副菜・汁物だけ抽選）
+
+/** 主菜を名前で探す（副菜提案モードの主菜選択用）。id 辞書順で安定させる（§4.3 と同じ思想） */
+export function searchMains(query: string, data: KondateData = kondateData, limit = 8): Recipe[] {
+  const q = query.trim();
+  if (q === "") return [];
+  return data.recipes
+    .filter((r) => r.course === "main")
+    .filter((r) => r.name.includes(q))
+    .sort(byId)
+    .slice(0, limit);
+}
+
+function fixedMainRelaxHints(
+  data: KondateData,
+  conditions: Conditions,
+  course: Course,
+  courseLabel: string,
+  currentCount: number,
+): string[] {
+  const hints: string[] = [];
+  if (conditions.genre !== "any" && course !== "soup") {
+    const relaxed: Conditions = { ...conditions, genre: "any" };
+    const n = candidatePool(data, relaxed, course).length;
+    if (n > currentCount) {
+      hints.push(`ジャンルを「おまかせ」にすると、${courseLabel}の候補が${currentCount}品→${n}品に増えます。`);
+    }
+  }
+  if (conditions.excludeIds.length > 0) {
+    const relaxed: Conditions = { ...conditions, excludeIds: [] };
+    const n = candidatePool(data, relaxed, course).length;
+    if (n > currentCount) {
+      const names = conditions.excludeIds.map((id) => ingredientName(id, data)).join("・");
+      hints.push(`使わない食材（${names}）の指定を外すと、${courseLabel}の候補が${currentCount}品→${n}品に増えます。`);
+    }
+  }
+  return hints;
+}
+
+export type FixedMainResult =
+  | { ok: true; day: Day; warnings: string[] }
+  | { ok: false; failure: Failure };
+
+/**
+ * 主菜を固定し、副菜・汁物だけを抽選する（P4-T02「副菜提案モード」）。
+ * 新規データは使わない。既存の `buildDay`（§4.4）を `picked=[]`（前後の日の文脈なし）で呼ぶことで、
+ * S1/S2/S4（前日・前後2日の比較）は自然に無効化され、S3（同日内の method 重複回避）と
+ * S5（weight 優先）だけが働く。H1（除外食材）・H3（ジャンル）・H4（合計時間）は通常どおり守る。
+ * ★主菜そのものは利用者が指定したものなので H1（除外食材）の対象にしない（副菜・汁物にのみ適用）★
+ */
+export function suggestForFixedMain(
+  mainId: string,
+  conditions: Conditions,
+  seed: number,
+  data: KondateData = kondateData,
+): FixedMainResult {
+  assertData(data);
+  const v = validateConditions(conditions, data);
+  if (!v.ok) {
+    return { ok: false, failure: { reason: "invalid-input", message: v.errors.join("\n"), relaxHints: [] } };
+  }
+  const cond = v.normalized;
+
+  const main = data.recipes.find((r) => r.id === mainId && r.course === "main");
+  if (!main) {
+    return {
+      ok: false,
+      failure: { reason: "invalid-input", message: "指定した主菜が見つかりません。", relaxHints: [] },
+    };
+  }
+
+  const sidePool = candidatePool(data, cond, "side");
+  const soupPool = candidatePool(data, cond, "soup");
+
+  if (sidePool.length === 0) {
+    return {
+      ok: false,
+      failure: {
+        reason: "no-candidate",
+        course: "side",
+        count: 0,
+        message: "この条件に合う副菜が1品もありません。",
+        relaxHints: fixedMainRelaxHints(data, cond, "side", "副菜", 0),
+      },
+    };
+  }
+  if (cond.includeSoup && soupPool.length === 0) {
+    return {
+      ok: false,
+      failure: {
+        reason: "no-candidate",
+        course: "soup",
+        count: 0,
+        message: "この条件に合う汁物が1品もありません。",
+        relaxHints: fixedMainRelaxHints(data, cond, "soup", "汁物", 0),
+      },
+    };
+  }
+
+  const ings = ingredientMap(data);
+  const rng = mulberry32(seed);
+  const day = buildDay(0, main, cond, sidePool, soupPool, [], ings, rng);
+  if (day === null) {
+    const sideCount = sidePool.filter((s) => s.cookTimeMin <= cond.maxTotalTimeMin - main.cookTimeMin).length;
+    return {
+      ok: false,
+      failure: {
+        reason: "time-limit",
+        message: `「${main.name}」（${main.cookTimeMin}分）と組み合わせると、1日の合計調理時間${cond.maxTotalTimeMin}分に収まる副菜・汁物の組み合わせがありません。`,
+        relaxHints: fixedMainRelaxHints(data, cond, "side", "副菜", sideCount),
+      },
+    };
+  }
+
+  return { ok: true, day, warnings: v.warnings };
+}
+
 // ---------------------------------------------------------------- 表示用の文言
 
 /**
