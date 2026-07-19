@@ -1,0 +1,302 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "shiga-kusatsu",
+  "name": "滋賀県草津市",
+  "municipalityCode": "252064",
+  "prefecture": "滋賀県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-20",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "kusatsu-fee",
+      "title": "令和8年度 草津市利用者負担額表（保育認定）",
+      "publisher": "草津市",
+      "url": "https://www.city.kusatsu.shiga.jp/kosodate/hoikukyoiku/hoikuen/riyousyahutangaku.files/R8hutangakuhyo.pdf",
+      "landingUrl": "https://www.city.kusatsu.shiga.jp/kosodate/hoikukyoiku/hoikuen/riyousyahutangaku.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-20",
+      "tier": "municipality"
+    },
+    {
+      "id": "kusatsu-landing",
+      "title": "認可保育所（園）等利用者負担額（保育料）について",
+      "publisher": "草津市",
+      "url": "https://www.city.kusatsu.shiga.jp/kosodate/hoikukyoiku/hoikuen/riyousyahutangaku.html",
+      "checkedAt": "2026-07-20",
+      "tier": "municipality"
+    }
+  ],
+  "disclaimer": "本データは滋賀県草津市の自治体公式資料（令和8年度利用者負担額表）に基づく参考情報です。実際の保育料は税額・世帯状況・きょうだい構成等により市が決定するため、決定通知書または担当窓口で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所（園）・認定こども園（保育認定）の一般世帯・第1子（1人目）の月額利用者負担額（保育料）"
+    ],
+    "excludes": [
+      "第2子（半額）・第3子以降（無償）の軽減後金額",
+      "母子・在宅障害者等（ひとり親世帯等）の（）内軽減額",
+      "小規模保育施設・家庭的保育施設の利用者負担額（別表 R8hutangakuhyo2.pdf）",
+      "延長保育料",
+      "給食費（主食費・副食費）等の実費徴収"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則として両親（保護者）の課税額の合計により階層区分を決定。ただし祖父母が家計の主宰者である場合は祖父母の課税額も含めて階層を決定。",
+    "taxYearRule": "4月～8月は前年度分の市町村民税、9月から翌年3月は当年度分の市町村民税により階層区分を決定。",
+    "deductionsIgnored": [
+      "住宅借入金特別控除",
+      "寄附金税額控除",
+      "配当控除等（税額控除適用前の額で算定）"
+    ],
+    "note": "市民税所得割額は住宅借入金特別控除・寄附金税額控除・配当控除等の税額控除適用前の金額で算定。課税額の確認ができない場合（書類未提出・未申告等）は最高階層C15で決定する場合がある。政令指定都市の6/8換算等の規定は原典に記載なし（未確認）。多子カウントの境界（所得割57,700円・77,101円）は原典で階層をさらに細分する境目だが、C4（48,600円以上60,700円未満）は利用者負担額が一律のため1階層に統合し、57,700円のきょうだいカウント基準の切替はfreeTuition.multiChildPolicy.countingRuleに記録した。",
+    "sourceId": "kusatsu-fee",
+    "checkedAt": "2026-07-20"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0・1・2歳児クラス",
+      "rule": "各月初日の入所児童の属する世帯の階層区分で判定"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳児以上（無償化対象）",
+      "rule": "幼児教育・保育の無償化により保育料0円"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "sourceId": "kusatsu-fee",
+      "checkedAt": "2026-07-20",
+      "amendmentNote": "なし",
+      "verify": {
+        "expect": ["無償化対象"],
+        "sourceId": "kusatsu-fee"
+      }
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "sourceId": "kusatsu-fee",
+      "checkedAt": "2026-07-20",
+      "amendmentNote": "なし",
+      "verify": {
+        "expect": ["市町村民税非課税世帯"],
+        "sourceId": "kusatsu-fee"
+      }
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "所得割額57,700円未満の世帯は保護者と同一生計のきょうだいを年齢制限なくカウント。57,700円以上（77,101円未満、ひとり親世帯等を除く）は小学校就学前までの児童のみカウント。77,101円以上は小学校就学前まで（ひとり親世帯等に限る）。A〜C6のひとり親世帯等は年齢制限なし。",
+        "sourceId": "kusatsu-fee",
+        "checkedAt": "2026-07-20",
+        "amendmentNote": "なし"
+      },
+      "secondChild": {
+        "value": "第1子の半額（きょうだいカウント2人目）。C1〜C6のひとり親・在宅障害者等世帯は（）内の0円。",
+        "sourceId": "kusatsu-fee",
+        "checkedAt": "2026-07-20",
+        "amendmentNote": "なし"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "kusatsu-landing",
+        "checkedAt": "2026-07-20",
+        "amendmentNote": "令和5年9月より第3子以降の利用者負担額を無償化（所得制限なし）。生計を一にする世帯内3人目以降は免除（0円）。"
+      }
+    },
+    "localExtension": "令和5年9月より第3子以降の利用者負担額を無償（所得制限なし）。第2子はきょうだいカウントに基づき第1子の半額。C1〜C6のひとり親・在宅障害者等世帯は第2子も0円（（）内金額）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護法による被保護世帯・中国残留邦人等支援給付受給世帯・里親",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B1",
+      "label": "市町村民税非課税世帯で母子・在宅障害者等の世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B2",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "均等割の額のみ（所得割の額のない世帯）（2人目 4,850／短時間 4,750。ひとり親等は（）内3,000・0）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 9700, "short": 9500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "所得割額 22,800円未満（2人目 6,400／短時間 6,250）",
+      "incomeMin": 1,
+      "incomeMax": 22800,
+      "fees": {
+        "under3": { "standard": 12800, "short": 12500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "22,800円以上 48,600円未満（2人目 6,750／短時間 6,600）",
+      "incomeMin": 22800,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 13500, "short": 13200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "48,600円以上 60,700円未満（2人目 11,200／短時間 11,000）。所得割57,700円を境にきょうだいカウント基準が変わるが利用者負担額は一律。",
+      "incomeMin": 48600,
+      "incomeMax": 60700,
+      "fees": {
+        "under3": { "standard": 22400, "short": 22000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "60,700円以上 72,800円未満（2人目 11,850／短時間 11,600）",
+      "incomeMin": 60700,
+      "incomeMax": 72800,
+      "fees": {
+        "under3": { "standard": 23700, "short": 23200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "72,800円以上 77,101円未満（2人目 12,600／短時間 12,350）",
+      "incomeMin": 72800,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 25200, "short": 24700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "77,101円以上 84,900円未満（2人目 12,600／短時間 12,350）",
+      "incomeMin": 77101,
+      "incomeMax": 84900,
+      "fees": {
+        "under3": { "standard": 25200, "short": 24700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "84,900円以上 97,000円未満（2人目 13,300／短時間 13,050）",
+      "incomeMin": 84900,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 26600, "short": 26100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "97,000円以上 115,000円未満（2人目 19,050／短時間 18,700）",
+      "incomeMin": 97000,
+      "incomeMax": 115000,
+      "fees": {
+        "under3": { "standard": 38100, "short": 37400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "115,000円以上 133,000円未満（2人目 20,150／短時間 19,800）",
+      "incomeMin": 115000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 40300, "short": 39600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "133,000円以上 151,000円未満（2人目 21,100／短時間 20,700）",
+      "incomeMin": 133000,
+      "incomeMax": 151000,
+      "fees": {
+        "under3": { "standard": 42200, "short": 41400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "151,000円以上 169,000円未満（2人目 22,100／短時間 21,700）",
+      "incomeMin": 151000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 44200, "short": 43400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "169,000円以上 235,000円未満（2人目 26,850／短時間 26,350）",
+      "incomeMin": 169000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": { "standard": 53700, "short": 52700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "235,000円以上 301,000円未満（2人目 27,250／短時間 26,750）",
+      "incomeMin": 235000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 54500, "short": 53500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "301,000円以上（2人目 31,050／短時間 30,500）",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 62100, "short": 61000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "expect": ["9,700", "22,400", "62,100", "301,000"],
+    "sourceId": "kusatsu-fee"
+  }
+}

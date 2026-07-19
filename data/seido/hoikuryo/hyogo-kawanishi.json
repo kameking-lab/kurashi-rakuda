@@ -1,0 +1,241 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "hyogo-kawanishi",
+  "name": "兵庫県川西市",
+  "municipalityCode": "282171",
+  "prefecture": "兵庫県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-20",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "kawanishi-fee",
+      "title": "保育認定施設利用者負担額表（保育料表）",
+      "publisher": "川西市",
+      "url": "https://www.city.kawanishi.hyogo.jp/kurashi/kosodate/hoikusyo/h_hoikuryou.html",
+      "checkedAt": "2026-07-20",
+      "tier": "municipality",
+      "note": "年度表記のない常設表（ページ更新日: 令和6年8月1日）。現行の利用者負担額表として掲載されているため令和8年度の現行値として収録。"
+    }
+  ],
+  "disclaimer": "本データは兵庫県川西市の自治体公式サイトに基づく参考情報です。実際の保育料は税額・世帯状況・きょうだい構成等により市が決定するため、決定通知書または担当窓口で確認してください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園等（2・3号認定）の一般世帯・第1子の月額利用者負担額（保育料）"
+    ],
+    "excludes": [
+      "第2子の半額・第3子以降無料の軽減後金額",
+      "ひょうご保育料軽減事業等による軽減後金額",
+      "延長保育料",
+      "給食費（主食費・副食費）・行事費等の実費徴収"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "保護者（父母）の市民税所得割額の合算額",
+    "taxYearRule": "4月分から8月分までの保育料は前年度の市民税額、9月分から3月分までの保育料は当年度の市民税額に応じて決定。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除",
+      "寄附金控除",
+      "その他の税額控除（適用前の額で算定）"
+    ],
+    "note": "保育料は入所月の年齢ではなく4月1日時点の満年齢の区分を適用。市民税所得割額は住宅借入金等特別税額控除や寄附金控除など税額控除の規定を適用しない場合の額で算定。政令指定都市の6/8換算等の規定は川西市の一次情報に記載がなく未確認。ページは年度表記のない常設表（更新日 令和6年8月1日）で、現行の保育料表として掲載されているため令和8年度の現行値として収録。",
+    "sourceId": "kawanishi-fee",
+    "checkedAt": "2026-07-20"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "4月1日時点における満年齢による区分を年度中適用"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "幼児教育・保育の無償化により保育料0円"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "sourceId": "kawanishi-fee",
+      "checkedAt": "2026-07-20",
+      "amendmentNote": "なし",
+      "verify": {
+        "expect": ["3〜5歳児"],
+        "sourceId": "kawanishi-fee"
+      }
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "sourceId": "kawanishi-fee",
+      "checkedAt": "2026-07-20",
+      "amendmentNote": "なし",
+      "verify": {
+        "expect": ["市民税非課税世帯"],
+        "sourceId": "kawanishi-fee"
+      }
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "年収約360万円未満（市民税所得割57,700円未満）の世帯は、兄姉の年齢や入所施設にかかわらず第2子は丸カッコ内の金額（半額）、第3子は無料。それ以外の世帯の多子カウントの年齢上限は原典に明記なし（未確認）。",
+        "sourceId": "kawanishi-fee",
+        "checkedAt": "2026-07-20",
+        "amendmentNote": "なし"
+      },
+      "secondChild": {
+        "value": "丸カッコ内の金額（第1子の半額）",
+        "sourceId": "kawanishi-fee",
+        "checkedAt": "2026-07-20",
+        "amendmentNote": "所得割57,700円未満世帯は施設利用・年齢を問わず適用"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "yen",
+        "sourceId": "kawanishi-fee",
+        "checkedAt": "2026-07-20",
+        "amendmentNote": "なし"
+      }
+    },
+    "localExtension": "第2子は丸カッコ内の金額（第1子の半額）、第3子以降は無料。年収約360万円未満（市民税所得割57,700円未満）の世帯は兄姉の年齢・入所施設を問わず第2子を半額とする。兵庫県のひょうご保育料軽減事業も別途あるが、その軽減後額はtiers本体には反映していない（詳細未確認）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "市民税所得割額 48,600円未満（第2子 7,300／短時間 7,200）",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 14700, "short": 14400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "48,600円以上69,500円未満（第2子 8,800／短時間 8,600）",
+      "incomeMin": 48600,
+      "incomeMax": 69500,
+      "fees": {
+        "under3": { "standard": 17600, "short": 17300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "69,500円以上81,600円未満（第2子 10,800／短時間 10,600）",
+      "incomeMin": 69500,
+      "incomeMax": 81600,
+      "fees": {
+        "under3": { "standard": 21700, "short": 21300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "81,600円以上97,000円未満（第2子 14,500／短時間 14,200）",
+      "incomeMin": 81600,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 29000, "short": 28500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "97,000円以上135,500円未満（第2子 18,100／短時間 17,700）",
+      "incomeMin": 97000,
+      "incomeMax": 135500,
+      "fees": {
+        "under3": { "standard": 36200, "short": 35500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "135,500円以上169,000円未満（第2子 22,200／短時間 21,800）",
+      "incomeMin": 135500,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 44500, "short": 43700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "169,000円以上231,900円未満（第2子 27,600／短時間 27,200）",
+      "incomeMin": 169000,
+      "incomeMax": 231900,
+      "fees": {
+        "under3": { "standard": 55300, "short": 54400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "231,900円以上301,000円未満（第2子 30,500／短時間 29,900）",
+      "incomeMin": 231900,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 61000, "short": 59900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "301,000円以上368,000円未満（第2子 36,500／短時間 35,900）",
+      "incomeMin": 301000,
+      "incomeMax": 368000,
+      "fees": {
+        "under3": { "standard": 73100, "short": 71800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "368,000円以上397,000円未満（第2子 40,000／短時間 39,300）",
+      "incomeMin": 368000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 80000, "short": 78600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "397,000円以上（第2子 45,000／短時間 44,200）",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 90000, "short": 88400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "expect": ["48,600円未満", "14,700", "90,000", "397,000円以上"],
+    "sourceId": "kawanishi-fee"
+  }
+}

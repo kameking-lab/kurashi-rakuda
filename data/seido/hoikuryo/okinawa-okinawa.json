@@ -1,0 +1,208 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "okinawa-okinawa",
+  "name": "沖縄県沖縄市",
+  "municipalityCode": "472112",
+  "prefecture": "沖縄県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2025,
+  "asOf": "2026-07-20",
+  "nextCheckDue": "2026-10-01",
+  "sources": [
+    {
+      "id": "okinawa-r8-guide",
+      "title": "令和8年度 沖縄市保育所等入所、沖縄市立幼稚園入園及び預かり保育のご案内",
+      "publisher": "沖縄市こどものまち推進部 保育・幼稚園課",
+      "url": "https://www.city.okinawa.okinawa.jp/documents/22782/20250818_r8nyusyoannai.pdf",
+      "landingUrl": "https://www.city.okinawa.okinawa.jp/kosodate/hoikuen/nyuusho/index.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-20",
+      "tier": "municipality",
+      "note": "令和8年度入所案内。5～6ページ「保育料について」に保育料の算定・切替・軽減・無償化の原文と保育料月額表を掲載。ただし表は『《参考》令和7年度 沖縄市保育料』であり、案内本文に『※令和8年度 沖縄市保育料は、まだ決定しておりません。決定次第、お知らせいたします』と明記されている（令和8年度額は未公表）。本ファイルの tiers は令和7年度参考表（その他世帯・第1子）を採録。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "令和8年度の沖縄市保育料は2026-07-20時点で未決定（未公表）。令和8年度入所案内には令和7年度の参考表のみ掲載され、『令和8年度 沖縄市保育料は、まだ決定しておりません。決定次第、お知らせいたします』と明記されている。本ファイルは令和7年度参考表を fiscalYear:2025 として収録している。",
+      "status": "under-review",
+      "sourceId": "okinawa-r8-guide",
+      "impact": "令和8年度額が公表され次第、tiers を差し替え fiscalYear を 2026 に更新する。境界額・金額が変わる可能性がある。"
+    }
+  ],
+  "disclaimer": "本データは沖縄市公式サイトの令和8年度入所案内に掲載された『《参考》令和7年度 沖縄市保育料』表をもとに作成した参考情報です。令和8年度の保育料額は未公表です。実際の保育料は世帯状況・きょうだい区分・保育必要量・税額の確定内容により決定され、最終的には市の決定通知が優先します。個別の判断は必ず沖縄市保育・幼稚園課にご確認ください。",
+  "scope": {
+    "includes": [
+      "公立・私立認可保育園、認定こども園、地域型保育事業所（小規模保育事業所・事業所内保育所）を利用する0～2歳児クラスの月額保育料（その他世帯・第1子・保育標準時間／保育短時間。市が定める額でいずれの施設も同額）",
+      "3～5歳児クラスの月額保育料（幼児教育・保育の無償化により0円）"
+    ],
+    "excludes": [
+      "給食費（主食費・副食費）：3～5歳児クラス等で発生（参考：令和7年8月現在 月額3,500円、公立は一律5,000円との案内あり。副食費は所得割77,101円未満または第3子以降で免除）",
+      "延長保育料",
+      "教材費・おやつ代等その他の実費徴収"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "父母の市区町村民税所得割等課税額を合算した額で決定する。入所する児童やその父母が祖父母等の扶養に入っている場合は、その生計の主宰者の市区町村民税所得割等課税額を加算することがある。",
+    "taxYearRule": "市民税額が決定するのが毎年6月のため、4月～8月は前年度分の市区町村民税所得割等課税額、9月～3月は当年度の市区町村民税所得割等課税額により保育料を決定する（毎年9月に切替）。税が未申告で確認できない場合は最高額の保育料となる。",
+    "deductionsIgnored": [],
+    "note": "未確認: 適用しない税額控除（住宅借入金等特別控除・寄附金税額控除・調整控除等）の記載は令和8年度入所案内のどこにも見当たらず、deductionsIgnored は空とした（推測補完しない）。／未確認: 政令指定都市（6%）逆換算の規定も記載なし（沖縄市は政令市ではないため通常不要）。／階層第1（生活保護等）・第2（市町村民税非課税＝均等割・所得割ともに0円）はいずれも所得割0円であり、isWelfare・isNonTaxable フラグで区別すること。第3階層は『市町村民税均等割額あり課税世帯・所得割額48,600円未満』で均等割のみ課税（所得割0）を含む。／各階層にはひとり親世帯・障がい世帯向けの軽減額が別途あり（第3階層1人目 ¥6,550／¥6,400・2人目以降無料、第4階層のうち所得割77,101円未満のひとり親・障がい世帯1人目 ¥6,550／¥6,400・2人目以降無料）。tiers には一般世帯（その他世帯）の第1子額のみを収録している。／本表は『《参考》令和7年度 沖縄市保育料』であり令和8年度額は未公表。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児（0～2歳児クラス）",
+      "rule": "年齢は各月初日の在籍児童の属する世帯の区分による"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児（3～5歳児クラス）",
+      "rule": "年齢は各月初日の在籍児童の属する世帯の区分による"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3～5歳児クラスの子どもの保育料は無償",
+      "sourceId": "okinawa-r8-guide",
+      "checkedAt": "2026-07-20",
+      "verify": {
+        "expect": [
+          "３～５歳児クラス",
+          "無償"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-20時点)"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "0～2歳児クラスの非課税世帯の保育料は無償（給食費も同様に無償）",
+      "sourceId": "okinawa-r8-guide",
+      "checkedAt": "2026-07-20",
+      "verify": {
+        "expect": [
+          "０～２歳児クラスの非課税世帯",
+          "無償"
+        ]
+      },
+      "amendmentNote": "なし(2026-07-20時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "市区町村民税所得割額57,700円未満の世帯（ひとり親世帯・障がい世帯は所得割額77,101円未満）は生計を一にしている兄弟姉妹を年齢に関係なく数える。それ以外（その他世帯）は認可保育所等に在園している児童のみを数える（幼稚園・企業主導型保育・特別支援学校幼稚部・児童発達支援事業所等の在園児も対象）。",
+        "sourceId": "okinawa-r8-guide",
+        "checkedAt": "2026-07-20",
+        "amendmentNote": "なし(2026-07-20時点)"
+      },
+      "secondChild": {
+        "value": "半額（申込した児童の年齢が高い順から2番目のとき。所得割57,700円未満の世帯・所得割77,101円未満のひとり親／障がい世帯は2番目以降無料）",
+        "sourceId": "okinawa-r8-guide",
+        "checkedAt": "2026-07-20",
+        "amendmentNote": "なし(2026-07-20時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "3番目以降は無料",
+        "sourceId": "okinawa-r8-guide",
+        "checkedAt": "2026-07-20",
+        "amendmentNote": "なし(2026-07-20時点)"
+      }
+    }
+  },
+  "tiers": [
+    {
+      "tier": "第1",
+      "label": "生活保護法による被保護世帯・中国残留邦人等に対する支援給付受給世帯",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第2",
+      "label": "市町村民税非課税世帯（均等割・所得割ともに0円）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第3",
+      "label": "市町村民税均等割額あり課税世帯・所得割額48,600円未満（その他世帯の額）",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 15700, "short": 15400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第4",
+      "label": "所得割額48,600円以上97,000円未満（その他世帯の額）",
+      "incomeMin": 48600,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 24000, "short": 23500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第5",
+      "label": "所得割額97,000円以上169,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 36600, "short": 35900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第6",
+      "label": "所得割額169,000円以上301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 41300, "short": 40500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第7",
+      "label": "所得割額301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 41800, "short": 41000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第8",
+      "label": "所得割額397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 51000, "short": 50100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "okinawa-r8-guide",
+    "expect": [
+      "15,700",
+      "24,000",
+      "36,600",
+      "41,300",
+      "41,800",
+      "51,000"
+    ]
+  }
+}

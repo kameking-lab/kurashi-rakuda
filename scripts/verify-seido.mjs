@@ -225,6 +225,13 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.higashimurayama.tokyo.jp', // 東村山市の公式サイト
   'city.hirosaki.aomori.jp', // 弘前市（city.hirosaki.lg.jpは存在しない）の公式サイト
   'city.noda.chiba.jp', // 野田市の公式サイト
+  // 西日本ブロック 一般市バッチ1（2026-07-20。いずれも .lg.jp 版はDNS解決不可＝これが唯一の公式ドメイン）
+  'city.uji.kyoto.jp', // 宇治市の公式サイト
+  'city.kawanishi.hyogo.jp', // 川西市の公式サイト
+  'city.kusatsu.shiga.jp', // 草津市の公式サイト
+  'city.okinawa.okinawa.jp', // 沖縄市の公式サイト
+  'city.kashihara.nara.jp', // 橿原市の公式サイト
+  'city.kadoma.osaka.jp', // 門真市の公式サイト
 ];
 
 const args = process.argv.slice(2);
