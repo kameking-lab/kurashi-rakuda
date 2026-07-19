@@ -70,7 +70,7 @@ export default function Home() {
         {stages.map((s) => (
           <li key={s.label}>
             <Link
-              href={`/tools#${s.category}`}
+              href={`/tools/${s.category}`}
               className="stage-card editorial-stage-card"
             >
               <span>{s.label}</span><small>関連ツールへ <b aria-hidden="true">↗</b></small>
@@ -84,7 +84,7 @@ export default function Home() {
         {(Object.keys(TOOL_CATEGORIES) as ToolCategory[]).map((cat) => (
           <li key={cat}>
             <Link
-              href={`/tools#${cat}`}
+              href={`/tools/${cat}`}
               className="chip-link inline-flex min-h-12 items-center rounded-full border border-line px-5 text-sm font-medium"
             >
               {TOOL_CATEGORIES[cat]}

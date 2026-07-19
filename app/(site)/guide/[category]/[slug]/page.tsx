@@ -86,7 +86,7 @@ export default async function ArticlePage({
             { name: "ガイド記事", path: "/guide" },
             {
               name: TOOL_CATEGORIES[article.category],
-              path: `/guide#${article.category}`,
+              path: `/guide/${article.category}`,
             },
             {
               name: article.title,
