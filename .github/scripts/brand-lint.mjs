@@ -23,6 +23,19 @@ const BANNED = [
   { pattern: /今すぐ購入/, reason: "成約導線の禁止" },
   { pattern: /PR記事/, reason: "PR記事の禁止" },
   { pattern: /タイアップ/, reason: "タイアップの禁止" },
+  // 収益化タグ・アフィリエイトURLの機械検知（docs/13 診断 A-10。「広告臭ゼロ」の担保に穴があったため追加）
+  { pattern: /a8\.net/, reason: "アフィリエイトドメイン（A8.net）の禁止" },
+  { pattern: /amzn\.to/, reason: "アフィリエイトドメイン（Amazonアソシエイト短縮URL）の禁止" },
+  { pattern: /associates-amazon\.com|amazon-adsystem\.com/, reason: "Amazonアフィリエイト関連ドメインの禁止" },
+  { pattern: /af\.moshimo\.com|moshimo-af\.com/, reason: "アフィリエイトドメイン（もしもアフィリエイト）の禁止" },
+  { pattern: /valuecommerce\.(com|ne\.jp)/, reason: "アフィリエイトドメイン（バリューコマース）の禁止" },
+  { pattern: /accesstrade\.(net|ne\.jp)/, reason: "アフィリエイトドメイン（アクセストレード）の禁止" },
+  { pattern: /hb\.afl\.rakuten\.co\.jp|rpx\.a8\.net/, reason: "アフィリエイトドメイン（楽天アフィリエイト等）の禁止" },
+  { pattern: /felmat\.net|linksynergy\.com|jrny\.jp\/af/, reason: "アフィリエイトドメインの禁止" },
+  { pattern: /adsbygoogle/, reason: "広告スクリプト（Google AdSense）の禁止" },
+  { pattern: /googlesyndication\.com|doubleclick\.net/, reason: "広告配信ドメインの禁止" },
+  { pattern: /googletagmanager\.com/, reason: "広告タグマネージャースクリプトの禁止" },
+  { pattern: /rel=["'][^"']*\bsponsored\b/, reason: "sponsored属性（広告リンク明示）の禁止" },
 ];
 
 function walk(dir, files = []) {

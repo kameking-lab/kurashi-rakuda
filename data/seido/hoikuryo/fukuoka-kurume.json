@@ -5,20 +5,20 @@
   "municipalityCode": "402036",
   "prefecture": "福岡県",
   "municipalityType": "中核市",
-  "fiscalYear": 2025,
-  "asOf": "2026-07-18",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-20",
   "nextCheckDue": "2027-04-01",
   "sources": [
     {
       "id": "hoikuryokijunhyou",
-      "title": "久留米市 保育料基準表",
+      "title": "久留米市 保育料基準表（令和8年度）",
       "publisher": "久留米市子ども未来部子ども保育課",
-      "url": "https://www.city.kurume.fukuoka.jp/1060manabi/2010kosodate/3090hoikusho/files/hoikuryokijunhyou.pdf",
+      "url": "https://www.city.kurume.fukuoka.jp/1060manabi/2010kosodate/3090hoikusho/files/hoikuryoukijyunr8.pdf",
       "landingUrl": "https://www.city.kurume.fukuoka.jp/1060manabi/2010kosodate/3090hoikusho/hoikuryou.html",
       "contentType": "pdf",
-      "checkedAt": "2026-07-18",
+      "checkedAt": "2026-07-20",
       "tier": "municipality",
-      "note": "令和7年度の基準表"
+      "note": "令和8年度の基準表。標準時間・短時間とも第1〜第11階層の金額は令和7年度版から据置（変更なし）。要保護者世帯向けの「第2階層1」「第3階層1」等の軽減サブ階層は従来どおり通常階層のみ収録する方針のため除外している。"
     },
     {
       "id": "hoikuryou-html",
@@ -26,20 +26,20 @@
       "publisher": "久留米市",
       "url": "https://www.city.kurume.fukuoka.jp/1060manabi/2010kosodate/3090hoikusho/hoikuryou.html",
       "contentType": "html",
-      "checkedAt": "2026-07-18",
+      "checkedAt": "2026-07-20",
       "tier": "municipality"
     }
   ],
   "amendments": [
     {
-      "summary": "令和8年度のデータが未公表のため、令和7年度のデータを使用しています。令和8年度の基準表が公表され次第更新が必要です。",
-      "status": "under-review",
+      "summary": "令和8年度の保育料基準表が久留米市公式サイトで公表された（ファイル名 hoikuryoukijyunr8.pdf）。第1〜第11階層の金額は令和7年度版から変更なし（据置）。",
+      "status": "in-force",
       "effectiveFrom": "2026-04-01",
       "sourceId": "hoikuryokijunhyou",
-      "impact": "令和8年度の金額や階層に変更があるか要確認"
+      "impact": "fiscalYearを2026に更新し、tiersの金額はそのまま据置。sources[]のURLを令和8年度版PDF（hoikuryoukijyunr8.pdf）に差し替えた。"
     }
   ],
-  "disclaimer": "本データは久留米市の令和7年度の公式資料に基づく参考情報です。実際の保育料は世帯状況や税額の確定内容により決定されますので、最終的な金額は必ず久留米市の決定通知および公式資料をご確認ください。",
+  "disclaimer": "本データは久留米市の令和8年度の公式資料に基づく参考情報です。実際の保育料は世帯状況や税額の確定内容により決定されますので、最終的な金額は必ず久留米市の決定通知および公式資料をご確認ください。",
   "scope": {
     "includes": [
       "保育所・認定こども園（保育所として利用）・地域型保育事業所の保育料",

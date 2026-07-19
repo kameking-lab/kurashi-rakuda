@@ -54,7 +54,7 @@ function input(over: Partial<HoikuryoInput> & { municipalityId: string }): Hoiku
 const feeOfCalc = (over: Partial<HoikuryoInput> & { municipalityId: string }) =>
   calc(input(over))?.fee;
 
-describe("収集済み自治体（87件）", () => {
+describe("収集済み自治体", () => {
   it("data/seido/hoikuryo/*.json と municipalities が1対1（自動生成＝手書き配列を廃止）", () => {
     // ★件数をハードコードしない★ データファイルと配列の一致だけを検査する（コンフリクト税の撲滅）
     const dir = join(process.cwd(), "data", "seido", "hoikuryo");

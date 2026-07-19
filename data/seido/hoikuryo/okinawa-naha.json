@@ -1,6 +1,6 @@
 {
   "$schema": "../../schema/hoikuryo.schema.json",
-  "id": "naha-okinawa",
+  "id": "okinawa-naha",
   "name": "沖縄県那覇市",
   "municipalityCode": "472018",
   "prefecture": "沖縄県",

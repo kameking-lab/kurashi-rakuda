@@ -144,7 +144,7 @@
 | 高知県高知市 | `kochi-kochi.json` | 15 | R8 | 40 | 【中国・四国・九州・沖縄・Antigravity】詳細メモは同系統側で追記予定 |
 | 宮崎県宮崎市 | `miyazaki-miyazaki.json` | 14 | R8 | 21 | 【同上】 |
 | 長崎県長崎市 | `nagasaki-nagasaki.json` | 8 | R8 | 24 | 【同上】 |
-| 沖縄県那覇市 | `naha-okinawa.json` | 13 | R8 | 39 | 【同上】 |
+| 沖縄県那覇市 | `okinawa-naha.json` | 13 | R8 | 39 | 【同上】 |
 | 福岡県久留米市 | `fukuoka-kurume.json` | 11 | **R7** | 44 | 【中国・四国・九州・沖縄・Antigravity】詳細メモは同系統側で追記予定 |
 | 広島県福山市 | `hiroshima-fukuyama.json` | 19 | **R7** | 14 | 【同上】 |
 | 香川県高松市 | `kagawa-takamatsu.json` | 10 | R8 | 17 | 【同上】 |
