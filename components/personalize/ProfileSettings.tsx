@@ -21,7 +21,13 @@ function toProfile(d: ProfileDetails): Profile {
   };
 }
 
-export function ProfileSettings() {
+/**
+ * プロフィール入力フォーム本体（`<details>` の中身だけ）。
+ * ★`<details>`/`<summary>` の枠は DeferredProfileSettings 側が常時描画する★
+ * こうすると開閉状態は同一の DOM ノードで保持され、遅延ロードで中身が差し替わっても
+ * 「枠だけ開いて中身が空」というハイドレーション競合（診断 A-3）が起きない。
+ */
+export function ProfileSettingsForm() {
   const { settings, ready } = usePersonalization();
   const [details, setDetails] = useState<ProfileDetails>({});
   const [saved, setSaved] = useState(false);
@@ -30,8 +36,6 @@ export function ProfileSettings() {
   const event = (name: "pregnant"|"working"|"caregiving", checked: boolean) => setDetails((d) => ({ ...d, events: checked ? [...new Set([...(d.events ?? []), name])] : (d.events ?? []).filter((x) => x !== name) }));
   const submit = (e: FormEvent) => { e.preventDefault(); savePersonalization({ profile: toProfile(details), details, relatedOnly: settings.relatedOnly }); setSaved(true); };
   return (
-    <details className="profile-settings rounded-card border border-line bg-paper">
-      <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-3 px-5 py-3 font-bold"><span>あなた向けに並べ替える</span><span className="text-sm font-normal text-ink-muted">任意・あとで変更できます</span></summary>
       <form onSubmit={submit} className="border-t border-line p-5">
         <div className="flex items-start gap-4 rounded-card bg-brand-soft p-4"><Rakku pose="guide" size={72}/><p>わかるところだけで大丈夫だよ。<strong className="block">この端末だけに保存し、どこにも送信されません。</strong></p></div>
         <div className="profile-grid mt-5 grid gap-4 sm:grid-cols-2">
@@ -44,6 +48,5 @@ export function ProfileSettings() {
         <fieldset className="mt-5"><legend className="font-bold">お子さん（任意）</legend><label className="profile-check mt-2"><input type="checkbox" checked={details.hasChildren ?? false} onChange={(e)=>setDetails({...details,hasChildren:e.target.checked})}/>子どもがいる</label>{details.hasChildren && <div className="profile-grid mt-3 grid gap-4 sm:grid-cols-2"><label>子どもの性別<select value={details.childGender ?? ""} onChange={(e)=>setDetails({...details,childGender:e.target.value ? e.target.value as "female"|"male" : undefined})}><option value="">設定しない</option><option value="female">女の子</option><option value="male">男の子</option></select></label><label>子どもの年齢<input type="number" min="0" max="18" step="0.1" value={details.childAge ?? ""} onChange={(e)=>number("childAge",e.target.value)}/></label></div>}</fieldset>
         <div className="mt-6 flex flex-wrap items-center gap-3"><button className="min-h-12 rounded-full bg-brand px-6 font-bold text-paper" type="submit">この端末に保存</button><button className="min-h-12 rounded-full border border-line px-5" type="button" onClick={()=>{clearPersonalization();setDetails({});setSaved(false)}}>設定をクリア</button>{saved&&<span role="status" className="text-sm text-brand">保存しました</span>}</div>
       </form>
-    </details>
   );
 }
