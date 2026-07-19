@@ -210,7 +210,9 @@
 
 ★2026-07-19 完了（ソネット・東日本ブロック・一般市バッチ6）★: [x] 弘前市（1階層、令和8年7月〜市独自に0〜5歳児クラス全階層を無償化・国の無償化基準を上回る）・大垣市（11階層・R8）・刈谷市（11階層、標準/短時間の区分なし）・東村山市（1階層、都独自負担軽減事業で無償）・ひたちなか市（12階層・R8）・釧路市（17階層、令和7年度〜第2子以降無償化）・野田市（18階層、乳児/1・2歳児で金額差がありage0/age1to2軸未対応のため高い方の乳児額をunder3に収録・低い方はlabelに保存）・武蔵野市（1階層、都独自負担軽減事業で無償）。全市 --fetch照合エラー0。新規ドメイン許可3件（東村山`city.higashimurayama.tokyo.jp`・弘前`city.hirosaki.aomori.jp`・野田`city.noda.chiba.jp`）。他5市は`.lg.jp`のみで完結し追加不要。次バッチは人口順で継続。
 
-★2026-07-19 着手宣言（ソネット・東日本ブロック・一般市バッチ7）★: [~] 三重県松阪市（mie-matsusaka）・栃木県栃木市（tochigi-tochigi）・埼玉県朝霞市（saitama-asaka）・埼玉県久喜市（saitama-kuki）・長野県上田市（nagano-ueda）・愛知県小牧市（aichi-komaki）・埼玉県狭山市（saitama-sayama）・神奈川県海老名市（kanagawa-ebina）。人口10万以上の一般市を人口順に収集する第7弾。
+★2026-07-19 着手宣言（ソネット・東日本ブロック・一般市バッチ7）★: [~] 三重県松阪市（mie-matsusaka）・栃木県栃木市（tochigi-tochigi）・埼玉県朝霞市（saitama-asaka）・埼玉県久喜市（saitama-kuki）・長野県上田市（nagano-ueda）・愛知県小牧市（aichi-komaki）・埼玉県狭山市（saitama-sayama）・神奈川県海老名市（kanagawa-ebina）。人口10万以上の一般市を人口順に収集する第8弾。
+
+★2026-07-20 着手宣言（オーパス・西日本ブロック引き継ぎ・一般市バッチ1）★: [~] 京都府宇治市（kyoto-uji）・大阪府和泉市（osaka-izumi）・兵庫県川西市（hyogo-kawanishi）・滋賀県草津市（shiga-kusatsu）・沖縄県沖縄市（okinawa-okinawa）・大阪府箕面市（osaka-minoh）・奈良県橿原市（nara-kashihara）・大阪府門真市（osaka-kadoma）。Codex離脱に伴い西日本（近畿以西）の一般市収集を引き継ぐ。施行時特例市は近畿ぶん収集済みのため、人口10万以上の一般市を人口規模順に収集する。全市 --fetch 照合エラー0を完了条件とする。
 
 ---
 
