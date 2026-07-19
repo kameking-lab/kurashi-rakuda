@@ -24,3 +24,4 @@ scratch/
 
 # 自動生成（保育料 自治体索引・コミットしない）
 lib/tools/impl/hoikuryo.municipalities.generated.ts
+lib/tools/impl/hoikuryo.index.generated.ts

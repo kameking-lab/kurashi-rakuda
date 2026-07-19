@@ -3,53 +3,21 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { getLiveTools, getTool } from "@/app/lib/tools/registry";
 import { ToolShell } from "@/components/tools/ToolShell";
-import { ChomiryoKanzan } from "@/components/tools/impl/ChomiryoKanzan";
-import { AjitsukeOugonhi } from "@/components/tools/impl/AjitsukeOugonhi";
-import { JidoTeate } from "@/components/tools/impl/JidoTeate";
+import { ToolRuntime } from "@/components/tools/ToolRuntime";
 import { JIDO_TEATE_DISCLAIMER } from "@/components/tools/impl/JidoTeate.calc";
-import { Getsurei } from "@/components/tools/impl/Getsurei";
-import { JintsuuKankakuCounter } from "@/components/tools/impl/JintsuuKankakuCounter";
-import { ShussanYoteibi } from "@/components/tools/impl/ShussanYoteibi";
-import { SeiriShuki } from "@/components/tools/impl/SeiriShuki";
-import { Inunohi } from "@/components/tools/impl/Inunohi";
-import { FuyoKabe } from "@/components/tools/impl/FuyoKabe";
-import { Yobousesshu } from "@/components/tools/impl/Yobousesshu";
-import { HokatsuSchedule } from "@/components/tools/impl/HokatsuSchedule";
-import { JunyuMilkRyo } from "@/components/tools/impl/JunyuMilkRyo";
-import { RinyushokuRyo } from "@/components/tools/impl/RinyushokuRyo";
 import { RINYUSHOKU_DISCLAIMER, RINYUSHOKU_PREMATURE_DISCLAIMER } from "@/components/tools/impl/RinyushokuRyo.calc";
-import { ShinchoYosoku } from "@/components/tools/impl/ShinchoYosoku";
-import { Hoikuryo } from "@/components/tools/impl/Hoikuryo";
-import { SankyuIkukyuMoney } from "@/components/tools/impl/SankyuIkukyuMoney";
-import { JitanKyuyo } from "@/components/tools/impl/JitanKyuyo";
-import { FukushokuTedori } from "@/components/tools/impl/FukushokuTedori";
-import { FukkiBiKeisan } from "@/components/tools/impl/FukkiBiKeisan";
-import { SentakuHyoji } from "@/components/tools/impl/SentakuHyoji";
-import { ReitoHozon } from "@/components/tools/impl/ReitoHozon";
 import { REITO_HOZON_DISCLAIMERS } from "@/components/tools/impl/ReitoHozon.calc";
-import { TsukuriokiHimochiIchiran } from "@/components/tools/impl/TsukuriokiHimochiIchiran";
 import {
   TSUKURIOKI_DISCLAIMERS,
   TSUKURIOKI_GRANULARITY_LIMITATION,
 } from "@/components/tools/impl/TsukuriokiHimochiIchiran.calc";
-import { SuihanMizu } from "@/components/tools/impl/SuihanMizu";
-import { KondateTeian } from "@/components/tools/impl/KondateTeian";
 import { KONDATE_DISCLAIMER, kondateData } from "@/lib/tools/impl/kondate-teian";
-import { KaimonoListJidouSeisei } from "@/components/tools/impl/KaimonoListJidouSeisei";
-import { KaigoJikofutan } from "@/components/tools/impl/KaigoJikofutan";
-import { KaigoShisetsuHiyouHayami } from "@/components/tools/impl/KaigoShisetsuHiyouHayami";
 import { kaigoShisetsuHiyouSoubaDataset } from "@/components/tools/impl/KaigoShisetsuHiyouHayami.calc";
-import { YoujiMushoukaChecker } from "@/components/tools/impl/YoujiMushoukaChecker";
 import { YOUJI_MUSHOUKA_DISCLAIMER } from "@/components/tools/impl/YoujiMushoukaChecker.calc";
-import { NinshinKenshinSchedule } from "@/components/tools/impl/NinshinKenshinSchedule";
-import { JoseiKenshinSchedule } from "@/components/tools/impl/JoseiKenshinSchedule";
 import {
   COMPREHENSIVE_SCREENING_NOTE,
   UNDER_TREATMENT_EXCLUSION_NOTE,
 } from "@/components/tools/impl/JoseiKenshinSchedule.calc";
-import { ShussanJunbiChecklist } from "@/components/tools/impl/ShussanJunbiChecklist";
-import { YoukaigoNinteiDandoriNavi } from "@/components/tools/impl/YoukaigoNinteiDandoriNavi";
-import { KaigoShigotoRyouritsuChecker } from "@/components/tools/impl/KaigoShigotoRyouritsuChecker";
 import {
   kaigoShigotoRyouritsuDataset,
   JIKANGAI_MONTHLY_LIMIT,
@@ -65,7 +33,6 @@ import {
   JOHO_TEIKYO_40_TEXT,
   TELEWORK_TEXT,
 } from "@/components/tools/impl/KaigoShigotoRyouritsuChecker.calc";
-import { GakudouKabeDandoriCheck } from "@/components/tools/impl/GakudouKabeDandoriCheck";
 import {
   GRADE_RANGE_LABEL as GAKUDOU_GRADE_RANGE_LABEL,
   SUPPORT_UNIT_MAX_CHILDREN as GAKUDOU_SUPPORT_UNIT_MAX_CHILDREN,
@@ -76,13 +43,7 @@ import {
   WAITING_CHILDREN_OCT_PROVISIONAL as GAKUDOU_WAITING_CHILDREN_OCT_PROVISIONAL,
   gakudouHoikuDataset,
 } from "@/components/tools/impl/GakudouKabeDandoriCheck.calc";
-import { SangoTetsuzukiChecklist } from "@/components/tools/impl/SangoTetsuzukiChecklist";
-import { ShokuhiMeyasu } from "@/components/tools/impl/ShokuhiMeyasu";
-import { YosanHaibunKeisan } from "@/components/tools/impl/YosanHaibunKeisan";
-import { RecipeNinzuuKansan } from "@/components/tools/impl/RecipeNinzuuKansan";
-import { HoikuenOmukaeGyakusan } from "@/components/tools/impl/HoikuenOmukaeGyakusan";
 import { HOIKUEN_OMUKAE_DISCLAIMER } from "@/components/tools/impl/HoikuenOmukaeGyakusan.calc";
-import { Shou1KabeKinmuSimulation } from "@/components/tools/impl/Shou1KabeKinmuSimulation";
 import {
   gakudouHoikuDataset as shou1KabeGakudouHoikuDataset,
   GRADE_RANGE_LABEL,
@@ -90,32 +51,23 @@ import {
   SUPPORT_UNIT_MAX_CHILDREN,
   WAITING_CHILDREN_TOTAL,
 } from "@/components/tools/impl/Shou1KabeKinmuSimulation.calc";
-import { RenjiWattKansan } from "@/components/tools/impl/RenjiWattKansan";
 import { RENJI_KANZAN_SOURCE } from "@/components/tools/impl/RenjiWattKansan.calc";
-import { NamonakiKajiChecker } from "@/components/tools/impl/NamonakiKajiChecker";
 import { REFERENCE_STAT as NAMONAKI_KAJI_REFERENCE_STAT } from "@/components/tools/impl/NamonakiKajiChecker.calc";
-import { PartShiftShunyuuKeisan } from "@/components/tools/impl/PartShiftShunyuuKeisan";
 import { partShiftKabeDataset } from "@/components/tools/impl/PartShiftShunyuuKeisan.calc";
-import { KaigoServiceGyakuHiki } from "@/components/tools/impl/KaigoServiceGyakuHiki";
 import { kaigoHokenDataset as kaigoServiceGyakuHikiDataset } from "@/components/tools/impl/KaigoServiceGyakuHiki.calc";
-import { JoseiTekiseiTaijuuShihyou } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou";
 import { TEKISEI_TAIJUU_DISCLAIMER } from "@/components/tools/impl/JoseiTekiseiTaijuuShihyou.calc";
-import { NinshinTaijuZokaChecker } from "@/components/tools/impl/NinshinTaijuZokaChecker";
 import {
   GAIN_GUIDANCE_FOOTNOTE as NINSHIN_TAIJU_GAIN_GUIDANCE_FOOTNOTE,
   PREGNANCY_GAIN_CAUTION as NINSHIN_TAIJU_PREGNANCY_GAIN_CAUTION,
   APPLICABILITY_NOTE as NINSHIN_TAIJU_APPLICABILITY_NOTE,
 } from "@/components/tools/impl/NinshinTaijuZokaChecker.calc";
-import { PmsYosokuCalendar } from "@/components/tools/impl/PmsYosokuCalendar";
 import {
   PMS_DEFINITION_TEXT,
   PMS_PREVALENCE_FROM_PERCENT,
   PMS_PREVALENCE_TO_PERCENT,
   PMS_DISCLAIMER,
 } from "@/components/tools/impl/PmsYosokuCalendar.calc";
-import { AkachanSuiminGyakusan } from "@/components/tools/impl/AkachanSuiminGyakusan";
 import { AKACHAN_SUIMIN_DISCLAIMER } from "@/components/tools/impl/AkachanSuiminGyakusan.calc";
-import { JidouFuyouTeate } from "@/components/tools/impl/JidouFuyouTeate";
 import {
   jidouFuyouTeateDataset,
   JIDOU_FUYOU_TEATE_DISCLAIMER,
@@ -125,22 +77,18 @@ import {
   ADDITIONAL_CHILD_COEFFICIENT,
   CHILD_SUPPORT_INCOME_RATE,
 } from "@/components/tools/impl/JidouFuyouTeate.calc";
-import { SeichouKyokusen } from "@/components/tools/impl/SeichouKyokusen";
 import { SEICHOU_EDITION } from "@/components/tools/impl/SeichouKyokusen.calc";
-import { KosodateKyufuSougouCheck } from "@/components/tools/impl/KosodateKyufuSougouCheck";
 import {
   kosodateKyufuDataset,
   KOSODATE_KYUFU_DISCLAIMER,
   ALL_PROGRAMS as KOSODATE_ALL_PROGRAMS,
 } from "@/components/tools/impl/KosodateKyufuSougouCheck.calc";
-import { TaishokuTimingSongeki } from "@/components/tools/impl/TaishokuTimingSongeki";
 import {
   taishokuTimingDataset,
   TAISHOKU_TIMING_DISCLAIMER,
   WAITING_DAYS as TAISHOKU_WAITING_DAYS,
   RESTRICTION_MONTHS_JIKO as TAISHOKU_RESTRICTION_MONTHS,
 } from "@/components/tools/impl/TaishokuTimingSongeki.calc";
-import { FuyounaiShahoSongeki } from "@/components/tools/impl/FuyounaiShahoSongeki";
 import {
   fuyounaiShahoSongekiDataset,
   FUYOUNAI_SHAHO_DISCLAIMER,
@@ -151,7 +99,6 @@ import {
   KOKUMIN_NENKIN_MONTHLY,
   fmtYen as fuyounaiShahoFmtYen,
 } from "@/components/tools/impl/FuyounaiShahoSongeki.calc";
-import { YouikuhiSanteihyou } from "@/components/tools/impl/YouikuhiSanteihyou";
 import {
   youikuhiSanteihyouDataset,
   YOUIKUHI_DISCLAIMER,
@@ -161,7 +108,6 @@ import {
   SAKIDORI_PER_CHILD,
   fmtYen as youikuhiFmtYen,
 } from "@/components/tools/impl/YouikuhiSanteihyou.calc";
-import { FuninChiryouHokenTekiyou } from "@/components/tools/impl/FuninChiryouHokenTekiyou";
 import {
   funinChiryouDataset,
   FUNIN_CHIRYOU_DISCLAIMER,
@@ -170,24 +116,20 @@ import {
   UNDER40_LIMIT as FUNIN_UNDER40_LIMIT,
   AGE40_TO43_LIMIT as FUNIN_AGE40_TO43_LIMIT,
 } from "@/components/tools/impl/FuninChiryouHokenTekiyou.calc";
-import { ShokujiSesshuKijunNinpu } from "@/components/tools/impl/ShokujiSesshuKijunNinpu";
 import {
   shokujiSesshuDataset,
   SHOKUJI_SESSHU_DISCLAIMER,
   folicAcidInfo as shokujiFolicAcidInfo,
 } from "@/components/tools/impl/ShokujiSesshuKijunNinpu.calc";
-import { KodomoIryouhiJyosei } from "@/components/tools/impl/KodomoIryouhiJyosei";
 import {
   kodomoIryouhiDataset,
   KODOMO_IRYOUHI_DISCLAIMER,
 } from "@/components/tools/impl/KodomoIryouhiJyosei.calc";
-import { KougakuIryouKaigoGassan } from "@/components/tools/impl/KougakuIryouKaigoGassan";
 import {
   kougakuGassanDataset,
   KOUGAKU_GASSAN_DISCLAIMER,
   MINIMUM_PAYMENT as GASSAN_MINIMUM_PAYMENT,
 } from "@/components/tools/impl/KougakuIryouKaigoGassan.calc";
-import { KougakuKaigoServiceHi } from "@/components/tools/impl/KougakuKaigoServiceHi";
 import {
   kougakuKaigoServiceHiDataset,
   KOUGAKU_KAIGO_DISCLAIMER,
@@ -198,7 +140,6 @@ import {
   LIMIT_INDIVIDUAL,
   fmtYen as kougakuKaigoFmtYen,
 } from "@/components/tools/impl/KougakuKaigoServiceHi.calc";
-import { KaigoKyugyouKyufukin } from "@/components/tools/impl/KaigoKyugyouKyufukin";
 import {
   kaigoKyugyouKyufukinDataset,
   KAIGO_KYUGYOU_DISCLAIMER,
@@ -213,7 +154,8 @@ import { JsonLd, breadcrumbList, webApplication } from "@/components/site/JsonLd
 import { TOOL_CATEGORIES } from "@/app/lib/tools/types";
 import { SITE_NAME, SITE_URL } from "@/app/lib/site";
 import { fuyoKabeDataset } from "@/lib/tools/impl/fuyo-kabe";
-import { municipalities, toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
+import { toSeidoDataset } from "@/lib/tools/impl/hoikuryo";
+import { municipalities } from "@/lib/tools/impl/hoikuryo.data";
 import { juuminzeiDataset } from "@/lib/tools/impl/hoikuryo-shotokuwari";
 import { kyoukaikenpoDataset, koyouHokenDataset } from "@/lib/tools/impl/shakai-hoken";
 import { ikukyuKyufuDataset, salaryAtWageDailyMax } from "@/lib/tools/impl/sankyu-ikukyu-money";
@@ -243,14 +185,12 @@ import {
   JIDO_TEATE_EXCEPTION_DAYS,
   ICHIJIKIN_CLAIM_YEARS,
 } from "@/components/tools/impl/SangoTetsuzukiChecklist.calc";
-import { ChildSeatKitei } from "@/components/tools/impl/ChildSeatKitei";
 import {
   childSeatDataset,
   AGE_THRESHOLD as CHILD_SEAT_AGE_THRESHOLD,
   PENALTY as CHILD_SEAT_PENALTY,
   EXEMPTION_DESCRIPTION as CHILD_SEAT_EXEMPTION_DESCRIPTION,
 } from "@/components/tools/impl/ChildSeatKitei.calc";
-import { YuukyuuFuyoNissuuKijun } from "@/components/tools/impl/YuukyuuFuyoNissuuKijun";
 import {
   yuukyuuFuyoDataset,
   ELIGIBLE_CONTINUOUS_SERVICE_MONTHS,
@@ -263,7 +203,6 @@ import {
   MANDATORY_5DAYS_REQUIRED_DAYS,
   PRESCRIPTION_YEARS,
 } from "@/components/tools/impl/YuukyuuFuyoNissuuKijun.calc";
-import { KyouikuKunrenKyufukin } from "@/components/tools/impl/KyouikuKunrenKyufukin";
 import {
   kyouikuKunrenKyufukinDataset,
   IPPAN_BENEFIT_RATE,
@@ -273,7 +212,6 @@ import {
   SENMON_JISSEN_MAX_TOTAL_BENEFIT,
   MINIMUM_BENEFIT_AMOUNT,
 } from "@/components/tools/impl/KyouikuKunrenKyufukin.calc";
-import { IryouhiKoujoKodomo } from "@/components/tools/impl/IryouhiKoujoKodomo";
 import {
   iryouhiKoujoDataset,
   MAX_DEDUCTION as IRYOUHI_MAX_DEDUCTION,
@@ -283,6 +221,7 @@ import {
   SELF_MEDICATION_IS_EXCLUSIVE_CHOICE,
 } from "@/components/tools/impl/IryouhiKoujoKodomo.calc";
 import { todayJst } from "@/lib/tools/seido";
+
 
 /**
  * ツール実装のマッピング。G2（Q3-01〜20）で実装が増えるたびにここへ1行追加し、
@@ -308,9 +247,14 @@ const jitanEx = JITAN_EXAMPLE_CAP;
 const jitanExNinety = Math.floor(jitanEx.wageAtStart * 0.9);
 const jitanExRule1 = jitanBenefitRule1(jitanEx.wageInMonth);
 
-const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
+/**
+ * ★ツール実装の「根拠・計算式」（formula）だけをここに置く★（診断 S-2 の根治）
+ * formula はサーバ側 JSX（SeidoNotice 等のサーバコンポーネントのみ）でクライアント JS には乗らない。
+ * ツール UI 本体（入力フォーム＝クライアントコンポーネント）は components/tools/ToolRuntime.tsx が
+ * slug 単位で遅延ロードする。全64ツールを1つの page チャンクに詰め込まないための境界分離。
+ */
+const implementations: Record<string, { formula: ReactNode }> = {
   "seichou-kyokusen": {
-    ui: <SeichouKyokusen />,
     formula: (
       <>
         <p>
@@ -331,7 +275,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kosodate-kyufu-sougou-check": {
-    ui: <KosodateKyufuSougouCheck />,
     formula: (
       <>
         <p>
@@ -357,7 +300,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "taishoku-timing-songeki": {
-    ui: <TaishokuTimingSongeki />,
     formula: (
       <>
         <p>
@@ -382,7 +324,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "fuyounai-shaho-songeki-bunkiten": {
-    ui: <FuyounaiShahoSongeki />,
     formula: (
       <>
         <p>
@@ -415,7 +356,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "youikuhi-santeihyou": {
-    ui: <YouikuhiSanteihyou />,
     formula: (
       <>
         <p>
@@ -442,7 +382,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "funin-chiryou-hoken-tekiyou": {
-    ui: <FuninChiryouHokenTekiyou />,
     formula: (
       <>
         <p>
@@ -468,7 +407,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "shokuji-sesshu-kijun-ninpu": {
-    ui: <ShokujiSesshuKijunNinpu />,
     formula: (
       <>
         <p>
@@ -495,7 +433,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kodomo-iryouhi-jyosei": {
-    ui: <KodomoIryouhiJyosei />,
     formula: (
       <>
         <p>
@@ -519,7 +456,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kougaku-iryou-kaigo-gassan": {
-    ui: <KougakuIryouKaigoGassan />,
     formula: (
       <>
         <p>
@@ -546,7 +482,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kougaku-kaigo-service-hi": {
-    ui: <KougakuKaigoServiceHi />,
     formula: (
       <>
         <p>
@@ -578,7 +513,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kaigo-kyugyou-kyufukin": {
-    ui: <KaigoKyugyouKyufukin />,
     formula: (
       <>
         <p>
@@ -606,7 +540,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "jidou-fuyou-teate": {
-    ui: <JidouFuyouTeate />,
     formula: (
       <>
         <p>
@@ -645,7 +578,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "chomiryo-kanzan": {
-    ui: <ChomiryoKanzan />,
     formula: (
       <>
         <p>大さじ1杯は15ml、小さじ1杯は5mlです（計量スプーンの規格）。</p>
@@ -661,7 +593,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "ajitsuke-ougonhi": {
-    ui: <AjitsukeOugonhi />,
     formula: (
       <>
         <p>
@@ -683,7 +614,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "jido-teate": {
-    ui: <JidoTeate />,
     formula: (
       <>
         <p>
@@ -706,7 +636,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   getsurei: {
-    ui: <Getsurei />,
     formula: (
       <>
         <p>
@@ -726,7 +655,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "jintsuu-kankaku-counter": {
-    ui: <JintsuuKankakuCounter />,
     formula: (
       <>
         <p>
@@ -745,7 +673,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "shussan-yoteibi": {
-    ui: <ShussanYoteibi />,
     formula: (
       <>
         <p>
@@ -761,7 +688,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "seiri-shuki": {
-    ui: <SeiriShuki />,
     formula: (
       <>
         <p>
@@ -777,7 +703,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   inunohi: {
-    ui: <Inunohi />,
     formula: (
       <>
         <p>
@@ -793,7 +718,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "fuyo-kabe": {
-    ui: <FuyoKabe />,
     formula: (
       <>
         <p>
@@ -831,7 +755,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   yobousesshu: {
-    ui: <Yobousesshu />,
     formula: (
       <>
         <p>
@@ -853,7 +776,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "hokatsu-schedule": {
-    ui: <HokatsuSchedule />,
     formula: (
       <>
         <p>
@@ -872,7 +794,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "junyu-milk-ryo": {
-    ui: <JunyuMilkRyo />,
     formula: (
       <>
         <p>
@@ -896,7 +817,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "rinyushoku-ryo": {
-    ui: <RinyushokuRyo />,
     formula: (
       <>
         <p>
@@ -915,7 +835,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "shincho-yosoku": {
-    ui: <ShinchoYosoku />,
     formula: (
       <>
         <p>
@@ -935,7 +854,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   hoikuryo: {
-    ui: <Hoikuryo />,
     formula: (
       <>
         <p>
@@ -1014,7 +932,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "sankyu-ikukyu-money": {
-    ui: <SankyuIkukyuMoney />,
     formula: (
       <>
         <p>
@@ -1101,7 +1018,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "fukki-bi-keisan": {
-    ui: <FukkiBiKeisan />,
     formula: (
       <>
         <p>
@@ -1150,7 +1066,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "jitan-kyuyo": {
-    ui: <JitanKyuyo />,
     formula: (
       <>
         <p>
@@ -1222,7 +1137,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "fukushoku-tedori": {
-    ui: <FukushokuTedori />,
     formula: (
       <>
         <p>
@@ -1268,7 +1182,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "sentaku-hyoji": {
-    ui: <SentakuHyoji />,
     formula: (
       <>
         <p>
@@ -1295,7 +1208,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "reito-hozon": {
-    ui: <ReitoHozon />,
     formula: (
       <>
         <p>
@@ -1317,7 +1229,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "tsukurioki-himochi-ichiran": {
-    ui: <TsukuriokiHimochiIchiran />,
     formula: (
       <>
         <p>
@@ -1342,7 +1253,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "suihan-mizu": {
-    ui: <SuihanMizu />,
     formula: (
       <>
         <p>
@@ -1364,7 +1274,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kondate-teian": {
-    ui: <KondateTeian />,
     formula: (
       <>
         <p>
@@ -1415,7 +1324,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kaimono-list-jidou-seisei": {
-    ui: <KaimonoListJidouSeisei />,
     formula: (
       <>
         <p>
@@ -1452,7 +1360,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kaigo-jikofutan": {
-    ui: <KaigoJikofutan />,
     formula: (
       <>
         <p>
@@ -1566,7 +1473,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "youji-mushouka-checker": {
-    ui: <YoujiMushoukaChecker />,
     formula: (
       <>
         <p>
@@ -1586,7 +1492,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "ninshin-kenshin-schedule": {
-    ui: <NinshinKenshinSchedule />,
     formula: (
       <>
         <p>
@@ -1615,7 +1520,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "youkaigo-nintei-dandori-navi": {
-    ui: <YoukaigoNinteiDandoriNavi />,
     formula: (
       <>
         <p>
@@ -1668,7 +1572,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kaigo-shisetsu-hiyou-hayami": {
-    ui: <KaigoShisetsuHiyouHayami />,
     formula: (
       <>
         <p>
@@ -1730,7 +1633,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kaigo-shigoto-ryouritsu-checker": {
-    ui: <KaigoShigotoRyouritsuChecker />,
     formula: (
       <>
         <p>
@@ -1765,7 +1667,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "namonaki-kaji-checker": {
-    ui: <NamonakiKajiChecker />,
     formula: (
       <>
         <p>
@@ -1784,7 +1685,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "shokuhi-meyasu": {
-    ui: <ShokuhiMeyasu />,
     formula: (
       <>
         <p>
@@ -1815,7 +1715,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "yosan-haibun-keisan": {
-    ui: <YosanHaibunKeisan />,
     formula: (
       <>
         <p>
@@ -1842,7 +1741,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "shussan-junbi-checklist": {
-    ui: <ShussanJunbiChecklist />,
     formula: (
       <>
         <p>
@@ -1863,7 +1761,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "sango-tetsuzuki-checklist": {
-    ui: <SangoTetsuzukiChecklist />,
     formula: (
       <>
         <p>
@@ -1904,7 +1801,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "recipe-ninzuu-kansan": {
-    ui: <RecipeNinzuuKansan />,
     formula: (
       <>
         <p>
@@ -1928,7 +1824,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "hoikuen-omukae-gyakusan": {
-    ui: <HoikuenOmukaeGyakusan />,
     formula: (
       <>
         <p>
@@ -1951,7 +1846,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "shou1-kabe-kinmu-simulation": {
-    ui: <Shou1KabeKinmuSimulation />,
     formula: (
       <>
         <p>
@@ -1979,7 +1873,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "renji-watt-kansan": {
-    ui: <RenjiWattKansan />,
     formula: (
       <>
         <p>
@@ -2008,7 +1901,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "gakudou-kabe-dandori-check": {
-    ui: <GakudouKabeDandoriCheck />,
     formula: (
       <>
         <p>
@@ -2046,7 +1938,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "josei-kenshin-schedule": {
-    ui: <JoseiKenshinSchedule />,
     formula: (
       <>
         <p>
@@ -2074,7 +1965,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "part-shift-shunyuu-keisan": {
-    ui: <PartShiftShunyuuKeisan />,
     formula: (
       <>
         <p>
@@ -2107,7 +1997,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kaigo-service-gyaku-hiki": {
-    ui: <KaigoServiceGyakuHiki />,
     formula: (
       <>
         <p>
@@ -2138,7 +2027,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "josei-tekisei-taijuu-shihyou": {
-    ui: <JoseiTekiseiTaijuuShihyou />,
     formula: (
       <>
         <p>
@@ -2177,7 +2065,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "ninshin-taiju-zoka-checker": {
-    ui: <NinshinTaijuZokaChecker />,
     formula: (
       <>
         <p>
@@ -2211,7 +2098,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "pms-yosoku-calendar": {
-    ui: <PmsYosokuCalendar />,
     formula: (
       <>
         <p>
@@ -2235,7 +2121,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "akachan-suimin-gyakusan": {
-    ui: <AkachanSuiminGyakusan />,
     formula: (
       <>
         <p>
@@ -2254,7 +2139,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "child-seat-kitei": {
-    ui: <ChildSeatKitei />,
     formula: (
       <>
         <p>
@@ -2286,7 +2170,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "yuukyuu-fuyo-nissuu-kijun": {
-    ui: <YuukyuuFuyoNissuuKijun />,
     formula: (
       <>
         <p>
@@ -2325,7 +2208,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "kyouiku-kunren-kyufukin": {
-    ui: <KyouikuKunrenKyufukin />,
     formula: (
       <>
         <p>
@@ -2352,7 +2234,6 @@ const implementations: Record<string, { ui: ReactNode; formula: ReactNode }> = {
     ),
   },
   "iryouhi-koujo-kodomo": {
-    ui: <IryouhiKoujoKodomo />,
     formula: (
       <>
         <p>
@@ -2442,7 +2323,7 @@ export default async function ToolPage({
         })}
       />
       <ToolShell meta={tool} formula={impl.formula}>
-        {impl.ui}
+        <ToolRuntime slug={tool.slug} />
       </ToolShell>
     </>
   );

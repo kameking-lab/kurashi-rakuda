@@ -22,7 +22,7 @@ import {
   type HoikuryoInput,
   type HoikuryoTier,
   type HoikuryoMunicipality,
-} from "@/lib/tools/impl/hoikuryo";
+} from "@/lib/tools/impl/hoikuryo.data";
 import { upcomingChanges } from "@/lib/tools/seido";
 
 /**
