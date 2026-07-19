@@ -3,7 +3,11 @@ import Link from "next/link";
 import { getLiveTools, tools } from "@/app/lib/tools/registry";
 import { TOOL_CATEGORIES, type ToolCategory } from "@/app/lib/tools/types";
 import { Rakku } from "@/components/mascot/Rakku";
-import { DeferredProfileSettings, DeferredToolDirectoryControls } from "@/components/personalize/DeferredPersonalization";
+import {
+  DeferredHomePersonalization,
+  DeferredProfileSettings,
+  DeferredToolDirectoryControls,
+} from "@/components/personalize/DeferredPersonalization";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CategoryIcon, CategoryVisual } from "@/components/ui/CategoryVisual";
 
@@ -30,8 +34,21 @@ export default function ToolsPage() {
       <p className="mt-2 text-ink-muted">
         すべて無料・登録不要。準備中のツールも順次公開します。
       </p></div><span className="index-hero-mascot"><Rakku pose="calc" size={180} sizes="180px" /></span></header>
-      <nav aria-label="ツールカテゴリ" className="category-nav mt-5">{categories.map((cat)=><a key={cat} href={`#${cat}`} className={`category-chip ${CATEGORY_UI[cat].className}`}><CategoryIcon category={cat} />{TOOL_CATEGORIES[cat]}</a>)}</nav>
+      <div className="category-nav-sticky mt-5">
+        <nav aria-label="ツールカテゴリ" className="category-nav">{categories.map((cat)=><a key={cat} href={`#${cat}`} className={`category-chip ${CATEGORY_UI[cat].className}`}><CategoryIcon category={cat} />{TOOL_CATEGORIES[cat]}</a>)}</nav>
+      </div>
       <div className="mt-5"><DeferredProfileSettings /></div>
+      {/* あなた向け枠（IA-3。SSRの並び順は変えず、この最大6件の推薦枠だけクライアント側で描画する） */}
+      <section aria-labelledby="for-you-title" className="for-you-section mt-6 rounded-[1.5rem] border border-line bg-brand-soft p-5 sm:p-7">
+        <p className="eyebrow" data-home-personalized-eyebrow>まず使ってほしいツール</p>
+        <h2 id="for-you-title" data-home-personalized-heading className="mt-1 text-2xl font-bold">よく使われるツール</h2>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-3">{tools.filter((t) => t.status === "live").slice(0, 6).map((tool) => <li key={tool.slug}>
+          <Link data-home-personalized prefetch={false} href={`/tools/${tool.category}/${tool.slug}`} className="personalized-card block h-full rounded-card border border-line bg-paper p-4">
+            <strong data-home-title className="block">{tool.title}</strong><span data-home-description className="mt-1 block text-sm text-ink-muted">{tool.description}</span>
+          </Link>
+        </li>)}</ul>
+        <DeferredHomePersonalization />
+      </section>
       <DeferredToolDirectoryControls />
       {categories.map((cat) => {
         const list = tools.filter((tool) => tool.category === cat);
