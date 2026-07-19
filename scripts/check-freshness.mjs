@@ -69,9 +69,13 @@ function checkDue(file, due, label) {
   }
 }
 
+// 制度データでない編集資産（出典・確認日・再確認期限を持たない設計）は鮮度監査の対象外。
+// search-synonyms.json は検索の同義語辞書（specs/ai/01 §2。煽り語混入は brand-lint が担保）。
+const NON_SEIDO_TABLES = new Set(['search-synonyms.json']);
+
 async function checkTables() {
   if (!existsSync(TABLES_DIR)) return;
-  for (const name of (await readdir(TABLES_DIR)).filter((f) => f.endsWith('.json')).sort()) {
+  for (const name of (await readdir(TABLES_DIR)).filter((f) => f.endsWith('.json') && !NON_SEIDO_TABLES.has(f)).sort()) {
     const file = relative(ROOT, join(TABLES_DIR, name));
     stats.tables++;
     let d;
