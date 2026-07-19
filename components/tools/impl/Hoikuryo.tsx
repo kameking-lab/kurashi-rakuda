@@ -1,21 +1,26 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { NumberField, SelectField } from "@/components/ui/Field";
 import { ResultCard } from "@/components/ui/ResultCard";
 import { Callout } from "@/components/ui/Callout";
 import {
-  calc,
-  getMunicipality,
+  calcMunicipality,
   isIncomeInputUseful,
   isTimeBandApplicable,
-  municipalities,
   resolveTimeBandKey,
   type AgeKey,
   type CareNeed,
   type HoikuryoMunicipality,
   type TaxStatus,
 } from "@/lib/tools/impl/hoikuryo";
+// ★選択時オンデマンド読込★（診断 S-2）。セレクタは軽量索引だけを同梱し、選ばれた自治体の階層表は
+// loadMunicipality が JSON を1件だけ動的 import する（全147自治体・約3.2MB を初期バンドルに載せない）。
+import {
+  municipalitiesIndex,
+  type HoikuryoIndexEntry,
+} from "@/lib/tools/impl/hoikuryo.index.generated";
+import { loadMunicipality } from "@/lib/tools/impl/hoikuryo.loader";
 import {
   estimateHouseholdShotokuwari,
   requiresPreprocessing,
@@ -41,10 +46,10 @@ const yen = (n: number) => n.toLocaleString("ja-JP");
 
 const OTHER = "__other__";
 
-/** 都道府県ごとにまとめた選択肢（収集済みのみ） */
+/** 都道府県ごとにまとめた選択肢（収集済みのみ・軽量索引から生成） */
 function groupedOptions() {
-  const byPref = new Map<string, HoikuryoMunicipality[]>();
-  for (const m of municipalities) {
+  const byPref = new Map<string, HoikuryoIndexEntry[]>();
+  for (const m of municipalitiesIndex) {
     const list = byPref.get(m.prefecture) ?? [];
     list.push(m);
     byPref.set(m.prefecture, list);
@@ -149,7 +154,36 @@ export function Hoikuryo() {
   const [shahoA, setShahoA] = useState("");
   const [shahoB, setShahoB] = useState("");
 
-  const m = getMunicipality(municipalityId);
+  // ★選択された自治体の階層表を選択時に動的読込する★（診断 S-2）。
+  // m=null かつ loadingM=true は「読込中」、m=null かつ loadingM=false は「未対応（OTHER 等）」。
+  const [m, setM] = useState<HoikuryoMunicipality | null>(null);
+  const [loadingM, setLoadingM] = useState(true);
+  useEffect(() => {
+    if (municipalityId === OTHER) {
+      setM(null);
+      setLoadingM(false);
+      return;
+    }
+    let cancelled = false;
+    setLoadingM(true);
+    loadMunicipality(municipalityId)
+      .then((data) => {
+        if (!cancelled) {
+          setM(data);
+          setLoadingM(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setM(null);
+          setLoadingM(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [municipalityId]);
+
   const incomeUseful = m ? isIncomeInputUseful(m) : false;
   const useIncome = advanced && incomeUseful && taxStatus === "incomeTaxed";
   const parsedIncome = income.trim() === "" ? null : Number(income);
@@ -208,7 +242,7 @@ export function Hoikuryo() {
   const r = useMemo(
     () =>
       m
-        ? calc({
+        ? calcMunicipality(m, {
             municipalityId,
             month,
             age,
@@ -245,7 +279,7 @@ export function Hoikuryo() {
         <SelectField
           label="お住まいの自治体"
           value={municipalityId}
-          hint={`現在の対応は${municipalities.length}自治体です`}
+          hint={`現在の対応は${municipalitiesIndex.length}自治体です`}
           onChange={(e) => {
             setMunicipalityId(e.target.value);
             setTimeBand(""); // バンドは自治体固有のキーのため持ち越さない
@@ -362,8 +396,15 @@ export function Hoikuryo() {
         )}
       </div>
 
-      {/* ---------------------------------------- 未対応自治体 */}
-      {!m && (
+      {/* ---------------------------------------- 選択した自治体の階層表を読込中 */}
+      {loadingM && (
+        <p className="text-sm text-ink-muted" role="status" aria-live="polite">
+          選択した自治体の保育料データを読み込んでいます…
+        </p>
+      )}
+
+      {/* ---------------------------------------- 未対応自治体（読込完了後に確定） */}
+      {!loadingM && !m && (
         <>
           <Callout tone="caution">
             お住まいの自治体は<strong>準備中</strong>です。保育料は自治体ごとに階層表も計算の前処理も

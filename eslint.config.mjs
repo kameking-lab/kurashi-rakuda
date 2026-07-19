@@ -12,7 +12,7 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
-    ignores: ["node_modules/**", ".next/**", "out/**", ".vercel/**", "next-env.d.ts", "lib/tools/impl/hoikuryo.municipalities.generated.ts"],
+    ignores: ["node_modules/**", ".next/**", "out/**", ".vercel/**", "next-env.d.ts", "lib/tools/impl/hoikuryo.municipalities.generated.ts", "lib/tools/impl/hoikuryo.index.generated.ts"],
   },
 ];
 

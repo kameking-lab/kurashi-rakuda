@@ -5,7 +5,6 @@ import {
   chouseiKoujo,
   estimateShotokuwari,
   estimateSocialInsurance,
-  estimateTier,
   fuyouKoujo,
   haiguushaKoujo,
   kisoKoujo,
@@ -16,7 +15,8 @@ import {
   shotokuwariNonTaxableLimit,
   type ShotokuwariInput,
 } from "@/lib/tools/impl/hoikuryo-shotokuwari";
-import { getMunicipality } from "@/lib/tools/impl/hoikuryo";
+// estimateTier / getMunicipality は全自治体データを引くためデータ層（サーバ／テスト専用）に移動した（診断 S-2）
+import { estimateTier, getMunicipality } from "@/lib/tools/impl/hoikuryo.data";
 
 /**
  * 保育料 年収→階層推計（8a）のテスト。specs/s-tools/01 §3.2、BACKLOG Q3-09。

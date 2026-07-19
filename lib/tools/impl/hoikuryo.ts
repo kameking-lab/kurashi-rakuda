@@ -16,7 +16,6 @@
  *     推測で換算せず、bracketBasis.note の原文を提示して「前処理後の額」を入力させる（§9.1）
  */
 
-import { municipalityData } from "./hoikuryo.municipalities.generated";
 import type { SeidoAmendment, SeidoDataset, SeidoSource } from "@/lib/tools/seido";
 
 // ---------------------------------------------------------------- 型
@@ -125,18 +124,13 @@ export interface HoikuryoMunicipality {
 // ---------------------------------------------------------------- 自治体データ
 
 /**
- * 収集済み自治体。★data/seido/hoikuryo/*.json から自動生成（手書き配列は廃止）★
- * 収集系統は data/seido/hoikuryo/ に JSON を置くだけでよい。ここ（hoikuryo.ts）も
- * tests/hoikuryo.test.ts も touch 不要（並行収集の 3-way コンフリクト税を撲滅）。
- * 索引は scripts/gen-hoikuryo-municipalities.mjs が municipalityCode（全国地方公共団体コード）順に
- * 生成する（postinstall/prebuild/pretest/pretypecheck/predev/prelint で自動再生成・gitignore 済み）。
- * ★選択肢はこの配列からのみ生成する★ 未収集自治体の階層を創作しない（§7）。
+ * ★このモジュールは「純粋ロジック」層★（診断 S-2）。
+ * 全自治体の階層表実体（municipalityData）はここでは import しない。クライアントのツールバンドルに
+ * 3.2MB の JSON を載せないため、自治体配列を必要とするサーバ／テストは lib/tools/impl/hoikuryo.data.ts を、
+ * クライアントのセレクタは lib/tools/impl/hoikuryo.index.generated.ts（軽量索引）＋
+ * lib/tools/impl/hoikuryo.loader.ts（選択時オンデマンド読込）を使う。
+ * 各関数は自治体オブジェクト（HoikuryoMunicipality）を引数に取り、データ源に依存しない。
  */
-export const municipalities: HoikuryoMunicipality[] = municipalityData;
-
-export function getMunicipality(id: string): HoikuryoMunicipality | undefined {
-  return municipalities.find((m) => m.id === id);
-}
 
 /**
  * 自治体データを共通の制度データ層（lib/tools/seido.ts）の型に変換する。
@@ -453,13 +447,13 @@ export interface HoikuryoResult {
 }
 
 /**
- * 保育料の試算。仕様書 §4 のステップ0〜7 の順序をそのまま実装している。
+ * 保育料の試算（自治体オブジェクトを受け取る版）。仕様書 §4 のステップ0〜7 の順序をそのまま実装している。
  * 金額を出せないときは fee=null を返す。最寄りの階層に丸めない（§7）。
+ *
+ * ★id ではなく自治体オブジェクトを取る★ クライアントは選択時に階層表を1件だけ動的読込するため
+ * （診断 S-2）、全自治体配列を参照する getMunicipality を経由しない。id 版は hoikuryo.data.ts の calc()。
  */
-export function calc(input: HoikuryoInput): HoikuryoResult | null {
-  const m = getMunicipality(input.municipalityId);
-  if (!m) return null;
-
+export function calcMunicipality(m: HoikuryoMunicipality, input: HoikuryoInput): HoikuryoResult {
   const bandKey = resolveTimeBandKey(m, input.need, input.timeBand ?? null);
   const base = {
     municipality: m,
