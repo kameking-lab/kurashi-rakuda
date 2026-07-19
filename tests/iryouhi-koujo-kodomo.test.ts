@@ -16,6 +16,10 @@ import {
   KOSODATE_BOOLEAN_TOPICS,
   KOSODATE_CONDITIONAL_TOPICS,
   EXCLUDED_ITEMS,
+  SELF_MEDICATION_IDENTIFICATION_METHODS,
+  SELF_MEDICATION_IDENTIFICATION_NOTE,
+  SELF_MEDICATION_SCALE_NOTE,
+  MHLW_SELF_MEDICATION_LIST_URL,
   type IryouhiKoujoInput,
 } from "@/components/tools/impl/IryouhiKoujoKodomo.calc";
 import rawSeido from "@/data/seido/iryouhi-koujo-kodomo.json";
@@ -293,5 +297,55 @@ describe("IryouhiKoujoKodomo.calc — fmtYen", () => {
 
   it("小数は四捨五入する", () => {
     expect(fmtYen(1000.6)).toBe("1,001");
+  });
+});
+
+// ================================================================ P4-T03: 対象OTC（特定一般用医薬品等）の確認方法
+
+describe("SELF_MEDICATION_IDENTIFICATION_METHODS（対象品目の確認方法）", () => {
+  it("3つの確認方法（マーク・レシート・厚労省一覧）を持つ", () => {
+    expect(SELF_MEDICATION_IDENTIFICATION_METHODS).toHaveLength(3);
+    const keys = SELF_MEDICATION_IDENTIFICATION_METHODS.map((m) => m.key).sort();
+    expect(keys).toEqual(["list", "mark", "receipt"]);
+  });
+
+  it("各方法にlabel・descriptionが空でなく入っている", () => {
+    for (const m of SELF_MEDICATION_IDENTIFICATION_METHODS) {
+      expect(m.label.length).toBeGreaterThan(0);
+      expect(m.description.length).toBeGreaterThan(5);
+    }
+  });
+
+  it("共通識別マークの説明は『マークが無いことだけを理由に対象外と判断しない』という限界の注記を含む", () => {
+    const mark = SELF_MEDICATION_IDENTIFICATION_METHODS.find((m) => m.key === "mark")!;
+    expect(mark.description).toContain("対象外と判断しない");
+  });
+
+  it("厚労省一覧の説明は月次更新である旨を含む（★個々の商品名をSSOT化しない理由と整合★）", () => {
+    const list = SELF_MEDICATION_IDENTIFICATION_METHODS.find((m) => m.key === "list")!;
+    expect(list.description).toMatch(/月/);
+  });
+
+  it("SELF_MEDICATION_IDENTIFICATION_NOTEはdata/seido由来で、3つの確認方法すべてに言及する", () => {
+    expect(SELF_MEDICATION_IDENTIFICATION_NOTE).toContain("識別マーク");
+    expect(SELF_MEDICATION_IDENTIFICATION_NOTE).toContain("対象品目一覧");
+    expect(SELF_MEDICATION_IDENTIFICATION_NOTE).toContain("レシート");
+  });
+
+  it("SELF_MEDICATION_SCALE_NOTEは時点（年月日）を明記しており、断定的な現在値になっていない", () => {
+    expect(SELF_MEDICATION_SCALE_NOTE).toMatch(/現在/);
+    expect(SELF_MEDICATION_SCALE_NOTE).not.toMatch(/^\d+成分$/);
+  });
+
+  it("MHLW_SELF_MEDICATION_LIST_URLはmhlw.go.jpのURLである（一次情報のみ・rawSeidoのsourceと一致）", () => {
+    expect(MHLW_SELF_MEDICATION_LIST_URL).toMatch(/^https:\/\/www\.mhlw\.go\.jp\//);
+    const source = rawSeido.sources.find((s) => s.id === "mhlw-selfmedication");
+    expect(source?.url).toBe(MHLW_SELF_MEDICATION_LIST_URL);
+  });
+
+  it("data/seido/iryouhi-koujo-kodomo.jsonのselfMedication配下に新設した2ノードがsourceId参照を持つ", () => {
+    const selfMed = rawSeido.data.selfMedication as Record<string, { sourceId?: string }>;
+    expect(selfMed.eligibleProductIdentification.sourceId).toBe("nta-1132");
+    expect(selfMed.switchOtcIngredientCount.sourceId).toBe("nta-1132");
   });
 });
