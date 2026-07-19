@@ -42,13 +42,43 @@ interface SynonymEntry {
 }
 const SYNONYM_ENTRIES = (synonymData as { entries: SynonymEntry[] }).entries;
 
+/**
+ * 話し言葉クエリの末尾に付く疑問・要望語。剥がした残りも検索語にする
+ * （「保育料いくら」→「保育料」）。長い語を先に試す。
+ */
+const QUESTION_SUFFIXES = [
+  "どのくらい",
+  "どれくらい",
+  "いつから",
+  "いつまで",
+  "なんさい",
+  "やりかた",
+  "ほうほう",
+  "けいさん",
+  "いくら",
+  "何歳",
+  "いつ",
+  "とは",
+  "って",
+  "計算",
+  "方法",
+];
+
 /** クエリを正規化し、同義語辞書で当たる canonical 語を追加した検索語の配列にする */
 export function expandQueryTerms(query: string): string[] {
   const q = normalizeText(query);
   if (!q) return [];
   const terms = new Set<string>([q]);
+  for (const suffix of QUESTION_SUFFIXES) {
+    const ns = normalizeText(suffix);
+    if (q.endsWith(ns) && q.length - ns.length >= 2) {
+      terms.add(q.slice(0, q.length - ns.length));
+      break;
+    }
+  }
   for (const entry of SYNONYM_ENTRIES) {
-    const hit = entry.synonyms.some((s) => {
+    // canonical 自体もキーワードとして双方向照合する（「保育料いくら」⊃「保育料」で拾う）
+    const hit = [entry.canonical, ...entry.synonyms].some((s) => {
       const ns = normalizeText(s);
       return ns.length > 0 && (ns.includes(q) || q.includes(ns));
     });
