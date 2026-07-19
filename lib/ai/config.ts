@@ -22,14 +22,5 @@ export function monthlyCallLimit(): number {
   return Number.isFinite(n) && n > 0 ? n : 10_000;
 }
 
-/** レート制限（docs/16 §4-1）。IPハッシュ 10/日・セッション 5/時 */
-export const RATE_LIMITS = {
-  perIpPerDay: 10,
-  perSessionPerHour: 5,
-} as const;
-
-/** 入力テキストの最大長（specs/ai/02 §1）。超過は 400 */
-export const MAX_QUERY_CHARS = 500;
-
-/** 応答の最大トークン（docs/16 §2）。最安運用のため短く絞る */
-export const MAX_OUTPUT_TOKENS = 512;
+// 秘密を含まない共有定数はクライアント安全な constants.ts に置く（サーバー専用の本ファイルから再公開）
+export { MAX_QUERY_CHARS, MAX_OUTPUT_TOKENS, RATE_LIMITS } from "./constants";

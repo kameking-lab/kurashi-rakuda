@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-const UPDATED = "2026-07-17";
+const UPDATED = "2026-07-20";
 
 export default function PrivacyPage() {
   return (
@@ -26,14 +26,22 @@ export default function PrivacyPage() {
         当サイトに会員登録の仕組みはありません。氏名・住所・電話番号などの個人情報を入力させる機能はありません。
       </p>
 
-      <SectionHeading>2. ツールに入力した内容について</SectionHeading>
+      <SectionHeading>2. ツールに入力した内容について（従来どおり）</SectionHeading>
       <p>
-        計算ツールに入力した内容（収入・家族構成・生年月日など）は、すべてお使いの端末（ブラウザ）の中だけで計算され、
-        <strong>当サイトのサーバーに送信・保存されることはありません</strong>
+        各種計算ツール・記事・パーソナライズ設定は、すべてお使いの端末（ブラウザ）の中だけで動作します。入力した内容（収入・家族構成・生年月日など）が
+        <strong>当サイトのサーバーや外部に送信されることはありません</strong>
         。入力内容を保存する機能は、お使いのブラウザのローカルストレージ（端末内の保存領域）のみを使用し、ブラウザの設定からいつでも削除できます。
       </p>
 
-      <SectionHeading>3. アクセス解析について</SectionHeading>
+      <SectionHeading>3. AI機能について（送信ボタンを押した場合のみ）</SectionHeading>
+      <p>
+        「AIに聞く」「AIに相談する」は、<strong>送信ボタンを押した時に限り</strong>
+        、入力されたテキストを当サイトのサーバーを経由して Google の生成
+        AI（Gemini API）に送信し、応答を生成します。送信された質問文は、個人を特定する情報と結び付けない形（質問文・種別・日付のみ）で保存し、サイトの機能改善（「まだ用意できていない道具」の把握）に利用します。パーソナライズ設定（プロフィール）は送信しません。氏名・住所・電話番号などの個人情報は入力しないでください。
+        <strong>AI 機能を使わない限り、外部への送信は一切発生しません。</strong>
+      </p>
+
+      <SectionHeading>4. アクセス解析について</SectionHeading>
       <p>
         当サイトは、サイトの改善のためにアクセス解析ツール（Vercel Analytics /
         Vercel Speed
@@ -41,7 +49,7 @@ export default function PrivacyPage() {
         Analyticsなどクッキーを利用する解析ツールは使用していません。
       </p>
 
-      <SectionHeading>4. 広告について</SectionHeading>
+      <SectionHeading>5. 広告について</SectionHeading>
       <p>
         当サイトはディスプレイ広告（コンテンツ内広告・追従広告・ポップアップ広告）を掲載していません。商品・サービスの紹介リンクを掲載する場合の基準と表記は
         <Link href="/policy" className="mx-1 underline underline-offset-4">
@@ -50,12 +58,12 @@ export default function PrivacyPage() {
         に定めています。
       </p>
 
-      <SectionHeading>5. お問い合わせで受け取った情報について</SectionHeading>
+      <SectionHeading>6. お問い合わせで受け取った情報について</SectionHeading>
       <p>
         お問い合わせのメールで受け取ったメールアドレス・内容は、回答と当サイトの改善のためだけに使用し、第三者に提供しません。
       </p>
 
-      <SectionHeading>6. 改定について</SectionHeading>
+      <SectionHeading>7. 改定について</SectionHeading>
       <p>
         本ポリシーを変更する場合は、このページで公表します。最終更新日: {UPDATED}
       </p>
