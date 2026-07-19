@@ -21,6 +21,10 @@ import {
   type HoikuryoIndexEntry,
 } from "@/lib/tools/impl/hoikuryo.index.generated";
 import { loadMunicipality } from "@/lib/tools/impl/hoikuryo.loader";
+// ★既定自治体（横浜市）だけは同梱して初期描画を同期にする★
+// 全147自治体（約3.2MB）は載せないが、初期表示の1件（約23KB）を静的 import することで、
+// 初期レンダで結果まで出し切り、非同期読込による初回レイアウトシフト（CLS）を無くす（診断 B-4）。
+import defaultMunicipalityJson from "@/data/seido/hoikuryo/kanagawa-yokohama.json";
 import {
   estimateHouseholdShotokuwari,
   requiresPreprocessing,
@@ -45,6 +49,10 @@ import { basisYearLabel, formatJaDate } from "@/lib/tools/seido";
 const yen = (n: number) => n.toLocaleString("ja-JP");
 
 const OTHER = "__other__";
+
+/** 同梱している既定自治体（初期表示を同期にしてCLSを防ぐ）。他自治体は選択時にオンデマンド読込 */
+const DEFAULT_MUNICIPALITY = defaultMunicipalityJson as unknown as HoikuryoMunicipality;
+const DEFAULT_MUNICIPALITY_ID = DEFAULT_MUNICIPALITY.id;
 
 /** 都道府県ごとにまとめた選択肢（収集済みのみ・軽量索引から生成） */
 function groupedOptions() {
@@ -130,7 +138,7 @@ function ReadingGuide() {
 }
 
 export function Hoikuryo() {
-  const [municipalityId, setMunicipalityId] = useState("kanagawa-yokohama");
+  const [municipalityId, setMunicipalityId] = useState(DEFAULT_MUNICIPALITY_ID);
   const [month, setMonth] = useState("2026-06");
   const [age, setAge] = useState<AgeKey>("under3");
   const [need, setNeed] = useState<CareNeed>("standard");
@@ -155,10 +163,17 @@ export function Hoikuryo() {
   const [shahoB, setShahoB] = useState("");
 
   // ★選択された自治体の階層表を選択時に動的読込する★（診断 S-2）。
+  // 既定自治体（横浜市）は同梱済みなので初期値に使い、初期描画を同期にする（CLS を防ぐ・診断 B-4）。
   // m=null かつ loadingM=true は「読込中」、m=null かつ loadingM=false は「未対応（OTHER 等）」。
-  const [m, setM] = useState<HoikuryoMunicipality | null>(null);
-  const [loadingM, setLoadingM] = useState(true);
+  const [m, setM] = useState<HoikuryoMunicipality | null>(DEFAULT_MUNICIPALITY);
+  const [loadingM, setLoadingM] = useState(false);
   useEffect(() => {
+    if (municipalityId === DEFAULT_MUNICIPALITY_ID) {
+      // 同梱済み。非同期読込せず即描画（初回レイアウトシフトを起こさない）
+      setM(DEFAULT_MUNICIPALITY);
+      setLoadingM(false);
+      return;
+    }
     if (municipalityId === OTHER) {
       setM(null);
       setLoadingM(false);

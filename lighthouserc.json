@@ -1,5 +1,5 @@
 {
-  "$comment": "Lighthouse CI バジェット（docs/04 UI十原則: LCP 2.0s以内・CLSほぼゼロ・Performance/Accessibility 90以上）。LCP のエラー閾値は CI 環境の揺らぎを考慮して 2500ms（Google の good 境界）とし、実測 2.0s 以内の維持は VPS 自律改善エンジンの定点観測（Q5-2）で追う。",
+  "$comment": "Lighthouse CI バジェット（docs/04 UI十原則: LCP 2.0s以内・CLSほぼゼロ・Performance/Accessibility 90以上）。計測対象に最重量2ページ（money/sankyu-ikukyu-money・childcare/hoikuryo）を追加した（診断 B-4、O-1 バンドル分割マージ後に有効化）。★S-2（ツール詳細バンドル肥大）の真の検出信号は script のバイト量★: CI/localhost では巨大バンドルも即DLされ LCP に出ない（分割前 1.03MB でも chomiryo は緑だった）ため、resource-summary:script:size をツール詳細3ページに課す（≤350KB。現状 135/160/187KB、再発すれば約900KBで fail）。これが本来の再発検出ゲート。LCP≤2500・Perf≥0.9 は軽量3ページ（/・/tools・chomiryo）で厳格に維持するが、重量2ページ（sankyu・hoikuryo）は GitHub ランナーの実行速度ばらつきで 2500ms を跨ぎ flaky になるため warn 扱い（hoikuryo の LCP は 147自治体の出典一覧 SSR が支配的でバンドル起因でもない）。CLS≤0.05 は全ページ厳格（hoikuryo は既定自治体の同梱で 0 に）。",
   "ci": {
     "collect": {
       "startServerCommand": "npm run start",
@@ -7,20 +7,45 @@
       "url": [
         "http://localhost:3000/",
         "http://localhost:3000/tools",
-        "http://localhost:3000/tools/kaji/chomiryo-kanzan"
+        "http://localhost:3000/tools/kaji/chomiryo-kanzan",
+        "http://localhost:3000/tools/money/sankyu-ikukyu-money",
+        "http://localhost:3000/tools/childcare/hoikuryo"
       ],
       "numberOfRuns": 3
     },
     "assert": {
-      "assertions": {
-        "categories:performance": ["error", { "minScore": 0.9 }],
-        "categories:accessibility": ["error", { "minScore": 0.9 }],
-        "categories:best-practices": ["error", { "minScore": 0.9 }],
-        "categories:seo": ["warn", { "minScore": 0.9 }],
-        "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
-        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.05 }],
-        "total-blocking-time": ["warn", { "maxNumericValue": 300 }]
-      }
+      "assertMatrix": [
+        {
+          "matchingUrlPattern": ".*",
+          "assertions": {
+            "categories:accessibility": ["error", { "minScore": 0.9 }],
+            "categories:best-practices": ["error", { "minScore": 0.9 }],
+            "categories:seo": ["warn", { "minScore": 0.9 }],
+            "cumulative-layout-shift": ["error", { "maxNumericValue": 0.05 }],
+            "total-blocking-time": ["warn", { "maxNumericValue": 300 }]
+          }
+        },
+        {
+          "matchingUrlPattern": "^(?!.*(hoikuryo|sankyu-ikukyu-money)).*$",
+          "assertions": {
+            "categories:performance": ["error", { "minScore": 0.9 }],
+            "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }]
+          }
+        },
+        {
+          "matchingUrlPattern": ".*(hoikuryo|sankyu-ikukyu-money).*",
+          "assertions": {
+            "categories:performance": ["warn", { "minScore": 0.9 }],
+            "largest-contentful-paint": ["warn", { "maxNumericValue": 2500 }]
+          }
+        },
+        {
+          "matchingUrlPattern": ".*/tools/[^/]+/[^/]+.*",
+          "assertions": {
+            "resource-summary:script:size": ["error", { "maxNumericValue": 350000 }]
+          }
+        }
+      ]
     }
   }
 }
