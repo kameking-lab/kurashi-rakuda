@@ -8,6 +8,8 @@ import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative } from "node:path";
 
 const TARGET_DIRS = ["app", "components", "content"];
+// ディレクトリ走査対象外だが煽り語を混ぜてはいけない編集資産（AI-1 同義語辞書。specs/ai/01 §2）
+const EXTRA_FILES = ["data/tables/search-synonyms.json"];
 const EXTENSIONS = [".ts", ".tsx", ".md", ".mdx"];
 
 /** 禁止表現（docs/00 §3.3・docs/06 §3 に由来） */
@@ -53,21 +55,25 @@ function walk(dir, files = []) {
 }
 
 const violations = [];
+const scanFile = (file) => {
+  const lines = readFileSync(file, "utf8").split("\n");
+  lines.forEach((line, i) => {
+    if (line.includes("brand-lint-allow")) return;
+    for (const { pattern, reason } of BANNED) {
+      if (pattern.test(line)) {
+        violations.push(
+          `${relative(process.cwd(), file)}:${i + 1} 「${line.trim().slice(0, 60)}」 → ${reason}`,
+        );
+      }
+    }
+  });
+};
 for (const dir of TARGET_DIRS) {
   if (!existsSync(dir)) continue;
-  for (const file of walk(dir)) {
-    const lines = readFileSync(file, "utf8").split("\n");
-    lines.forEach((line, i) => {
-      if (line.includes("brand-lint-allow")) return;
-      for (const { pattern, reason } of BANNED) {
-        if (pattern.test(line)) {
-          violations.push(
-            `${relative(process.cwd(), file)}:${i + 1} 「${line.trim().slice(0, 60)}」 → ${reason}`,
-          );
-        }
-      }
-    });
-  }
+  for (const file of walk(dir)) scanFile(file);
+}
+for (const file of EXTRA_FILES) {
+  if (existsSync(file)) scanFile(file);
 }
 
 if (violations.length > 0) {
