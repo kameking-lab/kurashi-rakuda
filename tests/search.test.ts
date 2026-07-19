@@ -44,6 +44,10 @@ describe("searchTools: かな・話し言葉クエリで期待ツールが上位
     ["よぼうせっしゅ", "yobousesshu"],
     ["こども手当", "jido-teate"],
     ["大さじ 何グラム", "chomiryo-kanzan"],
+    // 検収時追加（2026-07-20 司令塔）: 疑問語サフィックス付きの話し言葉クエリ
+    ["保育料いくら", "hoikuryo"],
+    ["児童手当いくら", "jido-teate"],
+    ["予防接種いつ", "yobousesshu"],
   ];
   for (const [query, expectedSlug] of cases) {
     it(`「${query}」→ ${expectedSlug} が最上位`, () => {
