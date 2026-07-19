@@ -1,5 +1,5 @@
 {
-  "$comment": "Lighthouse CI バジェット（docs/04 UI十原則: LCP 2.0s以内・CLSほぼゼロ・Performance/Accessibility 90以上）。LCP のエラー閾値は CI 環境の揺らぎを考慮して 2500ms（Google の good 境界）とし、実測 2.0s 以内の維持は VPS 自律改善エンジンの定点観測（Q5-2）で追う。",
+  "$comment": "Lighthouse CI バジェット（docs/04 UI十原則: LCP 2.0s以内・CLSほぼゼロ・Performance/Accessibility 90以上）。LCP のエラー閾値は CI 環境の揺らぎを考慮して 2500ms（Google の good 境界）とし、実測 2.0s 以内の維持は VPS 自律改善エンジンの定点観測（Q5-2）で追う。計測対象に最重量2ページ（money/sankyu-ikukyu-money・childcare/hoikuryo）を追加し、S-2（ツールバンドル肥大）の再発を CI で検出できるようにした（診断 B-4。O-1 のバンドル分割マージ後に有効）。",
   "ci": {
     "collect": {
       "startServerCommand": "npm run start",
@@ -7,7 +7,9 @@
       "url": [
         "http://localhost:3000/",
         "http://localhost:3000/tools",
-        "http://localhost:3000/tools/kaji/chomiryo-kanzan"
+        "http://localhost:3000/tools/kaji/chomiryo-kanzan",
+        "http://localhost:3000/tools/money/sankyu-ikukyu-money",
+        "http://localhost:3000/tools/childcare/hoikuryo"
       ],
       "numberOfRuns": 3
     },
