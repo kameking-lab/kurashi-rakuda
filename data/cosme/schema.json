@@ -1,0 +1,45 @@
+{
+  "$comment": "data/cosme/ のデータ形状のリファレンス（specs/tools/cosme-match.md §2）。data/seido/schema/seido-common.schema.json とは別系統（verify-seidoの対象外・出典はメーカー公式サイトのみ）。実行時のスキーマ検証はajv等のライブラリを使わず、.github/scripts/check-cosme-fairness.mjs が本ドキュメントに沿って必須フィールド・公平性ルールを直接検査する（check-solves.mjsと同じ方式）。",
+  "product": {
+    "file": "data/cosme/products/<brand-slug>-<product-slug>.json（商品1件=1ファイル）",
+    "requiredFields": {
+      "id": "string。ファイル名と一致（<brand>-<slug>）",
+      "name": "string。正式商品名",
+      "brand": "string。ブランド名",
+      "category": "enum: kesho-mizu | nyueki | cream | senganryo | hiyakedome",
+      "priceYen": "number。税込参考価格",
+      "volume": "string。内容量（例: '150ml'）",
+      "priceBand": "enum: petit（〜2,000円） | middle（〜5,000円） | high（5,000円〜）",
+      "availability": "string[]。例: drugstore/online/department",
+      "keyIngredients": "{ name: string, ingredientId: string（ingredient-skin-map.jsonのid）, role: string, sourceNote: string }[]。★skinTypeFit/concernsFitはingredientIdで参照したingredient-skin-map.jsonの行から導出できる範囲でのみtrueにできる（恣意的な手書きtrueは禁止）",
+      "skinTypeFit": "{ dry: boolean|null, oily: boolean|null, combination: boolean|null, sensitive: boolean|null }",
+      "concernsFit": "string[]。悩みタグ: kansou | keana | kuzure",
+      "notSuitedFor": "string[]。★1件以上必須（0件はビルドエラー）",
+      "cautions": "string[]。★1件以上必須（0件はビルドエラー）",
+      "sources": "{ label: string, url: string }[]。★メーカー公式サイトのみ（小売・レビューサイト禁止）",
+      "checkedAt": "string（ISO日付）",
+      "nextCheckDue": "string（ISO日付）。90日サイクル目安",
+      "status": "enum: on-sale | renewal-pending | discontinued"
+    },
+    "fairnessRules": [
+      "アフィリエイトリンク・追跡パラメータ付きURLの禁止（sources[].urlはメーカー公式ドメインのみ）",
+      "notSuitedFor・cautionsはともに1件以上",
+      "禁止語（最上級・断定の賛美語）を含まない",
+      "同一ブランドが収録商品全体の30%を超えたら警告（構造的な偏り検知。エラーにはしない）"
+    ]
+  },
+  "ingredientSkinMap": {
+    "file": "data/cosme/ingredient-skin-map.json",
+    "requiredFields": {
+      "id": "string。keyIngredients[].ingredientIdから参照される一意キー",
+      "name": "string。成分の一般的な表示名",
+      "role": "enum: hoshitsu（保湿） | senjou（洗浄） | shigaisen（紫外線防止） | sonota（その他）",
+      "commonlyChosenFor": "('dry'|'oily'|'combination'|'sensitive')[]。★治療効果の主張ではなく『一般的に選ばれることが多い』という一般論の分類",
+      "concernsFit": "string[]。kansou | keana | kuzure",
+      "generalNote": "string。断定を避けた一般論の説明文",
+      "sourceId": "string。sources[].idを参照",
+      "checkedAt": "string（ISO日付）"
+    },
+    "note": "各行は公的・学会・業界自主基準の出典が必須（specs/tools/cosme-match.md §1）。個別商品の効果は謳わず、成分の一般的な機能分類にとどめる。"
+  }
+}

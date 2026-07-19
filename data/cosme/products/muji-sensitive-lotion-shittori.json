@@ -1,0 +1,49 @@
+{
+  "id": "muji-sensitive-lotion-shittori",
+  "name": "化粧水・敏感肌用・しっとりタイプ",
+  "brand": "無印良品",
+  "category": "kesho-mizu",
+  "priceYen": 790,
+  "volume": "300mL",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    {
+      "name": "グリセリン",
+      "ingredientId": "glycerin",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より"
+    },
+    {
+      "name": "セラミドNP",
+      "ingredientId": "ceramide",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より"
+    },
+    {
+      "name": "BG",
+      "ingredientId": "bg",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より"
+    }
+  ],
+  "skinTypeFit": { "dry": true, "oily": false, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "香りのあるスキンケアを好む方（本品は無香料です）",
+    "さっぱりとした使用感を求める脂性肌の方（本品は『しっとりタイプ』のため）"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    {
+      "label": "無印良品公式 商品ページ「敏感肌用化粧水 しっとり」",
+      "url": "https://www.muji.com/jp/ja/store/cmdty/detail/4550583434960"
+    }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

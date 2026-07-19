@@ -1,0 +1,48 @@
+{
+  "id": "chifure-lotion-totemo-shittori",
+  "name": "保湿化粧水 とてもしっとりタイプ",
+  "brand": "ちふれ",
+  "category": "kesho-mizu",
+  "priceYen": 770,
+  "volume": "150ml",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    {
+      "name": "グリセリン",
+      "ingredientId": "glycerin",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より（保湿成分 10.00%）"
+    },
+    {
+      "name": "ヒアルロン酸Na",
+      "ingredientId": "hyaluronic-acid-na",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より（保湿成分 0.03%）"
+    },
+    {
+      "name": "トレハロース",
+      "ingredientId": "trehalose",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より（保湿成分 0.03%）"
+    }
+  ],
+  "skinTypeFit": { "dry": true, "oily": false, "combination": null, "sensitive": null },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "べたつきを避けてさっぱり使いたい脂性肌の方（本品は『とてもしっとりタイプ』で油性エモリエント成分も配合されているため）"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    {
+      "label": "ちふれ公式 商品ページ「保湿化粧水 とてもしっとりタイプ」",
+      "url": "https://www.chifure.co.jp/products/skinlotion/2871"
+    }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

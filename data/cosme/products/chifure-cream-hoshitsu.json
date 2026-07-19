@@ -1,0 +1,48 @@
+{
+  "id": "chifure-cream-hoshitsu",
+  "name": "保湿クリーム",
+  "brand": "ちふれ",
+  "category": "cream",
+  "priceYen": 770,
+  "volume": "56g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    {
+      "name": "グリセリン",
+      "ingredientId": "glycerin",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より（保湿成分）"
+    },
+    {
+      "name": "ヒアルロン酸Na",
+      "ingredientId": "hyaluronic-acid-na",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より（保湿成分）"
+    },
+    {
+      "name": "トレハロース",
+      "ingredientId": "trehalose",
+      "role": "hoshitsu",
+      "sourceNote": "全成分表示より（保湿成分）"
+    }
+  ],
+  "skinTypeFit": { "dry": true, "oily": false, "combination": null, "sensitive": null },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "テカリ・べたつきを避けたい脂性肌の方（油性エモリエント成分を含むクリームのため）"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    {
+      "label": "ちふれ公式 商品ページ「保湿クリーム」",
+      "url": "https://www.chifure.co.jp/products/moisturecream/2431"
+    }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

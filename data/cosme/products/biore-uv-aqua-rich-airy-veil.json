@@ -1,0 +1,37 @@
+{
+  "id": "biore-uv-aqua-rich-airy-veil",
+  "name": "ビオレUV アクアリッチ 呼吸感ベール（エアリーホールドクリーム）",
+  "brand": "ビオレ（花王）",
+  "category": "hiyakedome",
+  "priceYen": 1498,
+  "volume": "70g",
+  "priceBand": "middle",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    {
+      "name": "BG",
+      "ingredientId": "bg",
+      "role": "hoshitsu",
+      "sourceNote": "メーカー公式サイトの製品説明（保湿成分として記載）。紫外線防止成分の内訳（吸収剤/散乱剤の別）は公式サイトに明記がなく本データには未収録"
+    }
+  ],
+  "skinTypeFit": { "dry": null, "oily": null, "combination": null, "sensitive": null },
+  "concernsFit": [],
+  "notSuitedFor": [
+    "紫外線防止成分の内訳（吸収剤・散乱剤の別）にこだわりたい方（本品は公式サイトに内訳の明記がなく、本データでは判定していません）"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。日焼け止めとしての効果はSPF50+・PA++++の表示値によるもので、個人差があります",
+    "汗・水に強い設計（ウォータリータフネス）ですが、汗を拭いたり長時間屋外にいる場合はこまめな塗り直しが必要です",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    {
+      "label": "花王公式 ビオレUV「アクアリッチ 呼吸感ベールUV」商品ページ",
+      "url": "https://www.kao.co.jp/bioreuv/airyuv/"
+    }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

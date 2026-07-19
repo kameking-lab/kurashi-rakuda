@@ -19,10 +19,11 @@
     "check:brand": "node .github/scripts/brand-lint.mjs",
     "check:audience": "node .github/scripts/check-audience.mjs",
     "check:ai-boundary": "node .github/scripts/check-ai-boundary.mjs",
+    "check:cosme-fairness": "node .github/scripts/check-cosme-fairness.mjs",
     "mascot:manifest": "node scripts/mascot-manifest.mjs",
     "check:mascot": "node scripts/mascot-manifest.mjs --check",
     "test": "vitest run",
-    "check": "npm run lint && npm run typecheck && npm run check:solves && npm run check:brand && npm run check:audience && npm run check:ai-boundary && npm run check:mascot && npm run test"
+    "check": "npm run lint && npm run typecheck && npm run check:solves && npm run check:brand && npm run check:audience && npm run check:ai-boundary && npm run check:cosme-fairness && npm run check:mascot && npm run test"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
