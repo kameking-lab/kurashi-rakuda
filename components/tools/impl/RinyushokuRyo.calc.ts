@@ -9,54 +9,13 @@
 import table from "@/data/tables/rinyushoku-ryo.json";
 import { todayJst } from "@/lib/tools/seido";
 
-export interface SimpleDate {
-  year: number;
-  month: number; // 1-12
-  day: number;
-}
-
-const DAYS_31 = new Set([1, 3, 5, 7, 8, 10, 12]);
-const DAYS_30 = new Set([4, 6, 9, 11]);
-
-/** うるう年判定（4で割り切れる年。ただし100で割り切れる年は除く。ただし400で割り切れる年は含む） */
-export function isLeapYear(year: number): boolean {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
-
-/** 指定した年月の日数 */
-export function daysInMonth(year: number, month: number): number {
-  if (DAYS_31.has(month)) return 31;
-  if (DAYS_30.has(month)) return 30;
-  return isLeapYear(year) ? 29 : 28;
-}
-
-/** "YYYY-MM-DD" 形式の文字列をパースする。不正な形式・実在しない日付は null */
-export function parseDate(value: string): SimpleDate | null {
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
-  if (!m) return null;
-  const year = Number(m[1]);
-  const month = Number(m[2]);
-  const day = Number(m[3]);
-  if (month < 1 || month > 12) return null;
-  if (day < 1 || day > daysInMonth(year, month)) return null;
-  return { year, month, day };
-}
-
-/** a と b の前後比較。a<b なら負、等しければ0、a>b なら正 */
-export function compareDates(a: SimpleDate, b: SimpleDate): number {
-  if (a.year !== b.year) return a.year - b.year;
-  if (a.month !== b.month) return a.month - b.month;
-  return a.day - b.day;
-}
-
-function toEpochDay(d: SimpleDate): number {
-  return Math.round(Date.UTC(d.year, d.month - 1, d.day) / 86_400_000);
-}
-
-/** b − a の日数（暦日の単純差） */
-export function diffDays(a: SimpleDate, b: SimpleDate): number {
-  return toEpochDay(b) - toEpochDay(a);
-}
+// 暦日演算は共通土台 lib/tools/date.ts に集約（診断 A-12: SimpleDate 系15重実装の統合）
+import {
+  type SimpleDate,
+  isLeapYear, daysInMonth, parseDate, compareDates, diffDays,
+} from "@/lib/tools/date";
+export type { SimpleDate };
+export { isLeapYear, daysInMonth, parseDate, compareDates, diffDays };
 
 /**
  * 月齢の算出（仕様書 calcAgeMonths 準拠）。

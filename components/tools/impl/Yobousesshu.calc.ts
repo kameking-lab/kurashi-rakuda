@@ -22,62 +22,13 @@ export const YOBOUSESSHU_DISCLAIMER = [
   "接種を受けるかどうか、当日の体調で接種できるかどうかについては、必ずかかりつけ医・接種医療機関にご相談ください。",
 ] as const;
 
-export interface SimpleDate {
-  year: number;
-  month: number; // 1-12
-  day: number;
-}
-
-const DAYS_31 = new Set([1, 3, 5, 7, 8, 10, 12]);
-const DAYS_30 = new Set([4, 6, 9, 11]);
-
-function isLeapYear(year: number): boolean {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
-
-function daysInMonth(year: number, month: number): number {
-  if (DAYS_31.has(month)) return 31;
-  if (DAYS_30.has(month)) return 30;
-  return isLeapYear(year) ? 29 : 28;
-}
-
-/** "YYYY-MM-DD" 形式の文字列をパースする。不正な形式・実在しない日付は null */
-export function parseDate(value: string): SimpleDate | null {
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
-  if (!m) return null;
-  const year = Number(m[1]);
-  const month = Number(m[2]);
-  const day = Number(m[3]);
-  if (month < 1 || month > 12) return null;
-  if (day < 1 || day > daysInMonth(year, month)) return null;
-  return { year, month, day };
-}
-
-function toEpochDay(d: SimpleDate): number {
-  return Math.round(Date.UTC(d.year, d.month - 1, d.day) / 86_400_000);
-}
-
-/** a と b の前後比較。a<b なら負、等しければ0、a>b なら正 */
-export function compareDates(a: SimpleDate, b: SimpleDate): number {
-  return toEpochDay(a) - toEpochDay(b);
-}
-
-function diffDays(a: SimpleDate, b: SimpleDate): number {
-  return toEpochDay(b) - toEpochDay(a);
-}
-
-/**
- * date から n か月後の日付（応当日方式・月末クランプ）。
- * 応当日が存在しない月（例: 1/31生まれの2月）はその月の末日にクランプする。
- * 「生後◯ヶ月に達した日（誕生日相当日）」の起点計算に使う。
- */
-export function addMonths(date: SimpleDate, n: number): SimpleDate {
-  const idx = date.year * 12 + (date.month - 1) + n;
-  const y = Math.floor(idx / 12);
-  const m = ((idx % 12) + 12) % 12 + 1;
-  const d = Math.min(date.day, daysInMonth(y, m));
-  return { year: y, month: m, day: d };
-}
+// 暦日演算は共通土台 lib/tools/date.ts に集約（診断 A-12: SimpleDate 系15重実装の統合）
+import {
+  type SimpleDate,
+  parseDate, compareDates, addMonths, diffDays,
+} from "@/lib/tools/date";
+export type { SimpleDate };
+export { parseDate, compareDates, addMonths };
 
 function addYears(date: SimpleDate, n: number): SimpleDate {
   return addMonths(date, n * 12);

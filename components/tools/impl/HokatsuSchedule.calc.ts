@@ -9,38 +9,13 @@
  * ここで算出する日付はすべて「全国の傾向から作成した目安」であり、断定表現を避ける。
  */
 
-export interface SimpleDate {
-  year: number;
-  month: number; // 1-12
-  day: number;
-}
-
-const DAYS_31 = new Set([1, 3, 5, 7, 8, 10, 12]);
-const DAYS_30 = new Set([4, 6, 9, 11]);
-
-/** うるう年判定（4で割り切れる年。ただし100で割り切れる年は除く。ただし400で割り切れる年は含む） */
-export function isLeapYear(year: number): boolean {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
-
-/** 指定した年月の日数 */
-export function daysInMonth(year: number, month: number): number {
-  if (DAYS_31.has(month)) return 31;
-  if (DAYS_30.has(month)) return 30;
-  return isLeapYear(year) ? 29 : 28;
-}
-
-/** "YYYY-MM-DD" 形式の文字列をパースする。不正な形式・実在しない日付は null */
-export function parseDate(value: string): SimpleDate | null {
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
-  if (!m) return null;
-  const year = Number(m[1]);
-  const month = Number(m[2]);
-  const day = Number(m[3]);
-  if (month < 1 || month > 12) return null;
-  if (day < 1 || day > daysInMonth(year, month)) return null;
-  return { year, month, day };
-}
+// 暦日演算は共通土台 lib/tools/date.ts に集約（診断 A-12: SimpleDate 系15重実装の統合）
+import {
+  type SimpleDate,
+  isLeapYear, daysInMonth, parseDate, diffDays, compareDates, addDays, addMonths,
+} from "@/lib/tools/date";
+export type { SimpleDate };
+export { isLeapYear, daysInMonth, parseDate, diffDays, compareDates, addDays, addMonths };
 
 /** "YYYY-MM" 形式の年月文字列をパースし、その月の1日を返す。不正な形式は null */
 export function parseYearMonth(value: string): SimpleDate | null {
@@ -50,39 +25,6 @@ export function parseYearMonth(value: string): SimpleDate | null {
   const month = Number(m[2]);
   if (month < 1 || month > 12) return null;
   return { year, month, day: 1 };
-}
-
-function toEpochDay(d: SimpleDate): number {
-  return Math.round(Date.UTC(d.year, d.month - 1, d.day) / 86_400_000);
-}
-
-/** b − a の日数（暦日の単純差） */
-export function diffDays(a: SimpleDate, b: SimpleDate): number {
-  return toEpochDay(b) - toEpochDay(a);
-}
-
-/** a と b の前後比較。a<b なら負、等しければ0、a>b なら正 */
-export function compareDates(a: SimpleDate, b: SimpleDate): number {
-  return toEpochDay(a) - toEpochDay(b);
-}
-
-/** date の n 日後の日付 */
-export function addDays(date: SimpleDate, n: number): SimpleDate {
-  const d = new Date((toEpochDay(date) + n) * 86_400_000);
-  return { year: d.getUTCFullYear(), month: d.getUTCMonth() + 1, day: d.getUTCDate() };
-}
-
-/**
- * date から n か月後の日付（応当日方式・月末クランプ）。
- * 応当日が存在しない月（例: 1/31 の1か月後の2月）はその月の末日にクランプする。
- * n は負数可（過去方向へのオフセット）。
- */
-export function addMonths(date: SimpleDate, n: number): SimpleDate {
-  const idx = date.year * 12 + (date.month - 1) + n;
-  const y = Math.floor(idx / 12);
-  const m = ((idx % 12) + 12) % 12 + 1;
-  const d = Math.min(date.day, daysInMonth(y, m));
-  return { year: y, month: m, day: d };
 }
 
 /** 指定した年月の d 日目に日付を差し替える（月末超過は末日にクランプ） */
