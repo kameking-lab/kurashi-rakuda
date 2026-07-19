@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Rakku } from "@/components/mascot/Rakku";
+import { AskAiButton } from "@/components/ai/AskAiButton";
 import type { SearchHit } from "./searchSolves";
 
 /**
@@ -15,10 +16,14 @@ import type { SearchHit } from "./searchSolves";
 export function SolvesSearch() {
   const [query, setQuery] = useState("");
   const [hits, setHits] = useState<SearchHit[]>([]);
+  // 1段目のヒットが弱いか（2段目「AIに聞く」ボタンの表示条件。specs/ai/02 §3）
+  const [weak, setWeak] = useState(false);
   useEffect(() => {
-    if (!query.trim()) { setHits([]); return; }
+    if (!query.trim()) { setHits([]); setWeak(false); return; }
     let current = true;
-    void import("./searchSolves").then(({ searchSolves }) => { if (current) setHits(searchSolves(query)); });
+    void import("./searchSolves").then(({ searchSolves, isSearchResultWeak }) => {
+      if (current) { setHits(searchSolves(query)); setWeak(isSearchResultWeak(query)); }
+    });
     return () => { current = false; };
   }, [query]);
   const active = query.trim().length > 0;
@@ -83,6 +88,9 @@ export function SolvesSearch() {
               </p>
             </div>
           )}
+          {/* 1段目が弱い時だけ「AIに聞く」。表示だけでは送信しない・押した時のみ送信（specs/ai/02 §3）。
+              NEXT_PUBLIC_AI_ENABLED でない間はボタン自体が描画されない（縮退） */}
+          {weak && <AskAiButton kind="search" query={query} />}
         </div>
       )}
     </div>
