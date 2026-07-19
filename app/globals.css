@@ -76,7 +76,12 @@ body {
 
 html { scroll-behavior: smooth; }
 a, button, input, select { transition: border-color .2s ease, color .2s ease, background-color .2s ease, box-shadow .2s ease, transform .2s ease; }
-.site-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid color-mix(in srgb, var(--line) 75%, transparent); background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(18px); box-shadow:0 1px 0 rgba(22,61,41,.03); }
+/* ★ヘッダー背景は不透明トークンを使う（docs/13 診断B-9: スティッキーヘッダー透け問題）。
+   以前は color-mix(...90%,transparent) で下のコンテンツが透けて見えていた。 */
+.site-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--line); background: var(--paper); box-shadow:0 1px 0 rgba(22,61,41,.03); }
+/* ヘッダーの実測高さ（brand-logoのmin-height 48px + py-3 24px + border 1px ≒ 73px）。
+   カテゴリのスティッキーバー（.category-nav-sticky）のtop位置に使う（specs/ui/tools-directory-ia.md §1.2）。 */
+:root { --header-h: 73px; }
 .brand-logo { display:inline-flex; min-height:48px; align-items:center; gap:.7rem; color:var(--ink); text-decoration:none; }
 .brand-logo-mark { width:44px; height:44px; filter:drop-shadow(0 5px 8px rgba(72,55,35,.12)); }
 .brand-logo-type { display:flex; flex-direction:column; line-height:1.2; }
@@ -160,6 +165,9 @@ a, button, input, select { transition: border-color .2s ease, color .2s ease, ba
 .stage-axis-button[aria-pressed="true"] { border-color:var(--brand);background:var(--brand);color:var(--paper); }
 .dandori-step { position:relative; box-shadow:0 8px 24px rgba(72,55,35,.04); }
 .category-nav { display:flex; gap:.6rem; overflow-x:auto; padding:.25rem .1rem .75rem; scrollbar-width:thin; }
+/* IA-2: カテゴリ・ライフステージの固定ナビ（specs/ui/tools-directory-ia.md §1.2）。
+   スクロールに追従してヘッダー直下に張り付く1行バー。背景は不透明（.site-headerと同じ理由）。 */
+.category-nav-sticky { position: sticky; top: var(--header-h); z-index: 30; background: var(--paper); border-bottom: 1px solid var(--line); margin: 0 -1rem; padding: 0 1rem; }
 .category-chip { display:inline-flex; min-height:46px; flex:none; align-items:center; gap:.5rem; border:1px solid var(--line); border-radius:999px; padding:.4rem 1rem; background:var(--paper); font-size:.875rem; font-weight:700; }
 .category-chip:hover { border-color:var(--category-accent,var(--brand)); color:var(--category-accent,var(--brand)); transform:translateY(-1px); }
 .category-section { --category-accent:var(--brand); scroll-margin-top:6rem; }

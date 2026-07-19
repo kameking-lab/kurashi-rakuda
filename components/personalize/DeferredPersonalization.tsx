@@ -76,6 +76,10 @@ export function DeferredToolDirectoryControls() {
 
 function DirectoryPlaceholder({ onActivate }: { onActivate?: () => void }) {
   return <div onPointerDown={onActivate}>
+    <div className="tools-search mt-5">
+      <label htmlFor="tools-search-input-placeholder" className="block font-medium">ツール名や悩みで探す</label>
+      <input id="tools-search-input-placeholder" type="search" placeholder="例: 保育料 / 電気代 / 化粧水" disabled autoComplete="off" className="field-control mt-2 min-h-12 w-full rounded-card border border-line bg-paper px-4 text-base" />
+    </div>
     <div className="stage-axis mt-5"><p className="font-bold">ライフステージから横断して探す</p><div className="mt-2 flex gap-2 overflow-hidden pb-2">{labels.map((label) => <span key={label} className="stage-axis-button">{label}</span>)}</div></div>
     <div className="mt-4 h-11" />
   </div>;
