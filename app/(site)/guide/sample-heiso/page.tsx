@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { HeisoArticleMeta } from "@/app/lib/articles/types";
 import { ArticleShell } from "@/components/articles/ArticleShell";
@@ -28,6 +29,8 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  // テンプレート確認用のサンプルページ。開発環境でのみ閲覧可能で、本番ビルドからは除外する（docs/13 A-13/N-5）。
+  if (process.env.NODE_ENV === "production") notFound();
   return (
     <ArticleShell meta={meta}>
       <SectionHeading>結果の読み方</SectionHeading>
