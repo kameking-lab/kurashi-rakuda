@@ -236,6 +236,15 @@ const ONLY = (args.find((a) => a.startsWith('--only=')) || '').split('=')[1] || 
 const findings = [];
 const stats = { files: 0, sources: 0, valueNodes: 0, checked: 0, fetched: 0, skipped: 0 };
 
+// 棚卸し（診断 B-3）: 正直な「未取得/未確認」を fail させず可視化するための集計。
+// 空データ（value:null・空 fees）は note で理由が説明されていれば正常だが、
+// 説明の無い空データは checkStructure で error にする（note無しの空データは fail）。
+/** @type {{file:string, path:string, kind:string, note:string}[]} */
+const inventory = [];
+const inv = (file, path, kind, note) => inventory.push({ file, path, kind, note });
+/** 「未確認」等の未確定を含む文字列値の総数（棚卸しの粗さ指標） */
+let unconfirmedStrings = 0;
+
 const err = (file, path, message) => findings.push({ level: 'error', file, path, message });
 const warn = (file, path, message) => findings.push({ level: 'warn', file, path, message });
 
@@ -606,6 +615,18 @@ function checkStructure(file, data) {
       if (v && v.skip && !v.skipReason) {
         err(rel, path, 'verify.skip=true には skipReason が必須です');
       }
+      // --- 空データの死角（診断 B-3）: value:null は「未取得」を正直に表すが、
+      //     理由（note）が無いと「取れていない」のか「0/該当なし」なのか区別できない。
+      //     ★note 無しの value:null は fail★。note 付きの正直な null は棚卸しに載せる（fail させない）。
+      if (node.value === null) {
+        if (typeof node.note !== 'string' || node.note.trim() === '') {
+          err(rel, path, 'value が null ですが理由の note がありません（未取得なら「◯◯のため未取得」等を note に明記。note 無しの空データは不可）');
+        } else {
+          inv(rel, path, 'null-value', node.note.trim().slice(0, 80));
+        }
+      }
+      // verify.skip は恒久スキップになりうるため棚卸しで可視化する
+      if (v && v.skip) inv(rel, path, 'verify-skip', String(v.skipReason || '').slice(0, 80));
     }
   });
 
@@ -662,6 +683,29 @@ function checkStructure(file, data) {
       }
     }
   }
+
+  // --- 空データの死角（診断 B-3）: 階層表の fees が空（{}）＝金額ゼロ件。
+  //     「収集済み」を名乗りつつ答えを返せない状態。理由（label か note）が無ければ error。
+  //     呉市のように label で「市公式表未確認」等を明記していれば正常として棚卸しに載せる。
+  if (Array.isArray(data.tiers)) {
+    for (const [i, t] of data.tiers.entries()) {
+      if (!t || typeof t !== 'object') continue;
+      const feeCount = t.fees && typeof t.fees === 'object' ? Object.keys(t.fees).length : 0;
+      if (feeCount === 0) {
+        const explain = (typeof t.label === 'string' && t.label.trim()) || (typeof t.note === 'string' && t.note.trim());
+        if (!explain) {
+          err(rel, `$.tiers[${i}]`, 'fees が空です（金額ゼロ件）。理由を label か note に明記してください（note無しの空データは不可）');
+        } else {
+          inv(rel, `$.tiers[${i}]`, 'empty-fees', String(explain).slice(0, 80));
+        }
+      }
+    }
+  }
+
+  // --- 「未確認」等の未確定文字列を棚卸しのため集計（error ではない。件数の増分監視用）
+  walk(data, (path, node) => {
+    if (typeof node === 'string' && node.includes('未確認')) unconfirmedStrings++;
+  });
 
   // --- amendments の期限
   if (Array.isArray(data.amendments)) {
@@ -790,12 +834,35 @@ async function main() {
   const errors = findings.filter((f) => f.level === 'error');
   const warns = findings.filter((f) => f.level === 'warn');
 
+  // 棚卸し集計（診断 B-3）: 正直な「未取得/スキップ/未確認」を種類ごとに数える
+  const invByKind = inventory.reduce((acc, x) => ((acc[x.kind] = (acc[x.kind] || 0) + 1), acc), {});
+
   if (AS_JSON) {
-    console.log(JSON.stringify({ ok: errors.length === 0, stats, findings }, null, 2));
+    console.log(
+      JSON.stringify(
+        { ok: errors.length === 0, stats, inventory: { unconfirmedStrings, byKind: invByKind, items: inventory }, findings },
+        null,
+        2,
+      ),
+    );
   } else {
     for (const f of findings) {
       const tag = f.level === 'error' ? 'ERROR' : 'WARN ';
       console.log(`${tag} ${f.file} ${f.path}\n      ${f.message}`);
+    }
+    console.log('');
+    // --- 棚卸しレポート（正直な空データの可視化。error ではない） ---
+    console.log('── 棚卸し（正直な未取得・未確定の可視化。error ではない）──');
+    console.log(
+      `  value:null（理由note付き）: ${invByKind['null-value'] || 0} / ` +
+        `空fees（理由付き）: ${invByKind['empty-fees'] || 0} / ` +
+        `verify.skip: ${invByKind['verify-skip'] || 0} / ` +
+        `「未確認」を含む文字列値: ${unconfirmedStrings}`,
+    );
+    if (inventory.length) {
+      for (const x of inventory) {
+        console.log(`    [${x.kind}] ${x.file} ${x.path} — ${x.note}`);
+      }
     }
     console.log('');
     console.log(`検査ファイル数: ${stats.files} / 出典: ${stats.sources} / 出典付き数値ノード: ${stats.valueNodes}`);
