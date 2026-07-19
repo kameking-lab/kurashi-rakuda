@@ -12,6 +12,8 @@ import {
   validateConditions,
   resolveIngredientId,
   searchExcludableIngredients,
+  searchMains,
+  suggestForFixedMain,
   suggestFromPantry,
   excludeNotice,
   reuseSentence,
@@ -811,5 +813,165 @@ describe("表示用の文言・使い回し", () => {
     const all = Object.values(KONDATE_DISCLAIMER).join("");
     expect(all).not.toMatch(/不使用/);
     expect(all).not.toMatch(/安全です/);
+  });
+});
+
+// ================================================================ 副菜提案モード（P4-T02）
+
+describe("副菜提案モード: searchMains（主菜を名前で探す）", () => {
+  it("#1 空文字は空配列を返す（挙動を明示。無言失敗にしない）", () => {
+    expect(searchMains("")).toEqual([]);
+  });
+
+  it("#2 空白のみも空配列を返す", () => {
+    expect(searchMains("   ")).toEqual([]);
+  });
+
+  it("#3 主菜の一部一致で見つかる", () => {
+    const hit = D.recipes.find((r) => r.course === "main")!;
+    const partial = hit.name.slice(0, Math.max(1, Math.floor(hit.name.length / 2)));
+    const found = searchMains(partial);
+    expect(found.some((r) => r.id === hit.id)).toBe(true);
+  });
+
+  it("#4 副菜・汁物の名前だけに一致する語では主菜が見つからない（course=main のみ検索）", () => {
+    const side = D.recipes.find((r) => r.course === "side")!;
+    const soup = D.recipes.find((r) => r.course === "soup")!;
+    for (const r of [side, soup]) {
+      const results = searchMains(r.name);
+      // 主菜側にたまたま同名部分文字列が無い前提で、全件 course === "main" であることだけを厳密に検証する
+      for (const found of results) expect(found.course).toBe("main");
+    }
+  });
+
+  it("#5 結果は id 辞書順に安定ソートされる（データ順に依存しない。§4.3 と同じ思想）", () => {
+    const found = searchMains("肉");
+    const ids = found.map((r) => r.id);
+    expect(ids).toEqual([...ids].sort());
+  });
+
+  it("#6 該当なしは空配列", () => {
+    expect(searchMains("該当しない架空料理名xyz")).toEqual([]);
+  });
+
+  it("#7 limit で件数を絞れる", () => {
+    const found = searchMains("の", D, 2);
+    expect(found.length).toBeLessThanOrEqual(2);
+  });
+});
+
+describe("副菜提案モード: suggestForFixedMain（主菜固定→副菜・汁物だけ抽選）", () => {
+  const mains = D.recipes.filter((r) => r.course === "main");
+  const someMain = mains[0];
+
+  it("#8 存在する主菜idを指定すると成功し、指定した主菜がそのまま返る", () => {
+    const r = suggestForFixedMain(someMain.id, cond(), 0);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.day.main.id).toBe(someMain.id);
+    expect(r.day.side.course).toBe("side");
+  });
+
+  it("#9 存在しない主菜idはエラーになる（無言で何か返すのではない）", () => {
+    const r = suggestForFixedMain("dragon-meat-set", cond(), 0);
+    expect(r.ok).toBe(false);
+    if (r.ok) return;
+    expect(r.failure.reason).toBe("invalid-input");
+  });
+
+  it("#10 副菜のidを主菜として指定するとエラー（course=main以外は拒否）", () => {
+    const side = D.recipes.find((r) => r.course === "side")!;
+    const r = suggestForFixedMain(side.id, cond(), 0);
+    expect(r.ok).toBe(false);
+  });
+
+  it("#11 合計時間はH4（主菜+副菜+汁物≦上限）を守る（seed 0〜199の全成功回）", () => {
+    for (let s = 0; s < 200; s++) {
+      const r = suggestForFixedMain(someMain.id, cond({ maxTotalTimeMin: 60 }), s);
+      if (!r.ok) continue;
+      expect(r.day.main.cookTimeMin + r.day.side.cookTimeMin + (r.day.soup?.cookTimeMin ?? 0)).toBeLessThanOrEqual(
+        60,
+      );
+    }
+  });
+
+  it("#12 includeSoup=false なら汁物は常にnull", () => {
+    const r = suggestForFixedMain(someMain.id, cond({ includeSoup: false }), 3);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.day.soup).toBeNull();
+  });
+
+  it("#13 excludeIdsを含む副菜・汁物は出さない（H1。role問わず全走査）", () => {
+    const excludeIds = ["egg"];
+    for (let s = 0; s < 100; s++) {
+      const r = suggestForFixedMain(someMain.id, cond({ excludeIds }), s);
+      if (!r.ok) continue;
+      for (const dish of [r.day.side, r.day.soup].filter((d): d is Recipe => d !== null)) {
+        expect(dish.ingredients.some((i) => i.id === "egg")).toBe(false);
+      }
+    }
+  });
+
+  it("#14 同一(mainId, conditions, seed)なら常に同じ副菜・汁物を返す（決定性。100回）", () => {
+    const first = suggestForFixedMain(someMain.id, cond(), 42);
+    expect(first.ok).toBe(true);
+    for (let i = 0; i < 100; i++) {
+      const r = suggestForFixedMain(someMain.id, cond(), 42);
+      expect(r).toEqual(first);
+    }
+  });
+
+  it("#15 seedを変える（引き直し）と、少なくとも一部のseedで異なる副菜が出る", () => {
+    const results = new Set<string>();
+    for (let s = 0; s < 30; s++) {
+      const r = suggestForFixedMain(someMain.id, cond(), s);
+      if (r.ok) results.add(r.day.side.id);
+    }
+    expect(results.size).toBeGreaterThan(1);
+  });
+
+  it("#16 1日の合計調理時間の上限が主菜単体を超えられないほど厳しいとFailure（time-limit）", () => {
+    const r = suggestForFixedMain(someMain.id, cond({ maxTotalTimeMin: 10 }), 0);
+    if (someMain.cookTimeMin >= 10) {
+      expect(r.ok).toBe(false);
+      if (!r.ok) expect(["time-limit", "no-candidate"]).toContain(r.failure.reason);
+    }
+  });
+
+  it("#17 副菜の候補が0件になる条件（存在しない食材を除外指定した架空条件は起きないため、genre極端指定で確認）は、部分結果を返さずFailureになる", () => {
+    // 中華の副菜が1件も無い可能性のある組み合わせを機械的に検出して検証する
+    const noChineseSide = candidatePool(D, cond({ genre: "chinese" }), "side").length === 0;
+    if (noChineseSide) {
+      const r = suggestForFixedMain(someMain.id, cond({ genre: "chinese" }), 0);
+      expect(r.ok).toBe(false);
+    } else {
+      expect(true).toBe(true);
+    }
+  });
+
+  it("#18 バリデーションエラー（人数範囲外）はgenerateと同じ挙動でinvalid-inputになる", () => {
+    const r = suggestForFixedMain(someMain.id, cond({ servings: 0 }), 0);
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.failure.reason).toBe("invalid-input");
+  });
+
+  it("#19 Failure時のrelaxHintsは空配列を含みうるが例外を投げない（配列である）", () => {
+    const r = suggestForFixedMain("dragon-meat-set", cond(), 0);
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(Array.isArray(r.failure.relaxHints)).toBe(true);
+  });
+
+  it("#20 全主菜×seed0〜9で少なくとも1件は成功する（データが実運用可能であることの健全性チェック）", () => {
+    let successCount = 0;
+    for (const m of mains) {
+      for (let s = 0; s < 10; s++) {
+        if (suggestForFixedMain(m.id, cond(), s).ok) {
+          successCount++;
+          break;
+        }
+      }
+    }
+    expect(successCount).toBeGreaterThan(0);
   });
 });
