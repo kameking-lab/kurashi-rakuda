@@ -81,6 +81,7 @@ const registry: Record<string, ComponentType> = {
   "yuukyuu-fuyo-nissuu-kijun": dynamic(() => import("@/components/tools/impl/YuukyuuFuyoNissuuKijun").then((m) => ({ default: m.YuukyuuFuyoNissuuKijun }))),
   "kyouiku-kunren-kyufukin": dynamic(() => import("@/components/tools/impl/KyouikuKunrenKyufukin").then((m) => ({ default: m.KyouikuKunrenKyufukin }))),
   "iryouhi-koujo-kodomo": dynamic(() => import("@/components/tools/impl/IryouhiKoujoKodomo").then((m) => ({ default: m.IryouhiKoujoKodomo }))),
+  "kaden-denkidai-keisan": dynamic(() => import("@/components/tools/impl/KadenDenkidaiKeisan").then((m) => ({ default: m.KadenDenkidaiKeisan }))),
 };
 
 export function ToolRuntime({ slug }: { slug: string }) {

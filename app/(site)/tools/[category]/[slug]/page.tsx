@@ -52,6 +52,7 @@ import {
   WAITING_CHILDREN_TOTAL,
 } from "@/components/tools/impl/Shou1KabeKinmuSimulation.calc";
 import { RENJI_KANZAN_SOURCE } from "@/components/tools/impl/RenjiWattKansan.calc";
+import { TANKA_SOURCE as KADEN_DENKIDAI_TANKA_SOURCE } from "@/components/tools/impl/KadenDenkidaiKeisan.calc";
 import { REFERENCE_STAT as NAMONAKI_KAJI_REFERENCE_STAT } from "@/components/tools/impl/NamonakiKajiChecker.calc";
 import { partShiftKabeDataset } from "@/components/tools/impl/PartShiftShunyuuKeisan.calc";
 import { kaigoHokenDataset as kaigoServiceGyakuHikiDataset } from "@/components/tools/impl/KaigoServiceGyakuHiki.calc";
@@ -1896,6 +1897,36 @@ const implementations: Record<string, { formula: ReactNode }> = {
           機種や食品の量・形、庫内構造（フラット式／ターンテーブル式）によって実際に必要な時間は変わります。
           加熱不足は食中毒のリスクに、加熱しすぎは発火や容器破損のリスクにつながるため、
           初回は換算値より短めに設定し、様子を見ながら少しずつ追加で加熱することをおすすめします。
+        </p>
+      </>
+    ),
+  },
+  "kaden-denkidai-keisan": {
+    formula: (
+      <>
+        <p>
+          <strong>基本式</strong>：
+          <code>電気代（円） = 消費電力（W） ÷ 1000 × 使用時間（時間） × 電気料金の単価（円/kWh）</code>
+          。たとえば1000W（1kW）の機器を1時間使うと1kWhの電力量になり、単価31円なら31円です。1か月は30日換算、1年は365日換算の目安を併記しています。
+        </p>
+        <p>
+          <strong>単価の出典</strong>：初期値の{KADEN_DENKIDAI_TANKA_SOURCE.tankaYenPerKwh}円/kWhは、
+          {KADEN_DENKIDAI_TANKA_SOURCE.org}が{KADEN_DENKIDAI_TANKA_SOURCE.basis}公表している目安単価です（{KADEN_DENKIDAI_TANKA_SOURCE.revisedOnWareki}改定）。
+          実際に契約している電力会社・料金プランの単価がわかる場合は、その数値に書き換えて計算できます。
+        </p>
+        <p>
+          <strong>消費電力（W）はご自身で入力してください</strong>
+          ：エアコン・冷蔵庫などの家電は、同じ種類の製品でも部屋の広さ・容量・機種によって消費電力が数倍単位で異なります。
+          特定の代表値を掲げて「◯◯は◯◯W」と決め打ちすると実態とかけ離れる恐れがあるため、
+          本ツールでは製品本体の定格表示（本体裏面・側面のラベル）や取扱説明書に記載の「消費電力」の実測に近い値をご自身で入力していただく方式にしています。
+          より詳しい年間消費電力量を製品ごとに比較したい場合は、資源エネルギー庁「省エネ性能カタログ」（
+          <a href="https://seihinjyoho.go.jp/catalog/" target="_blank" rel="noopener noreferrer">
+            seihinjyoho.go.jp/catalog
+          </a>
+          ）で機種ごとの年間目安電力量を確認できます。
+        </p>
+        <p>
+          この金額はあくまで目安の試算であり、実際の電気料金（基本料金・段階制の従量単価・燃料費調整額など）とは異なります。
         </p>
       </>
     ),
