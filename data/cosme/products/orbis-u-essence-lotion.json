@@ -1,0 +1,30 @@
+{
+  "id": "orbis-u-essence-lotion",
+  "name": "オルビスユー エッセンスローション",
+  "brand": "オルビス（ORBIS）",
+  "category": "kesho-mizu",
+  "priceYen": 2970,
+  "volume": "180mL",
+  "priceBand": "middle",
+  "availability": ["online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "とろみのある濃密なテクスチャーが苦手で、さらっとした化粧水を求める方",
+    "無添加処方を強く希望する方（本品はパラベンフリーですがフェノキシエタノールを配合しています）"
+  ],
+  "cautions": [
+    "医薬部外品です（有効成分：デクスパンテノールＷ／肌荒れ防止）。特定の皮膚疾患の治療を目的とした医薬品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "オルビス公式オンラインショップ 商品ページ「オルビスユー エッセンスローション」", "url": "https://www.orbis.co.jp/small/11010382/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

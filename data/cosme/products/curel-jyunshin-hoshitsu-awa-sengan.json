@@ -1,0 +1,31 @@
+{
+  "id": "curel-jyunshin-hoshitsu-awa-sengan",
+  "name": "キュレル 潤浸保湿 泡洗顔料",
+  "brand": "キュレル（花王）",
+  "category": "senganryo",
+  "priceYen": 1760,
+  "volume": "150ml",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より（その他の成分・保湿成分）" },
+    { "name": "ヤシ油脂肪酸アシルグルタミン酸Na", "ingredientId": "amino-acid-cleansing", "role": "senjou", "sourceNote": "全成分表示より（グルタミン酸系＝アミノ酸系洗浄成分）" },
+    { "name": "グリチルリチン酸2K", "ingredientId": "glycyrrhizinate", "role": "sonota", "sourceNote": "全成分表示より（有効成分・消炎剤／肌荒れ防止）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou", "kuzure"],
+  "notSuitedFor": [
+    "医薬部外品の消炎剤（グリチルリチン酸2K）を配合した肌荒れ防止処方のため、有効成分無配合のシンプルな処方を求める方には不向きな場合がある",
+    "しっとりとした洗い上がりのため、皮脂のテカリが気になりさっぱりとした洗い上がりを求める方には物足りない場合がある"
+  ],
+  "cautions": [
+    "医薬部外品です。肌荒れを防ぐ効能が認められていますが、既に生じた皮膚症状の治療を目的とした医薬品ではありません",
+    "新しい化粧品・医薬部外品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "花王公式通販 My Kao Mall「キュレル 潤浸保湿 泡洗顔料 150ml」商品情報", "url": "https://www.kao-kirei.com/ja/item/kbb/curel/4901301269348/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

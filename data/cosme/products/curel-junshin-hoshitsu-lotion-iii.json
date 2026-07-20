@@ -1,0 +1,30 @@
+{
+  "id": "curel-junshin-hoshitsu-lotion-iii",
+  "name": "潤浸保湿 化粧水 Ⅲとてもしっとり",
+  "brand": "キュレル（花王）",
+  "category": "kesho-mizu",
+  "priceYen": 2090,
+  "volume": "150ml",
+  "priceBand": "middle",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": false, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "べたつきの少ないさっぱりした使用感を求める脂性肌の方（本品は同ブランド内で最も濃厚な『Ⅲとてもしっとり』タイプです。より軽い『Ⅰややしっとり』『Ⅱしっとり』も選べます）",
+    "医薬品による治療効果を期待する方（本品は医薬部外品であり、皮膚疾患の治療を目的とした医薬品ではありません）"
+  ],
+  "cautions": [
+    "医薬部外品です（有効成分：アラントイン）。特定の皮膚疾患の治療を目的とした医薬品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "花王公式 My Kao Mall 商品ページ「キュレル 潤浸保湿 化粧水 Ⅲとてもしっとり 150ml」", "url": "https://www.kao-kirei.com/ja/item/kbb/curel/4901301236180/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

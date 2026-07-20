@@ -1,0 +1,32 @@
+{
+  "id": "cow-mutenka-hoshitsu-emulsion",
+  "name": "カウブランド 無添加 保湿乳液",
+  "brand": "カウブランド無添加（牛乳石鹸共進社）",
+  "category": "cream",
+  "priceYen": 1320,
+  "volume": "150mL",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より（配合目的：保湿成分）" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より（配合目的：保湿成分）" },
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より（配合目的：保湿成分）" },
+    { "name": "セラミドNG", "ingredientId": "ceramide", "role": "hoshitsu", "sourceNote": "全成分表示より（配合目的：保湿成分。表示名は「セラミドNG」）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "「しっとりするのにべたつかない」処方だが乳液のため、皮脂が多くさっぱりした仕上がりを好む脂性肌の方には合わない場合がある",
+    "販路限定商品（ネット通販・一部販売店のみ）のため、店舗によっては取り扱いがない"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "牛乳石鹸共進社公式サイト 商品ページ「カウブランド 無添加 保湿乳液」", "url": "https://www.cow-soap.co.jp/products/cow-mutenka-moisturizing-lotion-more/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

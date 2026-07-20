@@ -1,0 +1,32 @@
+{
+  "id": "hadalabo-gokujun-hyaluron-awa-sengan",
+  "name": "肌ラボ 極潤 ヒアルロン泡洗顔",
+  "brand": "肌ラボ（ロート製薬）",
+  "category": "senganryo",
+  "priceYen": 658,
+  "volume": "160mL",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より（保湿成分）" },
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より（3種のヒアルロン酸のうちの1つとして訴求）" },
+    { "name": "ラウロイルメチルアラニンNa", "ingredientId": "amino-acid-cleansing", "role": "senjou", "sourceNote": "全成分表示より（アミノ酸系洗浄成分）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "ニキビ・肌荒れを防ぐ薬用成分は配合されていない化粧品のため、そうした効能を求める方には不向き",
+    "皮脂のテカリが気になりさっぱりとした洗い上がりを求める脂性肌の方には、うるおい重視の処方のため物足りない場合がある"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "ロート製薬オンライン公式「肌ラボ 極潤ヒアルロン泡洗顔」商品ページ（全成分表示）", "url": "https://www.shop.rohto.co.jp/category/skincare/hadalabo/199556.html" },
+    { "label": "ロート製薬 肌ラボ公式ブランドサイト「肌ラボ 極潤 ヒアルロン泡洗顔」商品情報", "url": "https://jp.rohto.com/hadalabo/gokujun-foaming-wash/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

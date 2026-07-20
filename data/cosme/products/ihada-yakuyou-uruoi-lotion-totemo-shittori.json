@@ -1,0 +1,31 @@
+{
+  "id": "ihada-yakuyou-uruoi-lotion-totemo-shittori",
+  "name": "薬用うるおいローション（とてもしっとり）",
+  "brand": "イハダ（資生堂薬品）",
+  "category": "kesho-mizu",
+  "priceYen": 1650,
+  "volume": "180mL",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "1,3-ブチレングリコール（BG）", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示（その他の成分）に「１，３－ブチレングリコール」として記載" },
+    { "name": "濃グリセリン（グリセリン）", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示（その他の成分）に「濃グリセリン」として記載" },
+    { "name": "トレハロース", "ingredientId": "trehalose", "role": "hoshitsu", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": false, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "皮脂分泌が多くさっぱりした使用感を求める脂性肌の方（本品は同ラインの中でより濃厚な『とてもしっとり』タイプです。標準の『しっとり』タイプも選べます）",
+    "医薬品による治療を必要とする重度の肌トラブルがある方（本品は医薬部外品であり、医薬品ではありません）"
+  ],
+  "cautions": [
+    "医薬部外品です（有効成分：アラントイン、グリチルリチン酸ジカリウム）。特定の皮膚疾患の治療を目的とした医薬品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "資生堂（イハダ）公式サイト 商品ページ「イハダ 薬用うるおいローション」", "url": "https://www.shiseido.co.jp/ihada/products/skincare-lotion.html" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

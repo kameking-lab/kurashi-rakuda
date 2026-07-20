@@ -1,0 +1,34 @@
+{
+  "id": "hadalabo-gokujun-uv-white-gel",
+  "name": "肌ラボ 極潤UVホワイトゲル（SPF50+・PA++++）",
+  "brand": "肌ラボ（ロート製薬）",
+  "category": "hiyakedome",
+  "priceYen": 1617,
+  "volume": "90g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より（商品説明にも「2種のうるおい成分」の1つと明記）" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "酸化チタン", "ingredientId": "uv-filter-inorganic", "role": "shigaisen", "sourceNote": "全成分表示より。紫外線吸収剤も配合されており、吸収剤・散乱剤を併用した処方" },
+    { "name": "メトキシケイヒ酸エチルヘキシル", "ingredientId": "uv-filter-organic", "role": "shigaisen", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": null, "oily": null, "combination": null, "sensitive": null },
+  "concernsFit": [],
+  "notSuitedFor": [
+    "紫外線吸収剤と紫外線散乱剤を併用した処方のため、紫外線吸収剤フリーの処方にこだわりたい方には不向きです",
+    "化粧水・美容液・乳液・UVカットを1品でまかなうオールインワンタイプのため、複数アイテムを重ねてしっかりケアしたい方には物足りない場合があります"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。日焼け止めとしての効果はSPF50+・PA++++の表示値によるもので、個人差があります",
+    "汗・水に触れたり長時間屋外にいる場合は、こまめな塗り直しが必要です",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "ロート製薬公式通販「肌ラボ 極潤UVホワイトゲル」商品ページ（価格・全成分表示）", "url": "https://www.shop.rohto.co.jp/category/skincare/hadalabo/rich-gokujun-uv/145676.html" },
+    { "label": "ロート製薬公式 肌ラボブランドサイト「極潤UVホワイトゲル」商品情報", "url": "https://jp.rohto.com/hadalabo/rich-gokujun-uv/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

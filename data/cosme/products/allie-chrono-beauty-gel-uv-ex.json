@@ -1,0 +1,34 @@
+{
+  "id": "allie-chrono-beauty-gel-uv-ex",
+  "name": "ALLIE（アリィー） クロノビューティ ジェルUV EX（SPF50+・PA++++）",
+  "brand": "ALLIE（アリィー）／カネボウ化粧品",
+  "category": "hiyakedome",
+  "priceYen": 2310,
+  "volume": "90g",
+  "priceBand": "middle",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より（商品説明にも「美容液成分（保湿）配合」と明記）" },
+    { "name": "酸化亜鉛", "ingredientId": "uv-filter-inorganic", "role": "shigaisen", "sourceNote": "全成分表示より。紫外線吸収剤も配合されており、吸収剤・散乱剤を併用した処方" },
+    { "name": "エチルヘキシルトリアゾン", "ingredientId": "uv-filter-organic", "role": "shigaisen", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": null, "oily": null, "combination": null, "sensitive": null },
+  "concernsFit": [],
+  "notSuitedFor": [
+    "紫外線吸収剤・散乱剤を併用した強力ウォータープルーフ処方のため、紫外線吸収剤フリーの処方にこだわりたい方には不向きです",
+    "化粧下地効果もある密着ジェルタイプのため、さっぱりとした軽い使用感を求める方には重く感じられる場合があります"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。日焼け止めとしての効果はSPF50+・PA++++の表示値によるもので、個人差があります",
+    "スーパーウォータープルーフ設計ですが、汗を拭いたり長時間屋外にいる場合はこまめな塗り直しが必要です",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "花王公式 ALLIE「クロノビューティ ジェルUV EX 90g」商品ページ（My Kao Mall）", "url": "https://www.kao-kirei.com/ja/item/kbb/allie/4973167057742/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

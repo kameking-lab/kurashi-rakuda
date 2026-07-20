@@ -1,0 +1,30 @@
+{
+  "id": "orbis-aquanist-moisture-lm",
+  "name": "オルビス アクアニスト モイスチャー ボトル入りLM（さっぱり高保湿タイプ）",
+  "brand": "オルビス（ORBIS）",
+  "category": "cream",
+  "priceYen": 1970,
+  "volume": "50mL",
+  "priceBand": "petit",
+  "availability": ["online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "配合全成分一覧（メーカーPDF）より（保湿）" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "配合全成分一覧（メーカーPDF）より（保湿）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "軽いジェル状のさっぱりタイプ（LM）のため、乾燥が強い方や重めのテクスチャーを求める方にはうるおいが物足りない場合がある（しっとりタイプ〈RM〉という選択肢もある）"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "オルビス公式オンラインショップ 商品ページ「オルビス アクアニスト モイスチャー」", "url": "https://www.orbis.co.jp/small/11010853/" },
+    { "label": "オルビス公式 配合全成分一覧PDF「オルビス アクアニスト モイスチャー LM」", "url": "https://www.orbis.co.jp/cms/small/11010853/%E3%82%AA%E3%83%AB%E3%83%93%E3%82%B9%E3%82%A2%E3%82%AF%E3%82%A2%E3%83%8B%E3%82%B9%E3%83%88_%E9%85%8D%E5%90%88%E7%9B%AE%E7%9A%84%E4%B8%80%E8%A6%A7pdf.pdf" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

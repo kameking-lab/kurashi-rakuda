@@ -1,0 +1,29 @@
+{
+  "id": "nameraka-honpo-cream-nc",
+  "name": "なめらか本舗 クリーム NC",
+  "brand": "なめらか本舗（常盤薬品工業）",
+  "category": "cream",
+  "priceYen": 1045,
+  "volume": "50g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より（保湿成分）" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より（保湿成分）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "スクワランやミツロウなど油性成分も配合されているため、皮脂が多くさっぱりした仕上がりを好む脂性肌の方には重く感じられる場合がある"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "なめらか本舗公式（SANA online shop／常盤薬品工業）商品ページ「なめらか本舗 クリーム NC」", "url": "https://noevirgroup.jp/sana/g/g70116/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

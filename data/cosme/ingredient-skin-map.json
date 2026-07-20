@@ -108,6 +108,26 @@
       "generalNote": "紫外線を吸収し化学反応を経て熱として放出するとされる紫外線防止成分の分類。使用感が軽く高いSPF/PAを実現しやすい一方、まれに肌への刺激が指摘されることがある。",
       "sourceId": "jcia-ad-guideline",
       "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "glycyrrhizinate",
+      "name": "グリチルリチン酸2K／グリチルリチン酸ジカリウム（消炎剤）",
+      "role": "sonota",
+      "commonlyChosenFor": [],
+      "concernsFit": ["kuzure"],
+      "generalNote": "医薬部外品の有効成分として承認されている消炎成分で、肌荒れを防ぐ目的で配合される。治療目的の医薬品ではなく、あくまで肌荒れの予防を目的とした有効成分。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "decyl-glucoside",
+      "name": "デシルグルコシド",
+      "role": "senjou",
+      "commonlyChosenFor": [],
+      "concernsFit": ["keana"],
+      "generalNote": "植物由来の糖から作られるマイルドな洗浄成分の分類で、毛穴の汚れ対策をうたう洗顔料に配合されることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-20"
     }
   ]
 }

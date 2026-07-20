@@ -11,10 +11,66 @@ import mujiSensitiveLotionShittori from "./muji-sensitive-lotion-shittori.json";
 import chifureCreamHoshitsu from "./chifure-cream-hoshitsu.json";
 import bioreUvAquaRichAiryVeil from "./biore-uv-aqua-rich-airy-veil.json";
 
+// 洗顔料
+import senkaPerfectWhipF from "./senka-perfect-whip-f.json";
+import curelJyunshinHoshitsuAwaSengan from "./curel-jyunshin-hoshitsu-awa-sengan.json";
+import hadalaboGokujunHyaluronAwaSengan from "./hadalabo-gokujun-hyaluron-awa-sengan.json";
+import namerakaHonpoAwaSenganNc from "./nameraka-honpo-awa-sengan-nc.json";
+import cowBrandMutenkaAwaNoSengan from "./cow-brand-mutenka-awa-no-sengan.json";
+import orbisClearfulWash from "./orbis-clearful-wash.json";
+
+// 化粧水
+import curelJunshinHoshitsuLotionIii from "./curel-junshin-hoshitsu-lotion-iii.json";
+import hadalaboGokujunHyaluronEki from "./hadalabo-gokujun-hyaluron-eki.json";
+import namerakaHonpoTotemoShittoriLotionNc from "./nameraka-honpo-totemo-shittori-lotion-nc.json";
+import orbisUEssenceLotion from "./orbis-u-essence-lotion.json";
+import ihadaYakuyouUruoiLotionTotemoShittori from "./ihada-yakuyou-uruoi-lotion-totemo-shittori.json";
+
+// 乳液/クリーム
+import hadalaboGokujunHyaluronCream from "./hadalabo-gokujun-hyaluron-cream.json";
+import namerakaHonpoCreamNc from "./nameraka-honpo-cream-nc.json";
+import curelJunshinHoshitsuFaceCream from "./curel-junshin-hoshitsu-face-cream.json";
+import orbisAquanistMoistureLm from "./orbis-aquanist-moisture-lm.json";
+import cowMutenkaHoshitsuEmulsion from "./cow-mutenka-hoshitsu-emulsion.json";
+import kikumasamuneNihonshuEmulsion from "./kikumasamune-nihonshu-emulsion.json";
+
+// 日焼け止め
+import curelJunshinHoshitsuUvEssence from "./curel-junshin-hoshitsu-uv-essence.json";
+import hadalaboGokujunUvWhiteGel from "./hadalabo-gokujun-uv-white-gel.json";
+import sunplaySuperBlock from "./sunplay-super-block.json";
+import orbisSunscreenFrience from "./orbis-sunscreen-frience.json";
+import allieChronoBeautyGelUvEx from "./allie-chrono-beauty-gel-uv-ex.json";
+
 export const COSME_PRODUCT_FILES = [
   chifureFacewashShittori,
   chifureLotionTotemoShittori,
   mujiSensitiveLotionShittori,
   chifureCreamHoshitsu,
   bioreUvAquaRichAiryVeil,
+
+  senkaPerfectWhipF,
+  curelJyunshinHoshitsuAwaSengan,
+  hadalaboGokujunHyaluronAwaSengan,
+  namerakaHonpoAwaSenganNc,
+  cowBrandMutenkaAwaNoSengan,
+  orbisClearfulWash,
+
+  curelJunshinHoshitsuLotionIii,
+  hadalaboGokujunHyaluronEki,
+  namerakaHonpoTotemoShittoriLotionNc,
+  orbisUEssenceLotion,
+  ihadaYakuyouUruoiLotionTotemoShittori,
+
+  hadalaboGokujunHyaluronCream,
+  namerakaHonpoCreamNc,
+  curelJunshinHoshitsuFaceCream,
+  orbisAquanistMoistureLm,
+  cowMutenkaHoshitsuEmulsion,
+  kikumasamuneNihonshuEmulsion,
+
+  curelJunshinHoshitsuUvEssence,
+  hadalaboGokujunUvWhiteGel,
+  sunplaySuperBlock,
+  orbisSunscreenFrience,
+  allieChronoBeautyGelUvEx,
 ];
