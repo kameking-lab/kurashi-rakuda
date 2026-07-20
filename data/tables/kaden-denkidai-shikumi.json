@@ -1,0 +1,9 @@
+{
+  "$comment": "家電の電気代計算ツール（kaden-denkidai-keisan）の月・年換算に使う日数定数。components/tools/impl/KadenDenkidaiKeisan.calc.ts の DAYS_PER_MONTH / DAYS_PER_YEAR と同一値（SSOTはツール実装コード側。本ファイルは記事のfacts[]がseido_refで参照できるようにするための転記）。",
+  "org": "くらしのラクダ（自社ツール実装データ）",
+  "source_url": "components/tools/impl/KadenDenkidaiKeisan.calc.ts",
+  "last_verified": "2026-07-21",
+  "next_check_due": "2027-07-21",
+  "tsuki_kansan_nissuu": 30,
+  "nen_kansan_nissuu": 365
+}

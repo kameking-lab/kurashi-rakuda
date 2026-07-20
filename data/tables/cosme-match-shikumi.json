@@ -1,0 +1,14 @@
+{
+  "$comment": "肌質から化粧品を探すツール（cosme-match）の仕組みに関する対照表。data/cosme/products/*.json（商品1件=1ファイル）をディレクトリ走査で集計した件数を転記したもの。商品の追加・削除で値が変わるため、記事更新時は data/cosme/products/ の実件数と照合すること。仕組み・公平性の設計根拠は specs/tools/cosme-match.md を参照。",
+  "org": "くらしのラクダ（自社ツール実装データ）",
+  "source_url": "data/cosme/products/",
+  "last_verified": "2026-07-21",
+  "next_check_due": "2026-10-21",
+  "shouhin_kensu": {
+    "senganryo": 7,
+    "kesho-mizu": 7,
+    "cream": 7,
+    "hiyakedome": 6,
+    "goukei": 27
+  }
+}
