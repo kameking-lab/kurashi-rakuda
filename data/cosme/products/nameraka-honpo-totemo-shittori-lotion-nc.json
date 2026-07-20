@@ -1,0 +1,30 @@
+{
+  "id": "nameraka-honpo-totemo-shittori-lotion-nc",
+  "name": "とってもしっとり化粧水 NC",
+  "brand": "なめらか本舗（常盤薬品工業）",
+  "category": "kesho-mizu",
+  "priceYen": 990,
+  "volume": "200mL",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": false, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "さっぱりとした軽い使用感を求める脂性肌の方（本品は同ブランドラインの中で最も濃厚な『とってもしっとり』タイプです。より軽い『化粧水NC』『しっとり化粧水NC』も選べます）",
+    "大豆・大豆イソフラボンにアレルギーのある方（本品は豆乳由来成分を配合しています）"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "なめらか本舗公式オンラインショップ（常盤薬品工業）商品ページ「とってもしっとり化粧水 NC」", "url": "https://noevirgroup.jp/sana/g/g70114/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

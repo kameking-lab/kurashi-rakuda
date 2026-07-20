@@ -1,0 +1,33 @@
+{
+  "id": "sunplay-super-block",
+  "name": "メンソレータム サンプレイ スーパーブロック（SPF50+・PA++++）",
+  "brand": "サンプレイ（ロート製薬）",
+  "category": "hiyakedome",
+  "priceYen": 770,
+  "volume": "30g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "酸化亜鉛", "ingredientId": "uv-filter-inorganic", "role": "shigaisen", "sourceNote": "全成分表示より（酸化チタンも配合）。紫外線吸収剤も配合されており、吸収剤・散乱剤を併用した処方" },
+    { "name": "メトキシケイヒ酸エチルヘキシル", "ingredientId": "uv-filter-organic", "role": "shigaisen", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": null, "oily": null, "combination": null, "sensitive": null },
+  "concernsFit": [],
+  "notSuitedFor": [
+    "紫外線吸収剤・散乱剤を併用した強力ウォータープルーフ処方のため、低刺激な処方を優先したい敏感肌の方には不向きな場合があります",
+    "UVカット性能に特化したシンプル処方で保湿・美容液成分は少なめのため、スキンケア効果も同時に求める方には物足りない場合があります"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。日焼け止めとしての効果はSPF50+・PA++++の表示値によるもので、個人差があります",
+    "ウォータープルーフ処方ですが、汗を拭いたり長時間屋外にいる場合はこまめな塗り直しが必要です",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "ロート製薬公式「メンソレータム サンプレイ スーパーブロック」商品情報", "url": "https://jp.rohto.com/uv-sunplay/super-block/" },
+    { "label": "ロート製薬公式通販「メンソレータム サンプレイ スーパーブロック」商品ページ（全成分表示）", "url": "https://www.shop.rohto.co.jp/category/skincare/sunplay/138883.html" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

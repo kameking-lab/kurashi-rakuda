@@ -1,0 +1,31 @@
+{
+  "id": "curel-junshin-hoshitsu-uv-essence",
+  "name": "キュレル 潤浸保湿 UVエッセンス（医薬部外品／SPF30・PA++）",
+  "brand": "キュレル（花王）",
+  "category": "hiyakedome",
+  "priceYen": 1760,
+  "volume": "50g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "微粒子酸化Ti", "ingredientId": "uv-filter-inorganic", "role": "shigaisen", "sourceNote": "全成分表示より。商品ページにも「ノンケミカルUV(紫外線吸収剤無配合)」と明記" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "紫外線吸収剤不使用（酸化チタン配合のノンケミカル処方）のため、白浮きしにくい軽いつけ心地を重視する方には不向きな場合があります",
+    "医薬部外品で消炎剤（グリチルリチン酸ジカリウム）を配合していますが、既に生じている肌トラブルの治療を目的とした製品ではありません"
+  ],
+  "cautions": [
+    "本品は医薬部外品です。日焼け止めとしての効果はSPF30・PA++の表示値によるもので、個人差があります",
+    "汗をふいた後などはこまめな塗り直しが必要です。使用量が少ないと十分な紫外線防止効果が得られません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "花王公式 キュレル「潤浸保湿 UVエッセンス 50g」商品ページ（My Kao Mall）", "url": "https://www.kao-kirei.com/ja/item/kbb/curel/4901301413505/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "hadalabo-gokujun-hyaluron-cream",
+  "name": "肌ラボ 極潤ヒアルロンクリーム",
+  "brand": "肌ラボ（ロート製薬）",
+  "category": "cream",
+  "priceYen": 1551,
+  "volume": "50g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より（保湿成分）" },
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より（うるおい成分として訴求）" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より（保湿成分）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "こっくりとした「ぷるぷるクリーム」処方のため、さっぱりした軽い使用感を求める方には重く感じられる場合がある"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "ロート製薬オンライン公式 商品ページ「肌ラボ 極潤ヒアルロンクリーム」", "url": "https://www.shop.rohto.co.jp/category/skincare/hadalabo/gokujyun/127948.html" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

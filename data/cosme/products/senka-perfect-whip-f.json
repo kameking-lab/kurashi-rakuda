@@ -1,0 +1,31 @@
+{
+  "id": "senka-perfect-whip-f",
+  "name": "センカ パーフェクトホイップ ｆ",
+  "brand": "SENKA（専科）（ファイントゥデイ）",
+  "category": "senganryo",
+  "priceYen": 548,
+  "volume": "120g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より（保湿成分）" },
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より（うるおいヴェールを形成する保湿成分として訴求）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": null },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "香料（ホワイトフローラルの香り）が配合されているため、無香料の洗顔料を求める方には不向き",
+    "洗浄成分に脂肪酸（せっけん系洗浄成分。ミリスチン酸・パルミチン酸・ラウリン酸等＋水酸化K）を含むため、アミノ酸系洗浄成分主体のよりマイルドな洗い上がりを求める方には不向きな場合がある"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "SENKA公式 ファイントゥデイ オンラインショップ「センカ パーフェクトホイップ ｆ」商品情報", "url": "https://onlineshop.finetoday.com/products/senka-34" },
+    { "label": "SENKA（専科）公式ブランドサイト「パーフェクトホイップ」商品ページ", "url": "https://www.hada-senka.com/products/perfect-whip-u/" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}

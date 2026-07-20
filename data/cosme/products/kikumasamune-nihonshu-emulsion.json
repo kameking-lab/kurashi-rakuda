@@ -1,0 +1,29 @@
+{
+  "id": "kikumasamune-nihonshu-emulsion",
+  "name": "菊正宗 日本酒の乳液",
+  "brand": "菊正宗（菊正宗酒造）",
+  "category": "cream",
+  "priceYen": 990,
+  "volume": "380mL",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "セラミドNP", "ingredientId": "ceramide", "role": "hoshitsu", "sourceNote": "全成分表示より（表示名は「セラミドNP」ほか、セラミドEOP・セラミドAPも配合）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "香料を配合しているため、無香料の製品を希望する方には不向き"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "菊正宗酒造公式通販サイト 商品ページ「菊正宗 日本酒の乳液 380mL」", "url": "https://www.kikumasamune.shop/c/cosmeandbath/nihonsyukesyouhin/nkl45" }
+  ],
+  "checkedAt": "2026-07-20",
+  "nextCheckDue": "2026-10-18",
+  "status": "on-sale"
+}
