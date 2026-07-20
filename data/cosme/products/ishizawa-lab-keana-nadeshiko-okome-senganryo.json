@@ -1,0 +1,31 @@
+{
+  "id": "ishizawa-lab-keana-nadeshiko-okome-senganryo",
+  "name": "毛穴撫子 お米の洗顔",
+  "brand": "毛穴撫子（石澤研究所）",
+  "category": "senganryo",
+  "priceYen": 1650,
+  "volume": "50g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "カオリン", "ingredientId": "clay-kaolin", "role": "kyuuchaku", "sourceNote": "全成分表示より（配合量順で最初に記載される吸着成分）" },
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より（ライスセラムの保湿成分と共に配合）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": true, "combination": true, "sensitive": null },
+  "concernsFit": ["keana", "kansou"],
+  "notSuitedFor": [
+    "米粉によるスクラブ効果とカオリンの吸着処方のため、肌をこすりやすい方や敏感になっている時期には刺激を感じる場合がある",
+    "パウダータイプで洗顔のたびに水を加えて泡立てる手間がかかるため、時短でさっと洗いたい方には不向き"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "石澤研究所公式サイト「毛穴撫子 お米の洗顔」商品ページ（価格・内容量）", "url": "https://www.ishizawa-lab.co.jp/keana_skincare/wash.html" },
+    { "label": "石澤研究所公式サイト 配合全成分ページ「毛穴撫子 お米シリーズ 配合全成分」", "url": "https://www.ishizawa-lab.co.jp/seibun/keana_skincare.html" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "kose-sekkisei-yakuyou",
+  "name": "薬用 雪肌精",
+  "brand": "雪肌精（コーセー）",
+  "category": "kesho-mizu",
+  "priceYen": 5500,
+  "volume": "200mL",
+  "priceBand": "high",
+  "availability": ["drugstore", "department", "online"],
+  "keyIngredients": [
+    { "name": "グリチルリチン酸ジカリウム", "ingredientId": "glycyrrhizinate", "role": "sonota", "sourceNote": "全成分表示より（有効成分・肌あれ防止）" },
+    { "name": "ハマメリス抽出液", "ingredientId": "astringent-extract", "role": "sonota", "sourceNote": "全成分表示より" },
+    { "name": "濃グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kuzure", "keana", "kansou"],
+  "notSuitedFor": [
+    "エタノール（無水エタノール含む）を配合した処方のため、アルコールに敏感な方・エタノールフリー処方を希望する方には不向き",
+    "200mLで5,500円とドラッグストア化粧水の中では高価格帯のため、プチプラでのスキンケアを希望する方には他の化粧水の方が向く場合がある"
+  ],
+  "cautions": [
+    "医薬部外品です。肌あれを防ぐ効能が認められていますが、既に生じた皮膚症状の治療を目的とした医薬品ではありません",
+    "新しい化粧品・医薬部外品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "Maison KOSÉ公式オンラインショップ「薬用 雪肌精＜200mL＞」商品ページ（価格・内容量・全成分）", "url": "https://maison.kose.co.jp/site/sekkisei/g/gMEWV/" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}

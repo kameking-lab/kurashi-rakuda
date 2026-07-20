@@ -1,0 +1,31 @@
+{
+  "id": "kose-softymo-cleansing-wash-black",
+  "name": "ソフティモ クレンジングウォッシュ（ブラック）",
+  "brand": "ソフティモ（コーセーコスメポート）",
+  "category": "senganryo",
+  "priceYen": 638,
+  "volume": "160g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "カオリン", "ingredientId": "clay-kaolin", "role": "kyuuchaku", "sourceNote": "全成分表示より" },
+    { "name": "炭", "ingredientId": "charcoal", "role": "kyuuchaku", "sourceNote": "全成分表示およびブランドサイトより（「2種のクレイ（皮脂吸着）、炭（洗浄成分）配合」と明記）" }
+  ],
+  "skinTypeFit": { "dry": null, "oily": true, "combination": true, "sensitive": null },
+  "concernsFit": ["keana"],
+  "notSuitedFor": [
+    "洗浄成分に石けん系（ミリスチン酸・ラウリン酸等を水酸化Kで中和）を使用した高い洗浄力の処方のため、乾燥や皮膚のバリア機能低下が気になる方にはつっぱりを感じやすい場合がある",
+    "メイク落とし機能を兼ねたクレンジングウォッシュのため、通常の洗顔料としてはさっぱりしすぎると感じる方もいる"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "Maison KOSÉ公式オンラインショップ「ソフティモ クレンジングウォッシュ（ブラック）」商品ページ（価格・内容量・全成分）", "url": "https://maison.kose.co.jp/site/softymo/g/gWJZV/" },
+    { "label": "ソフティモ公式ブランドサイト「クレンジングウォッシュ」商品ページ（クレイ成分の訴求）", "url": "https://kose-softymo.com/cleansingwash/" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}

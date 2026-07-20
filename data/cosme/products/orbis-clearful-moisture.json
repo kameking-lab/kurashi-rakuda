@@ -1,0 +1,30 @@
+{
+  "id": "orbis-clearful-moisture",
+  "name": "クリアフル モイスチャー",
+  "brand": "オルビス（ORBIS）",
+  "category": "nyueki",
+  "priceYen": 1870,
+  "volume": "50g",
+  "priceBand": "petit",
+  "availability": ["online"],
+  "keyIngredients": [
+    { "name": "グリチルリチン酸ジカリウム", "ingredientId": "glycyrrhizinate", "role": "sonota", "sourceNote": "全成分表示より（有効成分・ニキビ肌荒れ防止有効成分）" }
+  ],
+  "skinTypeFit": { "dry": null, "oily": null, "combination": null, "sensitive": null },
+  "concernsFit": ["kuzure"],
+  "notSuitedFor": [
+    "有効成分（グリチルリチン酸ジカリウム）を配合した医薬部外品のニキビ・肌荒れ対策処方のため、ニキビ・肌荒れの心配がなく保湿だけを目的とする方にはシンプルな乳液の方が向く場合がある",
+    "オルビス公式オンラインショップでの通信販売が中心のため、店頭で試したい方には不向き"
+  ],
+  "cautions": [
+    "医薬部外品です。ニキビ・肌荒れを防ぐ効能が認められていますが、既に生じた皮膚症状の治療を目的とした医薬品ではありません",
+    "新しい化粧品・医薬部外品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "オルビス公式オンラインショップ「クリアフル モイスチャー」商品ページ", "url": "https://www.orbis.co.jp/small/11011103/" },
+    { "label": "オルビス公式オンラインショップ「ニキビケアのORBIS CLEARFUL」ブランドページ（価格表記）", "url": "https://www.orbis.co.jp/contents/product/clearful/" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}
