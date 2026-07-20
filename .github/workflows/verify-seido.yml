@@ -176,6 +176,32 @@ jobs:
         # 機械照合で一致しない限りマージさせない。
         run: node factory/scripts/check-fidelity.mjs content/articles
 
+  # ------------------------------------------------------- 記事出典ゲート（構造・オフライン）
+  article-sources-structure:
+    name: 記事出典ゲート（新規・変更記事の verify.expect 必須化。構造のみ・オフライン）
+    # 新規・変更記事（PRのdiff）は出典に verify.expect（逐語一部）が無いとマージさせない。
+    # 既存111記事はgrandfather（このゲート導入前の記事はwarnのみ。retrofitキューはBACKLOG参照）。
+    # ネットワーク照合（liveness・expect実照合）は下の article-sources-verify（スケジュール）で行う。
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # PRの diff base を解決するため全履歴を取得する（fetch-depth:1 では base コミットが無い）
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 記事出典ゲート（構造）
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+          if [ -z "$BASE" ]; then
+            node factory/scripts/check-sources.mjs
+          else
+            node factory/scripts/check-sources.mjs --base="$BASE"
+          fi
+
   # ---------------------------------------------------------------- 出典照合
   sources:
     name: 出典照合（一次情報との機械照合）
@@ -268,4 +294,95 @@ jobs:
         if: steps.verify.outcome == 'failure'
         run: |
           echo '出典照合に失敗しました。上のログを確認してください。'
+          exit 1
+
+  # ------------------------------------------------------- 記事出典ゲート（照合・ネットワーク）
+  article-sources-verify:
+    name: 記事出典ゲート（liveness・verify.expect逐語照合・タイトル乖離。ネットワーク）
+    # 全111記事の出典URLについて HTTP 200 を確認する。恒久404はerror、それ以外の
+    # 取得失敗（相手サイトの一時障害・403等）はwarnに留める（PRブロックには使わない）。
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: PyMuPDF の導入
+        run: pip install pymupdf
+
+      - name: 記事出典ゲート（照合）
+        id: verify
+        continue-on-error: true
+        run: |
+          node factory/scripts/check-sources.mjs --fetch --json --report=source-audit-report.md > source-report.json 2>&1 || true
+          node factory/scripts/check-sources.mjs --fetch --report=source-audit-report.md | tee source-report.txt
+
+      - name: レポートを保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: article-source-audit-report
+          path: |
+            source-report.json
+            source-report.txt
+            source-audit-report.md
+          retention-days: 30
+
+      - name: 照合失敗時に Issue を起票
+        # 恒久404、または実在しない事実を verify.expect が期待している＝捏造の可能性。
+        if: steps.verify.outcome == 'failure' && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = '記事出典ゲートの照合に失敗しました。死リンク、または出典に事実が存在しない（捏造の可能性）を検知しました。\n\n';
+            try {
+              body += '```\n' + fs.readFileSync('source-report.txt', 'utf8').slice(0, 55000) + '\n```\n';
+            } catch (e) {
+              body += '(レポートの読み込みに失敗しました)\n';
+            }
+            body += '\n---\n';
+            body += '## 対応手順\n';
+            body += '1. verify.expect 不一致の場合: 出典ページを開き、事実が本当に書かれているか確認する\n';
+            body += '   - 書かれていない場合は記事側の記述・出典を修正する（実在しない事実の捏造は放置しない）\n';
+            body += '   - ページの表記が変わっただけなら verify.expect を新しい表記に合わせる\n';
+            body += '2. 404の場合: 出典URLを差し替える（同一団体の後継ページ・アーカイブ等）\n';
+            body += '3. 修正後、`node factory/scripts/check-sources.mjs --fetch` をローカルで再実行して確認する\n\n';
+            body += '⚠️ YMYLに関わる記事は実装者≠検算者のダブルチェックを行うこと。\n';
+
+            const title = `[記事出典] 出典ゲートの失敗 (${new Date().toISOString().slice(0, 10)})`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'article-sources',
+            });
+            if (existing.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['article-sources', 'YMYL'],
+              });
+            }
+
+      - name: 照合結果を反映して job を失敗させる
+        if: steps.verify.outcome == 'failure'
+        run: |
+          echo '記事出典ゲートの照合に失敗しました。上のログを確認してください。'
           exit 1

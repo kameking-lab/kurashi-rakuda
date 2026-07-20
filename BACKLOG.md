@@ -307,6 +307,17 @@
 - [ ] P4-A02 (B/ソネット) 虫対策・テーブル素材別ケア・片付け箇所別（各1本から。同上の出典規律）
 - [ ] P4-A03 (A/ソネット★YMYL注意★) 身体パーツケア: 肘膝の黒ずみ・吹き出物と食事 — 公的・学会一次情報（日本皮膚科学会Q&A等）の範囲のみ。書けない部分は「皮膚科で相談」と明記し、民間美容情報は出典に使わない
 
+### P4-SRC: 記事出典ゲート retrofit キュー（2026-07-21起票。factory/scripts/check-sources.mjs 導入に伴う棚卸し）
+新設した記事出典ゲート（`npm run check:sources` / `--fetch` でネットワーク照合）は、ゲート導入前の既存111記事を grandfather 扱いにしている（liveness警告のみ・verify.expect欠落はwarn、CIは赤くしない）。以下は 2026-07-21 時点の `node factory/scripts/check-sources.mjs --fetch` 実測結果。量産レーン（B/ソネット）で順次解消する。再実行して最新化すること。
+- [ ] P4-SRC01 死リンク6件の差し替え（★最優先・恒久404）:
+  - `seido-yobou-sesshu-schedule-2026.md` — https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou28/01.html
+  - `tool-narisou-junyu-milk-ryo.md` — https://www.cfa.go.jp/policies/kokoseido/boshihoken/kenko/jyunyuu-rinyuu
+  - `tool-narisou-rinyushoku-ryo.md` — https://www.mhlw.go.jp/content/11908000/000496257.pdf
+  - 他3件は `--fetch` 再実行で確認（ページ移転の可能性。後継ページを一次情報の範囲で探し、無ければ他の許可ドメインへ差し替え）
+- [ ] P4-SRC02 出典が1件もない記事3本（最優先でsources追加）: `tool-narisou-hoikuen-omukae-gyakusan.md` / `tool-narisou-kaimono-list-jidou-seisei.md` / `tool-narisou-recipe-ninzuu-kansan.md`
+- [ ] P4-SRC03 残り108記事の `sources[].verify.expect`（逐語一部）を順次追加。実ページから該当箇所を1文引用し、`node factory/scripts/check-sources.mjs --fetch --only` 相当（現状は全件実行のみ。`--only` 未実装なら追加検討）で個別照合してから追加すること（適当な文字列を付けるとゲートの意味がなくなる＝捏造防止の趣旨に反する）
+- [ ] P4-SRC04 403等の一時的取得失敗（warn止まり。恒久化していないか定点観測）: `www.caa.go.jp/policies/policy/consumer_safety/child/food_safety/`（3記事から参照）／`w-health.jp/monthly/pms/`（2記事から参照）
+
 ## キュー運用メモ
 
 - 並列上限の目安: Q3 は 5〜10 並列（S 級は直列気味に、B 級は束ねて自走）
