@@ -143,9 +143,17 @@ function checkStructure(article, isChanged) {
       return;
     }
     const hasExpect = Array.isArray(s.verify?.expect) && s.verify.expect.length > 0;
-    if (!hasExpect) {
+    const isSkipped = s.verify?.skip === true;
+    if (isSkipped && !s.verify?.skipReason) {
+      err(file, p, "verify.skip=true の場合は verify.skipReason が必須です");
+    }
+    if (!hasExpect && !isSkipped) {
       if (isChanged) {
-        err(file, p, `新規・変更記事は verify.expect（出典本文の逐語一部）が必須です: ${s.url}`);
+        err(
+          file,
+          p,
+          `新規・変更記事は verify.expect（出典本文の逐語一部）が必須です。機械照合できない場合（スキャン画像PDF等）は verify.skip=true と skipReason を明記してください: ${s.url}`
+        );
       } else {
         missingExpect = true;
       }
