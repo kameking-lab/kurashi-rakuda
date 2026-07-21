@@ -1,0 +1,241 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "fukui-echizen",
+  "name": "福井県越前市",
+  "municipalityCode": "182095",
+  "prefecture": "福井県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2025,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "amendments": [
+    {
+      "summary": "fee-pageの表題は「令和7年度保育料徴収基準額表」だが、同ページの税年度切替の説明文（4〜8月分は令和4年収入による令和5年度市民税、9〜3月分は令和5年収入による令和6年度市民税で算定、という趣旨の記述）が2年以上前の年度のまま更新されておらず、ページ全体が最新化されていない可能性が高い。ページの最終更新日表示も2025年8月25日でR8年度への更新が確認できないため、令和8年度の確定額としては扱わずunder-reviewとする。",
+      "status": "under-review",
+      "sourceId": "fee-page"
+    }
+  ],
+  "sources": [
+    {
+      "id": "fee-page",
+      "title": "利用者負担額(保育料)について",
+      "publisher": "越前市こども未来課",
+      "url": "https://www.city.echizen.lg.jp/office/050/020/h30hoikuryou.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "ページ最終更新日2025年8月25日。表題は「令和7年度保育料徴収基準額表」。税年度切替の説明文が令和4年/令和5年収入を参照する古い記述のまま残っており、ページ全体の更新状況に疑義がある（amendments参照）。"
+    }
+  ],
+  "disclaimer": "本データは越前市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず越前市（こども未来課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "2号・3号認定子どものうち0〜2歳児クラス・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児クラスの保育料（国の無償化により無料）",
+      "3〜5歳児クラスの給食費（副食材料代、実費）",
+      "2人目以降の保育料（令和6年9月から市独自に所得にかかわらず無料化。本ファイル未収録）",
+      "ひとり親世帯等・障害者手帳を持つ家庭等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本資料の範囲内で確認できず（未確認）。",
+    "taxYearRule": "4月〜8月分は前年度の市民税所得割額、9月〜3月分は当年度の市民税所得割額をもとに算定する（原典の具体的な参照年度の例示は更新が滞っている可能性があるためamendments参照）。",
+    "deductionsIgnored": [],
+    "sourceId": "fee-page",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["4月から8月の保育料は"]
+    },
+    "note": "★6/8換算について★ 越前市は中核市・施行時特例市のいずれでもない一般市。fee-pageに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★控除除外規定の具体的リストは未確認★ fee-pageに寄附金控除・住宅借入金等特別控除等の個別列挙が見当たらないため、deductionsIgnoredは空配列とした。★階層区分★ 1=生活保護世帯（isWelfare）、2=市民税非課税世帯（isNonTaxable）。incomeMin/incomeMaxは1・2を便宜上0/0とした。★ひとり親世帯等（A〜D）の別建て軽減★ 所得割77,101円未満の世帯で該当する場合、市民税所得割48,600円未満は第1子目が徴収基準額表の半額・第2子目以降無料、48,600円以上77,101円未満は第1子目が9,000円・第2子目以降無料という一般世帯より低い額になる。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児",
+      "rule": "教育・保育給付認定区分（2号・3号）による。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラスの保育料は無料",
+      "sourceId": "fee-page",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["幼児教育・保育の無償化により、3から5歳児クラスのお子さんについては、保育料は無料となります。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。給食費（副食材料代）は別途実費。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "第2階層（市民税非課税世帯）は3歳未満児の保育料が0円",
+      "sourceId": "fee-page",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同一世帯内に兄弟（姉妹）がいる場合に軽減がある（詳細な年齢制限・入所要件の明記は原典に見当たらず未確認）。",
+        "sourceId": "fee-page",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["同一世帯内に兄弟（姉妹）がいる場合に、保育料の軽減があります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "令和6年9月から所得にかかわらず第2子以降は無料（市独自）",
+        "sourceId": "fee-page",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["令和6年9月からは所得に関係なく、第2子以降無料となります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子以降無料化に含まれるため第3子以降も無料",
+        "sourceId": "fee-page",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "令和6年9月から市独自に第2子以降の保育料を所得にかかわらず完全無料化。"
+  },
+  "tiers": [
+    {
+      "tier": "1",
+      "label": "生活保護による被保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "2",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "3",
+      "label": "市民税所得割課税24,300円未満",
+      "incomeMin": 0,
+      "incomeMax": 24300,
+      "fees": {
+        "under3": { "standard": 11000, "short": 10800 }
+      }
+    },
+    {
+      "tier": "4",
+      "label": "市民税所得割課税48,600円未満",
+      "incomeMin": 24300,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 13000, "short": 12800 }
+      }
+    },
+    {
+      "tier": "5",
+      "label": "市民税所得割課税57,700円未満",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": { "standard": 19000, "short": 18600 }
+      }
+    },
+    {
+      "tier": "6",
+      "label": "市民税所得割課税72,800円未満",
+      "incomeMin": 57700,
+      "incomeMax": 72800,
+      "fees": {
+        "under3": { "standard": 21000, "short": 20700 }
+      }
+    },
+    {
+      "tier": "7",
+      "label": "市民税所得割課税97,000円未満",
+      "incomeMin": 72800,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 23000, "short": 22600 }
+      }
+    },
+    {
+      "tier": "8",
+      "label": "市民税所得割課税133,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 34000, "short": 33400 }
+      }
+    },
+    {
+      "tier": "9",
+      "label": "市民税所得割課税169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 36000, "short": 35400 }
+      }
+    },
+    {
+      "tier": "10",
+      "label": "市民税所得割課税301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 45000, "short": 44200 }
+      }
+    },
+    {
+      "tier": "11",
+      "label": "市民税所得割課税397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 48000, "short": 47200 }
+      }
+    },
+    {
+      "tier": "12",
+      "label": "市民税所得割課税397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 53000, "short": 52100 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-page",
+    "expect": [
+      "令和7年度保育料徴収基準額表",
+      "53,000円",
+      "397,000円以上"
+    ]
+  }
+}

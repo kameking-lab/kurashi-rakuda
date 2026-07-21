@@ -1,0 +1,198 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "gifu-seki",
+  "name": "岐阜県関市",
+  "municipalityCode": "212059",
+  "prefecture": "岐阜県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "関市利用者負担額基準額表（別表　改正後　令和６年４月１日以降）",
+      "publisher": "関市子ども家庭課",
+      "url": "https://www.city.seki.lg.jp/cmsfiles/contents/0000000/985/hoikuryo0604.pdf",
+      "landingUrl": "https://www.city.seki.lg.jp/0000000985.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "表題に年度表記はなく「改正後　令和６年４月１日以降」という効力発生日のみ明記された常設の別表形式（条例に基づく基準額表で、次の改正まで有効と推定）。令和8年度の保育施設入園案内ページから直接リンクされている添付PDFであり、他に別の年度別ファイルは見当たらないため現行版として収録した。★別のPDF（R8nyuuennannnai.pdf）はToUnicodeマッピングの無いカスタムフォントが使われておりPyMuPDF・pdftotextとも正しいテキストを抽出できなかった（文字化け確認済み）ため、本ファイル（hoikuryo0604.pdf）を主要出典として採用した。PyMuPDFのpage.find_tables()で座標ベースに表構造を復元して読んだ。"
+    }
+  ],
+  "disclaimer": "本データは関市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず関市（子ども家庭課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所等の3歳未満児クラス・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児クラスの保育料（国の無償化により無料）",
+      "2人目以降の保育料（市独自に無料化。本ファイル未収録）",
+      "母子世帯等・在宅障がい者(児)のいる世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本資料の範囲内で確認できず（未確認）。",
+    "taxYearRule": "表中の市町村民税額は、4月～8月分については前年度の税額、9月～3月分については当年度の税額とする。",
+    "deductionsIgnored": [],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["算定に用いる市町村\n民税の所得割額は税額\n控除前の額とします。"]
+    },
+    "note": "★6/8換算について★ 関市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★控除除外規定の具体的リストは未確認★ 「税額控除前の額とします」とのみ明記され、他自治体でよく見られる寄附金控除・住宅借入金等特別控除等の個別列挙が本資料には無いため、deductionsIgnoredは空配列とした。★階層区分★ 第1=生活保護世帯等（isWelfare）、第2=生活保護世帯等を除く市町村民税非課税世帯（isNonTaxable）、第3=市町村民税均等割課税世帯及び所得割合算額48,600円未満。incomeMin/incomeMaxは第1・第2を便宜上0/0とした。★母子世帯等の別建て軽減★ 第3階層・第4階層（のうち所得割合算額が77,101円未満）と認定された世帯であっても母子世帯等（母子・父子世帯、在宅障がい者(児)のいる世帯、市長が認めた世帯）に該当する場合は、いずれも標準時間・短時間ともに4,500円という一律に近い額になる。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0～2歳（4月1日時点）",
+      "rule": "各月の初日時点における年齢。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3～5歳児クラス（年少児から年長児クラス）の保育料は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["生活保護世帯等を除く市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "第2階層（生活保護世帯等を除く市町村民税非課税世帯）は0～2歳児クラスの保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["生活保護世帯等を除く市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "保育所等の同時利用にかかわらず、生計を同一にする18歳未満（年度途中で満18歳に達する日以降の最初の3月31日までの間）の兄又は姉がいる場合、その子どもは2人目以降として扱われる。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["保育所等の同時利用にかかわらず、生計を同一にする１８歳未満（年度途中で満１８歳に達する日以降の最初の３\n月３１日までの間）の兄又は姉がいる場合は、保育料は無料になります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "同一世帯に2人以上の子どもがいる場合、2人目以降は無料",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["同一世帯に２人以上の子どもがいる場合は、２人目以降の子どもの利用者負担額は無料になります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "2人目以降無料化に含まれるため3人目以降も無料",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "市独自に2人目以降の保育料を完全無料化（所得制限なし、保育所等の同時利用を問わず生計同一の18歳未満のきょうだいで判定）。"
+  },
+  "tiers": [
+    {
+      "tier": "第1",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第2",
+      "label": "生活保護世帯等を除く市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第3",
+      "label": "市町村民税均等割課税世帯及び所得割合算額48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 9700, "short": 9600 }
+      }
+    },
+    {
+      "tier": "第4",
+      "label": "所得割合算額48,600円以上97,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 16500, "short": 16200 }
+      }
+    },
+    {
+      "tier": "第5",
+      "label": "所得割合算額97,000円以上169,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 26700, "short": 26300 }
+      }
+    },
+    {
+      "tier": "第6",
+      "label": "所得割合算額169,000円以上301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 39600, "short": 39000 }
+      }
+    },
+    {
+      "tier": "第7",
+      "label": "所得割合算額301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 52000, "short": 51200 }
+      }
+    },
+    {
+      "tier": "第8",
+      "label": "所得割合算額397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 65500, "short": 64500 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "関市利用者負担額基準額表",
+      "65,500",
+      "397,000円以上"
+    ]
+  }
+}
