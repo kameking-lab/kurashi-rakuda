@@ -15,7 +15,10 @@
       "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/syokuchu/kanren/yobou/040204-1.html",
       "title": "ノロウイルスに関するＱ＆Ａ",
       "org": "厚生労働省",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["次亜塩素酸ナトリウム※（塩素濃度約1,000 ppm）"]
+      }
     }
   ],
   "facts": [

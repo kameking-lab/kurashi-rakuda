@@ -15,19 +15,28 @@
       "url": "https://www.pref.chiba.lg.jp/kankou/toilet/documents/handbook.pdf",
       "title": "トイレクリーン C+1 ハンドブック",
       "org": "千葉県（観光企画課）",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["尿の中にある尿素の分解からアンモニアが発生し、アルカリ性に偏ります。それにより、尿中に溶け込んでいた炭酸カルシウ\nム塩やシュウ酸カルシウム塩が個体として姿を現したものが、\n「尿石」です。"]
+      }
     },
     {
       "url": "https://www.caa.go.jp/policies/policy/representation/household_goods/guide/zakka/zakka_06.html",
       "title": "住宅用又は家具用の洗浄剤",
       "org": "消費者庁",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["表示が義務づけられているのは、定められた試験([1]酸性タイプ・[2]塩素系)で測定した結果、1.0ppm以上塩素ガスを発生する商品である。"]
+      }
     },
     {
       "url": "https://www.kokusen.go.jp/news/data/n-20260318_1.html",
       "title": "住宅用塩素系洗浄剤の使い方－まぜるな危険！浴室などで事故が発生しています－",
       "org": "独立行政法人国民生活センター",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["スプレータイプの塩素系洗浄剤と酸性洗浄剤を浴室内で一緒に使用したところ、数分後には浴室内の塩素ガス濃度は16ppmを超えました。"]
+      }
     }
   ],
   "last_updated": "2026-07-21",

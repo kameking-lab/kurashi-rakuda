@@ -15,19 +15,28 @@
       "url": "https://www.city.chuo.lg.jp/a0042/bousaianzen/bousai/bousaitaisaku/suigaisonae/taihuutaisaku.html",
       "title": "マンション等集合住宅における大型台風対策について",
       "org": "中央区（東京都）",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["台風が去った後にすること"]
+      }
     },
     {
       "url": "https://www.city.setagaya.lg.jp/kyoutsu/chiiki/8440.html",
       "title": "雨水ますが詰まっている、がたついている",
       "org": "世田谷区",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["雨水ますにごみなどが溜まっていたり、下水道管とますを連結している取付管に物が詰まっていると雨水がスムーズに下水道管に流れていきません。"]
+      }
     },
     {
       "url": "https://www.kokusen.go.jp/news/data/n-20201015_1.html",
       "title": "排水管の点検や洗浄の勧誘にご注意！",
       "org": "独立行政法人国民生活センター",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["「無料で点検する」等と勧誘してくる事業者に安易に応じないようにしましょう"]
+      }
     }
   ],
   "last_updated": "2026-07-21",
