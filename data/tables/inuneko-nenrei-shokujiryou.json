@@ -1,0 +1,84 @@
+{
+  "$comment": "犬猫の年齢換算（人間年齢換算）と、1日の食事量（給餌量）の目安計算に使うデータ。唯一の出典は環境省「飼い主のためのペットフード・ガイドライン ～犬・猫の健康を守るために～」（平成30年8月改訂版）。年齢換算表・計算式はガイドライン9ページ「犬と人間、猫と人間の年齢の目安」、食事量の計算式（RER・DER）は13ページ「食事量の決め方」の MEMO『食事量を計算してみよう』をそのまま転記した。ページ内の表の各値と、掲載された計算式を実際に照合し、両者が一致することを確認済み（例: 小〜中型犬・猫は年齢2歳以上で 24+(年齢-2)×4 が表の値と厳密に一致。1歳のみ表の15歳が特例。大型犬は 12+(年齢-1)×7 が1歳から表の全値と一致）。",
+  "org": "環境省 自然環境局 総務課 動物愛護管理室",
+  "documentTitle": "飼い主のためのペットフード・ガイドライン ～犬・猫の健康を守るために～（平成30年8月改訂版）",
+  "source_url": "https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/petfood_guide_1808.html",
+  "source_url_pdf_nenrei": "https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/petfood_guide_1808/pdf/4.pdf",
+  "source_url_pdf_nenrei_page": 9,
+  "source_url_pdf_shokujiryou": "https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/petfood_guide_1808/pdf/6.pdf",
+  "source_url_pdf_shokujiryou_page": 13,
+  "last_verified": "2026-07-21",
+  "next_check_due": "2027-07-21",
+  "nenreiKansan": {
+    "$comment": "「犬と人間、猫と人間の年齢の目安（品種等によってもこの関係は違ってきます）」の表と計算式（ガイドライン9ページ）。犬は体格により2系統（小〜中型犬・猫 と 大型犬）に分かれる。猫は小〜中型犬と同じ系統のみ掲載されており、大型猫の別系統は原典に存在しない。",
+    "shouChuugata": {
+      "label": "小〜中型犬・猫",
+      "appliesTo": ["dog", "cat"],
+      "formulaText": "24+(年齢-2)×4",
+      "formulaNote": "最初の2年で24歳、3年目からは1年に4歳ずつ年をとると言われています。",
+      "table": [
+        { "petAgeYears": 1, "humanAgeYears": 15 },
+        { "petAgeYears": 2, "humanAgeYears": 24 },
+        { "petAgeYears": 3, "humanAgeYears": 28 },
+        { "petAgeYears": 5, "humanAgeYears": 36 },
+        { "petAgeYears": 7, "humanAgeYears": 44 },
+        { "petAgeYears": 10, "humanAgeYears": 56 },
+        { "petAgeYears": 12, "humanAgeYears": 64 },
+        { "petAgeYears": 15, "humanAgeYears": 76 },
+        { "petAgeYears": 20, "humanAgeYears": 96 }
+      ]
+    },
+    "ougata": {
+      "label": "大型犬",
+      "appliesTo": ["dog"],
+      "formulaText": "12+(年齢-1)×7",
+      "formulaNote": "最初の1年で12歳、2年目からは1年に7歳ずつ年をとると言われています。",
+      "table": [
+        { "petAgeYears": 1, "humanAgeYears": 12 },
+        { "petAgeYears": 2, "humanAgeYears": 19 },
+        { "petAgeYears": 3, "humanAgeYears": 26 },
+        { "petAgeYears": 5, "humanAgeYears": 40 },
+        { "petAgeYears": 7, "humanAgeYears": 54 },
+        { "petAgeYears": 10, "humanAgeYears": 75 },
+        { "petAgeYears": 12, "humanAgeYears": 89 },
+        { "petAgeYears": 15, "humanAgeYears": 110 }
+      ]
+    }
+  },
+  "shokujiryouKeisan": {
+    "$comment": "「食事量を計算してみよう」（ガイドライン13ページ、体調管理についての章）の計算式をそのまま転記。係数(DER算出用)はガイドラインの計算例に明記された『体重5kgの犬と猫（避妊去勢済み）』の2値のみが原典に存在し、成長期・妊娠授乳期・未避妊去勢・シニア期など他のライフステージの係数は原典に表として掲載されていない（原典も『詳しくは獣医師に相談しましょう』と案内するにとどまる）。捏造を避けるため、本ツールは避妊・去勢済み成犬・成猫の係数のみを扱う。",
+    "rer": {
+      "formulaText": "体重(kg)×30+70",
+      "unit": "kcal",
+      "label": "安静時のエネルギー要求量（RER）",
+      "validWeightMinKg": 2,
+      "validWeightMaxKg": 45,
+      "validityNote": "※体重が2〜45kgの場合のみ計算可能（ガイドライン原文の注記）"
+    },
+    "der": {
+      "formulaText": "RER×係数",
+      "unit": "kcal",
+      "label": "1日当たりのエネルギー要求量（DER）",
+      "coefficientNote": "係数は、成長段階や活動量によって変わります。詳しくは獣医師に相談しましょう（ガイドライン原文）。"
+    },
+    "derCoefficients": {
+      "dogNeuteredAdult": { "value": 1.6, "label": "犬（避妊・去勢済み）", "lifeStage": "成犬・避妊去勢済み" },
+      "catNeuteredAdult": { "value": 1.2, "label": "猫（避妊・去勢済み）", "lifeStage": "成猫・避妊去勢済み" }
+    },
+    "feedAmount": {
+      "formulaText": "1日当たりの食事量=DER÷ME×100",
+      "unit": "g",
+      "label": "1日当たりの食事量",
+      "meLabel": "ペットフードに表示された代謝エネルギー（ME）",
+      "meUnit": "kcal/100g",
+      "meNote": "多くのペットフードのパッケージには『代謝エネルギー」または「ME」として100gあたりのkcalが表示されています。表示が製品あたり・kgあたりなどの場合は100gあたりに換算してください。"
+    },
+    "calculationExample": {
+      "$comment": "ガイドライン原文の計算例（体重5kgの犬と猫、避妊去勢済み）。テストのフィクスチャとしても使用。",
+      "weightKg": 5,
+      "rerKcal": 220,
+      "dogDerKcal": 352,
+      "catDerKcal": 264
+    }
+  }
+}

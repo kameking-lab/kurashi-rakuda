@@ -3014,5 +3014,38 @@
       ],
       "gender": null
     }
+  },
+  {
+    "queueId": "P4-T06",
+    "slug": "inuneko-nenrei-shokujiryou",
+    "category": "kaji",
+    "title": "犬猫の年齢換算・食事量の目安",
+    "description": "犬・猫の年齢を入力すると人間年齢の目安を計算し、体重とフードの代謝エネルギー（ME）を入力すると避妊・去勢済みの成犬・成猫を対象にした1日の食事量の目安（RER・DER）を計算します。環境省「飼い主のためのペットフード・ガイドライン」の計算式に基づく需要検証枠のツールです（カテゴリは新設せず「暮らし全般（kaji）」に収録）。",
+    "solves": [
+      "愛犬・愛猫の年齢が人間だと何歳くらいか知りたい",
+      "犬と猫、小〜中型犬と大型犬で年齢換算の計算式が違うことを知らなかった",
+      "フードのパッケージ以外の方法で1日の食事量の目安を計算したい",
+      "体重からペットに必要なエネルギー量（RER・DER）の計算方法を知りたい"
+    ],
+    "basisYear": null,
+    "sources": [
+      {
+        "label": "環境省「飼い主のためのペットフード・ガイドライン ～犬・猫の健康を守るために～」（平成30年8月改訂版）2.市販のペットフードについて（年齢換算表・計算式）",
+        "url": "https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/petfood_guide_1808/pdf/4.pdf"
+      },
+      {
+        "label": "環境省「飼い主のためのペットフード・ガイドライン ～犬・猫の健康を守るために～」（平成30年8月改訂版）4.体調管理について（食事量の計算式RER・DER）",
+        "url": "https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/petfood_guide_1808/pdf/6.pdf"
+      }
+    ],
+    "updated": "2026-07-21",
+    "status": "live",
+    "audience": {
+      "universal": true,
+      "lifeStages": [],
+      "lifeEvents": [],
+      "childAgeBands": [],
+      "gender": null
+    }
   }
 ]

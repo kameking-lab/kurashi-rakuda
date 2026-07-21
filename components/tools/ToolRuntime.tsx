@@ -83,6 +83,7 @@ const registry: Record<string, ComponentType> = {
   "iryouhi-koujo-kodomo": dynamic(() => import("@/components/tools/impl/IryouhiKoujoKodomo").then((m) => ({ default: m.IryouhiKoujoKodomo }))),
   "kaden-denkidai-keisan": dynamic(() => import("@/components/tools/impl/KadenDenkidaiKeisan").then((m) => ({ default: m.KadenDenkidaiKeisan }))),
   "cosme-match": dynamic(() => import("@/components/tools/impl/CosmeMatch").then((m) => ({ default: m.CosmeMatch }))),
+  "inuneko-nenrei-shokujiryou": dynamic(() => import("@/components/tools/impl/InunekoNenreiShokujiryou").then((m) => ({ default: m.InunekoNenreiShokujiryou }))),
 };
 
 export function ToolRuntime({ slug }: { slug: string }) {
