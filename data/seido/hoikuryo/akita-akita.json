@@ -1,0 +1,171 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "akita-akita",
+  "name": "秋田県秋田市",
+  "municipalityCode": "052019",
+  "prefecture": "秋田県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "akita-reiki",
+      "title": "秋田市特定教育・保育施設および特定地域型保育事業の利用者負担額等に関する条例施行規則 別表第1（3号認定子どもに係る利用者負担額）",
+      "publisher": "秋田市",
+      "url": "https://www.city.akita.akita.jp/city/gn/dc/reiki/reiki_honbun/c302RG00000988.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "秋田市自身が運営する例規集。別表第1は最終改正「令和3年9月29日規則第28号」（令和3年10月1日施行）で、以後の改正履歴（沿革情報）に新しい改正はない。階層区分A・B・C1〜C3・D1〜D20（20階層＋A・B）の利用者負担額（月額・保育標準時間/保育短時間）、算定方法（税年度切替、家計主宰者の合算、適用しない税額控除、政令指定都市在住者の所得割再計算規定）、多子軽減（第3条・第4条）、ひとり親・障がい者・要保護世帯等向けの軽減特例（備考8、C1〜D4相当）を規定。★curlで取得したHTMLを正規表現でタグ除去して全文抽出（PyMuPDF不要、生HTMLで足りた）。"
+    },
+    {
+      "id": "akita-jyosei-page",
+      "title": "秋田市の保育料および副食費助成制度について",
+      "publisher": "秋田市 子ども育成課",
+      "url": "https://www.city.akita.lg.jp/kurashi/kosodate/1005999/1009956/1012422.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "更新日「令和8年6月5日」。「すこやか子育て支援事業」（県の補助）と「第1子保育料無償化事業」による保育料・副食費の助成概要を掲載し、資料PDF（2・3号認定用は nisangou_suko.pdf）へリンク。この助成資料の階層区分（A・B・C1〜C3・D1〜D3・D3〜D12・D13〜D17・D18〜D20）が akita-reiki の階層構成（A・B・C1〜C3・D1〜D20）とおおむね対応することから、令和8年度時点でも別表第1の階層構造が現行運用されていることを確認する材料とした。"
+    },
+    {
+      "id": "akita-nisangou-pdf",
+      "title": "保育料および副食費の助成について（認可保育所、認定こども園など＝2・3号認定用）",
+      "publisher": "秋田市 子ども育成課",
+      "url": "https://www.city.akita.lg.jp/_res/projects/default_project/_page_/001/012/422/nisangou_suko.pdf",
+      "landingUrl": "https://www.city.akita.lg.jp/kurashi/kosodate/1005999/1009956/1012422.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "0〜2歳児の保育料助成（無償・1/2助成・1/4助成・非該当）と3〜5歳児の副食費助成（免除・1/2助成・1/4助成）を、世帯年収の目安と市民税所得割額の階層区分（A・B・C1〜C3・D1〜D3・D3〜D12・D13〜D17・D18〜D20）で整理した資料。★この資料の階層区分の所得割境界（〜48,599円・〜57,699円・〜168,999円・〜300,999円・301,000円〜）は akita-reiki の階層境界（C3上限48,600円・D3上限62,000円等）と完全には一致しない箇所がある（未確認: 助成事業独自の所得区分である可能性があり、階層番号の見た目の類似だけで1対1対応と断定していない）。page.find_tables()とget_pixmap(dpi=260)の目視で表構造を確認済み。"
+    }
+  ],
+  "disclaimer": "本データは秋田市公式サイト（例規集および子ども育成課ページ）の公表内容を2026-07-21時点で機械的に整理した参考情報です。実際の利用者負担額（保育料）は世帯状況・課税内容・入所施設により決定され、最終的には秋田市子ども育成課の決定が優先します。個別の判断は必ず秋田市および利用施設にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育部分）・地域型保育施設を利用する3号認定子ども（3歳未満児）の月額利用者負担額（保育料）（一般世帯・第1子・保育標準時間認定/保育短時間認定、条例施行規則 別表第1に基づく基本額）",
+      "1号・2号認定子ども（3歳以上）の月額利用者負担額（国の幼児教育・保育の無償化により0円）",
+      "階層区分A・B・C1〜C3・D1〜D20（市民税所得割課税額の範囲）"
+    ],
+    "excludes": [
+      "副食費（給食費）実費、延長保育料（別表第2、1回200円等）等の実費徴収",
+      "秋田市独自の追加助成（「すこやか子育て支援事業」による1/2・1/4助成、「第1子保育料無償化事業」）による軽減後の実質負担額。本ファイルのtiersは条例施行規則 別表第1の基本額（軽減前）を収録し、追加助成は freeTuition.localExtension に記載するのみで tiers には反映していない",
+      "ひとり親世帯・在宅障がい児（者）のいる世帯・要保護者等に準ずる世帯向けの軽減特例（別表第1 備考8のC1〜D4相当額）。tiers本体には一般世帯の額のみを収録し、詳細は bracketBasis.note に記録",
+      "認可外保育施設・企業主導型保育の利用料",
+      "施設ごとの上乗せ徴収・教材費等の実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "3号認定子どもと同一世帯に属して生計を一にしている父母およびそれ以外の扶養義務者（家計の主宰者である場合に限る）の全てについて、それらの者の課税額の合計額により行う。",
+    "taxYearRule": "A階層を除き、当該年度分（4月分から8月分までにあっては、前年度分）の市町村民税により階層を判定する。",
+    "deductionsIgnored": [],
+    "note": "★政令市6/8換算について★ 秋田市は中核市であり政令指定都市ではないが、備考7に「3号認定子どもに係る教育・保育給付認定保護者又は当該教育・保育給付認定保護者と同一の世帯に属する者が指定都市の区域内に住所を有する者であるときは、それらの者を指定都市以外の市町村の区域内に住所を有する者とみなして、所得割の額を計算するものとする」との規定があり、政令市からの転入者にのみ適用される条件付きの所得割再計算規定が存在する（乗率の明記はなく「指定都市以外とみなして計算」という定性的な規定。倉敷市・川越市と同型の条件付き規定）。★A/B/C1の判別★ A（生活保護法等による被保護世帯等）・B（市民税非課税世帯）・C1（均等割の額のみ・所得割の額のない世帯）はいずれも所得割額0円で相互に判別できないため、isWelfare・isNonTaxable フラグで区別する。★C1〜C2間の空白★ 原文はC1（所得割の額のない世帯＝0円）の次にC2（100円以上5,000円未満）と規定しており、所得割額1〜99円の範囲を明示的に含む階層がない（市町村民税所得割額は通常100円単位で課税されるため実務上は生じにくいと考えられるが、原文どおりに収録し、C1をincomeMin0・incomeMax1、C2をincomeMin100・incomeMax5000とした）。★控除の不適用（未確認）★ 備考3が「所得割の額の計算においては、地方税法第314条の7、第314条の8ならびに第314条の9ならびに附則第5条第3項、附則第5条の4第6項、附則第5条の4の2第5項、附則第5条の5第2項、附則第7条の2第4項および第5項、附則第7条の3第2項ならびに附則第45条の規定は適用しないものとする」と規定している。これらは条文番号のみの指定で、住宅借入金等特別税額控除・寄附金税額控除等に相当すると推測されるが、原文に控除の一般名称そのものは一つも明記されておらず逐条確認もしていないため、deductionsIgnoredには含めず空配列とした（未確認: 推測で控除名を断定しない）。★ひとり親・障がい者等の世帯軽減特例（備考8）★ 母子・父子世帯等、在宅の身体障がい者手帳/療育手帳/精神障がい者保健福祉手帳所持者等がいる世帯、生活保護法上の要保護者に準ずる世帯が、次の階層に決定された場合は特例額となる（ただしD4階層は所得割額が77,101円未満の場合に限る）: C1=3,850/3,850、C2=4,490/4,490、C3=4,890/4,890、D1=5,400/5,400、D2=6,300/6,300、D3=6,480/6,480、D4=7,290/7,290（標準時間/短時間、いずれも円）。★多子軽減★ 第3条により、負担額算定基準子どもが2人以上いる世帯は、2番目の年長者を別表第1算定額の100分の50、3人目以降（最年長者・2番目を除く）を零とする。第4条により所得割額57,700円未満（特定教育・保育給付認定保護者＝ひとり親等相当は77,101円未満）の世帯では、2番目の年長者を100分の50（特定教育・保育給付認定保護者に係る子どもは零）、3人目以降を零とする、より手厚い特例がある。★秋田市独自の追加助成★ 上記の基本額（別表第1）とは別に、市が「すこやか子育て支援事業」「第1子保育料無償化事業」により、市民税所得割額に応じて0〜2歳児の保育料をさらに1/2・1/4助成する制度がある（akita-nisangou-pdf参照）。ただしこの助成資料の所得区分の境界値が別表第1の階層境界と完全には一致しないため、本ファイルのtiersには反映せず freeTuition.localExtension に定性的に記載するにとどめる（推測で対応関係を断定しない）。",
+    "sourceId": "akita-reiki",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "expect": [
+        "それらの者を指定都市以外の市町村の区域内に住所を有する者とみなして",
+        "附則第5条の4の2第5項"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3号認定子ども（3歳未満児）",
+      "rule": "各月初日時点で3歳未満（3号認定）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "1号・2号認定子ども（3歳以上）",
+      "rule": "3歳以上。国の幼児教育・保育の無償化により利用者負担額は0円。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3〜5歳児（1号・2号認定）の利用者負担額は無償",
+      "sourceId": "akita-nisangou-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["①3～5歳児"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "令和元年10月からの幼児教育・保育の無償化による0円。副食費は無償化の対象外（免除範囲あり）。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "住民税非課税世帯（B階層）の0〜2歳児利用者負担額は0円",
+      "sourceId": "akita-nisangou-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["住民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "A階層（生活保護世帯等）・B階層（市町村民税非課税世帯）は別表第1でも標準時間・短時間とも0円。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "3号認定子どもと同一世帯の負担額算定基準子ども（子ども・子育て支援法施行令第13条第2項に規定する子ども）のうち年長者から数える。市独自の年齢上限拡張の明記はない（未確認）。",
+        "unit": "rule",
+        "sourceId": "akita-reiki",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["負担額算定基準子ども"] },
+        "amendmentNote": "なし(2026-07-21時点)"
+      },
+      "secondChild": {
+        "value": "算定額の100分の50（所得割額57,700円未満〈ひとり親等相当は77,101円未満〉の世帯かつ一定の要件に該当する場合は0円）",
+        "unit": "rule",
+        "sourceId": "akita-reiki",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["100分の50を乗じて得た額"] },
+        "amendmentNote": "なし(2026-07-21時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "3人目以降（最年長者・2番目を除く）は無料",
+        "sourceId": "akita-reiki",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["である3号認定子ども　零"] },
+        "amendmentNote": "なし(2026-07-21時点)"
+      }
+    },
+    "localExtension": "秋田市は条例施行規則 別表第1の基本額（本ファイルのtiers）とは別に、「すこやか子育て支援事業」（県の補助を受けた事業）と「第1子保育料無償化事業」により、市民税所得割額に応じて0〜2歳児の保育料をさらに無償・1/2助成・1/4助成する独自の上乗せ助成を行っている（世帯年収目安〜260万円=無償、〜360万円=1/2助成、〜930万円=1/4助成、930万円超=非該当、と資料に整理されている）。この助成後の実額は akita-nisangou-pdf に階層別の割合のみが示され、円単位の確定額は本ファイルのtiersには反映していない（所得区分の境界が別表第1と完全一致せず、推測で対応させることを避けたため）。"
+  },
+  "tiers": [
+    { "tier": "A", "label": "生活保護法による被保護世帯等", "incomeMin": 0, "incomeMax": 0, "isWelfare": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "B", "label": "市町村民税非課税世帯", "incomeMin": 0, "incomeMax": 0, "isNonTaxable": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C1", "label": "均等割の額のみ（所得割の額のない世帯）", "incomeMin": 0, "incomeMax": 1, "fees": { "under3": { "standard": 13850, "short": 13620 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C2", "label": "所得割額 100円以上5,000円未満", "incomeMin": 100, "incomeMax": 5000, "fees": { "under3": { "standard": 15990, "short": 15720 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C3", "label": "所得割額 5,000円以上48,600円未満", "incomeMin": 5000, "incomeMax": 48600, "fees": { "under3": { "standard": 17320, "short": 17030 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1", "label": "所得割額 48,600円以上51,000円未満", "incomeMin": 48600, "incomeMax": 51000, "fees": { "under3": { "standard": 18000, "short": 17700 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2", "label": "所得割額 51,000円以上56,000円未満", "incomeMin": 51000, "incomeMax": 56000, "fees": { "under3": { "standard": 21000, "short": 20650 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3", "label": "所得割額 56,000円以上62,000円未満", "incomeMin": 56000, "incomeMax": 62000, "fees": { "under3": { "standard": 21600, "short": 21240 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D4", "label": "所得割額 62,000円以上79,000円未満", "incomeMin": 62000, "incomeMax": 79000, "fees": { "under3": { "standard": 24300, "short": 23890 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D5", "label": "所得割額 79,000円以上86,000円未満", "incomeMin": 79000, "incomeMax": 86000, "fees": { "under3": { "standard": 24600, "short": 24190 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D6", "label": "所得割額 86,000円以上97,000円未満", "incomeMin": 86000, "incomeMax": 97000, "fees": { "under3": { "standard": 27750, "short": 27280 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7", "label": "所得割額 97,000円以上109,000円未満", "incomeMin": 97000, "incomeMax": 109000, "fees": { "under3": { "standard": 27820, "short": 27350 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D8", "label": "所得割額 109,000円以上119,000円未満", "incomeMin": 109000, "incomeMax": 119000, "fees": { "under3": { "standard": 31600, "short": 31070 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D9", "label": "所得割額 119,000円以上131,000円未満", "incomeMin": 119000, "incomeMax": 131000, "fees": { "under3": { "standard": 31820, "short": 31280 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D10", "label": "所得割額 131,000円以上142,000円未満", "incomeMin": 131000, "incomeMax": 142000, "fees": { "under3": { "standard": 34490, "short": 33910 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D11", "label": "所得割額 142,000円以上154,000円未満", "incomeMin": 142000, "incomeMax": 154000, "fees": { "under3": { "standard": 34940, "short": 34350 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D12", "label": "所得割額 154,000円以上169,000円未満", "incomeMin": 154000, "incomeMax": 169000, "fees": { "under3": { "standard": 38720, "short": 38070 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D13", "label": "所得割額 169,000円以上176,000円未満", "incomeMin": 169000, "incomeMax": 176000, "fees": { "under3": { "standard": 39040, "short": 38380 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D14", "label": "所得割額 176,000円以上199,000円未満", "incomeMin": 176000, "incomeMax": 199000, "fees": { "under3": { "standard": 40260, "short": 39580 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D15", "label": "所得割額 199,000円以上230,000円未満", "incomeMin": 199000, "incomeMax": 230000, "fees": { "under3": { "standard": 45140, "short": 44380 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D16", "label": "所得割額 230,000円以上268,000円未満", "incomeMin": 230000, "incomeMax": 268000, "fees": { "under3": { "standard": 46670, "short": 45880 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D17", "label": "所得割額 268,000円以上301,000円未満", "incomeMin": 268000, "incomeMax": 301000, "fees": { "under3": { "standard": 46970, "short": 46180 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D18", "label": "所得割額 301,000円以上320,000円未満", "incomeMin": 301000, "incomeMax": 320000, "fees": { "under3": { "standard": 47200, "short": 46400 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D19", "label": "所得割額 320,000円以上339,000円未満", "incomeMin": 320000, "incomeMax": 339000, "fees": { "under3": { "standard": 47360, "short": 46560 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D20", "label": "所得割額 339,000円以上", "incomeMin": 339000, "incomeMax": null, "fees": { "under3": { "standard": 52000, "short": 51120 }, "age3plus": { "standard": 0, "short": 0 } } }
+  ],
+  "verify": {
+    "expect": ["13,850", "27,750", "52,000"],
+    "sourceId": "akita-reiki"
+  }
+}

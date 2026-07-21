@@ -1,0 +1,159 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "fukushima-fukushima",
+  "name": "福島県福島市",
+  "municipalityCode": "072010",
+  "prefecture": "福島県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "fukushima-riyou-page",
+      "title": "保育施設の利用案内",
+      "publisher": "福島市 こども未来部 幼保企画課",
+      "url": "https://www.city.fukushima.fukushima.jp/kosodate-portal/mokuteki/azukari/hoikushisetsu/874.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "更新日2026年4月1日。「令和8年度保育施設利用案内」PDFの掲載元ページ。"
+    },
+    {
+      "id": "fukushima-riyou-annai-pdf",
+      "title": "令和8年度保育施設利用案内",
+      "publisher": "福島市 こども未来部 幼保企画課",
+      "url": "https://www.city.fukushima.fukushima.jp/material/files/group/55/20260401riyou.pdf",
+      "landingUrl": "https://www.city.fukushima.fukushima.jp/kosodate-portal/mokuteki/azukari/hoikushisetsu/874.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "全32ページの令和8年度保育施設利用案内。10〜11ページに保育料の算定方法（税年度切替＝令和8年4〜8月は令和7年度・9月〜令和9年3月は令和8年度、未申告時は最高階層で仮決定、適用しない税額控除）、11ページに「福島市利用者負担額（保育料）一覧表（令和7年10月1日現在）」を掲載。★令和8年度用の冊子として2026年4月1日に発行されているにもかかわらず表自体の内部表記が「令和7年10月1日現在」のままであるが、算定方法の説明が「令和8年4月～8月分は令和7年度市町村民税」等、令和8年度（本年度）の税年度切替を明示しており、この一覧表が令和8年度の現行表として提示されていることを確認した。PyMuPDFのfind_tables()で3歳未満児/3歳以上児の列を機械的に切り分けて読んだ（3歳以上児列はすべて空白＝無料）。"
+    }
+  ],
+  "disclaimer": "本データは福島市公式サイトの公表内容を2026-07-21時点で機械的に整理した参考情報です。実際の利用者負担額（保育料）は世帯状況・課税内容・入所施設により決定され、最終的には福島市こども未来部幼保企画課の決定が優先します。個別の判断は必ず福島市および利用施設にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育施設・認定こども園（保育部分）・地域型保育施設を利用する3歳未満児の月額利用者負担額（保育料）（一般世帯・第1子・保育標準時間認定/保育短時間認定）",
+      "3歳以上児の月額利用者負担額（幼児教育・保育の無償化により0円）",
+      "階層区分A・B・C1・C2・D1〜D9（市町村民税所得割課税額の範囲）"
+    ],
+    "excludes": [
+      "延長保育料、教材費等の実費徴収",
+      "ひとり親世帯等の軽減階層（C1F・C2F・D1F、いずれもC1F=6,500円/C2F・D1F=8,000円の軽減額）。tiers本体には一般世帯の額のみを収録し、詳細は bracketBasis.note に記録",
+      "施設ごとに異なる副食費（3〜5歳児）の実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則、父母の市町村民税の課税状況で算定する。ただし、家計の主宰者が同居の祖父母等と判断される場合には、そのかたの市町村民税の課税状況をもとに決定する。",
+    "taxYearRule": "令和8年4月〜8月分は令和7年度市町村民税、9月〜令和9年3月分は令和8年度市町村民税の課税状況をもとに決定する。未申告などにより課税状況が確認できない場合は、最高階層の金額で仮決定し、判明後に現年度内に限り4月または9月に遡って決定（差額は還付）する。",
+    "deductionsIgnored": [
+      "配当控除",
+      "住宅借入金等特別税額控除",
+      "寄附金税額控除",
+      "外国税額控除",
+      "配当割額又は株式等譲渡所得割額の控除"
+    ],
+    "note": "★政令市6/8換算について★ 福島市は中核市であり政令指定都市ではない。利用案内・一覧表のいずれにも政令指定都市の6/8税率換算や政令市転入者の特例の記載は見当たらない（未確認: 該当規定自体が存在しない可能性が高いが、市への個別照会はしていない）。★A/B/C1の判別★ A（生活保護世帯・里親等）・B（非課税）・C1（均等割のみ課税）はいずれも所得割額0円のため相互に判別できず、isWelfare・isNonTaxable フラグで区別する（C1はincomeMin0・incomeMax1、C2＝所得割48,600円未満のincomeMinを1に接続）。★福島型給食推進事業による1,000円減額★ 「この一覧表は福島型給食推進事業として1,000円減額された金額を表記しています」と明記されており、下記tiersの各額は既にこの1,000円減額を反映済みの額である（実装時に別途1,000円を差し引かないこと）。★ひとり親世帯等の軽減階層★ C1F（均等割のみ課税・ひとり親世帯等）=6,500円/6,500円、C2F（所得割48,600円未満・ひとり親世帯等）およびD1F（所得割77,101円未満のひとり親世帯等）はいずれも同一の8,000円/8,000円（原典で同一セルに併記）。ひとり親世帯等とは母子・父子世帯、身体障害者手帳/療育手帳/精神障害者保健福祉手帳所持者のいる世帯、特別児童扶養手当受給世帯等、要保護者に準ずると市長が認めた世帯。★定額減税★ 過去の別紙（futanngakuichirann.pdf・令和7年4月1日現在）には「令和6年度税制改正に伴う定額減税後の市町村民税額を用います」との一文があったが、今回の令和8年度版利用案内（20260401riyou.pdf）にはこの一文が見当たらない（未確認: 令和6年度限りの一時的な定額減税措置が終了したことに伴う削除と推測されるが断定しない）。",
+    "sourceId": "fukushima-riyou-annai-pdf",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "expect": [
+        "令和８年４月～８月分は令和７年度市町村民税",
+        "配当控除、住宅借入金等特別税額控除、寄附金税額控除、外国税額控除"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児",
+      "rule": "4月1日現在の年齢が3歳未満の子ども。年度途中で満年齢が上がっても保育料は変わらない。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "4月1日現在の年齢が3歳以上の子ども。幼児教育・保育の無償化により利用者負担額は0円。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3歳以上児の利用者負担額は無償",
+      "sourceId": "fukushima-riyou-annai-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["４月１日現在の年齢が３～５"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "「幼児教育・保育の無償化」により4月1日現在の年齢が3〜5歳のお子さんの保育料は0円（無料）。一覧表の3歳以上児列は空欄（無料）。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "父母等の市町村民税が非課税である3歳未満児（B階層）の利用者負担額は0円",
+      "sourceId": "fukushima-riyou-annai-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["市町村民税が非課税であるお子さん"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "A階層（生活保護世帯・里親等）・B階層（非課税）はいずれも0円。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "生計を一にするお子さんが2名以上いる場合、最年長のお子さんから順に数える（年齢上限の明記なし）。",
+        "unit": "rule",
+        "sourceId": "fukushima-riyou-annai-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["生計を一にするお子さんが２名以上いる場合"] },
+        "amendmentNote": "なし(2026-07-21時点)"
+      },
+      "secondChild": {
+        "value": "半額（C1F・C2F・D1F階層＝ひとり親世帯等は2人目以降無料）",
+        "unit": "rule",
+        "sourceId": "fukushima-riyou-annai-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": {
+          "skip": true,
+          "skipReason": "「２人目は半額、３人目以降は無料」の文言はPDF11ページの吹き出し中に図形・画像として埋め込まれておりテキスト抽出できない（page.get_text()で確認済み）。get_pixmap(dpi=260)による目視で「①生計を一にするお子さんが２名以上いる場合、最年長のお子さんから順に２人目は半額、３人目以降は無料となります」の記載を確認済み。"
+        },
+        "amendmentNote": "なし(2026-07-21時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "3人目以降は無料",
+        "sourceId": "fukushima-riyou-annai-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": {
+          "skip": true,
+          "skipReason": "secondChildと同じ吹き出し内の画像埋め込み文言のためテキスト抽出できない。get_pixmap(dpi=260)による目視で確認済み。"
+        },
+        "amendmentNote": "なし(2026-07-21時点)"
+      }
+    },
+    "localExtension": "福島市独自の「福島型給食推進事業」により、一覧表の額は既に副食費相当分1,000円が減額された額になっている（国基準額そのものではない）。また「多子世帯負担軽減」として、C1F・C2F・D1F階層（ひとり親世帯等）は最年長のお子さんから2人目以降が無料になる（一般世帯の2人目半額よりも手厚い）。"
+  },
+  "tiers": [
+    { "tier": "A", "label": "生活保護世帯・里親等", "incomeMin": 0, "incomeMax": 0, "isWelfare": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "B", "label": "非課税", "incomeMin": 0, "incomeMax": 0, "isNonTaxable": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C1", "label": "均等割のみ課税", "incomeMin": 0, "incomeMax": 1, "fees": { "under3": { "standard": 15400, "short": 15200 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C2", "label": "所得割48,600円未満", "incomeMin": 1, "incomeMax": 48600, "fees": { "under3": { "standard": 18500, "short": 18300 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1", "label": "所得割78,000円未満", "incomeMin": 48600, "incomeMax": 78000, "fees": { "under3": { "standard": 23100, "short": 22700 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2", "label": "所得割97,000円未満", "incomeMin": 78000, "incomeMax": 97000, "fees": { "under3": { "standard": 29000, "short": 28600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3", "label": "所得割135,000円未満", "incomeMin": 97000, "incomeMax": 135000, "fees": { "under3": { "standard": 29500, "short": 29000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D4", "label": "所得割169,000円未満", "incomeMin": 135000, "incomeMax": 169000, "fees": { "under3": { "standard": 39500, "short": 38900 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D5", "label": "所得割183,000円未満", "incomeMin": 169000, "incomeMax": 183000, "fees": { "under3": { "standard": 40000, "short": 39400 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D6", "label": "所得割216,000円未満", "incomeMin": 183000, "incomeMax": 216000, "fees": { "under3": { "standard": 45000, "short": 44300 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7", "label": "所得割301,000円未満", "incomeMin": 216000, "incomeMax": 301000, "fees": { "under3": { "standard": 56000, "short": 55100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D8", "label": "所得割397,000円未満", "incomeMin": 301000, "incomeMax": 397000, "fees": { "under3": { "standard": 59000, "short": 58100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D9", "label": "所得割397,000円以上", "incomeMin": 397000, "incomeMax": null, "fees": { "under3": { "standard": 67000, "short": 65900 }, "age3plus": { "standard": 0, "short": 0 } } }
+  ],
+  "verify": {
+    "expect": ["15,400", "39,500", "67,000"],
+    "sourceId": "fukushima-riyou-annai-pdf"
+  }
+}

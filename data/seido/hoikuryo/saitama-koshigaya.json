@@ -1,0 +1,149 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "saitama-koshigaya",
+  "name": "埼玉県越谷市",
+  "municipalityCode": "112224",
+  "prefecture": "埼玉県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "koshigaya-nyusyo-page",
+      "title": "保育施設の案内（保育所・保育園・認定こども園（保育部分）・地域型保育）",
+      "publisher": "越谷市 福祉部 保育入所課",
+      "url": "https://www.city.koshigaya.saitama.jp/kurashi_shisei/kosodate/hoikusho/nyusyo.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "「【令和8年度用】保育施設・幼稚園等のご案内」PDFの掲載元ページ。前回収集時（2026-07-18時点）は現行R8徴収基準額表PDFが見当たらず保留としていたが、2026-07-21に本ページから同PDFを確認できた。"
+    },
+    {
+      "id": "koshigaya-goannai-pdf",
+      "title": "【令和8年度用】保育施設・幼稚園等のご案内",
+      "publisher": "越谷市 福祉部 保育入所課",
+      "url": "https://www.city.koshigaya.saitama.jp/kurashi_shisei/kosodate/hoikusho/files/r8goannnai.pdf",
+      "landingUrl": "https://www.city.koshigaya.saitama.jp/kurashi_shisei/kosodate/hoikusho/nyusyo.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "全60ページの令和8年度用利用案内。45〜46ページに「利用者負担（基準額表）」（令和7年8月現在の表記だが、算定例が令和6年(2024年)収入＝前年度分・令和7年(2025年)収入＝当年度分を用いており令和8年度の税年度切替サイクルと一致することを確認済み）を掲載。階層区分A・B・C1〜C3・D1〜D15（保育標準時間・保育短時間×一般世帯第1子）、多子軽減（同一世帯の「2人目以降」に当たる児童向けの別建て定額表、埼玉県多子世帯保育料無償化支援事業）、算定方法（税年度切替、家計主宰者の合算基準、適用しない税額控除）を掲載。★結合セルが多く単純なテキスト抽出では列と行がずれるため、まずPyMuPDFのget_text()で通し読みし、find_tables()で階層区分・定義・金額の対応を検証した。"
+    }
+  ],
+  "disclaimer": "本データは越谷市公式サイトの公表内容を2026-07-21時点で機械的に整理した参考情報です。実際の利用者負担額（保育料）は世帯状況・課税内容・入所施設により決定され、最終的には越谷市保育入所課の決定が優先します。個別の判断は必ず越谷市および利用施設にご確認ください。",
+  "scope": {
+    "includes": [
+      "地域型保育・公立保育所・私立保育園・認定こども園（保育部分）を利用する0〜2歳児（幼稚園・認定こども園（教育部分）の満3歳児を除く）の月額利用者負担額（保育料）（一般世帯・第1子・保育標準時間認定/保育短時間認定）",
+      "3〜5歳児の月額利用者負担額（施設種別に応じた幼児教育・保育の無償化により0円）",
+      "階層区分A・B・C1〜C3・D1〜D15（市民税所得割課税額の範囲）"
+    ],
+    "excludes": [
+      "給食費はかからない旨の記載があるが（0〜2歳児は保育料に含む）、延長保育料・時間外保育料、入園時実費（スモック・帽子等）、毎月の実費徴収（行事費・布団乾燥代等）",
+      "同一世帯の「2人目以降」に当たる児童向けの別建て定額表（C1=4,950円〜D4※1=8,550円、標準時間の額。年齢を問わず適用）。tiers本体には一般世帯の第1子額のみを収録し、詳細は bracketBasis.note に記録",
+      "3〜5歳児の副食費（実費、税額や子どもの数で減免あり）",
+      "企業主導型保育等の認可外保育施設の利用料",
+      "施設ごとの上乗せ徴収"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "父母ともに市民税額が発生している場合は父母の税額を合算する。父母ともに収入が93万円以下の場合は、同居親族のうち最も収入額が高い者を「家計の主宰者」として算定する（祖父母等が児童を扶養の対象としている場合は別居でも算定に含める）。父母のうちいずれかの収入が93万円超の場合、同居の親族等の市民税額は算定の対象としない。",
+    "taxYearRule": "8月分までと9月分以降で元となる税額の年度が変わる。4〜8月分は前年度の市民税所得割額（前々年の1〜12月収入から算定）、9〜3月分は当年度の市民税所得割額（前年の1〜12月収入から算定）により算定する。",
+    "deductionsIgnored": [
+      "住宅借入金控除（住宅ローン）",
+      "配当控除",
+      "外国税額控除",
+      "寄附金控除（ふるさと納税等）"
+    ],
+    "note": "★政令市6/8換算について★ 越谷市はその他市であり政令指定都市ではない。基準額表・計算方法のいずれにも政令市の6/8税率換算や政令市転入者の特例の記載は見当たらない（未確認: 該当規定自体が存在しない可能性が高い）。★税額控除の足し戻し★ 「これらの控除（配当控除、住宅借入金等特別税額控除、配当割額・株式等譲渡所得割額控除、寄附金税額控除、外国税額控除）を受けている方は、『所得割額⑥』欄にこれらの控除によって減税された金額を足し戻して計算した金額が、利用者負担算定の税額となります」＝課税明細書の所得割額をそのまま使うと過小判定になる（荒川区・岡山県倉敷市等と同様の足し戻し方式）。★A/B/C1の判別★ A（生活保護世帯・中国残留邦人等支援給付受給世帯・里親世帯）・B（市民税が非課税の世帯）・C1（市民税が均等割のみ課税の世帯）はいずれも所得割額0円で相互に判別できないため、isWelfare・isNonTaxable フラグで区別する（C1はincomeMin0・incomeMax1とし、C2＝所得割11,000円未満のincomeMinを1に接続）。★同一世帯「2人目以降」の別建て定額表★ 「同一世帯の『2人目以降』に当たる児童が入所する場合」には、一般の半額計算ではなく専用の定額表（C1=4,950円、C2=5,900円、C3=6,750円、D1=7,200円、D2=7,650円、D3=8,100円、D4※1=8,550円〈※1所得割額77,101円未満の方まで〉、いずれも保育標準時間額。括弧内の保育短時間額は原典に別途記載）が適用される。母子（父子）世帯等・在宅障がい児（者）のいる世帯・生活保護法上の要保護者等は、CまたはD階層（市民税所得割額77,101円未満に限る）に該当すれば右表（この定額表）の利用者負担額となる。★同一世帯の「一番上の子」向け軽減★ 一般世帯（所得割57,700円未満）は「一番上の子＝全額、上から2番目＝1/2、上から3番目以降＝無料」。★埼玉県多子世帯保育料無償化支援事業★ 市民税所得割額57,700円以上であっても、当面の間、同一世帯の「3人目以降」に該当する場合は申請により無料となる（埼玉県の事業のため、県が見直した場合は実施されなくなる可能性がある）。子どもの数え方は「就学前児童（＝0〜5歳児）かつ対象施設の入所児童で数える」。★未申告・転入者★ 転入者等で保育入所課に課税資料の提出がない場合は最高額（D15）で算定する。",
+    "sourceId": "koshigaya-goannai-pdf",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "expect": [
+        "住宅借入金控除",
+        "同一世帯の「２人目以降」"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児（幼稚園・認定こども園（教育部分）の満3歳児を除く）",
+      "rule": "クラス年齢（4月1日現在の年齢）で決まる。年度途中で3歳になっても年度中は0〜2歳児の額。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児",
+      "rule": "施設種別（公立保育所・私立保育園・認定こども園・新制度幼稚園/従来型幼稚園）に応じて幼児教育・保育の無償化により利用者負担額は0円（従来型幼稚園は保育料から25,700円/月を差し引いた額が自己負担）。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "公立保育所・私立保育園・認定こども園・新制度幼稚園の3〜5歳児は0円/月",
+      "sourceId": "koshigaya-goannai-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["０円／月"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "「市民税所得割額等に関係なく、利用者全員がこの額となります」。従来型幼稚園は保育料から25,700円/月を差し引いた額（0円以下は0円）が自己負担のため対象外（本ファイルのscopeからも除外）。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同一世帯の「２人目以降」に当たる児童は、就学前児童（＝0〜5歳児）かつ対象施設の入所児童で数える（一般の半額判定は小学校就学前の範囲で数える）。",
+        "unit": "rule",
+        "sourceId": "koshigaya-goannai-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["就学前児童"] },
+        "amendmentNote": "なし(2026-07-21時点)"
+      },
+      "secondChild": {
+        "value": "一般世帯（所得割57,700円未満）は一番上の子が対象施設等に入所している場合1/2。所得割57,700円以上の世帯や同一世帯の「2人目以降」に当たる児童は専用の定額表（標準時間でC1=4,950円〜D4※1=8,550円）が適用される。",
+        "unit": "rule",
+        "sourceId": "koshigaya-goannai-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["上から２番目"] },
+        "amendmentNote": "なし(2026-07-21時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "一番上の子が対象施設等に入所している場合の上から3番目以降は無料。所得割57,700円以上でも埼玉県多子世帯保育料無償化支援事業により3人目以降は申請の上無料",
+        "sourceId": "koshigaya-goannai-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["上から３番目以降 無料"] },
+        "amendmentNote": "なし(2026-07-21時点)"
+      }
+    },
+    "localExtension": "埼玉県多子世帯保育料無償化支援事業により、市民税所得割額57,700円以上であっても同一世帯の「3人目以降」に該当する場合は申請により無料となる（県の事業のため見直しの可能性あり）。母子（父子）世帯等・在宅障がい児（者）のいる世帯・要保護者等（所得割77,101円未満）は「2人目以降」の負担額がさらに専用の軽減定額表で計算される。"
+  },
+  "tiers": [
+    { "tier": "A", "label": "生活保護世帯・中国残留邦人等支援給付受給世帯・里親世帯", "incomeMin": 0, "incomeMax": 0, "isWelfare": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "B", "label": "市民税が非課税の世帯", "incomeMin": 0, "incomeMax": 0, "isNonTaxable": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C1", "label": "市民税が均等割のみ課税の世帯", "incomeMin": 0, "incomeMax": 1, "fees": { "under3": { "standard": 11900, "short": 11600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C2", "label": "所得割額 11,000円未満の世帯", "incomeMin": 1, "incomeMax": 11000, "fees": { "under3": { "standard": 13800, "short": 13500 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C3", "label": "所得割額 11,000円以上48,600円未満", "incomeMin": 11000, "incomeMax": 48600, "fees": { "under3": { "standard": 15700, "short": 15400 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1", "label": "所得割額 48,600円以上53,600円未満", "incomeMin": 48600, "incomeMax": 53600, "fees": { "under3": { "standard": 17400, "short": 17100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2", "label": "所得割額 53,600円以上58,600円未満", "incomeMin": 53600, "incomeMax": 58600, "fees": { "under3": { "standard": 19200, "short": 18800 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3", "label": "所得割額 58,600円以上63,600円未満", "incomeMin": 58600, "incomeMax": 63600, "fees": { "under3": { "standard": 21000, "short": 20600 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D4", "label": "所得割額 63,600円以上78,600円未満", "incomeMin": 63600, "incomeMax": 78600, "fees": { "under3": { "standard": 23800, "short": 23300 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D5", "label": "所得割額 78,600円以上97,000円未満", "incomeMin": 78600, "incomeMax": 97000, "fees": { "under3": { "standard": 27600, "short": 27100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D6", "label": "所得割額 97,000円以上117,000円未満", "incomeMin": 97000, "incomeMax": 117000, "fees": { "under3": { "standard": 32000, "short": 31400 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7", "label": "所得割額 117,000円以上135,000円未満", "incomeMin": 117000, "incomeMax": 135000, "fees": { "under3": { "standard": 36500, "short": 35800 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D8", "label": "所得割額 135,000円以上169,000円未満", "incomeMin": 135000, "incomeMax": 169000, "fees": { "under3": { "standard": 41900, "short": 41100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D9", "label": "所得割額 169,000円以上202,000円未満", "incomeMin": 169000, "incomeMax": 202000, "fees": { "under3": { "standard": 43700, "short": 42900 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D10", "label": "所得割額 202,000円以上235,000円未満", "incomeMin": 202000, "incomeMax": 235000, "fees": { "under3": { "standard": 50000, "short": 49100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D11", "label": "所得割額 235,000円以上268,000円未満", "incomeMin": 235000, "incomeMax": 268000, "fees": { "under3": { "standard": 52900, "short": 52000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D12", "label": "所得割額 268,000円以上301,000円未満", "incomeMin": 268000, "incomeMax": 301000, "fees": { "under3": { "standard": 55800, "short": 54800 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D13", "label": "所得割額 301,000円以上349,000円未満", "incomeMin": 301000, "incomeMax": 349000, "fees": { "under3": { "standard": 60600, "short": 59500 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D14", "label": "所得割額 349,000円以上397,000円未満", "incomeMin": 349000, "incomeMax": 397000, "fees": { "under3": { "standard": 61200, "short": 60100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D15", "label": "所得割額 397,000円以上", "incomeMin": 397000, "incomeMax": null, "fees": { "under3": { "standard": 66500, "short": 65300 }, "age3plus": { "standard": 0, "short": 0 } } }
+  ],
+  "verify": {
+    "expect": ["11,900", "36,500", "66,500"],
+    "sourceId": "koshigaya-goannai-pdf"
+  }
+}

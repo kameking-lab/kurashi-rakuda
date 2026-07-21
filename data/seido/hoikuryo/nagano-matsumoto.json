@@ -1,0 +1,154 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "nagano-matsumoto",
+  "name": "長野県松本市",
+  "municipalityCode": "202029",
+  "prefecture": "長野県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "matsumoto-hoikuryo-page",
+      "title": "保育料（利用者負担額）等",
+      "publisher": "松本市 こども部 保育課",
+      "url": "https://www.city.matsumoto.nagano.jp/soshiki/227/2631.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "更新日2026年3月17日。「令和8年度 松本市保育料（利用者負担額）等について」PDFと「令和8年度 松本市保育料（利用者負担額）徴収基準額表」PDFの掲載元ページ。"
+    },
+    {
+      "id": "matsumoto-r8-pdf",
+      "title": "令和8年度 松本市保育料（利用者負担額）等について",
+      "publisher": "松本市 こども部 保育課",
+      "url": "https://www.city.matsumoto.nagano.jp/uploaded/attachment/124270.pdf",
+      "landingUrl": "https://www.city.matsumoto.nagano.jp/soshiki/227/2631.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "全2ページ。1ページ目に保育料の算定方法（税年度切替、控除の一部足し戻し、子どもの数え方、ひとり親・障がい世帯の軽減要件、特別利用保育の定額8,000円）と3〜5歳児の無償化。2ページ目に「満3歳未満児の2・3号認定子ども保育料（利用者負担額）徴収基準額表」を、市民税所得割額57,700円未満の世帯／ひとり親・障がい世帯（77,101円未満）／57,700円以上の世帯の3グループに分けて掲載（各グループとも第1子・第2子以降・延長保育料の列）。★get_pixmap(dpi=250)で表を描画し目視で列を確認した（第1子/第2子以降/延長保育料の列が3グループに分かれ、find_tables()の単純出力では列がずれるため）。"
+    }
+  ],
+  "disclaimer": "本データは松本市公式サイトの公表内容を2026-07-21時点で機械的に整理した参考情報です。実際の利用者負担額（保育料）は世帯状況・課税内容・入所施設により決定され、最終的には松本市こども部保育課の決定が優先します。個別の判断は必ず松本市および利用施設にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育部分）・地域型保育施設を利用する0〜2歳児クラスの月額利用者負担額（保育料）（一般世帯・第1子・保育標準時間認定/保育短時間認定）",
+      "3〜5歳児クラスの月額利用者負担額（幼児教育・保育の無償化により0円）",
+      "階層区分A・B・C・D1〜D9（市町村民税所得割課税額の範囲）"
+    ],
+    "excludes": [
+      "延長保育料・緊急延長保育料（1回30分毎・階層により0〜1,100円）",
+      "副食費（3〜5歳児クラスのみ徴収。公立保育園月額4,500円・公立幼稚園月額3,000円、免除要件あり）",
+      "ひとり親・障がい世帯向けの軽減階層（市民税所得割額77,101円未満の場合、第1子は短時間・標準時間とも一律2,500円）。tiers本体には一般世帯の額のみを収録し、詳細は bracketBasis.note に記録",
+      "特別利用保育（年齢・階層等にかかわらず月額8,000円）",
+      "施設ごとの上乗せ徴収・教材費等の実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "世帯（家計の主宰者。原則ご両親）にかかる市町村民税所得割額により算定する。",
+    "taxYearRule": "令和8年度の保育料は、4月から8月分までを令和7年度市民税額、9月から翌3月分を令和8年度市民税額によりそれぞれ算定する。",
+    "deductionsIgnored": [
+      "住宅借入金等特別控除",
+      "寄附金税額控除",
+      "配当控除"
+    ],
+    "note": "★政令市6/8換算について★ 松本市はその他市であり政令指定都市ではない。算定方法の説明に政令市の6/8税率換算や政令市転入者の特例の記載は見当たらない（未確認: 該当規定自体が存在しない可能性が高い）。★税額控除の扱い★ 原文「調整控除と定額減税を除く『税額控除（住宅借入金等特別控除、寄附金税額控除、配当控除等）を加算した額』により算定します」＝調整控除・定額減税は通常どおり反映された額を用い（除外しない）、住宅借入金等特別控除・寄附金税額控除・配当控除等は税額控除前の額に足し戻して算定する（deductionsIgnoredに列挙した3控除は原文の例示。「等」とあるため他にも対象控除がある可能性がある）。★定額減税★ 定額減税は「除く」＝控除後（減税適用後）の市民税額をそのまま用いる（足し戻さない）。★A/B/Cの判別★ A（生活保護世帯等）・B（市町村民税非課税世帯）・C（市町村民税均等割のみ）はいずれも所得割額0円のため相互に判別できず、isWelfare・isNonTaxable フラグで区別する（Cはincome Min0・incomeMax1とし、D1＝所得割48,600円未満のincomeMinを1に接続）。★子どもの数え方★ 「保護者と同一生計（保護者の方の収入で生活していること）のお子さんのうち、年齢の高い順にカウントする。ただし18歳以上のお子さんがいる場合には『18歳以上の同一生計申告書』を別途提出いただき、ご家庭の状況を確認したうえで、人数をカウントする」＝年齢上限を設けず、18歳以上でも申告により多子カウントに含められる（他市に多い『就学前児童のみ』という制限がない）。★ひとり親・障がい世帯の軽減★ ひとり親世帯の減免が認められる世帯、または在宅障がい児（者）がいる世帯（各種手帳等の提出が必要）で、かつ市民税額77,101円未満の場合、第1子の保育料は階層にかかわらず一律2,500円（標準時間・短時間とも）となる（下記tiersには一般世帯の額のみ収録）。★D2・D3の分割★ 一般世帯（所得割57,700円未満）ではD2の一部（48,600〜57,700円未満）までを収録し、57,700円以上の世帯ではD2の一部（57,700〜69,300円未満）からD9まで別建てで規定される（税額境界69,300円の前後でD2・D3が連続する構造）。",
+    "sourceId": "matsumoto-r8-pdf",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "expect": [
+        "調整控除と定額減税を除く",
+        "１８歳以上のお子さんがいる場合には"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "4月1日現在の満年齢で決定する（年度途中で満年齢が上がっても保育料は変わらない）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "4月1日時点で満3歳以上児。幼児教育・保育の無償化により利用者負担額は無償。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3〜5歳児クラスの保育料は無償",
+      "sourceId": "matsumoto-r8-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["満３歳以上児の保育料は「無償」となります"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "副食費・延長保育料・緊急延長保育料は無償化の対象外で別途費用が発生する。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "市町村民税非課税世帯（B階層）の0〜2歳児クラス利用者負担額は0円",
+      "sourceId": "matsumoto-r8-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "A階層（生活保護世帯等）・B階層（市町村民税非課税世帯）は標準時間・短時間とも0円。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "保護者と同一生計のお子さんのうち年齢の高い順にカウントする。18歳以上の子がいる場合は『18歳以上の同一生計申告書』の提出により年齢上限なくカウント対象とする。",
+        "unit": "rule",
+        "sourceId": "matsumoto-r8-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["年齢の高い順にカウント"] },
+        "amendmentNote": "なし(2026-07-21時点)"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "第2子以降の保育料は令和7年4月から無償",
+        "sourceId": "matsumoto-r8-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["第２子以降の保育料は、令和７年４月から無償"] },
+        "amendmentNote": "令和7年4月施行済み(2026-07-21時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "第2子以降と同じく無償",
+        "sourceId": "matsumoto-r8-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["第２子以降の保育料は、令和７年４月から無償"] },
+        "amendmentNote": "令和7年4月施行済み(2026-07-21時点)"
+      }
+    },
+    "localExtension": "松本市独自に、第2子以降の保育料を令和7年4月から所得制限なく無償化している（多子軽減の年齢上限も18歳以上申告制で実質撤廃）。ひとり親・障がい世帯（所得割77,101円未満）は第1子も階層にかかわらず一律2,500円に軽減される。"
+  },
+  "tiers": [
+    { "tier": "A", "label": "生活保護世帯等", "incomeMin": 0, "incomeMax": 0, "isWelfare": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "B", "label": "市町村民税非課税世帯", "incomeMin": 0, "incomeMax": 0, "isNonTaxable": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C", "label": "市町村民税均等割のみ", "incomeMin": 0, "incomeMax": 1, "fees": { "under3": { "standard": 7050, "short": 6000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1", "label": "市町村民税所得割額 48,600円未満", "incomeMin": 1, "incomeMax": 48600, "fees": { "under3": { "standard": 7450, "short": 6400 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2の一部（〜57,700円）", "label": "48,600円以上〜57,700円未満", "incomeMin": 48600, "incomeMax": 57700, "fees": { "under3": { "standard": 11100, "short": 9000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2の一部（57,700円〜）", "label": "57,700円以上〜69,300円未満", "incomeMin": 57700, "incomeMax": 69300, "fees": { "under3": { "standard": 22200, "short": 18000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3", "label": "69,300円以上〜97,000円未満", "incomeMin": 69300, "incomeMax": 97000, "fees": { "under3": { "standard": 28700, "short": 24500 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D4", "label": "97,000円以上〜133,000円未満", "incomeMin": 97000, "incomeMax": 133000, "fees": { "under3": { "standard": 41200, "short": 37000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D5", "label": "133,000円以上〜169,000円未満", "incomeMin": 133000, "incomeMax": 169000, "fees": { "under3": { "standard": 44300, "short": 39500 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D6", "label": "169,000円以上〜235,000円未満", "incomeMin": 169000, "incomeMax": 235000, "fees": { "under3": { "standard": 51900, "short": 45300 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7", "label": "235,000円以上〜301,000円未満", "incomeMin": 235000, "incomeMax": 301000, "fees": { "under3": { "standard": 57600, "short": 51000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D8", "label": "301,000円以上〜397,000円未満", "incomeMin": 301000, "incomeMax": 397000, "fees": { "under3": { "standard": 60600, "short": 54000 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D9", "label": "397,000円以上", "incomeMin": 397000, "incomeMax": null, "fees": { "under3": { "standard": 62600, "short": 56000 }, "age3plus": { "standard": 0, "short": 0 } } }
+  ],
+  "verify": {
+    "expect": ["7,450", "41,200", "62,600"],
+    "sourceId": "matsumoto-r8-pdf"
+  }
+}

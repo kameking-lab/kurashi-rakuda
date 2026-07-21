@@ -254,6 +254,15 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.hakodate.hokkaido.jp', // 函館市の公式サイト
   'city.hachinohe.aomori.jp', // 八戸市の公式サイト
   'city.asahikawa.hokkaido.jp', // 旭川市の公式サイト（city.asahikawa.lg.jpは存在しない。2026-07-21）
+  // 東日本ブロック合流バッチ6（2026-07-21。いずれも .lg.jp 版は存在しない／DNS解決不可＝これが唯一の公式ドメイン）
+  'city.aomori.aomori.jp', // 青森市の公式サイト
+  // 秋田市の公式サイト本体は city.akita.lg.jp（既存サフィックスで許可済み）だが、
+  // 保育料階層表の一次情報は秋田市自身が運営する例規集ホスト city.akita.akita.jp のみに掲載されており、
+  // こちらは .lg.jp サフィックスでは拾えないため個別に許可する。
+  'city.akita.akita.jp',
+  'city.fukushima.fukushima.jp', // 福島市の公式サイト（city.fukushima.lg.jpは存在しない）
+  'city.koshigaya.saitama.jp', // 越谷市の公式サイト（city.koshigaya.lg.jpは存在しない）
+  'city.matsumoto.nagano.jp', // 松本市の公式サイト（city.matsumoto.lg.jpは存在しない）
 ];
 
 const args = process.argv.slice(2);

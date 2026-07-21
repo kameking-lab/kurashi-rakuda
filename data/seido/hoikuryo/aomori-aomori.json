@@ -1,0 +1,187 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "aomori-aomori",
+  "name": "青森県青森市",
+  "municipalityCode": "022012",
+  "prefecture": "青森県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "aomori-hoikuryou-page",
+      "title": "認定こども園・幼稚園・保育所などの利用料（保育料）",
+      "publisher": "青森市 こども未来部 子育て支援課",
+      "url": "https://www.city.aomori.aomori.jp/kodomo_kyoiku/ninteikodomoen_youchien_hoikusho/1003552.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "令和8年度保育料PDFの掲載元ページ。更新日2026年4月16日。"
+    },
+    {
+      "id": "aomori-hoikuryou-pdf",
+      "title": "令和８年度　青森市保育料表【青森・浪岡共通】",
+      "publisher": "青森市 こども未来部 子育て支援課",
+      "url": "https://www.city.aomori.aomori.jp/_res/projects/default_project/_page_/001/003/552/2026hoikuryou.pdf",
+      "landingUrl": "https://www.city.aomori.aomori.jp/kodomo_kyoiku/ninteikodomoen_youchien_hoikusho/1003552.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "令和8年度の保育料表（全1ページ）。教育標準時間保育料（1号認定）は無償、保育標準時間・保育短時間保育料（2・3号認定）は「2歳児クラス以上は保育料が無料」「0歳と1歳児クラスは令和8年4月から第1子から全額又は半額に公費負担」とし、国基準額（1〜8階層）と市基準額（A・B・C1〜3・D1〜D17-2）の2列表を掲載。市基準額列を採用。ひとり親・障がい者等の世帯軽減適用表（B0・C11・C21・C31・D41〜D81）も併記。算定方法（税年度切替、家計主宰者、適用しない税額控除、多子軽減）も同一頁に記載。★結合セルが多く単純なテキスト抽出では列がずれるため、PyMuPDF の page.find_tables() で表構造を座標から復元して読んだ。"
+    }
+  ],
+  "disclaimer": "本データは青森市公式サイトの公表内容を2026-07-21時点で機械的に整理した参考情報です。実際の利用者負担額（保育料）は世帯状況・課税内容・入所施設により決定され、最終的には青森市こども未来部子育て支援課の決定が優先します。個別の判断は必ず青森市および利用施設にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育部分）・地域型保育施設を利用する3号認定のうち0・1歳児クラスの月額利用者負担額（保育料）（一般世帯・第1子・保育標準時間認定/保育短時間認定）",
+      "2歳児クラス以上（3号認定の2歳児クラス、および1号・2号認定の3〜5歳児クラス）の月額利用者負担額（青森市独自無償化および国の無償化により0円）",
+      "階層区分A・B・C1〜C3・D1〜D17-2（市民税所得割課税額の範囲、市基準額）"
+    ],
+    "excludes": [
+      "副食費（給食費）実費、延長保育料等の実費徴収",
+      "ひとり親世帯等・在宅障がい児（者）のいる世帯向けの軽減額（表内「ひとり親、障がい者等の世帯軽減適用」＝B0・C11・C21・C31・D41〜D81、いずれも0円）。tiers本体には一般世帯の額のみを収録し、詳細は bracketBasis.note に記録",
+      "国基準額（表の左列）。市が独自に軽減した市基準額（右列）のみを収録",
+      "施設ごとの上乗せ徴収・教材費等の実費"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則として父母等の税額の合計額。ただし、家計の主宰者（家計を担う主たる者）が別にいる場合は、その方の税額も算入する。",
+    "taxYearRule": "4〜8月分の保育料は前年度（令和7年度）市町村民税額の合計金額、9〜3月分の保育料は当年度（令和8年度）市町村民税額の合計金額により算定する。",
+    "deductionsIgnored": [
+      "配当控除",
+      "外国税額控除",
+      "住宅借入金等特別税額控除",
+      "既存住宅の耐震改修をした場合の特別控除",
+      "既存住宅の特定の改修工事をした場合の特別控除",
+      "認定長期優良住宅を新築した場合の特別控除",
+      "電子証明書等特別控除",
+      "一部寄付金控除"
+    ],
+    "note": "★政令市6/8換算について★ 青森市は政令指定都市ではなく、市基準額表・算定方法のいずれにも6/8税率換算や政令市転入者の特例の記載はない（未確認: 該当規定自体が存在しない可能性が高いが、市への個別照会はしていない）。★A/B/C1の判別★ A（生活保護受給世帯等）・B（市民税非課税世帯）・C1（市民税均等割のみ課税）はいずれも所得割額0円で相互に判別できないため、isWelfare・isNonTaxable フラグで区別する（C1はどちらのフラグも立てない）。C1はincomeMin0・incomeMax1（所得割額ちょうど0円かつ均等割は課税されている区分）とし、C2（所得割24,300円未満）のincomeMinを1に接続させた。★ひとり親等の世帯軽減★ 表内「ひとり親、障がい者等の世帯軽減適用」（B0・C11・C21・C31・D41〜D81）はいずれも0円で、一般世帯の無料範囲（D3-1まで＝所得割57,699円未満）よりはるかに広い（D81＝所得割77,100円未満まで無料）。tiers本体には一般世帯の額のみを収録し、この軽減表はここに記録する: B0=0/0、C11(均等割のみ課税)=0/0、C21(所得割24,300円未満)=0/0、C31(24,300〜48,599円)=0/0、D41(48,600〜53,499円)=0/0、D51(53,500〜57,099円)=0/0、D61(57,100〜64,399円)=0/0、D71(64,400〜66,799円)=0/0、D81(66,800〜77,100円)=0/0（すべて標準時間・短時間とも0円）。★多子軽減が他市と異なる★ 原文「お子さんが、保育所や幼稚園、認定こども園等に２人まで入所している場合の保育料は、1人につき上記表の額となります」＝2人までの同時入所では2人目の自動半額はなく、1人につき表の額がそのままかかる。3人以上同時入所の場合はその世帯の子どもの保育料が無料。扶養している第3子以降は同時入所の状況にかかわらず無料。他市の「2人目半額」慣行と異なるため実装時に混同しないこと。",
+    "sourceId": "aomori-hoikuryou-pdf",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "expect": [
+        "配当控除、外国税額控除、住宅借入金等特別税額控除",
+        "家計の主宰者"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0・1歳児クラス",
+      "rule": "4月1日現在の年齢が0〜1歳の子ども。保育料は4月1日現在の子どもの年齢によって決定する。"
+    },
+    {
+      "key": "age2",
+      "label": "2歳児クラス",
+      "rule": "4月1日現在の年齢が2歳の子ども。青森市独自無償化（令和8年4月〜）により保育料は無料。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス（1号・2号認定）",
+      "rule": "4月1日現在の年齢が3歳以上の子ども。国の幼児教育・保育の無償化により保育料は無料。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3〜5歳児クラス（1号・2号認定）の保育料は無償",
+      "sourceId": "aomori-hoikuryou-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["保育料が無償となります"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "教育標準時間保育料（1号認定）の項目に「保育料が無償となります」と明記。2号認定の3〜5歳児クラスも「2歳児クラス以上は、保育料が無料となります」に含まれる。"
+    },
+    "age2Free": {
+      "value": true,
+      "unit": "unit",
+      "label": "2歳児クラスは無償です（青森市の独自無償化）",
+      "sourceId": "aomori-hoikuryou-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["２歳児クラス以上は、保育料が無料となります"]
+      },
+      "amendmentNote": "令和8年4月開始・施行済み(2026-07-21時点)",
+      "note": "0・1歳児クラスについても第1子から全額又は半額の公費負担により、国基準額より大幅に軽減された市基準額（下記tiers）が適用される。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "市町村民税非課税世帯（A・B階層）の0・1歳児クラス利用者負担額は0円",
+      "sourceId": "aomori-hoikuryou-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["市民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "A階層（生活保護受給世帯等）・B階層（市民税非課税世帯）は標準時間・短時間とも0円。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "父母等が扶養する子どものうち、同時入所の有無にかかわらず第3子以降を無料の対象として数える（年齢上限の明記なし）。これとは別に、保育所・幼稚園・認定こども園等に同時入所する子どもが世帯で3人以上いる場合は、その世帯の子どもの保育料が全員無料となる。",
+        "unit": "rule",
+        "sourceId": "aomori-hoikuryou-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["扶養している第３子以降の場合"] },
+        "amendmentNote": "なし(2026-07-21時点)",
+        "note": "他市に多い「就学前児童のみで数える」という年齢上限の明記はない（未確認: 上限なしと断定はしない）。"
+      },
+      "secondChild": {
+        "value": "同時入所2人までは軽減なし（1人につき上記tiersの額がそのままかかる）",
+        "unit": "rule",
+        "sourceId": "aomori-hoikuryou-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["１人につき上記表の額となります"] },
+        "amendmentNote": "なし(2026-07-21時点)",
+        "note": "他市に多い「2人目は半額」という国基準の軽減が青森市の市基準額表には見当たらない（市基準額自体がすでに国基準より大幅に軽減されているためと考えられる。未確認: 明示的な理由の記載なし）。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY",
+        "label": "扶養している第3子以降は同時入所の状況にかかわらず無料",
+        "sourceId": "aomori-hoikuryou-pdf",
+        "checkedAt": "2026-07-21",
+        "verify": { "expect": ["扶養している第３子以降の場合は、同時入所の状況にかかわらず保育料が無料となります"] },
+        "amendmentNote": "なし(2026-07-21時点)"
+      }
+    },
+    "localExtension": "青森市は令和8年4月から2歳児クラス以上（2号・1号認定含む）を独自に無償化し、0・1歳児クラスについても第1子から全額又は半額の公費負担により国基準額を大幅に下回る市基準額を適用している（「青森市は国基準額を基本に独自で軽減し、子育てしやすい環境としています」と明記）。ひとり親・障がい者等の世帯はさらに広い範囲（所得割77,100円未満まで）が無料。多子軽減は2人までの同時入所には軽減がなく、3人以上の同時入所または第3子以降（順序）で無料になる、他市とは異なる方式。"
+  },
+  "tiers": [
+    { "tier": "A", "label": "生活保護受給世帯等", "incomeMin": 0, "incomeMax": 0, "isWelfare": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "B", "label": "市民税非課税世帯", "incomeMin": 0, "incomeMax": 0, "isNonTaxable": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C1", "label": "市民税均等割のみ課税", "incomeMin": 0, "incomeMax": 1, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C2", "label": "市民税所得割 24,300円未満", "incomeMin": 1, "incomeMax": 24300, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C3", "label": "市民税所得割 24,300円〜48,599円", "incomeMin": 24300, "incomeMax": 48600, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1", "label": "市民税所得割 48,600円〜53,499円", "incomeMin": 48600, "incomeMax": 53500, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2", "label": "市民税所得割 53,500円〜57,099円", "incomeMin": 53500, "incomeMax": 57100, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3-1", "label": "市民税所得割 57,100円〜57,699円", "incomeMin": 57100, "incomeMax": 57700, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3-2", "label": "市民税所得割 57,700円〜64,399円", "incomeMin": 57700, "incomeMax": 64400, "fees": { "under3": { "standard": 12370, "short": 12150 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D4", "label": "市民税所得割 64,400円〜66,799円", "incomeMin": 64400, "incomeMax": 66800, "fees": { "under3": { "standard": 12370, "short": 12150 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D5", "label": "市民税所得割 66,800円〜77,699円", "incomeMin": 66800, "incomeMax": 77700, "fees": { "under3": { "standard": 13250, "short": 13020 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D6", "label": "市民税所得割 77,700円〜78,899円", "incomeMin": 77700, "incomeMax": 78900, "fees": { "under3": { "standard": 14120, "short": 13870 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7", "label": "市民税所得割 78,900円〜87,399円", "incomeMin": 78900, "incomeMax": 87400, "fees": { "under3": { "standard": 14120, "short": 13870 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D8", "label": "市民税所得割 87,400円〜96,999円", "incomeMin": 87400, "incomeMax": 97000, "fees": { "under3": { "standard": 14120, "short": 13870 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D9", "label": "市民税所得割 97,000円〜108,499円", "incomeMin": 97000, "incomeMax": 108500, "fees": { "under3": { "standard": 17500, "short": 17200 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D10", "label": "市民税所得割 108,500円〜123,299円", "incomeMin": 108500, "incomeMax": 123300, "fees": { "under3": { "standard": 17900, "short": 17590 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D11", "label": "市民税所得割 123,300円〜136,999円", "incomeMin": 123300, "incomeMax": 137000, "fees": { "under3": { "standard": 19350, "short": 19020 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D12", "label": "市民税所得割 137,000円〜144,999円", "incomeMin": 137000, "incomeMax": 145000, "fees": { "under3": { "standard": 20800, "short": 20440 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D13", "label": "市民税所得割 145,000円〜151,899円", "incomeMin": 145000, "incomeMax": 151900, "fees": { "under3": { "standard": 20800, "short": 20440 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D14", "label": "市民税所得割 151,900円〜168,999円", "incomeMin": 151900, "incomeMax": 169000, "fees": { "under3": { "standard": 20800, "short": 20440 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D15", "label": "市民税所得割 169,000円〜190,299円", "incomeMin": 169000, "incomeMax": 190300, "fees": { "under3": { "standard": 25000, "short": 24570 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D16", "label": "市民税所得割 190,300円〜300,999円", "incomeMin": 190300, "incomeMax": 301000, "fees": { "under3": { "standard": 25000, "short": 24570 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D17-1", "label": "市民税所得割 301,000円〜396,999円", "incomeMin": 301000, "incomeMax": 397000, "fees": { "under3": { "standard": 25000, "short": 24570 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D17-2", "label": "市民税所得割 397,000円以上", "incomeMin": 397000, "incomeMax": null, "fees": { "under3": { "standard": 25000, "short": 24570 }, "age3plus": { "standard": 0, "short": 0 } } }
+  ],
+  "verify": {
+    "expect": ["12,370", "14,120", "25,000"],
+    "sourceId": "aomori-hoikuryou-pdf"
+  }
+}
