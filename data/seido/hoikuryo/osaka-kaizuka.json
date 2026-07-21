@@ -1,0 +1,240 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "osaka-kaizuka",
+  "name": "大阪府貝塚市",
+  "municipalityCode": "272086",
+  "prefecture": "大阪府",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "令和８年度利用者負担額(保育料)・副食費免除について(お知らせ)（2頁「貝塚市利用者負担額（保育料）・副食費免除対象表【２号・３号認定】」）",
+      "publisher": "貝塚市子ども部子育て支援課",
+      "url": "https://www.city.kaizuka.lg.jp/material/files/group/24/R8hoikuryou03.pdf",
+      "landingUrl": "https://www.city.kaizuka.lg.jp/kakuka/kodomo/kosodate/menu/houikusho/hoikuryo.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータのcreationDate 2026-04-09（令和8年度版）。4頁もの。「令和８年度」と明記され、4〜8月分は令和7年度、9月〜翌3月分は令和8年度の市民税をもとに決定する旨も明記。複雑な結合セルのためPyMuPDFのget_text()では列がずれ、get_pixmap(dpi=250)で表を画像化し目視で数値を確認した。特定世帯（ひとり親世帯等）はD階層1〜4（一部）まで一般世帯より低い一律に近い額（3,300円）が別建てで定められている。"
+    }
+  ],
+  "disclaimer": "本データは貝塚市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず貝塚市（子育て支援課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "2号・3号認定子どものうち3歳児未満・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳児以上の保育料（国の無償化により無償）",
+      "3歳児以上の副食費免除対象の判定（本ファイル未収録）",
+      "特定世帯（ひとり親世帯等）の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "2番目以降のきょうだいの軽減後の額（本ファイルのtiersは第1子・最高年齢児童の額のみ収録。freeTuition.multiChildPolicy参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本資料の範囲内で確認できず（未確認）。",
+    "taxYearRule": "4月から8月分については令和7年度市町村民税をもとに、9月から翌3月分については令和8年度市町村民税をもとに決定する。",
+    "deductionsIgnored": [],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["保護者の市町村民税課税額等（調整控除、税額調整措置以外の税額控除については適用前の税額）によ\nり"]
+    },
+    "note": "★6/8換算について★ 貝塚市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★控除除外規定★「調整控除、税額調整措置以外の税額控除については適用前の税額」という原文どおりの表現で、調整控除・税額調整措置以外の税額控除（寄附金控除等）は適用前（＝ないものとして）計算するという趣旨。他都市のような個別列挙形式ではないためdeductionsIgnoredは空配列とし、原文表現をnoteに保存した。★階層区分★ A=生活保護世帯等（isWelfare）、B=市町村民税非課税世帯（isNonTaxable）、C=市町村民税均等割のみ課税世帯。incomeMin/incomeMaxはA・B・Cを便宜上0/0とした。★D2階層の統合★ 原典はD2を48,600円以上57,700円未満・57,700円以上62,000円未満の2区分に分けるが金額が完全一致（12,500円/12,200円）するため単一階層（48,600円以上62,000円未満）として統合した。★D4階層の統合★ 原典はD4を73,000円以上77,101円未満・77,101円以上97,000円未満の2区分に分けるが金額が完全一致（23,500円/23,100円）するため単一階層（73,000円以上97,000円未満）として統合した。★特定世帯（ひとり親世帯等）の別建て軽減★ C階層〜D4階層（77,101円未満部分）まで、特定世帯は一律3,300円/3,300円という一般世帯より大幅に低い額になる。D4の77,101円以上97,000円未満の部分からは特定世帯・一般世帯の区分自体が消滅し単一額になる。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳児未満",
+      "rule": "年度当初の歳児クラスで決まる。年度途中で年齢が上がっても利用者負担額は変わらない。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳児以上",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳児以上は利用者負担額が無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["３歳児以上は利用者負担額が無償となっています。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（市町村民税非課税世帯）は3歳児未満の保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "特定世帯（ひとり親世帯等）およびC・D1・D2階層（表の※印のついた一般世帯）は、生計を一にするきょうだい（年齢制限なし・施設利用の有無を問わない）で数える。D3階層以上の一般世帯（※印なし）は、小学校就学前のきょうだいが複数人同時に保育所・認定こども園・幼稚園等を利用している場合に限り数える。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["生計を一にするきょうだい(年齢制限なし)がいる場合は下記のとおりとなります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "特定世帯は2番目以降が0円（全額免除）。※印のついた一般世帯（C・D1・D2階層）と、D3階層以上の一般世帯はいずれも2番目が左表の1/2。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)",
+        "note": "世帯類型・所得階層により割合が変わるため、値を数値ではなく説明文字列で収録した（秋田市・一宮市と同流儀）。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "3番目以降（特定世帯は2番目以降）は0円",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "副食費免除制度において、2号認定の多子計上は第1子・第2子が保育所・認定こども園・幼稚園等を利用している小学校就学前までの子が計上される（本ファイルには保育料本体のみ収録し、副食費免除の詳細は対象外）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "市町村民税均等割のみ課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 8000, "short": 8000 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "所得割48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 9500, "short": 9300 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "所得割48,600円以上62,000円未満（原典2区分だが金額同一のため統合）",
+      "incomeMin": 48600,
+      "incomeMax": 62000,
+      "fees": {
+        "under3": { "standard": 12500, "short": 12200 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "所得割62,000円以上73,000円未満",
+      "incomeMin": 62000,
+      "incomeMax": 73000,
+      "fees": {
+        "under3": { "standard": 16500, "short": 16200 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割73,000円以上97,000円未満（原典2区分だが金額同一のため統合）",
+      "incomeMin": 73000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 23500, "short": 23100 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割97,000円以上115,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 115000,
+      "fees": {
+        "under3": { "standard": 31000, "short": 30400 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "所得割115,000円以上133,000円未満",
+      "incomeMin": 115000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 38500, "short": 37800 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "所得割133,000円以上169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 44500, "short": 43700 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "所得割169,000円以上271,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 271000,
+      "fees": {
+        "under3": { "standard": 52000, "short": 51100 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "所得割271,000円以上301,000円未満",
+      "incomeMin": 271000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 56000, "short": 55000 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "所得割301,000円以上",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 57000, "short": 56000 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "貝塚市利用者負担額（保育料）・副食費免除対象表",
+      "57,000円",
+      "301,000円以上"
+    ]
+  }
+}
