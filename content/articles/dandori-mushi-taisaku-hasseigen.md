@@ -15,31 +15,46 @@
       "url": "https://www.mhlw.go.jp/bunya/kenkou/seikatsu-eisei09/pdf/03g.pdf",
       "title": "第6章 ねずみ等の防除―IPM（総合的有害生物管理）の施工方法―（建築物における維持管理マニュアル）",
       "org": "厚生労働省",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["ガスレンジ、調理台、流し台、カウンター裏、冷蔵庫・冷凍庫の周り"]
+      }
     },
     {
       "url": "https://www.mhlw.go.jp/content/11120000/001443860.pdf",
       "title": "家庭用不快害虫用殺虫剤 安全確保マニュアル作成の手引き（改訂版）",
       "org": "厚生労働省",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["5歳以下の事故（誤飲等）が1,194件（63.2%）で最も多く"]
+      }
     },
     {
       "url": "https://www.mhlw.go.jp/content/11120000/001443863.pdf",
       "title": "家庭用生活害虫防除剤の自主基準",
       "org": "生活害虫防除剤協議会（厚生労働省サイト掲載）",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["食品、食器、飼料等と区別し、子供の手の届かない所で、直射日光が当たらない乾燥し\nた涼しい場所で保管すること。"]
+      }
     },
     {
       "url": "https://www.kokusen.go.jp/t_box/data/t_box-faq_qa2015_11.html",
       "title": "衣類の防虫剤を使用したら体調が悪くなった",
       "org": "独立行政法人国民生活センター",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["室内の防虫剤の濃度が高くなると、眼、鼻、のどなどの粘膜を刺激することがあります。"]
+      }
     },
     {
       "url": "https://www.city.osaka.lg.jp/nishiyodogawa/page/0000596627.html",
       "title": "台所のおじゃま虫 ゴキブリ",
       "org": "大阪市西淀川区",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["台所・食堂・調理場などの整理整頓、清掃により、ゴキブリの餌になるものがない環境をつくりましょう！"]
+      }
     }
   ],
   "last_updated": "2026-07-21",

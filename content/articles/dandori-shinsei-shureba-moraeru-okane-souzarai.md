@@ -15,7 +15,10 @@
       "url": "https://www.mhlw.go.jp/nenkinkyuufukin/",
       "title": "年金生活者支援給付金制度 特設サイト",
       "org": "厚生労働省",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["年金生活者支援給付金を受け取るには、年金生活者支援給付金請求書の提出が必要です。"]
+      }
     }
   ],
   "last_updated": "2026-07-21",

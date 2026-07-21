@@ -15,7 +15,10 @@
       "url": "https://www.hokeniryo1.metro.tokyo.lg.jp/allergy/measure/indoor.html",
       "title": "室内環境対策｜対応・対策｜東京都アレルギー情報navi.",
       "org": "東京都保健医療局",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["浴室の壁、流し、洗面所の周り、洗濯機の周辺などの水滴を、タオルでよく拭き取る。水滴が残るとそこにカビの胞子が定着しやすくなる"]
+      }
     }
   ],
   "last_updated": "2026-07-21",
