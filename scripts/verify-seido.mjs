@@ -261,6 +261,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.matsumoto.nagano.jp', // 松本市の公式サイト
   'city.fukushima.fukushima.jp', // 福島市の公式サイト
   'city.koshigaya.saitama.jp', // 越谷市の公式サイト
+  'city.saijo.ehime.jp', // 西条市の公式サイト
+  'city.omura.nagasaki.jp', // 大村市の公式サイト
 ];
 
 const args = process.argv.slice(2);
