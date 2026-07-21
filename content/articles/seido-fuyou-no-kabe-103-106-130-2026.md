@@ -20,19 +20,28 @@
       "url": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf",
       "title": "源泉所得税の改正のあらまし（令和8年4月）",
       "org": "国税庁",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["基礎控除の引上げ"]
+      }
     },
     {
       "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/tanjikan.html",
       "title": "短時間労働者に対する健康保険・厚生年金保険の適用拡大",
       "org": "日本年金機構",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["令和8年10月に撤廃予定です"]
+      }
     },
     {
       "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html",
       "title": "健康保険の被扶養者の認定基準",
       "org": "日本年金機構",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["130万円未満"]
+      }
     }
   ],
   "facts": [
