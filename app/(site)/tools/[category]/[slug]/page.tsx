@@ -222,6 +222,13 @@ import {
   SELF_MEDICATION_IS_EXCLUSIVE_CHOICE,
 } from "@/components/tools/impl/IryouhiKoujoKodomo.calc";
 import { todayJst } from "@/lib/tools/seido";
+import {
+  NENREI_SOURCE as INUNEKO_NENREI_SOURCE,
+  RER_VALID_MIN_KG as INUNEKO_RER_VALID_MIN_KG,
+  RER_VALID_MAX_KG as INUNEKO_RER_VALID_MAX_KG,
+  DER_COEFFICIENT_DOG as INUNEKO_DER_COEFFICIENT_DOG,
+  DER_COEFFICIENT_CAT as INUNEKO_DER_COEFFICIENT_CAT,
+} from "@/components/tools/impl/InunekoNenreiShokujiryou.calc";
 
 
 /**
@@ -2314,6 +2321,37 @@ const implementations: Record<string, { formula: ReactNode }> = {
           自治体の子ども医療費助成を補填額として差し引くべきかは一次情報で確認できておらず、断定していません。実際の申告可否・要否は最寄りの税務署にご確認ください。
         </p>
         <SeidoNotice datasets={[iryouhiKoujoDataset]} today={todayJst()} />
+      </>
+    ),
+  },
+  "inuneko-nenrei-shokujiryou": {
+    formula: (
+      <>
+        <p>
+          <strong>年齢換算の計算式</strong>：{INUNEKO_NENREI_SOURCE.org}
+          「{INUNEKO_NENREI_SOURCE.documentTitle}」に掲載された「犬と人間、猫と人間の年齢の目安」の表・計算式をそのまま使います。小〜中型犬・猫は1歳で人間の15歳（特例）、2歳以降は
+          <code>24+(年齢-2)×4</code>
+          で1年ごとに4歳ずつ加算します。大型犬は1歳から
+          <code>12+(年齢-1)×7</code>
+          で1年ごとに7歳ずつ加算します。原典には猫の大型区分の表・式はありません。品種等によってもこの関係は違ってくると原典自身が注記しています。
+        </p>
+        <p>
+          <strong>食事量の計算式</strong>：同ガイドライン「食事量を計算してみよう」に掲載されたRER・DERの式を使います。安静時のエネルギー要求量（RER）は
+          <code>体重(kg)×30+70</code>
+          （体重{INUNEKO_RER_VALID_MIN_KG}〜{INUNEKO_RER_VALID_MAX_KG}
+          kgの場合のみ計算可能、と原典に明記されています）。1日当たりのエネルギー要求量（DER）は
+          <code>RER×係数</code>
+          で求め、フードのMEを入力すると<code>DER÷ME×100</code>
+          で1日当たりの食事量（g）まで計算します。
+        </p>
+        <p>
+          <strong>★係数は避妊・去勢済みの成犬・成猫のみ★</strong>
+          ：DERの係数は成長段階や活動量によって変わりますが、原典に具体的な数値として明記されているのは「体重5kgの犬と猫（避妊去勢済み）」の計算例に登場する2つの値（犬{INUNEKO_DER_COEFFICIENT_DOG}・猫
+          {INUNEKO_DER_COEFFICIENT_CAT}）だけです。子犬・子猫、未避妊・未去勢、妊娠・授乳中、シニア期などの係数は原典に表として掲載されていない（「詳しくは獣医師に相談しましょう」とのみ案内）ため、本ツールは避妊・去勢済みの成犬・成猫の係数のみを扱い、他のライフステージ向けの係数を推測で作ることはしていません。
+        </p>
+        <p>
+          このツールは需要検証のための試験的な公開です。専門のペットカテゴリは新設せず、「暮らし全般」枠（category: kaji）に収録しています。獣医療上の診断・治療方針の判断は行いません。理想体重・実際の食事量は個体差が大きいため、必ずかかりつけの獣医師にもご相談ください。
+        </p>
       </>
     ),
   },
