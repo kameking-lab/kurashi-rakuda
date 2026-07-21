@@ -121,6 +121,7 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.kurume.fukuoka.jp',
   'city.takamatsu.kagawa.jp',
   'city.fukuyama.hiroshima.jp',
+  'city.onomichi.hiroshima.jp',
   'city.sapporo.jp',
   'city.kochi.kochi.jp',
   'city.naha.okinawa.jp',
@@ -240,6 +241,11 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   // 転送される現行の掲載先。今治市利用者負担額表（令和8年度）PDFもこのドメイン配下にある。
   'imakoso-imabari.jp',
   'city.moriguchi.osaka.jp', // 守口市の公式サイト
+  'city.miyakonojo.miyazaki.jp', // 都城市の公式サイト（city.miyakonojo.lg.jpはDNS解決不可＝これが唯一の公式ドメイン。2026-07-21）
+  // 西日本ブロック 一般市バッチ3（2026-07-21。いずれも .lg.jp 版は存在しない／DNS解決不可＝これが唯一の公式ドメイン）
+  'city.hofu.yamaguchi.jp', // 防府市の公式サイト
+  'city.nobeoka.miyazaki.jp', // 延岡市の公式サイト
+  'city.beppu.oita.jp', // 別府市の公式サイト（city.beppu.lg.jpは存在しない。2026-07-21）
 ];
 
 const args = process.argv.slice(2);
