@@ -263,6 +263,7 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.koshigaya.saitama.jp', // 越谷市の公式サイト
   'city.saijo.ehime.jp', // 西条市の公式サイト
   'city.omura.nagasaki.jp', // 大村市の公式サイト
+  'city.settsu.osaka.jp', // 摂津市の公式サイト
 ];
 
 const args = process.argv.slice(2);
