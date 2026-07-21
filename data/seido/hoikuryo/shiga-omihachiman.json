@@ -1,0 +1,249 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "shiga-omihachiman",
+  "name": "滋賀県近江八幡市",
+  "municipalityCode": "252042",
+  "prefecture": "滋賀県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "nyusho-shiori",
+      "title": "令和8年度 入所のしおり（24頁「保育料の階層区分」・25頁「保育料の決定・算定方法」）",
+      "publisher": "近江八幡市子ども健康部幼児課",
+      "url": "https://www.city.omihachiman.lg.jp/material/files/group/158/nyuushonoshiori20260301.pdf",
+      "landingUrl": "https://www.city.omihachiman.lg.jp/soshiki/youji/riyou/bosyuu/41136.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータのcreationDate 2026-02-26。本文に「令和8年4月〜8月分は令和7年度市町村民税所得割額、9月分以降は令和8年度市町村民税所得割額」と明記され令和8年度版であることを確認。"
+    }
+  ],
+  "disclaimer": "本データは近江八幡市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず近江八幡市（幼児課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "0〜2歳児クラスの一般世帯・第1子（最も年齢の大きい児童）分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児クラスの保育料（国の無償化により無料）",
+      "2人目（半額）・3人目以降（無償）の軽減後の額（本ファイルのtiersは第1子の額のみ収録。note参照）",
+      "副食費（3〜5歳児。所得割57,700円未満・ひとり親世帯等77,101円未満・第3子以降は免除）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "児童と生計を共にしている父母の合計した市町村民税所得割額により決定する。父母の年間収入金額の合計が103万円未満の場合で、父母以外に児童を税の扶養としている親族や同居祖父母等がいる場合は、最多所得者で算定する。",
+    "taxYearRule": "4月〜8月分は令和7年度市町村民税所得割額、9月〜翌3月分は令和8年度市町村民税所得割額に基づき算定する。",
+    "deductionsIgnored": [
+      "配当控除",
+      "住宅借入金（取得）等特別控除",
+      "政党等寄付金特別控除",
+      "住宅耐震改修特別控除",
+      "電子証明書等特別控除",
+      "寄付金控除",
+      "外国税額控除"
+    ],
+    "sourceId": "nyusho-shiori",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["市⺠税の額は、配当控除・住宅借入⾦（取得）等特別控除・政党等寄付⾦特別控除・住宅耐震\n改修特別控除電子証明書等特別控除・寄付⾦控除・外国税額控除（いずれも税額控除）の控除\n前の⾦額を適⽤します。"]
+    },
+    "note": "★6/8換算について★ 近江八幡市は中核市・施行時特例市のいずれでもない一般市。nyusho-shioriに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護受給世帯（isWelfare）、B=市民税非課税世帯（isNonTaxable）、C1=市民税所得割非課税世帯（均等割のみ課税と推定）。incomeMin/incomeMaxはA・B・C1を便宜上0/0とした。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0歳児〜2歳児",
+      "rule": "各年度4月1日時点の年齢による。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児の保育料は無償",
+      "sourceId": "nyusho-shiori",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["保育施設に通う３〜５歳児"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。給食費は別途実費。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "生活保護受給世帯及び市民税非課税世帯の0〜2歳児は保育料が無償",
+      "sourceId": "nyusho-shiori",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["保育施設に通う生活保護受給世帯及び市⺠税非課税世帯の０〜２歳児"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同一世帯から同時に2人以上入所している場合、最も年齢の大きい児童から数える。算定対象には教育・保育施設に入所している3歳以上児（無償化対象で保育料0円の児童）も含む。",
+        "sourceId": "nyusho-shiori",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["同⼀世帯から同時に2 人以上入所している場合の保育料は、最も年齢の⼤きい児童が全額、2\n人目が半額、3 人目以降は無償になります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "半額",
+        "sourceId": "nyusho-shiori",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["2\n人目が半額、3 人目以降は無償になります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "3人目以降は無償",
+        "sourceId": "nyusho-shiori",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "3〜5歳児の給食費（副食費）が、所得割57,700円未満の世帯・ひとり親世帯等で所得割77,101円未満の世帯・所得割にかかわらず第3子以降について免除される。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護受給世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市民税所得割非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 13200, "short": 13000 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市民税所得割額48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 14000, "short": 13800 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "市民税所得割額72,800円未満",
+      "incomeMin": 48600,
+      "incomeMax": 72800,
+      "fees": {
+        "under3": { "standard": 19800, "short": 19500 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "市民税所得割額97,000円未満",
+      "incomeMin": 72800,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 23000, "short": 22600 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "市民税所得割額133,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 30800, "short": 30300 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "市民税所得割額169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 35600, "short": 35000 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "市民税所得割額213,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 213000,
+      "fees": {
+        "under3": { "standard": 44000, "short": 43300 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "市民税所得割額257,000円未満",
+      "incomeMin": 213000,
+      "incomeMax": 257000,
+      "fees": {
+        "under3": { "standard": 48800, "short": 48000 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "市民税所得割額301,000円未満",
+      "incomeMin": 257000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 52000, "short": 51100 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "市民税所得割額397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 64000, "short": 62900 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "市民税所得割額397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 78000, "short": 76700 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "nyusho-shiori",
+    "expect": [
+      "保育料の階層区分",
+      "78,000",
+      "397,000円以上"
+    ]
+  }
+}
