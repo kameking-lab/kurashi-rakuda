@@ -1,0 +1,276 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "mie-iga",
+  "name": "三重県伊賀市",
+  "municipalityCode": "242161",
+  "prefecture": "三重県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "riyou-annai",
+      "title": "令和8年度 保育所（園）・認定こども園等 利用案内（14〜16頁「Ⅲ 利用者負担額について」）",
+      "publisher": "伊賀市保育幼稚園課",
+      "url": "https://www.city.iga.lg.jp/igakids/cmsfiles/contents/0000010/10447/R8riyouannnai.pdf",
+      "landingUrl": "https://www.city.iga.lg.jp/igakids/0000010447.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータのcreationDate 2025-09-03（令和8年度向け）。同ページに旧い「r7hoikuryou.pdf」（PDFメタデータ上のタイトルは「R7riyouannnai.pdf」、作成日2024-09-25）も残存していたが、日付が古く現行版はR8riyouannnai.pdfであることを確認して採用。"
+    }
+  ],
+  "disclaimer": "本データは伊賀市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず伊賀市（保育幼稚園課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "3号認定子どものうち3歳未満児クラス・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児クラスの保育料（国の無償化により無料）",
+      "3〜5歳児クラスの副食費（伊賀市独自の無償化により上限月額4,900円まで無償。本ファイル未収録）",
+      "2人目（半額）・3人目以降（無料）の軽減後の額（本ファイルのtiersは第1子の額のみ収録。note参照）",
+      "母子・父子家庭等（ひとり親世帯等）の所得割77,101円未満世帯向け軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "利用者負担額算定に係る主宰者全員の市民税所得割額の合計額。",
+    "taxYearRule": "令和8年4月から8月までの利用者負担額等は令和7年度の課税情報、令和8年9月から令和9年3月までの利用者負担額等は令和8年度の課税情報に基づく。",
+    "deductionsIgnored": [
+      "寄付金控除",
+      "住宅借入金等特別控除（地方税法第314条の6に規定する調整控除額）"
+    ],
+    "sourceId": "riyou-annai",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["市民税所得割額は、寄付金控除や住宅借入金等特別控除など地方税法第314 条の6\nに規定する調整控除額を控除する前の額となります。"]
+    },
+    "note": "★6/8換算について★ 伊賀市は中核市・施行時特例市のいずれでもない一般市。riyou-annaiに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ 1=生活保護世帯（isWelfare）、2=市民税非課税世帯（母子・父子家庭等）（isNonTaxable）、3=市民税非課税世帯（2階層以外）（isNonTaxable）。incomeMin/incomeMaxは1〜3を便宜上0/0とした。★母子・父子家庭等（ひとり親世帯等）の別建て軽減★ 所得割77,101円未満の世帯は階層4〜8がすべて標準4,800円・短時間4,100円（23,500円未満のみ標準3,300円・短時間2,600円）という一般世帯よりはるかに低い一律に近い額になる。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。★多子軽減が世帯類型・所得帯で3方式に分岐（重要）★ ①生活保護世帯・母子父子家庭等（非課税）: 無料。②母子父子家庭等（所得割77,101円未満）: 生計を一にする兄姉（入所有無を問わず年齢制限なしと推定・原典に明記なし）を含めて数え、入所児童が第2子なら無料、第3子以降も無料。③母子父子家庭等（所得割77,101円以上）または一般世帯（所得割57,700円未満）: 生計を一にする兄姉が1人いて入所児童が第2子になる場合は半額、生計を一にする兄姉が2人以上いて第3子以降になる場合は無料（この範囲は入所を要件としない）。④一般世帯（所得割57,700円以上）: 同一世帯から2人以上の児童が実際に特定教育・保育施設等へ入所している場合に限り、入所順で2人目半額・3人目以降無料（入所要件あり）。本ファイルのtiersにはいずれの軽減も反映していない第1子・一般世帯の額のみ収録した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児クラス（3号認定）",
+      "rule": "年度の初日に3歳に達していない児童。年度途中で3歳に達しても保育料は変更しない。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上児クラスの利用者負担額は無料",
+      "sourceId": "riyou-annai",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["３歳以上児クラスの利用は「幼児教育・保育の無償化」により保育料は無料です。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。伊賀市は独自に令和6年4月から3歳児クラス以上の副食費（上限月額4,900円）も無償化している。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "第2・第3階層（市民税非課税世帯）は3歳未満児クラスの利用者負担額が無料",
+      "sourceId": "riyou-annai",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市民税非課税世帯（２階層以外）"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "所得割57,700円未満（母子・父子家庭等は77,101円未満）の世帯は、生計を一にする兄姉（入所の有無を問わない）を含めて数える。所得割57,700円以上（母子・父子家庭等は77,101円以上）の世帯は、同一世帯から実際に特定教育・保育施設等へ入所している児童の順番で数える。",
+        "sourceId": "riyou-annai",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["同一世帯から２人以上の児童が特定教育・保育施設等（保育\n所・幼稚園・認定こども園）へ入所しており、上から２人目の児童"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "半額",
+        "sourceId": "riyou-annai",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["同一世帯から２人以上の児童が特定教育・保育施設等（保育\n所・幼稚園・認定こども園）へ入所しており、上から２人目の児童\n・・・半額"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "3人目以降は無料",
+        "sourceId": "riyou-annai",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["上から３人目以降の\n児童\n・・・無料"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "3歳児クラス以上の副食費を市独自に上限月額4,900円まで無償化（令和6年4月開始）。"
+  },
+  "tiers": [
+    {
+      "tier": "1",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "2",
+      "label": "市民税非課税世帯（母子・父子家庭等）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "3",
+      "label": "市民税非課税世帯（2階層以外）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4",
+      "label": "所得割23,500円未満",
+      "incomeMin": 0,
+      "incomeMax": 23500,
+      "fees": {
+        "under3": { "standard": 6700, "short": 5300 }
+      }
+    },
+    {
+      "tier": "5",
+      "label": "所得割23,500円以上48,600円未満",
+      "incomeMin": 23500,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 9700, "short": 8300 }
+      }
+    },
+    {
+      "tier": "6",
+      "label": "所得割48,600円以上57,700円未満",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": { "standard": 11400, "short": 10000 }
+      }
+    },
+    {
+      "tier": "7",
+      "label": "所得割57,700円以上72,000円未満",
+      "incomeMin": 57700,
+      "incomeMax": 72000,
+      "fees": {
+        "under3": { "standard": 16400, "short": 14400 }
+      }
+    },
+    {
+      "tier": "8",
+      "label": "所得割72,000円以上97,000円未満",
+      "incomeMin": 72000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 20300, "short": 18300 }
+      }
+    },
+    {
+      "tier": "9",
+      "label": "所得割97,000円以上113,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 113000,
+      "fees": {
+        "under3": { "standard": 24300, "short": 22300 }
+      }
+    },
+    {
+      "tier": "10",
+      "label": "所得割113,000円以上134,000円未満",
+      "incomeMin": 113000,
+      "incomeMax": 134000,
+      "fees": {
+        "under3": { "standard": 29300, "short": 26300 }
+      }
+    },
+    {
+      "tier": "11",
+      "label": "所得割134,000円以上148,000円未満",
+      "incomeMin": 134000,
+      "incomeMax": 148000,
+      "fees": {
+        "under3": { "standard": 33700, "short": 30700 }
+      }
+    },
+    {
+      "tier": "12",
+      "label": "所得割148,000円以上169,000円未満",
+      "incomeMin": 148000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 38100, "short": 35100 }
+      }
+    },
+    {
+      "tier": "13",
+      "label": "所得割169,000円以上193,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 193000,
+      "fees": {
+        "under3": { "standard": 41400, "short": 38400 }
+      }
+    },
+    {
+      "tier": "14",
+      "label": "所得割193,000円以上237,000円未満",
+      "incomeMin": 193000,
+      "incomeMax": 237000,
+      "fees": {
+        "under3": { "standard": 45900, "short": 42900 }
+      }
+    },
+    {
+      "tier": "15",
+      "label": "所得割237,000円以上301,000円未満",
+      "incomeMin": 237000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 47900, "short": 44900 }
+      }
+    },
+    {
+      "tier": "16",
+      "label": "所得割301,000円以上",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 49400, "short": 46400 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "riyou-annai",
+    "expect": [
+      "各月初日在籍入所児童の属する世帯の階層区分",
+      "49,400",
+      "301,000 円以上"
+    ]
+  }
+}

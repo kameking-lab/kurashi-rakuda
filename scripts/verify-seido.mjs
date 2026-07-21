@@ -278,6 +278,7 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.ama.aichi.jp', // あま市の公式サイト
   'city.kameoka.kyoto.jp', // 亀岡市の公式サイト
   'city.ayase.kanagawa.jp', // 綾瀬市の公式サイト
+  'gotemba-kosodate.jp', // 御殿場市の子育て支援サイト（市の公式子育てポータル。komae-kosodate.netと同種）
 ];
 
 const args = process.argv.slice(2);
