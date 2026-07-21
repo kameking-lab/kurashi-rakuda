@@ -268,6 +268,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'komae-kosodate.net', // 狛江市が運営する子育て情報専用サイト「こまえ子育てねっと」（本体ドメインとは別ホストでPDFを配信）
   'city.mihara.hiroshima.jp', // 三原市の公式サイト
   'city.mobara.chiba.jp', // 茂原市の公式サイト
+  // 西日本一般市バッチ6（2026-07-22。city.ikeda.lg.jpは存在しない＝これが唯一の公式ドメイン）
+  'city.ikeda.osaka.jp', // 池田市の公式サイト
   'city.kanuma.tochigi.jp', // 鹿沼市の公式サイト
   'city.sanjo.niigata.jp', // 三条市の公式サイト
   'city.imizu.toyama.jp', // 射水市の公式サイト
