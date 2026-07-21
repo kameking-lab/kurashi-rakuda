@@ -309,12 +309,8 @@
 
 ### P4-SRC: 記事出典ゲート retrofit キュー（2026-07-21起票。factory/scripts/check-sources.mjs 導入に伴う棚卸し）
 新設した記事出典ゲート（`npm run check:sources` / `--fetch` でネットワーク照合）は、ゲート導入前の既存111記事を grandfather 扱いにしている（liveness警告のみ・verify.expect欠落はwarn、CIは赤くしない）。以下は 2026-07-21 時点の `node factory/scripts/check-sources.mjs --fetch` 実測結果。量産レーン（B/ソネット）で順次解消する。再実行して最新化すること。
-- [ ] P4-SRC01 死リンク6件の差し替え（★最優先・恒久404）:
-  - `seido-yobou-sesshu-schedule-2026.md` — https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou28/01.html
-  - `tool-narisou-junyu-milk-ryo.md` — https://www.cfa.go.jp/policies/kokoseido/boshihoken/kenko/jyunyuu-rinyuu
-  - `tool-narisou-rinyushoku-ryo.md` — https://www.mhlw.go.jp/content/11908000/000496257.pdf
-  - 他3件は `--fetch` 再実行で確認（ページ移転の可能性。後継ページを一次情報の範囲で探し、無ければ他の許可ドメインへ差し替え）
-- [ ] P4-SRC02 出典が1件もない記事3本（最優先でsources追加）: `tool-narisou-hoikuen-omukae-gyakusan.md` / `tool-narisou-kaimono-list-jidou-seisei.md` / `tool-narisou-recipe-ninzuu-kansan.md`
+- [x] P4-SRC01 死リンク6件の差し替え → **完了（PR#283、バッチ1）**。2026-07-22時点で `--fetch` 再実行し死リンク: 0 を確認済み
+- [x] P4-SRC02 出典が1件もない記事3本 → **調査完了・対応不要と判断（2026-07-22）**: `tool-narisou-hoikuen-omukae-gyakusan.md`（純粋な時刻演算、制度・統計データに非依存）／`tool-narisou-kaimono-list-jidou-seisei.md`／`tool-narisou-recipe-ninzuu-kansan.md`（いずれも比例計算・集計ロジックのみで facts は internal な seido_ref か明示的な stub_reason 付きの例示値）。3本とも外部一次情報に依拠しない設計であることを本文・facts で確認済み。存在しない出典を捏造するとむしろ出典実在主義に反するため、sources: [] のままで正しい。check-sources.mjs の warn は許容（false positive ではなく「該当なし」を正しく警告しているだけ）
 - [ ] P4-SRC03 残り108記事の `sources[].verify.expect`（逐語一部）を順次追加。実ページから該当箇所を1文引用し、`node factory/scripts/check-sources.mjs --fetch --only` 相当（現状は全件実行のみ。`--only` 未実装なら追加検討）で個別照合してから追加すること（適当な文字列を付けるとゲートの意味がなくなる＝捏造防止の趣旨に反する）
 - [ ] P4-SRC04 403等の一時的取得失敗（warn止まり。恒久化していないか定点観測）: `www.caa.go.jp/policies/policy/consumer_safety/child/food_safety/`（3記事から参照）／`w-health.jp/monthly/pms/`（2記事から参照）
 

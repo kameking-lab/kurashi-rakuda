@@ -16,19 +16,28 @@
       "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/woman/index.html",
       "title": "女性の健康づくり",
       "org": "厚生労働省",
-      "accessed": "2026-07-18"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["女性が生涯を通じて健康で明るく、充実した日々を自立して過ごすためには、生活の場（家庭、地域、職域、学校）を通じて、女性の様々な健康問題を社会全体で総合的に支援することが重要です。"]
+      }
     },
     {
       "url": "https://www.jsog.or.jp/citizen/375/",
       "title": "一般の皆様へ（女性の健康に関する情報）",
       "org": "日本産科婦人科学会",
-      "accessed": "2026-07-18"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["更年期障害"]
+      }
     },
     {
       "url": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/shido/sodan/joseikenkousoudan.html",
       "title": "女性の健康相談（福祉保健センター・更年期相談を含む）",
       "org": "横浜市",
-      "accessed": "2026-07-18"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["各区の福祉保健センターでは、家族計画・受胎調節の指導・相談、結婚前の相談、更年期相談、その他女性のからだの健康相談に応じています。"]
+      }
     }
   ],
   "facts": [],
