@@ -15,13 +15,19 @@
       "url": "https://www.caa.go.jp/policies/policy/representation/household_goods/guide/zakka/zakka_06.html",
       "title": "住宅用又は家具用の洗浄剤",
       "org": "消費者庁",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["1.0ppm以上塩素ガスを発生する商品である"]
+      }
     },
     {
       "url": "https://www.kokusen.go.jp/news/data/n-20260318_1.html",
       "title": "住宅用塩素系洗浄剤の使い方－まぜるな危険！浴室などで事故が発生しています－",
       "org": "独立行政法人国民生活センター",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["数分後には浴室内の塩素ガス濃度は16ppmを超えました"]
+      }
     }
   ],
   "last_updated": "2026-07-21",

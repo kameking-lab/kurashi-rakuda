@@ -15,25 +15,40 @@
       "url": "https://www.no-foodloss.caa.go.jp/topic_apr.html",
       "title": "家族みんなで、冷蔵庫のお片付けをしよう",
       "org": "消費者庁（めざせ！食品ロス・ゼロ）",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["フリースペースを作る(冷蔵庫に保存する食材は7割以下にしましょう)"]
+      }
     },
     {
       "url": "https://www.caa.go.jp/policies/policy/consumer_safety/child/project_001/mail/20221208/",
       "title": "Vol.612 キッチンでの包丁などの刃物によるけがに注意!",
       "org": "消費者庁",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": [
+          "刃物を使用した後は、すぐに収納場所へ片付けましょう",
+          "収納場所の扉や引き出しにはチャイルドロックを付ける"
+        ]
+      }
     },
     {
       "url": "https://www.kokusen.go.jp/news/data/n-20260204_2.html",
       "title": "飲料用ペットボトルへの移し替えはやめましょう！－洗剤や殺虫剤などの誤飲事故が発生しています－",
       "org": "独立行政法人国民生活センター",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["洗剤や殺虫剤などの誤飲事故が発生しています"]
+      }
     },
     {
       "url": "https://www.city.kyoto.lg.jp/hokenfukushi/page/0000137043.html",
       "title": "カビや結露について",
       "org": "京都市",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["湿度は60%を超えないようにしましょう"]
+      }
     }
   ],
   "last_updated": "2026-07-21",

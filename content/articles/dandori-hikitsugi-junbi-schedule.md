@@ -18,19 +18,34 @@
       "url": "https://laws.e-gov.go.jp/law/322AC0000000049",
       "title": "労働基準法（昭和二十二年法律第四十九号）",
       "org": "e-Gov法令検索（デジタル庁）",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-17",
+      "verify": {
+        "expect": [
+          "六週間(多胎妊娠の場合にあつては、十四週間)以内に出産する予定の女性が休業を請求した場合",
+          "生後満一年に達しない生児を育てる女性は、第三十四条の休憩時間のほか、一日二回各々少なくとも三十分"
+        ]
+      }
     },
     {
       "url": "https://laws.e-gov.go.jp/law/403AC0000000076",
       "title": "育児休業、介護休業等育児又は家族介護を行う労働者の福祉に関する法律（平成三年法律第七十六号）",
       "org": "e-Gov法令検索（デジタル庁）",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-17",
+      "verify": {
+        "expect": [
+          "当該育児休業申出があった日の翌日から起算して一月",
+          "当該出生時育児休業申出があった日の翌日から起算して二週間"
+        ]
+      }
     },
     {
       "url": "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/koyoukintou/ryouritsu/ikuji/law-amendment/",
       "title": "法改正のポイント｜育児休業制度特設サイト",
       "org": "厚生労働省",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-17",
+      "verify": {
+        "expect": ["本人又はその配偶者の妊娠・出産の申出時"]
+      }
     }
   ],
   "facts": [
