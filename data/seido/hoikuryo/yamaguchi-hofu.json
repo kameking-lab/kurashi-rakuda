@@ -1,0 +1,286 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "yamaguchi-hofu",
+  "name": "山口県防府市",
+  "municipalityCode": "352063",
+  "prefecture": "山口県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "hoikuryohyou",
+      "title": "令和8年度 利用者負担額（保育料）表",
+      "publisher": "防府市 子育て推進課",
+      "url": "https://www.city.hofu.yamaguchi.jp/uploaded/attachment/147568.pdf",
+      "landingUrl": "https://www.city.hofu.yamaguchi.jp/site/kosodate-portal/hoikuryou.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "PDF1ページ目に保育料の算定方法（税額の合算対象・切替時期・適用しない税額控除）、2ページ目に階層区分表（１号認定＝幼稚園等／２号・３号認定＝保育所等）を掲載。表題に「令和８年度」と明記。テキスト層があるためPyMuPDFのget_text()でそのまま全文抽出できた（画像PDFではない）。"
+    },
+    {
+      "id": "fukushokuhi",
+      "title": "令和8年度 副食費の免除及び補助対象の範囲表",
+      "publisher": "防府市 子育て推進課",
+      "url": "https://www.city.hofu.yamaguchi.jp/uploaded/attachment/147569.pdf",
+      "landingUrl": "https://www.city.hofu.yamaguchi.jp/site/kosodate-portal/hoikuryou.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "２号・３号認定（保育所等）の表に「生活保護世帯は主食費、副食費共に保育料に含まれています」との注記があり、０〜２歳児クラスの給食費が保育料に含まれることを示す。３〜５歳児クラスの給食費（副食費・主食費）は施設による実費徴収で、所得割額や兄弟姉妹の人数により免除・補助の対象になる場合がある旨を確認するために収録。"
+    }
+  ],
+  "disclaimer": "本データは防府市公式ホームページの公表資料（利用者負担額表・副食費の範囲表）に基づき独自に整理した参考情報です。実際の保育料は世帯の課税状況等により決定されますので、最終的な金額は必ず防府市子育て推進課及び公式資料でご確認ください。",
+  "scope": {
+    "includes": [
+      "保育所、認定こども園（保育所部分）、地域型保育事業の0〜2歳児クラス（3号認定）・3〜5歳児クラス（2号認定）の保育料（保育標準時間・保育短時間）",
+      "3〜5歳児クラスの保育料は無償（3号→2号の幼児教育・保育の無償化）",
+      "0〜2歳児クラスの主食費・副食費は保育料に含まれる",
+      "第2子以降の3歳未満児の保育料無償化（令和6年9月開始、所得制限・同時利用要件なし）"
+    ],
+    "excludes": [
+      "幼稚園・認定こども園（教育）の1号認定の保育料（教育・保育給付第1号認定）",
+      "3〜5歳児クラスの給食費（副食費・主食費、施設による実費徴収。市町村民税所得割額や兄弟姉妹の人数等により免除・補助の対象となる場合あり）",
+      "延長保育料",
+      "教材費・行事費等の実費徴収",
+      "認可外保育施設の保育料"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "基本的に父母それぞれの市町村民税の合算額で算定する。ただし父母の合計所得額が38万円未満で、父母以外の保護者（同居の直系親族またはきょうだい）と同居していると判断される場合は、その中で最も所得額が高い者の税額を合算する（父母の合計所得額が38万円以上の場合は同居親族等の税額は合算しない）。「同居」は住民票上の世帯が別でも二世帯住宅・母屋と離れの関係など実質同居と判断できるものを含む。",
+    "taxYearRule": "保育料を算定するための市町村民税は毎年9月に切り替える。利用月が4月〜8月は前年度（令和7年度）、9月〜翌3月はその年度（令和8年度）の市町村民税額が算定対象となる。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除",
+      "寄附金税額控除",
+      "配当控除",
+      "外国税額控除",
+      "配当割額・株式等譲渡所得割額控除"
+    ],
+    "note": "保育料の算定に用いる市町村民税所得割課税額は、調整控除以外の税額控除（住宅借入金等特別税額控除、寄附金税額控除、配当控除、外国税額控除、配当割額・株式等譲渡所得割額控除）を差し引く前の税額（＝調整控除のみを差し引いた額）。防府市は政令指定都市ではないため、政令市に適用される市民税税率調整（旧税率6%への換算・6/8換算等）は該当しない。原典（利用者負担額表・副食費範囲表いずれも）にも当該規定の記載はなく、6/8換算に触れる文言自体が存在しない。原典の階層区分表は「母子等の世帯（ひとり親世帯及び在宅障害児（者）世帯）」と「その他の世帯」を階層区分ごとに別行（例: 3A/3B, 4A/4B, 5A/5B, 5C/5D, 6A/6B）で並記している。スキーマにひとり親向けフィールドがないため、tiersには「その他の世帯」の額のみを収録し、「母子等の世帯」の額はここに記録する（0〜2歳児クラス・保育標準時間/短時間、円）: 2A(非課税)=0/0、3A(所得割非課税・均等割のみ課税)=7,200/7,000、4A(所得割48,600円未満)=7,200/7,000、5A(48,600円以上57,700円未満)=7,200/7,000、5C(57,700円以上72,800円未満)=7,200/7,000、6A(72,800円以上77,200円未満)=7,200/7,000。階層7（77,200円以上）以降は母子等世帯の区分がなくなり「その他の世帯」と同一表になる。",
+    "sourceId": "hoikuryohyou",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "sourceId": "hoikuryohyou",
+      "expect": [
+        "市町村民税所得割課税額を計算する際、調整控除以外の税額控除（住宅借入金等特別税額控除、寄附金税額控除、配当控除、外国税額控除、配当割額・株式等譲渡所得割額控除）を差し引く前の税額により決定されます。",
+        "保育料を算定するための市町村民税は、毎年９月に切り替えます。利用月が４月～8月は前年度、９月～翌３月はその年度が算定対象となります。"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "毎年4月に切り替える年齢区分（3号認定）"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "毎年4月に切り替える年齢区分（2号認定）"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラスの保育料は無償（幼児教育・保育の無償化）",
+      "sourceId": "hoikuryohyou",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["３、４、５歳児"]
+      },
+      "amendmentNote": "なし（2026-07-21時点）"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "市町村民税非課税世帯（階層2A・2B）は0円",
+      "sourceId": "hoikuryohyou",
+      "checkedAt": "2026-07-21",
+      "amendmentNote": "なし（2026-07-21時点）"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "所得制限や同時利用に関係なく、現に保護者に扶養されている子どものうち2人目以降（対象は3歳未満児のみ。年齢上限の記載なし）",
+        "label": "現に保護者に扶養されている子どものうち2人目以降の3歳未満児が対象。所得制限・同時利用要件なし",
+        "sourceId": "hoikuryohyou",
+        "checkedAt": "2026-07-21",
+        "verify": {
+          "expect": ["所得制限や同時利用に関係なく、現に保護者に扶養されているお子さんのうち２人目以降の３歳未満のお子さんの保育料は無料となります。"]
+        },
+        "amendmentNote": "なし（2026-07-21時点）"
+      },
+      "secondChild": {
+        "value": 0,
+        "label": "無償（令和6年9月開始、3歳未満児のみ対象）",
+        "sourceId": "hoikuryohyou",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし（2026-07-21時点）"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "label": "無償（第2子以降と同一の扱い。3歳未満児のみ対象）",
+        "sourceId": "hoikuryohyou",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし（2026-07-21時点）"
+      }
+    },
+    "localExtension": "令和6年9月から、所得制限や同時利用の要件なく、現に保護者に扶養されている子どものうち2人目以降の3歳未満児の保育料を無償化している（第2子以降の3歳未満児の保育料無償化）。"
+  },
+  "tiers": [
+    {
+      "tier": "1",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "2B",
+      "label": "市町村民税非課税（その他の世帯。母子等の世帯=2Aも同額0円）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "3B",
+      "label": "市町村民税所得割非課税（均等割のみ課税）その他の世帯（母子等の世帯=3Aは標準7,200円/短時間7,000円。bracketBasis.noteに記録）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 16000, "short": 15700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4B",
+      "label": "市町村民税所得割課税額48,600円未満 その他の世帯（母子等の世帯=4Aは標準7,200円/短時間7,000円。bracketBasis.noteに記録）",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 16000, "short": 15700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "5B",
+      "label": "市町村民税所得割課税額48,600円以上57,700円未満 その他の世帯（母子等の世帯=5Aは標準7,200円/短時間7,000円。bracketBasis.noteに記録）",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": { "standard": 23000, "short": 22600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "5D",
+      "label": "市町村民税所得割課税額57,700円以上72,800円未満 その他の世帯（母子等の世帯=5Cは標準7,200円/短時間7,000円。bracketBasis.noteに記録）",
+      "incomeMin": 57700,
+      "incomeMax": 72800,
+      "fees": {
+        "under3": { "standard": 23000, "short": 22600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "6B",
+      "label": "市町村民税所得割課税額72,800円以上77,200円未満 その他の世帯（母子等の世帯=6Aは標準7,200円/短時間7,000円。bracketBasis.noteに記録）",
+      "incomeMin": 72800,
+      "incomeMax": 77200,
+      "fees": {
+        "under3": { "standard": 28000, "short": 27500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "7",
+      "label": "市町村民税所得割課税額77,200円以上97,000円未満",
+      "incomeMin": 77200,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 28000, "short": 27500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "8",
+      "label": "市町村民税所得割課税額97,000円以上133,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 37000, "short": 36300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "9",
+      "label": "市町村民税所得割課税額133,000円以上169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 41000, "short": 40300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "10",
+      "label": "市町村民税所得割課税額169,000円以上211,300円未満",
+      "incomeMin": 169000,
+      "incomeMax": 211300,
+      "fees": {
+        "under3": { "standard": 54000, "short": 53000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "11",
+      "label": "市町村民税所得割課税額211,300円以上301,000円未満",
+      "incomeMin": 211300,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 54000, "short": 53000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "12",
+      "label": "市町村民税所得割課税額301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 65000, "short": 63800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "13",
+      "label": "市町村民税所得割課税額397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 65000, "short": 63800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "hoikuryohyou",
+    "expect": [
+      "令和８年度",
+      "利用者負担額（保育料）表",
+      "397,000円以上",
+      "65,000円",
+      "16,000円",
+      "54,000円"
+    ]
+  }
+}
