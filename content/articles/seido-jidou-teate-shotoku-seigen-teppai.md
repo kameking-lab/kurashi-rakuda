@@ -18,13 +18,19 @@
       "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/",
       "title": "児童手当制度のご案内",
       "org": "こども家庭庁",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["3歳未満　15,000円（第3子以降は30,000円）"]
+      }
     },
     {
       "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/mottoouen",
       "title": "もっと子育て応援！児童手当（令和6年10月分からの拡充）",
       "org": "こども家庭庁",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["令和6年10月分から児童手当が支給されます"]
+      }
     }
   ],
   "facts": [
