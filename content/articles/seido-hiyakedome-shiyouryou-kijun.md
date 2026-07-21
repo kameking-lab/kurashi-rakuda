@@ -7,16 +7,31 @@
   "revision_year": 2026,
   "sources": [
     {
+      "url": "https://www.env.go.jp/content/900410651.pdf",
+      "title": "紫外線環境保健マニュアル2020（2020年3月改訂版）",
+      "org": "環境省",
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["試料塗布量2mg/cm2"]
+      }
+    },
+    {
       "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-11120000-Iyakushokuhinkyoku/kesyouhin_hanni_20111.pdf",
       "title": "化粧品の効能の範囲の改正について（薬食発0721第1号 平成23年7月21日 厚生労働省医薬食品局長通知）",
       "org": "厚生労働省",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["（37）日やけによるシミ、ソバカスを防ぐ。"]
+      }
     },
     {
       "url": "https://www.jcia.org/user/common/download/approach/news_release/JCIA_release20121114-UV-PF.pdf",
       "title": "紫外線防止効果測定法基準の改定とそれに伴う「PA++++」表示の追加",
       "org": "日本化粧品工業会",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["ISO24444 Cosmetics ― Sun protection test methods ― In vivo determination of the sun \nprotection factor（SPF）に基づき測定する。"]
+      }
     }
   ],
   "facts": [
@@ -93,6 +108,7 @@
 
 SPFはUV-Bを防ぐ効果、PAはUV-Aを防ぐ効果を示す指標です。測定方法や表示のしかたは法令ではなく、日本化粧品工業会が定める業界の自主基準（SPFはISO24444、PAはISO24442に準拠）にもとづいています。PAは「PA＋」から「PA＋＋＋＋」まで、＋の数が多いほどUV-A防止効果が高いことを示す段階で表示されます。
 
+- 環境省「紫外線環境保健マニュアル2020」
 - 厚生労働省「化粧品の効能の範囲の改正について（薬食発0721第1号 厚生労働省医薬食品局長通知）」
 - 日本化粧品工業会「紫外線防止効果測定法基準の改定とそれに伴う『PA++++』表示の追加」
 
