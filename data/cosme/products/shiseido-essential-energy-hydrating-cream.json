@@ -1,0 +1,32 @@
+{
+  "id": "shiseido-essential-energy-hydrating-cream",
+  "name": "SHISEIDO エッセンシャルイネルジャ ハイドレーティング クリーム",
+  "brand": "SHISEIDO（資生堂）",
+  "category": "cream",
+  "priceYen": 7700,
+  "volume": "50g",
+  "priceBand": "high",
+  "availability": ["department", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "シリカ", "ingredientId": "sebum-absorbing-powder", "role": "kyuuchaku", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou", "kuzure"],
+  "notSuitedFor": [
+    "デパートコスメの価格帯（7,700円/50g）のため、プチプラ・ミドル価格帯でのスキンケアを希望する方には他の保湿クリームの方が向く場合がある",
+    "フローラルシトラス系の香料を配合しているため、無香料処方を希望する方には不向き"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "SHISEIDO公式ブランドサイト「エッセンシャルイネルジャ ハイドレーティング クリーム」商品ページ（価格・内容量）", "url": "https://brand.shiseido.co.jp/essential-energy-hydrating-cream-F949.html" },
+    { "label": "SHISEIDO公式 全成分表示ページ「エッセンシャルイネルジャ ハイドレーティング クリーム（F949）」", "url": "https://brand.shiseido.co.jp/F949-full-ingredients.html" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}

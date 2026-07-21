@@ -128,6 +128,46 @@
       "generalNote": "植物由来の糖から作られるマイルドな洗浄成分の分類で、毛穴の汚れ対策をうたう洗顔料に配合されることが多い。",
       "sourceId": "jcia-ad-guideline",
       "checkedAt": "2026-07-20"
+    },
+    {
+      "id": "clay-kaolin",
+      "name": "クレイ（カオリン・モンモリロナイト等）",
+      "role": "kyuuchaku",
+      "commonlyChosenFor": ["oily", "combination"],
+      "concernsFit": ["keana"],
+      "generalNote": "皮脂や汚れを吸着するとされる天然鉱物由来の成分分類で、毛穴の詰まり対策をうたう洗顔料・パックに配合されることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-21"
+    },
+    {
+      "id": "charcoal",
+      "name": "炭（チャコール）",
+      "role": "kyuuchaku",
+      "commonlyChosenFor": ["oily"],
+      "concernsFit": ["keana"],
+      "generalNote": "吸着力があるとされる炭由来の成分分類で、毛穴の黒ずみ・汚れ対策をうたう洗顔料に配合されることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-21"
+    },
+    {
+      "id": "sebum-absorbing-powder",
+      "name": "皮脂吸着パウダー（シリカ等）",
+      "role": "kyuuchaku",
+      "commonlyChosenFor": ["oily", "combination"],
+      "concernsFit": ["kuzure"],
+      "generalNote": "皮脂を吸着し肌表面のテカリを抑えるとされる粉体成分の分類で、化粧崩れ対策をうたう下地・日焼け止め・乳液に配合されることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-21"
+    },
+    {
+      "id": "astringent-extract",
+      "name": "収れん成分（ハマメリスエキス等）",
+      "role": "sonota",
+      "commonlyChosenFor": ["oily", "combination"],
+      "concernsFit": ["keana"],
+      "generalNote": "肌を引き締めるとされる植物エキス由来の成分分類で、毛穴の開き・テカリが気になる方向けの化粧水に配合されることが多い。",
+      "sourceId": "jcia-ad-guideline",
+      "checkedAt": "2026-07-21"
     }
   ]
 }

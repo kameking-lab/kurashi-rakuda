@@ -306,6 +306,17 @@
 - [x] **P4-A01/A02 ★差し戻し★ 家事テーマ10本の出典捏造を全面是正** → **完了（2026-07-21・PR#276）**: 前任（Haiku）のPR#264/#273が、厚労省の同一URL（`tp0093-1.html`）に「家庭用洗濯機の清潔保持」「家庭用トイレ・浴室の清潔保持」「家庭用殺虫剤の正しい使い方と虫対策」という3つの異なる架空タイトルを使い回す出典捏造を行っていたため、対象10記事（洗濯機臭い・トイレ臭い・窓サッシ・虫対策・ベランダ排水溝・車内清掃・テーブル素材別ケア・片付け×3）を出典ゼロから全面書き直し。全出典URLをWebFetch／`curl`+`pdftotext -enc UTF-8`で実際に開き本文を確認（千葉県トイレクリーンハンドブックPDFのみCIDフォントで直接抽出不能のためWebSearch照合による間接確認）。使用ドメインはcaa.go.jp・kokusen.go.jp・mhlw.go.jp・自治体*.lg.jpのみ（既存source-allowlist内）。公的一次情報で裏付けられない断定（洗濯槽清掃の頻度・車内清掃の手順・テーブル素材別ケアの詳細）は捏造せず一般論として明記、車内清掃は許可ドメイン内に直接該当する情報がなかったため安全情報（スプレー缶破裂リスク）のみ出典付き・手順は無出典と明記。check-fidelity.mjs 11/11 PASS・0 violations。旧PR#264・#273はクローズ済み。
 - [x] **P4-A03 ★YMYL注意★ 身体パーツケア** → **一部完了（2026-07-21）**: 吹き出物（にきび）と生活習慣＝完了。dandori-fukidemono-seikatsu-shukan、出典は日本皮膚科学会「にきびQ&A」Q3/Q17/Q18/Q19/Q21/Q24をWebFetchで本文確認（洗顔頻度・不潔ではない旨・食事の因果関係不明確・睡眠不足の悪化因子・摩擦回避）。効果断定なし・皮膚科受診誘導あり。dermatol.or.jpをsource-allowlistに限定許可で追加。★肘膝の黒ずみは見送り（理由記録）★: dermatol.or.jp内をWebSearchで調査したが、摩擦・色素沈着に関する一般向けQ&Aや解説記事が見つからず（ヒットしたのは尋常性白斑・ポルフィリン症など無関係な診療ガイドラインのみ）。肘膝の黒ずみは主に美容上の関心事であり公的・学会の一次情報が薄いため、捏造を避けるため執筆を見送る。将来的に学会側にQ&Aが追加されれば再検討
 
+### P4-SRC: 記事出典ゲート retrofit キュー（2026-07-21起票。factory/scripts/check-sources.mjs 導入に伴う棚卸し）
+新設した記事出典ゲート（`npm run check:sources` / `--fetch` でネットワーク照合）は、ゲート導入前の既存111記事を grandfather 扱いにしている（liveness警告のみ・verify.expect欠落はwarn、CIは赤くしない）。以下は 2026-07-21 時点の `node factory/scripts/check-sources.mjs --fetch` 実測結果。量産レーン（B/ソネット）で順次解消する。再実行して最新化すること。
+- [ ] P4-SRC01 死リンク6件の差し替え（★最優先・恒久404）:
+  - `seido-yobou-sesshu-schedule-2026.md` — https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou28/01.html
+  - `tool-narisou-junyu-milk-ryo.md` — https://www.cfa.go.jp/policies/kokoseido/boshihoken/kenko/jyunyuu-rinyuu
+  - `tool-narisou-rinyushoku-ryo.md` — https://www.mhlw.go.jp/content/11908000/000496257.pdf
+  - 他3件は `--fetch` 再実行で確認（ページ移転の可能性。後継ページを一次情報の範囲で探し、無ければ他の許可ドメインへ差し替え）
+- [ ] P4-SRC02 出典が1件もない記事3本（最優先でsources追加）: `tool-narisou-hoikuen-omukae-gyakusan.md` / `tool-narisou-kaimono-list-jidou-seisei.md` / `tool-narisou-recipe-ninzuu-kansan.md`
+- [ ] P4-SRC03 残り108記事の `sources[].verify.expect`（逐語一部）を順次追加。実ページから該当箇所を1文引用し、`node factory/scripts/check-sources.mjs --fetch --only` 相当（現状は全件実行のみ。`--only` 未実装なら追加検討）で個別照合してから追加すること（適当な文字列を付けるとゲートの意味がなくなる＝捏造防止の趣旨に反する）
+- [ ] P4-SRC04 403等の一時的取得失敗（warn止まり。恒久化していないか定点観測）: `www.caa.go.jp/policies/policy/consumer_safety/child/food_safety/`（3記事から参照）／`w-health.jp/monthly/pms/`（2記事から参照）
+
 ## キュー運用メモ
 
 - 並列上限の目安: Q3 は 5〜10 並列（S 級は直列気味に、B 級は束ねて自走）

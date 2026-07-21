@@ -1,0 +1,31 @@
+{
+  "id": "ishizawa-lab-keana-otokonoko-lotion",
+  "name": "毛穴撫子 男の子用 ひきしめ化粧水N",
+  "brand": "毛穴撫子（石澤研究所）",
+  "category": "kesho-mizu",
+  "priceYen": 1320,
+  "volume": "300mL",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "ヘチマ果実／葉／茎エキス", "ingredientId": "astringent-extract", "role": "sonota", "sourceNote": "全成分表示および商品ページより（メーカーが「肌をキュ～ッとひきしめるヘチマエキス／カミツレエキス」と収れん・ひきしめ効果を訴求）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": true, "combination": true, "sensitive": null },
+  "concernsFit": ["kansou", "keana"],
+  "notSuitedFor": [
+    "「男の子用」ブランドとして展開されている商品のため、パッケージデザインに抵抗がある方には毛穴撫子の他ライン（お米シリーズ等）の方が向く場合がある",
+    "メチルパラベンを配合しているため、パラベンフリー処方を希望する方には不向き"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "石澤研究所公式サイト「毛穴撫子 男の子用 ひきしめ化粧水N」商品ページ（価格・内容量）", "url": "https://www.ishizawa-lab.co.jp/keana_otokonoko/lotion.html" },
+    { "label": "石澤研究所公式サイト 配合全成分ページ「毛穴撫子 男の子シリーズ 配合全成分」", "url": "https://www.ishizawa-lab.co.jp/seibun/keana_otokonoko.html" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}

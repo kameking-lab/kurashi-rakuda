@@ -1,0 +1,31 @@
+{
+  "id": "aqualabel-treatment-milk-whitening",
+  "name": "アクアレーベル トリートメントミルク（ブライトニング）しっとり",
+  "brand": "アクアレーベル（資生堂）",
+  "category": "nyueki",
+  "priceYen": 1650,
+  "volume": "130mL",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "濃グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "ヒアルロン酸ナトリウム", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "無水ケイ酸", "ingredientId": "sebum-absorbing-powder", "role": "kyuuchaku", "sourceNote": "全成分表示より（皮脂吸着パウダーの分類に該当するシリカ系成分）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": null },
+  "concernsFit": ["kansou", "kuzure"],
+  "notSuitedFor": [
+    "医薬部外品の美白有効成分（4-メトキシサリチル酸カリウム塩）を配合した処方のため、美白ケアを求めない方にはシンプルな保湿乳液の方が向く場合がある",
+    "香料を配合しているため、無香料処方を希望する方には不向き"
+  ],
+  "cautions": [
+    "医薬部外品です。メラニンの生成を抑えシミ・ソバカスを防ぐ効能が認められていますが、既に生じたシミの治療を目的とした医薬品ではありません",
+    "新しい化粧品・医薬部外品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "資生堂公式サイト「アクアレーベル トリートメントミルク（ブライトニング）」商品ページ（価格・内容量・全成分）", "url": "https://www.shiseido.co.jp/aqua/stepcare/white/" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}
