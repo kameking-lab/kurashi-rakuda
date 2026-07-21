@@ -261,6 +261,9 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.matsumoto.nagano.jp', // 松本市の公式サイト
   'city.fukushima.fukushima.jp', // 福島市の公式サイト
   'city.koshigaya.saitama.jp', // 越谷市の公式サイト
+  'city.saijo.ehime.jp', // 西条市の公式サイト
+  'city.omura.nagasaki.jp', // 大村市の公式サイト
+  'city.settsu.osaka.jp', // 摂津市の公式サイト
   // 西日本一般市バッチ6（2026-07-22。city.ikeda.lg.jpは存在しない＝これが唯一の公式ドメイン）
   'city.ikeda.osaka.jp', // 池田市の公式サイト
 ];
