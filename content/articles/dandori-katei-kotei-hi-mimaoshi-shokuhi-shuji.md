@@ -15,7 +15,10 @@
       "url": "https://www.stat.go.jp/data/kakei/2.html",
       "title": "家計調査（家計収支編） 調査結果",
       "org": "総務省統計局",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["家計調査（家計収支編）　調査結果"]
+      }
     }
   ],
   "last_updated": "2026-07-21",
