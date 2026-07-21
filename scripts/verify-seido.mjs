@@ -232,6 +232,14 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.okinawa.okinawa.jp', // 沖縄市の公式サイト
   'city.kashihara.nara.jp', // 橿原市の公式サイト
   'city.kadoma.osaka.jp', // 門真市の公式サイト
+  // 西日本ブロック 一般市バッチ2（2026-07-21。いずれも .lg.jp 版はDNS解決不可／存在しない＝これが唯一の公式ドメイン）
+  'city.izumo.shimane.jp', // 出雲市の公式サイト
+  'city.imabari.ehime.jp', // 今治市の公式サイト（保育料ページは下記 imakoso-imabari.jp へ302リダイレクト）
+  // 今治市の子育て情報ポータル「いまこそimabari」。運営主体は今治市役所ネウボラ推進課（フッターに
+  // 所在地・電話・メールを明記した市直営サイト）で、市公式サイトの /hoiku/hoikuryo/ から302で
+  // 転送される現行の掲載先。今治市利用者負担額表（令和8年度）PDFもこのドメイン配下にある。
+  'imakoso-imabari.jp',
+  'city.moriguchi.osaka.jp', // 守口市の公式サイト
 ];
 
 const args = process.argv.slice(2);

@@ -1,0 +1,261 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "yamaguchi-shunan",
+  "name": "山口県周南市",
+  "municipalityCode": "352152",
+  "prefecture": "山口県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "hoikuryohyou",
+      "title": "周南市保育所等保育料表（令和6年9月以降）",
+      "publisher": "周南市 こども保育課",
+      "url": "https://www.city.shunan.lg.jp/uploaded/attachment/103843.pdf",
+      "landingUrl": "https://www.city.shunan.lg.jp/soshiki/30/4091.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "PDF内部プロパティのタイトルは「保育料表（R6.9月～）」、作成日は2024-08-22。令和6年9月改定以降、階層区分・金額の改定を示す新版は見当たらない（年度表記のない常設表型）。令和8年度の入所案内ページ（下記 r8nyusho、更新日2026-02-03）も同一の「保育料について」ページ・同一PDFに案内を寄せており、令和8年度時点でも本表が現行として使われていることを確認した。PyMuPDFのfind_tables()で表構造を復元し、高DPI画像レンダリングで数値を目視照合した。"
+    },
+    {
+      "id": "hoikuryou-html",
+      "title": "保育料について",
+      "publisher": "周南市",
+      "url": "https://www.city.shunan.lg.jp/soshiki/30/4091.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "更新日2026年1月30日。市民税所得割額の定義（税額控除の適用除外）、多子軽減、税年度切替、給食費の扱いを掲載。"
+    },
+    {
+      "id": "r8nyusho",
+      "title": "令和8年度保育所等の申込みについて",
+      "publisher": "周南市 こども保育課",
+      "url": "https://www.city.shunan.lg.jp/site/kodomosien/136999.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "更新日2026年2月3日。保育料の項目から「保育料について」ページ（＝hoikuryou-html・同一のhoikuryohyou PDF）へ誘導しており、令和8年度入所案内の時点でも別表への更新がないことの傍証として収録。"
+    }
+  ],
+  "amendments": [
+    {
+      "summary": "保育料表そのものは令和6年9月改定版（R6.9月～）のまま据え置かれている。令和8年度の入所案内ページ（2026-02-03更新）も同一表を案内しており、階層・金額の変更は確認できなかった。",
+      "status": "in-force",
+      "effectiveFrom": "2024-09-01",
+      "sourceId": "hoikuryohyou",
+      "impact": "fiscalYearは2026（令和8年度）として収録するが、金額自体は令和6年9月改定時点から変更がない。令和8年度限りの新表が公表された場合は差し替えが必要。"
+    }
+  ],
+  "disclaimer": "本データは周南市公式サイトの公表内容（保育料表・保育料についてページ等）に基づき独自に整理した参考情報です。実際の保育料は世帯の課税状況等により決定されますので、最終的な金額は必ず周南市こども保育課及び公式資料でご確認ください。",
+  "scope": {
+    "includes": [
+      "保育所、認定こども園（保育所部分）、小規模保育事業施設、事業所内保育事業施設の0〜2歳児クラスの保育料（保育標準時間・保育短時間）",
+      "3〜5歳児クラスの保育料（無償）",
+      "第2子以降の多子軽減（令和6年9月〜、0〜2歳児が対象で無償）",
+      "0〜2歳児クラスの給食費（副食費・主食費）は保育料に含まれる"
+    ],
+    "excludes": [
+      "3歳以上児クラスの給食費（副食費・主食費、保護者の実費負担。所得割額・兄弟姉妹の人数等により免除の対象となる場合あり）",
+      "延長保育料（別料金）",
+      "教材費等の実費徴収",
+      "認可外保育施設・幼稚園の保育料"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "同一生計を営む父母など扶養義務者の市民税所得割額の合計",
+    "taxYearRule": "4月から8月までは前年度の市民税税額、9月から3月までは当年度の市民税税額に基づいて保育料を算定する（0〜2歳児が対象。3〜5歳児は無償）。",
+    "deductionsIgnored": [
+      "配当控除",
+      "外国税額控除",
+      "住宅借入金等特別税額控除（住宅取得等の特別控除に係る減税）",
+      "寄付金控除"
+    ],
+    "note": "市民税所得割額とは「調整控除を除く税額控除（配当控除、外国税額控除、住宅借入金特別控除、寄付金控除等）をする前の税額」（＝調整控除のみ差し引いた後の額）。周南市は政令指定都市ではないため、政令市に適用される市民税税率調整（旧税率6%への換算・6/8換算等）は該当しない（原典にも当該規定の記載なし）。原典の階層表（PDF）ではD1・D2区分の内訳にサブ番号「1」「2」が付されている。D1の「1」（所得割48,600円以上57,700円未満）と「2」（所得割57,000円以上72,800円未満）は所得割額の範囲が700円分重複しており（57,000<57,700）、原典自体にその理由の説明はない（訂正せず原典どおりの数値として扱った）。D1・D2とも「1」「2」いずれの金額も同額（D1=標準24,000円/短時間23,500円、D2=標準30,000円/短時間29,400円）だったため、tiersでは所得割の範囲を合算した1本の階層として収録した（計算結果には影響しない）。また、C0・D1・D2の各区分には「母子世帯等」（母子・父子世帯、在宅障害者（児）のいる世帯）向けの軽減額が別行で存在する（C0内の母子世帯等=標準8,500円/短時間8,350円、D1母子世帯等=標準9,000円/短時間9,000円、D2母子世帯等=標準9,000円/短時間9,000円）。スキーマにひとり親向けフィールドがないため tiers 本体には一般世帯（母子世帯等でない世帯）の額のみを収録し、母子世帯等の額はこのnoteに記録する。",
+    "sourceId": "hoikuryou-html",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "sourceId": "hoikuryou-html",
+      "expect": [
+        "調整控除を除く税額控除（配当控除、外国税額控除、住宅借入金特別控除、寄付金控除等）をする前の税額のことです。"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "保育所等利用開始日の属する年度の4月1日をもって認定する年齢"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "保育所等利用開始日の属する年度の4月1日をもって認定する年齢"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラスの保育料は無償（給食費等の実費負担あり）",
+      "sourceId": "hoikuryou-html",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["無償※給食費等の実費負担あり"]
+      },
+      "amendmentNote": "なし（2026-07-21時点）"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "均等割非課税世帯（B0・B1）は0円",
+      "sourceId": "hoikuryohyou",
+      "checkedAt": "2026-07-21",
+      "amendmentNote": "なし（2026-07-21時点）"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "保護者と生計を一にする子どものうち、最年長者から順に数えて2人目以降",
+        "label": "保護者と生計を一にする子どものうち、最年長者から順に数えて2人目以降の子ども（年齢上限の記載なし）",
+        "sourceId": "hoikuryou-html",
+        "checkedAt": "2026-07-21",
+        "verify": {
+          "expect": ["第2子以降とは、保護者と生計を一にする子どものうち、最年長者から順に数えて2人目以降の子どもです。"]
+        },
+        "amendmentNote": "なし（2026-07-21時点）"
+      },
+      "secondChild": {
+        "value": 0,
+        "label": "無償（令和6年9月〜、0〜2歳児クラスが対象）",
+        "sourceId": "hoikuryou-html",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし（2026-07-21時点）"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "label": "無償（第2子以降と同一の扱い）",
+        "sourceId": "hoikuryou-html",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし（2026-07-21時点）"
+      }
+    },
+    "localExtension": "令和6年9月より、市に住民登録のある世帯の第2子以降の児童（0〜2歳児）の保育料が無償化された（多子軽減。年齢上限の記載なし）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "均等割非課税世帯（原典はB0＝母子世帯等・B1＝一般の2行、いずれも0円）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "市民税所得割額48,600円未満（一般世帯。原典C01。母子世帯等の額はC0＝標準8,500円/短時間8,350円でbracketBasis.noteに記録）",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 18000, "short": 17600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "市民税所得割額48,600円以上72,800円未満（一般世帯。原典はD1-1「48,600円以上57,700円未満」・D1-2「57,000円以上72,800円未満」の2行で境界に700円の重複があるが金額同額のため統合。母子世帯等の額は標準9,000円/短時間9,000円でbracketBasis.noteに記録）",
+      "incomeMin": 48600,
+      "incomeMax": 72800,
+      "fees": {
+        "under3": { "standard": 24000, "short": 23500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "市民税所得割額72,800円以上97,000円未満（一般世帯。原典はD2-1「72,800円以上77,101円未満」・D2-2「77,101円以上97,000円未満」の2行で金額同額のため統合。母子世帯等の額は標準9,000円/短時間9,000円でbracketBasis.noteに記録）",
+      "incomeMin": 72800,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 30000, "short": 29400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "市民税所得割額97,000円以上133,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 38000, "short": 37300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "市民税所得割額133,000円以上169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 44500, "short": 43700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "市民税所得割額169,000円以上301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 58000, "short": 57000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "市民税所得割額301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 74000, "short": 72700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "市民税所得割額397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 80000, "short": 78600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "hoikuryohyou",
+    "expect": [
+      "周南市保育所等保育料表（令和６年９月以降）",
+      "48,600円未満",
+      "397,000円以上",
+      "80,000",
+      "18,000",
+      "24,000"
+    ]
+  }
+}

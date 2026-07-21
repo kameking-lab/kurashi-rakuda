@@ -1,0 +1,256 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "fukuoka-iizuka",
+  "name": "福岡県飯塚市",
+  "municipalityCode": "402052",
+  "prefecture": "福岡県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "hoikuryokijunhyou",
+      "title": "令和8年度 飯塚市 2号・3号認定（保育認定）児童の保育料",
+      "publisher": "飯塚市 こども未来部 保育課",
+      "url": "https://www.city.iizuka.lg.jp/uploaded/attachment/14915.pdf",
+      "landingUrl": "https://www.city.iizuka.lg.jp/hoiku/kenko/hoiku/hoikuen/nyusyo.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "表題に「令和8年度」と明記された1ページのPDF。階層1〜7（一部はひとり親等の世帯向けにサブ番号0/2を付した行と一般世帯の行に分かれる）ごとに3号認定・3歳未満（保育標準時間/保育短時間/第2子以降）と2号認定・3歳以上（保育標準時間/保育短時間）の月額を掲載。PyMuPDFのfind_tables()で表構造を復元し、高DPI画像レンダリング（280dpi）で数値を目視照合した。"
+    },
+    {
+      "id": "hoikusisetsu-goannai",
+      "title": "保育施設利用のご案内（令和8年度版）",
+      "publisher": "飯塚市 こども未来部 保育課",
+      "url": "https://www.city.iizuka.lg.jp/uploaded/attachment/1545.pdf",
+      "landingUrl": "https://www.city.iizuka.lg.jp/hoiku/kenko/hoiku/hoikuen/nyusyo.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "全10ページ。保育料の算定方法（扶養義務者の範囲、税年度切替、未申告時の最高階層適用）、第2子以降無償化、3〜5歳児クラスの無償化・副食費実費を掲載。"
+    },
+    {
+      "id": "dainishimushouka",
+      "title": "第2子以降の保育料を無償化します（市独自の制度）",
+      "publisher": "飯塚市 こども未来部 保育課",
+      "url": "https://www.city.iizuka.lg.jp/hoiku/dainishimushouka.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "更新日2026年4月1日。令和6年4月からの市独自の第2子以降無償化について、対象年齢（0〜2歳児）・カウント方法（きょうだいの年齢にかかわらず生計同一の子のうち最年長者から数える）を掲載。"
+    }
+  ],
+  "disclaimer": "本データは飯塚市公式サイトの公表内容（保育料表・保育施設利用のご案内等）に基づき独自に整理した参考情報です。実際の保育料は世帯の課税状況等により決定されますので、最終的な金額は必ず飯塚市保育課及び公式資料でご確認ください。",
+  "scope": {
+    "includes": [
+      "保育所又は認定こども園（保育所部分）を利用する3号認定（3歳未満児）の保育料（保育標準時間・保育短時間）",
+      "2号認定（3歳以上児）の保育料（無償）",
+      "第2子以降（3歳未満児が対象）の多子軽減（市独自制度・令和6年4月〜、無償）",
+      "3号認定（3歳未満児）の給食費（副食費・主食費）は保育料に含まれる"
+    ],
+    "excludes": [
+      "2号認定（3歳以上児）の副食費（実費徴収。第1階層〜第4・2階層までの世帯の子と第3子以降の子は免除）",
+      "延長保育料",
+      "教材費等の実費徴収",
+      "認可外保育施設等・幼稚園の保育料（別途市独自の償還払い制度あり・本表の対象外）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原則、父母が保育料算定上の扶養義務者になる。お子さんと同居している祖父母等の同居者等がいる場合には、その同居者等が扶養義務者になることがある。",
+    "taxYearRule": "8月分までの保育料は前年度の市民税額、9月以降の保育料は当年度の市民税額により決定される（年度途中で保育料が変わる場合がある）。",
+    "deductionsIgnored": [],
+    "note": "飯塚市は政令指定都市・中核市のいずれでもないため、政令市に適用される市民税税率調整（旧税率6%への換算・6/8換算等）は該当しないと考えられるが、原典（保育料表PDF・保育施設利用のご案内）にその旨を明示する記載は無い（未確認）。／【未確認】保育料算定で適用しない税額控除（住宅借入金等特別税額控除・寄附金税額控除・配当控除等）の明示的な列挙は、飯塚市の保育料表PDF・保育施設利用のご案内・関連条例のいずれにも確認できなかったため deductionsIgnored は空とした。推測で補完しない。／原典の階層表では階層2・3・4に「ひとり親等の世帯」向けの軽減額が別行（2・0／3・0／4・0／4・2）として存在し、いずれも一般世帯より低額（3階層＝標準7,200円/短時間7,200円、4階層＝標準7,200円/短時間7,200円）。スキーマにひとり親向けフィールドがないため tiers 本体には一般世帯の額のみを収録し、ひとり親等の世帯の額はこのnoteに記録する（階層1＝生活保護、階層2＝非課税はひとり親等でも同額の0円）。／未申告の場合は最高階層区分（階層7）が仮に適用される。",
+    "sourceId": "hoikusisetsu-goannai",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "sourceId": "hoikusisetsu-goannai",
+      "expect": [
+        "原則、父母が保育料算定上の扶養義務者になります",
+        "同居している祖父母等の同居者等がいる場合には、その同居者等が扶養義務者になることがあります"
+      ]
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3号認定（3歳未満児）",
+      "rule": "令和5年4月2日以降に生まれた児童（0・1・2歳児クラス）"
+    },
+    {
+      "key": "age3plus",
+      "label": "2号認定（3歳以上児）",
+      "rule": "令和5年4月1日以前に生まれた児童（3・4・5歳児クラス）"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3・4・5歳児クラス（2号認定）の保育料は無償（副食費は実費負担）",
+      "sourceId": "hoikuryokijunhyou",
+      "checkedAt": "2026-07-21",
+      "amendmentNote": "なし（2026-07-21時点）"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "市民税非課税世帯（階層2）は0円",
+      "sourceId": "hoikuryokijunhyou",
+      "checkedAt": "2026-07-21",
+      "amendmentNote": "なし（2026-07-21時点）"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "保護者の所得や施設の同時利用、きょうだいの年齢にかかわらず、生計を同一にしている子のうち最年長者を第1子、その下の子を第2子とカウント",
+        "label": "保護者の所得や施設の同時利用、きょうだいの年齢にかかわらず、生計を同一にしている子のうち最年長者を第1子、その下の子を第2子とカウントする（年齢上限なし）",
+        "sourceId": "dainishimushouka",
+        "checkedAt": "2026-07-21",
+        "verify": {
+          "expect": ["保護者の所得や、保育施設等の同時利用、きょうだいの年齢にかかわらず、生計を同一にしている子どものうち最年長者を第1子、その下の子を第2子とカウントします。"]
+        },
+        "amendmentNote": "なし（2026-07-21時点）"
+      },
+      "secondChild": {
+        "value": 0,
+        "label": "無償（3歳未満児が対象。令和6年4月〜の市独自制度）",
+        "sourceId": "hoikuryokijunhyou",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし（2026-07-21時点）"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "label": "無償（第2子以降と同一の扱い）",
+        "sourceId": "hoikuryokijunhyou",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし（2026-07-21時点）"
+      }
+    },
+    "localExtension": "令和6年4月から、飯塚市独自の制度として保育所（認可外含む）や認定こども園、幼稚園に通う第2子以降の児童（0〜2歳児）の保育料が無償化された。保護者の所得や施設の同時利用、きょうだいの年齢にかかわらず適用される。"
+  },
+  "tiers": [
+    {
+      "tier": "1",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "2",
+      "label": "市民税非課税世帯（原典2・1。ひとり親等の世帯2・0も同額0円）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "3",
+      "label": "市民税所得割額48,600円未満（一般世帯。原典3・1。ひとり親等の世帯3・0は標準7,200円/短時間7,200円でbracketBasis.noteに記録）",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 15600, "short": 15440 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4・1",
+      "label": "市民税所得割額48,600円以上57,700円未満（一般世帯。ひとり親等の世帯4・0は標準7,200円/短時間7,200円でbracketBasis.noteに記録）",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": { "standard": 24000, "short": 23680 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4・3",
+      "label": "市民税所得割額57,700円以上77,101円未満（一般世帯。ひとり親等の世帯4・2は標準7,200円/短時間7,200円でbracketBasis.noteに記録）",
+      "incomeMin": 57700,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 24000, "short": 23680 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4・4",
+      "label": "市民税所得割額77,101円以上97,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 25500, "short": 25160 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "5・1",
+      "label": "市民税所得割額97,000円以上133,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 35600, "short": 35120 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "5・2",
+      "label": "市民税所得割額133,000円以上169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 37820, "short": 37310 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "6・1",
+      "label": "市民税所得割額169,000円以上235,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": { "standard": 48800, "short": 48080 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "6・2",
+      "label": "市民税所得割額235,000円以上301,000円未満",
+      "incomeMin": 235000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 51850, "short": 51080 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "7",
+      "label": "市民税所得割額301,000円以上",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 57500, "short": 56630 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "hoikuryokijunhyou",
+    "expect": [
+      "令和8年度",
+      "飯塚市",
+      "301,000円以上",
+      "57,500",
+      "48,600円未満",
+      "35,600"
+    ]
+  }
+}
