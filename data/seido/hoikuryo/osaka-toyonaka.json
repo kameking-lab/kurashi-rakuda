@@ -2,7 +2,7 @@
   "$schema": "../../schema/hoikuryo.schema.json",
   "id": "osaka-toyonaka",
   "name": "大阪府豊中市",
-  "municipalityCode": "272043",
+  "municipalityCode": "272035",
   "prefecture": "大阪府",
   "municipalityType": "中核市",
   "fiscalYear": 2026,
