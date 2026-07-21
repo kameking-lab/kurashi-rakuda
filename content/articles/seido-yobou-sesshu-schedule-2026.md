@@ -13,16 +13,13 @@
   "revision_year": 2026,
   "sources": [
     {
-      "url": "https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou28/01.html",
-      "title": "定期接種の対象疾病とワクチン",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/yobou-sesshu/index.html",
+      "title": "予防接種・ワクチン情報",
       "org": "厚生労働省",
-      "accessed": "2026-07-17"
-    },
-    {
-      "url": "https://laws.e-gov.go.jp/law/323AC0000000068",
-      "title": "予防接種法（昭和二十三年法律第六十八号）",
-      "org": "e-Gov法令検索（デジタル庁）",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["5種混合ワクチン"]
+      }
     }
   ],
   "facts": [
@@ -134,8 +131,7 @@
 
 ## 出典・根拠
 
-- 厚生労働省「定期接種の対象疾病とワクチン」
-- e-Gov法令検索（デジタル庁）「予防接種法（昭和二十三年法律第六十八号）」
+- 厚生労働省「予防接種・ワクチン情報」
 
 ---
 
