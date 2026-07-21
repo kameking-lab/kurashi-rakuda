@@ -1,0 +1,196 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kanagawa-yokosuka",
+  "name": "神奈川県横須賀市",
+  "municipalityCode": "142018",
+  "prefecture": "神奈川県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "yokosuka-r8zenki-hoikuryou-pdf",
+      "title": "保育料のご案内（２号・３号認定用）令和8年4月分から令和8年8月分までの保育料決定通知（２号・３号認定の保育料基準額表を含む）",
+      "publisher": "横須賀市 民生局福祉こども部子育て支援課",
+      "url": "https://www.city.yokosuka.kanagawa.jp/2645/genkyotodoke/documents/r8zenki_hoikuryou2-3.pdf",
+      "landingUrl": "https://www.city.yokosuka.kanagawa.jp/2645/riyousyahutangakuhukusyokuhi.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "「令和8年４月分から令和8年８月分までの保育料決定通知」に同封される案内PDF（全2ページ）。HTTP応答ヘッダのLast-Modifiedは2026-03-16で、令和8年度当初（4月）に間に合わせて準備されたことを確認済み（curl -Iで確認）。1ページ目は算定方法の説明（税年度切替・多子軽減の概要・年齢区分）、2ページ目が階層区分Ａ〜Ｄ13の保育料基準額表（3〜5歳児/0〜2歳児/0〜2歳児〈ひとり親等〉×保育標準時間/保育短時間の9列構成、うちD7-1〜D13は第1子・第2子の2行）。表は結合セルが多く単純なテキスト抽出では列が崩れるため、PyMuPDFのpage.find_tables()で座標から表構造（28行9列）を機械復元して読み取った。掲載元ページ（landingUrl）自体には本PDFへの直接リンクは無く、現況届に同封される通知文書として別URLで公開されているが、URLは認証不要で恒久的に取得できることを確認済み。",
+      "verify": {
+        "expect": [
+          "令和8 年４月分から令和8 年８月分までの保育料決定通知",
+          "343,000円以上の世帯",
+          "61,500",
+          "8,700円未満の世帯"
+        ],
+        "sourceId": "yokosuka-r8zenki-hoikuryou-pdf"
+      }
+    },
+    {
+      "id": "yokosuka-riyoshafutangaku-page",
+      "title": "利用者負担額（保育料）及び給食費について",
+      "publisher": "横須賀市 民生局福祉こども部子育て支援課",
+      "url": "https://www.city.yokosuka.kanagawa.jp/2645/riyousyahutangakuhukusyokuhi.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "ページ更新日2025年8月8日。算定方法（税額控除の不適用・定額減税の反映・税年度切替・合算対象者の範囲）、横須賀市独自施策（0〜2歳児クラスの無償化拡充＝所得割115,000円未満まで無料、多子軽減の年齢制限撤廃）、副食費免除の詳細を掲載。「２号・３号認定の保育料基準額表（PDF）」へのリンクも掲載されているが、そのリンク先ファイル（r7-4kijungakuhyou.pdf）はLast-Modifiedが2025-03-11と古く、金額・階層は本ファイルの主出典（yokosuka-r8zenki-hoikuryou-pdf）と完全一致することを確認済み（基準額表自体はR7からR8にかけて改定が無かったことの傍証）。"
+    },
+    {
+      "id": "yokosuka-kakuninhouhou-pdf",
+      "title": "保育料算定のための市民税額の確認方法（例）",
+      "publisher": "横須賀市 民生局福祉こども部子育て支援課",
+      "url": "https://www.city.yokosuka.kanagawa.jp/2645/documents/hoikuryousannteinotamenosiminnzeigakunokakuninhouhou.pdf",
+      "landingUrl": "https://www.city.yokosuka.kanagawa.jp/2645/riyousyahutangakuhukusyokuhi.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "適用しない税額控除（寄付金控除・配当控除・住宅借入金等特別税額控除・外国税額控除・配当金割額控除・株式等譲渡所得割額控除）を明記した書類見本の解説PDF。",
+      "verify": {
+        "expect": [
+          "以下の控除がある場合は、税額控除の適用を受ける前の額により決定します",
+          "住宅借入金等特別税額控除"
+        ],
+        "sourceId": "yokosuka-kakuninhouhou-pdf"
+      }
+    }
+  ],
+  "disclaimer": "本データは横須賀市公式サイトの公表内容を2026-07-21時点で機械的に整理した参考情報です。実際の利用者負担額（保育料）は世帯状況・課税内容・入所施設により決定され、最終的には横須賀市子育て支援課の決定が優先します。個別の判断は必ず横須賀市および利用施設にご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育部分）・小規模保育事業・家庭的保育事業の3号認定（0〜2歳児クラス）の月額保育料（一般世帯・第1子・保育標準時間認定/保育短時間認定）。給食費は保育料に含む。",
+      "同施設の2号認定（3〜5歳児クラス）の基本保育料（幼児教育・保育の無償化により全階層0円）",
+      "階層区分A〜D13（市民税所得割額の範囲）"
+    ],
+    "excludes": [
+      "ひとり親世帯等（身体・精神障害/療育手帳所持世帯、特別児童扶養手当・障害基礎年金受給世帯を含む）向けの軽減後の額。特にD7-1階層（所得割115,000円以上135,600円未満）はひとり親世帯等のみ0円のまま（一般世帯は標準35,400円/短時間34,900円）となる点に注意。tiers本体は一般世帯の額のみを収録し、ひとり親世帯等の列は収録しない",
+      "多子軽減後の額（D7-1〜D13階層のみ、第2子は概ね半額・第3子以降は0円。年齢・利用施設の制限なし。tiers本体は第1子の額のみを収録）",
+      "0〜2歳児クラスの延長保育料",
+      "3〜5歳児クラスの給食費（主食費・副食費）実費徴収（所得割57,700円未満〈ひとり親等77,101円未満〉世帯・第3子以降は副食費のみ免除）及び延長保育料",
+      "幼稚園・認定こども園幼稚園部分（1号認定・教育標準時間）の利用料（私学助成幼稚園は月額25,700円を上限に別途無償化）",
+      "教材費等の実費負担額（各施設が決定）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "ふたり親世帯（内縁関係含む）は父母等の合算した市民税所得割額、ひとり親世帯は子どもと同居する保護者の市民税所得割額を用いる。父母の年収合計が120万円未満（児童手当・児童扶養手当・育児休業給付金を含む）の場合は、同居の祖父母等家計の主宰者（その世帯において最高収入・最多納税の者）の市民税所得割額を算定対象に加える（ただし完全分離型の二世帯住宅の場合は算定対象外）。離婚していても同住所であれば（世帯を別にしていても）算定対象。",
+    "taxYearRule": "算定する税額の年度は4月〜8月、9月〜3月で切り替わる。4月分〜8月分は前年度（令和7年度）市民税所得割額（令和6年1月1日〜12月31日までの収入に対する税額）、9月分〜翌年3月分は当年度（令和8年度）市民税所得割額（令和7年1月1日〜12月31日までの収入に対する税額）により算定する（米軍属の方は該当暦年のW2フォームによる）。",
+    "deductionsIgnored": [
+      "住宅借入金等特別控除（税額控除前の額により決定）",
+      "寄付金控除（ふるさと納税を含む）",
+      "配当控除",
+      "外国税額控除",
+      "配当割額控除",
+      "株式等譲渡所得割額控除"
+    ],
+    "note": "原文（riyousyahutangakuhukusyokuhi.html）：「市民税所得割額には、調整控除・定額減税額（市）のみが反映されその他控除額（住宅借入金等特別控除・寄付金税額控除・配当控除・外国税額控除・配当割控除・株式等譲渡所得割控除など）を足した額で算定します。」＝上記6控除は適用前（＝控除額を足し戻した額）で算定する一方、★定額減税額（市）は反映後（適用後）の額で算定する★（川崎市・さいたま市・京都市等と同じ「適用後」方向。背景資料の別PDFでも同6控除の適用前算定を明記）。★横須賀市は中核市であり政令指定都市ではないため、政令市固有の税率調整（6/8換算等）は原典に一切記載がなく該当なし（鎌倉市・いわき市と同様の扱い）。★市民税が未申告の方や確認資料の提出がない場合は最高階層（D13）で決定する。／階層A（生活保護等）・B（非課税）はいずれも所得割0円で相互に金額のみでは判別できないためisWelfare・isNonTaxableフラグで区別する。階層C（均等割のみ課税、所得割0円）はincomeMin:0/incomeMax:1で表現し、D1（所得割0円超8,700円未満）はincomeMin:1で区別する。／D7-1とD7-2は一般世帯の保育料額（標準35,400円/短時間34,900円）が同一だが、ひとり親世帯等の無償対象範囲（D7-1のみ無償、D7-2以降は一般世帯と同額）を区別するために原典が階層を分けている。原典の階層区分どおりに2階層として収録した（捏造・統合をしていない）。",
+    "sourceId": "yokosuka-riyoshafutangaku-page",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "expect": [
+        "調整控除・定額減税額（市）のみが反映され",
+        "住宅借入金等特別控除",
+        "算定する税額の年度は4月~8月、9月~3月で切り替わります"
+      ],
+      "sourceId": "yokosuka-riyoshafutangaku-page"
+    }
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "当該年度の4月1日時点の年齢で判定する。年度中に誕生日を迎えても年齢区分に変更はない。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "幼児教育・保育の無償化により基本保育料は全階層0円。給食費・延長保育料は無償化の対象外で別途実費徴収。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "3〜5歳児クラスの基本保育料は無償化により0円",
+      "sourceId": "yokosuka-riyoshafutangaku-page",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["令和元年10月からスタートした幼児教育・保育の無償化により保育料は0円"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "令和元年10月開始の国の幼児教育・保育の無償化による0円。給食費（主食費・副食費）は別途負担。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "unit": "unit",
+      "label": "被保護世帯（階層A）・市民税非課税世帯（階層B）は0〜2歳児クラスも0円",
+      "sourceId": "yokosuka-r8zenki-hoikuryou-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["生活保護法による被保護世帯", "A階層を除き、当該年度分の市町村税が非課税の世帯"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "階層A・階層Bは0〜2歳児クラスも標準時間・短時間とも0円。加えて横須賀市独自施策により階層C・D1〜D6（市民税所得割額115,000円未満、世帯年収500万円未満相当）も0円になる（freeTuition.localExtension参照）。国基準（非課税世帯のみ無償）より対象が大幅に広い。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "生計が同一の兄・姉がいる場合、年齢は問わず（未就学に限らず、就学後の兄・姉も含む）年齢の高い順に第1子・第2子・第3子と数える。国基準の多子カウント対象は未就学児の兄・姉のみだが、横須賀市はきょうだいの年齢・利用施設に関わらず多子軽減を適用する独自拡充を行っている。兄・姉は認定申請書の記載をベースに算定する。",
+        "sourceId": "yokosuka-riyoshafutangaku-page",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし(2026-07-21時点)",
+        "verify": {
+          "expect": ["きょうだいの年齢、利用施設に関わらず、多子軽減を適用しています", "国基準の多子カウントの対象は未就学児の兄・姉のみ"]
+        },
+        "note": "D7-1〜D13階層のみ実際に金額差が生じる（A〜D6は元々0円のため「多子に関係なく無料」）。"
+      },
+      "secondChild": {
+        "value": "概ね半額（階層により端数処理あり。例: D9は第1子48,700円に対し第2子24,300円で正確な1/2ではない）",
+        "unit": "rate",
+        "label": "第2子（年齢順に2人目）の利用者負担額（D7-1〜D13階層のみ金額差あり）",
+        "sourceId": "yokosuka-r8zenki-hoikuryou-pdf",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし(2026-07-21時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は0円",
+        "sourceId": "yokosuka-riyoshafutangaku-page",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし(2026-07-21時点)"
+      }
+    },
+    "localExtension": "横須賀市独自の『保育料無償化の拡充』により、0〜2歳児クラスの保育料は世帯年収500万円未満相当（市民税所得割額115,000円未満、階層でいうA〜D6）まで無償（国基準は非課税世帯のみ無償）。ひとり親世帯等（身体・精神障害/療育手帳所持世帯、特別児童扶養手当・障害基礎年金受給世帯を含む）は市民税額による階層がD7-1以下（所得割135,600円未満）の場合に無償となり、一般世帯より無償対象が広い。また『多子減免の拡充』として、きょうだいの年齢・利用施設に関わらず多子軽減を適用する（国基準は未就学児の兄・姉のみが対象）。副食費についても年収360万円未満相当世帯（2号認定は所得割57,700円未満、ひとり親世帯等は77,101円未満）または第3子以降の子どもは免除される（scope.excludesに記載のとおり本表の対象外）。"
+  },
+  "tiers": [
+    { "tier": "A", "label": "生活保護法による被保護世帯（単給世帯を含む）、中国残留邦人等支援給付受給世帯及び里親である教育・保育給付認定保護者", "incomeMin": 0, "incomeMax": 1, "isWelfare": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "B", "label": "A階層を除き、当該年度分の市町村税が非課税の世帯", "incomeMin": 0, "incomeMax": 1, "isNonTaxable": true, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "C", "label": "A階層を除き、当該年度分の市町村税の均等割の課税世帯であって、所得割が非課税の世帯", "incomeMin": 0, "incomeMax": 1, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D1", "label": "市民税所得割課税額 8,700円未満の世帯", "incomeMin": 1, "incomeMax": 8700, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D2", "label": "市民税所得割課税額 8,700円以上 48,600円未満の世帯", "incomeMin": 8700, "incomeMax": 48600, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D3", "label": "市民税所得割課税額 48,600円以上 53,000円未満の世帯", "incomeMin": 48600, "incomeMax": 53000, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D4", "label": "市民税所得割課税額 53,000円以上 73,000円未満の世帯", "incomeMin": 53000, "incomeMax": 73000, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D5", "label": "市民税所得割課税額 73,000円以上 97,000円未満の世帯", "incomeMin": 73000, "incomeMax": 97000, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D6", "label": "市民税所得割課税額 97,000円以上 115,000円未満の世帯", "incomeMin": 97000, "incomeMax": 115000, "fees": { "under3": { "standard": 0, "short": 0 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7-1", "label": "市民税所得割課税額 115,000円以上 135,600円未満の世帯", "incomeMin": 115000, "incomeMax": 135600, "fees": { "under3": { "standard": 35400, "short": 34900 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D7-2", "label": "市民税所得割課税額 135,600円以上 169,000円未満の世帯", "incomeMin": 135600, "incomeMax": 169000, "fees": { "under3": { "standard": 35400, "short": 34900 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D8", "label": "市民税所得割課税額 169,000円以上 229,000円未満の世帯", "incomeMin": 169000, "incomeMax": 229000, "fees": { "under3": { "standard": 41400, "short": 40700 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D9", "label": "市民税所得割課税額 229,000円以上 268,000円未満の世帯", "incomeMin": 229000, "incomeMax": 268000, "fees": { "under3": { "standard": 48700, "short": 47900 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D10", "label": "市民税所得割課税額 268,000円以上 301,000円未満の世帯", "incomeMin": 268000, "incomeMax": 301000, "fees": { "under3": { "standard": 53700, "short": 52900 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D11", "label": "市民税所得割課税額 301,000円以上 322,000円未満の世帯", "incomeMin": 301000, "incomeMax": 322000, "fees": { "under3": { "standard": 58700, "short": 57800 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D12", "label": "市民税所得割課税額 322,000円以上 343,000円未満の世帯", "incomeMin": 322000, "incomeMax": 343000, "fees": { "under3": { "standard": 60000, "short": 59100 }, "age3plus": { "standard": 0, "short": 0 } } },
+    { "tier": "D13", "label": "市民税所得割課税額 343,000円以上の世帯", "incomeMin": 343000, "incomeMax": null, "fees": { "under3": { "standard": 61500, "short": 60500 }, "age3plus": { "standard": 0, "short": 0 } } }
+  ],
+  "verify": {
+    "sourceId": "yokosuka-r8zenki-hoikuryou-pdf",
+    "expect": [
+      "343,000円以上の世帯",
+      "61,500",
+      "60,500",
+      "8,700円未満の世帯"
+    ]
+  }
+}

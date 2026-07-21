@@ -1,0 +1,351 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "aomori-hachinohe",
+  "name": "青森県八戸市",
+  "municipalityCode": "022039",
+  "prefecture": "青森県",
+  "municipalityType": "中核市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-21",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "令和8年度 保育料（利用者負担額）基準額表",
+      "publisher": "八戸市こども未来課",
+      "url": "https://www.city.hachinohe.aomori.jp/material/files/group/34/R8-2hoikuryou.pdf",
+      "landingUrl": "https://www.city.hachinohe.aomori.jp/soshikikarasagasu/kodomomiraika/kosodate/1/hoikuriyou/24538.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "「令和8年度 保育料（利用者負担額）」の表題で、3歳未満児（令和8年4月1日時点の年齢）の階層表（第1〜第18階層、保育標準時間・保育短時間×ひとり親世帯等以外・ひとり親世帯等の第1子額）と算定方法（税年度切替、扶養義務者の合算基準、適用しない税額控除）を1頁に収録。★結合セルが多く単純なテキスト抽出では列と行がずれるため、PyMuPDF の page.find_tables() で表構造を座標から復元して読んだ。"
+    },
+    {
+      "id": "riyou-page",
+      "title": "令和8年度 認定こども園・幼稚園・保育所 利用案内",
+      "publisher": "八戸市こども未来課",
+      "url": "https://www.city.hachinohe.aomori.jp/soshikikarasagasu/kodomomiraika/kosodate/1/hoikuriyou/24538.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "fee-pdf の掲載元ページ。更新日2026年7月16日。認定区分・保育必要量（保育標準時間/保育短時間の利用時間）の説明を掲載。"
+    },
+    {
+      "id": "musyouka-pdf",
+      "title": "令和8年度 幼児教育・保育無償化についてのご案内",
+      "publisher": "八戸市こども未来課",
+      "url": "https://www.city.hachinohe.aomori.jp/material/files/group/34/R8youjikyouikuhoikumusyouka.pdf",
+      "landingUrl": "https://www.city.hachinohe.aomori.jp/soshikikarasagasu/kodomomiraika/kosodate/1/6/24746.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "1号・2号・3号認定別に無償化の対象・対象外（副食費・通園送迎費・行事費・延長保育料等の実費）を整理。副食費免除基準（年収360万円未満相当世帯、または第3子以降）も掲載。"
+    },
+    {
+      "id": "dai2ko-page",
+      "title": "【令和8年度から】第2子以降の児童の保育料を無償化します",
+      "publisher": "八戸市こども未来課",
+      "url": "https://www.city.hachinohe.aomori.jp/soshikikarasagasu/kodomomiraika/kosodate/1/hoikuriyou/25248.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-21",
+      "tier": "municipality",
+      "note": "更新日2026年6月18日。令和8年4月から、0〜2歳児クラス（令和5年4月2日以降生まれ）の保護者が扶養する第2子以降の保育料を、所得やきょうだいの年齢を問わず無償化する旨と、扶養している児童の定義（18歳未満、大学生等は22歳まで、甥姪も可）を掲載。財源の一部に青森県学校給食費無償化等子育て支援市町村交付金を活用。"
+    }
+  ],
+  "disclaimer": "本データは八戸市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず八戸市（こども未来課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園・小規模保育事業（地域型保育事業）の保育料（利用者負担額）",
+      "保育標準時間認定・保育短時間認定の別",
+      "ひとり親世帯等以外・ひとり親世帯等の第1子の額"
+    ],
+    "excludes": [
+      "給食費（副食費。3歳以上児及び令和5年4月1日以前生まれの2号認定児が対象。年収360万円未満相当世帯・第3子以降は免除）",
+      "延長保育料（無償化の対象外。各施設が独自に設定）",
+      "通園送迎費・行事費等、保育以外に係る実費徴収分",
+      "病児・病後児保育等、他のサービスの利用料",
+      "認可外保育施設の利用料（別途、月額上限42,000円までの助成制度あり。本ファイル未収録）",
+      "第2子以降の保育料（令和8年4月から八戸市独自に無償化のため、本ファイルのtiersには第1子の額のみ収録）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "父母の市民税額の合計から算定する。ただし、父母の合計所得金額（利用者負担額算定の基礎となる市町村民税額の算定の基礎となる合計所得金額）が96万円以下（ひとり親等の場合は48万円以下。令和8年4月〜8月の保育料算定時）または116万円以下（ひとり親等の場合は58万円以下。令和8年9月〜9年3月の保育料算定時）の場合で、父母以外の同居祖父母等が家計の主宰者と判断されるときは、当該同居祖父母等の市民税額を含めて算定する。",
+    "taxYearRule": "令和8年4月分〜8月分の保育料は令和7年度の市民税額から算定。令和8年9月分〜令和9年3月分の保育料は令和8年度の市民税額から算定する。",
+    "deductionsIgnored": [
+      "寄附金税額控除",
+      "外国税額控除",
+      "配当控除",
+      "住宅借入金等特別税額控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-21",
+    "verify": {
+      "expect": ["市民税所得割の額は、寄附金税額控除・外国税額控除・配当控除・住宅借入金等特別税額控除を適用する前の額"]
+    },
+    "note": "★6/8換算について★ 八戸市は中核市であり政令指定都市ではない。fee-pdf・riyou-pageのいずれにも政令指定都市の6/8税率換算や、政令指定都市からの転入者に関する特例の記載は見当たらなかった（未確認: 該当する規定自体が存在しない可能性が高いが、八戸市への個別照会はしていない）。★階層区分★ 第1=生活保護世帯等（isWelfare）、第2=市民税非課税世帯（isNonTaxable）。第3=市民税均等割のみ課税の世帯で、金額が発生する（0円ではない。標準17,000円・ひとり親等8,000円）点に注意。第4以降は所得割額の階層。incomeMin/incomeMaxは第1・第2を便宜上0/0とし、第3はincomeMin 0・incomeMax 1（所得割額ちょうど0円のみを含む区分）とした上で第4のincomeMinを1に接続させている。★ひとり親世帯等の軽減対象範囲★ 原典の凡例「第3〜第7階層：表『ひとり親世帯等』を参照／第8〜第18階層：ひとり親世帯等以外と同じ」のとおり、ひとり親世帯等（ひとり親世帯、在宅障がい児（者）のいる世帯等）向けの軽減額は所得割額77,101円未満（第3〜第7階層）にのみ存在し、第8階層（77,101円以上）以降はひとり親世帯等であっても一般世帯と同額になる。本ファイルのtiers.feesにはひとり親世帯等以外（一般世帯）の第1子額のみを収録し、ひとり親世帯等の額はlabelに併記した。★未申告時の扱い★ fee-pdf・riyou-pageに未申告時の階層決定に関する明文の規定は見当たらなかった（未確認）。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満（令和8年4月1日時点の年齢）",
+      "rule": "令和8年4月1日時点の年齢（クラス年齢）で判定する。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上（1号認定は全員、2号認定は令和2年4月2日〜令和5年4月1日生まれの子ども）",
+      "rule": "musyouka-pdfの区分による。2号認定のうち令和2年4月2日から令和5年4月1日の間に生まれた子どもが対象。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "1号認定は全員、2号認定は令和2年4月2日〜令和5年4月1日生まれの子どもの保育料は無償",
+      "sourceId": "musyouka-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["保育所又は認定こども園の月々の保育料が無償化されます"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。保育料以外の通園送迎費・食材料費（副食費含む）・行事費等は無償化の対象外で、施設に直接支払う。副食費は年収360万円未満相当世帯の子ども、または小学校就学前（1号認定は小学校3年生まで）の子どものうち第3子以降は免除。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "令和5年4月2日以降生まれの2号・3号認定の子どものうち市民税非課税世帯は保育料が無償",
+      "sourceId": "musyouka-pdf",
+      "checkedAt": "2026-07-21",
+      "verify": {
+        "expect": ["市民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-21時点)",
+      "note": "「令和5年4月2日以降の生まれの2号・3号認定のお子様で市民税非課税世帯の方」の保育料が無償化される（musyouka-pdf）。非課税世帯の判定は令和8年4月〜8月は令和7年度分、9月以降は令和8年度分の市民税による。階層表の第2階層（市民税非課税世帯）は保育標準時間・保育短時間ともに0円。第1階層（生活保護世帯等）も同様に0円。第3階層（市民税均等割のみ課税）は0円ではない点に注意。"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "0〜2歳児クラス（令和5年4月2日以降に生まれた児童）の保護者が現に扶養している児童のうち第2子以降を対象とする。「扶養している児童」とは、父母及び祖父母等、世帯の構成員が所得税及び社会保険等で扶養の対象としている18歳未満の児童（年度途中に18歳に達する場合はその年度末まで）。主として世帯が扶養している大学生等は22歳に達する日以後最初の3月31日まで対象。保護者の甥・姪も、保護者が扶養している場合に限り対象。",
+        "sourceId": "dai2ko-page",
+        "checkedAt": "2026-07-21",
+        "verify": {
+          "expect": ["扶養の対象としている18歳未満の児童"]
+        },
+        "amendmentNote": "なし(2026-07-21時点)",
+        "note": "令和8年4月から八戸市独自に開始。対象は0〜2歳児クラス（3号認定相当）の第2子以降の保育料のみで、保護者の所得状況やきょうだいの年齢は問わない。認可外保育施設に入所する場合は別途、月額上限42,000円までの助成制度がある（本ファイル未収録）。"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子以降は無償化（令和8年4月〜。所得・きょうだいの年齢を問わない）",
+        "sourceId": "dai2ko-page",
+        "checkedAt": "2026-07-21",
+        "verify": {
+          "expect": ["第2子以降の児童について保育料を無償化します"]
+        },
+        "amendmentNote": "なし(2026-07-21時点)",
+        "note": "八戸市はこれまで認可保育所等に入所している第3子以降の保育料軽減を実施してきたが、令和8年4月から第2子以降に拡充した。財源の一部に青森県学校給食費無償化等子育て支援市町村交付金を活用。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降も同様に無償",
+        "sourceId": "dai2ko-page",
+        "checkedAt": "2026-07-21",
+        "amendmentNote": "なし(2026-07-21時点)",
+        "note": "第2子以降が一律無償化されたため第3子以降も当然無償。令和8年3月以前から実施していた第3子以降の軽減を包含する形。"
+      }
+    },
+    "localExtension": "八戸市独自: 令和8年4月から、0〜2歳児クラス（令和5年4月2日以降生まれ）の保護者が扶養する第2子以降の保育料を、所得状況やきょうだいの年齢を問わず無償化した（認可保育所・認定こども園・小規模保育事業）。認可外保育施設に入所している場合も月額上限42,000円までの保育料助成がある（本ファイル未収録）。3歳以上（2号認定のうち令和2年4月2日〜令和5年4月1日生まれ、1号認定）は国の無償化により別途無料。"
+  },
+  "tiers": [
+    {
+      "tier": "第1",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第2",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第3",
+      "label": "市民税均等割のみ（ひとり親世帯等以外17,000円・標準時間／ひとり親世帯等8,000円・標準時間）",
+      "incomeMin": 0,
+      "incomeMax": 1,
+      "fees": {
+        "under3": { "standard": 17000, "short": 16800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第4",
+      "label": "市民税所得割48,600円未満（ひとり親世帯等は標準9,000円・短時間9,000円）",
+      "incomeMin": 1,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 19500, "short": 19300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第5",
+      "label": "48,600円以上57,700円未満（ひとり親世帯等は標準9,000円・短時間9,000円）",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": { "standard": 24000, "short": 23600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第6",
+      "label": "57,700円以上65,000円未満（ひとり親世帯等は標準9,000円・短時間9,000円）",
+      "incomeMin": 57700,
+      "incomeMax": 65000,
+      "fees": {
+        "under3": { "standard": 24500, "short": 24100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第7",
+      "label": "65,000円以上77,101円未満（ひとり親世帯等は標準9,000円・短時間9,000円。ひとり親世帯等軽減の対象上限）",
+      "incomeMin": 65000,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 25000, "short": 24600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第8",
+      "label": "77,101円以上97,000円未満（ひとり親世帯等以外と同額。この階層以降ひとり親世帯等の軽減なし）",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 25500, "short": 25100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第9",
+      "label": "97,000円以上111,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 111000,
+      "fees": {
+        "under3": { "standard": 31000, "short": 30500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第10",
+      "label": "111,000円以上125,000円未満",
+      "incomeMin": 111000,
+      "incomeMax": 125000,
+      "fees": {
+        "under3": { "standard": 35500, "short": 35000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第11",
+      "label": "125,000円以上149,000円未満",
+      "incomeMin": 125000,
+      "incomeMax": 149000,
+      "fees": {
+        "under3": { "standard": 41000, "short": 40400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第12",
+      "label": "149,000円以上169,000円未満",
+      "incomeMin": 149000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 41500, "short": 40900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第13",
+      "label": "169,000円以上195,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 195000,
+      "fees": {
+        "under3": { "standard": 44000, "short": 43300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第14",
+      "label": "195,000円以上219,000円未満",
+      "incomeMin": 195000,
+      "incomeMax": 219000,
+      "fees": {
+        "under3": { "standard": 44500, "short": 43800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第15",
+      "label": "219,000円以上258,000円未満",
+      "incomeMin": 219000,
+      "incomeMax": 258000,
+      "fees": {
+        "under3": { "standard": 45000, "short": 44300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第16",
+      "label": "258,000円以上301,000円未満",
+      "incomeMin": 258000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 47000, "short": 46300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第17",
+      "label": "301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 49000, "short": 48200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第18",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 53500, "short": 52600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "令和8年度",
+      "保育料（利用者負担額）",
+      "53,500",
+      "397,000円以上"
+    ]
+  }
+}
