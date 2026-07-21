@@ -1,0 +1,339 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "aichi-owariasahi",
+  "name": "愛知県尾張旭市",
+  "municipalityCode": "232262",
+  "prefecture": "愛知県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "fee-page",
+      "title": "保育料について",
+      "publisher": "尾張旭市こども子育て部保育課",
+      "url": "https://www.city.owariasahi.lg.jp/site/kosodate-sukusuku/1780.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "ページ更新日2025-08-22。添付の「3号保育料表」PDF（fee-pdf）本体のメタデータ作成日は2026-01-22で、令和8年度向けに更新されたものであることを確認。"
+    },
+    {
+      "id": "fee-pdf",
+      "title": "３号認定子どもに係る保育料表",
+      "publisher": "尾張旭市こども子育て部保育課",
+      "url": "https://www.city.owariasahi.lg.jp/uploaded/attachment/36645.pdf",
+      "landingUrl": "https://www.city.owariasahi.lg.jp/site/kosodate-sukusuku/1780.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータのcreationDate 2026-01-22（令和8年度向け更新版）。1頁もの。C1〜D4階層は「ひとり親世帯等」と「上記以外の世帯」で額が分かれ、D5階層以降は区分なく単一額になる。"
+    },
+    {
+      "id": "hoiku-guide",
+      "title": "保育所・小規模保育事業所（特別保育等含む）の利用方法等",
+      "publisher": "尾張旭市こども子育て部保育課",
+      "url": "https://www.city.owariasahi.lg.jp/kurasi/kosodate/hoiku/hoikuen/27index.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "3歳児クラス以降の無償化について明記したページ（fee-pdf自体には3号認定子ども専用の表のため3歳以上児の記載がない）。"
+    }
+  ],
+  "disclaimer": "本データは尾張旭市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず尾張旭市（こども子育て部保育課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "3号認定子ども（3歳未満児）の一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "1号・2号認定の保育料（国の無償化により無料）",
+      "ひとり親世帯等の軽減額（C1〜D4階層で一般世帯と別建て。本ファイルには一般世帯分のみ収録。note参照）",
+      "2人目以降の軽減後の額（本ファイルのtiersは第1子の額のみ収録。note参照）",
+      "延長保育料（A・B階層は0円、C・D階層は1,000円。本ファイル未収録）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "3号認定子どもの保護者又は生計主宰者（祖父母等を含みうる）の市町村民税の額の合計額。C1階層のみ均等割の額の合計額を用いる。",
+    "taxYearRule": "4月分から8月分までは前年度分、9月分以降は当年度分の市町村民税額に基づき決定する。",
+    "deductionsIgnored": [
+      "住宅借入金等特別税額控除",
+      "寄附金税額控除",
+      "配当控除",
+      "外国税額控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["所得割の額を\n計算する場合には、住宅借入金等特別税額控除、寄附金税額控除、配当控除や外国税額控除などは、適用しないもの\nとします。"]
+    },
+    "note": "★6/8換算について★ 尾張旭市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯等（isWelfare）、B=市町村民税非課税世帯・里親委託児童のいる世帯（isNonTaxable）、C1=市町村民税均等割額のみ。incomeMin/incomeMaxはA・B・C1を便宜上0/0とした。★ひとり親世帯等の別建て軽減がC1〜D4階層に存在★ C1（一般8,000円/7,800円 vs ひとり親等2,250円/2,200円）〜D4（一般16,500円/16,200円 vs ひとり親等8,250円/8,100円）まで別建ての額があり、D5階層以降は区分なく単一額になる。本ファイルのtiersには一般世帯（「上記以外の世帯」）の額のみ収録し、ひとり親等の額はこのnoteに原典表記のまま保存した。★多子軽減が3層構造★ ①C1〜D1階層（ひとり親等はD4まで）: 生計を一にするきょうだい等（年齢不問）で最年長から順に2人目半額・3人目以降0円（ひとり親等は2人目以降0円）。②D2階層（ひとり親等はD5）〜D16階層: 同一世帯の小学校就学前のきょうだい等が特定教育・保育施設等を同時利用している場合、最年長の子から順に2人目半額・3人目以降0円。③3歳未満児クラス利用世帯で18歳未満のきょうだい等を2人以上（3歳未満児1人以上含む）監護し生計を同じにする場合、出生の早い順に2人目以降の3歳未満児が保育所等利用中なら、C1〜D7階層は0円・D8〜D14階層は半額（①②の額といずれか低い方）。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3号認定（3歳未満）",
+      "rule": "入所した日の属する年度の初日における教育・保育給付認定区分による。"
+    },
+    {
+      "key": "age3plus",
+      "label": "1号・2号認定（3歳以上）",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳児クラス以降の保育料は0円",
+      "sourceId": "hoiku-guide",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["3歳児クラス以降の保育料については、令和元年10月から開始された幼児教育・保育の無償化に伴い0円となります。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。給食費や延長保育料等は無償化の対象外。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（市町村民税非課税世帯・里親委託児童のいる世帯）は3号保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "年収約360万円未満相当の世帯（C1〜D1階層、ひとり親世帯等はD4階層まで）は、生計を一にするきょうだい等の年齢にかかわらず最年長から順に数える。年収約360万円以上相当の世帯（D2〜D16階層、ひとり親世帯等はD5階層以降）は、小学校就学前のきょうだい等が特定教育・保育施設等を同時に利用している最年長の子どもから順に数える。",
+        "sourceId": "fee-page",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["最年長のきょうだい等から順に2人目半額、3人目以降0円とします。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "半額",
+        "sourceId": "fee-page",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["最年長のきょうだい等から順に2人目半額、3人目以降0円とします。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "3人目以降は0円",
+        "sourceId": "fee-page",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "扶養義務者が18歳未満の児童を2人以上養育する場合、出生の最も早い者から順次数えて2番目以降の3歳未満児の保育料が、C1〜D7階層は0円、D8〜D14階層は半額になる独自の追加軽減がある（①②の額といずれか低い方を適用）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護法による被保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市町村民税非課税世帯・里親委託児童のいる世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市町村民税均等割額のみ",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 8000, "short": 7800 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "所得割額10,000円未満",
+      "incomeMin": 0,
+      "incomeMax": 10000,
+      "fees": {
+        "under3": { "standard": 9000, "short": 8800 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "所得割額48,600円未満",
+      "incomeMin": 10000,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 10500, "short": 10300 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "所得割額57,700円未満",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": { "standard": 12500, "short": 12200 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "所得割額60,000円未満",
+      "incomeMin": 57700,
+      "incomeMax": 60000,
+      "fees": {
+        "under3": { "standard": 12500, "short": 12200 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "所得割額67,000円未満",
+      "incomeMin": 60000,
+      "incomeMax": 67000,
+      "fees": {
+        "under3": { "standard": 14000, "short": 13700 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割額77,101円未満",
+      "incomeMin": 67000,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 16500, "short": 16200 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割額81,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 81000,
+      "fees": {
+        "under3": { "standard": 16500, "short": 16200 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "所得割額89,000円未満",
+      "incomeMin": 81000,
+      "incomeMax": 89000,
+      "fees": {
+        "under3": { "standard": 22000, "short": 21600 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "所得割額97,000円未満",
+      "incomeMin": 89000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 27000, "short": 26500 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "所得割額125,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 125000,
+      "fees": {
+        "under3": { "standard": 31500, "short": 30900 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "所得割額143,000円未満",
+      "incomeMin": 125000,
+      "incomeMax": 143000,
+      "fees": {
+        "under3": { "standard": 36500, "short": 35800 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "所得割額161,000円未満",
+      "incomeMin": 143000,
+      "incomeMax": 161000,
+      "fees": {
+        "under3": { "standard": 41000, "short": 40300 }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "所得割額169,000円未満",
+      "incomeMin": 161000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 44500, "short": 43700 }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "所得割額220,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 220000,
+      "fees": {
+        "under3": { "standard": 49000, "short": 48100 }
+      }
+    },
+    {
+      "tier": "D13",
+      "label": "所得割額250,000円未満",
+      "incomeMin": 220000,
+      "incomeMax": 250000,
+      "fees": {
+        "under3": { "standard": 51500, "short": 50600 }
+      }
+    },
+    {
+      "tier": "D14",
+      "label": "所得割額301,000円未満",
+      "incomeMin": 250000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 52500, "short": 51600 }
+      }
+    },
+    {
+      "tier": "D15",
+      "label": "所得割額397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 54000, "short": 53000 }
+      }
+    },
+    {
+      "tier": "D16",
+      "label": "所得割額397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 55500, "short": 54500 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "３号認定子どもに係る保育料表",
+      "55,500円",
+      "397,000円以上"
+    ]
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kyoto-kameoka",
+  "name": "京都府亀岡市",
+  "municipalityCode": "262064",
+  "prefecture": "京都府",
+  "municipalityType": "その他市",
+  "fiscalYear": 2024,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "amendments": [
+    {
+      "summary": "亀岡市の保育料表ページ（fee-page）が2026-07-22時点で公開している保育料表PDFは「R6保育料表」（PDFメタデータ作成日2024-06-04）のままで、令和7年度・令和8年度版への更新が確認できない。ページ本文の税年度切替規定（4〜8月分は前年度、9〜3月分は当年度の市町村民税額）自体は継続適用されると読めるが、階層区分の金額そのものがR6以降据え置かれているのか、単に未更新なのかは公式資料からは判別できないため、fiscalYearをR6（2024年度）とし、下記金額がR8（2026年度）にそのまま適用されるかは要確認として扱う。",
+      "status": "under-review",
+      "sourceId": "fee-page"
+    }
+  ],
+  "sources": [
+    {
+      "id": "fee-page",
+      "title": "保育料",
+      "publisher": "亀岡市こども未来部保育課",
+      "url": "https://www.city.kameoka.kyoto.jp/soshiki/28/3500.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "本文に添付された「令和6年度保育料表」PDF（fee-pdf）を含めて実査。ページ本文自体には年度表記のない常設の制度説明（税年度切替規定・多子軽減・Q&A）が掲載されている。"
+    },
+    {
+      "id": "fee-pdf",
+      "title": "令和６年度保育料表（保育所・認定こども園（3号認定））",
+      "publisher": "亀岡市こども未来部保育課",
+      "url": "https://www.city.kameoka.kyoto.jp/uploaded/attachment/36667.pdf",
+      "landingUrl": "https://www.city.kameoka.kyoto.jp/soshiki/28/3500.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータ（title: R6保育料表、creationDate: 2024-06-04）から令和6年度版であることを確認。PyMuPDFのpage.find_tables()で座標ベースに表構造を復元して読んだ（結合セルが多いため単純テキスト抽出では列がずれる）。"
+    },
+    {
+      "id": "2nd-child-free",
+      "title": "令和5年4月から第2子以降の保育料無料化をスタート",
+      "publisher": "亀岡市こども未来部保育課",
+      "url": "https://www.city.kameoka.kyoto.jp/soshiki/28/47716.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "令和5年4月開始の市独自施策。所得制限・きょうだいの年齢制限なし、同時利用（在園）要件もなしと明記。"
+    }
+  ],
+  "disclaimer": "本データは亀岡市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず亀岡市（こども未来部保育課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "認可保育所・認定こども園（保育部分）の2号・3号認定子どものうち3歳未満児・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児クラスの保育料（国の無償化により全階層0円）",
+      "第2子以降の額（市独自の完全無料化により0円。note・sources参照）",
+      "京都府第3子以降保育料無償化事業（C13階層以上は所得制限のため対象外という条件付きで、市独自の第2子以降無料化と重複する範囲がある）",
+      "延長保育料・休日保育料等の実費（第2子以降は無料化対象に含まれる旨、2nd-child-freeソースに明記）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "父母それぞれの市民税の合算額で階層判定を行う。父母以外の保護者（祖父母など）が家計の主宰者と判断される場合は、当該主宰者の課税額で階層認定を行う。",
+    "taxYearRule": "4～8月の保育料は前年度の市町村民税所得割額から算定し、9～3月の保育料は当該年度の市町村民税所得割額から算定する。",
+    "deductionsIgnored": [
+      "住宅借入金等特別控除",
+      "寄付金控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["住宅借入金等特別控除・寄付金控除等の適用前で保育料を算定します。"]
+    },
+    "note": "★6/8換算について★ 亀岡市は中核市・施行時特例市のいずれでもない一般市。fee-page/fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯（isWelfare）、B=市町村民税非課税世帯（isNonTaxable）、C1=均等割の額のみ（所得割の額のない世帯）。incomeMin/incomeMaxはA・Bを便宜上0/0、C1をincomeMin 0・incomeMax 0（所得割0円）とした上でC2のincomeMinを0に接続させた。★所得割額表記は範囲併記型★（『◯◯円以上◯◯円未満』）で、福島市型の累積簡略表記とは異なる。★ひとり親等の別建て軽減は本ページに見当たらず★（他都市で見られるA階層以外の低所得帯向け別建て軽減の記載なし。京都府第3子以降無償化・市独自第2子以降無償化のみが軽減制度として存在）。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児（3号認定）",
+      "rule": "当該年度4月初日時点での年齢とし、当該年度中はその年齢を適用する。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上児の利用者負担額は全階層0円",
+      "sourceId": "fee-page",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["幼児教育・保育の無償化"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "3歳未満児のうちB階層（市町村民税非課税世帯）は保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "生計を同一にしているお子様のうち最年長者を第1子、その下の子を第2子とカウントする。保育所・幼稚園等を同時利用している必要はない。",
+        "sourceId": "2nd-child-free",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["生計を同一にしているお子様のうち最年長者を第1子、その下の子を第2子とカウントしていきます。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "令和5年4月から第2子以降は所得制限・年齢制限なしで完全無料化（市独自）",
+        "sourceId": "2nd-child-free",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["亀岡市に住民登録のある第2子以降の保育料を、所得制限およびきょうだいの年齢制限なく無料化します。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子以降無料化に含まれるため第3子以降も無料",
+        "sourceId": "2nd-child-free",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "令和5年4月から市独自に第2子以降の保育料を所得制限・きょうだいの年齢制限なしで完全無料化（延長保育料・休日保育料等も含む）。京都府第3子以降保育料無償化事業（C13階層以上は所得制限のため対象外）は、市独自の第2子以降無料化と重複する範囲がある。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護法による被保護世帯（単給世帯含む）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "均等割の額のみ（所得割の額のない世帯）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 10300, "short": 8500 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "所得割額10,000円未満",
+      "incomeMin": 0,
+      "incomeMax": 10000,
+      "fees": {
+        "under3": { "standard": 12000, "short": 10200 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "所得割額10,000円以上48,600円未満",
+      "incomeMin": 10000,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 13800, "short": 11800 }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "所得割額48,600円以上57,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 57000,
+      "fees": {
+        "under3": { "standard": 16800, "short": 14600 }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "所得割額57,000円以上63,000円未満",
+      "incomeMin": 57000,
+      "incomeMax": 63000,
+      "fees": {
+        "under3": { "standard": 18700, "short": 16100 }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "所得割額63,000円以上67,000円未満",
+      "incomeMin": 63000,
+      "incomeMax": 67000,
+      "fees": {
+        "under3": { "standard": 22100, "short": 18900 }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "所得割額67,000円以上77,000円未満",
+      "incomeMin": 67000,
+      "incomeMax": 77000,
+      "fees": {
+        "under3": { "standard": 28800, "short": 24300 }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "所得割額77,000円以上97,000円未満",
+      "incomeMin": 77000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 30000, "short": 27000 }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "所得割額97,000円以上110,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 110000,
+      "fees": {
+        "under3": { "standard": 38500, "short": 33000 }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "所得割額110,000円以上130,000円未満",
+      "incomeMin": 110000,
+      "incomeMax": 130000,
+      "fees": {
+        "under3": { "standard": 43000, "short": 40000 }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "所得割額130,000円以上150,000円未満",
+      "incomeMin": 130000,
+      "incomeMax": 150000,
+      "fees": {
+        "under3": { "standard": 44000, "short": 42000 }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "所得割額150,000円以上169,000円未満",
+      "incomeMin": 150000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 44500, "short": 43900 }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "所得割額169,000円以上301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 55000, "short": 49500 }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "所得割額301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 56500, "short": 51000 }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "所得割額397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 72800, "short": 67300 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "令 和 ６ 年 度",
+      "72,800",
+      "397,000円以上"
+    ]
+  }
+}

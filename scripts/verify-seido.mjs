@@ -276,6 +276,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.hanamaki.iwate.jp', // 花巻市の公式サイト
   'city.fukuroi.shizuoka.jp', // 袋井市の公式サイト
   'city.ama.aichi.jp', // あま市の公式サイト
+  'city.kameoka.kyoto.jp', // 亀岡市の公式サイト
+  'city.ayase.kanagawa.jp', // 綾瀬市の公式サイト
 ];
 
 const args = process.argv.slice(2);
