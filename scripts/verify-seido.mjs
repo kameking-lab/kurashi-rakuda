@@ -161,6 +161,7 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.morioka.iwate.jp', // 盛岡市（中核市）の公式サイトは city.morioka.iwate.jp（.lg.jp版なし。P2-D01 東日本・2026-07-18）
   'city.maebashi.gunma.jp', // 前橋市（中核市）の公式サイトは city.maebashi.gunma.jp（.lg.jp版なし。P2-D01 東日本・2026-07-18）
   'city.yokosuka.kanagawa.jp', // 横須賀市（中核市）の公式サイトは city.yokosuka.kanagawa.jp（city.yokosuka.lg.jp は存在せずDNS解決しない。2026-07-21）
+  'city.higashiomi.shiga.jp', // 東近江市（その他市）の公式サイトは city.higashiomi.shiga.jp（city.higashiomi.lg.jp は名前解決してもサイトが応答しない。2026-07-21）
   // 西宮市（中核市）の公式サイトは独自ドメイン nishi.or.jp。旧 city.nishinomiya.lg.jp は
   // 現在別サービス（CDN）を指しており使えないため個別に許可する（P2-D01・2026-07-18）。
   'nishi.or.jp',
