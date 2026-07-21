@@ -16,7 +16,10 @@
       "url": "https://www.city.ageo.lg.jp/uploaded/attachment/82931.pdf",
       "title": "レンジ出力換算表（消費生活情報ページ掲載PDF）",
       "org": "埼玉県上尾市",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["レンジ出力換算表"]
+      }
     }
   ],
   "facts": [
