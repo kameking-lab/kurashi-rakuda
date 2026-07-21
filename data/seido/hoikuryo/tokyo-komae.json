@@ -2,7 +2,7 @@
   "$schema": "../../schema/hoikuryo.schema.json",
   "id": "tokyo-komae",
   "name": "東京都狛江市",
-  "municipalityCode": "132209",
+  "municipalityCode": "132195",
   "prefecture": "東京都",
   "municipalityType": "その他市",
   "fiscalYear": 2026,
