@@ -21,6 +21,7 @@ import {
   type HoikuryoIndexEntry,
 } from "@/lib/tools/impl/hoikuryo.index.generated";
 import { loadMunicipality } from "@/lib/tools/impl/hoikuryo.loader";
+import { groupMunicipalitiesByPrefecture, countMatched } from "@/lib/tools/impl/hoikuryo-municipality-search";
 // ★既定自治体（横浜市）だけは同梱して初期描画を同期にする★
 // 全147自治体（約3.2MB）は載せないが、初期表示の1件（約23KB）を静的 import することで、
 // 初期レンダで結果まで出し切り、非同期読込による初回レイアウトシフト（CLS）を無くす（診断 B-4）。
@@ -82,6 +83,59 @@ function SourceList({ m }: { m: HoikuryoMunicipality }) {
         </li>
       ))}
     </ul>
+  );
+}
+
+/**
+ * 対応自治体の全件一覧（展開式・都道府県グルーピング。DIAG-A4-2）。
+ * 検索語があれば都道府県ごとの折りたたみを既定で開く（絞り込んだのに再タップさせない）。
+ * 検索語が無ければ既定で閉じる（155件を初めから並べて長大なDOMにしない）。
+ */
+function MunicipalityListDisclosure({
+  query,
+  onPick,
+}: {
+  query: string;
+  onPick: (id: string) => void;
+}) {
+  const hasQuery = query.trim() !== "";
+  const groups = groupMunicipalitiesByPrefecture(municipalitiesIndex, query);
+  const matched = countMatched(groups);
+
+  if (groups.length === 0) {
+    return <p className="text-sm text-ink-muted">「{query}」に一致する自治体はありません。</p>;
+  }
+
+  return (
+    <div className="space-y-2">
+      {hasQuery && (
+        <p className="text-sm text-ink-muted" role="status" aria-live="polite">
+          {matched}件見つかりました
+        </p>
+      )}
+      <div className="max-h-96 space-y-1 overflow-y-auto">
+        {groups.map((g) => (
+          <details key={`${g.prefecture}-${hasQuery}`} className="rounded border border-line/60 px-3 py-2" open={hasQuery}>
+            <summary className="cursor-pointer text-sm font-medium">
+              {g.prefecture}（{g.items.length}）
+            </summary>
+            <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 pl-1 text-sm text-ink-muted">
+              {g.items.map((m) => (
+                <li key={m.id}>
+                  <button
+                    type="button"
+                    className="underline decoration-line underline-offset-4 hover:text-ink"
+                    onClick={() => onPick(m.id)}
+                  >
+                    {m.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </details>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -150,6 +204,11 @@ export function Hoikuryo() {
   const [advanced, setAdvanced] = useState(false);
   const [income, setIncome] = useState("");
   const [hasGrandparents, setHasGrandparents] = useState(false);
+
+  // ---- 対応自治体の全件一覧（展開式。DIAG-A4-2） ----
+  // ★開くまで一覧をレンダリングしない★（1,700超まで伸びる前提のため、閉じている間はDOM/描画コストを払わない）
+  const [municipalityListOpen, setMunicipalityListOpen] = useState(false);
+  const [municipalityListQuery, setMunicipalityListQuery] = useState("");
 
   // ---- 8a 年収→推計モード（2026-07-17 検算合格により解禁。specs/s-tools/01 §3.2 入力8a） ----
   const [salaryA, setSalaryA] = useState("");
@@ -410,6 +469,35 @@ export function Hoikuryo() {
           </>
         )}
       </div>
+
+      {/* ---------------------------------------- 対応自治体の全件一覧（展開式。DIAG-A4-2） */}
+      <details
+        className="rounded-card border border-line p-4"
+        open={municipalityListOpen}
+        onToggle={(e) => setMunicipalityListOpen(e.currentTarget.open)}
+      >
+        <summary className="cursor-pointer font-medium">
+          対応している{municipalitiesIndex.length}自治体の一覧を見る
+        </summary>
+        {municipalityListOpen && (
+          <div className="mt-3 space-y-3">
+            <label htmlFor="hoikuryo-municipality-list-search" className="sr-only">
+              自治体名で絞り込む
+            </label>
+            <input
+              id="hoikuryo-municipality-list-search"
+              type="search"
+              value={municipalityListQuery}
+              onChange={(e) => setMunicipalityListQuery(e.target.value)}
+              placeholder="市区町村名・都道府県名で絞り込み（例: 横浜 / 神奈川）"
+              autoComplete="off"
+              maxLength={30}
+              className="min-h-12 w-full rounded-card border border-line bg-paper px-4 text-base text-ink"
+            />
+            <MunicipalityListDisclosure query={municipalityListQuery} onPick={setMunicipalityId} />
+          </div>
+        )}
+      </details>
 
       {/* ---------------------------------------- 選択した自治体の階層表を読込中 */}
       {loadingM && (
