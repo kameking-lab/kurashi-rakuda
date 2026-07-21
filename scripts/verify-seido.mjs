@@ -273,6 +273,9 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.kanuma.tochigi.jp', // 鹿沼市の公式サイト
   'city.sanjo.niigata.jp', // 三条市の公式サイト
   'city.imizu.toyama.jp', // 射水市の公式サイト
+  'city.hanamaki.iwate.jp', // 花巻市の公式サイト
+  'city.fukuroi.shizuoka.jp', // 袋井市の公式サイト
+  'city.ama.aichi.jp', // あま市の公式サイト
 ];
 
 const args = process.argv.slice(2);
