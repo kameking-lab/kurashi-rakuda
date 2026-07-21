@@ -292,8 +292,28 @@
 - [ ] P4-T02 (B/オーパス) 副菜提案モード: 既存 kondate-teian の拡張（主菜固定→副菜のみ抽選）。新規データ不要見込み
 - [ ] P4-T03 (B/オーパス) 医療費控除拡充: 既存 iryouhi-koujo-kodomo にセルフメディケーション税制の対象判定を拡充（対象OTC＝厚労省公表リストの取り込み方針から設計。比較計算は既存実装あり）
 - [ ] P4-T04 (S/オーパス) 肌質判定→化粧品マッチ: specs/tools/cosme-match.md 準拠。★check:cosme-fairness を実装に先行させる★。商品データ収集はソネット（メーカー公式のみ）
-- [x] P4-T05 (B/ソネット) ペット: 犬猫の食事量計算 — ★カテゴリ新設せず category=kaji・audience universal で「暮らし全般」枠として需要検証★（環境省「飼い主のためのペットフード・ガイドライン」等の公的情報の範囲。獣医療判断なし）→ P4-T06と統合し1本のツール `inuneko-nenrei-shokujiryou` として実装（specs/b-tools/p4-t05-t06-inuneko-nenrei-shokujiryou.md）。出典は環境省「飼い主のためのペットフード・ガイドライン」（平成30年8月改訂版）13ページのRER/DER計算式。係数は原典に明記された「避妊・去勢済み成犬・成猫」（犬1.6・猫1.2）のみ収録し、他ライフステージの係数は原典に表がないため未実装（獣医師相談を案内）。テスト37件green。記事化は見送り（理由: 原典PDFがテキスト抽出不可＝check-sources.mjsのverify.expect照合が機械的に不可能なため）
+- [x] P4-T05 (B/ソネット) ペット: 犬猫の食事量計算 — ★カテゴリ新設せず category=kaji・audience universal で「暮らし全般」枠として需要検証★（環境省「飼い主のためのペットフード・ガイドライン」等の公的情報の範囲。獣医療判断なし）→ P4-T06と統合し1本のツール `inuneko-nenrei-shokujiryou` として実装（specs/b-tools/p4-t05-t06-inuneko-nenrei-shokujiryou.md）。出典は環境省「飼い主のためのペットフード・ガイドライン」（平成30年8月改訂版）13ページのRER/DER計算式。係数は原典に明記された「避妊・去勢済み成犬・成猫」（犬1.6・猫1.2）のみ収録し、他ライフステージの係数は原典に表がないため未実装（獣医師相談を案内）。テスト37件green。★2026-07-21追記: 記事化を完了（tool-narisou-inuneko-nenrei-shokujiryou.md、PR#285）。原典PDFがテキスト抽出不可の問題は、`get_pixmap(dpi=200)`で画像化し目視確認したうえで`verify.skip`+`skipReason`（check-sources.mjsに新設）で正直に運用することで解決した。★
 - [x] P4-T06 (B/ソネット) ペット: 犬猫の年齢換算 — 同上。需要検証の結果（アクセス・未解決クエリ）を見てカテゴリ新設を再判断すると記録 → P4-T05と統合実装（上記参照）。出典は同ガイドライン9ページ「犬と人間、猫と人間の年齢の目安」の表・計算式（小〜中型犬・猫: 24+(年齢-2)×4、1歳のみ特例15歳／大型犬: 12+(年齢-1)×7）
+
+### P4-T07: ツール併走記事（tool-narisou）カバレッジ棚卸し（2026-07-22起票）
+
+全67ツールのうち、tool-narisou型の併走記事を持つのは54ツール（うち`fuyo-kabe`は2本）。以下13ツールが未カバー（一部はseido-kaisetsu/dandori型の関連記事は既にあるが、ツール専用の"結果の読み方"記事はまだない）。
+
+- [x] `fukushoku-tedori`（復職後の手取りシミュレーター）→ **完了（2026-07-22）**: tool-narisou-fukushoku-tedori.md新規執筆。既存の姉妹ツール#78（jitan-kyuyo）への委譲構造と、保育料差し引き（利用者入力の実額、制度計算なし）・復職直後の2つの時間差（社保随時改定・保育料前年度算定）を解説。check-fidelity PASS・check-sources --fetch エラー0
+- [ ] `yobousesshu`（予防接種スケジューラー）: 既存seido-yobou-sesshu-schedule-2026.mdあり（type=seido-kaisetsu）。tool-narisou型は未執筆
+- [ ] `jido-teate`（児童手当計算）: 既存seido-jidou-teate-shotoku-seigen-teppai.mdあり（type=seido-kaisetsu）。tool-narisou型は未執筆
+- [ ] `hokatsu-schedule`（保活スケジュールメーカー）: 既存dandori-hokatsu-schedule-jiki.md・dandori-hokatsu-tejun.mdあり（type=dandori）。tool-narisou型は未執筆
+- [ ] `suihan-mizu`（炊飯の水の量・合数換算）: 既存seido-suihan-mizukagen.mdあり（type=seido-kaisetsu）。tool-narisou型は未執筆
+- [ ] `kaigo-jikofutan`（介護保険自己負担シミュレーター）: 既存seido-kaigo-hoken-futan-wariai-shotoku.mdあり（type=seido-kaisetsu）。tool-narisou型は未執筆
+- [ ] `kosodate-kyufu-sougou-check`（給付金総ざらいチェッカー）: 既存dandori-shinsei-shureba-moraeru-okane-souzarai.mdあり（type=dandori）。tool-narisou型は未執筆
+- [ ] `youikuhi-santeihyou`（養育費目安・裁判所算定表）: 既存seido-youikuhi-santeihyou-mikata.mdあり（type=seido-kaisetsu、tool_refはnull）。tool-narisou型は未執筆
+- [ ] `fuyounai-shaho-songeki-bunkiten`（扶養内⇄社保加入損益分岐）: 関連記事なし。要新規執筆
+- [ ] `taishoku-timing-songeki`（退職タイミング損得カレンダー）: 既存seido-taishoku-timing-songeki.mdあり（type未確認）。要確認・tool-narisou型は未執筆
+- [ ] `yuukyuu-fuyo-nissuu-kijun`（有給残・取得計画）: 既存seido-yuukyuu-fuyo-nissuu-kijun.mdあり（type未確認）。要確認
+- [ ] `kyouiku-kunren-kyufukin`（教育訓練給付チェック）: 既存seido-kyouiku-kunren-kyufukin.mdあり（type=seido-kaisetsu）。tool-narisou型は未執筆
+- [ ] `iryouhi-koujo-kodomo`（子ども医療費控除対象チェック）: 関連記事なし。要新規執筆
+
+優先度: 関連記事が一切ない`fuyounai-shaho-songeki-bunkiten`・`iryouhi-koujo-kodomo`を次点で優先。他は既存のseido-kaisetsu/dandori記事で概念説明済みのため緊急性は低い。
 
 ### 社長決裁の反映（2026-07-20 包括委任決裁）
 - [ ] P4-K01 (B/ソネット) マスコット権利 案A実施: mascot/ASSETS.md 新設（由来・生成日・プロンプト参照・利用方針）＋ /about に「イラストはAI生成をもとに調整」の一文＋ browser-generation.log のローカルパス行削除（履歴に残る旨は ASSETS.md に注記）。docs/15 案A採用決裁済み。中期の案B（正規API再生成）は社長のAPIキー環境が揃った後に別途起票
