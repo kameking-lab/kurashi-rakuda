@@ -264,6 +264,10 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.saijo.ehime.jp', // 西条市の公式サイト
   'city.omura.nagasaki.jp', // 大村市の公式サイト
   'city.settsu.osaka.jp', // 摂津市の公式サイト
+  'city.komae.tokyo.jp', // 狛江市の公式サイト
+  'komae-kosodate.net', // 狛江市が運営する子育て情報専用サイト「こまえ子育てねっと」（本体ドメインとは別ホストでPDFを配信）
+  'city.mihara.hiroshima.jp', // 三原市の公式サイト
+  'city.mobara.chiba.jp', // 茂原市の公式サイト
   // 西日本一般市バッチ6（2026-07-22。city.ikeda.lg.jpは存在しない＝これが唯一の公式ドメイン）
   'city.ikeda.osaka.jp', // 池田市の公式サイト
 ];
