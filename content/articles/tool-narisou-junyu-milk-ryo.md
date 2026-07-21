@@ -13,10 +13,13 @@
   "revision_year": 2026,
   "sources": [
     {
-      "url": "https://www.cfa.go.jp/policies/kokoseido/boshihoken/kenko/jyunyuu-rinyuu",
-      "title": "授乳・離乳の支援ガイド",
+      "url": "https://www.cfa.go.jp/policies/boshihoken/junyuu",
+      "title": "授乳や離乳について",
       "org": "こども家庭庁",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["授乳・離乳の支援ガイド"]
+      }
     }
   ],
   "facts": [

@@ -13,22 +13,22 @@
   ],
   "sources": [
     {
-      "url": "https://www.jaog.or.jp/sanka/",
-      "title": "妊娠・出産に関する情報",
-      "org": "日本産婦人科医会",
-      "accessed": "2026-07-17"
+      "url": "https://www.cfa.go.jp/policies/boshihoken",
+      "title": "母子保健・不妊症・不育症など",
+      "org": "こども家庭庁",
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["切れ目のない支援を推進"]
+      }
     },
     {
-      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/boshi-hoken/index.html",
-      "title": "母子保健関連施策について",
-      "org": "厚生労働省",
-      "accessed": "2026-07-17"
-    },
-    {
-      "url": "https://www.city.yokohama.lg.jp/kurashi/kosodate-kyoiku/ninshin-shussan/boshitecho.html",
-      "title": "母子健康手帳の交付について",
+      "url": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/shido/kenshin/boshitetyou.html",
+      "title": "母子健康手帳の交付",
       "org": "横浜市",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["こども家庭支援課で交付いたします"]
+      }
     }
   ],
   "facts": [],
@@ -93,9 +93,8 @@
 
 ## 出典・根拠
 
-- 日本産婦人科医会「妊娠・出産に関する情報」
-- 厚生労働省「母子保健関連施策について」
-- 横浜市「母子健康手帳の交付について」（自治体窓口の一例として。実際の手続きはお住まいの自治体・里帰り先の自治体でご確認ください）
+- こども家庭庁「母子保健・不妊症・不育症など」
+- 横浜市「母子健康手帳の交付」（自治体窓口の一例として。実際の手続きはお住まいの自治体・里帰り先の自治体でご確認ください）
 
 ---
 
