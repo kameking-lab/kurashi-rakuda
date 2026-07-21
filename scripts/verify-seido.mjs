@@ -254,6 +254,12 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.hakodate.hokkaido.jp', // 函館市の公式サイト
   'city.hachinohe.aomori.jp', // 八戸市の公式サイト
   'city.asahikawa.hokkaido.jp', // 旭川市の公式サイト（city.asahikawa.lg.jpは存在しない。2026-07-21）
+  // 東日本ブロック合流バッチ6（2026-07-21。city.aomori.lg.jpは存在しない＝これが唯一の公式ドメイン）
+  'city.aomori.aomori.jp', // 青森市の公式サイト
+  'city.akita.akita.jp', // 秋田市の例規集ドメイン（本体サイトはcity.akita.lg.jpだが例規集のみ別ドメイン）
+  'city.matsumoto.nagano.jp', // 松本市の公式サイト
+  'city.fukushima.fukushima.jp', // 福島市の公式サイト
+  'city.koshigaya.saitama.jp', // 越谷市の公式サイト
 ];
 
 const args = process.argv.slice(2);
