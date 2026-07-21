@@ -15,19 +15,28 @@
       "url": "https://www.city.taito.lg.jp/kenchiku/jutaku/eisei/kaitekinasumai.html",
       "title": "快適で健康的な住まいを目指して",
       "org": "台東区（保健所生活衛生課環境衛生担当）",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["結露とは、空気が冷たい面（壁や窓ガラスなど）に触れて温度が下がり、空気中に含まれる水蒸気が水滴となって現れることをいいます。"]
+      }
     },
     {
       "url": "https://www.hokeniryo1.metro.tokyo.lg.jp/allergy/pdf/indoor03.pdf",
       "title": "健康・快適居住環境の指針 指針No.9「室内のカビ対策」",
       "org": "東京都保健医療局",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["窓などに結露した水はこまめに拭き取るようにし、\nサッシ下部の排水溝は流れをよくして、結露した水を屋\n外に出すようにしましょう。"]
+      }
     },
     {
       "url": "https://www.caa.go.jp/policies/policy/consumer_safety/caution/caution_067/assets/consumer_safety_cms205_221227_03.pdf",
       "title": "「寒い家で我慢」は健康上のリスク！―窓から始める断熱リフォーム",
       "org": "消費者庁",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["高断熱なガラス・サッシ\nは冬の室内表面温度が高く維持されるために、結露が生じにくくカビの予防にも効果"]
+      }
     }
   ],
   "last_updated": "2026-07-21",
