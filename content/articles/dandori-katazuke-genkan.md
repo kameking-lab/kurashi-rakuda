@@ -15,19 +15,31 @@
       "url": "https://www.tfd.metro.tokyo.lg.jp/lfe/bou_topic/kaguten/measures_house.html",
       "title": "自宅の家具転対策",
       "org": "東京消防庁",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["避難通路や、出入り口付近には、転倒、移動しやすい家具類を置かないようにしましょう"]
+      }
     },
     {
       "url": "https://www.bousai.metro.tokyo.lg.jp/bousai/1000027/1005737.html",
       "title": "自宅での家具類の転倒・落下・移動防止対策",
       "org": "東京都（東京都防災ホームページ）",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["部屋の出入り口や廊下には家具類を置かないように、据え付けの戸棚に収納します"]
+      }
     },
     {
       "url": "https://www.kokusen.go.jp/mimamori/mj_mailmag/mj-shinsen542.html",
       "title": "住環境の改善と筋力アップで家庭内転倒事故防止！",
       "org": "独立行政法人国民生活センター",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": [
+          "わずか1~2センチの敷居、じゅうたんの端、室内のコードなどに足を引っかけてしまう",
+          "自宅内でスリッパが脱げ、靴下が滑って転倒"
+        ]
+      }
     }
   ],
   "last_updated": "2026-07-21",

@@ -131,6 +131,19 @@ for p in d:
 }
 
 /**
+ * e-Gov 法令検索（laws.e-gov.go.jp/law/<lawId>）は JavaScript で本文を描画する SPA であり、
+ * HTML を取得しても数百バイト程度の空シェルしか返らない（＝条文が1文字も含まれない）。
+ * そのまま照合すると全ての条文チェックが「見つかりません」で誤って落ちる。
+ * 法令本文は e-Gov 法令API v2 から取得する（scripts/verify-seido.mjs と同じ対処。P0002同様の教訓）。
+ * 出典URLとしては人間が読める /law/<lawId> を維持したいので、照合時のみAPIに差し替える。
+ */
+function egovApiUrl(urlStr) {
+  const m = /^https:\/\/(?:laws|elaws)\.e-gov\.go\.jp\/law\/([A-Za-z0-9]+)/.exec(urlStr);
+  if (!m) return null;
+  return `https://laws.e-gov.go.jp/api/2/law_data/${m[1]}?response_format=xml`;
+}
+
+/**
  * 出典URLを取得する。戻り値は { status, ok, text, titleTag } で、
  * ネットワークエラー（DNS失敗・タイムアウト等）は例外を投げる（呼び出し側でリトライする）。
  * HTTPエラー応答（404等）は例外を投げず status に反映する（恒久リンク切れの判定に必要なため）。
@@ -139,17 +152,24 @@ export async function fetchSource(url, { timeoutMs = 20000 } = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const res = await fetch(url, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 kurashi-rakuda-source-verifier/1.0",
-        "Accept-Language": "ja",
-      },
+    const apiUrl = egovApiUrl(url);
+    const res = await fetch(apiUrl ?? url, {
+      headers: apiUrl
+        ? { "User-Agent": "kurashi-rakuda-source-verifier/1.0", Accept: "application/xml" }
+        : {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 kurashi-rakuda-source-verifier/1.0",
+            "Accept-Language": "ja",
+          },
       redirect: "follow",
       signal: controller.signal,
     });
     const status = res.status;
     if (!res.ok) {
       return { status, ok: false, text: null, titleTag: null };
+    }
+    if (apiUrl) {
+      const xml = await res.text();
+      return { status, ok: true, text: normalize(stripHtml(xml)), titleTag: null };
     }
     const ct = (res.headers.get("content-type") || "").toLowerCase();
     const isPdf = ct.includes("application/pdf") || url.toLowerCase().endsWith(".pdf");

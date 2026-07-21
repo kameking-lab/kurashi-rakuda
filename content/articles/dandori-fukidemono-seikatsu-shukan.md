@@ -15,37 +15,55 @@
       "url": "https://qa.dermatol.or.jp/qa3/q03.html",
       "title": "にきび Q3",
       "org": "公益社団法人日本皮膚科学会",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["毛穴の中に皮脂がたまることで始まります"]
+      }
     },
     {
       "url": "https://qa.dermatol.or.jp/qa3/q17.html",
       "title": "にきび Q17",
       "org": "公益社団法人日本皮膚科学会",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["洗顔は1日2回洗顔料をつかって洗ってください"]
+      }
     },
     {
       "url": "https://qa.dermatol.or.jp/qa3/q18.html",
       "title": "にきび Q18",
       "org": "公益社団法人日本皮膚科学会",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["にきびは不潔にしているからできるわけではありません"]
+      }
     },
     {
       "url": "https://qa.dermatol.or.jp/qa3/q19.html",
       "title": "にきび Q19",
       "org": "公益社団法人日本皮膚科学会",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["バランスの良い食事をとるように心がけてください"]
+      }
     },
     {
       "url": "https://qa.dermatol.or.jp/qa3/q21.html",
       "title": "にきび Q21",
       "org": "公益社団法人日本皮膚科学会",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["毛先やマフラーなどが常にあたっていると、にきびができやすくなります"]
+      }
     },
     {
       "url": "https://qa.dermatol.or.jp/qa3/q24.html",
       "title": "にきび Q24",
       "org": "公益社団法人日本皮膚科学会",
-      "accessed": "2026-07-21"
+      "accessed": "2026-07-21",
+      "verify": {
+        "expect": ["睡眠不足や日中逆転の生活などは、ホルモンのバランスが崩れるのでにきびの悪化因子となる可能性があります"]
+      }
     }
   ],
   "last_updated": "2026-07-21",
