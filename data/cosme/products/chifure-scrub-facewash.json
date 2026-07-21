@@ -1,0 +1,29 @@
+{
+  "id": "chifure-scrub-facewash",
+  "name": "スクラブ 洗顔 フォーム",
+  "brand": "ちふれ",
+  "category": "senganryo",
+  "priceYen": 726,
+  "volume": "100g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "炭（皮脂吸着成分）", "ingredientId": "charcoal", "role": "kyuuchaku", "sourceNote": "ちふれ公式オンラインショップ商品ページより（「皮脂吸着成分の炭で、過剰な皮脂をしっかりと取り除き、テカリをケア」と明記）" }
+  ],
+  "skinTypeFit": { "dry": null, "oily": true, "combination": null, "sensitive": null },
+  "concernsFit": ["keana"],
+  "notSuitedFor": [
+    "スクラブ粒子（合成ワックス）を配合した処方のため、肌がひりつきやすい・摩擦刺激に弱い敏感肌の方には不向き",
+    "石けん系洗浄成分を水酸化Kで中和した処方のため、洗浄後のつっぱり感が気になる乾燥肌の方には物足りない、または刺激に感じる場合がある"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。ニキビ・肌荒れなど症状の治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "ちふれ公式オンラインショップ「My CHIFURE Online」商品ページ「スクラブ 洗顔 フォーム」", "url": "https://onlineshop.chifure-group.jp/shop/chifure/g/g2348/" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}

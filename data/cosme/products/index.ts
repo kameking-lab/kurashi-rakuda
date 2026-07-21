@@ -18,6 +18,9 @@ import hadalaboGokujunHyaluronAwaSengan from "./hadalabo-gokujun-hyaluron-awa-se
 import namerakaHonpoAwaSenganNc from "./nameraka-honpo-awa-sengan-nc.json";
 import cowBrandMutenkaAwaNoSengan from "./cow-brand-mutenka-awa-no-sengan.json";
 import orbisClearfulWash from "./orbis-clearful-wash.json";
+import chifureScrubFacewash from "./chifure-scrub-facewash.json";
+import ishizawaLabKeanaNadeshikoOkomeSenganryo from "./ishizawa-lab-keana-nadeshiko-okome-senganryo.json";
+import koseSoftymoCleansingWashBlack from "./kose-softymo-cleansing-wash-black.json";
 
 // 化粧水
 import curelJunshinHoshitsuLotionIii from "./curel-junshin-hoshitsu-lotion-iii.json";
@@ -25,6 +28,11 @@ import hadalaboGokujunHyaluronEki from "./hadalabo-gokujun-hyaluron-eki.json";
 import namerakaHonpoTotemoShittoriLotionNc from "./nameraka-honpo-totemo-shittori-lotion-nc.json";
 import orbisUEssenceLotion from "./orbis-u-essence-lotion.json";
 import ihadaYakuyouUruoiLotionTotemoShittori from "./ihada-yakuyou-uruoi-lotion-totemo-shittori.json";
+import ishizawaLabKeanaOtokonokoLotion from "./ishizawa-lab-keana-otokonoko-lotion.json";
+import naturieHatomugiKeshoMizu from "./naturie-hatomugi-kesho-mizu.json";
+import aqualabelAquaLotionShittori from "./aqualabel-aqua-lotion-shittori.json";
+import koseSekkiseiYakuyou from "./kose-sekkisei-yakuyou.json";
+import cowMutenkaMoistureLotionShittori from "./cow-mutenka-moisture-lotion-shittori.json";
 
 // 乳液/クリーム
 import hadalaboGokujunHyaluronCream from "./hadalabo-gokujun-hyaluron-cream.json";
@@ -33,6 +41,10 @@ import curelJunshinHoshitsuFaceCream from "./curel-junshin-hoshitsu-face-cream.j
 import orbisAquanistMoistureLm from "./orbis-aquanist-moisture-lm.json";
 import cowMutenkaHoshitsuEmulsion from "./cow-mutenka-hoshitsu-emulsion.json";
 import kikumasamuneNihonshuEmulsion from "./kikumasamune-nihonshu-emulsion.json";
+import orbisClearfulMoisture from "./orbis-clearful-moisture.json";
+import shiseidoEssentialEnergyHydratingCream from "./shiseido-essential-energy-hydrating-cream.json";
+import naturieHatomugiHoshitsuGel from "./naturie-hatomugi-hoshitsu-gel.json";
+import aqualabelTreatmentMilkWhitening from "./aqualabel-treatment-milk-whitening.json";
 
 // 日焼け止め
 import curelJunshinHoshitsuUvEssence from "./curel-junshin-hoshitsu-uv-essence.json";
@@ -40,6 +52,7 @@ import hadalaboGokujunUvWhiteGel from "./hadalabo-gokujun-uv-white-gel.json";
 import sunplaySuperBlock from "./sunplay-super-block.json";
 import orbisSunscreenFrience from "./orbis-sunscreen-frience.json";
 import allieChronoBeautyGelUvEx from "./allie-chrono-beauty-gel-uv-ex.json";
+import rohtoSkinAquaHyaluronSerumUv from "./rohto-skin-aqua-hyaluron-serum-uv.json";
 
 export const COSME_PRODUCT_FILES = [
   chifureFacewashShittori,
@@ -54,12 +67,20 @@ export const COSME_PRODUCT_FILES = [
   namerakaHonpoAwaSenganNc,
   cowBrandMutenkaAwaNoSengan,
   orbisClearfulWash,
+  chifureScrubFacewash,
+  ishizawaLabKeanaNadeshikoOkomeSenganryo,
+  koseSoftymoCleansingWashBlack,
 
   curelJunshinHoshitsuLotionIii,
   hadalaboGokujunHyaluronEki,
   namerakaHonpoTotemoShittoriLotionNc,
   orbisUEssenceLotion,
   ihadaYakuyouUruoiLotionTotemoShittori,
+  ishizawaLabKeanaOtokonokoLotion,
+  naturieHatomugiKeshoMizu,
+  aqualabelAquaLotionShittori,
+  koseSekkiseiYakuyou,
+  cowMutenkaMoistureLotionShittori,
 
   hadalaboGokujunHyaluronCream,
   namerakaHonpoCreamNc,
@@ -67,10 +88,15 @@ export const COSME_PRODUCT_FILES = [
   orbisAquanistMoistureLm,
   cowMutenkaHoshitsuEmulsion,
   kikumasamuneNihonshuEmulsion,
+  orbisClearfulMoisture,
+  shiseidoEssentialEnergyHydratingCream,
+  naturieHatomugiHoshitsuGel,
+  aqualabelTreatmentMilkWhitening,
 
   curelJunshinHoshitsuUvEssence,
   hadalaboGokujunUvWhiteGel,
   sunplaySuperBlock,
   orbisSunscreenFrience,
   allieChronoBeautyGelUvEx,
+  rohtoSkinAquaHyaluronSerumUv,
 ];

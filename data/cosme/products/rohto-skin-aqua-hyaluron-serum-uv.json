@@ -1,0 +1,31 @@
+{
+  "id": "rohto-skin-aqua-hyaluron-serum-uv",
+  "name": "スキンアクア ヒアルロンセラムUV",
+  "brand": "スキンアクア（ロート製薬）",
+  "category": "hiyakedome",
+  "priceYen": 1320,
+  "volume": "70g",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "シリカ", "ingredientId": "sebum-absorbing-powder", "role": "kyuuchaku", "sourceNote": "全成分表示より（皮脂吸着パウダーの分類に該当するシリカを配合）" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": true, "combination": true, "sensitive": null },
+  "concernsFit": ["kansou", "kuzure"],
+  "notSuitedFor": [
+    "紫外線吸収剤（メトキシケイヒ酸エチルヘキシル等）を配合しているため、紫外線吸収剤フリーの処方を希望する方には不向き",
+    "日常使い向けの処方のため、汗や水に長時間さらされるレジャー・屋外スポーツ用途では、こまめな塗り直しが必要"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。日焼け止め効果は使用量・塗り直しの有無により変わります",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "ロート製薬オンラインショップ「スキンアクア ヒアルロンセラムUV」商品ページ（価格・内容量）", "url": "https://www.shop.rohto.co.jp/category/skincare/skin-aqua/196401.html" },
+    { "label": "ロート製薬公式 商品情報サイト 全成分表示ページ「スキンアクア ヒアルロンセラムUV」", "url": "https://jp.rohto.com/seib/seib/?kw=196401" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}

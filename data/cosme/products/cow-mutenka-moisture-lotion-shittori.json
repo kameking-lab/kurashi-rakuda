@@ -1,0 +1,31 @@
+{
+  "id": "cow-mutenka-moisture-lotion-shittori",
+  "name": "カウブランド 無添加 保湿化粧水＜しっとり＞",
+  "brand": "カウブランド無添加（牛乳石鹸共進社）",
+  "category": "kesho-mizu",
+  "priceYen": 1320,
+  "volume": "175mL",
+  "priceBand": "petit",
+  "availability": ["online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "セラミドNG", "ingredientId": "ceramide", "role": "hoshitsu", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "販路限定商品でネット通販及び一部販売店のみの取り扱いのため、近所のドラッグストアで手軽に買いたい方には不向き",
+    "とてもしっとりタイプではなく「しっとり」タイプのため、乾燥がとても強い方には同ブランドの「とてもしっとり」タイプの方が向く場合がある"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "牛乳石鹸公式サイト「カウブランド 無添加 保湿化粧水＜しっとり＞」商品ページ（価格・内容量・全成分）", "url": "https://www.cow-soap.co.jp/products/cow-mutenka-moisture-lotion/" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}

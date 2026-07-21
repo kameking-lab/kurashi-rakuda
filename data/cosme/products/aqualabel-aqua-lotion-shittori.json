@@ -1,0 +1,32 @@
+{
+  "id": "aqualabel-aqua-lotion-shittori",
+  "name": "アクアレーベル アクアローション しっとり",
+  "brand": "アクアレーベル（資生堂）",
+  "category": "kesho-mizu",
+  "priceYen": 1496,
+  "volume": "220mL",
+  "priceBand": "petit",
+  "availability": ["drugstore", "online"],
+  "keyIngredients": [
+    { "name": "グリセリン", "ingredientId": "glycerin", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "BG", "ingredientId": "bg", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "ヒアルロン酸Na", "ingredientId": "hyaluronic-acid-na", "role": "hoshitsu", "sourceNote": "全成分表示より" },
+    { "name": "トレハロース", "ingredientId": "trehalose", "role": "hoshitsu", "sourceNote": "全成分表示より" }
+  ],
+  "skinTypeFit": { "dry": true, "oily": null, "combination": null, "sensitive": true },
+  "concernsFit": ["kansou"],
+  "notSuitedFor": [
+    "とろみのあるしっとりタイプのため、さらっとした軽い使用感を求める方にはアクアレーベルの「さっぱり」タイプの方が向く場合がある",
+    "香料（ラベンダー油配合）があるため、無香料処方を希望する方には不向き"
+  ],
+  "cautions": [
+    "医薬部外品ではなく化粧品です。肌トラブルの治療を目的とした製品ではありません",
+    "新しい化粧品は少量から試し、赤み・かゆみなど異常が出た場合はただちに使用を中止し、皮膚科医にご相談ください"
+  ],
+  "sources": [
+    { "label": "資生堂公式サイト「アクアレーベル アクアローション」商品ページ（価格・内容量・全成分）", "url": "https://www.shiseido.co.jp/aqua/aquawellness/aqualotion/" }
+  ],
+  "checkedAt": "2026-07-21",
+  "nextCheckDue": "2026-10-19",
+  "status": "on-sale"
+}
