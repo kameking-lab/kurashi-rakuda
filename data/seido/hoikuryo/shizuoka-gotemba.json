@@ -1,0 +1,277 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "shizuoka-gotemba",
+  "name": "静岡県御殿場市",
+  "municipalityCode": "222151",
+  "prefecture": "静岡県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "amendments": [
+    {
+      "summary": "令和8年度から御殿場市独自施策として第1子保育料が半額になった（0〜2歳児クラスの第1子が対象。3歳児クラス以上は国の無償化で既に無料、第2子以降は令和6年度から市独自に無料のため、半額化の対象となるのは0〜2歳児クラスの第1子のみ）。fee-pdfの表題が「【令和８年度～】」であること、および令和6年度時点の旧表（R6_hoikuryo.pdf）の一般世帯額と比較し全階層で正確に半額になっていることを実測で確認済み。",
+      "status": "in-force",
+      "effectiveFrom": "2026-04-01",
+      "sourceId": "fee-pdf"
+    }
+  ],
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "【令和８年度～】御殿場市保育料利用者負担額表（月額）",
+      "publisher": "御殿場市保育幼稚園課",
+      "url": "https://www.gotemba-kosodate.jp/kanri/wp-content/uploads/2025/12/R8_hoikuryo-1.pdf",
+      "landingUrl": "https://www.gotemba-kosodate.jp/azukeru/%EF%BC%90%E3%80%81%EF%BC%91%E3%80%81%EF%BC%92%E6%AD%B3%E5%85%90%E3%81%AE%E4%BF%9D%E8%82%B2%E6%96%99",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータのcreationDate 2025-12-22。1頁もの。★第1子半額化の実測確認★ 同ページに残る旧版（R6_hoikuryo.pdf、作成日2024-05-13）の一般世帯額と比較したところ、全階層で正確に半額（例: C1標準時間9,000円→4,500円、D10標準時間57,000円→28,500円）になっていることを確認し、fee-pageの「令和８年度から第１子保育料が半額となります」という記述と整合することを実測で裏取りした。"
+    },
+    {
+      "id": "fee-page",
+      "title": "保育料（保護者負担額）",
+      "publisher": "御殿場市子育て支援サイト",
+      "url": "https://www.gotemba-kosodate.jp/azukeru/%EF%BC%90%E3%80%81%EF%BC%91%E3%80%81%EF%BC%92%E6%AD%B3%E5%85%90%E3%81%AE%E4%BF%9D%E8%82%B2%E6%96%99",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "令和8年度からの第1子半額化・令和6年度からの第2子以降無料化を明記。"
+    }
+  ],
+  "disclaimer": "本データは御殿場市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず御殿場市（保育幼稚園課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "0〜2歳児クラスの一般世帯・第1子分の保育料（令和8年度から市独自施策により半額化された後の額）",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児クラスの保育料（国の無償化により全階層0円）",
+      "第2子以降の保育料（令和6年度から市独自に無料化。本ファイル未収録）",
+      "ひとり親世帯・在宅障害児(者)のいる世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "延長保育料（標準時間7:00〜18:00・短時間8:30〜16:30の時間外利用分。本ファイル未収録）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本ページ範囲内で確認できず（未確認）。",
+    "taxYearRule": "4月〜8月分の保育料は前年度の市民税額、9月〜3月分の保育料は当年度の市民税額によって決定する。",
+    "deductionsIgnored": [],
+    "sourceId": "fee-page",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["階層区分は４月～８月分の保育料は前年度の市民税額から、９月～３月分の保育料は当年度の市民税額によって決定されます。"]
+    },
+    "note": "★6/8換算について★ 御殿場市は中核市・施行時特例市のいずれでもない一般市。fee-pdf/fee-pageに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★控除除外規定は本ページ範囲内で未確認★ 他の多くの自治体で見られる「寄附金控除・住宅借入金等特別控除等は適用しない」旨の明記が本データの収集範囲内では見当たらなかったため、deductionsIgnoredは空配列とした。★階層区分★ A=生活保護世帯（isWelfare）、B=市町村民税非課税世帯（isNonTaxable）、C1=均等割額のみ（所得割額のない）の世帯。incomeMin/incomeMaxはA・Bを便宜上0/0、C1をincomeMin 0・incomeMax 0とした上でC2のincomeMinを0に接続させた。D2とD2'は所得割の区分が異なるが金額は同一（D2=62,000円以上77,101円未満、D2'=77,101円以上97,000円未満、いずれも標準10,250円・短時間10,100円）。★ひとり親世帯等の別建て軽減★ C1〜D2階層はひとり親世帯・在宅障害児(者)のいる世帯等について括弧書きの額（例: C1は標準4,500円のところ括弧書き2,250円）を適用し、D2'以降の階層はひとり親世帯等の別建て軽減が原典に見当たらない（一般世帯と同額と推定）。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "その年度の4月1日時点の年齢で決まる。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上児の利用者負担額は全階層0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["幼稚教育・保育の無償化により、３，４，５歳児の利用者負担額は無料となります。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（市町村民税非課税世帯）は0〜2歳児クラスの保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同一生計の扶養する子どもで数える（年齢制限・同時利用要件の明記は原典に見当たらず未確認）。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["令和６年度から御殿場市の独自施策として、同一生計の扶養する子どもが２人以上いる場合の第２子以\n降の子に係る保育料利用者負担額は無料となります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "令和6年度から市独自施策により第2子以降は無料",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子以降無料化に含まれるため第3子以降も無料",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "令和6年度から第2子以降完全無料化（所得制限なし）、令和8年度から第1子（0〜2歳児クラス）保育料を半額化。両施策の組み合わせにより、0〜2歳児クラスの実質負担は第1子のみ半額・第2子以降0円となる。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護法による被保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "均等割額のみ（所得割額のない）の世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 4500, "short": 4500 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市町村民税所得割額48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 6500, "short": 6400 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "48,600円以上62,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 62000,
+      "fees": {
+        "under3": { "standard": 8500, "short": 8350 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "62,000円以上77,101円未満",
+      "incomeMin": 62000,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 10250, "short": 10100 }
+      }
+    },
+    {
+      "tier": "D2'",
+      "label": "77,101円以上97,000円未満（D2と金額同一）",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 10250, "short": 10100 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "97,000円以上128,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 128000,
+      "fees": {
+        "under3": { "standard": 13500, "short": 13250 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "128,000円以上169,000円未満",
+      "incomeMin": 128000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 17000, "short": 16700 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "169,000円以上199,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 199000,
+      "fees": {
+        "under3": { "standard": 19500, "short": 19150 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "199,000円以上261,000円未満",
+      "incomeMin": 199000,
+      "incomeMax": 261000,
+      "fees": {
+        "under3": { "standard": 21500, "short": 21150 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "261,000円以上301,000円未満",
+      "incomeMin": 261000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 23000, "short": 22600 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "301,000円以上339,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 339000,
+      "fees": {
+        "under3": { "standard": 25000, "short": 24550 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "339,000円以上397,000円未満",
+      "incomeMin": 339000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 27000, "short": 26550 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 28500, "short": 28000 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "御殿場市保育料利用者負担額表",
+      "28,500",
+      "３９７，０００円以上"
+    ]
+  }
+}

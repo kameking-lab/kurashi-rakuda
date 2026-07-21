@@ -1,0 +1,291 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kyoto-nagaokakyo",
+  "name": "京都府長岡京市",
+  "municipalityCode": "262099",
+  "prefecture": "京都府",
+  "municipalityType": "その他市",
+  "fiscalYear": 2025,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "amendments": [
+    {
+      "summary": "令和8年度保育施設入所案内（R8nyusyoannai.pdf、PDFメタデータ作成日2025-10-06）内に掲載された保育料徴収基準額表そのものが「【参考】令和７年度 長岡京市保育料徴収基準額表」という見出しで、令和7年度の額を参考として掲載している。令和8年度の確定額は2026-07-22時点で当該資料からは確認できないため、fiscalYearを2025としunder-reviewとして扱う。",
+      "status": "under-review",
+      "sourceId": "nyusho-annai"
+    }
+  ],
+  "sources": [
+    {
+      "id": "nyusho-annai",
+      "title": "令和8年度（2026年度）保育施設入所案内（p.15「7.保育料等について」・p.17「8.【参考】令和7年度 長岡京市保育料徴収基準額表」）",
+      "publisher": "長岡京市子育て支援課",
+      "url": "https://www.city.nagaokakyo.lg.jp/cmsfiles/contents/0000015/15338/R8nyusyoannai.pdf",
+      "landingUrl": "https://www.city.nagaokakyo.lg.jp/0000015338.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータのcreationDate 2025-10-06。p.17の表は「【参考】令和７年度」という見出しが明記されており、令和8年度の確定額であることは資料上確認できない（amendments参照）。PyMuPDFのpage.find_tables()で座標ベースに表構造を復元して読んだ（結合セルが多いため単純テキスト抽出では列がずれる）。"
+    }
+  ],
+  "disclaimer": "本データは長岡京市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず長岡京市（子育て支援課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "2号・3号認定子どものうち0〜2歳児クラス・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児クラスの保育料（国の無償化により全階層0円）",
+      "3〜5歳児クラスの給食費（主食・副食費、原則実費。減免制度該当時は副食費免除）",
+      "2人目（半額）・3人目以降（無料）の軽減後の額（本ファイルのtiersは第1子の額のみ収録。note参照）",
+      "ひとり親世帯等・障がい者手帳を有する世帯の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "延長保育料（公立保育所2施設が対象。本ファイル未収録）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "児童の保護者又は家計の主宰者である同居者等の市区町村民税額（控除前所得割）の合計。祖父母等と同居し父母のみの収入で生計を維持し非課税の場合等は保護者のみの額で算定できる例外あり。",
+    "taxYearRule": "令和8年4月から8月分は令和7年度の市区町村民税額、令和8年9月から3月分は令和8年度の市区町村民税額で算定する。",
+    "deductionsIgnored": [
+      "住宅借入等特別控除",
+      "配当控除",
+      "外国税額控除",
+      "寄付金控除"
+    ],
+    "sourceId": "nyusho-annai",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["住宅借入等特別控除、配当控除、外国税額控除、寄付金控除等の税額控除は適用せず、控除前の金額で\n算定します。"]
+    },
+    "note": "★6/8換算について★ 長岡京市は中核市・施行時特例市のいずれでもない一般市。nyusho-annaiに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★市独自の国基準割引あり★「本市の保育料徴収割合は国基準保育料の80％程度に減額しています」との明記があり、国の徴収基準額表の8割程度に設定された市独自の額であることを確認済み。★階層区分★ A=生活保護世帯又は里親世帯（isWelfare）、B=市民税非課税世帯（isNonTaxable）、C1=均等割のみ課税世帯。incomeMin/incomeMaxはA・Bを便宜上0/0、C1をincomeMin 0・incomeMax 0とした上でC2のincomeMinを0に接続させた。★多子軽減が4パターンに分岐★ ①同一世帯で2人以上の児童が認可保育施設等を利用している場合（所得割77,101円未満の世帯は未就園・認可外在籍児も算定対象）: 第2子半額・第3子以降0円。②所得割57,700円未満の世帯: 第1子の年齢にかかわらず第2子半額・第3子以降0円。③ひとり親世帯・障がい者手帳を有する世帯等で所得割77,101円未満: 第1子が表の半額（9,000円上限）、第2子以降は第1子の年齢にかかわらず0円。④所得割169,000円未満かつ18歳未満の児童が3人以上いる世帯: 第3子以降0円。本ファイルのtiersにはいずれの軽減も反映していない第1子・一般世帯の額のみ収録した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "4月1日現在の年齢で決定。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラスの利用者負担額は全階層0円",
+      "sourceId": "nyusho-annai",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["3～5歳児クラス"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。給食費（主食・副食費）は別途実費。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（市民税非課税世帯）は0〜2歳児クラスの保育料が無料",
+      "sourceId": "nyusho-annai",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "所得割77,101円未満の世帯は未就園・認可外保育施設等に在籍している子どもも算定対象に含める。所得割57,700円未満の世帯は第1子の年齢にかかわらず数える。それ以外は同一世帯で実際に施設を利用している児童の順番で数える。",
+        "sourceId": "nyusho-annai",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["市民税所得割課税額が77,101 円未満の世帯の場合のみ未就園又は認可外保育施設等に在籍している子どもも算定対象"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "半額",
+        "sourceId": "nyusho-annai",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["第２子は表中の金額の半額、第３子以降は０円となります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は0円",
+        "sourceId": "nyusho-annai",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "国基準の保育料徴収基準額表に対し市独自に約8割程度に減額した表を使用。所得割169,000円未満かつ18歳未満の児童3人以上の世帯は第3子以降0円になる追加軽減あり。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護法による被保護世帯又は里親世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "均等割のみ課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 9100, "short": 8900 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "所得割10,000円未満",
+      "incomeMin": 0,
+      "incomeMax": 10000,
+      "fees": {
+        "under3": { "standard": 11300, "short": 11100 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "所得割10,000円以上29,000円未満",
+      "incomeMin": 10000,
+      "incomeMax": 29000,
+      "fees": {
+        "under3": { "standard": 12900, "short": 12600 }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "所得割29,000円以上48,600円未満",
+      "incomeMin": 29000,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 16400, "short": 16100 }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "所得割48,600円以上58,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 58000,
+      "fees": {
+        "under3": { "standard": 20500, "short": 20100 }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "所得割58,000円以上70,000円未満",
+      "incomeMin": 58000,
+      "incomeMax": 70000,
+      "fees": {
+        "under3": { "standard": 24400, "short": 23900 }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "所得割70,000円以上97,000円未満",
+      "incomeMin": 70000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 28900, "short": 28400 }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "所得割97,000円以上106,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 106000,
+      "fees": {
+        "under3": { "standard": 35500, "short": 34800 }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "所得割106,000円以上134,000円未満",
+      "incomeMin": 106000,
+      "incomeMax": 134000,
+      "fees": {
+        "under3": { "standard": 39800, "short": 39100 }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "所得割134,000円以上187,000円未満",
+      "incomeMin": 134000,
+      "incomeMax": 187000,
+      "fees": {
+        "under3": { "standard": 44500, "short": 43700 }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "所得割187,000円以上248,000円未満",
+      "incomeMin": 187000,
+      "incomeMax": 248000,
+      "fees": {
+        "under3": { "standard": 50600, "short": 49700 }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "所得割248,000円以上301,000円未満",
+      "incomeMin": 248000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 55300, "short": 54300 }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "所得割301,000円以上351,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 351000,
+      "fees": {
+        "under3": { "standard": 60000, "short": 58900 }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "所得割351,000円以上397,000円未満",
+      "incomeMin": 351000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 62900, "short": 61800 }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "所得割397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 65000, "short": 63800 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "nyusho-annai",
+    "expect": [
+      "長岡京市保育料徴収基準額表",
+      "65,000",
+      "397,000円以上の世帯"
+    ]
+  }
+}
