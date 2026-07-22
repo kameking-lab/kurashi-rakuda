@@ -1,0 +1,308 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kyoto-kyotanabe",
+  "name": "京都府京田辺市",
+  "municipalityCode": "262111",
+  "prefecture": "京都府",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "sources": [
+    {
+      "id": "reiki",
+      "title": "京田辺市特定教育・保育施設及び特定地域型保育事業の保育料等に関する条例 別表第1（第3条関係）",
+      "publisher": "京田辺市（例規集）",
+      "url": "https://www.city.kyotanabe.lg.jp/reiki/reiki_honbun/k113RG00001319.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "市公式サイトの例規集に掲載された条例本文。別表第1の直近改正は「令和4年12月23日条例第31号」・「この条例は、令和5年4月1日から施行する。」と明記されており、それ以降の改正附則は確認できないため、令和8年度時点でも本表が現行として有効と判断した（年度表記のない常設表・前橋市/金沢市等と同型のロジック）。0歳児と1・2歳児で一部の高所得階層（D12以上）のみ100円差があるが、本ファイルのunder3には0歳児の額（同額または高い方）を採用した。"
+    }
+  ],
+  "disclaimer": "本データは京田辺市の公式資料（条例）に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず京田辺市（子育て支援課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "満3歳未満保育認定子ども・一般世帯（ひとり親世帯等を除く）・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児の保育料（国の無償化により無償）",
+      "ひとり親世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "第2子（半額）・第3子以降（無料）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）",
+      "0歳児と1・2歳児の100円未満の差額（本ファイルのunder3は0歳児の額に統一。note参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本資料の範囲内で確認できず（未確認）。",
+    "taxYearRule": "4月分から8月分までは前年度分、9月分から3月分までは当該年度分の市町村民税額に応じて算定する。",
+    "deductionsIgnored": [],
+    "sourceId": "reiki",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["これらの表における市町村民税所得割の算出については、地方税法(昭和25年法律第226号)第314条の7、第314条の8、第314条の9、附則第5条第3項、第5条の4第6項、第5条の4の2第6項、第5条の5第2項及び第45条の規定は適用しないものとする。"]
+    },
+    "note": "★6/8換算について★ 京田辺市は中核市・施行時特例市のいずれでもない一般市。reikiに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯等（isWelfare）、B=市町村民税非課税世帯（isNonTaxable）、C2=市町村民税所得割非課税世帯（ひとり親世帯等以外）。incomeMin/incomeMaxはA・B・C2を便宜上0/0とした。★ひとり親世帯等の別建て軽減★ C1・D1・D3・D5階層は一律に近い低い額（標準・短時間とも4,800円〜4,900円）で別建てされている。本ファイルのtiersには一般世帯（C2・D2・D4・D6〜D19）の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。★給付単価の上限★ 保育料が国の定める給付単価の額を超える場合は当該給付単価の額を限度とする旨が備考に明記されている。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "満3歳未満保育認定子ども",
+      "rule": "0歳児・1・2歳児で階層額はほぼ同額（D12階層以上のみ100円差あり）。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上児の保育料は無償",
+      "sourceId": "reiki",
+      "checkedAt": "2026-07-22",
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。条例本文の別表第1には満3歳未満保育認定子ども分のみ掲載されている。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（市町村民税非課税世帯）は満3歳未満保育認定子どもの保育料が0円",
+      "sourceId": "reiki",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "C2・D2・D4階層若しくはD6階層のうち市民税所得割課税額が77,101円未満の世帯であって、生計を一にする世帯に子が2人以上いる場合は、満3歳未満保育認定子どもが第2子のとき半額・第3子以降のとき無料とする。C1階層又はD1・D3・D5階層（ひとり親世帯等）は第2子以降が無条件で無料。",
+        "sourceId": "reiki",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["生計を一にする世帯に令第13条第2項に規定する負担額算定基準子どもが2人以上いる場合の保育料は、これらの者のうち満3歳未満保育認定子どもが第2子のときは半額とし、第3子以降のときは無料とする。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "第1子額の半額（C1・D1・D3・D5階層のひとり親世帯等は無条件で無料）",
+        "sourceId": "reiki",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は無料",
+        "sourceId": "reiki",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "C1階層又はD1・D3・D5階層（ひとり親世帯等）は、生計を一にする世帯に子が2人以上いる場合、満3歳未満保育認定子どもが第2子以降のとき無条件で無料になる（一般世帯の「第2子半額」より手厚い）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市町村民税所得割非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 9800, "short": 9600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "市町村民税所得割課税額48,600円未満の世帯",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 11800, "short": 11500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "市町村民税所得割課税額64,600円未満の世帯",
+      "incomeMin": 48600,
+      "incomeMax": 64600,
+      "fees": {
+        "under3": { "standard": 16100, "short": 15800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "市町村民税所得割課税額80,600円未満の世帯",
+      "incomeMin": 64600,
+      "incomeMax": 80600,
+      "fees": {
+        "under3": { "standard": 19500, "short": 19100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "市町村民税所得割課税額97,000円未満の世帯",
+      "incomeMin": 80600,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 22200, "short": 21800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "市町村民税所得割課税額121,000円未満の世帯",
+      "incomeMin": 97000,
+      "incomeMax": 121000,
+      "fees": {
+        "under3": { "standard": 27600, "short": 27100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "市町村民税所得割課税額145,000円未満の世帯",
+      "incomeMin": 121000,
+      "incomeMax": 145000,
+      "fees": {
+        "under3": { "standard": 33700, "short": 33100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "市町村民税所得割課税額169,000円未満の世帯",
+      "incomeMin": 145000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 37500, "short": 36800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "市町村民税所得割課税額202,000円未満の世帯",
+      "incomeMin": 169000,
+      "incomeMax": 202000,
+      "fees": {
+        "under3": { "standard": 40600, "short": 39900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "市町村民税所得割課税額235,000円未満の世帯",
+      "incomeMin": 202000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": { "standard": 43200, "short": 42400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D13",
+      "label": "市町村民税所得割課税額268,000円未満の世帯",
+      "incomeMin": 235000,
+      "incomeMax": 268000,
+      "fees": {
+        "under3": { "standard": 46900, "short": 46100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D14",
+      "label": "市町村民税所得割課税額301,000円未満の世帯",
+      "incomeMin": 268000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 50700, "short": 49800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D15",
+      "label": "市町村民税所得割課税額333,000円未満の世帯",
+      "incomeMin": 301000,
+      "incomeMax": 333000,
+      "fees": {
+        "under3": { "standard": 52500, "short": 51600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D16",
+      "label": "市町村民税所得割課税額365,000円未満の世帯",
+      "incomeMin": 333000,
+      "incomeMax": 365000,
+      "fees": {
+        "under3": { "standard": 54600, "short": 53600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D17",
+      "label": "市町村民税所得割課税額397,000円未満の世帯",
+      "incomeMin": 365000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 60000, "short": 58900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D18",
+      "label": "市町村民税所得割課税額445,000円未満の世帯",
+      "incomeMin": 397000,
+      "incomeMax": 445000,
+      "fees": {
+        "under3": { "standard": 65400, "short": 64200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D19",
+      "label": "市町村民税所得割課税額445,000円以上の世帯",
+      "incomeMin": 445000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 70900, "short": 69600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "reiki",
+    "expect": [
+      "各月初日の満3歳未満保育認定子どもの属する世帯の階層区分",
+      "70,900円",
+      "445,000円以上の世帯"
+    ]
+  }
+}

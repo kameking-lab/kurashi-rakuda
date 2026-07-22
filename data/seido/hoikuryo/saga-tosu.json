@@ -1,0 +1,271 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "saga-tosu",
+  "name": "佐賀県鳥栖市",
+  "municipalityCode": "412031",
+  "prefecture": "佐賀県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "鳥栖市保育料金額表（月額）",
+      "publisher": "鳥栖市こども育成課",
+      "url": "https://www.city.tosu.lg.jp/uploaded/attachment/36145.pdf",
+      "landingUrl": "https://www.city.tosu.lg.jp/soshiki/9/104498.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "掲載元ページ更新日2026-04-01、PDFメタデータcreationDate 2025-09-30。年度表記のない常設表だが、掲載元ページの更新日から令和8年度当初の現行版であることを確認した。"
+    }
+  ],
+  "disclaimer": "本データは鳥栖市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず鳥栖市（こども育成課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "保育認定（保育所・認定こども園・地域型保育事業）の0〜2歳児・一般世帯（ひとり親世帯等を除く）・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児の保育料（国の無償化により無償）",
+      "ひとり親世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "第2子（半額）・第3子以降（0円）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本資料の範囲内で確認できず（未確認）。",
+    "taxYearRule": "4月から8月は前年度の市町村民税、9月から3月は当年度の市町村民税に基づき算定する。",
+    "deductionsIgnored": [],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["保育料算定のための市町村民税は、地方税法による住宅借入金特別控除や寄付金控除等の適用前の金額とな\nります。"]
+    },
+    "note": "★6/8換算について★ 鳥栖市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯等（isWelfare）、B2=ひとり親世帯等以外の市町村民税非課税世帯（isNonTaxable）。incomeMin/incomeMaxはA・B2を便宜上0/0とした。★D1-2/D1-3階層の統合★ 原典は48,600円以上57,700円未満・57,700円以上64,700円未満の2区分（一般世帯）に分かれるが金額が完全一致（標準21,500円/短時間21,100円）のため単一階層（48,600円以上64,700円未満）として統合した。★D12/D13階層の統合★ 原典は349,000円以上397,000円未満・397,000円以上の2区分に分かれるが金額が完全一致（標準59,500円/短時間58,500円）のため単一階層（349,000円以上）として統合した。★ひとり親世帯等の別建て軽減★ C1・D1-1・D2-1・D2-2階層は一般世帯より低い額（標準7,700円〜24,500円）で別建てされ、さらにC1・D1-1・D2-1階層は第2子以降が無条件で0円になる（一般世帯は第2子半額・第3子以降0円）。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。★給食費込み★ 0〜2歳児の保育料には毎月の給食費を含む。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児（保育認定）",
+      "rule": "各月初日の小学校就学前児童の属する世帯の階層区分による。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児（保育認定の3歳児〜5歳児、教育認定児）",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児の保育料は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["保育認定の３歳児～５歳児、教育認定児（満３歳～５歳児）の保育料は、令和元年\n１０月からの「幼児教育・保育の無償化」により、無償となりました。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B2階層（ひとり親世帯等以外の市町村民税非課税世帯）は0〜2歳児の保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["ひとり親世帯等以外の世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "C1・D1-1・D2-1階層（ひとり親世帯等の低所得帯）は同一世帯の兄姉の有無で数える（年齢制限なし・在籍の有無を問わない）。C2・D1-2階層（一般世帯の低所得帯）も同様に兄姉の有無で数える。D1-3・D2-2・D2-3・D3〜D13階層（一般世帯の中高所得帯）は「小学校就学前の兄姉」の人数で数える。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["同一世帯に小学校就学前の兄、姉を１人有している就園\n児                   （第２子）"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "金額表に定める額×1/2",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は0円",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "C1・D1-1・D2-1階層（ひとり親世帯等の低所得帯）は兄姉がいれば第2子以降が無条件で0円になる追加軽減がある。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B2",
+      "label": "ひとり親世帯等以外の市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市町村民税所得割課税額48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 16500, "short": 16200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1-2/D1-3",
+      "label": "48,600円以上64,700円未満（原典2区分だが金額同一のため統合）",
+      "incomeMin": 48600,
+      "incomeMax": 64700,
+      "fees": {
+        "under3": { "standard": 21500, "short": 21100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2-3",
+      "label": "64,700円以上80,800円未満",
+      "incomeMin": 64700,
+      "incomeMax": 80800,
+      "fees": {
+        "under3": { "standard": 24500, "short": 24100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "80,800円以上97,000円未満",
+      "incomeMin": 80800,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 27500, "short": 27000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "97,000円以上121,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 121000,
+      "fees": {
+        "under3": { "standard": 30500, "short": 30000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "121,000円以上145,000円未満",
+      "incomeMin": 121000,
+      "incomeMax": 145000,
+      "fees": {
+        "under3": { "standard": 33500, "short": 32900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "145,000円以上169,000円未満",
+      "incomeMin": 145000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 37500, "short": 36900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "169,000円以上202,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 202000,
+      "fees": {
+        "under3": { "standard": 41500, "short": 40800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "202,000円以上235,000円未満",
+      "incomeMin": 202000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": { "standard": 45500, "short": 44700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "235,000円以上268,000円未満",
+      "incomeMin": 235000,
+      "incomeMax": 268000,
+      "fees": {
+        "under3": { "standard": 49500, "short": 48700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "268,000円以上301,000円未満",
+      "incomeMin": 268000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 53500, "short": 52600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "301,000円以上349,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 349000,
+      "fees": {
+        "under3": { "standard": 57500, "short": 56500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D12/D13",
+      "label": "349,000円以上（原典2区分だが金額同一のため統合）",
+      "incomeMin": 349000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 59500, "short": 58500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "鳥栖市保育料金額表（月額）",
+      "59,500",
+      "397,000 円以上"
+    ]
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "ibaraki-ryugasaki",
+  "name": "茨城県龍ケ崎市",
+  "municipalityCode": "082082",
+  "prefecture": "茨城県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "riyoannai-pdf",
+      "title": "令和8年度保育施設等利用申し込みのご案内（12頁「保育料の算定方法」・13頁「保育料の階層区分」）",
+      "publisher": "龍ケ崎市こども家庭課",
+      "url": "https://www.city.ryugasaki.ibaraki.jp/fukushi/kosodate/azukeru/hoiku/R8-hoikumousikomi.files/R8.riyouannai.pdf",
+      "landingUrl": "https://www.city.ryugasaki.ibaraki.jp/fukushi/kosodate/azukeru/hoiku/R8-hoikumousikomi.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "「令和8年度保育施設等利用申し込みのご案内」内に掲載。「4月から8月の保育料は令和7年度、9月から3月は令和8年度の市町村民税所得割額に基づく」と明記。"
+    }
+  ],
+  "disclaimer": "本データは龍ケ崎市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず龍ケ崎市（こども家庭課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "保育認定（2号・3号認定）・0〜2歳児・一般世帯（ひとり親世帯等を除く）・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳児以上の保育料（国の無償化により無償）",
+      "ひとり親世帯・在宅障がい児(者)のいる世帯（所得割77,101円未満）の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "第2子（半額または無料）・第3子以降（無料）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）",
+      "副食費（小学校3年生以下の範囲で最年長から3人目以降は0円）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "母子（父子）家庭で市町村民税が非課税となる世帯、または父母ともに収入が103万円を超えない場合で、対象児童と同一住所・生計を同一にする者がいる場合は、父母の収入を超える者を「家計の主宰者」とし、その方の収入をもとに算定する。",
+    "taxYearRule": "4月から8月の保育料は前年度、9月から3月は当年度の市町村民税所得割額に基づく。毎年4月と9月に見直しを行う。",
+    "deductionsIgnored": [
+      "寄附金控除",
+      "配当控除",
+      "住宅借入金等特別控除"
+    ],
+    "sourceId": "riyoannai-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["市町村民税所得割課税額の計算には、調整控除を除く税額控除（寄附金控除、配当控除、住宅借入金等\n特別控除など）は適用しません。"]
+    },
+    "note": "★6/8換算について★ 龍ケ崎市は中核市・施行時特例市のいずれでもない一般市。riyoannai-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ 第1=生活保護世帯（isWelfare）、第2=非課税世帯（isNonTaxable）。incomeMin/incomeMaxは第1・第2階層を便宜上0/0とした。★未申告時の扱い★ 保育料算定書類未提出・未申告で市町村民税額が未確定の場合は第11階層（最高階層）で算定されることがある。★ひとり親世帯等の別建て軽減★ 第1〜第4階層の一部（所得割77,101円未満）のひとり親世帯・在宅障がい児(者)のいる世帯は一般世帯より低い額（標準5,150円〜8,600円）で別建てされ、第2子以降が無条件で無料になる。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児",
+      "rule": "児童の年齢は4月1日時点での満年齢による。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳児以上",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳児以上の保育料は無料",
+      "sourceId": "riyoannai-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["幼児教育・保育の無償化により各施設を利用する３歳児から5 歳児のお子さんと市民税非課税世帯の0\n歳児から2 歳児のお子さんの利用者負担額（以下、「保育料」といいます。）は無料となります。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "第2階層（市民税非課税世帯）は0〜2歳児の保育料が無料",
+      "sourceId": "riyoannai-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "原則、小学校就学前の教育・保育施設等を同時に利用する最年長の子どもから順に数える（小学生以上はカウントしない）。ただし世帯の市町村民税所得割額が57,700円未満の場合は、上の子どもの年齢にかかわらず数える（年齢制限撤廃）。兄姉が幼稚園・認定こども園（教育部分）・障がい福祉施設に在籍している場合も保育施設利用とみなしてカウントする。",
+        "sourceId": "riyoannai-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["世帯の市町村民税所得割額が57,700円未満の場合、上のお子さんの年齢にかかわらず、2人目は半額、3人目以降は無料となります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "第1子額の半額（ひとり親世帯・在宅障がい児(者)のいる世帯〈所得割77,101円未満〉は第2子以降無料）",
+        "sourceId": "riyoannai-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は0円",
+        "sourceId": "riyoannai-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["保育料は2人目は\n半額、3人目以降は0円となり\nます。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "世帯の市町村民税所得割額が57,700円未満の場合、兄姉の年齢制限を撤廃して多子軽減をカウントする市独自の拡充がある。"
+  },
+  "tiers": [
+    {
+      "tier": "第1",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第2",
+      "label": "非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第3",
+      "label": "市民税所得割課税額48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 11300, "short": 11100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第4",
+      "label": "77,700円未満",
+      "incomeMin": 48600,
+      "incomeMax": 77700,
+      "fees": {
+        "under3": { "standard": 17200, "short": 16900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第5",
+      "label": "97,000円未満",
+      "incomeMin": 77700,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 24700, "short": 24200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第6",
+      "label": "140,200円未満",
+      "incomeMin": 97000,
+      "incomeMax": 140200,
+      "fees": {
+        "under3": { "standard": 27700, "short": 27200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第7",
+      "label": "169,000円未満",
+      "incomeMin": 140200,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 34500, "short": 33900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第8",
+      "label": "248,200円未満",
+      "incomeMin": 169000,
+      "incomeMax": 248200,
+      "fees": {
+        "under3": { "standard": 37500, "short": 36800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第9",
+      "label": "301,000円未満",
+      "incomeMin": 248200,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 45000, "short": 44200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第10",
+      "label": "397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 49000, "short": 48100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第11",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 51500, "short": 50600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "riyoannai-pdf",
+    "expect": [
+      "保育認定（2号・3号認定）の子どもの保育料（月額）【３歳児以上は無償化】",
+      "51,500",
+      "397,000\n円以上"
+    ]
+  }
+}
