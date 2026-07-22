@@ -1,0 +1,30 @@
+{
+  "$schema":"../../schema/hoikuryo.schema.json","id":"hokkaido-iwamizawa","name":"北海道岩見沢市","municipalityCode":"012106","prefecture":"北海道","municipalityType":"その他市","fiscalYear":2026,"asOf":"2026-07-22","nextCheckDue":"2027-04-01",
+  "sources":[{"id":"iwamizawa-fee-pdf","title":"保育料基準額表","publisher":"岩見沢市こども未来課","url":"https://www.city.iwamizawa.hokkaido.jp/material/files/group/51/2602_kizyungakuhyou.pdf","landingUrl":"https://www.city.iwamizawa.hokkaido.jp/soshiki/kodomoka/1/3847.html","contentType":"pdf","checkedAt":"2026-07-22","tier":"municipality","note":"市公式の現行ページからリンクされた基準額表。3歳未満の15階層と市独自の減免を確認。"}],
+  "disclaimer":"岩見沢市公式の保育料基準額表に基づく参考情報です。最終額は市の決定通知をご確認ください。",
+  "scope":{"includes":["3歳未満・一般世帯第1子の標準時間／短時間保育料"],"excludes":["ひとり親等の軽減後額","副食費・延長保育料等"]},
+  "bracketBasis":{"basis":"市町村民税所得割額","householdScope":"保護者の市民税所得割額を基に決定。","taxYearRule":"4～8月分は前年度、9～3月分は当年度。","deductionsIgnored":["寄附金控除","配当控除","外国税額控除","住宅取得控除"],"note":"医療費控除後、列挙された税額控除前の税額。","sourceId":"iwamizawa-fee-pdf","checkedAt":"2026-07-22","verify":{"expect":["４～８月分：前年度分","９～３月分：当年度分"]}},
+  "ageClasses":[{"key":"under3","label":"0～2歳児","rule":"4月1日時点の年齢"},{"key":"age3plus","label":"3歳以上","rule":"4月1日時点で3歳以上は無料"}],
+  "freeTuition":{"age3plusFree":{"value":true,"label":"3歳以上は保育料無料","sourceId":"iwamizawa-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）","verify":{"expect":["3歳以上は保育料無料"]}},"under3NonTaxableFree":{"value":true,"label":"生活保護・非課税世帯は無料","sourceId":"iwamizawa-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）","verify":{"expect":["生活保護世帯、市町村民税非課税世帯"]}},"multiChildPolicy":{"countingRule":{"value":"5-3階層以下は生計同一世帯の兄姉がいる第2子以降、小3以下から数える第3子以降、同時入所の第2子以降が無料。","unit":"unit","label":"市独自多子軽減","sourceId":"iwamizawa-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）"},"secondChild":{"value":0,"unit":"JPY/month","label":"要件該当の第2子以降無料","sourceId":"iwamizawa-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）"},"thirdChildOnwards":{"value":0,"unit":"JPY/month","label":"小学校3年生以下から数えて第3子以降無料","sourceId":"iwamizawa-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）"}}},
+  "tiers":[
+    {"tier":"1","label":"生活保護世帯等","incomeMin":0,"incomeMax":0,"isWelfare":true,"fees":{"under3":{"standard":0,"short":0},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"2","label":"市町村民税非課税世帯","incomeMin":0,"incomeMax":0,"isNonTaxable":true,"fees":{"under3":{"standard":0,"short":0},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"3-1","incomeMin":0,"incomeMax":16200,"fees":{"under3":{"standard":10000,"short":9940},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"3-2","incomeMin":16200,"incomeMax":32400,"fees":{"under3":{"standard":12800,"short":12680},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"3-3","incomeMin":32400,"incomeMax":48600,"fees":{"under3":{"standard":15600,"short":15440},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"4-1","incomeMin":48600,"incomeMax":64700,"fees":{"under3":{"standard":18900,"short":18680},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"4-2","incomeMin":64700,"incomeMax":80800,"fees":{"under3":{"standard":22200,"short":21920},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"4-3","incomeMin":80800,"incomeMax":97000,"fees":{"under3":{"standard":25500,"short":25160},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"5-1","incomeMin":97000,"incomeMax":121000,"fees":{"under3":{"standard":30350,"short":29940},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"5-2","incomeMin":121000,"incomeMax":145000,"fees":{"under3":{"standard":35200,"short":34720},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"5-3","incomeMin":145000,"incomeMax":169000,"fees":{"under3":{"standard":40050,"short":39510},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"6-1","incomeMin":169000,"incomeMax":213000,"fees":{"under3":{"standard":45000,"short":44370},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"6-2","incomeMin":213000,"incomeMax":257000,"fees":{"under3":{"standard":49950,"short":49230},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"6-3","incomeMin":257000,"incomeMax":301000,"fees":{"under3":{"standard":54900,"short":54090},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"7-1","incomeMin":301000,"incomeMax":333000,"fees":{"under3":{"standard":61930,"short":61010},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"7-2","incomeMin":333000,"incomeMax":365000,"fees":{"under3":{"standard":68960,"short":67930},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"7-3","incomeMin":365000,"incomeMax":397000,"fees":{"under3":{"standard":76000,"short":74860},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"8","incomeMin":397000,"incomeMax":null,"fees":{"under3":{"standard":98800,"short":97280},"age3plus":{"standard":0,"short":0}}}
+  ],
+  "verify":{"sourceId":"iwamizawa-fee-pdf","expect":["16,200円未満の世帯","169,000円未満の世帯","397,000円以上の世帯","98,800","97,280"]}
+}

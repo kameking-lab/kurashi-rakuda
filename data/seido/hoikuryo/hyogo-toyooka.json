@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "hyogo-toyooka",
+  "name": "兵庫県豊岡市",
+  "municipalityCode": "282090",
+  "prefecture": "兵庫県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [{"id":"toyooka-fee-pdf","title":"2026年度 保育所・認定こども園【2・3号認定】保育料額表","publisher":"豊岡市幼児育成課","url":"https://www.city.toyooka.lg.jp/_res/projects/default_project/_page_/001/037/605/gakuhyouu.pdf","landingUrl":"https://www.city.toyooka.lg.jp/kosodate/1036539/1036936/1037356/1037605.html","contentType":"pdf","checkedAt":"2026-07-22","tier":"municipality","note":"2026年4月から国基準の約55%軽減。R8額表・税年度切替・多子軽減を確認。"}],
+  "disclaimer":"豊岡市公式の2026年度額表に基づく参考情報です。最終額は市の決定通知をご確認ください。",
+  "scope":{"includes":["2・3号認定の3歳未満児・一般世帯第1子の月額保育料"],"excludes":["ひとり親・障害児者世帯等の別表軽減額","副食費・延長保育料等の実費"]},
+  "bracketBasis":{"basis":"市町村民税所得割額","householdScope":"原則として父母。家計の主宰者が異なる場合は祖父母等その他の扶養義務者を含む。","taxYearRule":"4～8月分は2025年度課税分、9月～翌年3月分は2026年度課税分。","deductionsIgnored":["寄附金控除","外国税額控除","配当控除","住宅借入金等特別控除"],"note":"調整控除と税額調整措置以外の税額控除は適用しない。","sourceId":"toyooka-fee-pdf","checkedAt":"2026-07-22","verify":{"expect":["４月～８月分の保育料は2025年度課税分","９月～翌年３月分の保育料は2026年度課税分"]}},
+  "ageClasses":[{"key":"under3","label":"3歳未満児","rule":"2026年4月1日現在の満年齢"},{"key":"age3plus","label":"3歳以上児","rule":"2026年4月1日現在の満年齢。保育料0円。"}],
+  "freeTuition":{"age3plusFree":{"value":true,"label":"3～5歳児クラスの保育料は無償","sourceId":"toyooka-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）","verify":{"expect":["３歳以上児","0 ( 0)"]}},"under3NonTaxableFree":{"value":true,"label":"生活保護・市民税非課税世帯は0円","sourceId":"toyooka-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）","verify":{"expect":["市(区町村)民税非課税世帯","0 ( 0)"]}},"multiChildPolicy":{"countingRule":{"value":"原則は施設利用中の就学前児童で数える。所得割57,700円未満は年齢制限なし。","unit":"unit","label":"多子カウント","sourceId":"toyooka-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）"},"secondChild":{"value":"半額（10円未満切捨て）","unit":"unit","label":"第2子","sourceId":"toyooka-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）"},"thirdChildOnwards":{"value":0,"unit":"JPY/month","label":"第3子以降無料","sourceId":"toyooka-fee-pdf","checkedAt":"2026-07-22","amendmentNote":"なし（2026-07-22時点）"}}},
+  "tiers":[
+    {"tier":"A","label":"生活保護受給世帯","incomeMin":0,"incomeMax":0,"isWelfare":true,"fees":{"under3":{"standard":0,"short":0},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"B","label":"市民税非課税世帯","incomeMin":0,"incomeMax":0,"isNonTaxable":true,"fees":{"under3":{"standard":0,"short":0},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"C1","label":"所得割48,600円未満","incomeMin":0,"incomeMax":48600,"fees":{"under3":{"standard":9000,"short":8800},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"C2","label":"所得割48,600円以上97,000円未満","incomeMin":48600,"incomeMax":97000,"fees":{"under3":{"standard":14000,"short":13700},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"C3","label":"所得割97,000円以上169,000円未満","incomeMin":97000,"incomeMax":169000,"fees":{"under3":{"standard":20000,"short":19600},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"C4","label":"所得割169,000円以上301,000円未満","incomeMin":169000,"incomeMax":301000,"fees":{"under3":{"standard":26000,"short":25500},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"C5","label":"所得割301,000円以上397,000円未満","incomeMin":301000,"incomeMax":397000,"fees":{"under3":{"standard":36000,"short":35200},"age3plus":{"standard":0,"short":0}}},
+    {"tier":"C6","label":"所得割397,000円以上","incomeMin":397000,"incomeMax":null,"fees":{"under3":{"standard":47000,"short":45800},"age3plus":{"standard":0,"short":0}}}
+  ],
+  "verify":{"sourceId":"toyooka-fee-pdf","expect":["48,600円未満","97,000円未満","397,000円以上","47,000","45,800"]}
+}
