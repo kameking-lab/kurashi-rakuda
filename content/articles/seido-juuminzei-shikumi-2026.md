@@ -9,7 +9,10 @@
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
   "solves": ["住民税がいつの収入をもとに決まるか分からない", "住民税の均等割と所得割の違いが分からない"],
   "revision_year": 2026,
-  "sources": [{ "url": "https://laws.e-gov.go.jp/law/325AC0000000226", "title": "地方税法", "org": "e-Gov法令検索（デジタル庁）", "accessed": "2026-07-18" }],
+  "sources": [
+    { "url": "https://laws.e-gov.go.jp/law/325AC0000000226", "title": "地方税法", "org": "e-Gov法令検索（デジタル庁）", "accessed": "2026-07-22", "verify": { "expect": ["個人の均等割の標準税率は、三千円とする。", "所得割の額は、課税総所得金額、課税退職所得金額及び課税山林所得金額の合計額に、百分の六"] } },
+    { "url": "https://laws.e-gov.go.jp/law/431AC0000000003", "title": "森林環境税及び森林環境譲与税に関する法律", "org": "e-Gov法令検索（デジタル庁）", "accessed": "2026-07-22", "verify": { "expect": ["森林環境税の税率は、千円とする。"] } }
+  ],
   "facts": [
     { "key": "juuminzei.income_year", "value": 2025, "unit": "年", "seido_ref": "juuminzei.json#data.taxYearRule.incomeYear.value", "status": "verified" },
     { "key": "juuminzei.kintouwari_total", "value": 4000, "unit": "円", "seido_ref": "juuminzei.json#data.kintouwari.totalStandard.value", "status": "verified" },
@@ -42,7 +45,8 @@
 
 ## 出典・根拠
 
-- e-Gov法令検索（デジタル庁）「地方税法」
+- e-Gov法令検索（デジタル庁）「地方税法」（均等割・所得割の標準税率）
+- e-Gov法令検索（デジタル庁）「森林環境税及び森林環境譲与税に関する法律」（森林環境税の税率）
 
 ---
 

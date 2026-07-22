@@ -16,7 +16,15 @@
       "url": "https://www.caa.go.jp/policies/policy/food_labeling/food_sanitation/expiration_date/",
       "title": "食品の期限表示に関する情報",
       "org": "消費者庁",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-22",
+      "verify": { "expect": ["消費期限又は賞味期限の設定については、科学的・合理的根拠をもって設定することとしていますが"] }
+    },
+    {
+      "url": "https://www.caa.go.jp/policies/policy/food_labeling/food_sanitation/expiration_date/assets/food_labeling_cms201_250328_01.pdf",
+      "title": "食品期限表示の設定のためのガイドラインの見直し検討会 取りまとめ（令和7年3月）",
+      "org": "消費者庁",
+      "accessed": "2026-07-22",
+      "verify": { "expect": ["消費期限は「定められた方法により保存した場合において、腐\n敗、変敗その他の品質の劣化に伴い安全性を欠くこととなるおそれがないと認められる\n期限を示す年月日をいう。」、賞味期限は「定められた方法により保存した場合において、\n期待される全ての品質の保持が十分に可能であると認められる期限を示す年月日をい\nう。"] }
     }
   ],
   "facts": [
@@ -66,6 +74,7 @@
 ## 出典・根拠
 
 - 消費者庁「食品の期限表示に関する情報」
+- 消費者庁「食品期限表示の設定のためのガイドラインの見直し検討会 取りまとめ」（令和7年3月）（消費期限・賞味期限の定義、5日ルールの経緯）
 
 ---
 

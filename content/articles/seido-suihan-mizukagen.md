@@ -16,7 +16,8 @@
       "url": "https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2111/spe3_01.html",
       "title": "「和ごはん」のすすめ ごはんの炊き方の基本",
       "org": "農林水産省",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-22",
+      "verify": { "expect": ["計量には1合カップ(180cc。概ね150g)を使い"] }
     }
   ],
   "facts": [
