@@ -16,7 +16,8 @@
       "url": "https://www.caa.go.jp/policies/policy/representation/household_goods/guide/wash_02.html",
       "title": "洗濯表示（令和6年8月20日以降）",
       "org": "消費者庁",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-22",
+      "verify": { "expect": ["5 個の基本記号、及び基本記号と組み合わせて用いる幾つかの付加記号で構成する。"] }
     }
   ],
   "facts": [

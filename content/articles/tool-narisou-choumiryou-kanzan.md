@@ -14,9 +14,10 @@
   "sources": [
     {
       "url": "https://www.city.osaka.lg.jp/kenko/page/0000017084.html",
-      "title": "計量スプーン・カップの重量換算表",
-      "org": "大阪市（新潟市農林水産部食育・花育センター、船橋市学校栄養士会の資料もあわせて参照）",
-      "accessed": "2026-07-17"
+      "title": "カップ・スプーンによる食品の重量（g）",
+      "org": "大阪市健康局健康推進部健康づくり課",
+      "accessed": "2026-07-22",
+      "verify": { "expect": ["大さじ1→15ml", "小さじ1→5ml", "しょうゆ\n6\n18", "食塩\n6\n18"] }
     }
   ],
   "facts": [
@@ -39,7 +40,8 @@
       "value": 15,
       "unit": "g",
       "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.mizu",
-      "status": "verified"
+      "status": "stub",
+      "stub_reason": "水の比重1（大さじ1杯=15ml=15g）という物理的性質であり、現在引用している大阪市の重量換算表には水単体の行が掲載されていないため機械照合対象外。"
     },
     {
       "key": "choumiryou.shouyu_oosaji_g",
@@ -130,14 +132,16 @@
       "value": 21,
       "unit": "g",
       "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.hachimitsu",
-      "status": "verified"
+      "status": "stub",
+      "stub_reason": "現在引用している大阪市の重量換算表にはちみつの行が掲載されていないため機械照合対象外（ツール実装値をそのまま参考値として扱っている）。"
     },
     {
       "key": "choumiryou.gyuunyuu_oosaji_g",
       "value": 15,
       "unit": "g",
       "seido_ref": "choumiryou-kanzan-kijun.json#hijuu_g_per_oosaji.gyuunyuu",
-      "status": "verified"
+      "status": "stub",
+      "stub_reason": "現在引用している大阪市の重量換算表には牛乳（液体）の行が掲載されていないため機械照合対象外（スキムミルクの行はあるが別品目）。ツール実装値をそのまま参考値として扱っている。"
     },
     {
       "key": "choumiryou.kechappu_oosaji_g",
@@ -206,7 +210,7 @@
 
 ## 出典・根拠
 
-- 大阪市「計量スプーン・カップの重量換算表」（新潟市農林水産部食育・花育センター、船橋市学校栄養士会の資料もあわせて参照）
+- 大阪市健康局健康推進部健康づくり課「カップ・スプーンによる食品の重量（g）」
 
 ---
 
