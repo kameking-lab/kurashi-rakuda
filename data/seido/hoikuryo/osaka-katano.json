@@ -1,0 +1,348 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "osaka-katano",
+  "name": "大阪府交野市",
+  "municipalityCode": "272302",
+  "prefecture": "大阪府",
+  "municipalityType": "その他市",
+  "fiscalYear": 2025,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "amendments": [
+    {
+      "summary": "利用者負担額表PDF（令和元年10月1日改正版）は「令和7年4月分〜令和7年8月分は令和6年度市民税、令和7年9月分〜令和8年3月分は令和7年度市民税を基に算定」と明記されており、対象期間が令和8年3月まで（令和7年度分）で終わっている。令和8年度入所案内ページから直接リンクされているが、令和8年4月以降（令和8年度分）の税年度切替を反映した版が別途公表されているかは本資料の範囲内で確認できず、令和8年度としての確定額は未確認。",
+      "status": "under-review",
+      "sourceId": "fee-pdf"
+    }
+  ],
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "利用者負担額表　認定こども園・保育所【標準時間認定】【短時間認定】（令和元年10月1日改正）",
+      "publisher": "交野市こども家庭部こども園課",
+      "url": "https://www.city.katano.osaka.jp/docs/2011061000043/file_contents/file_202510201151238_1.pdf",
+      "landingUrl": "https://www.city.katano.osaka.jp/docs/2011061000043/",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFタイトルメタデータ「03 利用者負担額表_P13~15.xlsx」、creationDate 2025-08-25。「令和8年度入所案内」ページから直接リンクされている3頁もの（13頁=標準時間、14頁=短時間、15頁=小規模保育施設）。表内の「令和7年9月分〜令和8年3月分保育料＝令和7年度市民税を基に算定」という文言から、対象期間は令和8年3月までであることが分かる。"
+    },
+    {
+      "id": "mushouka-page",
+      "title": "交野市独自の保育料の無償化・給食（副食費）の免除対象者の拡大について",
+      "publisher": "交野市こども家庭部こども園課",
+      "url": "https://www.city.katano.osaka.jp/docs/2019083000010/",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "令和元年9月公開。0〜2歳児の第3子以降は世帯収入にかかわらず無償化する市独自施策（きょうだいカウントの年齢制限撤廃）を説明。"
+    }
+  ],
+  "disclaimer": "本データは交野市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず交野市（こども園課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "認定こども園・保育所・3歳未満児クラス・一般世帯（ひとり親等を除く）・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児クラスの保育料（国の無償化により無償）",
+      "小規模保育施設の利用者負担額（本ファイル未収録。標準時間・短時間共通の別表で金額がやや異なる）",
+      "第2子（半額）・第3子以降（0円）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）",
+      "ひとり親世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "3〜5歳児の副食費（第1〜6-3階層・第7-1階層・第8-1階層の世帯の子及び第3子以降は免除）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本資料の範囲内で確認できず（未確認）。",
+    "taxYearRule": "4月から8月分は前年度市民税、9月から翌3月分は当該年度市民税を基に算定する。",
+    "deductionsIgnored": [
+      "配当控除",
+      "外国税額控除",
+      "住宅借入金特別控除",
+      "寄付金控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["市民税所得割額の算定については、税額控除（配当控除、外国税額控除、住宅借入金特別控除、寄付金控除等）を適用しない。"]
+    },
+    "note": "★6/8換算について★ 交野市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ 1=生活保護世帯等（isWelfare）、2-2=市民税非課税世帯（isNonTaxable）。incomeMin/incomeMaxは1・2-2を便宜上0/0とした。★6-2/6-4階層の統合★ 原典は48,600円以上57,700円未満・57,700円以上60,700円未満の2区分（一般世帯）に分かれるが金額が完全一致（標準16,000円/短時間15,700円）のため単一階層（48,600円以上60,700円未満）として統合した。★8-2/8-3階層の統合★ 原典は72,800円以上77,101円未満・77,101円以上84,900円未満の2区分に分かれるが金額が完全一致（標準20,000円/短時間19,600円）のため単一階層（72,800円以上84,900円未満）として統合した。★ひとり親世帯等の別建て軽減★ 8-1階層以下のひとり親等（母子・父子世帯又は在宅障がい児(者)のいる世帯）は一般世帯より大幅に低い額（標準4,000円〜10,000円）になる。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児",
+      "rule": "算定対象となる子どもは保護者と生計を一にするものとする。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上児の保育料は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["幼児教育・保育無償化により\n3歳児～5歳児は保育料0円"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "2-2階層（市民税非課税世帯）は3歳未満児の保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "国の基準では、対象子どもが小学校に上がるまでの兄弟から数えて何人目にあたるかで数える（一定の高所得階層では年収360万円以上相当の世帯につき小学生以上の兄姉を除外）。交野市では独自に、6-4・7-2・8-2〜20階層の世帯について、兄弟を数える際の年齢制限を撤廃し、世帯の状況にかかわらず生計を一にする子どもで数える（0〜2歳児の第3子以降無償化についても同様に世帯収入による年齢制限を撤廃）。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["交野市では、 【6-4】、【7-2】、【8-2】～【20】階層の世帯の子どもについて、交野市独自で、\n兄弟を数える際の年齢制限を撤廃しているため"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "第1子の半額（ひとり親等は0円）",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "すべての階層について第3子以降は0円",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["すべての階層について、第３子以降は0円とする。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "0〜2歳児クラスの第3子以降は世帯収入にかかわらず保育料が無償（市独自に兄弟カウントの年収制限を撤廃）。3〜5歳児クラスの第3子以降も世帯収入にかかわらず副食費が免除される。"
+  },
+  "tiers": [
+    {
+      "tier": "1",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "2-2",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "3-2",
+      "label": "市民税所得割額非課税世帯（均等割のみ）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 9000, "short": 8800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4-2",
+      "label": "市民税所得割額10,000円未満",
+      "incomeMin": 0,
+      "incomeMax": 10000,
+      "fees": {
+        "under3": { "standard": 12000, "short": 11700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "5-2",
+      "label": "10,000円以上48,600円未満",
+      "incomeMin": 10000,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 13000, "short": 12700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "6-2/6-4",
+      "label": "48,600円以上60,700円未満（原典2区分だが金額同一のため統合）",
+      "incomeMin": 48600,
+      "incomeMax": 60700,
+      "fees": {
+        "under3": { "standard": 16000, "short": 15700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "7-2",
+      "label": "60,700円以上72,800円未満",
+      "incomeMin": 60700,
+      "incomeMax": 72800,
+      "fees": {
+        "under3": { "standard": 18000, "short": 17600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "8-2/8-3",
+      "label": "72,800円以上84,900円未満（原典2区分だが金額同一のため統合）",
+      "incomeMin": 72800,
+      "incomeMax": 84900,
+      "fees": {
+        "under3": { "standard": 20000, "short": 19600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "9",
+      "label": "84,900円以上97,000円未満",
+      "incomeMin": 84900,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 22000, "short": 21600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "10",
+      "label": "97,000円以上115,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 115000,
+      "fees": {
+        "under3": { "standard": 24000, "short": 23500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "11",
+      "label": "115,000円以上133,000円未満",
+      "incomeMin": 115000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 29000, "short": 28500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "12",
+      "label": "133,000円以上151,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 151000,
+      "fees": {
+        "under3": { "standard": 33000, "short": 32400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "13",
+      "label": "151,000円以上169,000円未満",
+      "incomeMin": 151000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 37000, "short": 36300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "14",
+      "label": "169,000円以上202,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 202000,
+      "fees": {
+        "under3": { "standard": 43000, "short": 42200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "15",
+      "label": "202,000円以上235,000円未満",
+      "incomeMin": 202000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": { "standard": 48000, "short": 47100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "16",
+      "label": "235,000円以上268,000円未満",
+      "incomeMin": 235000,
+      "incomeMax": 268000,
+      "fees": {
+        "under3": { "standard": 52000, "short": 51100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "17",
+      "label": "268,000円以上301,000円未満",
+      "incomeMin": 268000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 54000, "short": 53000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "18",
+      "label": "301,000円以上349,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 349000,
+      "fees": {
+        "under3": { "standard": 56000, "short": 55000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "19",
+      "label": "349,000円以上397,000円未満",
+      "incomeMin": 349000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 58000, "short": 57000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "20",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 62000, "short": 60900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "利用者負担額表　認定こども園・保育所　【標準時間認定】",
+      "62,000",
+      "397,000円以上"
+    ]
+  }
+}

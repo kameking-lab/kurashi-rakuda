@@ -1,0 +1,199 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "aichi-gamagori",
+  "name": "愛知県蒲郡市",
+  "municipalityCode": "232149",
+  "prefecture": "愛知県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "保育施設利用者負担額一覧表（※3歳児から5歳児は無償となります。）",
+      "publisher": "蒲郡市子育て支援課",
+      "url": "https://www.city.gamagori.lg.jp/uploaded/attachment/116004.pdf",
+      "landingUrl": "https://www.city.gamagori.lg.jp/site/subsite-kosodate/hoikuryou.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "掲載元ページ更新日2026-04-06、PDFメタデータcreationDate 2026-04-20。複雑な結合セルのためget_pixmap(dpi=200)で表全体を画像化し目視で数値を確認した。"
+    }
+  ],
+  "disclaimer": "本データは蒲郡市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず蒲郡市（子育て支援課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "満3歳未満児（0〜2歳児）・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児の保育料（国の無償化により無償）",
+      "母子・父子・在宅障害児(者)のいる世帯の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "表内の第2子・第3子以降の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "世帯の扶養義務者（原則として父母）の状況で算定する。ただし、父母が非課税であり、祖父母と同居している場合は祖父母のうち市町村民税の高い方一人を「家計の主宰者」とみなし算定する。",
+    "taxYearRule": "4月から8月分は前年度分市町村民税、9月から翌年3月分は当該年度分の市町村民税を適用する。年齢は当該年度4月1日現在の年齢による。",
+    "deductionsIgnored": [],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "note": "★6/8換算について★ 蒲郡市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯等（isWelfare）、B2=市町村民税非課税世帯（isNonTaxable）、C2=市町村民税所得割非課税（均等割のみ課税）。incomeMin/incomeMaxはA・B2・C2を便宜上0/0とした。★D6/D7階層の統合★ 原典は所得割397,000円未満・以上の2区分に分かれるが金額が完全一致（標準53,000円/短時間52,000円）のため単一階層（301,000円以上）として統合した。★母子・父子・在宅障害児(者)のいる世帯の別建て軽減★ B1・C1・D1・D3-1階層として一般世帯より低い額（標準0円〜6,500円）で別建てされている。本ファイルのtiersには一般世帯（B2・C2・D2・D3-2・D4〜D7）の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。★控除規定★ 適用しない税額控除の個別列挙は原典の範囲内で確認できず、deductionsIgnoredは空配列とした（未確認）。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "満3歳未満児（0歳児から2歳児）",
+      "rule": "年齢は当該年度4月1日現在の年齢による。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳児から5歳児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳児から5歳児は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["保育施設利用者負担額一覧表（※3歳児から5歳児は無償となります。）"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B2階層（市町村民税非課税世帯）は満3歳未満児の保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "C1階層からD7階層までに属する世帯であって、同一世帯で2人以上の児童（18歳に達する日以後の最初の3月31日までの間にある者）を現に養育し、当該児童のうち出生順位が第2子以降の児童が入所している場合、世帯収入にかかわらず第2子以降の保育料が無料となる（同時利用要件の明記なし・年齢制限は18歳到達年度末まで）。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["この表においてC1階層からD7階層までに属する世帯であって、同一世帯で２人以上の児童（１８歳に達する日以後の最初の３\n月３１日までの間にある者）を現に養育し、当該児童のうち出生順位が第２子以降の児童が入所している場合、世帯収入に関わ\nらず、第２子以降の保育料が無料となります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "原則0円（C1〜D7階層で18歳未満のきょうだいを2人以上養育し出生順位2番目以降の子が入所している場合、世帯収入にかかわらず無料）。ただし表本体には別途、C2一般4,500円・D2一般7,000円・D3-2一般〈所得割48,600〜57,700円未満〉9,500円という第2子の基準額も明記されている。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)",
+        "note": "無料条件を満たさない場合の基準額（表本体の第2子欄）と、条件を満たす場合の無料化が併存するため、値を数値ではなく説明文字列で収録した。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は表本体でも0円",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "C1〜D7階層の世帯が18歳未満のきょうだいを2人以上養育し、出生順位2番目以降の子が入所している場合、世帯収入にかかわらず第2子以降の保育料が無料になる。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B2",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "市町村民税所得割非課税（均等割のみ課税）の世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 9000, "short": 8500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "所得割課税額48,600円未満の世帯",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 14000, "short": 13500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3-2",
+      "label": "所得割課税額97,000円未満の世帯",
+      "incomeMin": 48600,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 19000, "short": 18500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割課税額169,000円未満の世帯",
+      "incomeMin": 97000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 30000, "short": 29000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割課税額301,000円未満の世帯",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 46000, "short": 45000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6/D7",
+      "label": "所得割課税額301,000円以上（原典2区分だが金額同一のため統合）",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 53000, "short": 52000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "保育施設利用者負担額一覧表",
+      "53,000",
+      "397,000円以上の世帯"
+    ]
+  }
+}
