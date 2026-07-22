@@ -1,0 +1,256 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "osaka-izumiotsu",
+  "name": "大阪府泉大津市",
+  "municipalityCode": "272060",
+  "prefecture": "大阪府",
+  "municipalityType": "その他市",
+  "fiscalYear": 2025,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-09-01",
+  "amendments": [
+    {
+      "summary": "表題が「2号及び3号認定保育料徴収基準額表　2025年9月」となっており、令和7年9月改定分（令和7年度税額に基づく期間、令和8年8月分まで想定）の表である可能性が高い。令和8年9月以降の税年度切替に伴う新版の公表有無は本ファイル確認時点で未確認。",
+      "status": "under-review",
+      "sourceId": "fee-pdf"
+    }
+  ],
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "2号及び3号認定保育料徴収基準額表　2025年9月",
+      "publisher": "泉大津市健康こども部こども育成課",
+      "url": "https://www.city.izumiotsu.lg.jp/material/files/group/21/2025-9hoikuryou2.pdf",
+      "landingUrl": "https://www.city.izumiotsu.lg.jp/kakuka/kenko/kodomoikusei/osirase/1501815423516.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータcreationDate 2025-06-24、ファイル名・表題とも「2025年9月」改定版であることを明記。"
+    }
+  ],
+  "disclaimer": "本データは泉大津市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず泉大津市（こども育成課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "3歳未満児・一般世帯（ひとり親世帯等を除く）・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児の保育料（国の無償化により無償）",
+      "ひとり親世帯・在宅障がい児(者)のいる世帯の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "第2子（半額）・第3子以降（0円）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本資料の範囲内で確認できず（未確認）。",
+    "taxYearRule": "4月分から8月分までは前年度の市民税課税額、9月分から3月分までは利用年度の市民税課税額により算定する。",
+    "deductionsIgnored": [
+      "寄附金税額控除",
+      "配当控除",
+      "外国税額控除",
+      "住宅借入額（取得）等特別控除",
+      "配当割額控除",
+      "株式等譲渡割額控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["寄附金税額控除、配当控除、外国税額控除、住宅借入額（取得）等特別控除、配当割額控除、\n　株式等譲渡割額控除については、保育料算定の市民税額から控除されません。"]
+    },
+    "note": "★6/8換算について★ 泉大津市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯（isWelfare）、B=市民税非課税世帯（isNonTaxable）、C=市民税所得割非課税世帯（均等割のみ）。incomeMin/incomeMaxはA・B・Cを便宜上0/0とした。★ひとり親世帯等の別建て軽減★ C階層は0円、D1〜D4の一部（所得割77,100円以下）は一律4,000円（短時間3,900円）という一般世帯より低い額で別建てされ、さらに市独自制度により年齢関係なくすべての第2子以降が0円になる。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児",
+      "rule": "各月初日の年齢による。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上児の保育料は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。fee-pdfの表に3歳以上児の金額欄がないことからも対象外であることが読み取れる。",
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（市民税非課税世帯）は3歳未満児の保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "泉大津市は市独自に多子軽減制度を拡充しており、所得や年齢に関係なく、すべての第2子・第3子以降が対象となる（同時在園要件・年齢制限ともになし）。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["泉大津市では、子育て世帯の負担を軽減するため、保育料の多子軽減制度を市独自で拡充し、所得や年齢に関係なく、\nすべての第２子の保育料を半額に、すべての第３子以降の保育料を０円としています。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": 0.5,
+        "unit": "ratio",
+        "label": "所得・年齢にかかわらずすべての第2子が半額（市独自拡充）",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "所得・年齢にかかわらずすべての第3子以降が0円（市独自拡充）",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["すべての第３子以降の保育料を０円としています。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "国の制度（同時在園2人以上で2人目半額・3人目以降0円、低所得世帯は年齢制限撤廃）に加え、泉大津市独自の拡充として所得・年齢を問わずすべての第2子が半額・第3子以降が0円になる。ひとり親世帯・在宅障がい児(者)のいる世帯（所得割77,100円以下）は市独自制度によりすべての第2子以降が0円。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "市民税所得割非課税世帯（均等割のみの世帯）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 7800, "short": 7600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "市民税所得割額48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 9400, "short": 9200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "48,600円以上53,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 53000,
+      "fees": {
+        "under3": { "standard": 11500, "short": 11300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "53,000円以上72,000円未満",
+      "incomeMin": 53000,
+      "incomeMax": 72000,
+      "fees": {
+        "under3": { "standard": 14700, "short": 14400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "72,000円以上97,000円未満",
+      "incomeMin": 72000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 23600, "short": 23100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "97,000円以上137,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 137000,
+      "fees": {
+        "under3": { "standard": 30400, "short": 29800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "137,000円以上169,000円未満",
+      "incomeMin": 137000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 43000, "short": 42200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "169,000円以上206,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 206000,
+      "fees": {
+        "under3": { "standard": 49300, "short": 48400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "206,000円以上301,000円未満",
+      "incomeMin": 206000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 56700, "short": 55700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "301,000円以上",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 57200, "short": 56200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "2号及び3号認定保育料徴収基準額表　　2025年9月",
+      "57,200"
+    ]
+  }
+}

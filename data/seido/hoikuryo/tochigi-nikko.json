@@ -1,0 +1,228 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "tochigi-nikko",
+  "name": "栃木県日光市",
+  "municipalityCode": "092061",
+  "prefecture": "栃木県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "保育園保育料利用者負担額基準表",
+      "publisher": "日光市保育課",
+      "url": "https://www.city.nikko.lg.jp/material/files/group/22/hoikuryoukijyunn.pdf",
+      "landingUrl": "https://www.city.nikko.lg.jp/kosodate_kyoiku/hoikuen_yochien/10/7304.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータcreationDate 2024-08-13で年度表記のない常設表だが、令和8年度版「保育施設利用案内」（r8riyouannnai.pdf）本文が「保育園保育料利用者負担額基準表」という同一名称でこの表を直接参照しており、現行の基準表として有効と判断した（京田辺市・城陽市と同型のロジック）。"
+    }
+  ],
+  "disclaimer": "本データは日光市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず日光市（保育課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "3号認定・3歳未満児・一般世帯（ひとり親世帯等を除く）・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "2号認定（3歳児・4歳以上児）の保育料（国の無償化により無償）",
+      "ひとり親世帯等・在宅障害児(者)のいる世帯の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "第2子以降（無料）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）",
+      "3歳児クラス以降の副食費（所得により免除あり、第2子以降は免除）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本資料の範囲内で確認できず（未確認）。",
+    "taxYearRule": "4月から8月分は前年度市町村民税額、9月から3月分は当年度市町村民税額で算定する。1月1日現在日光市に住民登録がない方は課税資料の提出を求められる場合がある。",
+    "deductionsIgnored": [],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "note": "★6/8換算について★ 日光市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ 1=生活保護世帯（isWelfare）、2=市町村民税非課税世帯（isNonTaxable）。incomeMin/incomeMaxは1・2階層を便宜上0/0とした。★控除規定★ 適用しない税額控除の個別列挙は原典の範囲内で確認できず、deductionsIgnoredは空配列とした（未確認）。★ひとり親世帯等の別建て軽減★ 階層3〜5（所得割77,101円未満）のひとり親世帯等・在宅障害児(者)のいる世帯は一般世帯より低い額（標準6,000円〜9,000円）で別建てされ、第2子以降は無条件で0円。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3号認定・3歳未満児",
+      "rule": "4月1日時点の到達年齢による。"
+    },
+    {
+      "key": "age3plus",
+      "label": "2号認定（3歳児・4歳以上児）",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "2号認定（3歳児・4歳以上児）の保育料は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。fee-pdfの表で2号認定は「0円≪無償化≫」と明記。",
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "階層2（市町村民税非課税世帯）は3号認定・3歳未満児の保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市町村民税　非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "兄弟姉妹の同時入園の場合に限らず、第2子以降の保育料が無料になる市独自の軽減を行っている（同時利用要件なし）。18歳以上の子がいる場合は別途届出が必要。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["兄弟姉妹の同時入園の場合に限らず、第2子以降無料の保育料軽減を独自に行っています。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子以降は無料（同時入園要件なし。市独自軽減）",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子以降が既に無料のため第3子以降も無料",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "兄弟姉妹の同時入園を要件とせず、第2子以降の保育料を無料にする市独自の軽減がある（18歳以上の子がいる場合は別途届出が必要）。"
+  },
+  "tiers": [
+    {
+      "tier": "1",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "2",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "3",
+      "label": "所得割課税額24,300円未満",
+      "incomeMin": 0,
+      "incomeMax": 24300,
+      "fees": {
+        "under3": { "standard": 12000, "short": 11700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4",
+      "label": "24,300円〜48,600円未満",
+      "incomeMin": 24300,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 14000, "short": 13700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "5",
+      "label": "48,600円〜77,101円未満",
+      "incomeMin": 48600,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 20000, "short": 19600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "6",
+      "label": "77,101円〜97,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 22000, "short": 21600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "7",
+      "label": "97,000円〜134,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 134000,
+      "fees": {
+        "under3": { "standard": 28000, "short": 27500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "8",
+      "label": "134,000円〜169,000円未満",
+      "incomeMin": 134000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 30000, "short": 29400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "9",
+      "label": "169,000円〜301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 38000, "short": 37300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "10",
+      "label": "301,000円〜397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 50000, "short": 49100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "11",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 65000, "short": 63800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "保育園保育料利用者負担額基準表",
+      "65,000",
+      "397,000円以上"
+    ]
+  }
+}

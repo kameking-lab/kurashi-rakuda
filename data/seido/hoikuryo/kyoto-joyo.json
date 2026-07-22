@@ -1,0 +1,246 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "kyoto-joyo",
+  "name": "京都府城陽市",
+  "municipalityCode": "262072",
+  "prefecture": "京都府",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "sources": [
+    {
+      "id": "reiki",
+      "title": "城陽市特定教育・保育施設及び特定地域型保育事業の保育料等に関する条例 別表（第3条関係）",
+      "publisher": "城陽市（例規集）",
+      "url": "https://www.city.joyo.kyoto.jp/reiki_int/reiki_honbun/k109RG00001030.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "市公式サイトの保育所関連ページ（入所案内等）へのリンクが軒並み404で到達できなかったため、条例本文（例規集、一次情報）を出典として採用した。別表の直近改正は「令和6年（2024年）3月29日条例第13号・公布の日から施行」で、それ以降の改正は確認できないため、常設表として現行有効と判断した（京田辺市と同型のロジック）。"
+    }
+  ],
+  "disclaimer": "本データは城陽市の公式資料（条例）に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず城陽市（子育て支援課保育係）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "満3歳未満保育認定子ども・第1子分の保育料（0歳児の額を採用）",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児の保育料（国の無償化により無償）",
+      "1〜2歳児の額（0歳児よりわずかに低い階層がある。本ファイルのunder3は0歳児の額に統一。note参照）",
+      "第2子（2分の1）・第3子以降（0円）の額、および所得階層・世帯状況により更に手厚くなる複数の特例軽減（本ファイルのtiersは基本額のみ収録。freeTuition.multiChildPolicy参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "教育・保育給付認定保護者に係る市町村民税所得割額の合算額（市町村民税所得割合算額）による。",
+    "taxYearRule": "4月から8月分は前年度分、9月分から翌年3月分は現年度分の市町村民税による（備考2）。",
+    "deductionsIgnored": [],
+    "sourceId": "reiki",
+    "checkedAt": "2026-07-22",
+    "note": "★6/8換算について★ 城陽市は中核市・施行時特例市のいずれでもない一般市。reikiに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ 1=生活保護世帯等（isWelfare）、2=前年度分の市町村民税を課された者がいない世帯（isNonTaxable）、3=均等割額のみ課された者が属する世帯。incomeMin/incomeMaxは1・2・3を便宜上0/0とした。★0歳児と1〜2歳児の差額★ 備考3「保育料の額(月額)の欄中(　)は、0歳児に適用する」により、階層8以上は0歳児の方がやや高い額になる（階層3〜7は0歳児・1〜2歳児とも同額）。本ファイルのunder3には0歳児の額（括弧内、または括弧のない階層はそのままの額）を採用した。★控除規定★ 適用しない税額控除の個別列挙は原典の範囲内で確認できず、deductionsIgnoredは空配列とした（未確認）。★極めて複雑な多子軽減の重複規定★ 備考4（基本の2人目半額・3人目以降無料）に加え、備考5（階層3〜6の一部世帯向けの追加緩和）・備考6（階層3〜8のうち所得割77,101円未満世帯向けの専用金額表〈階層3=3,300円等〉）という3層の特例が併存する非常に複雑な構造。本ファイルのtiersは備考4の基本ルール適用時の第1子額のみを収録し、備考5・6による更なる軽減は完全にはモデル化していない（原典を直接参照する必要がある）。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "満3歳未満保育認定子ども（0歳児の額）",
+      "rule": "階層8以上は0歳児の方が1〜2歳児よりやや高い額になる。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上児の保育料は無償",
+      "sourceId": "reiki",
+      "checkedAt": "2026-07-22",
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。条例別表には満3歳未満保育認定子ども分のみ掲載されている。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "階層2（前年度分の市町村民税を課された者がいない世帯）は満3歳未満保育認定子どもの保育料が0円",
+      "sourceId": "reiki",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["前年度分の市町村民税を課された者がいない世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同一世帯に特定負担額算定基準子ども（子ども・子育て支援法施行令上の負担額算定基準子ども等）が2人以上いる場合を基本ルールの対象とする。加えて階層3〜6・階層3〜8の一部世帯には備考5・6による専用の軽減規定が別途重複して存在する（原典参照）。",
+        "sourceId": "reiki",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["特定負担額算定基準子ども"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "2番目の年長者は上表の額の2分の1（階層3〜8の一部世帯はさらに手厚い軽減あり）",
+        "sourceId": "reiki",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "3番目以降の年長者は0円",
+        "sourceId": "reiki",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["当該特定負担額算定基準子ども(そのうち最年長者及び2番目の年長者である者を除く。)である満3歳未満保育認定子どもに係る保育料の額は零とする。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "階層3〜6・階層3〜8の一部世帯（所得割合算額が一定額未満）には、備考5・6により基本ルールよりさらに手厚い軽減（専用の低額表適用等）が重複して定められている。詳細は原典（条例別表備考5・6）を直接参照する必要がある。"
+  },
+  "tiers": [
+    {
+      "tier": "1",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "2",
+      "label": "前年度分の市町村民税を課された者がいない世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "3",
+      "label": "均等割額のみ課された者が属する世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 7300, "short": 7200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4",
+      "label": "市町村民税所得割合算額が48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 10200, "short": 10000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "5",
+      "label": "48,600円以上54,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 54000,
+      "fees": {
+        "under3": { "standard": 15800, "short": 15500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "6",
+      "label": "54,000円以上58,000円未満",
+      "incomeMin": 54000,
+      "incomeMax": 58000,
+      "fees": {
+        "under3": { "standard": 18400, "short": 18100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "7",
+      "label": "58,000円以上77,000円未満",
+      "incomeMin": 58000,
+      "incomeMax": 77000,
+      "fees": {
+        "under3": { "standard": 21000, "short": 20700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "8",
+      "label": "77,000円以上97,000円未満",
+      "incomeMin": 77000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 23700, "short": 23300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "9",
+      "label": "97,000円以上132,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 132000,
+      "fees": {
+        "under3": { "standard": 32100, "short": 31600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "10",
+      "label": "132,000円以上169,000円未満",
+      "incomeMin": 132000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 40500, "short": 39900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "11",
+      "label": "169,000円以上301,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 50200, "short": 49400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "12",
+      "label": "301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 59400, "short": 58500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "13",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 67800, "short": 66700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "reiki",
+    "expect": [
+      "各月初日の満3歳未満保育認定子どもに係る教育・保育給付認定保護者の属する世帯の階層区分",
+      "市町村民税所得割合算額が397,000円以上である世帯"
+    ]
+  }
+}
