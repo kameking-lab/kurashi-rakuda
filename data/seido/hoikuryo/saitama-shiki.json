@@ -1,0 +1,291 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "saitama-shiki",
+  "name": "埼玉県志木市",
+  "municipalityCode": "112283",
+  "prefecture": "埼玉県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "riyoannai-pdf",
+      "title": "令和8年度版 志木市 保育施設利用案内（25頁「保育料徴収基準額表」・26頁「保育料多子軽減について」）",
+      "publisher": "志木市子ども・健康部保育課",
+      "url": "https://www.city.shiki.lg.jp/uploaded/attachment/19829.pdf",
+      "landingUrl": "https://www.city.shiki.lg.jp/kosodate/shikikko/34118.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "表紙に「令和８年度版 志木市 保育施設利用案内」「令和７年9月発行」と明記。PDFタイトルメタデータは旧年度からの流用と見られる文字化けだが、表紙・本文の年度表記を正とした。"
+    }
+  ],
+  "disclaimer": "本データは志木市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず志木市（保育課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "0〜2歳児クラス・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児クラスの保育料（国の無償化により無償）",
+      "第2子（括弧内の軽減額）・第3子以降（無料）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）",
+      "世帯年収約360万円未満相当の多子世帯・ひとり親世帯等向けのさらなる軽減額（一般世帯の額と別建てのため本ファイル未収録）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "原典に世帯合算の詳細規定は本資料の範囲内で確認できず（未確認）。",
+    "taxYearRule": "当該年度分の市町村民税の額の区分による（規則で定める期間にあっては前年度分）。",
+    "deductionsIgnored": [],
+    "sourceId": "riyoannai-pdf",
+    "checkedAt": "2026-07-22",
+    "note": "★6/8換算について★ 志木市は中核市・施行時特例市のいずれでもない一般市。riyoannai-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯等（isWelfare）、B=非課税世帯（isNonTaxable）。incomeMin/incomeMaxはA・Bを便宜上0/0とした。★控除規定★ 適用しない税額控除の個別列挙は原典の範囲内で確認できず、deductionsIgnoredは空配列とした（未確認）。★多子軽減は埼玉県独自の施策★ 原典に「本事業は埼玉県独自の施策であるため、県が事業を継続した場合のみの実施となります」と明記されており、県の継続実施が前提の制度である点に留意。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "各年度の階層区分は年齢クラスにより決まる。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラスの保育料は無償",
+      "sourceId": "riyoannai-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["３～５歳児クラスについては令和元年１０月より無償化の対象となっております。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（非課税世帯）は0〜2歳児クラスの保育料が0円",
+      "sourceId": "riyoannai-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "①申請が必要な場合: 第3子（0〜2歳児まで）は上の子の年齢を問わず無料（生計同一であれば大学進学等で転出していても対象、独立〈別生計〉している場合は対象外。新制度未移行幼稚園に通う子も多子軽減の人数にカウントする）。②申請が不要な場合: 同一世帯から2人以上が同時期に保育所等（認可保育園・認定こども園・小規模保育施設・新制度移行幼稚園）に入園している場合、上の子が全額、下の子が軽減額（括弧内）となる。",
+        "sourceId": "riyoannai-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["第３子（０～２歳児まで）は、上の子の年齢を問わず無料となります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "括弧内の金額（例: C1一般4,500円→2,200円）。3人以上入園時は2人目がこの額、3人目以降は無料。",
+        "sourceId": "riyoannai-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子（0〜2歳児）は上の子の年齢を問わず無料（申請必要）",
+        "sourceId": "riyoannai-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["3人目以降のお子様が保育園の０～２歳児クラスに在園している場合は、上のお子様の年齢を問\nわず3人目以降のお子様の保育料が"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "世帯年収が約360万円未満相当の多子世帯及びひとり親世帯等はさらなる軽減の対象（所得申告により申請不要）。本多子軽減事業は埼玉県独自の施策であり、県が事業を継続した場合のみの実施と明記されている。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "所得割の額5,000円未満",
+      "incomeMin": 0,
+      "incomeMax": 5000,
+      "fees": {
+        "under3": { "standard": 4500, "short": 4300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "5,000円以上21,000円未満",
+      "incomeMin": 5000,
+      "incomeMax": 21000,
+      "fees": {
+        "under3": { "standard": 6200, "short": 6000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "21,000円以上41,000円未満",
+      "incomeMin": 21000,
+      "incomeMax": 41000,
+      "fees": {
+        "under3": { "standard": 10000, "short": 9800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "41,000円以上59,000円未満",
+      "incomeMin": 41000,
+      "incomeMax": 59000,
+      "fees": {
+        "under3": { "standard": 13000, "short": 12700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "59,000円以上95,000円未満",
+      "incomeMin": 59000,
+      "incomeMax": 95000,
+      "fees": {
+        "under3": { "standard": 16000, "short": 15700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "95,000円以上130,000円未満",
+      "incomeMin": 95000,
+      "incomeMax": 130000,
+      "fees": {
+        "under3": { "standard": 20000, "short": 19600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "130,000円以上154,000円未満",
+      "incomeMin": 130000,
+      "incomeMax": 154000,
+      "fees": {
+        "under3": { "standard": 27000, "short": 26500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "154,000円以上186,000円未満",
+      "incomeMin": 154000,
+      "incomeMax": 186000,
+      "fees": {
+        "under3": { "standard": 33000, "short": 32400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "186,000円以上220,000円未満",
+      "incomeMin": 186000,
+      "incomeMax": 220000,
+      "fees": {
+        "under3": { "standard": 39000, "short": 38300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "220,000円以上240,000円未満",
+      "incomeMin": 220000,
+      "incomeMax": 240000,
+      "fees": {
+        "under3": { "standard": 43000, "short": 42200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "240,000円以上258,000円未満",
+      "incomeMin": 240000,
+      "incomeMax": 258000,
+      "fees": {
+        "under3": { "standard": 49000, "short": 48100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "258,000円以上286,000円未満",
+      "incomeMin": 258000,
+      "incomeMax": 286000,
+      "fees": {
+        "under3": { "standard": 53000, "short": 52000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "286,000円以上340,000円未満",
+      "incomeMin": 286000,
+      "incomeMax": 340000,
+      "fees": {
+        "under3": { "standard": 55000, "short": 54000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "340,000円以上397,000円未満",
+      "incomeMin": 340000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 58000, "short": 57000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 61000, "short": 60000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "riyoannai-pdf",
+    "expect": [
+      "保育料徴収基準額表",
+      "61,000円",
+      "397,000円以上"
+    ]
+  }
+}

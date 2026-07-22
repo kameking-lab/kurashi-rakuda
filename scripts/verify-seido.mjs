@@ -284,6 +284,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.shikokuchuo.ehime.jp', // 四国中央市の公式サイト
   'city.kunitachi.tokyo.jp', // 国立市の公式サイト
   'city.yonezawa.yamagata.jp', // 米沢市の公式サイト
+  'city.katano.osaka.jp', // 交野市の公式サイト
+  'city.warabi.saitama.jp', // 蕨市の公式サイト
 ];
 
 const args = process.argv.slice(2);

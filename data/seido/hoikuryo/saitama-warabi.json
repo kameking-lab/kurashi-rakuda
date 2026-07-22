@@ -1,0 +1,329 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "saitama-warabi",
+  "name": "埼玉県蕨市",
+  "municipalityCode": "112232",
+  "prefecture": "埼玉県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "tebiki-pdf",
+      "title": "令和8年度保育園入園手続き（15頁「利用者負担額（保育料）等について」・16頁「軽減について」）",
+      "publisher": "蕨市子ども未来課",
+      "url": "https://www.city.warabi.saitama.jp/_res/projects/default_project/_page_/001/012/037/r8tebiki.pdf",
+      "landingUrl": "https://www.city.warabi.saitama.jp/kosodate/hoiku/hoikuen/1012037.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "ファイル名「r8tebiki.pdf」、「令和8年4〜8月分の保育料は、令和7年度市町村民税額で算定し、令和8年9月〜令和9年3月分の保育料は、令和8年度市町村民税額で算定します」と明記され、令和8年度当初から適用される現行版であることを確認済み。認可保育園（公立・私立）・小規模保育園とも同額の表。"
+    }
+  ],
+  "disclaimer": "本データは蕨市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず蕨市（子ども未来課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "0〜2歳児クラス・一般世帯（ひとり親世帯等を除く）・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児クラスの保育料（国の無償化により無償）",
+      "多子・要保護世帯等の軽減後の額（5パターンに分岐する複雑な軽減制度のため、本ファイルのtiersは④の一般的な軽減前の第1子額のみ収録。freeTuition.multiChildPolicy参照）",
+      "ひとり親世帯等（均等割のみ課税世帯）の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録）",
+      "3〜5歳児の給食費（年収360万円未満相当世帯・第3子以降は副食費免除）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "その児童を監護している父母およびそれ以外の扶養義務者（家計の主宰者である場合に限る）全ての課税額の合計額により行う。",
+    "taxYearRule": "4月から8月分は前年度の市町村民税額、9月から翌年3月分は当該年度の市町村民税額で算定する。",
+    "deductionsIgnored": [
+      "住宅借入金等特別控除",
+      "寄附金控除",
+      "配当控除",
+      "外国税額控除",
+      "配当割・株式等譲渡所得割額控除"
+    ],
+    "sourceId": "tebiki-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["保育料を決定する際の市町村民税額は、住宅借入金等特別控除（住宅ローン控除）や寄附金控除（ふるさと\n納税等）、配当控除、外国税額控除、配当割・株式等譲渡所得割額控除等の税額控除が適用される前の金額\nです。"]
+    },
+    "note": "★6/8換算について★ 蕨市は中核市・施行時特例市のいずれでもない一般市。tebiki-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯等（isWelfare）、B1=市町村民税非課税世帯（isNonTaxable）、B2=均等割のみ課税世帯。incomeMin/incomeMaxはA・B1を便宜上0/0とした。★未申告時の扱い★ 税未申告等で市町村民税額が確認できない場合は暫定的に最高額（C17階層）で決定。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "各年度の階層区分は年齢クラスにより決まる。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラスの保育料は無償",
+      "sourceId": "tebiki-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["3～5歳児は幼児教育・保育の\n無償化により、保育料は0円となります。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B1階層（市町村民税非課税世帯）は0〜2歳児クラスの保育料が0円",
+      "sourceId": "tebiki-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["Ａ階層を除き市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "5パターンの軽減が併存する。①年収360万円未満相当（所得割77,101円未満）の要保護世帯（ひとり親・障害者等）：生計同一の兄弟姉妹で年齢制限なし（18歳以上・別居含む）。②年収360万円未満相当（所得割57,700円未満）の一般世帯：同様に年齢制限なし。③保育園在籍児が2人以上いる世帯（3人目以降無料）：在籍児のみで判定。④就学前の子が2人以上いる世帯（③を除く。最も一般的なケース）：同一世帯の就学前兄弟姉妹（幼稚園・保育所・認定こども園・地域型保育等に在園）でカウント。⑤小学生以上も含め子が3人以上いる世帯（③④を除く）：生計同一の兄弟姉妹で年齢制限なし。",
+        "sourceId": "tebiki-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["算定対象は同一世帯の就学前の兄弟姉妹です。兄弟姉妹が、幼稚園、保\n育所、認定こども園、地域型保育事業（小規模保育園、事業所内保育\n等）、特別支援学校幼稚部、児童心理治療施設、児童発達支援、企業主\n導型保育園に在園している場合、対象児童としてカウントします。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "④（就学前の子2人以上、最も一般的なケース）は第2子半額。①要保護世帯は第1子半額（最高9,000円）で第2子以降無料。②低所得の一般世帯は第1子全額・第2子半額。③保育園在籍児2人以上の世帯は蕨市独自軽減で2人目（3歳未満）が無料になる場合がある。",
+        "sourceId": "tebiki-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)",
+        "note": "5パターンの適用条件が複雑に分岐するため、値を数値ではなく説明文字列で収録した（米沢市・貝塚市と同流儀）。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "④（一般的なケース）は3人目以降無料。①②③⑤もいずれも最終的に3人目・第2子以降は無料に到達する",
+        "sourceId": "tebiki-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "保育園在籍児が2人以上いる世帯（3人目以降無料）については、蕨市独自の軽減により2人目（3歳未満児）が無料になる場合がある（★印で明記）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B1",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B2",
+      "label": "市町村民税の均等割のみ課税される世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 7200, "short": 7080 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市町村民税所得割額10,000円未満",
+      "incomeMin": 0,
+      "incomeMax": 10000,
+      "fees": {
+        "under3": { "standard": 8020, "short": 7890 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "10,000円以上48,600円未満",
+      "incomeMin": 10000,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 9120, "short": 8970 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C3",
+      "label": "48,600円以上50,400円未満",
+      "incomeMin": 48600,
+      "incomeMax": 50400,
+      "fees": {
+        "under3": { "standard": 10270, "short": 10100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "50,400円以上57,600円未満",
+      "incomeMin": 50400,
+      "incomeMax": 57600,
+      "fees": {
+        "under3": { "standard": 12070, "short": 11870 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "57,600円以上66,600円未満",
+      "incomeMin": 57600,
+      "incomeMax": 66600,
+      "fees": {
+        "under3": { "standard": 14520, "short": 14280 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "66,600円以上84,600円未満",
+      "incomeMin": 66600,
+      "incomeMax": 84600,
+      "fees": {
+        "under3": { "standard": 19570, "short": 19240 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "84,600円以上102,600円未満",
+      "incomeMin": 84600,
+      "incomeMax": 102600,
+      "fees": {
+        "under3": { "standard": 25870, "short": 25440 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "102,600円以上121,100円未満",
+      "incomeMin": 102600,
+      "incomeMax": 121100,
+      "fees": {
+        "under3": { "standard": 32500, "short": 31950 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "121,100円以上139,100円未満",
+      "incomeMin": 121100,
+      "incomeMax": 139100,
+      "fees": {
+        "under3": { "standard": 40000, "short": 39320 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "139,100円以上169,400円未満",
+      "incomeMin": 139100,
+      "incomeMax": 169400,
+      "fees": {
+        "under3": { "standard": 44000, "short": 43260 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "169,400円以上175,100円未満",
+      "incomeMin": 169400,
+      "incomeMax": 175100,
+      "fees": {
+        "under3": { "standard": 49000, "short": 48170 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "175,100円以上193,100円未満",
+      "incomeMin": 175100,
+      "incomeMax": 193100,
+      "fees": {
+        "under3": { "standard": 53300, "short": 52400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "193,100円以上229,100円未満",
+      "incomeMin": 193100,
+      "incomeMax": 229100,
+      "fees": {
+        "under3": { "standard": 53800, "short": 52890 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "229,100円以上268,100円未満",
+      "incomeMin": 229100,
+      "incomeMax": 268100,
+      "fees": {
+        "under3": { "standard": 54900, "short": 53970 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "268,100円以上298,100円未満",
+      "incomeMin": 268100,
+      "incomeMax": 298100,
+      "fees": {
+        "under3": { "standard": 56010, "short": 55060 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C16",
+      "label": "298,100円以上328,100円未満",
+      "incomeMin": 298100,
+      "incomeMax": 328100,
+      "fees": {
+        "under3": { "standard": 56430, "short": 55480 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C17",
+      "label": "328,100円以上",
+      "incomeMin": 328100,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 56870, "short": 55910 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "tebiki-pdf",
+    "expect": [
+      "利用者負担額（保育料）について",
+      "56,870",
+      "328,100 円以上"
+    ]
+  }
+}

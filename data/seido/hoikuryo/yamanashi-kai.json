@@ -1,0 +1,279 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "yamanashi-kai",
+  "name": "山梨県甲斐市",
+  "municipalityCode": "192104",
+  "prefecture": "山梨県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "reiki",
+      "title": "甲斐市保育料条例施行規則 別表(第2条関係)保育料基準額表",
+      "publisher": "甲斐市（例規集）",
+      "url": "https://www1.g-reiki.net/kai/reiki_honbun/r047RG00001073.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "甲斐市公式サイト（city.kai.yamanashi.jp）に保育料の階層額を掲載したページ・PDFが見当たらず（子育てガイドブック等の関連ページも確認したが金額表なし）、市の条例施行規則そのもの（一次情報）を出典として採用した。最新改正は「令和8年2月24日規則第4号」で「この規則は、令和8年4月1日から施行する。」と明記されており、令和8年度当初から適用される現行の別表であることを確認済み。"
+    }
+  ],
+  "disclaimer": "本データは甲斐市の公式資料（条例施行規則）に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず甲斐市（子育て支援課保育係）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "3号認定子ども（3歳未満児）・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児クラスの保育料（国の無償化により無償）",
+      "母子世帯等（ひとり親・在宅障がい児者のいる世帯等）向けの「3号認定子ども母子・障がい等軽減保育料」別表（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "第2子以降の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "教育・保育給付認定保護者又は当該教育・保育給付認定保護者と同一の世帯に属する者が指定都市の区域内に住所を有する者であるときは、これらの者は指定都市以外の市町村の区域内に住所を有する者とみなす（税源移譲前の税率に相当する額で算定する趣旨）。",
+    "taxYearRule": "4月から8月の保育料は前年度の市町村民税課税額の年額、9月から翌年3月の保育料は当該年度の市町村民税課税額の年額とする。",
+    "deductionsIgnored": [],
+    "sourceId": "reiki",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["保育料基準額表の第3b階層以上における地方税法(昭和25年法律第226号)第292条第1項第2号に掲げる所得割(同法第328条の規定によって課する所得割を除く。)の額を計算する場合には"]
+    },
+    "note": "★6/8換算について★ 甲斐市は中核市・施行時特例市のいずれでもない一般市だが、指定都市在住者について税源移譲前の税率とみなす規定がある（備考2）。★控除除外規定★ 条文は「地方税法第314条の7、第314条の8及び第314条の9並びに附則第5条第3項…」等を個別の号数で列挙する形式で、他都市のような「寄附金控除」等の一般名称の列挙ではないため、deductionsIgnoredは空配列とし原文の趣旨（調整控除以外の税額控除を適用しない）をここに記録した。★階層区分★ 第1階層=生活保護世帯（isWelfare）、第2階層=市町村民税非課税世帯（isNonTaxable）。incomeMin/incomeMaxは第1・第2階層を便宜上0/0とした。★短時間料金の算式★ 備考6により「保育短時間の保育料は、各階層における保育標準時間保育料の1.7％の金額を、当該階層の保育標準時間保育料から差し引いた金額とする(100円未満切捨て)」と明記されており、本ファイルのshort値は原典に明記された金額をそのまま採用した（計算式の再現ではなく原典記載値を直接転記）。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3号認定子ども（満3歳未満）",
+      "rule": "児童年齢が年度途中で3歳に到達した場合、その年度中に限り3歳未満児（3号認定子ども）とみなして算定する。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上児の保育料は無償",
+      "sourceId": "reiki",
+      "checkedAt": "2026-07-22",
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。条例施行規則の別表には3号認定（3歳未満）分のみ掲載されており、3歳以上児分の掲載がないことからも無償化後は基準額表自体が不要になっていることが読み取れる。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "第2階層（市町村民税非課税世帯）は3号認定子どもの保育料が0円",
+      "sourceId": "reiki",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市町村民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "母子世帯等（ひとり親世帯・在宅障がい児者のいる世帯等）以外の世帯は、最年長の子どもから順に2人目以降の子どもについて保育料が無料になる（年齢制限・同時利用要件の明記なし）。母子世帯等は所得割額に応じて第1子から軽減され、第2子以降は無料。",
+        "sourceId": "reiki",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["最年長の子どもから順に2人目以降\n無料"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "母子世帯等以外の世帯も、最年長から数えて2人目以降は無料",
+        "sourceId": "reiki",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第2子が既に無料のため第3子以降も無料",
+        "sourceId": "reiki",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "市町村民税所得割課税額48,600円未満の母子世帯等は第1子が「母子・障がい等軽減保育料」の半額・第2子以降無料。48,600円以上77,100円以下の母子世帯等（3歳未満の第1子）はさらにその半額・第2子以降無料。母子世帯等に該当しない一般世帯も、最年長の子どもから数えて2人目以降は無料。"
+  },
+  "tiers": [
+    {
+      "tier": "第1階層",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第2階層",
+      "label": "市町村民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第3a階層",
+      "label": "市町村民税課税世帯（均等割のみ）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 8000, "short": 7800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第3b階層",
+      "label": "所得割35,000円未満",
+      "incomeMin": 0,
+      "incomeMax": 35000,
+      "fees": {
+        "under3": { "standard": 11000, "short": 10800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第3c階層",
+      "label": "35,000円以上48,600円未満",
+      "incomeMin": 35000,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 13500, "short": 13200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第4a階層",
+      "label": "48,600円以上63,000円未満",
+      "incomeMin": 48600,
+      "incomeMax": 63000,
+      "fees": {
+        "under3": { "standard": 15000, "short": 14700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第4b階層",
+      "label": "63,000円以上86,000円未満",
+      "incomeMin": 63000,
+      "incomeMax": 86000,
+      "fees": {
+        "under3": { "standard": 16500, "short": 16200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第4c階層",
+      "label": "86,000円以上97,000円未満",
+      "incomeMin": 86000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 18000, "short": 17600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第5a階層",
+      "label": "97,000円以上107,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 107000,
+      "fees": {
+        "under3": { "standard": 21000, "short": 20600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第5b階層",
+      "label": "107,000円以上148,000円未満",
+      "incomeMin": 107000,
+      "incomeMax": 148000,
+      "fees": {
+        "under3": { "standard": 24500, "short": 24000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第5c階層",
+      "label": "148,000円以上169,000円未満",
+      "incomeMin": 148000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 28000, "short": 27500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第6a階層",
+      "label": "169,000円以上200,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 200000,
+      "fees": {
+        "under3": { "standard": 31000, "short": 30400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第6b階層",
+      "label": "200,000円以上260,000円未満",
+      "incomeMin": 200000,
+      "incomeMax": 260000,
+      "fees": {
+        "under3": { "standard": 33500, "short": 32900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第6c階層",
+      "label": "260,000円以上301,000円未満",
+      "incomeMin": 260000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 36500, "short": 35800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第7階層",
+      "label": "301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 44000, "short": 43200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "第8階層",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 48000, "short": 47100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "reiki",
+    "expect": [
+      "保育料基準額表",
+      "48,000円",
+      "397,000円以上"
+    ]
+  }
+}
