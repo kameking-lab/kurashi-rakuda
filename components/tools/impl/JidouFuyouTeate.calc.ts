@@ -17,6 +17,7 @@
  *    （JSONの withPublicPension が null ＝未確認）。UI側で窓口確認を強く促す。
  */
 import seido from "@/data/seido/jidou-fuyou-teate.json";
+import kyuyoKoujo from "@/data/seido/kyuyo-shotoku-koujo.json";
 import type { SeidoDataset } from "@/lib/tools/seido";
 
 export const jidouFuyouTeateDataset = seido as unknown as SeidoDataset;
@@ -26,6 +27,9 @@ const A = seido.data.monthlyAmounts;
 const F = seido.data.partialPaymentFormula;
 const TABLE = seido.data.incomeLimits.incomeBasedTable;
 const CS = seido.data.interactions.childSupportIncomeInclusion;
+const SALARY_DEDUCTION = seido.data.interactions.salaryIncomeDeduction;
+const SOCIAL_INSURANCE_DEDUCTION = seido.data.interactions.standardSocialInsuranceDeduction;
+const K = kyuyoKoujo.data;
 
 /** 全部支給の本体額（児童1人目） */
 export const FIRST_CHILD_FULL = A.firstChildFull.value;
@@ -42,11 +46,91 @@ export const FIRST_CHILD_COEFFICIENT = F.firstChildCoefficient.value;
 export const ADDITIONAL_CHILD_COEFFICIENT = F.additionalChildCoefficient.value;
 /** 所得額に算入される養育費の割合（0.8） */
 export const CHILD_SUPPORT_INCOME_RATE = CS.value;
+export const SALARY_INCOME_DEDUCTION = SALARY_DEDUCTION.value;
+export const STANDARD_SOCIAL_INSURANCE_DEDUCTION = SOCIAL_INSURANCE_DEDUCTION.value;
 /** 扶養親族が4人以上の場合の1人あたり加算額 */
 export const INCREMENT_PER_ADDITIONAL_DEPENDENT = TABLE.incrementPerAdditionalDependent;
 /** 支給期月（奇数月）・各回の対象月数（2か月分） */
 export const PAYMENT_MONTHS = [1, 3, 5, 7, 9, 11];
 export const MONTHS_PER_PAYMENT = 2;
+
+export type ApplicableIncomeYear = 2024 | 2025;
+
+export interface SalaryIncomeEstimate {
+  salary: number;
+  incomeYear: ApplicableIncomeYear;
+  salaryIncome: number;
+  salaryIncomeDeduction: number;
+  standardSocialInsuranceDeduction: number;
+  recipientIncome: number;
+}
+
+/** 令和8年4〜10月分は令和6年分、11月分以降は令和7年分の所得で判定する。 */
+export function applicableIncomeYear(date: Date): ApplicableIncomeYear {
+  return date.getMonth() + 1 >= 11 ? 2025 : 2024;
+}
+
+function deductionFromTable(
+  salary: number,
+  rows: ReadonlyArray<{ incomeMin: number; incomeMax: number | null; deduction: number | null; formula: string }>,
+): number | null {
+  for (const row of rows) {
+    if (salary < row.incomeMin || (row.incomeMax !== null && salary > row.incomeMax)) continue;
+    if (row.deduction !== null) return Math.min(row.deduction, salary);
+    const match = /×(\d+)％[＋−+-]([\d,]+)円/.exec(row.formula);
+    if (!match) return null;
+    const rate = Number(match[1]);
+    const amount = Number(match[2].replace(/,/g, ""));
+    const subtracts = row.formula.includes("−") || row.formula.includes("-");
+    return Math.floor((salary * rate) / 100) + (subtracts ? -amount : amount);
+  }
+  return null;
+}
+
+/** 給与収入から給与所得を算出。数値と区分は kyuyo-shotoku-koujo.json のみを参照する。 */
+export function salaryIncomeForYear(salary: number, year: ApplicableIncomeYear): number | null {
+  if (!Number.isFinite(salary) || salary < 0) return null;
+
+  if (year === 2024) {
+    const special = K.tableFY2024.specialSalaryIncomeRows.find(
+      (row) => salary >= row.incomeMin && salary <= row.incomeMax,
+    );
+    if (special) return special.salaryIncome;
+    if (salary < K.tableFY2024.specialSalaryIncomeRows[0].incomeMin) {
+      const deduction = deductionFromTable(salary, K.tableFY2024.rows);
+      return deduction === null ? null : Math.max(0, salary - deduction);
+    }
+  }
+
+  const table = year === 2024 ? K.tableFY2024 : K.tableFY2025;
+  const truncateFrom = year === 2024
+    ? K.tableFY2024.betsuhyou5TruncateMin.value
+    : table.rows[0].incomeMax! + 1;
+  const truncateTo = table.rows.find((row) => row.incomeMax === 6_600_000)?.incomeMax;
+  if (!truncateTo) return null;
+  const base = salary >= truncateFrom && salary < truncateTo
+    ? Math.floor(salary / K.betsuhyou5.granularity.value) * K.betsuhyou5.granularity.value
+    : salary;
+  const deduction = deductionFromTable(base, table.rows);
+  return deduction === null ? null : Math.max(0, base - deduction);
+}
+
+export function estimateRecipientIncomeFromSalary(
+  salary: number,
+  incomeYear: ApplicableIncomeYear,
+): SalaryIncomeEstimate | null {
+  const salaryIncome = salaryIncomeForYear(salary, incomeYear);
+  if (salaryIncome === null) return null;
+  const salaryDeduction = salaryIncome > 0 ? SALARY_INCOME_DEDUCTION : 0;
+  return {
+    salary,
+    incomeYear,
+    salaryIncome,
+    salaryIncomeDeduction: salaryDeduction,
+    standardSocialInsuranceDeduction: STANDARD_SOCIAL_INSURANCE_DEDUCTION,
+    recipientIncome: Math.max(0, salaryIncome - salaryDeduction - STANDARD_SOCIAL_INSURANCE_DEDUCTION),
+  };
+}
 
 export type PaymentStatus =
   | "full" // 全部支給
