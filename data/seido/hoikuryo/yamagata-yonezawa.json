@@ -1,0 +1,247 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "yamagata-yonezawa",
+  "name": "山形県米沢市",
+  "municipalityCode": "062022",
+  "prefecture": "山形県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "Ｂ面 令和８年度米沢市特定教育・保育施設等保育料【２・３号認定】",
+      "publisher": "米沢市健康福祉部子育て支援課",
+      "url": "https://www.city.yonezawa.yamagata.jp/material/files/group/16/R8hoikuryou.pdf",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータのcreationDate 2026-03-18。「令和８年度米沢市特定教育・保育施設等保育料」「令和８年４月１日から」と明記。C〜D4階層は打消し線付きの軽減前金額と軽減後金額が併記されている（軽減後が実際の徴収額。「C～D4 の保育料は、軽減後の金額です（山形県の事業です。令和９年度以降の実施については未定です。）」と注記）。get_pixmap(dpi=300)で表を画像化し、打消し線の有無を目視確認して軽減後の実額を採用した。"
+    },
+    {
+      "id": "mushouka-page",
+      "title": "保育料無償化(第3子以降の保育料を無償化しています)",
+      "publisher": "米沢市健康福祉部子育て支援課",
+      "url": "https://www.city.yonezawa.yamagata.jp/soshiki/4/1015/1/3/1/2057.html",
+      "contentType": "html",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "ページ更新日2026-03-27。「同一世帯の最も年長のお子さんから数えて第3子以降のお子さんの保育料を無償化しています。【米沢市独自の軽減】」と明記。"
+    }
+  ],
+  "disclaimer": "本データは米沢市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず米沢市（子育て支援課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "2号・3号認定・3歳未満児クラス・一般世帯（ひとり親世帯等を除く）・第1子分の保育料（山形県事業による軽減後の実額）",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児クラスの保育料（国の無償化により無償）",
+      "第2子（概ね半額）・第3子以降（市独自軽減により無償）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）",
+      "ひとり親世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "副食費（3〜5歳児。所得等により免除あり）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "教育・保育給付認定保護者及びその配偶者、その他の扶養義務者（家計の主宰者である場合に限る）の市町村民税所得割額の合計額による。",
+    "taxYearRule": "4月から8月までは前年度（令和7年度）の税額、9月から翌3月までは当該年度（令和8年度）の税額で算定する。",
+    "deductionsIgnored": [
+      "寄附金税額控除",
+      "外国税額控除",
+      "配当控除",
+      "住宅借入金特別税額控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["税額を計算するときには、調整控除以外の税額控除（寄附金税額控除、外国税額控除、\n配当控除、住宅借入金特別税額控除等）は適用になりません。"]
+    },
+    "note": "★6/8換算について★ 米沢市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯（isWelfare）、B=市民税非課税世帯（isNonTaxable）。incomeMin/incomeMaxはA・Bを便宜上0/0とした。★D1階層の統合★ 原典は48,600円以上57,700円未満・57,700円以上75,000円未満の2区分（一般世帯）に分かれるが金額が完全一致（軽減後6,000円/5,600円）のため単一階層（48,600円以上75,000円未満）として統合した。★D2階層の統合★ 原典は75,000円以上77,100円以下・77,101円以上97,000円未満の2区分（一般世帯、ドット罫線で仕切られた1セル）に分かれるが金額が完全一致（軽減後11,000円/10,400円）のため単一階層（75,000円以上97,000円未満）として統合した。★軽減前後の併記★ C〜D4階層は打消し線付きの軽減前金額（例: C一般世帯は打消し線15,500円）と軽減後の実額（例: 5,750円）が併記されており、本ファイルのtiersには軽減後の実額のみを収録した。★ひとり親世帯等の別建て軽減★ C〜D2-1階層のひとり親世帯等は一律に近い低い額（軽減後4,500円〜2,750円）になる。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満",
+      "rule": "満3歳を迎えると年度途中に3号から2号認定に切り替わるが、保育料は3歳未満の区分を適用する。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上の保育料は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。fee-pdfのB面表で3歳以上の第1子〜第3子いずれも全階層0円であることを確認済み。",
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（市民税非課税世帯）は3歳未満児の保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "所得割額57,700円未満（ひとり親世帯等は77,100円以下）の世帯は、生計を一にする最も年長の子どもから数えて2番目・3番目になる子ども（年齢制限なし）で数える。57,700円以上（ひとり親世帯等は77,101円以上）の世帯は、第2子は世帯の対象施設等を利用する子どものうち最も年長の子から数えて2番目になる子ども（小学校就学前の範囲）、第3子は生計を一にする最も年長の子どもから数えて3番目になる子ども（年齢制限なし）で数える。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["所得割額57,700 円（ひとり親世帯等は77,100 円以下）を基準に数え方が異なります。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "概ね第1子の半額（例: C一般5,750円→2,870円、D3一般23,870円→11,930円、D5〜D8一般はちょうど半額）",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)",
+        "note": "階層により端数処理があるため割合ではなく実額の関係性を説明文字列で収録した（貝塚市・一宮市と同流儀）。"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は米沢市独自軽減により無償",
+        "sourceId": "mushouka-page",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["同一世帯の最も年長のお子さんから数えて第3子以降のお子さんの保育料を無償化しています。【米沢市独自の軽減】"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "同一世帯の最も年長の子どもから数えて第3子以降の保育料を、階層・年齢を問わず市独自に無償化している。またC〜D4階層（一般世帯）は山形県の事業により軽減されているが、令和9年度以降の実施は未定と明記されている。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "市民税所得割課税額48,600円未満（山形県事業による軽減後の実額）",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 5750, "short": 5350 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "48,600円以上97,000円未満のうち48,600円以上75,000円未満（原典2区分だが金額同一のため統合。軽減後の実額）",
+      "incomeMin": 48600,
+      "incomeMax": 75000,
+      "fees": {
+        "under3": { "standard": 6000, "short": 5600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "75,000円以上97,000円未満（原典2区分だが金額同一のため統合。軽減後の実額）",
+      "incomeMin": 75000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 11000, "short": 10400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "97,000円以上130,000円未満（軽減後の実額）",
+      "incomeMin": 97000,
+      "incomeMax": 130000,
+      "fees": {
+        "under3": { "standard": 23870, "short": 23020 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "130,000円以上169,000円未満（軽減後の実額）",
+      "incomeMin": 130000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 28370, "short": 27320 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "169,000円以上265,000円未満（山形県事業の軽減対象外）",
+      "incomeMin": 169000,
+      "incomeMax": 265000,
+      "fees": {
+        "under3": { "standard": 47500, "short": 46100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "265,000円以上301,000円未満",
+      "incomeMin": 265000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 49000, "short": 47500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 56000, "short": 54300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 58000, "short": 56300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "Ｂ面 令和８年度米沢市特定教育・保育施設等保育料",
+      "58,000",
+      "397，000円以上"
+    ]
+  }
+}
