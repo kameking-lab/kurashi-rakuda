@@ -283,7 +283,7 @@
 ### AI連携（オーパス予約。順序は docs/16 §7 厳守）
 - [ ] P4-AI1 (A/オーパス) あいまい検索強化（1段目・AI不使用・先行リリース可）: specs/ai/01。同義語辞書50語の初期整備はソネット
 - [ ] P4-AI2 (B/オーパス) check:ai-boundary lint（AI以外のfetch/APIルート禁止の機械化）: docs/16 §0
-- [ ] P4-AI3 (S/オーパス) /api/ai/ask＋「AIに聞く」: specs/ai/02。★社長のAPIキー・Supabase・Upstash設定完了までAI_FEATURE_ENABLED=false★
+- [x] P4-AI3 (S/オーパス) /api/ai/ask＋「AIに聞く」: specs/ai/02。2026-07-22にSupabase（東京リージョン）とVercel環境変数を設定し、AI機能を有効化。★本番検収後、異常時は `AI_FEATURE_ENABLED=false` に戻して即時停止★
 - [ ] P4-AI4 (S/オーパス) /ask相談ページ＋プラポリ改定反映（★文面の社長決裁後★）: docs/16 §2・§5
 - [ ] P4-AI5 (B/ソネット) 未解決クエリ集計の運用開始（社長閲覧手順の実地確認）: specs/ai/03
 
