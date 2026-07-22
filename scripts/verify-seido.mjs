@@ -280,6 +280,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.ayase.kanagawa.jp', // 綾瀬市の公式サイト
   'gotemba-kosodate.jp', // 御殿場市の子育て支援サイト（市の公式子育てポータル。komae-kosodate.netと同種）
   'city.natori.miyagi.jp', // 名取市の公式サイト
+  'city.akiruno.tokyo.jp', // あきる野市の公式サイト
+  'city.shikokuchuo.ehime.jp', // 四国中央市の公式サイト
 ];
 
 const args = process.argv.slice(2);
