@@ -1,0 +1,309 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "mie-nabari",
+  "name": "三重県名張市",
+  "municipalityCode": "242080",
+  "prefecture": "三重県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2026-10-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "保育料徴収額表（令和7年9月1日適用）",
+      "publisher": "名張市保育幼稚園室",
+      "url": "https://www.city.nabari.lg.jp/s027/040/110/125/R8tyousyuugakuhyou.pdf",
+      "landingUrl": "https://www.city.nabari.lg.jp/s027/040/110/125/20150326115740.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "ファイル名「R8tyousyuugakuhyou.pdf」・掲載元ページに「令和8年度保育料徴収表」と明記。PDFメタデータcreationDate 2026-03-10。表題自体の適用開始日は「令和7年9月1日」（前回金額改定時点）だが、令和8年度版として再掲載されており、金額改定が行われていないことを示す。get_pixmap(dpi=200)で表全体を画像化し目視で数値を確認した。"
+    }
+  ],
+  "disclaimer": "本データは名張市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず名張市（保育幼稚園室）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "0〜2歳児クラス・一般世帯（ひとり親世帯等を除く）・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児クラスの保育料（国の無償化により無償）",
+      "ひとり親世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "第2子（半額）・第3子以降（無料）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市民税所得割額",
+    "householdScope": "保護者の前年合計収入が103万円未満の場合等、保護者のみで生計を維持していないと判断される場合は、同居の祖父母等を家計の主宰者・扶養義務者とし、主となる方を保育料の算定に含める。",
+    "taxYearRule": "4月から8月は前年度の市民税額、9月から翌年3月は当年度の市民税額により決定する。",
+    "deductionsIgnored": [
+      "配当控除",
+      "寄付金税額控除",
+      "申告特例控除",
+      "外国税額控除",
+      "住宅借入金等特別税額控除",
+      "配当割額・株式等譲渡所得割額控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "skip": true,
+      "skipReason": "出典PDFがPyMuPDF・pdftotextとも機械的なテキスト抽出ができないため、get_pixmap(dpi=200)による目視確認のみで裏取りした（税額控除の適用除外〈配当控除・寄付金税額控除・申告特例控除・外国税額控除・住宅借入金等特別税額控除・配当割額・株式等譲渡所得割額控除〉の記載を画像で確認済み）。"
+    },
+    "note": "★6/8換算について★ 名張市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯（isWelfare）、B=市民税非課税世帯（isNonTaxable）。incomeMin/incomeMaxはA・Bを便宜上0/0とした。★ひとり親世帯等の別建て軽減★ C〜D3階層はひとり親世帯等が一律に近い低い額（標準6,150円〜6,300円）で別建てされている。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。★未申告時の扱い★ 世帯の所得が未確定の場合は最高階層の金額で仮決定する。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "教育・保育給付認定第3号は満3歳到達により年度途中で第2号になるが、その年度の保育料は認定第3号を適用する。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "満3歳（1号認定のみ）・3〜5歳児クラスの保育料は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。fee-pdfの表で3〜5歳児クラスは全階層0円であることを確認済み。",
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（市民税非課税世帯）は0〜2歳児クラスの保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "skip": true,
+        "skipReason": "出典PDFがPyMuPDF・pdftotextとも機械的なテキスト抽出ができないため、目視確認のみで裏取りした（B階層＝市民税非課税世帯の0円表記を画像で確認済み）。"
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "原則、小学校就学前の範囲において特定教育・保育施設等を同時に利用する最年長の児童から順に数える。ただし一般世帯はD2階層以下、ひとり親世帯等はD3階層以下において、生計が同一であれば年齢制限なく児童数に数える（同時利用要件なし）。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "skip": true,
+          "skipReason": "出典PDFがPyMuPDF・pdftotextとも機械的なテキスト抽出ができないため、目視確認のみで裏取りした（D2階層以下の年齢制限なしカウント規定を画像で確認済み）。"
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "第1子額の半額",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "第3子以降は無料。また名張市子ども3人目プロジェクトにより高校卒業まで（18歳到達後最初の3月31日まで）の子のうち最年長を1人目として3人目以降は無償",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "skip": true,
+          "skipReason": "出典PDFがPyMuPDF・pdftotextとも機械的なテキスト抽出ができないため、目視確認のみで裏取りした（名張市子ども3人目プロジェクトの規定を画像で確認済み）。"
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "名張市子ども3人目プロジェクトにより、保護者が扶養している高校卒業まで（18歳到達後最初の3月31日まで）の子どものうち最年長を1人目とし、3人目以降の保育料及び副食費が無償になる（施設在籍の有無を問わない）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護法による被保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C",
+      "label": "市民税均等割のみ課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 12300, "short": 11500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "市民税所得割課税額48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 14400, "short": 13600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "48,600円以上57,700円未満",
+      "incomeMin": 48600,
+      "incomeMax": 57700,
+      "fees": {
+        "under3": { "standard": 19900, "short": 19000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "57,700円以上77,101円未満",
+      "incomeMin": 57700,
+      "incomeMax": 77101,
+      "fees": {
+        "under3": { "standard": 22500, "short": 21600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "77,101円以上87,000円未満",
+      "incomeMin": 77101,
+      "incomeMax": 87000,
+      "fees": {
+        "under3": { "standard": 25200, "short": 24300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "87,000円以上97,000円未満",
+      "incomeMin": 87000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 27600, "short": 26600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "97,000円以上115,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 115000,
+      "fees": {
+        "under3": { "standard": 31700, "short": 30700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "115,000円以上133,000円未満",
+      "incomeMin": 115000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 35300, "short": 34200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "133,000円以上151,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 151000,
+      "fees": {
+        "under3": { "standard": 37500, "short": 36400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "151,000円以上169,000円未満",
+      "incomeMin": 151000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 40300, "short": 39100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D10",
+      "label": "169,000円以上190,100円未満",
+      "incomeMin": 169000,
+      "incomeMax": 190100,
+      "fees": {
+        "under3": { "standard": 43000, "short": 41800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D11",
+      "label": "190,100円以上211,300円未満",
+      "incomeMin": 190100,
+      "incomeMax": 211300,
+      "fees": {
+        "under3": { "standard": 45400, "short": 44200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D12",
+      "label": "211,300円以上256,100円未満",
+      "incomeMin": 211300,
+      "incomeMax": 256100,
+      "fees": {
+        "under3": { "standard": 47800, "short": 46500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D13",
+      "label": "256,100円以上301,000円未満",
+      "incomeMin": 256100,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 50600, "short": 49300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D14",
+      "label": "301,000円以上397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 52700, "short": 51400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "D15",
+      "label": "397,000円以上",
+      "incomeMin": 397000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 54500, "short": 53100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "skip": true,
+    "skipReason": "出典PDFがPyMuPDF・pdftotextとも機械的なテキスト抽出ができないため、逐語照合の対象外とする。get_pixmap(dpi=200)による目視確認で全16階層の金額を裏取り済み。"
+  }
+}

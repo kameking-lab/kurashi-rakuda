@@ -290,6 +290,8 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.tsubame.niigata.jp', // 燕市の公式サイト
   'city.maizuru.kyoto.jp', // 舞鶴市の公式サイト
   'city.tatebayashi.gunma.jp', // 館林市の公式サイト
+  'city.chiryu.aichi.jp', // 知立市の公式サイト
+  'city.joyo.kyoto.jp', // 城陽市の公式サイト
 ];
 
 const args = process.argv.slice(2);
