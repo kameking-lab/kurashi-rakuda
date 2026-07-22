@@ -1,0 +1,246 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "tochigi-moka",
+  "name": "栃木県真岡市",
+  "municipalityCode": "092096",
+  "prefecture": "栃木県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "真岡市保育料表（3号認定子ども）",
+      "publisher": "真岡市健康福祉部保育課",
+      "url": "https://www.city.moka.lg.jp/material/files/group/44/hoikuryouhyou.pdf",
+      "landingUrl": "https://www.city.moka.lg.jp/kakuka/hoiku/gyomu/kosodate/hoikusho_yochien/Nyuuennkibou/15351.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFのタイトルメタデータに「R8.4」と明記、creationDate 2026-05-01。掲載元ページの更新日は2026-07-10。PyMuPDFのget_text()では文字が抽出できない（カスタムフォント）ためget_pixmap(dpi=200)で表全体を画像化し目視で数値を確認した。"
+    }
+  ],
+  "disclaimer": "本データは真岡市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず真岡市（保育課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "3号認定子ども（0〜2歳児クラス）・一般世帯・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児クラス（1号・2号）の保育料（国の無償化により0円）",
+      "同一世帯の在籍児童数・所得帯に応じた第2子・第3子以降の軽減額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）",
+      "ひとり親世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "祖父母が同居し生計を一にしている場合、両親の収入で十分生計を立てていけるだけの経済力があれば祖父母の収入は加算しない。両親の収入で十分生計を立てていけない時は、その家庭の主宰者（最高収入または最高納税者）の収入を加算する。",
+    "taxYearRule": "原典に具体的な切替月の明記は本資料の範囲内で確認できず（未確認）。",
+    "deductionsIgnored": [
+      "住宅取得控除",
+      "寄付金控除",
+      "配当控除",
+      "外国税額控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "skip": true,
+      "skipReason": "出典PDFがカスタムフォントでPyMuPDFのget_text()による機械的なテキスト抽出ができないため、get_pixmap(dpi=200)による目視確認のみで裏取りした（市民税所得割額の定義〈住宅取得控除・寄付金控除・配当控除・外国税額控除を差し引く前の額〉の記載を画像で確認済み）。"
+    },
+    "note": "★6/8換算について★ 真岡市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ 1=生活保護世帯（isWelfare）、2=市民税非課税世帯（isNonTaxable）。incomeMin/incomeMaxは1・2を便宜上0/0とした。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児（3号認定）",
+      "rule": "年度途中に満3歳（2号認定）になった児童でも、0〜2歳児の保育料が適用される。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児（1号・2号）",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児（1号・2号）の保育料は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "skip": true,
+        "skipReason": "出典PDFがカスタムフォントで機械的なテキスト抽出ができないため、目視確認のみで裏取りした（3〜5歳児の保育料が幼児教育・保育無償化により0円となる旨の記載を画像で確認済み）。"
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "第2階層（市民税非課税世帯）は0〜2歳児の保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "skip": true,
+        "skipReason": "出典PDFがカスタムフォントで機械的なテキスト抽出ができないため、目視確認のみで裏取りした（第2階層＝市民税非課税世帯の0円表記を画像で確認済み）。"
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "原則は、同一世帯で保育所・幼稚園・認定こども園等を同時利用している兄姉の人数で数える（1人なら第1子分は半額、2人以上なら0円）。この同時入所要件に該当しない場合でも、3階層〜4階層の一部（所得割57,700円未満）は現に2人以上の児童を育てていれば同様の軽減が適用される。4階層の一部（所得割57,700円以上）から12階層までは、18歳未満の児童を現に2人以上育てていれば「第2子以降保育料等免除事業」（要申請）により第2子以降が無料になる。3〜5階層の一部（所得割77,101円未満）のひとり親世帯等は別建てで第1子5,000円・第2子以降無料。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "skip": true,
+          "skipReason": "出典PDFがカスタムフォントで機械的なテキスト抽出ができないため、目視確認のみで裏取りした（3〜12階層の同時入所兄姉1人で半額・2人以上で0円とする規定を画像で確認済み）。"
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "同時入所の兄姉が1人なら半額、2人以上なら0円。同時入所要件に該当しない3〜4階層の一部（57,700円未満）は第2子半額・第3子以降無料。4階層の一部（57,700円以上）〜12階層は18歳未満2人以上養育（要申請）で第2子以降無料。ひとり親世帯等（3〜5階層の一部、77,101円未満）は第1子5,000円・第2子以降無料。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)",
+        "note": "所得階層・世帯類型・カウント方法（同時入所か18歳未満同居か）によって適用条件が異なるため、値を数値ではなく説明文字列で収録した。"
+      },
+      "thirdChildOnwards": {
+        "value": "3階層〜4階層の一部（所得割57,700円未満）は無料。4階層の一部（57,700円以上）〜12階層は「第2子以降保育料等免除事業」（要申請）により第2子時点で既に無料のため第3子以降も無料。ひとり親世帯等は第2子以降無料のため第3子以降も無料。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "4階層の一部（所得割57,700円以上）から12階層までの世帯でも、18歳未満の児童を現に2人以上育てていれば「第2子以降保育料等免除事業」（要申請）により第2子以降の保育料が無料になる市独自の追加軽減がある。"
+  },
+  "tiers": [
+    {
+      "tier": "1",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "2",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "3",
+      "label": "市民税所得割額48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 11000, "short": 10800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "4",
+      "label": "市民税所得割額72,800円未満",
+      "incomeMin": 48600,
+      "incomeMax": 72800,
+      "fees": {
+        "under3": { "standard": 16000, "short": 15700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "5",
+      "label": "市民税所得割額97,000円未満",
+      "incomeMin": 72800,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 21000, "short": 20600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "6",
+      "label": "市民税所得割額133,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 133000,
+      "fees": {
+        "under3": { "standard": 25000, "short": 24500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "7",
+      "label": "市民税所得割額169,000円未満",
+      "incomeMin": 133000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 33000, "short": 32400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "8",
+      "label": "市民税所得割額235,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": { "standard": 37000, "short": 36300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "9",
+      "label": "市民税所得割額301,000円未満",
+      "incomeMin": 235000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 41000, "short": 40300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "10",
+      "label": "市民税所得割額397,000円未満",
+      "incomeMin": 301000,
+      "incomeMax": 397000,
+      "fees": {
+        "under3": { "standard": 48000, "short": 47100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "11",
+      "label": "市民税所得割額464,600円未満",
+      "incomeMin": 397000,
+      "incomeMax": 464600,
+      "fees": {
+        "under3": { "standard": 50000, "short": 49100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "12",
+      "label": "市民税所得割額464,600円以上",
+      "incomeMin": 464600,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 65000, "short": 63800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "skip": true,
+    "skipReason": "出典PDFがカスタムフォント（ToUnicodeマッピングなし相当）でPyMuPDFのget_text()による機械的なテキスト抽出ができないため、逐語照合の対象外とする。get_pixmap(dpi=200)による目視確認で全12階層の金額を裏取り済み。"
+  }
+}
