@@ -10,8 +10,8 @@
   "solves": ["要介護認定の結果が出るまでの日数が分からない", "要介護認定を待つ間に何をすればよいか分からない"],
   "revision_year": 2026,
   "sources": [
-    { "url": "https://laws.e-gov.go.jp/law/409AC0000000123", "title": "介護保険法", "org": "e-Gov法令検索（デジタル庁）", "accessed": "2026-07-18" },
-    { "url": "https://www.mhlw.go.jp/content/12300000/001415212.pdf", "title": "要介護認定の認定審査期間について", "org": "厚生労働省", "accessed": "2026-07-18" }
+    { "url": "https://laws.e-gov.go.jp/law/409AC0000000123", "title": "介護保険法", "org": "e-Gov法令検索（デジタル庁）", "accessed": "2026-07-22", "verify": { "expect": ["第一項の申請に対する処分は、当該申請のあった日から三十日以内にしなければならない。"] } },
+    { "url": "https://www.mhlw.go.jp/content/12300000/001415212.pdf", "title": "要介護認定の認定審査期間について", "org": "厚生労働省", "accessed": "2026-07-22", "verify": { "expect": ["39.8日"] } }
   ],
   "facts": [
     { "key": "kaigo_nintei.legal_period", "value": 30, "unit": "日", "seido_ref": "kaigo-nintei-shori-kikan.json#data.legalPeriod.principle.value", "status": "verified" },

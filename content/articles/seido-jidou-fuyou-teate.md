@@ -10,13 +10,19 @@
       "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/71de338f-5ed2-4c95-9848-3fd387d0b4d7/a4e6f323/20260408_policies_hitori-oya_fuyou-teate_19.pdf",
       "title": "児童扶養手当制度の概要（令和8年度予算 事業概要）",
       "org": "こども家庭庁 支援局家庭福祉課",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["全部支給（２人世帯）：１９０万円\n一部支給（２人世帯）：３８５万円"]
+      }
     },
     {
       "url": "https://www.pref.osaka.lg.jp/o090135/kateishien/teate/jifu.html",
       "title": "児童扶養手当",
       "org": "大阪府（福祉部 家庭支援課）",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-22",
+      "verify": {
+        "expect": ["支払いは年6回（奇数月）、2か月分の手当が請求者の指定した金融機関の口座に振り込まれます。"]
+      }
     }
   ],
   "facts": [
