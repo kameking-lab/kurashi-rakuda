@@ -286,6 +286,7 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.yonezawa.yamagata.jp', // 米沢市の公式サイト
   'city.katano.osaka.jp', // 交野市の公式サイト
   'city.warabi.saitama.jp', // 蕨市の公式サイト
+  'city.ryugasaki.ibaraki.jp', // 龍ケ崎市の公式サイト
 ];
 
 const args = process.argv.slice(2);
