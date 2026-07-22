@@ -1,0 +1,336 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "gunma-tatebayashi",
+  "name": "群馬県館林市",
+  "municipalityCode": "102075",
+  "prefecture": "群馬県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "fee-pdf",
+      "title": "館林市利用者負担額徴収基準額表",
+      "publisher": "館林市健康こども部子育て支援課",
+      "url": "https://www.city.tatebayashi.gunma.jp/s036/kenko/140/130/060/3.pdf",
+      "landingUrl": "https://www.city.tatebayashi.gunma.jp/s036/kenko/140/130/060/20200105123000.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "PDFメタデータcreationDate 2026-03-18。掲載元ページ自体の更新日は2023-09-01のままだが、添付PDFのcreationDateから令和8年度対応版と判断した。get_pixmap(dpi=220)で表全体を画像化し目視で数値を確認した。3歳未満児のみの表（3歳以上は国の無償化により対象外）。"
+    }
+  ],
+  "disclaimer": "本データは館林市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず館林市（子育て支援課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "3歳未満児・一般世帯（ひとり親世帯等を除く）・第1子分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3歳以上児の保育料（国の無償化により無償）",
+      "ひとり親世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "第2子（括弧内の軽減額）・第3子以降（無料）の額（本ファイルのtiersは第1子の額のみ収録。freeTuition.multiChildPolicy参照）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市民税所得割額",
+    "householdScope": "原則、父母の課税額を基に保育料を算定するが、ほかに扶養義務者がいる場合はそのかたも含めて算定する場合がある。",
+    "taxYearRule": "前年度の市民税の額の区分による（B階層）／前年度の市民税の額の区分による（C階層）。4月分から8月分は前年度、9月分から3月分は当年度の市民税額等に基づく。",
+    "deductionsIgnored": [
+      "住宅借入金控除",
+      "寄付金税額控除",
+      "外国税額控除",
+      "配当控除"
+    ],
+    "sourceId": "fee-pdf",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["市民税による階層区分は、「住宅借入金控除」･「寄付金税額控除」･「外国税額控除」･「配当控除」\n　　　　等の税額控除適用前の税額で算定し認定します。"]
+    },
+    "note": "★6/8換算について★ 館林市は中核市・施行時特例市のいずれでもない一般市。fee-pdfに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯等（isWelfare）、B1=市民税非課税世帯（isNonTaxable）、B2=市民税均等割の額のみ。incomeMin/incomeMaxはA・B1・B2を便宜上0/0とした。★C1D/C1E階層の統合★ 原典は48,600円以上57,700円未満・57,700円以上58,200円未満の2区分（一般世帯）に分かれるが金額が完全一致（標準11,000円/短時間10,900円）のため単一階層（48,600円以上58,200円未満）として統合した。★C3F/C3G階層の統合★ 原典は67,800円以上77,101円未満・77,101円以上77,400円未満の2区分に分かれるが金額が完全一致（標準14,000円/短時間13,800円）のため単一階層（67,800円以上77,400円未満）として統合した。★ひとり親世帯等の別建て軽減★ B2〜C3F階層はひとり親世帯等が一般世帯より大幅に低い額（標準2,000円〜7,000円）で別建てされ、第2子以降が無条件で無料になる。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。婚姻歴がなく事実婚も含め現在も婚姻していないひとり親家庭は寡婦等とみなして算定する。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "3歳未満児",
+      "rule": "年度の途中において3歳に達した児童は、その年度は3歳未満児とみなす。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3歳以上児",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3歳以上児の保育料は無償",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。fee-pdfの基準額表自体に3歳以上児の列がない（対象外のため）。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B1階層（市民税非課税世帯）は3歳未満児の保育料が0円",
+      "sourceId": "fee-pdf",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "同一世帯から2人以上の就学前児童が対象施設（保育園・幼稚園・認定こども園・家庭的保育事業等・特別支援学校幼稚部・児童心理治療施設・児童発達支援・医療型児童発達支援）に在園・利用している場合に適用。ただしAからC1D階層（ひとり親世帯等はC3F）までは、同一扶養義務者に監護されている子どもの中で何人目かで数える（在籍の有無を問わない）。",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["ただし、ＡからＣ１Ｄ階層（ひとり親家庭等の場合はＣ３Ｆ）までは、同一扶養義務者に監護されて\n　　　　いる子どもの中で何人目の子どもか数えるものとします。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "上記基準額表の括弧内の金額（第1子額のおおむね半額）",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "3人目の保育料は0円。また同一世帯で18歳までの児童を3人以上監護する場合は申請により第3子以降が無料",
+        "sourceId": "fee-pdf",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["同一世帯から２人以上の就学前児童が下記の施設に入園または利用している場合、その２人目の\n　　　　保育料は、上記基準額表の（　）内の金額、３人目の保育料は０円とします。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "同一世帯で18歳まで（18歳の誕生日後の最初の3月31日まで）の児童を3人以上監護する場合は、申請により第3子以降の児童の保育料が無料になる市独自の追加軽減がある（在籍要件なし）。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯等",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B1",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B2",
+      "label": "市民税均等割の額のみ（所得割の額のない世帯）",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 5000, "short": 4900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B3",
+      "label": "24,300円未満",
+      "incomeMin": 0,
+      "incomeMax": 24300,
+      "fees": {
+        "under3": { "standard": 6500, "short": 6400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B4",
+      "label": "24,300円以上48,600円未満",
+      "incomeMin": 24300,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 8000, "short": 7900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1D/C1E",
+      "label": "48,600円以上58,200円未満（原典2区分だが金額同一のため統合）",
+      "incomeMin": 48600,
+      "incomeMax": 58200,
+      "fees": {
+        "under3": { "standard": 11000, "short": 10900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "58,200円以上67,800円未満",
+      "incomeMin": 58200,
+      "incomeMax": 67800,
+      "fees": {
+        "under3": { "standard": 12500, "short": 12300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C3F/C3G",
+      "label": "67,800円以上77,400円未満（原典2区分だが金額同一のため統合）",
+      "incomeMin": 67800,
+      "incomeMax": 77400,
+      "fees": {
+        "under3": { "standard": 14000, "short": 13800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C4",
+      "label": "77,400円以上87,000円未満",
+      "incomeMin": 77400,
+      "incomeMax": 87000,
+      "fees": {
+        "under3": { "standard": 15500, "short": 15300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C5",
+      "label": "87,000円以上97,000円未満",
+      "incomeMin": 87000,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 17000, "short": 16800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C6",
+      "label": "97,000円以上111,400円未満",
+      "incomeMin": 97000,
+      "incomeMax": 111400,
+      "fees": {
+        "under3": { "standard": 19000, "short": 18700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C7",
+      "label": "111,400円以上125,800円未満",
+      "incomeMin": 111400,
+      "incomeMax": 125800,
+      "fees": {
+        "under3": { "standard": 21000, "short": 20700 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C8",
+      "label": "125,800円以上140,200円未満",
+      "incomeMin": 125800,
+      "incomeMax": 140200,
+      "fees": {
+        "under3": { "standard": 23500, "short": 23200 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C9",
+      "label": "140,200円以上154,600円未満",
+      "incomeMin": 140200,
+      "incomeMax": 154600,
+      "fees": {
+        "under3": { "standard": 26000, "short": 25600 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C10",
+      "label": "154,600円以上169,000円未満",
+      "incomeMin": 154600,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 28500, "short": 28100 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C11",
+      "label": "169,000円以上179,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 179000,
+      "fees": {
+        "under3": { "standard": 31500, "short": 31000 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C12",
+      "label": "179,000円以上189,000円未満",
+      "incomeMin": 179000,
+      "incomeMax": 189000,
+      "fees": {
+        "under3": { "standard": 34000, "short": 33500 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C13",
+      "label": "189,000円以上199,000円未満",
+      "incomeMin": 189000,
+      "incomeMax": 199000,
+      "fees": {
+        "under3": { "standard": 36500, "short": 35900 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C14",
+      "label": "199,000円以上209,000円未満",
+      "incomeMin": 199000,
+      "incomeMax": 209000,
+      "fees": {
+        "under3": { "standard": 39000, "short": 38400 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C15",
+      "label": "209,000円以上301,000円未満",
+      "incomeMin": 209000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 41500, "short": 40800 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C16",
+      "label": "301,000円以上",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 44000, "short": 43300 },
+        "age3plus": { "standard": 0, "short": 0 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "fee-pdf",
+    "expect": [
+      "館林市利用者負担額徴収基準額表",
+      "44,000",
+      "301,000円 以上"
+    ]
+  }
+}
