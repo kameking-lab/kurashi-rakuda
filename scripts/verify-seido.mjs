@@ -287,6 +287,9 @@ const ALLOWED_MUNICIPAL_DOMAINS = [
   'city.katano.osaka.jp', // 交野市の公式サイト
   'city.warabi.saitama.jp', // 蕨市の公式サイト
   'city.ryugasaki.ibaraki.jp', // 龍ケ崎市の公式サイト
+  'city.tsubame.niigata.jp', // 燕市の公式サイト
+  'city.maizuru.kyoto.jp', // 舞鶴市の公式サイト
+  'city.tatebayashi.gunma.jp', // 館林市の公式サイト
 ];
 
 const args = process.argv.slice(2);
