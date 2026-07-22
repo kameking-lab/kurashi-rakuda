@@ -6,6 +6,8 @@ import { ResultCard } from "@/components/ui/ResultCard";
 import { Callout } from "@/components/ui/Callout";
 import {
   calcJidouFuyouTeate,
+  applicableIncomeYear,
+  estimateRecipientIncomeFromSalary,
   fmtYen,
   STATUS_LABEL,
   type JidouFuyouTeateInput,
@@ -16,15 +18,16 @@ import {
  * specs/s-tools/08-jidou-fuyou-teate.md
  * すべてクライアント内で即時計算（送信なし）。
  *
- * ★入力は「所得額」であって「年収」ではない★
- *   児童扶養手当の所得額は、年収から給与所得控除・社会保険料相当額8万円・諸控除を
- *   引いた独自の額。年収からの自動換算は誤差が大きいため行わず、課税証明書等に記載の
- *   所得額を入力してもらう。
+ * 既定は給与年収からの概算。給与以外の所得や諸控除がある場合は対象外とし、
+ * 課税証明書の所得金額を直接入力できる正確モードへ誘導する。
  */
 export function JidouFuyouTeate() {
+  const [inputMode, setInputMode] = useState<"salary" | "income">("salary");
   const [childrenCount, setChildrenCount] = useState("1");
+  const [salaryAnnual, setSalaryAnnual] = useState("");
   const [recipientIncome, setRecipientIncome] = useState("");
-  const [dependentsCount, setDependentsCount] = useState("0");
+  const [dependentsCount, setDependentsCount] = useState("1");
+  const [dependentsManuallyChanged, setDependentsManuallyChanged] = useState(false);
   const [childSupportAnnual, setChildSupportAnnual] = useState("");
   const [hasObligor, setHasObligor] = useState(false);
   const [obligorIncome, setObligorIncome] = useState("");
@@ -36,20 +39,54 @@ export function JidouFuyouTeate() {
     return Number.isFinite(v) ? v : undefined;
   };
 
+  const incomeYear = applicableIncomeYear(new Date());
+  const salaryEstimate = estimateRecipientIncomeFromSalary(toNum(salaryAnnual) ?? 0, incomeYear);
+  const calculatedRecipientIncome = inputMode === "salary"
+    ? salaryEstimate?.recipientIncome ?? 0
+    : toNum(recipientIncome) ?? 0;
+
   const input: JidouFuyouTeateInput = {
     childrenCount: toNum(childrenCount) ?? 0,
-    recipientIncome: toNum(recipientIncome) ?? 0,
+    recipientIncome: calculatedRecipientIncome,
     dependentsCount: toNum(dependentsCount) ?? 0,
     childSupportAnnual: toNum(childSupportAnnual),
     obligorIncome: hasObligor ? toNum(obligorIncome) : undefined,
     receivingPension,
   };
 
-  const incomeEntered = recipientIncome.trim() !== "";
+  const incomeEntered = inputMode === "salary" ? salaryAnnual.trim() !== "" : recipientIncome.trim() !== "";
   const r = calcJidouFuyouTeate(input);
 
   return (
     <div className="space-y-5">
+      <div className="grid grid-cols-2 gap-2 rounded-card border border-line p-1" role="tablist" aria-label="所得の入力方法">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={inputMode === "salary"}
+          className={`rounded-lg px-3 py-2 text-sm font-medium ${inputMode === "salary" ? "bg-primary text-white" : "text-ink-muted"}`}
+          onClick={() => setInputMode("salary")}
+        >
+          年収から概算（給与のみ）
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={inputMode === "income"}
+          className={`rounded-lg px-3 py-2 text-sm font-medium ${inputMode === "income" ? "bg-primary text-white" : "text-ink-muted"}`}
+          onClick={() => setInputMode("income")}
+        >
+          所得金額で入力（正確）
+        </button>
+      </div>
+
+      {inputMode === "salary" && (
+        <Callout>
+          <strong>給与だけの方向けの概算です。</strong>
+          事業・年金など給与以外の所得がある方や、障害者控除などの諸控除がある方は「所得金額で入力」を選び、課税証明書の金額をご利用ください。
+        </Callout>
+      )}
+
       <div className="grid gap-4 sm:grid-cols-2">
         <NumberField
           label="対象となる児童の人数"
@@ -57,24 +94,41 @@ export function JidouFuyouTeate() {
           min={1}
           step={1}
           value={childrenCount}
-          onChange={(e) => setChildrenCount(e.target.value)}
+          onChange={(e) => {
+            setChildrenCount(e.target.value);
+            if (!dependentsManuallyChanged) setDependentsCount(e.target.value);
+          }}
         />
         <NumberField
           label="扶養親族の数"
-          hint="所得制限限度額表の行を決める人数。多くの場合は対象児童の数と同じです"
+          hint="所得制限限度額表の行を決める人数。多くの場合は対象児童の数と同じです。16歳未満の児童も人数に数えます"
           min={0}
           step={1}
           value={dependentsCount}
-          onChange={(e) => setDependentsCount(e.target.value)}
+          onChange={(e) => {
+            setDependentsCount(e.target.value);
+            setDependentsManuallyChanged(true);
+          }}
         />
-        <NumberField
-          label="受給者本人の所得額（円）"
-          hint="★年収ではありません★ 課税（所得）証明書に記載の「所得金額」を入力してください"
-          min={0}
-          step={10000}
-          value={recipientIncome}
-          onChange={(e) => setRecipientIncome(e.target.value)}
-        />
+        {inputMode === "salary" ? (
+          <NumberField
+            label="給与収入（年額・額面）"
+            hint={`令和${incomeYear === 2024 ? "6" : "7"}年分の所得（令和8年${incomeYear === 2024 ? "4〜10" : "11月以降"}分の手当に適用）で概算します`}
+            min={0}
+            step={10000}
+            value={salaryAnnual}
+            onChange={(e) => setSalaryAnnual(e.target.value)}
+          />
+        ) : (
+          <NumberField
+            label="受給者本人の所得額（円）"
+            hint="課税（所得）証明書に記載の「所得金額」を入力してください"
+            min={0}
+            step={10000}
+            value={recipientIncome}
+            onChange={(e) => setRecipientIncome(e.target.value)}
+          />
+        )}
         <NumberField
           label="受け取っている養育費の年額（円・任意）"
           hint="受け取った養育費の8割が所得に算入されます（未入力なら0円として計算）"
@@ -120,6 +174,20 @@ export function JidouFuyouTeate() {
         incomeEntered && <Callout tone="caution">{r.error}</Callout>
       ) : (
         <>
+          {inputMode === "salary" && incomeEntered && salaryEstimate && (
+            <div className="rounded-card border border-line p-4 text-sm">
+              <p className="font-medium">
+                <span className="mr-2 rounded-full bg-primary/10 px-2 py-0.5 text-xs">概算</span>
+                児童扶養手当の所得額: {fmtYen(salaryEstimate.recipientIncome)}円
+              </p>
+              <p className="mt-2 text-ink-muted">
+                給与所得 {fmtYen(salaryEstimate.salaryIncome)}円 − 給与所得者の控除 {fmtYen(salaryEstimate.salaryIncomeDeduction)}円 − 社会保険料相当額 {fmtYen(salaryEstimate.standardSocialInsuranceDeduction)}円
+              </p>
+              <p className="mt-2 text-ink-muted">
+                正確な判定は課税証明書の所得金額で。お住まいの市区町村の窓口で確認できます。
+              </p>
+            </div>
+          )}
           {r.status === "obligorStop" && (
             <Callout tone="caution">
               同居している扶養義務者の所得が限度額（{fmtYen(r.limits.dependentObligor)}
@@ -177,6 +245,17 @@ export function JidouFuyouTeate() {
               養育費 {fmtYen(toNum(childSupportAnnual) ?? 0)}円/年 のうち 8割の {fmtYen(r.childSupportIncluded)}
               円を所得に算入して判定しています（実効所得額 {fmtYen(r.effectiveIncome)}円）。
             </p>
+          )}
+
+          {inputMode === "salary" && (
+            <details className="rounded-card border border-line p-4 text-sm">
+              <summary className="cursor-pointer font-medium">概算と実際の判定が変わる主な理由</summary>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-ink-muted">
+                <li>障害者控除・医療費控除などの各種控除</li>
+                <li>事業所得・年金所得など給与以外の所得</li>
+                <li>受け取った養育費の8割の所得算入</li>
+              </ul>
+            </details>
           )}
         </>
       )}

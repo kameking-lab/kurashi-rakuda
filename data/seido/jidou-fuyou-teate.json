@@ -650,6 +650,26 @@
         },
         "amendmentNote": "なし（2026-07-17時点）",
         "note": "★養育費算定表（data/seido/youikuhi-santeihyou.json）との連携論点★ 受け取った養育費の80%が所得に算入されるため、養育費を増やすと児童扶養手当が減る。ただし養育費1円に対して手当の減少は0.8×0.0264029≒0.021円/月＝約0.25円/年にとどまり、逆転はしない。verify の expect は、大阪府ページの所得額計算の説明に養育費の語が含まれることを利用した照合であり、80%という割合そのものの literal 照合ではない（割合の記載箇所の表現が自治体により異なるため）。"
+      },
+      "salaryIncomeDeduction": {
+        "value": 100000,
+        "unit": "JPY/year",
+        "label": "給与所得がある場合に児童扶養手当の所得から控除する額",
+        "sourceId": "osaka-jifu",
+        "checkedAt": "2026-07-22",
+        "verify": { "expect": ["給与所得・公的年金に係る所得を有する場合は、その合計額から10万円を控除します"] },
+        "amendmentNote": "なし（2026-07-22時点）",
+        "note": "給与所得が0円の場合は適用しない。"
+      },
+      "standardSocialInsuranceDeduction": {
+        "value": 80000,
+        "unit": "JPY/year",
+        "label": "社会保険料相当額の一律控除",
+        "sourceId": "osaka-jifu",
+        "checkedAt": "2026-07-22",
+        "verify": { "expect": ["8 万円（社会保険料相当額）"] },
+        "amendmentNote": "なし（2026-07-22時点）",
+        "note": "児童扶養手当の所得計算で一律に控除する。"
       }
     }
   }
