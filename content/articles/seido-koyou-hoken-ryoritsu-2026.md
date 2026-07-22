@@ -9,7 +9,7 @@
   "persona": "ペルソナ2: 田中絵里（36歳・ワーママ・時短勤務）",
   "solves": ["2026年度の雇用保険料率が分からない", "給与から引かれる率と会社負担を混同している"],
   "revision_year": 2026,
-  "sources": [{ "url": "https://www.mhlw.go.jp/content/001692566.pdf", "title": "令和8（2026）年度雇用保険料率のご案内", "org": "厚生労働省", "accessed": "2026-07-18" }],
+  "sources": [{ "url": "https://www.mhlw.go.jp/content/001692566.pdf", "title": "令和8（2026）年度雇用保険料率のご案内", "org": "厚生労働省", "accessed": "2026-07-22", "verify": { "expect": ["一般の事業\n5/1,000\n8.5/1,000\n5/1,000\n3.5/1,000\n13.5/1,000"] } }],
   "facts": [
     { "key": "koyou.general_worker_per_mille", "value": 5, "unit": "千分率", "status": "stub", "stub_reason": "元データは0.005の小数率、本文と一次資料は千分の5表記であり、現行照合器に1000倍のscale定義がないため。値は厚生労働省資料と整備済みデータを人手確認した。" },
     { "key": "koyou.general_employer_per_mille", "value": 8.5, "unit": "千分率", "status": "stub", "stub_reason": "元データは0.0085の小数率、本文と一次資料は千分の8.5表記であり、現行照合器に1000倍のscale定義がないため。" },

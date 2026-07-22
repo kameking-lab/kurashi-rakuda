@@ -13,10 +13,11 @@
   "revision_year": 2026,
   "sources": [
     {
-      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_continue.html",
-      "title": "育児時短就業給付金について",
-      "org": "ハローワークインターネットサービス（厚生労働省）",
-      "accessed": "2026-07-17"
+      "url": "https://www.mhlw.go.jp/content/11600000/001395102.pdf",
+      "title": "育児時短就業給付の内容と支給申請手続（令和7年8月1日時点版）",
+      "org": "厚生労働省",
+      "accessed": "2026-07-22",
+      "verify": { "expect": ["育児時短就業中の各月に支払われた賃金額\n×\n10％", "２歳未\n満の子を養育するために所定労働時間を短縮して就業した場合"] }
     }
   ],
   "facts": [
@@ -24,14 +25,15 @@
       "key": "jitan.kyufu_wariai",
       "value": 10,
       "unit": "%",
-      "seido_ref": "jitan-kinmu-kyufu.json#kyufu_ritsu.jitan_chingin_ni_taisuru_wariai",
-      "status": "verified"
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiJitanShugyoKyufuKin.rate.value",
+      "status": "stub",
+      "stub_reason": "元データは0.1のrate形式で、本文の10%とは倍率が異なる。現行の参照マップにscale定義がないためstubとし、雇用保険法（百分の十）を人手確認した。"
     },
     {
       "key": "jitan.age_2_miman",
       "value": 2,
       "unit": "歳",
-      "seido_ref": "jitan-kinmu-kyufu.json#taisho_nenrei_miman_sai",
+      "seido_ref": "ikukyu-kyufu.json#data.ikujiJitanShugyoKyufuKin.targetChildAgeYears.value",
       "status": "verified"
     }
   ],
@@ -79,7 +81,7 @@
 
 ## 出典・根拠
 
-- ハローワークインターネットサービス「育児時短就業給付金について」
+- 厚生労働省「育児時短就業給付の内容と支給申請手続」
 
 ---
 

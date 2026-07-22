@@ -15,10 +15,11 @@
   "revision_year": 2026,
   "sources": [
     {
-      "url": "https://www.jaog.or.jp/note/（1）妊娠時期の特徴と正常妊娠・異常妊娠/",
+      "url": "https://www.jaog.or.jp/note/%EF%BC%881%EF%BC%89%E5%A6%8A%E5%A8%A0%E6%99%82%E6%9C%9F%E3%81%AE%E7%89%B9%E5%BE%B4%E3%81%A8%E6%AD%A3%E5%B8%B8%E5%A6%8A%E5%A8%A0%E3%83%BB%E7%95%B0%E5%B8%B8%E5%A6%8A%E5%A8%A0/",
       "title": "（1）妊娠時期の特徴と正常妊娠・異常妊娠",
       "org": "日本産婦人科医会",
-      "accessed": "2026-07-17"
+      "accessed": "2026-07-22",
+      "verify": { "expect": ["妊娠初期とは妊娠13 週６日までを示す", "妊娠中期は妊娠14 週０日～27 週６日までを示し"] }
     }
   ],
   "facts": [
