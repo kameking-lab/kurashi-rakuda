@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "ibaraki-kasama",
+  "name": "茨城県笠間市",
+  "municipalityCode": "082163",
+  "prefecture": "茨城県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [{
+    "id": "kasama-free-page",
+    "title": "保育料完全無償化について",
+    "publisher": "笠間市こども福祉課",
+    "url": "https://www.city.kasama.lg.jp/page/page016123.html",
+    "contentType": "html",
+    "checkedAt": "2026-07-22",
+    "tier": "municipality",
+    "note": "令和8年度から、年齢・所得・子の順序を問わず、保育施設に入園する全ての子の保育料を完全無償化すると明記。"
+  }],
+  "disclaimer": "笠間市公式情報に基づく参考情報です。送迎費・教材費・給食費等の実費は対象外です。",
+  "scope": {
+    "includes": ["笠間市民で、市内外の保育所・認定こども園（保育利用）・地域型保育施設に入園する0～2歳児の保育料"],
+    "excludes": ["送迎費・教材費等の実費", "3歳児以降の給食費"]
+  },
+  "bracketBasis": {
+    "basis": "全所得帯一律",
+    "householdScope": "笠間市内に居住する対象児童。所得および第何子かを問わない。",
+    "taxYearRule": "令和8年度から完全無償化のため税年度による階層判定なし。",
+    "deductionsIgnored": [],
+    "note": "階層表を用いず全対象児童を0円とする。",
+    "sourceId": "kasama-free-page",
+    "checkedAt": "2026-07-22",
+    "verify": {"expect": ["令和8年度から", "第1子も含めて保育施設に入園するすべてのこどもの保育料を完全無償化します"]}
+  },
+  "ageClasses": [
+    {"key": "under3", "label": "0～2歳児クラス", "rule": "笠間市内に居住し対象施設に入園する児童"},
+    {"key": "age3plus", "label": "3～5歳児クラス", "rule": "国制度により無償"}
+  ],
+  "freeTuition": {
+    "age3plusFree": {"value": true, "label": "3～5歳児は国制度で無償", "sourceId": "kasama-free-page", "checkedAt": "2026-07-22", "amendmentNote": "なし（2026-07-22時点）", "verify": {"expect": ["3歳児から5歳児については、すでに国の制度で無償化"]}},
+    "under3NonTaxableFree": {"value": true, "label": "0～2歳児は課税状況を問わず無償", "sourceId": "kasama-free-page", "checkedAt": "2026-07-22", "amendmentNote": "なし（2026-07-22時点）", "verify": {"expect": ["こどもの年齢や世帯の所得に関係なく"]}},
+    "localExtension": "令和8年度から第1子を含む0～2歳児も完全無償化。申請不要。"
+  },
+  "tiers": [{"tier": "全階層", "label": "所得・子の順序を問わず保育料0円", "incomeMin": 0, "incomeMax": null, "fees": {"under3": {"standard": 0, "short": 0}, "age3plus": {"standard": 0, "short": 0}}}],
+  "verify": {"sourceId": "kasama-free-page", "expect": ["0歳児から2歳児 保育料完全無償化について", "保育料無償化により保育料を徴収しません"]}
+}
