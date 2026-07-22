@@ -1,0 +1,248 @@
+{
+  "$schema": "../../schema/hoikuryo.schema.json",
+  "id": "ehime-shikokuchuo",
+  "name": "愛媛県四国中央市",
+  "municipalityCode": "382132",
+  "prefecture": "愛媛県",
+  "municipalityType": "その他市",
+  "fiscalYear": 2026,
+  "asOf": "2026-07-22",
+  "nextCheckDue": "2027-04-01",
+  "sources": [
+    {
+      "id": "tebiki",
+      "title": "令和8年度 保育所等入所(園)の手引き（21頁「保育料について」・22頁「０～２歳児（保育認定）の保育料基準額表」）",
+      "publisher": "四国中央市保育幼稚園課",
+      "url": "https://www.city.shikokuchuo.ehime.jp/uploaded/attachment/32211.pdf",
+      "landingUrl": "https://www.city.shikokuchuo.ehime.jp/site/kosodate/44400.html",
+      "contentType": "pdf",
+      "checkedAt": "2026-07-22",
+      "tier": "municipality",
+      "note": "表紙に「令和8年度」「令和８年４月20日 改定」と明記。PDFメタデータのcreationDate 2026-04-20。PyMuPDFのpage.find_tables()で表構造を復元して読んだ。"
+    }
+  ],
+  "disclaimer": "本データは四国中央市の公式資料に基づく参考情報です。実際の保育料は世帯状況・税額の確定内容により決定されます。最終的な金額は必ず四国中央市（保育幼稚園課）の決定通知および公式資料をご確認ください。",
+  "scope": {
+    "includes": [
+      "0〜2歳児クラス・一般世帯・第1子（最年長）分の保育料",
+      "保育標準時間認定・保育短時間認定の別"
+    ],
+    "excludes": [
+      "3〜5歳児クラスの保育料（国の無償化により無償）",
+      "2人目（半額）・3人目以降（0円）の軽減後の額（本ファイルのtiersは第1子の額のみ収録。note参照）",
+      "ひとり親世帯等の軽減額（一般世帯の額と別建てのため本ファイルには一般世帯分のみ収録。note参照）",
+      "3〜5歳児の副食費（所得・世帯状況等により免除あり）"
+    ]
+  },
+  "bracketBasis": {
+    "basis": "市町村民税所得割額",
+    "householdScope": "父母の市民税所得割額の合計額に基づき階層区分を決定する。普通徴収と特別徴収の両方で課税されている方は両方の市民税所得割額を合計する。",
+    "taxYearRule": "4月から8月までは前年度の市民税額、9月から翌年3月までは当該年度の市民税額を基準とする。",
+    "deductionsIgnored": [
+      "住宅ローン控除",
+      "寄附金控除",
+      "配当割額・株式等譲渡所得割額控除",
+      "配当控除",
+      "外国税額控除"
+    ],
+    "sourceId": "tebiki",
+    "checkedAt": "2026-07-22",
+    "verify": {
+      "expect": ["保育料算定の基準となる市民税所得割額の計算には、「住宅ローン控除」「寄附金控除」「配当割額・株式等\n譲渡所得割額控除」「配当控除」「外国税額控除」は適用されません。"]
+    },
+    "note": "★6/8換算について★ 四国中央市は中核市・施行時特例市のいずれでもない一般市。tebikiに政令指定都市の6/8税率換算に関する記載は見当たらなかった（非該当・未確認）。★階層区分★ A=生活保護世帯（isWelfare）、B=市民税非課税世帯（isNonTaxable）、C1=市民税均等割世帯。incomeMin/incomeMaxはA・Bを便宜上0/0とした。★D9/D10統合★ 原典は所得割397,000円未満・以上の2区分に分かれるが金額が完全一致（57,000円/56,000円）するため単一階層（397,000円以上）として統合した。★ひとり親世帯等の別建て軽減★ C1・C2・D1・D2階層のうち所得割77,101円未満のひとり親世帯等（母子・父子世帯、在宅障がい児(者)のいる世帯等）は標準5,000円・短時間4,900円という一律に近い額になり、2人目以降は0円。本ファイルのtiersには一般世帯の額のみ収録し、この軽減はこのnoteに原典表記のまま保存した。★市独自の追加多子軽減★ 生計を一にする18歳（18歳に達する日以降の最初の3月31日までの間にある子）以下の児童が4人以上いる世帯は、年長者から数えて4人目以降の児童も0円になる。"
+  },
+  "ageClasses": [
+    {
+      "key": "under3",
+      "label": "0〜2歳児クラス",
+      "rule": "保育認定（2号・3号認定）に基づく。"
+    },
+    {
+      "key": "age3plus",
+      "label": "3〜5歳児クラス",
+      "rule": "3歳以上の子ども。"
+    }
+  ],
+  "freeTuition": {
+    "age3plusFree": {
+      "value": true,
+      "label": "3〜5歳児クラスの保育料は無償",
+      "sourceId": "tebiki",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["３～５歳児クラスの子どもたち及び\n０～２歳児クラスの市民税非課税世帯の子どもたちの保育料は無償になりました。"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)",
+      "note": "国の幼児教育・保育無償化（令和元年10月開始）による。実費として徴収される給食費・通園送迎費・行事費等は無償化の対象外。"
+    },
+    "under3NonTaxableFree": {
+      "value": true,
+      "label": "B階層（市民税非課税世帯）は0〜2歳児クラスの保育料が無償",
+      "sourceId": "tebiki",
+      "checkedAt": "2026-07-22",
+      "verify": {
+        "expect": ["市民税非課税世帯"]
+      },
+      "amendmentNote": "なし(2026-07-22時点)"
+    },
+    "multiChildPolicy": {
+      "countingRule": {
+        "value": "小学校就学前の範囲で、保育所や幼稚園等を同時に利用する最年長の子どもから順に数える。ただし一般世帯のC1・C2・D1階層のうち所得割57,700円未満の世帯（ひとり親世帯等はC1〜D2階層のうち所得割77,101円未満）は年齢制限が撤廃され、子どもの年齢にかかわらず生計を一にしている子どものうち最年長の子どもから順にカウントする。",
+        "sourceId": "tebiki",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["小学校就学前の範囲で、保育所や幼稚園等を同時に利用する最年長の子どもから順に2 人目は半額、 \n3 人目以降は 0 円とします。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "secondChild": {
+        "value": "半額",
+        "sourceId": "tebiki",
+        "checkedAt": "2026-07-22",
+        "verify": {
+          "expect": ["2 人目は半額、\n3 人目以降は 0 円とします。"]
+        },
+        "amendmentNote": "なし(2026-07-22時点)"
+      },
+      "thirdChildOnwards": {
+        "value": 0,
+        "unit": "JPY/month",
+        "label": "3人目以降は0円",
+        "sourceId": "tebiki",
+        "checkedAt": "2026-07-22",
+        "amendmentNote": "なし(2026-07-22時点)"
+      }
+    },
+    "localExtension": "生計を一にする18歳以下の児童が4人以上いる世帯は、年長者から数えて4人目以降の児童の保育料も0円になる市独自の追加軽減がある。"
+  },
+  "tiers": [
+    {
+      "tier": "A",
+      "label": "生活保護世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isWelfare": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "B",
+      "label": "市民税非課税世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "isNonTaxable": true,
+      "fees": {
+        "under3": { "standard": 0, "short": 0 }
+      }
+    },
+    {
+      "tier": "C1",
+      "label": "市民税均等割世帯",
+      "incomeMin": 0,
+      "incomeMax": 0,
+      "fees": {
+        "under3": { "standard": 14000, "short": 13700 }
+      }
+    },
+    {
+      "tier": "C2",
+      "label": "所得割48,600円未満",
+      "incomeMin": 0,
+      "incomeMax": 48600,
+      "fees": {
+        "under3": { "standard": 17000, "short": 16700 }
+      }
+    },
+    {
+      "tier": "D1",
+      "label": "所得割64,700円未満",
+      "incomeMin": 48600,
+      "incomeMax": 64700,
+      "fees": {
+        "under3": { "standard": 22000, "short": 21600 }
+      }
+    },
+    {
+      "tier": "D2",
+      "label": "所得割80,800円未満",
+      "incomeMin": 64700,
+      "incomeMax": 80800,
+      "fees": {
+        "under3": { "standard": 26000, "short": 25500 }
+      }
+    },
+    {
+      "tier": "D3",
+      "label": "所得割97,000円未満",
+      "incomeMin": 80800,
+      "incomeMax": 97000,
+      "fees": {
+        "under3": { "standard": 28000, "short": 27500 }
+      }
+    },
+    {
+      "tier": "D4",
+      "label": "所得割121,000円未満",
+      "incomeMin": 97000,
+      "incomeMax": 121000,
+      "fees": {
+        "under3": { "standard": 31000, "short": 30400 }
+      }
+    },
+    {
+      "tier": "D5",
+      "label": "所得割145,000円未満",
+      "incomeMin": 121000,
+      "incomeMax": 145000,
+      "fees": {
+        "under3": { "standard": 37000, "short": 36300 }
+      }
+    },
+    {
+      "tier": "D6",
+      "label": "所得割169,000円未満",
+      "incomeMin": 145000,
+      "incomeMax": 169000,
+      "fees": {
+        "under3": { "standard": 42000, "short": 41200 }
+      }
+    },
+    {
+      "tier": "D7",
+      "label": "所得割235,000円未満",
+      "incomeMin": 169000,
+      "incomeMax": 235000,
+      "fees": {
+        "under3": { "standard": 47000, "short": 46200 }
+      }
+    },
+    {
+      "tier": "D8",
+      "label": "所得割301,000円未満",
+      "incomeMin": 235000,
+      "incomeMax": 301000,
+      "fees": {
+        "under3": { "standard": 54000, "short": 53000 }
+      }
+    },
+    {
+      "tier": "D9",
+      "label": "所得割397,000円以上（原典は397,000円未満/以上の2区分だが金額同一のため統合）",
+      "incomeMin": 301000,
+      "incomeMax": null,
+      "fees": {
+        "under3": { "standard": 57000, "short": 56000 }
+      }
+    }
+  ],
+  "verify": {
+    "sourceId": "tebiki",
+    "expect": [
+      "０～２歳児（保育認定）の保育料基準額表",
+      "57,000",
+      "397,000 円以上"
+    ]
+  }
+}
